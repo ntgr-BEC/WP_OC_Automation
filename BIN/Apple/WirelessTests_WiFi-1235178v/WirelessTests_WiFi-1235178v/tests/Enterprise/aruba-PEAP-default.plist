@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>EnterpriseSetup</key>
+    <dict>
+        <key>Vendor</key>
+        <array>
+            <string>Aruba</string>
+        </array>
+        <key>SingleTest</key>
+        <true/>
+        <key>SingleTestName</key>
+        <string>Aruba-PEAP</string>
+        <key>OnOffStressPingDestination</key>
+        <string>172.16.2.14</string>
+        <key>WebDestination</key>
+        <string>http://172.16.0.30</string>
+        <key>HTTPDownload</key>
+        <string>www1.iphoneqalab.com</string>
+        <key>PingDestination</key>
+        <string>www2.iphoneqalab.com</string>
+        <key>sendemail</key>
+        <false/>
+        <key>email</key>
+        <dict>
+            <key>server</key>
+            <string>relay.apple.com</string>
+            <key>emailfrom</key>
+            <string>WiFiEnterpriseQL@apple.com</string>
+            <key>to</key>
+            <string>gleser@apple.com</string>
+            <key>subject</key>
+            <string>Enterprise Quick Look Test Results</string>
+        </dict>
+        <key>CiscoDevice</key>
+        <dict>
+            <key>name</key>
+            <string>asa-auto</string>
+            <key>location</key>
+            <string>172.16.2.14</string>
+        </dict>
+        <key>PolicyStorage</key>
+        <string>WiFi/Tests/Enterprise/Profiles</string>
+        <key>TestStorage</key>
+        <string>WiFi/Tests/Enterprise</string>
+        <key>SyslogInfo</key>
+        <key>SudoUser</key>
+        <string>qaadmin</string>
+        <key>SudoPassword</key>
+        <string>toast!123</string>
+        <key>EnableSwitchConfig</key>
+        <false/>
+        <key>SwitchConfig</key>
+            <dict>
+                <key>SwitchAddress</key>
+                <string>192.168.3.42</string>
+                <key>SwitchName</key>
+                <string>QALABSW42IOTROAM02</string>
+                <key>SwitchUser</key>
+                <string>qaadmin</string>
+                <key>SwitchPassword</key>
+                <string>toast!123</string>
+                <key>SwitchEnable</key>
+                <false/>
+                <key>SwitchCommandsPOEEnable</key>
+                <array>
+                    <string>interface gigabitEthernet 0/1</string>
+                    <string>power Inline auto</string>
+                    <string>interface gigabitEthernet 0/2</string>
+                    <string>power Inline auto</string>
+                    <string>interface gigabitEthernet 0/3</string>
+                    <string>power Inline auto</string>
+                    <string>interface gigabitEthernet 0/4</string>
+                    <string>power Inline auto</string>
+                </array>
+                <key>SwitchCommandsPOEDisable</key>
+                <array>
+                    <string>interface gigabitEthernet 0/1</string>
+                    <string>power Inline never</string>
+                    <string>interface gigabitEthernet 0/2</string>
+                    <string>power Inline never</string>
+                    <string>interface gigabitEthernet 0/3</string>
+                    <string>power Inline never</string>
+                    <string>interface gigabitEthernet 0/4</string>
+                    <string>power Inline never</string>
+                </array>
+            </dict>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,22 @@
+This is a guideline for run this feature.
+
+* Make sure that all 4 devices are online with the latest version.
+* Only testng-APDeviceScheduledUpdateTest.xml (5 testcases) is supported
+* Device tag used for all 4 devices are: SW1, AP1, BR1, ORBI1 in com\src\test\resources\config_webportal.xml
+* To setup a lower version of each devices(each one of switch, ap, br, ob), modify template below in com\src\test\resources\config_dut.xml 
+    1. Note for switch/ap it's a file name:
+        <SWAP111>
+            <Ip_Address>10.0.1.111</Ip_Address>
+            <Firmware>http://[your http ip]/[switch/ap old version file name]</Firmware>
+        </SWAP111>
+    2. For BR/OB it points to folder name that contains br/ap file name:
+        <BROB111>
+            <Ip_Address>192.168.22.111</Ip_Address>
+            <Model>BR500</Model>
+            <Firmware>http://[your http ip]/[br/ob old version file name]</Firmware>
+        </BROB111>
+    3. All these firmwares are uploaded to a http server
+    
+p.s.
+1. If you don't have http server, you can use a com\bin\miniweb\start_server.bat, all firmware are saved to com\bin\miniweb\htdocs.
+2. If you had some problem to get low version builds for ap/br/ob, use com\bin\miniweb\make_high_br_orbi.py/make_high_ap_build.py(give file name to its option) to generate.

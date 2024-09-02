@@ -1,0 +1,7 @@
+
+Hi All,
+
+  To get the more consolidated automation test result in detail, login http://10.40.1.183:9090/automation/webportal.jsp?WEBPORTAL_VERSION=5.8.13.7-MQ-GS716TPP-EN
+
+BR,
+Switch Automation Team

@@ -1,0 +1,4 @@
+DEVICE NAME,DEVICE SERIAL,LOCATION NAME,MAC Address,PROFILE NAME (Mobile Hotspot Devices),"IMEI NUMBER (Mobile Hotspot Devices, Ex : IMEI-098765432123456)"
+AP1,4XU39359016FB,change,aa:bb:cc:dd:aa:00,,
+Ap2,5JR18A55012AC,change,aa:bb:cc:dd:aa:01,,
+Ap3,51428B7280110,change,aa:bb:cc:dd:aa:02,,

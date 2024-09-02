@@ -1,0 +1,1 @@
+C:\AUTOMATION\BIN\Auto_Mail\temail.exe /SMTP=10.40.1.183 /FROM=report@auto.system.com /TO=jim.xie@netgear.com;report@auto.system.com;jim.xie@netgear.com /HTO=jim.xie@netgear.com;report@auto.system.com;jim.xie@netgear.com /CC=jim.xie@netgear.com;jim.xie@netgear.com /SUB=@C:\AUTOMATION\BIN\Auto_Mail\subject.txt C:\AUTOMATION\BIN\Auto_Mail\body.txt

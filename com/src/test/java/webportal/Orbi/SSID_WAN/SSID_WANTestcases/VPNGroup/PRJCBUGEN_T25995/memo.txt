@@ -1,0 +1,3 @@
+Before running this script
+1. Use pro account to add a voucher manager.
+2. configure <voucherManagerName> and <voucherManagerPassword> in config_webportal.xml

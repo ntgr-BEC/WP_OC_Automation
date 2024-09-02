@@ -1,0 +1,1 @@
+temail.exe /SMTP=172.24.0.159 /HSENDER=insightalerts@netgear.com /FROM=report@auto.system.com /CC=jim.xie@netgear.com /TO=jim.xie@netgear.com /H+  /SUB=@subject.txt body_sanity.txt

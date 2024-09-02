@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WebPortalSuite">
+  <test name="Test_SNMP">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.SNMP.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_ACL">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.ACL.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_LAG">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.LAG.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_POE">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.POE.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_SpanningTree">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.SpanningTree.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_System">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.System.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_Port">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.Port.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_VLAN">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.VLAN.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_VlanOverhauling">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.VlanOverhauling.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_PortMirror">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.PortMirror.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_CableTest">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.CableTest.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_Event">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.Event.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_Routing">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.Routing.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_FirmwarePolicy">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.FirmwarePolicy.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_Syslog">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.Syslog.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_Radius">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.Radius.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRIPSecVpn">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRIPSecVpn.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRIPManagement">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRIPManagement.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRSystem">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRSystem.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRVlan">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRVlan.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRVPNRemoteUser2Site">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRVPNRemoteUser2Site.*"/>
+    </packages>
+  </test> <!-- Feature -->
+  <test name="Test_BRVPNSite2Site">
+    <groups>
+        <run>
+            <include name="p1" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.BR.BRVPNSite2Site.*"/>
+    </packages>
+  </test> <!-- Feature -->
+</suite> <!-- Suite -->

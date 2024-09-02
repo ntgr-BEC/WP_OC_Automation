@@ -1,0 +1,7 @@
+
+// install mac client before these steps
+// Go to Settings -> Security & Provicy -> Privacy -> Accessibility (add InsightVPNClient)
+// then run below 3 commands
+unzip pbr-5.1.3-py2.py3-none-any.whl
+unzip lockfile-0.12.2-py2.py3-none-any.whl
+easy_install --user atomac-1.1.0.tar.gz

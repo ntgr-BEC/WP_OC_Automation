@@ -1,0 +1,9 @@
+
+Hi All,
+
+  This is a notification from Insight Cloud Portal login monitoring script.
+
+  Test Step is to trying login and logout in every 2 mintues.
+
+BR,
+SMB Automation Team

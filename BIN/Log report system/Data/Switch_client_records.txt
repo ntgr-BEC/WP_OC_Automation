@@ -1,0 +1,6 @@
+\N	002-Access Control-Deny snmp service from sepecified source address	PASS	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie
+\N	003-Access Control-Permit snmp service from sepecified source address	FAIL	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie
+\N	004-Access Control-Deny HTTP service from sepecified source address	PASS	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie
+\N	005-Access Control-Permit HTTP service from sepecified source address	FAIL	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie
+\N	006-Access Control-Deny HTTPS service from sepecified source address	FAIL	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie
+\N	007-Access Control-Permit HTTPS service from sepecified source address	PASS	http://	Access Control	M4300-24X24F	12.0.2.5	1	jim.xie

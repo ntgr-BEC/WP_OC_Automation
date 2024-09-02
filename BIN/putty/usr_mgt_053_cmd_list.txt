@@ -1,0 +1,15 @@
+
+admin
+
+enable
+test
+show version
+ 
+
+config
+no aaa authentication enable default
+exit
+no enable password
+exit
+logout
+n

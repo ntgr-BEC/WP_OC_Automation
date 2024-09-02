@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WebPortalSuite">
+  <test name="Test Suite">
+    <groups>
+        <run>
+            <include name="p1" />
+            <include name="p2" />
+            <include name="p3" />
+        </run>
+    </groups>
+    <packages>
+      <package name="webportal.Switch.ACL.*"/>
+	  <package name="webportal.Switch.CableTest.*"/>
+	  <package name="webportal.Switch.LAG.*"/>
+	  <package name="webportal.Switch.POE.*"/>
+	  <package name="webportal.Switch.Port.*"/>
+	  <package name="webportal.Switch.PortMirror.*"/>
+      <package name="webportal.Switch.Radius.*"/>
+      <package name="webportal.Switch.Routing.*"/>
+      <package name="webportal.Switch.SNMP.*"/>
+      <package name="webportal.Switch.SpanningTree.*"/>
+      <package name="webportal.Switch.SwitchRoutingVLANEnhancement.*"/>
+      <package name="webportal.Switch.Syslog.*"/>
+	  <package name="webportal.Switch.System.*"/>
+	  <package name="webportal.Switch.VLAN.*"/>
+	  <package name="webportal.Switch.VlanOverhauling.*"/>
+    </packages>
+  </test> <!-- Feature -->
+</suite> <!-- Suite -->

@@ -1,0 +1,11 @@
+DEVICE NAME,DEVICE SERIAL,LOCATION NAME
+test1,5LG1905VF0018,BulkOnboarding
+test2,5LG1905VF0019,BulkOnboarding
+test3,5LG1905VF0020,BulkOnboarding
+test4,5LG1905VF0021,BulkOnboarding
+test5,5LG1905VF0022,BulkOnboarding
+test6,5LG1905VF0023,BulkOnboarding
+test7,5LG1905VF0024,BulkOnboarding
+test8,5LG1905VF0025,BulkOnboarding
+test9,5LG1905VF0026,BulkOnboarding
+test10,5LG1905VF0027,BulkOnboarding

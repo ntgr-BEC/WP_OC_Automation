@@ -1,0 +1,11 @@
+
+admin
+
+enable
+show version
+ 
+
+
+exit
+logout
+n

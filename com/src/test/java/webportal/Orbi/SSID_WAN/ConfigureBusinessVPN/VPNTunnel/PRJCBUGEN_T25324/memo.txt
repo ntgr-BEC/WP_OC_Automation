@@ -1,0 +1,1 @@
+Before running this script, set the routing priority of wifi adapter on CPC (client1) to be the highest.

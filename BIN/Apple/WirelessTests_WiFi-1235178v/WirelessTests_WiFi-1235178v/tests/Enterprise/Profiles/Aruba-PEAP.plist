@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>General</key>
+    <dict>
+        <key>organization</key>
+        <string>Apple, Inc.</string>
+        <key>profile_identifier</key>
+        <string>EnterpriseWiFi</string>
+        <key>displayed_name</key>
+        <string>EnterpriseWiFi</string>
+        <key>description</key>
+        <string>This is Test Profile for Enterprise WiFi test cases</string>
+        <key>removable</key>
+        <string>always</string>
+    </dict>
+    <key>WiFi</key>
+    <dict>
+        <key>service_set_identifier</key>
+        <string>Cisco-EAP-TTLS</string>
+        <key>auto_join</key>
+        <true/>
+        <key>hidden</key>
+        <true/>
+        <key>security_type</key>
+        <string>any enterprise</string>
+        <key>accept_TTLS</key>
+        <true/>
+        <key>user_name</key>
+        <string>millie</string>
+        <key>password</key>
+        <string>millie</string>
+    </dict>
+</dict>
+</plist>

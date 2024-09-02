@@ -1,0 +1,7 @@
+gui-inspect-tool-master.zip
+
+Launch UISpy.exe
+    Locate vpn client to find:
+        LocalizedControlType:	"pane"
+        Name:	"Insight Instant VPN"
+        

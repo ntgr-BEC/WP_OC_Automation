@@ -1,0 +1,13 @@
+DEVICE NAME,DEVICE SERIAL,LOCATION NAME,MAC Address,PROFILE NAME (Mobile Hotspot Devices),"IMEI NUMBER (Mobile Hotspot Devices, Ex : IMEI-098765432123456)"
+AP1,4XU39359016FC,BulkOnboarding,aa:bb:cc:dd:aa:03,,
+AP2,4XU39359026FC,office22,aa:bb:cc:dd:aa:04,,
+AP3,4XU39359036FC,,aa:bb:cc:dd:aa:05,,
+BR1,5JR1111122222,BulkOnboarding,aa:bb:cc:dd:aa:06,,
+BR2,5JR1111122223,Netgear,aa:bb:cc:dd:aa:07,,
+BR3,5JR1111122224,,aa:bb:cc:dd:aa:08,,
+SW1,4WU1111122225,BulkOnboarding,aa:bb:cc:dd:aa:09,,
+SW2,4WU1111122223,Netgear1,aa:bb:cc:dd:aa:10,,
+SW3,4WU1111122224,,aa:bb:cc:dd:aa:11,,
+Orbi1,52K1111122222,BulkOnboarding,aa:bb:cc:dd:aa:12,,
+Orbi2,52K1111122223,office2,aa:bb:cc:dd:aa:13,,
+Orbi3,52K1111122224,,aa:bb:cc:dd:aa:14,,

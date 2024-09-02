@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WebPortalSuite">
+	<test name="Test Suite">
+		<groups>
+			<run>
+				<include name="p2" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.CentralRouter.PRJCBUGEN_T25271"/>
+			<!--
+			<package name="webportal.Orbi.SSID_WAN.Banners.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.AccessControlUserManagement.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.CentralRouter.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.DomainNamesThroughVPN.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.GraphView.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.PRJCBUGEN_T25345.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.PRJCBUGEN_T25895.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.RemoteRouter.*"/>
+			<package name="webportal.Orbi.SSID_WAN.ConfigureBusinessVPN.VPNTunnel.*"/>
+			<package name="webportal.Orbi.SSID_WAN.PRJCBUGEN_T25138.*"/>
+			<package name="webportal.Orbi.SSID_WAN.SanityBusinessVPNFlow.*"/>
+			<package name="webportal.Orbi.SSID_WAN.SSID_WANTestcases.*"/>
+			-->
+		</packages>
+	</test>
+</suite> <!-- Suite -->

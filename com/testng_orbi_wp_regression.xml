@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WebPortalSuite">
+
+
+
+<!--
+
+	<test name="AP Functionality">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.APRouterFunctionality.APFunctionality.*"/>
+		</packages>
+	</test>
+	
+	<test name="Router Functionality">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.APRouterFunctionality.RouterFunctionality.*"/>
+		</packages>
+	</test>
+
+
+
+	<test name="mDNS Onboarding">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.SXK30.PRJCBUGEN_T33739.*"/>
+		</packages>
+	</test>
+
+	<test name="Wifi Schedule">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.IM69_Wifi_Schedule.*"/>
+		</packages>
+	</test>
+
+	
+
+	<test name="Router Onboarding">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.OnBoarding.Router.*"/>
+		</packages>
+	</test>
+
+	<test name="AP Onboarding">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.OnBoarding.AP.*"/>
+		</packages>
+	</test>
+-->
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+	<test name="IM68 WPA3">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.IM68_WPA3.*"/>
+		</packages>
+	</test>
+	
+	<test name="Orbi Testcases IM63 Router">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.OrbiTestCases_IM63.Router.*"/>
+		</packages>
+	</test>
+	
+	<test name="Orbi Testcases IM63 AP">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.OrbiTestCases_IM63.AP.*"/>
+		</packages>
+	</test>
+	
+	<test name="SXK30">
+		<groups>
+			<run>
+				<include name="p1" />
+				<include name="p2" />
+				<include name="p3" />
+			</run>
+		</groups>
+		<packages>
+			<package name="webportal.Orbi.SXK30.*"/>
+		</packages>
+	</test>
+-->  
+
+  
+</suite> <!-- Suite -->

@@ -1,0 +1,7 @@
+DEVICE NAME,DEVICE SERIAL,LOCATION NAME,MAC Address,PROFILE NAME (Mobile Hotspot Devices),"IMEI NUMBER (Mobile Hotspot Devices, Ex : IMEI-098765432123456)"
+%!%@#$,5LG1905VF0018,BulkOnboarding,aa:bb:cc:dd:aa:00,,
+%&^((),5LG1905VF0019,BulkOnboarding,aa:bb:cc:dd:aa:01,,
+test1,5LG190,BulkOnboarding,aa:bb:cc:dd:aa:02,,
+test2,5LG1905VF,BulkOnboarding,aa:bb:cc:dd:aa:03,,
+test3,5LG1905VF0020,,aa:bb:cc:dd:aa:04,,
+test4,5LG1905VF0021,,aa:bb:cc:dd:aa:05,,

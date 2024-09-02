@@ -1,0 +1,2 @@
+interface GigabitEthernet 0/6
+power Inline never

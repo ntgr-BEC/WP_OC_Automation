@@ -1,0 +1,1 @@
+remote router (ob2) must be SRR60

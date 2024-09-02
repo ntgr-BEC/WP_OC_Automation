@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<Config xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+	<testurl>www.baidu.com</testurl>
+	<username>root</username>
+	<userpassword>123456</userpassword>
+
+</Config>

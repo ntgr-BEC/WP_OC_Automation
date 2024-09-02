@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="none">
+  <test name="LongRunStabilityVPN">
+    <classes>
+      <class name="webportal.LongRunStabilityVPN.PRJCBUGEN_T9022.Testcase"/>
+      <class name="webportal.LongRunStabilityVPN.PRJCBUGEN_T21236.Testcase"/>
+      <class name="webportal.LongRunStabilityVPN.PRJCBUGEN_T13780.Testcase"/>
+      <class name="webportal.LongRunStabilityVPN.PRJCBUGEN_T16292.Testcase"/>
+      <class name="webportal.LongRunStabilityVPN.PRJCBUGEN_T9018.Testcase"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

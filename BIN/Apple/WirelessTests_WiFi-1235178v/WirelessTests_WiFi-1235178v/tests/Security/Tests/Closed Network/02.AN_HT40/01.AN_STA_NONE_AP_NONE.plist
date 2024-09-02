@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>apconfigs</key>
+	<array>
+		<dict>
+			<key>keyMgmtType</key>
+			<string>none</string>
+			<key>radios</key>
+			<array>
+				<dict>
+					<key>Bcast</key>
+					<string>false</string>
+					<key>apRadioPower</key>
+					<string>off</string>
+				</dict>
+				<dict>
+					<key>Bcast</key>
+					<string>false</string>
+					<key>apRadioPower</key>
+					<string>on</string>
+					<key>radioMode</key>
+					<string>AN_HT40</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

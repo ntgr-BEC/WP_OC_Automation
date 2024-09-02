@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="none">
+  <test name="Test Case">
+    <classes>
+      <class name="webportal.APDeviceScheduledUpdateTest.PRJCBUGEN_T15150.Testcase"/>
+      <class name="webportal.APDeviceScheduledUpdateTest.PRJCBUGEN_T15151.Testcase"/>
+      <class name="webportal.APDeviceScheduledUpdateTest.PRJCBUGEN_T15156.Testcase"/>
+      <class name="webportal.APDeviceScheduledUpdateTest.PRJCBUGEN_T15160.Testcase"/>
+      <class name="webportal.APDeviceScheduledUpdateTest.PRJCBUGEN_T16539.Testcase"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

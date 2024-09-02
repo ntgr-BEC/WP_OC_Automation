@@ -1,0 +1,10 @@
+y
+
+enable
+test
+
+show version
+ 
+
+logout
+n

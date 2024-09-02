@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+    <name>NETGEAR_RS_SECURED</name>
+    <SSIDConfig>
+        <SSID>
+            <hex>4E4554474541525F52535F53454355524544</hex>
+            <name>NETGEAR_RS_SECURED</name>
+        </SSID>
+        <nonBroadcast>true</nonBroadcast>
+    </SSIDConfig>
+    <connectionType>ESS</connectionType>
+    <connectionMode>manual</connectionMode>
+    <autoSwitch>false</autoSwitch>
+    <MSM>
+        <security>
+            <authEncryption>
+                <authentication>WPA2</authentication>
+                <encryption>AES</encryption>
+                <useOneX>true</useOneX>
+            </authEncryption>
+            <PMKCacheMode>enabled</PMKCacheMode>
+            <PMKCacheTTL>720</PMKCacheTTL>
+            <PMKCacheSize>128</PMKCacheSize>
+            <preAuthMode>disabled</preAuthMode>
+            <OneX xmlns="http://www.microsoft.com/networking/OneX/v1">
+                <authMode>machineOrUser</authMode>
+                <EAPConfig>
+                <EapHostConfig xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+                <EapMethod>
+                    <Type xmlns="http://www.microsoft.com/provisioning/EapCommon">21</Type>
+                    <VendorId xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorId>
+                    <VendorType xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorType>
+                    <AuthorId xmlns="http://www.microsoft.com/provisioning/EapCommon">8086</AuthorId>
+                </EapMethod>
+                <Config xmlns="http://www.microsoft.com/provisioning/EapHostConfig">
+                <EapTtls xmlns="http://www.intel.com/WiFi">
+                    <Phase2Type>MSCHAPV2</Phase2Type>
+                    <credPrompt/>
+                    <anonymousIdentity>2015-Automation\Administrator</anonymousIdentity>
+                    <serverCertificateHash>hash://c4cb81be290511b7f8a35798bba82e0c854ef871</serverCertificateHash>
+                    <noSubjectMatch/>
+                </EapTtls>
+                </Config>
+                </EapHostConfig>
+                </EAPConfig>
+            </OneX>
+        </security>
+    </MSM>
+</WLANProfile>

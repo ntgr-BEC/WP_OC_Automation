@@ -1,0 +1,2 @@
+interface GigabitEthernet 0/5
+power Inline auto

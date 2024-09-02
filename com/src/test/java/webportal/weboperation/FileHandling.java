@@ -1,0 +1,226 @@
+package webportal.weboperation;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import static org.testng.Assert.assertTrue;
+
+import java.io.BufferedReader;
+import java.io.File;
+
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.Metadata;  
+import org.apache.tika.sax.BodyContentHandler;
+import org.xml.sax.SAXException;
+
+import io.qameta.allure.Step;
+import util.APUtils;
+import util.MyCommonAPIs;
+import webportal.param.WebportalParam;
+import webportal.webelements.HamburgerMenuElement;
+
+//import org.apache.tika.parser.pdf.PDFParser;  
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.pdf.PDFParser;  
+
+
+
+/**
+ * @author Tejeshwini K V
+ */
+
+public class FileHandling extends HamburgerMenuElement {
+    
+    
+   
+  
+    
+//    public String file(String fileName) throws IOException, SAXException, TikaException {   
+//
+//        FileInputStream fs = null;
+//        BodyContentHandler ch = new BodyContentHandler();  
+//        File fl = new File("C:/Users/Lenovo/Downloads/"+fileName+"");         
+//        try {
+//            fs = new FileInputStream(fl);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }  
+//        Metadata md = new Metadata();  
+//        ParseContext pc = new ParseContext();   
+//        PDFParser pp = new PDFParser();  
+//        pp.parse(fs, ch, md, pc);   
+//        String str = ch.toString();  
+//     
+//        System.out.println("Extracting the contents from the file: \n" + ch.toString());  
+//        
+//        try{
+////            File f1=new File("C:\\Users\\Lenovo\\Downloads\\156107251_.pdf");   
+//            //File f1=new File("C:\\\\Users\\\\Lenovo\\\\Downloads\\\\156107251_ (1).pdf");  
+//            Files.deleteIfExists(Paths.get("C:\\Users\\Lenovo\\Downloads\\156107251_ (1).pdf"));
+//            /*Files.deleteIfExists(path)
+//            System.out.println(f1.getAbsolutePath());
+//            System.out.println("Here::"+f1.canWrite());
+//            System.out.println("Done"+f1.renameTo(new File("C:\\\\Users\\\\Lenovo\\\\Downloads\\\\156107251_ (2).pdf")));*/
+//            //System.out.println("Hre we are ::"+new File ("C:\\Users\\Lenovo\\Downloads\\156107251_ (1).pdf").exists());
+//           /* System.out.println(f1.getAbsoluteFile().getName());
+//            System.out.println(f1.getPath());
+//            System.out.println(f1.exists());
+//
+//          
+//            if(f1.delete()){
+//                System.out.println(f1.getName() + " is deleted!");
+//            }else{
+//                System.out.println("Delete operation is failed.");
+//            }*/
+//
+//        }
+//            catch (Exception e) {
+//                System.out.println(e.getStackTrace());
+//                // TODO: handle exception
+//            }
+//      
+//        
+//        return  str;
+//     }
+//   
+    
+    public String file(String fileName) throws IOException, SAXException, TikaException {   
+
+//      FileInputStream fs = null;
+     
+
+      BodyContentHandler ch = new BodyContentHandler();  
+      File fl = new File("D:\\downTeju\\"+fileName+"");      
+      System.out.println("check1");
+//      try {
+//          fs = new FileInputStream(fl);
+//      } catch (FileNotFoundException e) {
+//          e.printStackTrace();
+//      }  
+      FileInputStream fs = new FileInputStream(fl);  
+      Metadata md = new Metadata();  
+      ParseContext pc = new ParseContext();   
+      PDFParser pp = new PDFParser();          
+      pp.parse(fs, ch, md, pc);   
+      String str = ch.toString();   
+   
+      System.out.println("Extracting the contents from the file: \n" + ch.toString());  
+      fs.close();
+      fl.delete();
+//      try{
+////          File f1=new File("C:\\Users\\Lenovo\\Downloads\\156107251_.pdf");   
+//          //File f1=new File("C:\\\\Users\\\\Lenovo\\\\Downloads\\\\156107251_ (1).pdf");  
+//          Files.deleteIfExists(Paths.get("C:\\Users\\Lenovo\\Downloads\\156107251_ (1).pdf"));
+          /*Files.deleteIfExists(path)
+          System.out.println(f1.getAbsolutePath());
+          System.out.println("Here::"+f1.canWrite());
+          System.out.println("Done"+f1.renameTo(new File("C:\\\\Users\\\\Lenovo\\\\Downloads\\\\156107251_ (2).pdf")));*/
+          //System.out.println("Hre we are ::"+new File ("C:\\Users\\Lenovo\\Downloads\\156107251_ (1).pdf").exists());
+         /* System.out.println(f1.getAbsoluteFile().getName());
+          System.out.println(f1.getPath());
+          System.out.println(f1.exists());
+
+        
+          if(f1.delete()){
+              System.out.println(f1.getName() + " is deleted!");
+          }else{
+              System.out.println("Delete operation is failed.");
+          }*/
+
+//      }
+//          catch (Exception e) {
+//              System.out.println(e.getStackTrace());
+//              // TODO: handle exception
+//          }
+    
+      
+      return  str;
+   }
+    public void createFile(String path) {
+        File myObj = new File(path);  
+        try {       
+        if (myObj.createNewFile()) {
+            System.out.println("File created: " + myObj.getName());
+            } else {
+            System.out.println("File already exists.");
+            }
+         } catch (IOException e) {
+           System.out.println("An error occurred.");
+           e.printStackTrace();
+         }
+            
+    }
+    
+    public void writeFile(String path,String Vap) {
+        FileWriter myWriter;
+        try {              
+            File output = new File("C:\\Auto\\filename.txt");
+            FileWriter writer = new FileWriter(output);
+
+            writer.write(Vap);
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+   
+
+
+   public String ssidBroadcast(String path, String Ssid, String band) throws IOException{
+       int linecount = 0;            
+       String line="";
+       String  wantedline = "";
+       String  wantedline1 = "";
+          
+       try {
+           String stringSearch = Ssid;
+           BufferedReader bf = new BufferedReader(new FileReader(path));
+
+          
+           MyCommonAPIs.sleepi(4);
+           System.out.println("Searching for " + stringSearch + " in file...");
+                      
+           line = bf.readLine();
+
+           while (( line = bf.readLine()) != null)
+           {
+           int indexfound = line.indexOf(stringSearch);
+           linecount++;
+           
+            if (indexfound > -1) {
+                
+                
+                if(band == "2.4") {
+                    if(line.contains("wifi0")){
+                        wantedline = line;
+                        System.out.println(wantedline); 
+                    } 
+                } else if(band == "5.0") {
+                    if(line.contains("wifi1")){
+                        wantedline = line;
+                        System.out.println(wantedline); 
+                    } 
+                } else if (band == "6.0") { 
+                    if(line.contains("wifi2")){
+                        wantedline = line;
+                        System.out.println(wantedline); 
+                    }     
+                } else {
+                    System.out.println("Band push is fail");
+              }
+              }
+              }
+       } catch (IOException e) {
+        System.out.println("IO Error Occurred: " + e.toString());
+       }
+       
+       return wantedline;      
+       }  
+       }

@@ -1,0 +1,1 @@
+temail.exe /SMTP=10.40.1.183 /HSENDER=insightalerts@netgear.com /FROM=report@auto.system.com /TO=bliang@netgear.com;bruce.gu@netgear.com;daoyuan.fang@netgear.com /CC=laxu@netgear.com /HTO=bliang@netgear.com;bruce.gu@netgear.com;daoyuan.fang@netgear.com /HCC=laxu@netgear.com /SUB=@subject.txt body.txt

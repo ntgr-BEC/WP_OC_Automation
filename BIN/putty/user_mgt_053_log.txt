@@ -1,0 +1,58 @@
+
+
+User:admin
+Password:
+(XSM7224S) >enable
+Password:****
+
+(XSM7224S) #show version
+
+Switch: 1
+
+System Description............................. XSM7224S - 24-Port 10G SFP+    
+                                                Layer 2 Stackable Managed      
+                                                Switch with four 10G combo     
+                                                ports                          
+Machine Type................................... XSM7224S - 24-Port 10G SFP+    
+                                                Layer 2 Stackable Managed      
+                                                Switch with four 10G combo     
+                                                ports                          
+Machine Model.................................. XSM7224S
+Serial Number.................................. 2ER1094F00037
+FRU Number..................................... 
+Part Number.................................... BCM56820
+Maintenance Level.............................. A
+Manufacturer................................... Netgear
+Burned In MAC Address.......................... E0:91:F5:06:2C:8C
+Software Version............................... 9.0.1.16
+Operating System............................... VxWorks 6.6
+Network Processing Device...................... BCM56820_B0
+
+--More-- or (q)uit
+
+
+Additional Packages............................ FASTPATH QOS
+                                                FASTPATH IPv6 Management
+                                                FASTPATH Stacking
+                                                
+
+(XSM7224S) #
+(XSM7224S) #
+(XSM7224S) #config
+
+(XSM7224S) (Config)#no aaa authentication enable default
+
+(XSM7224S) (Config)#exit
+
+(XSM7224S) #no enable password
+
+(XSM7224S) #exit
+
+(XSM7224S) >logout
+
+The system has unsaved changes.
+Would you like to save them now? (y/n) n
+
+
+User:
+Configuration Not Saved!

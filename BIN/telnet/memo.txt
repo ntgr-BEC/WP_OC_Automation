@@ -1,0 +1,5 @@
+when you using x64 system to run the enviroment:
+1: Copy file <telnet.exe> to C:/Windows/SysWOW64
+2: Copy file <expect543.dll> to C:\Tcl\lib\expect
+3: Copy file <closewin.exe> to C:\Tcl\bin
+

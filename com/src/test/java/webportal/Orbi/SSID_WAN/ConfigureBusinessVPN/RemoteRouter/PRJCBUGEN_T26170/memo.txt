@@ -1,0 +1,3 @@
+Before running this script
+On-board one central router(ob1) in location 1
+On-board two remote routers (ob2 and ob3) in location 2

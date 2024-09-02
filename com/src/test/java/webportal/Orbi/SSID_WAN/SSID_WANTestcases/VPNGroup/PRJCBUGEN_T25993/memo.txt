@@ -1,0 +1,3 @@
+Before running this script
+1. Use pro account to add a manager with read/write access.
+2. configure <managerName> and <managerPassword> in config_webportal.xml

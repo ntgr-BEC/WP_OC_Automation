@@ -1,0 +1,15 @@
+
+
+Hi All,
+
+  This is a notification from Insight Long Run script.
+
++--------------------------------------------+---------------------------------------+--------------+--------------------------------------------------+--------------+
+| tcName                                     | stepInfo                              | testResult   | expectResult                                     | actualResult |
++--------------------------------------------+---------------------------------------+--------------+--------------------------------------------------+--------------+
+| Verify push configuration to AP by Insight | Check AP new name is pushed to device | newLongRunAP | FATAL ERROR: Network error: Connection timed out |              |
++--------------------------------------------+---------------------------------------+--------------+--------------------------------------------------+--------------+
+
+BR,
+Switch Automation Team
+

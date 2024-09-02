@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+    <dict>
+        <key>name</key>
+        <string>EnterpriseUI</string>
+        <key>negative</key>
+        <false/>
+        <key>ProfileSource</key>
+        <string>EnterpriseUI.plist</string>
+        <key>ProfileOptions</key>
+        <dict>
+            <key>username</key>
+            <string>millie</string>
+        </dict>
+        <key>TestOptions</key>
+        <dict>
+            <key>ExpectedEAPType</key>
+            <string>21</string>
+        </dict>
+    </dict>
+</array>
+</plist>

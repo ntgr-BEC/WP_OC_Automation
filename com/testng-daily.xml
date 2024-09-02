@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="WebPortalSuite">
+  <test name="DailyTest">
+        <classes>
+            <class name="webportal.Switch.ACL.PRJCBUGEN_T4954.Testcase"/>
+            <class name="webportal.Switch.ACL.PRJCBUGEN_T4957.Testcase"/>
+            <class name="webportal.Switch.System.PRJCBUGEN_T4642.Testcase"/>
+            <class name="webportal.Switch.System.PRJCBUGEN_T4648.Testcase"/>
+            <class name="webportal.Switch.PortMirror.PRJCBUGEN_T4732.Testcase"/>
+            <class name="webportal.Switch.LAG.PRJCBUGEN_T4829.Testcase"/>
+            <class name="webportal.Switch.Port.PRJCBUGEN_T4890.Testcase"/>
+            <class name="webportal.Switch.POE.PRJCBUGEN_T5002.Testcase"/>
+            <class name="webportal.Switch.Syslog.PRJCBUGEN_T6949.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11325.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11326.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11331.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11332.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11340.Testcase"/>
+            <class name="webportal.Switch.VlanOverhauling.PRJCBUGEN_T11341.Testcase"/>
+            <class name="webportal.Switch.SNMP.PRJCBUGEN_T12911.Testcase"/>
+            <class name="webportal.Switch.SpanningTree.PRJCBUGEN_T4699.Testcase"/>
+            <class name="webportal.Switch.Routing.PRJCBUGEN_T6216.Testcase"/>
+            <class name="webportal.Switch.Routing.PRJCBUGEN_T6231.Testcase"/>
+            <class name="webportal.Switch.Radius.PRJCBUGEN_T7810.Testcase"/>
+        </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

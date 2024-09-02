@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>apconfigs</key>
+	<array>
+		<dict>
+			<key>keyMgmtType</key>
+			<string>wpa2-psk</string>
+			<key>passphrase</key>
+			<string>12345678</string>
+			<key>radios</key>
+			<array>
+				<dict>
+					<key>apRadioPower</key>
+					<string>on</string>
+					<key>radioMode</key>
+					<string>B</string>
+					<key>ssid</key>
+					<string>Tesla Infrastructure 2.4GHz</string>
+				</dict>
+				<dict>
+					<key>apRadioPower</key>
+					<string>off</string>
+					<key>ssid</key>
+					<string>Tesla Infrastructure 2.4GHz</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

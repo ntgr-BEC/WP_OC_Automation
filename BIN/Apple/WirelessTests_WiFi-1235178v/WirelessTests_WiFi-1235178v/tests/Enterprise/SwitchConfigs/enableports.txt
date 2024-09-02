@@ -1,0 +1,8 @@
+interface GigabitEthernet 0/1
+power Inline auto
+interface GigabitEthernet 0/2
+power Inline auto
+interface GigabitEthernet 0/3
+power Inline auto
+interface GigabitEthernet 0/4
+power Inline auto

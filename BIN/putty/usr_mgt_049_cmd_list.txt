@@ -1,0 +1,14 @@
+y
+enable
+test
+show version
+ 
+
+no enable password
+config
+no aaa authentication enable default
+aaa authentication enable enableNetList enable none
+exit
+
+logout
+n

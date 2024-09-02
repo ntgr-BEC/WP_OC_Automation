@@ -1,0 +1,1 @@
+WebPortal Automation Report [Total: 62  Pass: 52  Fail: 10  Pass Rate: 84%] on Build [5.8.13.7-MQ-GS716TPP-EN])

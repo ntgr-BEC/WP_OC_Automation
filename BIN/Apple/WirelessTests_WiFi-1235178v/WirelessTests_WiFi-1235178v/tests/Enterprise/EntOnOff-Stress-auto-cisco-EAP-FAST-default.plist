@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>EnterpriseSetup</key>
+    <dict>
+        <key>Vendor</key>
+        <string>Cisco</string>
+        <key>TestName</key>
+        <string>Cisco-LEAP</string>
+        <key>StressCycles</key>
+        <integer>5</integer>
+        <key>WebDestination</key>
+        <string>http://www1.iphoneqalab.com</string>
+        <key>HTTPDownload</key>
+        <string>http://www1.iphoneqalab.com</string>
+        <key>PingDestination</key>
+        <string>www2.iphoneqalab.com</string>
+        <key>sendemail</key>
+        <true/>
+        <key>email</key>
+        <dict>
+            <key>server</key>
+            <string>relay.apple.com</string>
+            <key>emailfrom</key>
+            <string>WiFiEnterpriseOnOffStress@apple.com</string>
+            <key>to</key>
+            <string>gleser@apple.com</string>
+            <key>subject</key>
+            <string>Enterprise On/Off Stress Test Results</string>
+        </dict>
+        <key>PolicyStorage</key>
+        <string>WiFi/Tests/Enterprise/Profiles</string>
+        <key>TestStorage</key>
+        <string>WiFi/Tests/Enterprise</string>
+    </dict>
+</dict>
+</plist>

@@ -1,0 +1,32 @@
+package businessrouter.BusinessRouterFunction.Advanced_StaticRoutes.BR_T519;
+import java.util.HashMap;
+import java.util.Map;
+
+import webportal.param.WebportalParam;
+public interface Config {
+    public static Map<String, String> STATICROUTE1 = new HashMap<String, String>() {
+        {
+          
+            put("Route Name", "test");
+            put("Metric", "2");
+            put("IP Subnet Mask", "255.255.255.255");
+            put("Gateway IP Address", WebportalParam.brlanclientip);
+            put("Destination IP Address", "10.10.10.2");
+            
+            
+        }
+    };
+    public static Map<String, String> STATICROUTE2 = new HashMap<String, String>() {
+        {
+          
+            put("Route Name", "test2");
+            put("Metric", "2");
+            put("IP Subnet Mask", "255.255.255.255");
+            put("Gateway IP Address", WebportalParam.brlanclientip2);
+            put("Destination IP Address", "10.10.10.2");
+            
+            
+        }
+    };
+    
+}

@@ -1,0 +1,80 @@
+package webportal.ConfigBackupAndRestore.Premium.PRJCBUGEN_T15880;
+
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$x;
+import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
+import io.qameta.allure.TmsLink;
+import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
+import webportal.weboperation.DeviceBackupRestorePage;
+import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.WebportalLoginPage;
+
+/**
+ *
+ * @author dallas
+ *
+ */
+public class Testcase extends TestCaseBase {
+
+    @Feature("ConfigBackupAndRestore.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T15880") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify fields present at Delete backup config in Web Portal") // It's a test case title from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T15880") // It's a testcase id/link from Jira Test Case.
+
+    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    public void test() throws Exception {
+        runTest(this);
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        System.out.println("start to do tearDown");
+        DeviceBackupRestorePage page = new DeviceBackupRestorePage();
+        page.gotoPage();
+        page.deleteBackup();
+    }
+
+    // Each step is a single test step from Jira Test Case
+    @Step("Test Step 1: Login IM WP success;")
+    public void step1() {
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+
+        handle.gotoLoction();
+//        new DevicesDashPage().checkDutInAdminAccount(WebportalParam.sw1serialNo, WebportalParam.sw1deveiceName, WebportalParam.sw1MacAddress);
+    }
+
+    @Step("Test Step 2: Create new backup;")
+    public void step2() {
+        ddp.gotoPage();
+        ddp.openSW1();
+
+        DeviceBackupRestorePage page = new DeviceBackupRestorePage();
+        page.gotoPage();
+        page.createBackup();
+        assertTrue(page.hasBackup(), "A backup should be there");
+    }
+
+    @Step("Test Step 3: Check delete dialog;")
+    public void step3() {
+        DeviceBackupRestorePage page = new DeviceBackupRestorePage();
+        page.editLineNew(page.sTableDevices, 1, page.backupName, 3);
+
+        assertTrue(
+                $$(handle.sPopButtonCss).get(1).getText().contains("No, don't delete")
+                        && $$(handle.sPopButtonCss).last().getText().contains("Delete")
+                        && $x("//p[contains(text(),'Are you sure you want to delete this backup')]").exists() && page.deleteBackupTitle.exists(),
+                "Delete dialog display is incorrect.");
+        handle.clickBoxLastButton();
+    }
+
+}

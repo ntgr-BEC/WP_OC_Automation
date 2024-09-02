@@ -1,0 +1,71 @@
+package businessrouter.webelements;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+
+import com.codeborne.selenide.SelenideElement;
+public class BrBasicLanSetupElements {
+    public SelenideElement lanrefreshbutton   = $("#lanSetupmain_refresh");
+    public SelenideElement lanapplybutton   = $("#lansetup_butApply");
+    public SelenideElement lanaddsubnetbutton   = $("#lanSetupmain_add_subnet");
+    public SelenideElement lanipaddress1  =  $("#lansetup_sysLANIPAddr1");
+    public SelenideElement lanipaddress2   = $("#lansetup_sysLANIPAddr2");
+    public SelenideElement lanipaddress3   = $("#lansetup_sysLANIPAddr3");
+    public SelenideElement lanipaddress4   = $("#lansetup_sysLANIPAddr4");
+    public SelenideElement lanipsubmask1  =  $("#lansetup_sysLANSubnetMask1");
+    public SelenideElement lanipsubmask2   = $("#lansetup_sysLANSubnetMask2");
+    public SelenideElement lanipsubmask3   = $("#lansetup_sysLANSubnetMask3");
+    public SelenideElement lanipsubmask4   = $("#lansetup_sysLANSubnetMask4");
+    public SelenideElement landhcpstartip1  =  $("#lansetup_sysPoolStartingAddr1");
+    public SelenideElement landhcpstartip2   = $("#lansetup_sysPoolStartingAddr2");
+    public SelenideElement landhcpstartip3   = $("#lansetup_sysPoolStartingAddr3");
+    public SelenideElement landhcpstartip4   = $("#lansetup_sysPoolStartingAddr4");
+    public SelenideElement landhcpendip1  =  $("#lansetup_sysPoolFinishAddr1");
+    public SelenideElement landhcpendip2   = $("#lansetup_sysPoolFinishAddr2");
+    public SelenideElement landhcpendip3   = $("#lansetup_sysPoolFinishAddr3");
+    public SelenideElement landhcpendip4   = $("#lansetup_sysPoolFinishAddr4");
+    public SelenideElement lanipreservationeditbutton  =  $("#lanAddressReservation_butedit");
+    public SelenideElement lanipreservationaddbutton   = $("#lanAddressReservation_butadd");
+    public SelenideElement lanipreservationaddbutton2   = $("#butadd_lansetup_tabPaneLAN2");    
+    public SelenideElement lanipreservationdeletebutton   = $("#lanAddressReservation_butdelete");
+    public SelenideElement lanipreservationselectone   = $x("(//input[@type ='radio'])");
+    public SelenideElement lanaddipreservationselectone   = $x("///*[@id=\"addAddressReservation_table1\"]/div/div/table/tbody/tr/td[1]/span/label/span/input");
+    public SelenideElement lanreservationip1  =  $("#addAddressReservation_rsvip1");
+    public SelenideElement lanreservationip2   = $("#addAddressReservation_rsvip2");
+    public SelenideElement lanreservationip3   = $("#addAddressReservation_rsvip3");
+    public SelenideElement lanreservationip4   = $("#addAddressReservation_rsvip4");
+    public SelenideElement lanreservationmac   = $("#addAddressReservation_inputMACAddr");
+    public SelenideElement lanreservationdevicename   = $("#addAddressReservation_inputaddDeviceName");
+    public SelenideElement lanreservationrefreshbutton   = $("#addAddressReservation_buttrefresh");
+    public SelenideElement lanreservationapplybutton   = $("#addAddressReservation_buttapply");
+    
+    public SelenideElement lanreservationcancelbutton   = $("#addAddressReservation_buttcancel");
+    public SelenideElement lanreservationtable  = $x("//*[@id=\"lanAddressReservation_table1\"]/div/div/table");
+    public SelenideElement addnewlanvlanid =  $x("(//div[@class = 'ant-select-selection__rendered'])[3]");
+    public SelenideElement addnewlanvlanidnum =  $x("//li[text()='']");
+    public SelenideElement addnewlanapplybutton = $("#addLanSubnet_buttapply");
+    public SelenideElement addnewlanip1 = $("#addLanSubnet_inputip1");
+    public SelenideElement addnewlanip2 = $("#addLanSubnet_inputip2");
+    public SelenideElement addnewlanip3 = $("#addLanSubnet_inputip3");
+    public SelenideElement addnewlanip4 = $("#addLanSubnet_inputip4");
+    public SelenideElement newlan2name = $x("//div[text()='LAN2']");
+    public SelenideElement newlan3name = $x("//div[text()='LAN3']");
+    public SelenideElement newlan4name = $x("//div[text()='LAN4']");
+    public SelenideElement landeletebutton = $("#lansetup_tabPaneLAN2buttdelete");
+    public SelenideElement landeletecheckyesbutton = $x("//button[@class ='ant-btn ant-btn-primary ant-btn-sm']");
+    public SelenideElement warninginvalidipreservation = $x("//div[@class = 'ant-form-explain']");
+    public SelenideElement dhcpserverenable = $("#lansetup_dhcpserver1");
+    public SelenideElement connectedpcmaclist = $x("//tr[@class = 'ant-table-row  ant-table-row-level-0']/td[@class='ant-table-column-has-filters'][3]");
+    public SelenideElement lan2reservationip1  =  $("#addSubnetAddressReservation_rsvip1");
+    public SelenideElement lan2reservationip2   = $("#addSubnetAddressReservation_rsvip2");
+    public SelenideElement lan2reservationip3   = $("#addSubnetAddressReservation_rsvip3");
+    public SelenideElement lan2reservationip4   = $("#addSubnetAddressReservation_rsvip4");
+    public SelenideElement lan2reservationmac   = $("#addSubnetAddressReservation_inputMACAddr");
+    public SelenideElement lan2reservationdevicename   = $("#addSubnetAddressReservation_inputaddDeviceName");
+    public SelenideElement lan2reservationapplybutton   = $("#addSubnetAddressReservation_buttapply");
+    public SelenideElement dhcpenable  = $("#dhcp_enable");
+    public SelenideElement lan2ipreservationdeletebutton   = $("#butdelete_lansetup_tabPaneLAN2");
+    
+    public SelenideElement dhcpenablebr100  = $("#dhcpd_enable");
+    public SelenideElement landeletebuttonbr100 = $("#lansetup_tabPaneLAN2buttdisabled");
+  
+}

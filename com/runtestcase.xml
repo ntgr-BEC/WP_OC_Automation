@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="none">
+  <test name="Test Case">
+    <classes>
+      <class name="webportal.Switch.Routing.PRJCBUGEN_T6227.Testcase"/>
+      <class name="webportal.Switch.Routing.PRJCBUGEN_T6231.Testcase"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

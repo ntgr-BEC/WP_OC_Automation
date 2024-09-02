@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="none">
+  <test name="Test Case">
+    <classes>
+      <class name="webportal.Switch.FirmwarePolicy.PRJCBUGEN_T6783.Testcase"/>
+      <class name="webportal.Switch.FirmwarePolicy.PRJCBUGEN_T6784.Testcase"/>
+      <class name="webportal.Switch.FirmwarePolicy.PRJCBUGEN_T6787.Testcase"/>
+      <class name="webportal.Switch.FirmwarePolicy.PRJCBUGEN_T6790.Testcase"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
