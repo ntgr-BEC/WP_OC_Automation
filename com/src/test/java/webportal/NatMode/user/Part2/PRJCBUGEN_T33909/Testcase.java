@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
 
    Map<String, String> ssidInfo = new HashMap<String, String>();
 
-   @Feature("NatMode") // It's a folder/component name to make test suite more readable from Jira Test Case.
+   @Feature("NatMode.Part2") // It's a folder/component name to make test suite more readable from Jira Test Case.
    @Story("PRJCBUGEN_T33909") // It's a testcase id/link from Jira Test Case but replace - with _.
    @Description("verify whether the Nat mode ssid with open security is pushed or not ") // It's a test case title from Jira Test Case.
    @TmsLink("PRJCBUGEN-T33909") // It's a testcase id/link from Jira Test Case.
