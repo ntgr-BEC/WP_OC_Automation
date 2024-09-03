@@ -1,0 +1,25 @@
+################################################################################
+#
+#  File Name		: TC-L3-TRAFFIC-ROUTER-STOP-072.tcl
+#
+#  Description       	: This test stops layer3 traffic in the layer3 routing testbed.
+#	
+#  Config File          : TC-L3-TRAFFIC-ROUTER-LOAD-070.cfg
+#
+#  Global Variables	: ntgr_Testcase070UsedPortList
+#				  
+#  Revision History 	:
+#         Date         Programmer          Description
+#        -----------------------------------------------------------------------
+#
+################################################################################
+
+#*************************  Start of Test case  ********************************
+NtgrDumpLog  $NTGR_LOG_TERSE  "TC-L3-TRAFFIC-ROUTER-STOP-072.tcl" "******************** Starting Test case TC-L3-TRAFFIC-ROUTER-STOP-072.tcl ********************"
+foreach {chassis_id portlist} [array get ntgr_Testcase070UsedPortList] {
+    foreach pt $portlist {
+        UALStopTrafficPerPort $chassis_id $pt
+    }
+}
+NtgrDumpLog  $NTGR_LOG_TERSE  "TC-L3-TRAFFIC-ROUTER-STOP-072.tcl" "******************** Complete Test case TC-L3-TRAFFIC-ROUTER-STOP-072.tcl ********************"
+#*************************  End of Test case  ****************************************************************

@@ -1,0 +1,1016 @@
+14:55:57  [1234] INFO sta SpirentTestCenter Version: 1.40.1459 
+14:55:57  [1234] INFO sta CONFIG: Executing, ::stc::config automationOptions -ResponseMode NonInteractive -DisplayStatus False -ResultMessage False -ErrorOptions RaiseException -logErrorsToFile True 
+14:55:57  [1234] INFO sta CONFIG: Valid Automation option found -responsemode 
+14:55:57  [1234] INFO sta CONFIG: Valid Automation option found -displaystatus 
+14:55:57  [1234] INFO sta CONFIG: Valid Automation option found -resultmessage 
+14:55:57  [1234] INFO sta CONFIG: Valid Automation option found -erroroptions 
+14:55:57  [1234] INFO sta CONFIG: Valid Automation option found -logerrorstofile 
+14:55:57  [1234] INFO sta CREATE: Executing, ::stc::create Project -testName SPIRENT_TEST -trafficStartDelay 1 -trafficStartDelayMode TRAFFIC_START_AFTER_TEST -delayAfterTransmissionInSec 1 -enableStreamTracking TRUE 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (trafficstartdelay) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (TRAFFIC_START_AFTER_TEST) changed to equivalent (1) for attribute (trafficstartdelaymode) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (delayaftertransmissioninsec) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (REPORT_FILE_TYPE_NO) changed to equivalent (0) for attribute (reportfiletype) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (REPORT_FILE_FILTER_STATIC) changed to equivalent (2) for attribute (reportfilefilter) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (staggeropen) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (staggerclose) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (SESSIONS_CONTROL_ESTABLISH_ALL) changed to equivalent (2) for attribute (sessionscontrol) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (resultpollingintinms) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (TEST_STATE_NOT_RUNNING) changed to equivalent (0) for attribute (teststate) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (startstopresourcemonitoring) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (resourcemonitoringprocess) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (5000) changed to equivalent (5000) for attribute (maxdetailresultcount) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (50) changed to equivalent (50) for attribute (maxtypicalresultcount) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (adjacencywaittimeinsec) for object (project) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (delayafterarp) for object (project) 
+14:55:57  [1234] INFO sta CREATE:Validated attribute/values list -testName SPIRENT_TEST -trafficStartDelay 1 -trafficStartDelayMode TRAFFIC_START_AFTER_TEST -delayAfterTransmissionInSec 1 -enableStreamTracking TRUE 
+14:55:57  [1234] INFO sta CREATE: Object to Create project with Internal Id: 1 
+14:55:57  [1234] DEBUG sta INFO (ADD HANDLE): project 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 162 SPIRENT_TEST 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 136 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 135 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 192 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 163 TRUE 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 129 True 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 130 true 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 131 Report.txt 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 132 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 133 2 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 138 100 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 139 100 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 140 rxRateOverTime.csv 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 145 True 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 147 2 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 149 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 152 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 153 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 154 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 156 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 161 routes.txt 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 164 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 165 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 166 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 167 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 168 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 169 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 170 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 171 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 172 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 173 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 174 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 175 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 176 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 177 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 178 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 179 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 180 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 181 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 182 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 183 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 184 True 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 185 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 186 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 187 0.0.0.0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 189 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 190 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 191 1000 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 194 2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65535 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 200 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 201 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116010 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116012 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116014 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116015 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116020 5000 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116021 50 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116023 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116025 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116026 True 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116028 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116029 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116030 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116034 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116036 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116042 true 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116045 false 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 116046 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 150009 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 155009 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 159009 False 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 161290 False 
+14:55:57  [1234] DEBUG sta INFO (CREATE): PROJECT Call the setAttributes for the list  162 {SPIRENT_TEST} 136 {1} 135 {1} 192 {1} 163 {TRUE} 129 {True} 130 {true} 131 {Report.txt} 132 {0} 133 {2} 138 {100} 139 {100} 140 {rxRateOverTime.csv} 145 {True} 147 {2} 149 {false} 152 {False} 153 {False} 154 {False} 156 {False} 161 {routes.txt} 164 {False} 165 {False} 166 {False} 167 {False} 168 {False} 169 {False} 170 {False} 171 {False} 172 {False} 173 {False} 174 {False} 175 {False} 176 {False} 177 {False} 178 {False} 179 {False} 180 {False} 181 {False} 182 {False} 183 {False} 184 {True} 185 {False} 186 {False} 187 {0.0.0.0} 189 {false} 190 {False} 191 {1000} 194 {2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65535} 200 {False} 201 {False} 116010 {False} 116012 {0} 116014 {0} 116015 {0} 116020 {5000} 116021 {50} 116023 {False} 116025 {0} 116026 {True} 116028 {false} 116029 {false} 116030 {false} 116034 {false} 116036 {false} 116042 {true} 116045 {false} 116046 {0} 150009 {False} 155009 {False} 159009 {False} 161290 {False} 
+14:55:57  [1234] DEBUG sta INFO: Registered the Result Manager Callback, The result Manger Handle is 64  
+14:55:57  [1234] INFO sta Sucessful: Create Project (Handle): 4 
+14:55:57  [1234] INFO sta CREATE: Executing, ::stc::create ContinuousTest -under 4 -useFrameSizeOnTest FALSE -useLoadOnTest FALSE 
+14:55:57  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:55:57  [1234] INFO sta CREATE: Valid ObjectName found (continuoustest) 
+14:55:57  [1234] INFO sta CREATE: Valid ParentHandle found (4) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (LOAD_UNIT_PERCENT_LINE_RATE) changed to equivalent (1) for attribute (loadunit) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (10.0) changed to equivalent (10.0) for attribute (load) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (10.0) changed to equivalent (10.0) for attribute (randminload) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (50.0) changed to equivalent (50.0) for attribute (randmaxload) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (randminframesize) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (256) changed to equivalent (256) for attribute (randmaxframesize) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (FRAME_SIZE_MODE_FIXED) changed to equivalent (1) for attribute (framesizemode) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (framesize) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (LEARNING_MODE_NONE) changed to equivalent (0) for attribute (learningmode) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (LOAD_MODE_FIXED) changed to equivalent (1) for attribute (loadmode) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (10.0) changed to equivalent (10.0) for attribute (learningload) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (learningduration) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (duration) for object (continuoustest) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (DURATION_MODE_SEC) changed to equivalent (1) for attribute (durationmode) for object (continuoustest) 
+14:55:57  [1234] INFO sta CREATE: Validated attribute/values list -useFrameSizeOnTest FALSE -useLoadOnTest FALSE 
+14:55:57  [1234] INFO sta CREATE: Object to Create continuoustest with Internal Id: 112000 
+14:55:57  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (112000) over the parent handle (4) 
+14:55:57  [1234] DEBUG sta INFO (ADD HANDLE): continuoustest 
+14:55:57  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  111020 {FALSE} 111021 {FALSE} 232 {1} 234 {10.0} 235 {10.0} 236 {50.0} 246 {128} 247 {256} 2301 {1} 2302 {128} 105201 {0} 111022 {1} 111023 {10.0} 111024 {1} 111026 {10} 111027 {1}. Handle for Object(continuoustest) : 66 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111020 FALSE 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111021 FALSE 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 232 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 234 10.0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 235 10.0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 236 50.0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 246 128 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 247 256 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 2301 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 2302 128 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 105201 0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111022 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111023 10.0 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111024 1 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111026 10 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 66 111027 1 
+14:55:57  [1234] INFO sta CONFIG: Executing, ::stc::config 4 -activeTestHandle 66 
+14:55:57  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:55:57  [1234] DEBUG sta validateAttrValues: Value (66) changed to equivalent (66) for attribute (activetesthandle) for object (project) 
+14:55:57  [1234] INFO sta CONFIG: Validated attribute/values list  193 {66} 
+14:55:57  [1234] DEBUG sta doSet (INFO): Perform Set on 4 193 66 
+14:55:57  [1234] INFO sta CONNECT: Executing, ::stc::connect -chassis 10.40.8.254  
+14:56:00  [1234] DEBUG sta INFO (CONNECT): Connected to chassis: 10.40.8.254 
+14:56:00  [1234] INFO sta CONNECT: Returning Chassis ID (0) 
+14:56:00  [1234] INFO sta SLEEP: Executing, ::stc::show -allchildren 4 
+14:56:00  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:00  [1234] INFO sta SHOW: Returning list of all children object in name-handle pair for parent object (4): continuoustest 66 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create Ethernet -under 4 -name eth1 -portType PORT_TYPE_ETH -location 0,9,0 -macAddr 00:0A:BC:DE:05:01 -ipAddr 10.1.5.1 -gateway 10.1.5.254 -arpRetryCnt 10 -arpRetryInt 500 -arpGateway TRUE -durationMode DURATION_MODE_CONTINUOUS -duration 1000 -burstSize 1 -ipVer IP_V4V6 -ipv6Addr 2000:2000:2000:2000:4978:4240:2895:1696 -ipv6Gateway 2000:2000:2000:2000:4370:8340:8515:7979 -duplex FULL_DUPLEX -autoNegot AUTONEG_ENABLE -speed 1GBPS -flowControl FALSE -pollCounter TRUE -pollChart FALSE -pollLed TRUE -portMode PORT_MODE_COPPER -portTrafficType PORT_XMIT_AND_RECV -useFrameSizeOnPort FALSE -useLoadOnPort FALSE -randMinFrameSize 128 -randMaxFrameSize 256 -startCaptOnTest FALSE -captType CAPT_TYPE_HW -captFileName capture.pcap -loadMode LOAD_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 10 -randMaxLoad 10 -randMinLoad 10 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (ethernet) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (4) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (PORT_TYPE_ETH) changed to equivalent (2) for attribute (porttype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0,9,0) changed to equivalent (0,9,0) for attribute (location) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00:0A:BC:DE:05:01) changed to equivalent (0-A-BC-DE-5-1) for attribute (macaddr) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (arpretrycnt) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (500) changed to equivalent (500) for attribute (arpretryint) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (DURATION_MODE_CONTINUOUS) changed to equivalent (2) for attribute (durationmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (duration) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (burstsize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (IP_V4V6) changed to equivalent (4) for attribute (ipver) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (FULL_DUPLEX) changed to equivalent (1) for attribute (duplex) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (AUTONEG_ENABLE) changed to equivalent (3) for attribute (autonegot) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1GBPS) changed to equivalent (3) for attribute (speed) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (PORT_MODE_COPPER) changed to equivalent (1) for attribute (portmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (PORT_XMIT_AND_RECV) changed to equivalent (0) for attribute (porttraffictype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (randminframesize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (256) changed to equivalent (256) for attribute (randmaxframesize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (CAPT_TYPE_HW) changed to equivalent (2) for attribute (capttype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LOAD_MODE_FIXED) changed to equivalent (1) for attribute (loadmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LOAD_UNIT_PERCENT_LINE_RATE) changed to equivalent (1) for attribute (loadunit) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (load) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (randmaxload) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (randminload) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (ARP_MODE_ALL_INTERFACE) changed to equivalent (1) for attribute (arpmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00-00-00-00-00-00) changed to equivalent (0-0-0-0-0-0) for attribute (sutmacaddr) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (24) changed to equivalent (24) for attribute (ipv4prefixlen) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (64) changed to equivalent (64) for attribute (ipv6prefixlen) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (arpgap) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (JUMBO_WITH_AVG_LAT) changed to equivalent (2) for attribute (testtype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_MODE_MATCH_EVENT) changed to equivalent (0) for attribute (hwcaptmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_LEN_MODE_ENTIRE_FRAME) changed to equivalent (0) for attribute (hwcaptlenmode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_EVENT_ALL_FRAME_FLAG) changed to equivalent (1) for attribute (hwcapteventflag) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (hwcaptlen) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (64) changed to equivalent (64) for attribute (ctcaptframesize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (4) changed to equivalent (4) for attribute (ctcaptfilesizeinmbytes) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LINK_STATUS_NONE) changed to equivalent (0) for attribute (linkstatus) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (FRAME_SIZE_MODE_FIXED) changed to equivalent (1) for attribute (framesizemode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (framesize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1500) changed to equivalent (1500) for attribute (mtu) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (PHY_MODE_LAN) changed to equivalent (1) for attribute (phymode) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (streamresultsamplingintinms) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (ifg) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (IFG_UNIT_BITS) changed to equivalent (1) for attribute (ifgunit) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (16383) changed to equivalent (16383) for attribute (maxlegalframesize) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (PORT_CATEGORY_REGULAR_PORT) changed to equivalent (0) for attribute (portcate) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (lfsduration) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_CLEAR) changed to equivalent (0) for attribute (lfstype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_TYPE_CONTINUOUS) changed to equivalent (0) for attribute (lfsdurationtype) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_CLEAR) changed to equivalent (0) for attribute (lfsstatus) for object (ethernet) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (TRAFFIC_SCHEDULE_MODE_FRAMERATE) changed to equivalent (1) for attribute (trafficschedulemode) for object (ethernet) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -name eth1 -portType PORT_TYPE_ETH -location 0,9,0 -macAddr 00:0A:BC:DE:05:01 -ipAddr 10.1.5.1 -gateway 10.1.5.254 -arpRetryCnt 10 -arpRetryInt 500 -arpGateway TRUE -durationMode DURATION_MODE_CONTINUOUS -duration 1000 -burstSize 1 -ipVer IP_V4V6 -ipv6Addr 2000:2000:2000:2000:4978:4240:2895:1696 -ipv6Gateway 2000:2000:2000:2000:4370:8340:8515:7979 -duplex FULL_DUPLEX -autoNegot AUTONEG_ENABLE -speed 1GBPS -flowControl FALSE -pollCounter TRUE -pollChart FALSE -pollLed TRUE -portMode PORT_MODE_COPPER -portTrafficType PORT_XMIT_AND_RECV -useFrameSizeOnPort FALSE -useLoadOnPort FALSE -randMinFrameSize 128 -randMaxFrameSize 256 -startCaptOnTest FALSE -captType CAPT_TYPE_HW -captFileName capture.pcap -loadMode LOAD_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 10 -randMaxLoad 10 -randMinLoad 10 
+14:56:00  [1234] INFO sta CREATE: Object to Create ethernet with Internal Id: 2 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (2) over the parent handle (4) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): ethernet 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  231 {eth1} 243 {2} 239 {0,9,0} 251 {0-A-BC-DE-5-1} 241 {10.1.5.1} 242 {10.1.5.254} 227 {10} 228 {500} 253 {TRUE} 111027 {2} 111026 {1000} 238 {1} 282 {4} 283 {2000:2000:2000:2000:4978:4240:2895:1696} 284 {2000:2000:2000:2000:4370:8340:8515:7979} 249 {1} 250 {3} 240 {3} 252 {FALSE} 1681 {TRUE} 1682 {FALSE} 1683 {TRUE} 244 {1} 237 {0} 245 {FALSE} 233 {FALSE} 246 {128} 247 {256} 7929 {FALSE} 293 {2} 294 {capture.pcap} 111022 {1} 232 {1} 234 {10} 236 {10} 235 {10} 226 {1} 230 {true} 254 {0-0-0-0-0-0} 285 {24} 286 {64} 289 {1} 290 {2} 295 {0} 296 {0} 297 {1} 1601 {0} 1604 {64} 1605 {true} 1606 {4} 1607 {./portCtCapture} 1684 {false} 1685 {false} 1686 {true} 1687 {true} 1688 {true} 1689 {true} 1690 {true} 1691 {true} 1692 {true} 1693 {true} 1694 {true} 1695 {true} 1696 {true} 1697 {0} 1700 {true} 2301 {1} 2302 {128} 7914 {true} 7915 {true} 7916 {true} 7917 {true} 7918 {true} 7919 {true} 7924 {1500} 7930 {1} 7931 {true} 7932 {1000} 7945 {false} 7946 {0} 7947 {1} 7948 {16383} 7950 {0} 7951 {8100} 7952 {true} 7953 {true} 7959 {false} 7984 {true} 7985 {0} 7986 {0} 7987 {0} 7988 {0} 7990 {1}. Handle for Object(ethernet) : 68 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 231 eth1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 243 2 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 239 0,9,0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 251 0-A-BC-DE-5-1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 241 10.1.5.1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 242 10.1.5.254 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 227 10 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 228 500 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 253 TRUE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 111027 2 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 111026 1000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 238 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 282 4 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 283 2000:2000:2000:2000:4978:4240:2895:1696 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 284 2000:2000:2000:2000:4370:8340:8515:7979 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 249 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 250 3 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 240 3 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 252 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1681 TRUE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1682 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1683 TRUE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 244 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 237 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 245 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 233 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 246 128 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 247 256 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7929 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 293 2 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 294 capture.pcap 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 111022 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 232 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 234 10 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 236 10 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 235 10 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 226 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 230 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 254 0-0-0-0-0-0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 285 24 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 286 64 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 289 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 290 2 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 295 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 296 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 297 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1601 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1604 64 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1605 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1606 4 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1607 ./portCtCapture 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1684 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1685 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1686 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1687 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1688 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1689 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1690 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1691 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1692 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1693 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1694 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1695 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1696 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1697 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 1700 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 2301 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 2302 128 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7914 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7915 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7916 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7917 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7918 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7919 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7924 1500 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7930 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7931 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7932 1000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7945 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7946 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7947 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7948 16383 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7950 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7951 8100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7952 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7953 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7959 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7984 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7985 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7986 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7987 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7988 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 68 7990 1 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create Traffic -under 68 -name stream_1 -frameSize 1376 -frameSizeMode FRAME_SIZE_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 25 -fillpattern AA-BB -genFCSError FALSE -pollCounter TRUE 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (traffic) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (68) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1376) changed to equivalent (1376) for attribute (framesize) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (FRAME_SIZE_MODE_FIXED) changed to equivalent (1) for attribute (framesizemode) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LOAD_UNIT_PERCENT_LINE_RATE) changed to equivalent (1) for attribute (loadunit) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (25) changed to equivalent (25) for attribute (load) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd1state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd2state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd1randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd2randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd1step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd2step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd1cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd2cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd1offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd2offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd1stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd2stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd3state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd4state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd5state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd6state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd3randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd4randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd5randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd6randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd3step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd4step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd5step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd6step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd3cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd4cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd5cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd6cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd3offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd4offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd5offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd6offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd3stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd4stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd5stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd6stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00-00-00-00-00-00) changed to equivalent (0-0-0-0-0-0) for attribute (resolveddstmacaddress) for object (traffic) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -name stream_1 -frameSize 1376 -frameSizeMode FRAME_SIZE_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 25 -fillpattern AA-BB -genFCSError FALSE -pollCounter TRUE 
+14:56:00  [1234] INFO sta CREATE: Object to Create traffic with Internal Id: 23 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (23) over the parent handle (68) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): traffic 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  231 {stream_1} 2302 {1376} 2301 {1} 232 {1} 234 {25} 2311 {AA-BB} 2327 {FALSE} 1681 {TRUE} 230 {true} 1682 {false} 2312 {false} 2313 {1} 2314 {1} 2316 {000000} 2317 {6} 2318 {6} 2319 {1} 2320 {1} 2321 {100} 2322 {100} 2323 {0} 2324 {0} 2325 {0} 2326 {0} 2328 {true} 2329 {false} 2330 {false} 2345 {1} 2346 {1} 2347 {1} 2348 {1} 2349 {000000} 2350 {000000} 2351 {000000} 2352 {000000} 2353 {6} 2354 {6} 2355 {6} 2356 {6} 2357 {1} 2358 {1} 2359 {1} 2360 {1} 2361 {100} 2362 {100} 2363 {100} 2364 {100} 2365 {0} 2366 {0} 2367 {0} 2368 {0} 2369 {0} 2370 {0} 2371 {0} 2372 {0} 2375 {false} 2376 {false} 2377 {false} 2378 {false} 2384 {true} 2385 {false} 2386 {0-0-0-0-0-0}. Handle for Object(traffic) : 96 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 231 stream_1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2302 1376 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2301 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 232 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 234 25 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2311 AA-BB 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2327 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 1681 TRUE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 230 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 1682 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2312 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2313 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2314 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2316 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2317 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2318 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2319 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2320 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2321 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2322 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2323 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2324 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2325 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2326 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2328 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2329 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2330 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2345 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2346 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2347 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2348 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2349 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2350 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2351 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2352 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2353 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2354 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2355 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2356 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2357 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2358 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2359 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2360 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2361 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2362 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2363 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2364 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2365 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2366 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2367 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2368 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2369 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2370 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2371 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2372 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2375 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2376 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2377 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2378 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2384 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2385 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 96 2386 0-0-0-0-0-0 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create EthernetIIHeader -under 96 -type 0x0800 -useDefaultSrcMacAddr FALSE -useDefaultDstMacAddr FALSE -dstMacAddr 00:E0:5A:6B:7C:8D -srcMacAddr 00:E0:1A:2B:3C:4D -dstMacAddrCnt 1 -srcMacAddrCnt 1 -dstMacAddrInc 1 -srcMacAddrInc 1 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (ethernetiiheader) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (96) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0x0800) changed to equivalent (2048) for attribute (type) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00:E0:5A:6B:7C:8D) changed to equivalent (0-E0-5A-6B-7C-8D) for attribute (dstmacaddr) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00:E0:1A:2B:3C:4D) changed to equivalent (0-E0-1A-2B-3C-4D) for attribute (srcmacaddr) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (dstmacaddrcnt) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (srcmacaddrcnt) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (dstmacaddrinc) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (srcmacaddrinc) for object (ethernetiiheader) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -type 0x0800 -useDefaultSrcMacAddr FALSE -useDefaultDstMacAddr FALSE -dstMacAddr 00:E0:5A:6B:7C:8D -srcMacAddr 00:E0:1A:2B:3C:4D -dstMacAddrCnt 1 -srcMacAddrCnt 1 -dstMacAddrInc 1 -srcMacAddrInc 1 
+14:56:00  [1234] INFO sta CREATE: Object to Create ethernetiiheader with Internal Id: 58 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (58) over the parent handle (96) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): ethernetiiheader 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  5804 {2048} 5809 {FALSE} 5810 {FALSE} 5803 {0-E0-5A-6B-7C-8D} 5802 {0-E0-1A-2B-3C-4D} 5807 {1} 5805 {1} 5808 {1} 5806 {1}. Handle for Object(ethernetiiheader) : 106 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5804 2048 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5809 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5810 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5803 0-E0-5A-6B-7C-8D 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5802 0-E0-1A-2B-3C-4D 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5807 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5805 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5808 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 106 5806 1 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create VlanHeader -under 96 -id 1000 -pri 1 -idCnt 1 -idInc 1 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (vlanheader) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (96) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (id) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (pri) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (idcnt) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (idinc) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (2048) changed to equivalent (2048) for attribute (type) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (33024) changed to equivalent (33024) for attribute (vlantpid) for object (vlanheader) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -id 1000 -pri 1 -idCnt 1 -idInc 1 
+14:56:00  [1234] INFO sta CREATE: Object to Create vlanheader with Internal Id: 59 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (59) over the parent handle (96) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): vlanheader 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  5902 {1000} 5905 {1} 5903 {1} 5904 {1} 5804 {2048} 5906 {false} 5907 {33024}. Handle for Object(vlanheader) : 108 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5902 1000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5905 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5903 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5904 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5804 2048 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5906 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 108 5907 33024 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create Traffic -under 68 -name stream_2 -frameSize 884 -frameSizeMode FRAME_SIZE_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 75 -fillpattern AA-BB -genFCSError FALSE -pollCounter TRUE 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (traffic) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (68) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (884) changed to equivalent (884) for attribute (framesize) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (FRAME_SIZE_MODE_FIXED) changed to equivalent (1) for attribute (framesizemode) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (LOAD_UNIT_PERCENT_LINE_RATE) changed to equivalent (1) for attribute (loadunit) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (75) changed to equivalent (75) for attribute (load) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd1state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd2state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd1randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd2randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd1step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd2step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd1cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd2cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd1offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd2offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd1stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd2stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd3state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd4state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd5state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (VFD_STATE_OFF) changed to equivalent (1) for attribute (vfd6state) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd3randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd4randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd5randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (6) changed to equivalent (6) for attribute (vfd6randstartpatternlen) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd3step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd4step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd5step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (vfd6step) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd3cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd4cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd5cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (100) changed to equivalent (100) for attribute (vfd6cyclecnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd3offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd4offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd5offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd6offset) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd3stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd4stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd5stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (vfd6stuttercnt) for object (traffic) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00-00-00-00-00-00) changed to equivalent (0-0-0-0-0-0) for attribute (resolveddstmacaddress) for object (traffic) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -name stream_2 -frameSize 884 -frameSizeMode FRAME_SIZE_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 75 -fillpattern AA-BB -genFCSError FALSE -pollCounter TRUE 
+14:56:00  [1234] INFO sta CREATE: Object to Create traffic with Internal Id: 23 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (23) over the parent handle (68) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): traffic 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  231 {stream_2} 2302 {884} 2301 {1} 232 {1} 234 {75} 2311 {AA-BB} 2327 {FALSE} 1681 {TRUE} 230 {true} 1682 {false} 2312 {false} 2313 {1} 2314 {1} 2316 {000000} 2317 {6} 2318 {6} 2319 {1} 2320 {1} 2321 {100} 2322 {100} 2323 {0} 2324 {0} 2325 {0} 2326 {0} 2328 {true} 2329 {false} 2330 {false} 2345 {1} 2346 {1} 2347 {1} 2348 {1} 2349 {000000} 2350 {000000} 2351 {000000} 2352 {000000} 2353 {6} 2354 {6} 2355 {6} 2356 {6} 2357 {1} 2358 {1} 2359 {1} 2360 {1} 2361 {100} 2362 {100} 2363 {100} 2364 {100} 2365 {0} 2366 {0} 2367 {0} 2368 {0} 2369 {0} 2370 {0} 2371 {0} 2372 {0} 2375 {false} 2376 {false} 2377 {false} 2378 {false} 2384 {true} 2385 {false} 2386 {0-0-0-0-0-0}. Handle for Object(traffic) : 110 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 231 stream_2 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2302 884 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2301 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 232 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 234 75 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2311 AA-BB 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2327 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 1681 TRUE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 230 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 1682 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2312 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2313 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2314 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2316 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2317 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2318 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2319 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2320 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2321 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2322 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2323 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2324 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2325 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2326 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2328 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2329 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2330 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2345 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2346 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2347 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2348 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2349 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2350 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2351 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2352 000000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2353 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2354 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2355 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2356 6 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2357 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2358 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2359 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2360 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2361 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2362 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2363 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2364 100 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2365 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2366 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2367 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2368 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2369 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2370 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2371 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2372 0 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2375 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2376 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2377 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2378 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2384 true 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2385 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 110 2386 0-0-0-0-0-0 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create EthernetIIHeader -under 110 -type 0x0800 -useDefaultSrcMacAddr FALSE -useDefaultDstMacAddr FALSE -dstMacAddr 00:E0:5A:6B:5C:8D -srcMacAddr 00:E0:1A:2B:5C:4D -dstMacAddrCnt 4 -srcMacAddrCnt 4 -dstMacAddrInc 16 -srcMacAddrInc 1 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (ethernetiiheader) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (110) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (0x0800) changed to equivalent (2048) for attribute (type) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00:E0:5A:6B:5C:8D) changed to equivalent (0-E0-5A-6B-5C-8D) for attribute (dstmacaddr) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (00:E0:1A:2B:5C:4D) changed to equivalent (0-E0-1A-2B-5C-4D) for attribute (srcmacaddr) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (4) changed to equivalent (4) for attribute (dstmacaddrcnt) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (4) changed to equivalent (4) for attribute (srcmacaddrcnt) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (16) changed to equivalent (16) for attribute (dstmacaddrinc) for object (ethernetiiheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (srcmacaddrinc) for object (ethernetiiheader) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -type 0x0800 -useDefaultSrcMacAddr FALSE -useDefaultDstMacAddr FALSE -dstMacAddr 00:E0:5A:6B:5C:8D -srcMacAddr 00:E0:1A:2B:5C:4D -dstMacAddrCnt 4 -srcMacAddrCnt 4 -dstMacAddrInc 16 -srcMacAddrInc 1 
+14:56:00  [1234] INFO sta CREATE: Object to Create ethernetiiheader with Internal Id: 58 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (58) over the parent handle (110) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): ethernetiiheader 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  5804 {2048} 5809 {FALSE} 5810 {FALSE} 5803 {0-E0-5A-6B-5C-8D} 5802 {0-E0-1A-2B-5C-4D} 5807 {4} 5805 {4} 5808 {16} 5806 {1}. Handle for Object(ethernetiiheader) : 120 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5804 2048 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5809 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5810 FALSE 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5803 0-E0-5A-6B-5C-8D 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5802 0-E0-1A-2B-5C-4D 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5807 4 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5805 4 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5808 16 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 120 5806 1 
+14:56:00  [1234] INFO sta CREATE: Executing, ::stc::create VlanHeader -under 110 -id 1000 -pri 1 -idCnt 1 -idInc 1 
+14:56:00  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:00  [1234] INFO sta CREATE: Valid ObjectName found (vlanheader) 
+14:56:00  [1234] INFO sta CREATE: Valid ParentHandle found (110) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (id) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (pri) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (idcnt) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (idinc) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (2048) changed to equivalent (2048) for attribute (type) for object (vlanheader) 
+14:56:00  [1234] DEBUG sta validateAttrValues: Value (33024) changed to equivalent (33024) for attribute (vlantpid) for object (vlanheader) 
+14:56:00  [1234] INFO sta CREATE: Validated attribute/values list -id 1000 -pri 1 -idCnt 1 -idInc 1 
+14:56:00  [1234] INFO sta CREATE: Object to Create vlanheader with Internal Id: 59 
+14:56:00  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (59) over the parent handle (110) 
+14:56:00  [1234] DEBUG sta INFO (ADD HANDLE): vlanheader 
+14:56:00  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  5902 {1000} 5905 {1} 5903 {1} 5904 {1} 5804 {2048} 5906 {false} 5907 {33024}. Handle for Object(vlanheader) : 122 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5902 1000 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5905 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5903 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5904 1 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5804 2048 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5906 false 
+14:56:00  [1234] DEBUG sta doSet (INFO): Perform Set on 122 5907 33024 
+14:56:00  [1234] INFO sta RESERVE: Executing, ::stc::reserve -ports 0,9,0 
+14:56:00  [1234] INFO sta RESERVE: Valid keyword found (-ports) 
+14:56:01  [1234] INFO sta STATUS FROM API: Starting Routing Daemon on eth1 
+14:56:01  [1234] DEBUG sta INFO (RESERVE): Ports Status for Chassis 0 , slot 9 , port 0: (1) 
+14:56:01  [1234] INFO sta SLEEP: Executing, ::stc::show -allChildren 4 
+14:56:01  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:01  [1234] INFO sta SHOW: Returning list of all children object in name-handle pair for parent object (4): continuoustest 66 ethernet 68 
+14:56:01  [1234] INFO sta GET: Executing, ::stc::get txFrameRate -from 68 
+14:56:01  [1234] INFO sta GET: Valid keyword found (-from)  
+14:56:01  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:56:01  [1234] INFO sta GET: Handle Validated 68 
+14:56:01  [1234] INFO sta GET: Attribute (txframerate) found. Now will get the value 
+14:56:01  [1234] INFO sta GET: Value of the Attribute (txframerate): 0.00000 
+14:56:01  [1234] INFO sta APPLY: Executing, ::stc::apply 4 
+14:56:01  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:01  [1234] INFO sta APPLY: Handle Validated (4) 
+14:56:01  [1234] INFO sta APPLY: Performing ValidateError before Apply ... 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking License... 
+14:56:01  [1234] INFO sta STATUS FROM API:  
+14:56:01  [1234] INFO sta STATUS FROM API: Validating test... 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking for broadcast addresses... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Verifying streams... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating streams on port eth1... (1/2) 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating streams on port eth1... (2/2) 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking sync status... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating config... 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating load and frame size... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating config size... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API: Validating streams... (1/1) 
+14:56:01  [1234] INFO sta STATUS FROM API:  
+14:56:01  [1234] INFO sta Apply config ... 
+14:56:01  [1234] INFO sta STATUS FROM API:  
+14:56:01  [1234] INFO sta STATUS FROM API: Setting up modules... 
+14:56:01  [1234] INFO sta STATUS FROM API: Checking routing daemons (1/1)... 
+14:56:01  [1234] INFO sta STATUS FROM API: Synching timestamps on ports... 
+14:56:07  [1234] INFO sta STATUS FROM API: Setting up port... 
+14:56:07  [1234] INFO sta STATUS FROM API: Updating port interface (1/1)... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up port... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up port parameters... (1/1) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up port... (1/1) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up subinterface... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up protocol config... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up Triggers... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up stream... 
+14:56:08  [1234] INFO sta STATUS FROM API:  
+14:56:08  [1234] INFO sta STATUS FROM API:  
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up stream... 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up stream on port eth1... (1/2) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up stream on port eth1... (2/2) 
+14:56:08  [1234] INFO sta STATUS FROM API: Downloading stream on port eth1... 
+14:56:08  [1234] INFO sta STATUS FROM API: Configuring TX load... 
+14:56:08  [1234] INFO sta STATUS FROM API: Configuring TX load on port eth1... (1/1) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up frame size... (1/1) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up TX load on port eth1... (1/2) 
+14:56:08  [1234] INFO sta STATUS FROM API: Setting up TX load on port eth1... (2/2) 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up sample interval... (1/1) 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up Tx and Rx result... (1/1) 
+14:56:09  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:12  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:12  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:12  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:12  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:12  [1234] INFO sta STATUS FROM API:  
+14:56:12  [1234] INFO sta SLEEP: Executing, ::stc::sleep 1 
+14:56:13  [1234] INFO sta SLEEP: Executing, ::stc::sleep 1 
+14:56:24  [1234] INFO sta SLEEP: Executing, ::stc::show -allchildren 4 
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:24  [1234] INFO sta SHOW: Returning list of all children object in name-handle pair for parent object (4): continuoustest 66 ethernet 68 
+14:56:24  [1234] INFO sta SLEEP: Executing, ::stc::show -allAttr 68 
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:56:24  [1234] INFO sta SHOW: Returning list of attr name-value pair for object (68): arpgap 1 arpgateway TRUE arpmode 1 arpretrycnt 10 arpretryint 500 autonegot 3 burstsize 1 captfilename capture.pcap capttype 2 ctcaptfilename ./portCtCapture ctcaptframesize 64 duplex 1 duration 1000.00000 durationmode 2 enable TRUE enabledic TRUE flowcontrol FALSE framesize 128 framesizemode 1 gateway 10.1.5.254 hwcapteventflag 1 hwcaptlenmode 0 hwcaptmode 0 ifg 0.00000 ifgunit 1 igmpcnt 70 ipaddr 10.1.5.1 iptvportbin 74 ipv4prefixlen 24 ipv6addr 2000:2000:2000:2000:4978:4240:2895:1696 ipv6gateway 2000:2000:2000:2000:4370:8340:8515:7979 ipv6prefixlen 64 ipver 4 ledflag 672 lfsduration 0 lfsdurationtype 0 lfsstatus 0 lfstype 0 linkstatus 2 load 10.00000 loadmode 1 loadunit 1 location 0,9,0 loopback FALSE macaddr 00-0a-bc-de-05-01 maxlegalframesize 16383 mldcnt 72 mtu 1500 name eth1 outervlantpid 8100 phymode 1 pollcaptframecnt FALSE pollchart FALSE pollcounter TRUE pollled FALSE portcate 0 portmode 1 porttype 2 randmaxframesize 256 randmaxload 10.00000 randminframesize 128 randminload 10.00000 rxarpreplycnt 0.00000 rxarpreqcnt 0.00000 rxbytecnt 839.00000 rxbyterate 233.00000 rxcrcerrorcnt 0.00000 rxcrcerrorrate 0.00000 rxframecnt 7.00000 rxframerate 2.00000 rxhisttracker 94 rxicmpdstunreachcnt 0.00000 rxicmpdstunreachrate 0.00000 rxicmpv6dstunreachcnt 0.00000 rxicmpv6dstunreachrate 0.00000 rxipchksumerrorcnt 0.00000 rxipv4framecnt 0.00000 rxipv4framerate 0.00000 rxipv4pingreplycnt 0.00000 rxipv4pingreqcnt 0.00000 rxipv4qosgroup0cnt 0.00000 rxipv4qosgroup1cnt 0.00000 rxipv4qosgroup2cnt 0.00000 rxipv4qosgroup3cnt 0.00000 rxipv4qosgroup4cnt 0.00000 rxipv4qosgroup5cnt 0.00000 rxipv4qosgroup6cnt 0.00000 rxipv4qosgroup7cnt 0.00000 rxipv6framecnt 0.00000 rxipv6framerate 0.00000 rxipv6pingreplycnt 0.00000 rxipv6pingreqcnt 0.00000 rxipv6qosgroup0cnt 0.00000 rxipv6qosgroup1cnt 0.00000 rxipv6qosgroup2cnt 0.00000 rxipv6qosgroup3cnt 0.00000 rxipv6qosgroup4cnt 0.00000 rxipv6qosgroup5cnt 0.00000 rxipv6qosgroup6cnt 0.00000 rxipv6qosgroup7cnt 0.00000 rxjumboframecnt 0.00000 rxjumboframerate 0.00000 rxmplsframecnt 0.00000 rxmplsframerate 0.00000 rxmplssigframecnt -268435456.00000 rxmplssigframerate -268435456.00000 rxoversizecnt 0.00000 rxoversizerate 0.00000 rxsigframecnt 0.00000 rxsigframerate 0.00000 rxstackframecnt 7.00000 rxstackframerate 2.00000 rxtrig1cnt -268435456.00000 rxtrig1rate -268435456.00000 rxtrig2cnt -268435456.00000 rxtrig2rate -268435456.00000 rxtrig3cnt -268435456.00000 rxtrig3rate -268435456.00000 rxtrig4cnt -268435456.00000 rxtrig4rate -268435456.00000 rxtrig5cnt -268435456.00000 rxtrig5rate -268435456.00000 rxtrig6cnt -268435456.00000 rxtrig6rate -268435456.00000 rxtrig7cnt -268435456.00000 rxtrig7rate -268435456.00000 rxtrig8cnt -268435456.00000 rxtrig8rate -268435456.00000 rxtrigtimestamp 0.00000 rxundersizecnt 0.00000 rxundersizerate 0.00000 rxvlanframecnt 0.00000 rxvlanframerate 0.00000 speed 3 startcaptontest FALSE streamresultsamplingintinms 1000 sutmacaddr 00-00-00-00-00-00 testtype 2 trafficschedulemode 1 trig1 78 trig2 80 trig3 82 trig4 84 trig5 86 trig6 88 trig7 90 trig8 92 txarpreplycnt 0.00000 txarpreqcnt 0.00000 txbytecnt 0.00000 txbyterate 0.00000 txframecnt 0.00000 txframerate 0.00000 txipv4framecnt 0.00000 txipv4framerate 0.00000 txipv4pingreplycnt 0.00000 txipv4pingreqcnt 0.00000 txipv6framecnt 0.00000 txipv6framerate 0.00000 txipv6pingreplycnt 0.00000 txipv6pingreqcnt 0.00000 txmplsframecnt -268435456.00000 txmplsframerate -268435456.00000 txmplssigframecnt -268435456.00000 txmplssigframerate -268435456.00000 txsigframecnt 0.00000 txsigframerate 0.00000 txstackframecnt 0.00000 txstackframerate 0.00000 txtrigtimestamp 0.00000 useframesizeonport FALSE useifgonport FALSE useloadonport FALSE vpnid {} 
+14:56:24  [1234] INFO sta CREATE: Executing, ::stc::create Ethernet -under 4 -name eth2 -portType PORT_TYPE_ETH -location 0,9,1 -macAddr 00:0A:BC:DE:05:02 -ipAddr 10.1.5.2 -gateway 10.1.5.254 -arpRetryCnt 10 -arpRetryInt 500 -arpGateway TRUE -durationMode DURATION_MODE_CONTINUOUS -duration 1000 -burstSize 1 -ipVer IP_V4V6 -ipv6Addr 2000:2000:2000:2000:6357:9270:2654:1463 -ipv6Gateway 2000:2000:2000:2000:7961:3580:4221:3553 -duplex FULL_DUPLEX -autoNegot AUTONEG_ENABLE -speed 1GBPS -flowControl FALSE -pollCounter TRUE -pollChart FALSE -pollLed TRUE -portMode PORT_MODE_COPPER -portTrafficType PORT_XMIT_AND_RECV -useFrameSizeOnPort FALSE -useLoadOnPort FALSE -randMinFrameSize 128 -randMaxFrameSize 256 -startCaptOnTest FALSE -captType CAPT_TYPE_HW -captFileName capture.pcap -loadMode LOAD_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 10 -randMaxLoad 10 -randMinLoad 10 
+14:56:24  [1234] INFO sta CREATE: Valid keyword found (-under) 
+14:56:24  [1234] INFO sta CREATE: Valid ObjectName found (ethernet) 
+14:56:24  [1234] INFO sta CREATE: Valid ParentHandle found (4) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (PORT_TYPE_ETH) changed to equivalent (2) for attribute (porttype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (0,9,1) changed to equivalent (0,9,1) for attribute (location) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (00:0A:BC:DE:05:02) changed to equivalent (0-A-BC-DE-5-2) for attribute (macaddr) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (arpretrycnt) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (500) changed to equivalent (500) for attribute (arpretryint) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (DURATION_MODE_CONTINUOUS) changed to equivalent (2) for attribute (durationmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (duration) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (burstsize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (IP_V4V6) changed to equivalent (4) for attribute (ipver) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (FULL_DUPLEX) changed to equivalent (1) for attribute (duplex) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (AUTONEG_ENABLE) changed to equivalent (3) for attribute (autonegot) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1GBPS) changed to equivalent (3) for attribute (speed) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (PORT_MODE_COPPER) changed to equivalent (1) for attribute (portmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (PORT_XMIT_AND_RECV) changed to equivalent (0) for attribute (porttraffictype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (randminframesize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (256) changed to equivalent (256) for attribute (randmaxframesize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (CAPT_TYPE_HW) changed to equivalent (2) for attribute (capttype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LOAD_MODE_FIXED) changed to equivalent (1) for attribute (loadmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LOAD_UNIT_PERCENT_LINE_RATE) changed to equivalent (1) for attribute (loadunit) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (load) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (randmaxload) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (10) changed to equivalent (10) for attribute (randminload) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (ARP_MODE_ALL_INTERFACE) changed to equivalent (1) for attribute (arpmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (00-00-00-00-00-00) changed to equivalent (0-0-0-0-0-0) for attribute (sutmacaddr) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (24) changed to equivalent (24) for attribute (ipv4prefixlen) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (64) changed to equivalent (64) for attribute (ipv6prefixlen) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1) changed to equivalent (1) for attribute (arpgap) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (JUMBO_WITH_AVG_LAT) changed to equivalent (2) for attribute (testtype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_MODE_MATCH_EVENT) changed to equivalent (0) for attribute (hwcaptmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_LEN_MODE_ENTIRE_FRAME) changed to equivalent (0) for attribute (hwcaptlenmode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (HW_CAPT_EVENT_ALL_FRAME_FLAG) changed to equivalent (1) for attribute (hwcapteventflag) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (hwcaptlen) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (64) changed to equivalent (64) for attribute (ctcaptframesize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (4) changed to equivalent (4) for attribute (ctcaptfilesizeinmbytes) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LINK_STATUS_NONE) changed to equivalent (0) for attribute (linkstatus) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (FRAME_SIZE_MODE_FIXED) changed to equivalent (1) for attribute (framesizemode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (128) changed to equivalent (128) for attribute (framesize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1500) changed to equivalent (1500) for attribute (mtu) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (PHY_MODE_LAN) changed to equivalent (1) for attribute (phymode) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (1000) changed to equivalent (1000) for attribute (streamresultsamplingintinms) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (ifg) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (IFG_UNIT_BITS) changed to equivalent (1) for attribute (ifgunit) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (16383) changed to equivalent (16383) for attribute (maxlegalframesize) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (PORT_CATEGORY_REGULAR_PORT) changed to equivalent (0) for attribute (portcate) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (0) changed to equivalent (0) for attribute (lfsduration) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_CLEAR) changed to equivalent (0) for attribute (lfstype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_TYPE_CONTINUOUS) changed to equivalent (0) for attribute (lfsdurationtype) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (LINK_FAULT_CLEAR) changed to equivalent (0) for attribute (lfsstatus) for object (ethernet) 
+14:56:24  [1234] DEBUG sta validateAttrValues: Value (TRAFFIC_SCHEDULE_MODE_FRAMERATE) changed to equivalent (1) for attribute (trafficschedulemode) for object (ethernet) 
+14:56:24  [1234] INFO sta CREATE: Validated attribute/values list -name eth2 -portType PORT_TYPE_ETH -location 0,9,1 -macAddr 00:0A:BC:DE:05:02 -ipAddr 10.1.5.2 -gateway 10.1.5.254 -arpRetryCnt 10 -arpRetryInt 500 -arpGateway TRUE -durationMode DURATION_MODE_CONTINUOUS -duration 1000 -burstSize 1 -ipVer IP_V4V6 -ipv6Addr 2000:2000:2000:2000:6357:9270:2654:1463 -ipv6Gateway 2000:2000:2000:2000:7961:3580:4221:3553 -duplex FULL_DUPLEX -autoNegot AUTONEG_ENABLE -speed 1GBPS -flowControl FALSE -pollCounter TRUE -pollChart FALSE -pollLed TRUE -portMode PORT_MODE_COPPER -portTrafficType PORT_XMIT_AND_RECV -useFrameSizeOnPort FALSE -useLoadOnPort FALSE -randMinFrameSize 128 -randMaxFrameSize 256 -startCaptOnTest FALSE -captType CAPT_TYPE_HW -captFileName capture.pcap -loadMode LOAD_MODE_FIXED -loadUnit LOAD_UNIT_PERCENT_LINE_RATE -load 10 -randMaxLoad 10 -randMinLoad 10 
+14:56:24  [1234] INFO sta CREATE: Object to Create ethernet with Internal Id: 2 
+14:56:24  [1234] DEBUG sta INFO (doAdd): calling smbAdd for the id (2) over the parent handle (4) 
+14:56:24  [1234] DEBUG sta INFO (ADD HANDLE): ethernet 
+14:56:24  [1234] DEBUG sta INFO: Call setAttributes for the attr value pairs.  231 {eth2} 243 {2} 239 {0,9,1} 251 {0-A-BC-DE-5-2} 241 {10.1.5.2} 242 {10.1.5.254} 227 {10} 228 {500} 253 {TRUE} 111027 {2} 111026 {1000} 238 {1} 282 {4} 283 {2000:2000:2000:2000:6357:9270:2654:1463} 284 {2000:2000:2000:2000:7961:3580:4221:3553} 249 {1} 250 {3} 240 {3} 252 {FALSE} 1681 {TRUE} 1682 {FALSE} 1683 {TRUE} 244 {1} 237 {0} 245 {FALSE} 233 {FALSE} 246 {128} 247 {256} 7929 {FALSE} 293 {2} 294 {capture.pcap} 111022 {1} 232 {1} 234 {10} 236 {10} 235 {10} 226 {1} 230 {true} 254 {0-0-0-0-0-0} 285 {24} 286 {64} 289 {1} 290 {2} 295 {0} 296 {0} 297 {1} 1601 {0} 1604 {64} 1605 {true} 1606 {4} 1607 {./portCtCapture} 1684 {false} 1685 {false} 1686 {true} 1687 {true} 1688 {true} 1689 {true} 1690 {true} 1691 {true} 1692 {true} 1693 {true} 1694 {true} 1695 {true} 1696 {true} 1697 {0} 1700 {true} 2301 {1} 2302 {128} 7914 {true} 7915 {true} 7916 {true} 7917 {true} 7918 {true} 7919 {true} 7924 {1500} 7930 {1} 7931 {true} 7932 {1000} 7945 {false} 7946 {0} 7947 {1} 7948 {16383} 7950 {0} 7951 {8100} 7952 {true} 7953 {true} 7959 {false} 7984 {true} 7985 {0} 7986 {0} 7987 {0} 7988 {0} 7990 {1}. Handle for Object(ethernet) : 130 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 231 eth2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 243 2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 239 0,9,1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 251 0-A-BC-DE-5-2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 241 10.1.5.2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 242 10.1.5.254 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 227 10 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 228 500 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 253 TRUE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 111027 2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 111026 1000 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 238 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 282 4 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 283 2000:2000:2000:2000:6357:9270:2654:1463 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 284 2000:2000:2000:2000:7961:3580:4221:3553 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 249 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 250 3 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 240 3 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 252 FALSE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1681 TRUE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1682 FALSE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1683 TRUE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 244 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 237 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 245 FALSE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 233 FALSE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 246 128 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 247 256 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7929 FALSE 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 293 2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 294 capture.pcap 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 111022 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 232 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 234 10 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 236 10 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 235 10 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 226 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 230 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 254 0-0-0-0-0-0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 285 24 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 286 64 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 289 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 290 2 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 295 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 296 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 297 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1601 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1604 64 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1605 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1606 4 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1607 ./portCtCapture 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1684 false 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1685 false 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1686 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1687 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1688 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1689 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1690 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1691 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1692 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1693 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1694 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1695 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1696 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1697 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 1700 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 2301 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 2302 128 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7914 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7915 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7916 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7917 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7918 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7919 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7924 1500 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7930 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7931 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7932 1000 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7945 false 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7946 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7947 1 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7948 16383 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7950 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7951 8100 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7952 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7953 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7959 false 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7984 true 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7985 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7986 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7987 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7988 0 
+14:56:24  [1234] DEBUG sta doSet (INFO): Perform Set on 130 7990 1 
+14:56:24  [1234] INFO sta RESERVE: Executing, ::stc::reserve -ports 0,9,1 
+14:56:24  [1234] INFO sta RESERVE: Valid keyword found (-ports) 
+14:56:24  [1234] DEBUG sta INFO (RESERVE): Ports Status for Chassis 0 , slot 9 , port 1: (1) 
+14:56:24  [1234] INFO sta SLEEP: Executing, ::stc::show -allChildren 4 
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:24  [1234] INFO sta SHOW: Returning list of all children object in name-handle pair for parent object (4): continuoustest 66 ethernet 68 ethernet 130 
+14:56:24  [1234] INFO sta GET: Executing, ::stc::get txFrameRate -from 68 
+14:56:24  [1234] INFO sta GET: Valid keyword found (-from)  
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:56:24  [1234] INFO sta GET: Handle Validated 68 
+14:56:24  [1234] INFO sta GET: Attribute (txframerate) found. Now will get the value 
+14:56:24  [1234] INFO sta GET: Value of the Attribute (txframerate): 0.00000 
+14:56:24  [1234] INFO sta GET: Executing, ::stc::get txFrameRate -from 130 
+14:56:24  [1234] INFO sta GET: Valid keyword found (-from)  
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:56:24  [1234] INFO sta GET: Handle Validated 130 
+14:56:24  [1234] INFO sta GET: Attribute (txframerate) found. Now will get the value 
+14:56:24  [1234] INFO sta GET: Value of the Attribute (txframerate): 0.00000 
+14:56:24  [1234] INFO sta APPLY: Executing, ::stc::apply 4 
+14:56:24  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (4) 
+14:56:24  [1234] INFO sta APPLY: Handle Validated (4) 
+14:56:24  [1234] INFO sta APPLY: Performing ValidateError before Apply ... 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking License... 
+14:56:24  [1234] INFO sta STATUS FROM API:  
+14:56:24  [1234] INFO sta STATUS FROM API: Validating test... 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for broadcast addresses... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for broadcast addresses... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Verifying streams... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating streams on port eth1... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating streams on port eth1... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Verifying streams... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking sync status... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking sync status... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating config... 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating load and frame size... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating load and frame size... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating config size... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating config size... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking for duplicate addresses... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating streams... (1/2) 
+14:56:24  [1234] INFO sta STATUS FROM API: Validating streams... (2/2) 
+14:56:24  [1234] INFO sta STATUS FROM API:  
+14:56:24  [1234] INFO sta Apply config ... 
+14:56:24  [1234] INFO sta STATUS FROM API:  
+14:56:24  [1234] INFO sta STATUS FROM API: Setting up modules... 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking routing daemons (1/2)... 
+14:56:24  [1234] INFO sta STATUS FROM API: Checking routing daemons (2/2)... 
+14:56:24  [1234] INFO sta STATUS FROM API: Synching timestamps on ports... 
+14:56:27  [1234] INFO sta STATUS FROM API: Setting up port... 
+14:56:27  [1234] INFO sta STATUS FROM API: Updating port interface (1/1)... 
+14:56:27  [1234] INFO sta STATUS FROM API: Setting up port... 
+14:56:27  [1234] INFO sta STATUS FROM API: Setting up port parameters... (1/1) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up port... (1/1) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up subinterface... 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up protocol config... 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up Triggers... 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up stream... 
+14:56:28  [1234] INFO sta STATUS FROM API:  
+14:56:28  [1234] INFO sta STATUS FROM API:  
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up stream... 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up stream on port eth1... (1/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up stream on port eth1... (2/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Downloading stream on port eth1... 
+14:56:28  [1234] INFO sta STATUS FROM API: Configuring TX load... 
+14:56:28  [1234] INFO sta STATUS FROM API: Configuring TX load on port eth1... (1/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up frame size... (1/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up frame size... (2/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up TX load on port eth1... (1/2) 
+14:56:28  [1234] INFO sta STATUS FROM API: Setting up TX load on port eth1... (2/2) 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up sample interval... (1/2) 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up sample interval... (2/2) 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up Tx and Rx result... (1/2) 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up Tx and Rx result... (2/2) 
+14:56:29  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:35  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:35  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:35  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:35  [1234] INFO sta STATUS FROM API: Setting up result tracking... 
+14:56:36  [1234] INFO sta STATUS FROM API:  
+14:56:36  [1234] INFO sta SLEEP: Executing, ::stc::sleep 1 
+14:56:37  [1234] INFO sta SLEEP: Executing, ::stc::sleep 1 
+14:56:48  [1234] INFO sta PERFORM: Executing, ::stc::perform Clear_PortCounter 68 
+14:56:48  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:56:48  [1234] DEBUG sta INFO: Operation (clear_portcounter) is allowed to perform. 
+14:56:48  [1234] INFO sta PERFORM: Executing, ::stc::perform Clear_PortCounter 130 
+14:56:48  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:56:48  [1234] DEBUG sta INFO: Operation (clear_portcounter) is allowed to perform. 
+14:56:48  [1234] INFO sta START: Executing, ::stc::start Start_Traffic 68 
+14:56:48  [1234] INFO sta Starting Test ... 
+14:56:48  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:56:48  [1234] DEBUG sta INFO: Operation (start_traffic) is allowed to start. 
+14:56:50  [1234] INFO sta STATUS FROM API:  
+14:56:50  [1234] INFO sta STATUS FROM API:  
+14:56:53  [1234] INFO sta START: Executing, ::stc::start Start_Traffic 130 
+14:56:53  [1234] INFO sta Starting Test ... 
+14:56:53  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:56:53  [1234] DEBUG sta INFO: Operation (start_traffic) is allowed to start. 
+14:56:53  [1234] INFO sta STATUS FROM API:  
+14:56:53  [1234] INFO sta STATUS FROM API:  
+14:57:01  [1234] INFO sta STOP: Executing, ::stc::stop Stop_Traffic 68 
+14:57:01  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:57:01  [1234] DEBUG sta INFO: Operation (stop_traffic) is allowed to stop. 
+14:57:05  [1234] INFO sta STOP: Executing, ::stc::stop Stop_Traffic 130 
+14:57:05  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:57:05  [1234] DEBUG sta INFO: Operation (stop_traffic) is allowed to stop. 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get rxFrameCnt -from 96 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (96) 
+14:57:12  [1234] INFO sta GET: Handle Validated 96 
+14:57:12  [1234] INFO sta GET: Attribute (rxframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (rxframecnt): 1017993.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get txFrameCnt -from 96 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (96) 
+14:57:12  [1234] INFO sta GET: Handle Validated 96 
+14:57:12  [1234] INFO sta GET: Attribute (txframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (txframecnt): 997606.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get rxFrameCnt -from 110 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (110) 
+14:57:12  [1234] INFO sta GET: Handle Validated 110 
+14:57:12  [1234] INFO sta GET: Attribute (rxframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (rxframecnt): 0.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get txFrameCnt -from 110 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (110) 
+14:57:12  [1234] INFO sta GET: Handle Validated 110 
+14:57:12  [1234] INFO sta GET: Attribute (txframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (txframecnt): 4619350.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get txSigFrameCnt -from 68 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:57:12  [1234] INFO sta GET: Handle Validated 68 
+14:57:12  [1234] INFO sta GET: Attribute (txsigframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (txsigframecnt): 5785992.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get rxSigFrameCnt -from 68 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (68) 
+14:57:12  [1234] INFO sta GET: Handle Validated 68 
+14:57:12  [1234] INFO sta GET: Attribute (rxsigframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (rxsigframecnt): 0.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get txSigFrameCnt -from 130 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:57:12  [1234] INFO sta GET: Handle Validated 130 
+14:57:12  [1234] INFO sta GET: Attribute (txsigframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (txsigframecnt): 0.00000 
+14:57:12  [1234] INFO sta GET: Executing, ::stc::get rxSigFrameCnt -from 130 
+14:57:12  [1234] INFO sta GET: Valid keyword found (-from)  
+14:57:12  [1234] DEBUG sta INFO (ValidateHandle): Valid Handle found (130) 
+14:57:12  [1234] INFO sta GET: Handle Validated 130 
+14:57:12  [1234] INFO sta GET: Attribute (rxsigframecnt) found. Now will get the value 
+14:57:12  [1234] INFO sta GET: Value of the Attribute (rxsigframecnt): 1027447.00000 
+14:57:12  [1234] INFO sta RELEASE: Executing, ::stc::release -ports 0,9,0 
+14:57:12  [1234] DEBUG sta INFO (RELEASE): Valid keyword found (-ports) 
+14:57:14  [1234] DEBUG sta INFO (RELEASE): Release Port Status 1: 0 9 0 
+14:57:14  [1234] INFO sta RELEASE: Executing, ::stc::release -ports 0,9,1 
+14:57:14  [1234] DEBUG sta INFO (RELEASE): Valid keyword found (-ports) 
+14:57:14  [1234] DEBUG sta INFO (STOP TRD): The Trd Daemon with handle 773090392 is not running on chassis: 0, slot: 9, port: 1 
+14:57:15  [1234] DEBUG sta INFO (RELEASE): Release Port Status 1: 0 9 1 

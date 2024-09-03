@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<User_Info>
+		<User_Name>zheli</User_Name>
+		<Password>6yhn&amp;UJM</Password>
+	</User_Info>
+	<JIRA_Info>
+		<JIRA_Server>https://jira.netgear.com/</JIRA_Server>
+		<JIRA_TestPlan>PRJCBUGEN-P44</JIRA_TestPlan>
+	</JIRA_Info>
+	<TestRun>
+		<!-- True or False -->
+		<useTestRun>False</useTestRun>
+		<JIRA_TestRun>PRJCBUGEN-R400</JIRA_TestRun>
+	</TestRun>
+	<!-- Pass,Not Executed,Fail,In Progress,Blocked -->
+	<Case_Status>Pass,Not Executed,Fail,Not Executed</Case_Status>
+	<!-- True or False -->
+	<Import_Result>True</Import_Result>
+</Config>

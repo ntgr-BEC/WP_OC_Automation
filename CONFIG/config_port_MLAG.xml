@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+    <ConfigBy>GUI</ConfigBy>
+	<TftpSvr>192.158.110.3</TftpSvr>
+	
+	<TftpSvrNet>192.158.110.255</TftpSvrNet>
+	<SftpSvr>192.158.110.3</SftpSvr>
+	<SftpUser>selva</SftpUser>
+	<SftpPassword>selva</SftpPassword>
+	<ScpSvr>192.168.10.5</ScpSvr>
+	<ScpUser>selva</ScpUser>
+	<ScpPassword>selva</ScpPassword>
+	<Tftp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Tftp6Svr>
+	<Sftp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Sftp6Svr>
+	<Sftp6User>root</Sftp6User>
+	<Sftp6Password>root123</Sftp6Password>
+	<Scp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Scp6Svr>
+	<Scp6User>root</Scp6User>
+	<Scp6Password>root123</Scp6Password>
+	<LocalDir>C:\tftpd32</LocalDir>
+	<SslRootFile>netgear_root.pem</SslRootFile>
+	<SslServerFile>netgear_server.pem</SslServerFile>	
+	<SslDhWeakFile>netgear_dhweak.pem</SslDhWeakFile>
+	<SslDhStrongFile>netgear_dhstrong.pem</SslDhStrongFile>
+	<Ssh1RsaFile>netgear_ssh_host_key</Ssh1RsaFile>
+	<Ssh2RsaFile>netgear_ssh_host_rsa_key</Ssh2RsaFile>
+	<Ssh2DsaFile>netgear_ssh_host_dsa_key</Ssh2DsaFile>
+
+	<DUT>SW0</DUT>
+	<DUT2>SW4</DUT2>
+	
+	<SW1>SW1</SW1>
+	<SW2>SW2</SW2>
+	<SW3>SW3</SW3>
+	<TG>I1</TG>
+
+    <P00>0/1</P00>
+    <P01>0/2</P01>
+	
+    <P02>0/3</P02>
+	<P03>0/4</P03>
+	<P04>0/5</P04>
+	<P05>0/6</P05>
+	
+	<P10>0/7</P10>
+	<P11>0/8</P11>
+	
+	<P12>0/14</P12>
+	<P13>0/15</P13>
+	
+
+    <S00>0/1</S00>
+    <S01>0/2</S01>
+	
+    <S02>0/3</S02>
+	<S03>0/4</S03>
+	<S04>0/5</S04>
+	<S05>0/6</S05>
+	<S06>0/7</S06>
+	<S07>0/8</S07>
+	<S08>0/9</S08>
+	<S09>0/10</S09>
+	
+	<S10>0/11</S10>
+	<S11>0/12</S11>
+    
+	<S12>0/14</S12>
+	<S13>0/15</S13>
+	
+
+    <B00>1/0/1</B00>
+    <B01>1/0/2</B01>
+	
+    <B02>1/0/3</B02>
+    <B03>1/0/4</B03>
+    <B04>1/0/5</B04>
+    <B05>1/0/6</B05>
+	
+    <B06>1/0/7</B06>
+    <B07>1/0/8</B07>
+    <B08>1/0/9</B08>
+    <B09>1/0/10</B09>
+    <B10>1/0/11</B10>
+	<B11>1/0/12</B11>
+	<B12>1/0/13</B12>
+	<B13>1/0/14</B13>
+	
+
+    <C00>1/0/1</C00>
+    <C01>1/0/2</C01>
+	
+    <C02>1/0/3</C02>
+    <C03>1/0/4</C03>
+
+
+    <D00>2/0/21</D00>
+    <D01>2/0/22</D01>
+	
+    <D02>2/0/23</D02>
+    <D03>2/0/24</D03>
+
+
+    <T01>1 10 1</T01>
+    <SPD01>1000</SPD01>
+    <PMD01>copper</PMD01>
+	
+    <T02>1 10 2</T02>
+    <SPD02>1000</SPD02>
+    <PMD02>copper</PMD02>
+	
+    <T03>1 10 3</T03>
+    <SPD03>1000</SPD03>  
+    <PMD03>copper</PMD03>
+    
+    <T09>1 10 4</T09>
+    <SPD09>1000</SPD09>
+    <PMD09>copper</PMD09>
+	
+    <T10>1 10 5</T10>
+    <SPD10>1000</SPD10>
+    <PMD10>copper</PMD10>
+	
+    <T17>1 10 3</T17>
+    <SPD17>1000</SPD17>
+    <PMD17>copper</PMD17>
+</Config>

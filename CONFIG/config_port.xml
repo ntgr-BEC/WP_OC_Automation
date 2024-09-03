@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<ConfigBy>GUI</ConfigBy> 
+	<DUTLanguage>English</DUTLanguage>
+	<!--those configure are for Log System -->
+	<LogSystemServer>10.40.1.183</LogSystemServer>
+	<LogSystemFtpServer>10.40.1.184</LogSystemFtpServer>
+	<Responsible>jim.xie</Responsible>
+	<RestoreFlag>Disable</RestoreFlag>
+	<!--browser type:chrome,firefox,iexplore -->
+	<BrowserType>iexplore</BrowserType>
+	<!--switch port mode:general,trunk,access -->
+	<SwitchPortMode>general</SwitchPortMode>
+
+	<TftpSvr>192.168.10.100</TftpSvr>
+	<CPC_ipv4>192.168.10.100</CPC_ipv4>
+	<CPC_ipv6>2000::1</CPC_ipv6>
+	<TftpSvrNet>192.168.10.255</TftpSvrNet>
+	
+	<SftpSvr>192.168.10.100</SftpSvr>
+	<SftpUser>root</SftpUser>
+	<SftpPassword>root123</SftpPassword>
+	
+	<ScpSvr>192.168.10.100</ScpSvr>
+	<ScpUser>root</ScpUser>
+	<ScpPassword>root123</ScpPassword>
+
+	
+	<Scp6Svr>2008::2</Scp6Svr>
+	<Scp6User>root</Scp6User>
+	<Scp6Password>root123</Scp6Password>
+	<LocalDir>C:/tftpd32</LocalDir>
+	<SslRootFile>netgear_root.pem</SslRootFile>
+	<SslServerFile>netgear_server.pem</SslServerFile>
+	<SslDhWeakFile>netgear_dhweak.pem</SslDhWeakFile>
+	<SslDhStrongFile>netgear_dhstrong.pem</SslDhStrongFile>
+	<Ssh1RsaFile>netgear_ssh_host_key</Ssh1RsaFile>
+	<Ssh2RsaFile>netgear_ssh_host_rsa_key</Ssh2RsaFile>
+	<Ssh2DsaFile>netgear_ssh_host_dsa_key</Ssh2DsaFile>
+
+	<DNS>192.168.10.200</DNS>
+     
+	<TESTBED_ServerControlIP>10.40.9.99</TESTBED_ServerControlIP>
+	<TESTBED_PrimaryServer>192.168.10.200</TESTBED_PrimaryServer>
+	<TESTBED_SecondaryServer>192.168.10.201</TESTBED_SecondaryServer>
+	<TESTBED_TertiaryServer>192.168.10.202</TESTBED_TertiaryServer>
+
+	<TESTBED_PrimaryIPv6Server>2008::3</TESTBED_PrimaryIPv6Server>
+	<TESTBED_SecondaryIPv6Server>2008::4</TESTBED_SecondaryIPv6Server>
+	<TESTBED_TertiaryIPv6Server>2008::5</TESTBED_TertiaryIPv6Server>
+  
+  <BR_LANClientIP>192.168.1.22</BR_LANClientIP>
+	<BR_LANGateway>192.168.1.1</BR_LANGateway>
+	<BR_WANClientIP>192.168.100.123</BR_WANClientIP>
+	<BR_WANGateway>192.168.100.1</BR_WANGateway>
+	<Intf_num>1</Intf_num>
+
+	<beforeimage>smart-s3300-v6.6.0.12.stk</beforeimage>
+	<afterimage>smart-s3300-v6.6.0.12.stk</afterimage>
+
+	<StackOldVer>smart-s3300-v6.6.0.7.stk</StackOldVer>
+	<StackMoreOldVer>smart-s3300-v6.6.0.7.stk</StackMoreOldVer>
+
+
+	<DUT>SW0</DUT>
+	<SW1>SW1</SW1>
+	<SW2>SW2</SW2>
+	<SW3>SW3</SW3>
+	<TG>I1</TG>
+	
+	<A00>1/0/24</A00>
+
+	<A01>1/0/1</A01>
+	<A02>1/0/3</A02>
+	<A03>2/0/1</A03>
+	
+  <A04>2/0/3</A04>
+	<A05>1/0/40</A05>
+	<A06>1/0/41</A06>
+	
+	
+	<A09>1/0/21</A09>
+	<A10>2/0/21</A10>
+	<A11>3/0/21</A11>
+	<A12>4/0/21</A12>
+	<A13>1/0/22</A13>
+	<A14>2/0/22</A14>
+	<A15>3/0/22</A15>
+	<A16>4/0/22</A16>
+
+	<A17>1/0/23</A17>
+	<A18>2/0/23</A18>
+
+	<A19>3/0/23</A19>
+
+	<B00>1/0/45</B00>
+	
+	<B01>1/0/46</B01>
+	<B02>1/0/27</B02>
+	<B03>1/0/28</B03>
+	<B04>1/0/29</B04>
+	<B05>1/0/30</B05>
+	<B06>1/0/31</B06>
+	<B07>1/0/32</B07>
+	<B08>1/0/33</B08>
+	
+	<B09>1/0/37</B09>
+	<B10>1/0/36</B10>
+	
+	<B17>1/0/39</B17>
+	<B18>1/0/41</B18>
+
+	<C00>1/0/13</C00>
+	<C01>1/0/14</C01>
+	<C02>1/0/15</C02>
+	<C03>1/0/16</C03>
+	<C05>1/0/17</C05>
+
+	<D00>8/0/1</D00>
+	<D01>8/0/2</D01>
+	<D02>8/0/3</D02>
+	<D03>8/0/4</D03>
+
+	<T01>1 9 5</T01>
+	<SPD01>1000</SPD01>
+	<PMD01>copper</PMD01>
+
+	<T02>1 9 6</T02>
+	<SPD02>1000</SPD02>
+	<PMD02>copper</PMD02>
+
+	<T03>1 9 7</T03>
+	<SPD03>1000</SPD03>
+	<PMD03>copper</PMD03>
+
+	<T04>1 9 8</T04>
+	<SPD04>1000</SPD04>
+	<PMD04>copper</PMD04>
+
+	<T10>1 8 2</T10>
+	<SPD10>1000</SPD10>
+	<PMD10>copper</PMD10>
+
+	<T17>1 8 3</T17>
+	<SPD17>1000</SPD17>
+	<PMD17>copper</PMD17>
+</Config>

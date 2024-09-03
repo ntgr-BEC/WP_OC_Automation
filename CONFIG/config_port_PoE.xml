@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+    <ConfigBy>CLI</ConfigBy>
+	<TftpSvr>192.168.10.100</TftpSvr>
+    <TftpSvrNetBroadCastAddr>192.168.10.255</TftpSvrNetBroadCastAddr>
+	<RestoreFlag>Disable</RestoreFlag>
+	<SftpSvr>10.100.5.177</SftpSvr>
+	<SftpUser>sshuser</SftpUser>
+	<SftpPassword>Netgear123</SftpPassword>
+	<ScpSvr>10.100.5.177</ScpSvr>
+	<ScpUser>sshuser</ScpUser>
+	<ScpPassword>Netgear123</ScpPassword>
+	
+	<Tftp6Svr>2222::100</Tftp6Svr>
+	<LocalDir>C:/</LocalDir>
+    <StackOldVer>9.0.1.15.stk</StackOldVer>
+    <DNS>192.168.10.100</DNS>
+    <CPC_ipv6>fe80::5efe:192.168.191.160</CPC_ipv6>
+    <CPC_ipv4>192.168.10.100</CPC_ipv4>
+
+
+
+
+    <TESTBED_RADIUSServerControlIP>192.168.10.102</TESTBED_RADIUSServerControlIP>
+    <TESTBED_PrimaryRADIUSServer>10.40.3.0</TESTBED_PrimaryRADIUSServer>
+    <TESTBED_SecondaryRADIUSServer>10.40.3.2</TESTBED_SecondaryRADIUSServer>
+    <TESTBED_TertiaryRADIUSServer>10.40.3.10</TESTBED_TertiaryRADIUSServer>
+
+    <TESTBED_NTPServerControlIP>10.40.9.159</TESTBED_NTPServerControlIP>
+    <TESTBED_PrimaryNTPServer>192.168.10.190</TESTBED_PrimaryNTPServer>
+    <TESTBED_SecondaryNTPServer>192.168.10.191</TESTBED_SecondaryNTPServer>
+    <TESTBED_TertiaryNTPServer>192.168.10.192</TESTBED_TertiaryNTPServer>
+
+	<DUT>SW0</DUT>
+
+  <SW1>SW1</SW1>
+	<SW2>SW2</SW2>
+	<SW3>SW3</SW3>
+	<TG>I1</TG>
+
+  <PG1>P1</PG1>
+	<PG2>P2</PG2>
+
+	<A00>1/0/0</A00>
+
+	<A01>1/0/1</A01>
+	<A02>1/0/2</A02>
+	<A03>1/0/3</A03>
+	<A04>1/0/4</A04>
+	<A05>1/0/5</A05>
+	<A06>1/0/6</A06>
+	<A07>1/0/7</A07>
+	<A08>1/0/8</A08>
+	<A09>1/0/9</A09>
+	<A10>1/0/10</A10>
+	<A11>1/0/11</A11>
+	<A12>1/0/12</A12>
+	<A13>1/0/13</A13>
+	<A14>1/0/14</A14>
+	<A15>1/0/15</A15>
+	<A16>1/0/16</A16>
+	<A17>1/0/17</A17>
+	<A18>1/0/18</A18>
+	<A19>1/0/19</A19>
+	<A20>1/0/20</A20>
+	<A21>1/0/21</A21>
+	<A22>1/0/22</A22>
+	<A23>1/0/23</A23>
+	<A24>1/0/25</A24>
+
+
+	<P01>1 1 1</P01>
+	<P02>1 1 2</P02>
+	<P03>1 2 1</P03>
+	<P04>1 2 2</P04>
+	<P05>1 3 1</P05>
+	<P06>1 3 2</P06>
+	<P07>1 4 1</P07>
+	<P08>1 4 2</P08>
+	<P09>1 5 1</P09>
+	<P10>1 5 2</P10>
+	<P11>1 6 1</P11>
+	<P12>1 6 2</P12>
+  <P13>1 7 1</P13>
+	<P14>1 7 2</P14>
+  <P15>1 8 1</P15>
+	<P16>1 8 2</P16>
+  <P17>1 9 1</P17>
+	<P18>1 9 2</P18>
+  <P19>1 10 1</P19>
+	<P20>1 10 2</P20>
+  <P21>1 11 1</P21>
+	<P22>1 11 2</P22>
+  <P23>1 12 1</P23>
+	<P24>1 12 2</P24>
+       
+  <B01>1/0/25</B01>
+	<B02>1/0/23</B02>
+	<B03>1/0/22</B03>
+	<B04>1/0/21</B04>
+	<B05>1/0/20</B05>
+	<B06>1/0/19</B06>
+	<B07>1/0/18</B07>
+	<B08>1/0/17</B08>
+	<B09>1/0/16</B09>
+	<B10>1/0/15</B10>
+	<B11>1/0/14</B11>
+	<B12>1/0/13</B12>
+	<B13>1/0/12</B13>
+	<B14>1/0/11</B14>
+	<B15>1/0/10</B15>
+	<B16>1/0/9</B16> 
+  <B17>1/0/8</B17>
+	<B18>1/0/7</B18>
+	<B19>1/0/6</B19>
+	<B20>1/0/5</B20>
+	<B21>1/0/4</B21>
+	<B22>1/0/3</B22>
+	<B23>1/0/2</B23>
+	<B24>1/0/1</B24>
+	
+  <M01>1 12 2</M01>
+	<M02>1 12 1</M02>
+	<M03>1 11 2</M03>
+	<M04>1 11 1</M04>
+	<M05>1 10 2</M05>
+	<M06>1 10 1</M06>
+	<M07>1 9 2</M07>
+	<M08>1 9 1</M08>
+	<M09>1 8 2</M09>
+	<M10>1 8 1</M10>
+	<M11>1 7 2</M11>
+	<M12>1 7 1</M12>
+  <M13>1 6 2</M13>
+	<M14>1 6 1</M14>
+  <M15>1 5 2</M15>
+	<M16>1 5 1</M16>
+	<M17>1 4 2</M17>
+	<M18>1 4 1</M18>
+  <M19>1 3 2</M19>
+	<M20>1 3 1</M20>
+  <M21>1 2 2</M21>
+	<M22>1 2 1</M22>
+  <M23>1 1 2</M23>
+	<M24>1 1 1</M24>
+	
+  
+    <T01>1 10 1</T01>
+    <SPD01>1000</SPD01>
+    <PMD01>copper</PMD01>
+    <T02>1 10 2</T02>
+    <SPD02>1000</SPD02>
+    <PMD02>copper</PMD02>
+    <T03>1 11 3</T03>
+    <SPD03>1000</SPD03>  
+    <PMD03>fiber</PMD03>
+    
+    <T09>1 11 4</T09>
+    <SPD09>1000</SPD09>
+    <PMD09>copper</PMD09>
+    <T10>1 11 5</T10>
+    <SPD10>1000</SPD10>
+    <PMD10>copper</PMD10>
+    <T17>1 11 6</T17>
+    <SPD17>1000</SPD17>
+    <PMD17>fiber</PMD17>
+</Config>

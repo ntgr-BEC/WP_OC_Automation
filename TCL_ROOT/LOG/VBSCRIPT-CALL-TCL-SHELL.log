@@ -1,0 +1,1498 @@
+******************************** Start Log *************************************************
+
+************************* File : VBSCRIPT-CALL-TCL-SHELL.log ******************************************
+
+********************************************************************************************
+
+
+ TERSE : TC-VALIDATE-L2FLOOD-UNKNOWN-UNICAST.tcl : ******************** Starting Test case TC-VALIDATE-L2FLOOD-UNKNOWN-UNICAST.tcl ******************** 
+
+
+ ual-ntgr-traffic.tcl : Chassis = S2 , vendor = spirent 
+
+
+ lib-spirent.tcl : Initialize the automation framework 
+
+
+ lib-spirent.tcl : About to call spirent init 
+
+
+ lib-spirent.tcl : Spirent init done! 
+
+
+ lib-spirent.tcl : Configuration of  automationOptions done! 
+
+
+ lib-spirent.tcl : create a project 
+
+
+ lib-spirent.tcl : About to create project 
+
+
+ lib-spirent.tcl : create a test object 
+
+
+ lib-spirent.tcl : Error : Test Type value should be <fixed> or <continous> 
+
+
+ lib-spirent.tcl : Default is Continous test. Hence Creating Continous test 
+
+
+ lib-spirent.tcl : connect to each chassis IP address 
+
+
+ lib-spirent.tcl : About to connect 
+
+
+ lib-spirent.tcl : Connecting to chassis 10.100.5.200 
+
+
+ lib-spirent.tcl : Connect to 10.100.5.200 successful! 
+
+
+ lib-spirent.tcl : Chassis ID - 0 , ProjectHandle - 4 
+
+
+ lib-spirent.tcl : Configure the ports, load traffic and reserve the ports 
+
+
+ lib-spirent.tcl : About to create port objects - Project Handle : 4 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 1, Port - 3 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.100 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:01:00 
+
+
+ lib-spirent.tcl : Stream Count on port 0,1,3 = 1 
+
+
+ lib-spirent.tcl : Port handle for 0,1,3 = 68 
+
+
+ lib-spirent.tcl : About to create traffic 
+
+
+ lib-spirent.tcl : FrameSize - 128, FrameType - FRAME_SIZE_MODE_FIXED 
+
+
+ lib-spirent.tcl : Load - 100, LoadType - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : SRC_MAC_ADDR - 00:01:00:00:00:00, DST_MAC_ADDR - 00:02:00:00:00:11 
+
+
+ lib-spirent.tcl : SRC_MAC_ADDR - DEFAULT FALSE , DST_MAC_ADDR  DEFAULT - FALSE 
+
+
+ lib-spirent.tcl : SRC_MAC_COUNT - 10000, DST_MAC_COUNT - 10000, Ethernet Type - 0x0800 
+
+
+ lib-spirent.tcl : SRCIP - 100.100.100.100, DST_IP - 9.3.5.2, SRCMASK - 24, DSTMASK - 24 
+
+
+ lib-spirent.tcl : SRCCNT - 1, DSTCNT - 1, SRCINC - 1, DSTINC - 1 
+
+
+ lib-spirent.tcl : SRCHOSTCNT - 100, DSTHOSTCNT - 100, gw_ip - 9.4.1.1, PROTO - 17 
+
+
+ lib-spirent.tcl : TTL - 64, TOS - 0 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 3 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.1 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:1 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,3 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,3 = 110 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 2 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.2 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:2 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,2 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,2 = 138 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 3, Port - 3 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.3 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:3 
+
+
+ lib-spirent.tcl : Stream Count on port 0,3,3 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,3,3 = 166 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 0, Port - 11 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.4 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:4 
+
+
+ lib-spirent.tcl : Stream Count on port 0,0,11 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,0,11 = 194 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 9 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.5 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:5 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,9 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,9 = 222 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 8 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.6 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:6 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,8 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,8 = 250 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 7, Port - 0 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.7 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:7 
+
+
+ lib-spirent.tcl : Stream Count on port 0,7,0 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,7,0 = 278 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 2, Port - 8 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.8 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:8 
+
+
+ lib-spirent.tcl : Stream Count on port 0,2,8 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,2,8 = 306 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 11 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.9 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:9 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,11 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,11 = 334 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 6, Port - 10 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.10 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:10 
+
+
+ lib-spirent.tcl : Stream Count on port 0,6,10 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,6,10 = 362 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 5, Port - 11 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 100MBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.11 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:11 
+
+
+ lib-spirent.tcl : Stream Count on port 0,5,11 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,5,11 = 390 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 5, Port - 8 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.12 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:12 
+
+
+ lib-spirent.tcl : Stream Count on port 0,5,8 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,5,8 = 418 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 10, Port - 0 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.13 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:13 
+
+
+ lib-spirent.tcl : Stream Count on port 0,10,0 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,10,0 = 446 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 10, Port - 1 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.14 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:14 
+
+
+ lib-spirent.tcl : Stream Count on port 0,10,1 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,10,1 = 474 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 10, Port - 2 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.15 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:15 
+
+
+ lib-spirent.tcl : Stream Count on port 0,10,2 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,10,2 = 502 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 10, Port - 3 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.16 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:16 
+
+
+ lib-spirent.tcl : Stream Count on port 0,10,3 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,10,3 = 530 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 5, Port - 3 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.17 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:17 
+
+
+ lib-spirent.tcl : Stream Count on port 0,5,3 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,5,3 = 558 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 0, Port - 0 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.18 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:18 
+
+
+ lib-spirent.tcl : Stream Count on port 0,0,0 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,0,0 = 586 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 5, Port - 5 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.19 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:19 
+
+
+ lib-spirent.tcl : Stream Count on port 0,5,5 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,5,5 = 614 
+
+
+ lib-spirent-util.tcl : ERROR: Load type value should be <packets_per_sec> or <percentage> 
+
+
+ lib-spirent-util.tcl : Default is  <percentage>  
+
+
+ lib-spirent.tcl : Chassis - 0, Slot - 0, Port - 1 
+
+
+ lib-spirent.tcl : DuplexMode - FULL_DUPLEX, AutoNeg- AUTONEG_ENABLE, Speed - 1GBPS, PortMode - PORT_MODE_COPPER 
+
+
+ lib-spirent.tcl : duration type - DURATION_MODE_CONTINUOUS, Burst size - 1, duration - 1000 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, Load Mode - LOAD_MODE_FIXED 
+
+
+ lib-spirent.tcl : use frame on port - TRUE, use load on port - TRUE 
+
+
+ lib-spirent.tcl : load - 100, Load Mode - LOAD_MODE_FIXED, LoadMin = 10, LoadMax = 10, load type - LOAD_UNIT_PERCENT_LINE_RATE 
+
+
+ lib-spirent.tcl : frame mode - FRAME_SIZE_MODE_RAND, FrameMinSize = 64, FrameMaxSize = 1518 
+
+
+ lib-spirent.tcl : Port IP Address 100.0.0.20 
+
+
+ lib-spirent.tcl : Gateway IP Address 100.0.0.254 
+
+
+ lib-spirent.tcl : MAC Address 00:10:00:00:00:20 
+
+
+ lib-spirent.tcl : Stream Count on port 0,0,1 = 0 
+
+
+ lib-spirent.tcl : Port handle for 0,0,1 = 642 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,1,3 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,3 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,2 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,3,3 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,0,11 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,9 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,8 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,7,0 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,2,8 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,11 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,6,10 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,5,11 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,5,8 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,10,0 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,10,1 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,10,2 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,10,3 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,5,3 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,0,0 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,5,5 
+
+
+ lib-spirent.tcl : Reserve the ports - 0,0,1 
+
+
+ lib-spirent.tcl : Apply the configuration 
+
+
+ ual-ntgr-traffic.tcl : Chassis = S2 , vendor = spirent 
+
+
+ lib-spirent.tcl : Clear the statistics on port(S2,0), port handle - 68 
+
+
+ lib-spirent.tcl : Port 0: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=15532.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 0: Tr=844597.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=801192.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=844583.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=15532.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 0: Tr=844597.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=801192.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=844583.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=743015.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=15532.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 0: Tr=844597.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=801192.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=844583.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=743015.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=84462.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=822370.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=15532.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 0: Tr=844597.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=801192.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=844583.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=743015.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=84462.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=822370.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=822378.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=82236.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=82236.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 1: Tr=0.00000, Rr=801192.00000 
+
+
+ lib-spirent.tcl : Port 3: Tr=0.00000, Rr=844583.00000 
+
+
+ lib-spirent.tcl : Port 5: Tr=0.00000, Rr=743015.00000 
+
+
+ lib-spirent.tcl : Port 7: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 9: Tr=0.00000, Rr=822373.00000 
+
+
+ lib-spirent.tcl : Port 11: Tr=0.00000, Rr=84462.00000 
+
+
+ lib-spirent.tcl : Port 13: Tr=0.00000, Rr=822370.00000 
+
+
+ lib-spirent.tcl : Port 15: Tr=0.00000, Rr=822378.00000 
+
+
+ lib-spirent.tcl : Port 17: Tr=0.00000, Rr=82236.00000 
+
+
+ lib-spirent.tcl : Port 19: Tr=0.00000, Rr=82236.00000 
+
+
+ lib-spirent.tcl : Port 2: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 4: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 6: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 8: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 10: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 12: Tr=0.00000, Rr=0.00000 
+
+
+ lib-spirent.tcl : Port 14: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 16: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 18: Tr=0.00000, Rr=1.00000 
+
+
+ lib-spirent.tcl : Port 20: Tr=0.00000, Rr=0.00000 
+
+
+ TERSE :  : L2FLOOD UNKNOWN UNICAST is PASSED 
+
+
+ ual-ntgr-traffic.tcl : Chassis = S2 , vendor = spirent 
+
+
+ lib-spirent.tcl : Stop traffic on port - 0 
+
+
+ lib-spirent.tcl : Release port=0,1,3 
+
+
+ lib-spirent.tcl : Release port=0,6,3 
+
+
+ lib-spirent.tcl : Release port=0,6,2 
+
+
+ lib-spirent.tcl : Release port=0,3,3 
+
+
+ lib-spirent.tcl : Release port=0,0,11 
+
+
+ lib-spirent.tcl : Release port=0,6,9 
+
+
+ lib-spirent.tcl : Release port=0,6,8 
+
+
+ lib-spirent.tcl : Release port=0,7,0 
+
+
+ lib-spirent.tcl : Release port=0,2,8 
+
+
+ lib-spirent.tcl : Release port=0,6,11 
+
+
+ lib-spirent.tcl : Release port=0,6,10 
+
+
+ lib-spirent.tcl : Release port=0,5,11 
+
+
+ lib-spirent.tcl : Release port=0,5,8 
+
+
+ lib-spirent.tcl : Release port=0,10,0 
+
+
+ lib-spirent.tcl : Release port=0,10,1 
+
+
+ lib-spirent.tcl : Release port=0,10,2 
+
+
+ lib-spirent.tcl : Release port=0,10,3 
+
+
+ lib-spirent.tcl : Release port=0,5,3 
+
+
+ lib-spirent.tcl : Release port=0,0,0 
+
+
+ lib-spirent.tcl : Release port=0,5,5 
+
+
+ lib-spirent.tcl : Release port=0,0,1 
+
+
+ TERSE : TC-VALIDATE-L2FLOOD-UNKNOWN-UNICAST.tcl : ******************** Completed Test case TC-VALIDATE-L2FLOOD-UNKNOWN-UNICAST.tcl ******************** 
+
+ *************************************** End Log ********************************************
+
+ ********************************************************************************************
+

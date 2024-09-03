@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+    <ConfigBy>CLI</ConfigBy>
+	<TftpSvr>192.158.110.3</TftpSvr>
+	
+	<TftpSvrNet>192.158.110.255</TftpSvrNet>
+	<SftpSvr>192.158.110.3</SftpSvr>
+	<SftpUser>selva</SftpUser>
+	<SftpPassword>selva</SftpPassword>
+	<ScpSvr>192.168.10.5</ScpSvr>
+	<ScpUser>selva</ScpUser>
+	<ScpPassword>selva</ScpPassword>
+	<Tftp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Tftp6Svr>
+	<Sftp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Sftp6Svr>
+	<Sftp6User>root</Sftp6User>
+	<Sftp6Password>root123</Sftp6Password>
+	<Scp6Svr>2001:470:f8db:4000:20c:29ff:fe17:6555</Scp6Svr>
+	<Scp6User>root</Scp6User>
+	<Scp6Password>root123</Scp6Password>
+	<LocalDir>C:\aaa</LocalDir>
+	<SslRootFile>netgear_root.pem</SslRootFile>
+	<SslServerFile>netgear_server.pem</SslServerFile>	
+	<SslDhWeakFile>netgear_dhweak.pem</SslDhWeakFile>
+	<SslDhStrongFile>netgear_dhstrong.pem</SslDhStrongFile>
+	<Ssh1RsaFile>netgear_ssh_host_key</Ssh1RsaFile>
+	<Ssh2RsaFile>netgear_ssh_host_rsa_key</Ssh2RsaFile>
+	<Ssh2DsaFile>netgear_ssh_host_dsa_key</Ssh2DsaFile>
+
+	<DUT>SW0</DUT>
+	<SW1>SW1</SW1>
+	<SW2>SW2</SW2>
+	<SW3>SW3</SW3>
+	<TG>S1</TG>
+
+    <A00>0/7</A00>
+    <A01>0/1</A01>
+    <A02>0/2</A02>
+    <A03>0/3</A03>
+    <A09>0/4</A09>
+    <A10>0/5</A10>
+    <A11>0/6</A11>
+    <A12>0/8</A12>
+    <A13>0/9</A13>
+    <A14>0/10</A14>
+    <A15>0/11</A15>
+    <A16>0/12</A16>
+    <A17>0/13</A17>
+    <A18>0/14</A18>
+
+    <B00>2/0/7</B00>
+    <B01>2/0/4</B01>
+    <B02>2/0/5</B02>
+    <B03>2/0/6</B03>
+    <B04>2/0/8</B04>
+    <B05>2/0/9</B05>
+    <B06>2/0/10</B06>
+    <B07>2/0/11</B07>
+    <B08>2/0/12</B08>
+    <B09>2/0/1</B09>
+    <B10>2/0/2</B10>
+    <B17>2/0/13</B17>
+    <B18>2/0/14</B18>
+    
+    <C00>1/0/7</C00>
+    <C01>1/0/13</C01>
+    <C02>1/0/15</C02>
+    <C03>1/0/1</C03>
+    <C05>1/0/8</C05>
+    
+    <D00>1/0/7</D00>
+    <D01>1/0/14</D01>
+    <D02>1/0/15</D02>
+    <D03>1/0/8</D03>
+    
+    <T01>1 2 7</T01>
+    <SPD01>1000</SPD01>
+    <T02>1 2 8</T02>
+    <SPD02>1000</SPD02>
+    <T03>1 2 9</T03>
+    <SPD03>1000</SPD03>
+    <T09>1 2 10</T09>
+    <SPD09>1000</SPD09>
+    <T10>1 2 11</T10>
+    <SPD10>1000</SPD10>
+    <T17>1 2 12</T17>
+    <SPD17>1000</SPD17>
+</Config>

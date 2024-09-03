@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+    <User_Info>
+      <User_Name>zhenwei_li</User_Name>
+      <Password>Lzw921208</Password>
+    </User_Info>
+	<QC_Info>
+	  <QC_Server>https://almnetgear125.saas.hpe.com/qcbin</QC_Server>
+	 <QC_Domain>NETGEAR_SMB</QC_Domain>
+		<QC_Project>Smart_Switches</QC_Project>
+    </QC_Info>
+    <Project_Info>
+      <Project_Name>Smart M4300 6.6.4</Project_Name>
+		<Testing_Phase>AT</Testing_Phase>
+        <Sub_Folder>Mix Stack</Sub_Folder>
+    </Project_Info>                                                       
+    
+    <Module_List>	  
+	    <Module_Name>Access Control</Module_Name>
+		<Module_Name>ACL Wizard</Module_Name>
+		<Module_Name>ARP</Module_Name>
+		<Module_Name>Class Of Service</Module_Name>
+		<Module_Name>Combined ACL</Module_Name>
+		<Module_Name>DAI</Module_Name>
+		<Module_Name>DHCP Client</Module_Name>
+		<Module_Name>DHCP L2Relay</Module_Name>
+		<Module_Name>DHCP Snooping</Module_Name>
+		<Module_Name>Diff Service</Module_Name>
+		<Module_Name>DNS</Module_Name>
+		<Module_Name>DOS</Module_Name>
+		<Module_Name>Dot1x</Module_Name>
+		<Module_Name>Dual Image</Module_Name>
+		<Module_Name>Flow Control</Module_Name>
+		<Module_Name>HTTP(S)</Module_Name>
+		<Module_Name>Igmp Snooping</Module_Name>
+		<Module_Name>IP ACL</Module_Name>
+		<Module_Name>IP and Routing VLAN</Module_Name>
+		<Module_Name>IPv6 ACL</Module_Name>
+   	    <Module_Name>IPv6 Management</Module_Name>   
+		<Module_Name>Jumbo Frame</Module_Name>
+		<Module_Name>LAG&amp;LACP</Module_Name>
+		<Module_Name>LLDP</Module_Name>
+		<Module_Name>LOG</Module_Name>
+		<Module_Name>MAC ACL</Module_Name>
+		<Module_Name>MAC Learning Aging</Module_Name>
+		<Module_Name>MacFilter</Module_Name>
+		<Module_Name>MLD Snooping</Module_Name>
+		<Module_Name>MSTP</Module_Name>
+		<Module_Name>MVR</Module_Name>
+		<Module_Name>Ping&amp;Traceroute</Module_Name>
+		<Module_Name>Port Config</Module_Name>
+		<Module_Name>Port Mirror</Module_Name>
+		<Module_Name>Port Statistics</Module_Name>
+		<Module_Name>PortSecurity</Module_Name>	
+		<Module_Name>ProtectedPort</Module_Name>
+		<Module_Name>RADIUS</Module_Name>
+		<Module_Name>Router Discovery</Module_Name>
+		<Module_Name>RSTP</Module_Name>		
+        <Module_Name>SNMP</Module_Name>
+	    <Module_Name>SNMP TRAP</Module_Name>
+		<Module_Name>SNTP</Module_Name>
+        <Module_Name>Static routes</Module_Name>
+		<Module_Name>Storm Control</Module_Name>
+		<Module_Name>STP</Module_Name>
+		<Module_Name>TACACS+</Module_Name>
+		<Module_Name>Upload&amp;Download</Module_Name>
+		<Module_Name>User Management</Module_Name>
+		<Module_Name>VLAN -- GARP</Module_Name>
+		<Module_Name>VLAN -- Mac based VLAN</Module_Name>
+		<Module_Name>VLAN -- Port based VLAN</Module_Name>
+		<Module_Name>VLAN -- Protocol VLAN</Module_Name>
+    </Module_List>
+    <Case_Status>
+      <Automation_Failed>True</Automation_Failed>
+      <Blocked>True</Blocked>
+      <Failed>True</Failed>
+      <No_Run>True</No_Run>
+      <Not_Completed>True</Not_Completed>
+	  <Passed>True</Passed>
+    </Case_Status>
+	<Run_Config>
+      <Auto_Run>True</Auto_Run>
+    </Run_Config>
+	<Import_Config>
+      <Newest>false</Newest>
+    </Import_Config>
+</Config>
