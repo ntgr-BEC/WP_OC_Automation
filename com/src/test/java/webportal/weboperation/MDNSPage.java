@@ -121,6 +121,8 @@ public class MDNSPage extends MDNSElement {
         MyCommonAPIs.sleepi(4);     
         $x("//div[@id='mdnsFirmwareInfo']//button[text()='OK. Got it']").click();
         MyCommonAPIs.sleepi(4);
+        MyCommonAPIs.sleepi(4);     
+        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
         
         if (Warrning.exists()) {
             warningMessage = Warrning.getText();
