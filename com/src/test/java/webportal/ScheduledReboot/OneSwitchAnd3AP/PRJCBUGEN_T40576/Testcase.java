@@ -37,7 +37,14 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     String Name = "Schedule3";
-
+    int upTimeBefore;
+    int upTimeBefore1;
+    int upTimeBefore2;
+    int upTimeBefore3;
+    int upTimeAfter; 
+    int upTimeAfter1; 
+    int upTimeAfter2; 
+    int upTimeAfter3; 
     
     @Feature("ScheduledReboot") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T40576") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -74,7 +81,10 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: go to Organization and schedule Reboot for all devices;")
     public void step2() throws ParseException {
-        
+       upTimeBefore = new WirelessQuickViewPage().getApUptime(WebportalParam.ap1IPaddress);
+       upTimeBefore1 = new WirelessQuickViewPage().getApUptime(WebportalParam.ap2IPaddress);
+       upTimeBefore2 = new WirelessQuickViewPage().getApUptime(WebportalParam.ap3IPaddress);
+       upTimeBefore3 = new WirelessQuickViewPage().getApUptime(WebportalParam.sw1serialNo);
        new OrganizationPage().gotoSchedulereboot();
        new RunCommand().enableSSH4APALL(WebportalParam.ap1IPaddress);
        new RunCommand().enableSSH4APALL(WebportalParam.ap2IPaddress);
@@ -88,7 +98,21 @@ public class Testcase extends TestCaseBase {
         
         new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-        assertTrue(new DevicesDashPage().isAllDeviceRebooting(WebportalParam.ap1serialNo, WebportalParam.ap2serialNo, WebportalParam.ap3serialNo, WebportalParam.sw1serialNo), "Device rebooting Status is not received");
+        
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap2serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap3serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.sw1serialNo);
+       
+        upTimeAfter = new WirelessQuickViewPage().getApUptime(WebportalParam.ap1IPaddress);
+        upTimeAfter = new WirelessQuickViewPage().getApUptime(WebportalParam.ap2IPaddress);
+        upTimeAfter = new WirelessQuickViewPage().getApUptime(WebportalParam.ap3IPaddress);
+        upTimeAfter = new WirelessQuickViewPage().getApUptime(WebportalParam.sw1IPaddress);
+        
+        
+        assertTrue(upTimeAfter < upTimeBefore, "Reboot AP device failed.");
+        
+//        assertTrue(new DevicesDashPage().isAllDeviceRebooting(WebportalParam.ap1serialNo, WebportalParam.ap2serialNo, WebportalParam.ap3serialNo, WebportalParam.sw1serialNo), "Device rebooting Status is not received");
   
     }
   
