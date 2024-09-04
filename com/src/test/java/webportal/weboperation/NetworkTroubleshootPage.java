@@ -351,7 +351,9 @@ public class NetworkTroubleshootPage extends NetworkTroubleshootElement {
         result = CompleteResultcheck;
         System.out.println(result);
         MyCommonAPIs.sleepi(10);
+        if(CloseResult.exists()) {
         CloseResult.click();
+        }
         return result.toLowerCase();
     }
     
