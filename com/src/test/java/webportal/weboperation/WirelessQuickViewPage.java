@@ -10331,7 +10331,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void enableLogProbing(boolean flag) {
         MyCommonAPIs.sleepi(10);
         setSelected($x("(//input[@id='enableBlackList'])[5]/../span"), flag);
-        $x("(//input[@id='enableBlackList'])[5]/../span").click();
+//        $x("(//input[@id='enableBlackList'])[5]/../span").click();
         MyCommonAPIs.sleepi(10);
         if(SaveIGMP.exists()) {
         new WirelessQuickViewPage(false).SaveIGMP.click();
@@ -10367,12 +10367,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(30);
         waitElement(questionLogProbinginfo);
         String info = questionLogProbinginfo.getText();
-        String infor = questionLogProbinginfo.getSelectedText();
-        String inforr = questionLogProbinginfo.getValue();
-        System.out.println("----------------------");
         System.out.println(info);
-        System.out.println(infor);
-        System.out.println(inforr);
         return info;
     }
 
