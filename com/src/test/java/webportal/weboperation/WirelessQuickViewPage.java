@@ -2945,6 +2945,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result;
     }
 
+    public int getApUptime(String serialNumber) {
+        int upTime = 0;
+        String text = getText(String.format(uptime, serialNumber));
+        String regEx = "[^0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(text);
+        upTime = Integer.parseInt(m.replaceAll("").trim());
+        logger.info("Uptime number:" + String.valueOf(upTime));
+        return upTime;
+    }
     public int getApUptime() {
         int upTime = 0;
         String text = getText(String.format(uptime, WebportalParam.ap1serialNo));
