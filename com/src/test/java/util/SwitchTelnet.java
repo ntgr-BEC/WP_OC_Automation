@@ -21,7 +21,7 @@ import webportal.param.WebportalParam;
 public class SwitchTelnet {
     public static String         switchIp        = WebportalParam.sw1IPaddress;
     public static TelnetOperator telnet          = null;
-    public static int            checkcycle      = 15;                              // 10s(rltk)/13s(gc752) one around
+    public static int            checkcycle      = 5;                              // 10s(rltk)/13s(gc752) one around
     final static Logger          logger          = Logger.getLogger("SwitchTelnet");
     public boolean               isRltkSW        = false;
     public static int            cliWaitTimeoutS = 400;
@@ -57,6 +57,7 @@ public class SwitchTelnet {
     public SwitchTelnet(String ip) {
         preSetup(ip);
         telnet = switchlogin(switchIp);
+        setEnable();
     }
 
     /**
@@ -77,6 +78,7 @@ public class SwitchTelnet {
     public SwitchTelnet(String ip, String passwd) {
         preSetup(ip);
         telnet = switchlogin(switchIp, passwd);
+        setEnable();
     }
 
     /**
@@ -130,14 +132,23 @@ public class SwitchTelnet {
     public TelnetOperator switchlogin(String ip) {
         isRltkSW = WebportalParam.isRltkSW(ip);
         TelnetOperator telnet = new TelnetOperator("VT220", ">"); // Windows,用VT220,否则会乱码
-        telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
+     
+        if(isRltkSW) {
+            telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
+            }else {
+                telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+            }
         return telnet;
     }
 
     public TelnetOperator switchlogin(String ip, String passwd) {
         isRltkSW = WebportalParam.isRltkSW(ip);
         TelnetOperator telnet = new TelnetOperator("VT220", ">"); // Windows,用VT220,否则会乱码
-        telnet.login(ip, 60000, "admin", passwd);
+        if(isRltkSW) {
+            telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
+            }else {
+                telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+            }
         return telnet;
     }
 
@@ -148,7 +159,11 @@ public class SwitchTelnet {
         if (!noTimeout) {
             telnet.disTimeout();
         }
-        telnet.loginEx(ip, 60000, "admin", passwd);
+        if(isRltkSW) {
+            telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
+            }else {
+                telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+            }
         return telnet;
     }
 
