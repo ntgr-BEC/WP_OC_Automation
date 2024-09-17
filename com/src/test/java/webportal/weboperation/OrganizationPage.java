@@ -174,20 +174,24 @@ public class OrganizationPage extends OrganizationElement {
             MyCommonAPIs.waitElement(AddOrg);
             if (AddOrg.exists()) {
                 AddOrg.click();
-                MyCommonAPIs.sleepi(10);
+                MyCommonAPIs.sleepi(15);
                 NameOrg.sendKeys(map.get("Name"));
                 if (map.containsKey("Owner Name")) {
                     ownerName.sendKeys(map.get("Owner Name"));
                 }
+                MyCommonAPIs.sleepi(1);
                 if (map.containsKey("Email Address")) {
                     ownerEmail.sendKeys(map.get("Email Address"));
                 }
+                MyCommonAPIs.sleepi(1);
                 if (map.containsKey("Phone Number")) {
                     ownerPhone.sendKeys(map.get("Phone Number"));
                 }
+                MyCommonAPIs.sleepi(1);
                 if (map.containsKey("Business Phone Number")) {
                     businessPhone.sendKeys(map.get("Business Phone Number"));
                 }
+                MyCommonAPIs.sleepi(1);
                 selectNotificationAndReport(map);
                 if (map.containsKey("Device Ownership")) {
                     switch (map.get("Device Ownership")) {
@@ -224,6 +228,7 @@ public class OrganizationPage extends OrganizationElement {
                         break;
                     }
                 }
+                MyCommonAPIs.sleepi(1);
                 SaveOrg.click();
                 located = true;
                 logger.info("--------------- Organisation is Created Succesfully ----------");
@@ -235,7 +240,9 @@ public class OrganizationPage extends OrganizationElement {
                     waitReady();
                     MyCommonAPIs.sleepi(5);
                     businessPhone.setValue(map.get("Number of Locations"));
+                    MyCommonAPIs.sleepi(1);
                     devAdminPwd.setValue(map.get("Device Admin Password"));
+                    MyCommonAPIs.sleepi(1);
                     autoZipCode.setValue(map.get("Zip Code"));
                     MyCommonAPIs.sleepi(3);
                     nextButton.click();
@@ -4678,7 +4685,7 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void disableOrgWideSSIDSwitch() {
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(15);
         waitElement(orgwideSSIDToggleSwitchOnOff);
         orgwideSSIDToggleSwitchOnOff.click();
         MyCommonAPIs.sleepi(2);
