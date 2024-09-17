@@ -2,7 +2,7 @@
 <config>
     <ConfigBy>GUI</ConfigBy>
     <!-- must be one of: chrome, firefox, iexplore -->
-    <BrowserType>firefox</BrowserType>
+    <BrowserType>chrome</BrowserType>
     <!--BrowserPath>C:/Program Files/Google/Chrome/Application</BrowserPath-->
     <!-- must be one of: wp(web portal), br500, br1000 -->
     <DUTType>wp</DUTType>
@@ -29,9 +29,9 @@
         <adminSupportUser>xxxx@mailinator.com</adminSupportUser>
         <l2SupportUser>xxxx@mailinator.com</l2SupportUser>
         <l3SupportUser>xxxx@mailinator.com</l3SupportUser>
-		<Secondadmin>xxxx@mailinator.com</SecondAdmin>
+		<SecondAdmin>xxxx@mailinator.com</SecondAdmin>
 		<SecondAdminPassword>Netgear1@</SecondAdminPassword>
-		<loginname1>xxxx@mailinator.com</loginName1>
+		<loginName1>xxxx@mailinator.com</loginName1>
         <loginPassword1>Netgear1@</loginPassword1>
 		<Country>United States of America</Country>
         <!-- Its password to devices which is same as location password -->
