@@ -9,6 +9,7 @@ import java.util.Random;
 
 import org.apache.tika.exception.TikaException;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.xml.sax.SAXException;
 
@@ -29,6 +30,7 @@ import webportal.weboperation.FileHandling;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.OrganizationPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
@@ -55,6 +57,13 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -65,53 +74,42 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
-       WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-
-        
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
         accountInfo.put("Last Name", "T17523");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
-        accountInfo.put("Password", "Netgear1@");
-        accountInfo.put("Confirm Password", "Netgear1@");
-        accountInfo.put("Country", "Australia");
-        new HamburgerMenuPage(false).createAccount(accountInfo);
-        new HamburgerMenuPage();
+        accountInfo.put("Password", "Netgear#123");
+        accountInfo.put("Confirm Password", "Netgear#123");
+        accountInfo.put("Country", "United States");
+        new HamburgerMenuPage(false).createAccount(accountInfo); 
     }
-    
-    
+
     @Step("Test Step 2: Create new location")
-     public void step2() {
-        
+    public void step2() {        
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "Australia");
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
         new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     
     
     @Step("Test Step 3: Add device To the Network;")
-    public void step3() {
-        
-        new AccountPage().enterLocation("OnBoardingTest");        
+    public void step3() {        
+        new AccountPage().enterLocation("OnBoardingTest");
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-
-        
         firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
-       
-        System.out.println(firststdevInfo);               
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress); 
+        System.out.println(firststdevInfo);  
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
-      
     }
     
-    
-    @Step("Test Step 4: change premium Trail to Premium Monthly;")
+
+    @Step("Test Step 4: chnage premium Trail to Premium Monthly;")
     public void step4() {
         new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         Map<String, String> paymentInfo = new HashMap<String, String>();
@@ -119,34 +117,22 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("Subscription Time", "Monthly");
         paymentInfo.put("Number of Device Credits", "2");
         paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T17512");
+        paymentInfo.put("Last Name", "T17564");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Main Street");
-        paymentInfo.put("City", "Montville");
-        paymentInfo.put("Zip", "4560");
-        paymentInfo.put("Country", "Australia");
-        paymentInfo.put("State", "Queensland");
+        paymentInfo.put("Street Address", "Springs Rd");
+        paymentInfo.put("City", "Red Bank");
+        paymentInfo.put("Zip", "32003");
+        paymentInfo.put("Country", "US");
+        paymentInfo.put("State", "Florida"); 
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-          
     }
     
 
     @Step("Test Step 5: Download invoice;")
-    public void step5() throws IOException, SAXException, TikaException {
+    public void step5() throws IOException, SAXException, TikaException, InterruptedException {
         DeviceBackupRestorePage page = new DeviceBackupRestorePage();
-      new HamburgerMenuPage().downlaodInvoice();
-        String                  fileName   = "";
-            
-        fileName = page.getfilename("_");
-        System.out.println(fileName);
-        
-       String Filecontent =  new FileHandling().file(fileName);
-       
-       assertTrue(Filecontent.contains("Total Paid 3.00 AUD"),"invoice is not right");
-       
-       page.deleteFile(fileName, "D:\\downTeju");
-        
-    }
+        assertTrue(new HamburgerMenuPage().verifyInvoiceFileData(),"Invoice File is not downloaded properly");     
+    } 
     
     
             
