@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.WebportalLoginPage;
@@ -57,9 +57,9 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: check in switch telnet")
     public void step3() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         String newName = switchTelnet.getDeviceName();
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
         assertTrue(newName.contains(WebportalParam.sw1deveiceName), "check device name");
     }
 

@@ -12,8 +12,8 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         handle.waitCmdReady(logIP, false);
         MyCommonAPIs.sleep(8000);
-        String tmpStr = SwitchCLIUtilsMNG.getLogging();
+        String tmpStr = SwitchCLIUtils.getLogging();
         System.out.println(tmpStr);
         assertTrue(tmpStr.contains(logIP));
         assertTrue(tmpStr.contains(" " + logPort));
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Check Syslog configuration on Insight and CLI:")
     public void step5() {
         handle.waitCmdReady(logIP1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getLogging();
+        String tmpStr = SwitchCLIUtils.getLogging();
         assertTrue(tmpStr.contains(logIP1), "check logIP1");
         assertTrue(tmpStr.contains(" " + logPort1), "check port");
     }
@@ -91,7 +91,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 7: Check Syslog configuration on Insight and CLI:")
     public void step7() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         assertFalse(switchTelnet.checkLoggingStatus(), "logging should be off");
     }
 

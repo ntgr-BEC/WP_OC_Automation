@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -78,12 +78,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Check vlan 8 configuration on device side")
     public void step4() {
         handle.waitCmdReady(vlanId, false);
-        SwitchCLIUtilsMNG.getIGMPSnoopingInfo(vlanId);
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
-        assertFalse(SwitchCLIUtilsMNG.isTagPort("g1", vlanId), "port g1 is tagged");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g2", vlanId), "port g2 is not tagged");
+        SwitchCLIUtils.getIGMPSnoopingInfo(vlanId);
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
+        assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is tagged");
+        assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is not tagged");
 
-        // assertTrue(SwitchCLIUtilsMNG.getPortInfo("g1").contains("6"), "check traffic priority");
+        // assertTrue(SwitchCLIUtils.getPortInfo("g1").contains("6"), "check traffic priority");
     }
 }

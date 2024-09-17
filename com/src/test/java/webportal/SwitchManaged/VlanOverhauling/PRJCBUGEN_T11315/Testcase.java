@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.BRUtils;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 5: check vlan 100 on two switch and one BR500")
     public void step5() {
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
 
         String tagPort = vlanId + "t";
         handle.waitRestReady(BRUtils.api_lan_port_stats, tagPort, false, 0);

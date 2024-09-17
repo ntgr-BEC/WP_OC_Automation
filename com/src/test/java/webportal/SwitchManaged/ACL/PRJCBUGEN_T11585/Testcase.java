@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -76,12 +76,12 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         handle.waitCmdReady(netsp.mamData.devMac, false);
 
-        SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
+        SwitchCLIUtils.getIpMACACL(true, vlanId);
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip"+": "+tmpStr);
-        SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip"+": "+tmpStr);
+        SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
     }
 
     @Step("Test Step 4: Delete the vlan on app under network setup")
@@ -94,11 +94,11 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.mamData.devIp, true);
 
-        SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
+        SwitchCLIUtils.getIpMACACL(true, vlanId);
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no permit ip"+": "+tmpStr);
-        SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no permit ip"+": "+tmpStr);
+        SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no permit mac"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no permit mac"+": "+tmpStr);
     }
 }

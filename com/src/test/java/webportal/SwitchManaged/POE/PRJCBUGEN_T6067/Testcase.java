@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -141,8 +141,8 @@ public class Testcase extends TestCaseBase {
             page.clickSave();
             handle.sleepsync();
 
-            tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
-            assertTrue(SwitchCLIUtilsMNG.PoEClass.iPoEStandard == 1, "verify the power limit is set 802.3at");
+            tmpStr = SwitchCLIUtils.getPoEInfo("g1");
+            assertTrue(SwitchCLIUtils.PoEClass.iPoEStandard == 1, "verify the power limit is set 802.3at");
         }
     }
 }

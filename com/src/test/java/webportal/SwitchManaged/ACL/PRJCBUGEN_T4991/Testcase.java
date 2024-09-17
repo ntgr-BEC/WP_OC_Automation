@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -76,14 +76,14 @@ public class Testcase extends TestCaseBase {
             + "2.Deny,destination IP 100.1.1.1/0.0.0.255\n" + "3.Permit all")
     public void step3() {
         handle.waitCmdReady(ipaclIp, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,source IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,source IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
         tmpStr = String.format("deny any %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,destination IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,destination IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -98,12 +98,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Generate 2 IP acls on devices,old acls is deleted:\n" + "1.Deny,source IP 100.1.1.1/0.0.0.255\n" + "2.Permit all")
     public void step5() {
         handle.waitCmdReady("deny any", true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, null);
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, null);
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,source IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,source IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -119,12 +119,12 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 7: Generate 2 IP acls on devices,old acls is deleted:\n" + "1.Deny,destination IP 100.1.1.1/0.0.0.255\n" + "2.Permit all")
     public void step7() {
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny any %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,destination IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,destination IP 100.1.1.1/0.0.0.255"+": "+tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
     }
 
 }

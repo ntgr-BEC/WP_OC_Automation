@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -60,11 +60,11 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 3: Check port all valuese")
     public void step3() {
         handle.waitCmdReady(portDesc, false);
-        SwitchCLIUtilsMNG.getPortInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortVal.contains(portDesc), "check port desc");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.isShutdown, "check shutdown");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortFramesize.contains(expectValue), "check framesize");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtilsMNG.PortClass.duplexMode == 1), "check port speed/deplex");
+        SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(SwitchCLIUtils.PortClass.sPortVal.contains(portDesc), "check port desc");
+        assertTrue(SwitchCLIUtils.PortClass.isShutdown, "check shutdown");
+        assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(expectValue), "check framesize");
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
     }
 
     @AfterMethod(alwaysRun = true)

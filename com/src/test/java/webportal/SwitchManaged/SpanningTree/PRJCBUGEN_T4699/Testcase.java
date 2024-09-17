@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -70,8 +70,8 @@ public class Testcase extends TestCaseBase {
         assertTrue(wstp.getSTPMode() == iMode, "check rstp mode");
 
         handle.waitCmdReady("mode stp", false);
-        System.out.println("Mode number "+SwitchCLIUtilsMNG.getSTPMode());
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 2, "verify rstp is enabled on switch");
+        System.out.println("Mode number "+SwitchCLIUtils.getSTPMode());
+        assertTrue(SwitchCLIUtils.getSTPMode() == 2, "verify rstp is enabled on switch");
     }
 
     @Step("Test Step 5: Change Spanning-Tree mode to STP via Web Portal")
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(wstp.getSTPMode() == iMode, "check stp mode");
 
         handle.waitCmdReady("mode stp", true);
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 1, "verify stp is enabled on switch");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 1, "verify stp is enabled on switch");
     }
 
     @Step("Test Step 7: Change Spanning-Tree mode to Disable via Insight;")
@@ -99,7 +99,7 @@ public class Testcase extends TestCaseBase {
     public void step8() {
         assertTrue(wstp.getSTPMode() == iMode, "check disable mode");
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 0, "verify stp is disabled on switch");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 0, "verify stp is disabled on switch");
     }
 
 }

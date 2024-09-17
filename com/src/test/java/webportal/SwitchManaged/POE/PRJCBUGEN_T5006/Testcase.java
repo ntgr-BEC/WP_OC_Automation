@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -89,11 +89,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: On switch,the power limit data change to 15400mW for select port")
     public void step4() {
         handle.waitCmdReady(sExpectedtValue, false);
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g1");
         assertTrue(tmpStr.contains(sExpectedtValue), "verify the power limit is set to 15.4 - 1");
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g2");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g2");
         assertTrue(tmpStr.contains(sExpectedtValue), "verify the power limit is set to 15.4 - 2");
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g3");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g3");
         assertTrue(tmpStr.contains(sExpectedtValue), "verify the power limit is set to 15.4 - 3");
     }
 
@@ -123,12 +123,12 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 8: After reboot,all PoE configuration do not lose")
     public void step8() {
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
-        assertTrue(!SwitchCLIUtilsMNG.PoEClass.isEnabled, "verify g1 the power limit is disabled");
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g2");
-        assertTrue(!SwitchCLIUtilsMNG.PoEClass.isEnabled, "verify g2 the power limit is disabled");
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g3");
-        assertTrue(!SwitchCLIUtilsMNG.PoEClass.isEnabled, "verify g3 the power limit is disabled");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g1");
+        assertTrue(!SwitchCLIUtils.PoEClass.isEnabled, "verify g1 the power limit is disabled");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g2");
+        assertTrue(!SwitchCLIUtils.PoEClass.isEnabled, "verify g2 the power limit is disabled");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g3");
+        assertTrue(!SwitchCLIUtils.PoEClass.isEnabled, "verify g3 the power limit is disabled");
     }
 
 }

@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -83,8 +83,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Config successfully,and ports' status is 100M full-duplex on CLI")
     public void step4() {
         // check on dut CLI
-        String portall = SwitchCLIUtilsMNG.getPortInfo(WebportalParam.sw1Port1);
-        if (SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100") && SwitchCLIUtilsMNG.PortClass.duplexMode == 1) {
+        String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 1) {
             micResult = true;
         } else {
             micResult = false;

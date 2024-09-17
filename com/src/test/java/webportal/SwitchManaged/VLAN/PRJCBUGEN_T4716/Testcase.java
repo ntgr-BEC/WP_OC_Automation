@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -84,14 +84,14 @@ public class Testcase extends TestCaseBase implements Config {
                     .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[i]), false)
                     .toLowerCase();
             if (WebportalParam.sw1Model.contains("M4250")) {
-            if (SwitchCLIUtilsMNG.isTagPort("0/" + sw1port[i], vlanId) && result1.contains("600")) {
+            if (SwitchCLIUtils.isTagPort("0/" + sw1port[i], vlanId) && result1.contains("600")) {
                 micResult = true;
             } else {
                 micResult = false;
                 assertTrue(micResult, "----Check Point 1 Fail:check vlan 600 fail, cli is:" + result1);
             }
         }else if (WebportalParam.sw1Model.contains("M4350")) {
-            if (SwitchCLIUtilsMNG.isTagPort("1/0/" + sw1port[i], vlanId) && result1.contains("600")) {
+            if (SwitchCLIUtils.isTagPort("1/0/" + sw1port[i], vlanId) && result1.contains("600")) {
                 micResult = true;
             } else {
                 micResult = false;

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -68,12 +68,12 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         handle.waitCmdReady(vlan3, false);
 
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId1), "g1 is not added to vlan1 on switch");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId2), "g1 is not added to vlan2 on switch");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId3), "g1 is not added to vlan3 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId1), "g1 is not added to vlan1 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId2), "g1 is not added to vlan2 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId3), "g1 is not added to vlan3 on switch");
 
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g2", vlanId2), "g2 is not added to vlan2 on switch");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g3", vlanId3), "g3 is not added to vlan3 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId2), "g2 is not added to vlan2 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g3", vlanId3), "g3 is not added to vlan3 on switch");
     }
 
     @Step("Test Step 5: Remvoe port 1,2,3 from vlan 5")
@@ -86,11 +86,11 @@ public class Testcase extends TestCaseBase implements Config {
     public void step6() {
         handle.sleepsync();
 
-        assertTrue(!SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId1), "g1 is not remoted to vlan1 on switch");
-        assertTrue(!SwitchCLIUtilsMNG.isPortInVlan("g2", vlanId1), "g2 is not remoted to vlan1 on switch");
+        assertTrue(!SwitchCLIUtils.isPortInVlan("g1", vlanId1), "g1 is not remoted to vlan1 on switch");
+        assertTrue(!SwitchCLIUtils.isPortInVlan("g2", vlanId1), "g2 is not remoted to vlan1 on switch");
 
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g2", vlanId2), "g2 is added to vlan2 on switch");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g3", vlanId3), "g3 is added to vlan3 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId2), "g2 is added to vlan2 on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g3", vlanId3), "g3 is added to vlan3 on switch");
     }
 
     @AfterMethod(alwaysRun = true)

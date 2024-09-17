@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
             + "\"i+ip+mask+vlan+number\",so the name is \"i20111000020\" and \"i201110000202\"")
     public void step3() {
         String sRet = handle.waitCmdReady(expStr2, false);
-        sRet = SwitchCLIUtilsMNG.getIpMACACL(true, "20");
+        sRet = SwitchCLIUtils.getIpMACACL(true, "20");
         assertTrue(sRet.contains(expStr1));
         assertTrue(sRet.contains(expStr2));
     }

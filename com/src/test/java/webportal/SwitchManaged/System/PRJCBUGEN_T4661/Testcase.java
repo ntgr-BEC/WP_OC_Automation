@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step3() {
         boolean result1 = false;
         for (int i = 1; i < 20; i++) {
-            SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress, NEW_PASSWORD);
+            SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress, NEW_PASSWORD);
             result1 = switchTelnet.isLoginSuccess();
             if (result1) {
                 break;
@@ -69,8 +69,8 @@ public class Testcase extends TestCaseBase implements Config {
         }
 
         assertTrue(result1, "use new password login");
-        SwitchTelnetMNG.disconnect();
-        SwitchTelnetMNG switchTelnet2 = new SwitchTelnetMNG(webportalParam.sw1IPaddress, oldPassword);
+        SwitchTelnet.disconnect();
+        SwitchTelnet switchTelnet2 = new SwitchTelnet(webportalParam.sw1IPaddress, oldPassword);
         boolean result2 = switchTelnet2.isLoginSuccess();
         assertFalse(result2, "use old password login");
     }

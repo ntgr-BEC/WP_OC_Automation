@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         wvp.gotoPage();
         wvp.deleteAllVlan();
         wvp.removeAllAclCli();
@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Put DUT out of internet")
     public void step2() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -75,7 +75,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Put DUT back to internet")
     public void step4() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
     }
 
     // Each step is a single test step from Jira Test Case

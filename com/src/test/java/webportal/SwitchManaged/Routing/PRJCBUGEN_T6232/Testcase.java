@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -32,7 +32,7 @@ public class Testcase extends TestCaseBase {
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
         runTest(this);
     }
     
@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         wvp.gotoPage();
         wvp.deleteAllVlan();
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
     }
     
     // Each step is a single test step from Jira Test Case

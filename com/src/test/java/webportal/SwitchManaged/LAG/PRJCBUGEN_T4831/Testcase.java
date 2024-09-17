@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase {
         wlp.gotoLagPage();
         wlp.addLag(lagName, true, false);
 
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, false)), "addpmgmgort lag");
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(true, false)), "addpmgmgort lag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, false)), "addpmgmgort lag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(true, false)), "addpmgmgort lag");
     }
 }

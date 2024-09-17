@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -79,9 +79,9 @@ public class Testcase extends TestCaseBase {
         assertTrue(ls.contains(wvp.camData.frommac));
 
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
         tmpStr = String.format("deny %s 00:00:00:00:00:00 %s 00:00:00:00:00:00", wvp.camData.frommac, wvp.camData.tomac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -99,11 +99,11 @@ public class Testcase extends TestCaseBase {
             + "2.Permit all")
     public void step5() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
         tmpStr = String.format("deny %s 00:00:00:00:00:00 %s 00:00:00:00:00:00", wvp.camData.frommac, wvp.camData.tomac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = oldmac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "no: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "no: " + tmpStr);
     }
 
 }

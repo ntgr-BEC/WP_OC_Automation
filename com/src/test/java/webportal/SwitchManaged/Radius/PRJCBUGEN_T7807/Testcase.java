@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -58,8 +58,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: RADIUS will not affect configurations over Switch")
     public void step3() {
         handle.waitCmdReady(ip1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isServerConfiged, "check radius server option");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        assertTrue(SwitchCLIUtils.RadiusClass.isServerConfiged, "check radius server option");
     }
 
 }

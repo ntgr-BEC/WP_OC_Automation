@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 1: Put DUT out of internet")
     public void step0() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -71,24 +71,24 @@ public class Testcase extends TestCaseBase implements Config {
     public void step3() {
         // MyCommonAPIs.sleepi(4 * 60);
 
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
     }
 
     @Step("Test Step 5: Check configuration on CLI")
     public void step4() {
         handle.waitCmdReady(portDesc, false);
         MyCommonAPIs.sleepsync();
-        String sRet = SwitchCLIUtilsMNG.getPortInfo(portNo);
+        String sRet = SwitchCLIUtils.getPortInfo(portNo);
         assertTrue(sRet.contains(portDesc), "check for " + portDesc);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtilsMNG.PortClass.duplexMode == 2), "check for " + PORTSPEED_CLI);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortFramesize.contains("9198"), "check for " + FRAMESIZE_CLI);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortStormControlRate.contains(STROM_Set), "check for " + STROM_Set_CLI);
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtils.PortClass.duplexMode == 2), "check for " + PORTSPEED_CLI);
+        assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains("9198"), "check for " + FRAMESIZE_CLI);
+        assertTrue(SwitchCLIUtils.PortClass.sPortStormControlRate.contains(STROM_Set), "check for " + STROM_Set_CLI);
     }
 
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         handle.refresh();
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyPortDescription("");

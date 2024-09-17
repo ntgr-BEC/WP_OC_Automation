@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -99,7 +99,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Config successfully, check all switch and port is enable on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
             boolean portStatus = switchTelnet.getPortAdminMode("g" + i);
             if (portStatus) {
@@ -110,8 +110,8 @@ public class Testcase extends TestCaseBase implements Config {
                 assertTrue(micResult);
             }
         }
-        SwitchTelnetMNG.disconnect();
-        SwitchTelnetMNG switchTelnet2 = new SwitchTelnetMNG(webportalParam.sw2IPaddress);
+        SwitchTelnet.disconnect();
+        SwitchTelnet switchTelnet2 = new SwitchTelnet(webportalParam.sw2IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
             boolean portStatus = switchTelnet2.getPortAdminMode("g" + i);
             if (portStatus) {
@@ -122,7 +122,7 @@ public class Testcase extends TestCaseBase implements Config {
                 assertTrue(micResult);
             }
         }
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
 
     @Step("Test Step 5: Select all ports on two dut(except management port),Shutdown all ports")
@@ -174,7 +174,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 7: Config successfully, check all switch and port is enable on CLI")
     public void step7() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         for (int i = 1; i <= portNumber / 2; i++) {
             boolean portStatus = switchTelnet.getPortAdminMode("g" + i);
             if (!portStatus) {
@@ -185,8 +185,8 @@ public class Testcase extends TestCaseBase implements Config {
                 assertTrue(micResult, "check port: " + i);
             }
         }
-        SwitchTelnetMNG.disconnect();
-        SwitchTelnetMNG switchTelnet2 = new SwitchTelnetMNG(webportalParam.sw2IPaddress);
+        SwitchTelnet.disconnect();
+        SwitchTelnet switchTelnet2 = new SwitchTelnet(webportalParam.sw2IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
             boolean portStatus = switchTelnet2.getPortAdminMode("g" + i);
             if (!portStatus) {
@@ -197,7 +197,7 @@ public class Testcase extends TestCaseBase implements Config {
                 assertTrue(micResult, "check port: " + i);
             }
         }
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
 
     @AfterMethod(alwaysRun = true)

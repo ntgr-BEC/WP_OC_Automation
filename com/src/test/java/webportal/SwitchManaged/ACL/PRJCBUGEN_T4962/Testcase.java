@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -70,8 +70,8 @@ public class Testcase extends TestCaseBase {
             + "\"m11223311223300000000000078\" and \"m11223311223300000000000000782\"")
     public void step3() {
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         assertTrue(tmpStr.contains(String.format("%s", "m11223311223300000000000078")), "m11223311223300000000000078");
         assertTrue(tmpStr.contains(String.format("%s", "m112233112233000000000000782")), "m112233112233000000000000782");
     }

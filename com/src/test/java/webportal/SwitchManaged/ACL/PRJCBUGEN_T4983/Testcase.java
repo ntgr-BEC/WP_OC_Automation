@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,10 +75,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Generate 2 mac acl on device\n" + "1.deny source mac address:11:11:11:11:11:11\n" + "2.Permit all")
     public void step3() {
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "10");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "deny mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "10");
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "deny mac acl");
         tmpStr = ipaclMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "allow source mac: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "allow source mac: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -94,10 +94,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: On device,the mac acl changed as follows:\n" + "1.deny source mac address:11:11:11:11:11:22\n" + "2.Permit all")
     public void step5() {
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "10");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "deny mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "10");
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "deny mac acl");
         tmpStr = ipaclMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "deny source mac: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "deny source mac: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -112,10 +112,10 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 7: On device,the mac acl changed as follows:\n" + "1.deny des mac address:11:11:11:11:11:22\n" + "2.Permit all")
     public void step7() {
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "10");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "deny mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "10");
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "deny mac acl");
         tmpStr = String.format("%s", ipaclMac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "deny des mac address:11:11:11:11:11:22: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "deny des mac address:11:11:11:11:11:22: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -131,14 +131,14 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 9: On device,the mac acl changed as follows:\n" + "1.deny des mac address:11:11:11:11:11:22\n"
             + "2.deny source mac address 11:11:11:11:11:22\n" + "3.Permit all")
     public void step9() {
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "10");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "deny mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "10");
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "deny mac acl");
         tmpStr = String.format("deny any %s", ipaclMac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = String.format("deny any %s 00:00:00:00:00:00", ipaclMac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = String.format("deny %s 00:00:00:00:00:00 any", ipaclMac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -159,10 +159,10 @@ public class Testcase extends TestCaseBase {
         assertTrue(ls.contains(ipaclMac));
 
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "10");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "deny mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "10");
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "deny mac acl");
         tmpStr = String.format("deny %s 00:00:00:00:00:00 any", ipaclMac);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
     }
 
 }

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -66,10 +66,10 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Go to local switch GUI, Radius server info is deployed and ports under VLAN200 stay \"Authorized\"")
     public void step4() {
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isServerConfiged, "check radius server option");
-//        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check port mode in auth");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        assertTrue(SwitchCLIUtils.RadiusClass.isServerConfiged, "check radius server option");
+//        assertTrue(SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check port mode in auth");
     }
 
     @Step("Test Step 5: Go to Location->Network Setup,edit vlan200,set port auth mode to \"Unauth\"")
@@ -84,10 +84,10 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 6: Go to local switch GUI, the port auth change from \"Authorized\" to \"Unauthorized\"")
     public void step6() {
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isServerConfiged, "check radius server option");
-//        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 2, "check port mode in unauth");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        assertTrue(SwitchCLIUtils.RadiusClass.isServerConfiged, "check radius server option");
+//        assertTrue(SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 2, "check port mode in unauth");
     }
 
     @Step("Test Step 7: Go to Location->Network Setup,edit vlan200,set port auth mode to \"Auto\"")
@@ -102,9 +102,9 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 8: Go to local switch GUI, the port auth change from \"Unauthorized\" to \"Auto\"")
     public void step8() {
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isServerConfiged, "check radius server option");
-//        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 0, "check port mode in auto");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        assertTrue(SwitchCLIUtils.RadiusClass.isServerConfiged, "check radius server option");
+//        assertTrue(SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 0, "check port mode in auto");
     }
 }

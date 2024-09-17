@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -71,10 +71,10 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit %s %s %s %s", netsp.camData.fromip, netsp.camData.fromipmask, netsp.camData.toip, netsp.camData.toipmask);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
     }
 
     @Step("Test Step 4: Edit From info under network setup")
@@ -95,11 +95,11 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.camData.fromip, true);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit %s %s %s %s", netsp.camData.fromip, netsp.camData.fromipmask, netsp.camData.toip, netsp.camData.toipmask);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
         tmpStr = String.format("permit %s %s %s %s", tmpStr1, netsp.camData.fromipmask, netsp.camData.toip, netsp.camData.toipmask);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify old permit ip host is removed: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify old permit ip host is removed: " + tmpStr);
     }
 }

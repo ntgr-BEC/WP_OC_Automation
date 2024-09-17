@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase implements Config {
         String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
         String port2 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]);
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
-        if (!SwitchCLIUtilsMNG.isTagPort(port1, vlanId) && result1.contains("100")) {
+        if (!SwitchCLIUtils.isTagPort(port1, vlanId) && result1.contains("100")) {
             micResult = true;
         } else {
             micResult = false;
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
         
         result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
-        if (SwitchCLIUtilsMNG.isTagPort(port2, vlanId) && result1.contains("100")) {
+        if (SwitchCLIUtils.isTagPort(port2, vlanId) && result1.contains("100")) {
             micResult = true;
         } else {
             micResult = false;

@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -42,7 +42,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 0: Downgrade firmware")
     public void step0() {
         throw new RuntimeException("Check Issue");
-        // SwitchCLIUtilsMNG.updateSWFirmwareOld();
+        // SwitchCLIUtils.updateSWFirmwareOld();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -66,13 +66,13 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 3: Before hit the policy, offline the device")
     public void step3() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
         fmpp.Sleep4FirmwareSchedule();
     }
 
     @Step("Test Step 4: After end-date, bring the device online")
     public void step4() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         evtp.gotoPage();
         assertTrue(handle.pageSource().contains("failed"), "Show the firmware upgrade failed because of the device offline");
     }

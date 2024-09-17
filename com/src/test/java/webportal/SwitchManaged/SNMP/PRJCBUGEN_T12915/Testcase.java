@@ -13,8 +13,8 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SnmpUtils;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         if (!snmpp.isSnmpDisabled()) {
-            SwitchCLIUtilsMNG.cleanSNMP(true);
+            SwitchCLIUtils.cleanSNMP(true);
             su.killTrap(true);
         }
     }
@@ -66,9 +66,9 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, false);
         handle.waitCmdReady(sPw, false);
         
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on cli for text: " + sIp);
-        assertTrue(!SwitchCLIUtilsMNG.SNMPClass.isTrapEnable, "check option trap status should not be enabled");
+        assertTrue(!SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should not be enabled");
     }
     
     @Step("Test Step 3: Trigger event by failed login in trap is disabled")
@@ -87,10 +87,10 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(30);
         wstp.setSTPMode(2, false, false);
         MyCommonAPIs.sleepi(30);
-        //SwitchCLIUtilsMNG.triggerSnmpTrap();
+        //SwitchCLIUtils.triggerSnmpTrap();
         
         try {
-            SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, "testaabbcc!!");
+            SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, "testaabbcc!!");
         } catch (Throwable e) {
             logger.info("login with invalid passwd");
         }
@@ -108,7 +108,7 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
         
-        //SwitchCLIUtilsMNG.triggerSnmpTrap();
+        //SwitchCLIUtils.triggerSnmpTrap();
         wstp.gotoPage();
         wstp.setSTPMode(1, false, false);
         MyCommonAPIs.sleepi(30);
@@ -116,7 +116,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(30);
         
         try {
-            SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, "testaabbcc!!");
+            SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, "testaabbcc!!");
         } catch (Throwable e) {
             logger.info("login with invalid passwd");
         }

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.setSwitchIp(false);
+        SwitchCLIUtils.setSwitchIp(false);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -54,11 +54,11 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, false);
         handle.waitCmdReady(sIp, false);
 
-        SwitchCLIUtilsMNG.setSwitchIp(false);
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        SwitchCLIUtils.setSwitchIp(false);
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on 1st cli for text: " + sIp);
-        SwitchCLIUtilsMNG.setSwitchIp(true);
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        SwitchCLIUtils.setSwitchIp(true);
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on 2nd cli for text: " + sIp);
     }
 
@@ -67,11 +67,11 @@ public class Testcase extends TestCaseBase {
         snmpp.clearSnmp();
         handle.waitCmdReady(sIp, true);
 
-        SwitchCLIUtilsMNG.setSwitchIp(false);
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        SwitchCLIUtils.setSwitchIp(false);
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(!tmpStr.contains(sIp), "check no option on 1st cli for text: " + sIp);
-        SwitchCLIUtilsMNG.setSwitchIp(true);
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        SwitchCLIUtils.setSwitchIp(true);
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(!tmpStr.contains(sIp), "check no option on 2nd cli for text: " + sIp);
     }
 }

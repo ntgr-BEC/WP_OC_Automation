@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -66,8 +66,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Check all ports: Auto VoIP Mode should be Enable, Operational Status should be Up, Prioritization Type should be Remark and Class Value should be 7")
     public void step4() {
-        assertTrue(SwitchCLIUtilsMNG.getVoiceVlan().contains(vlanId), "Voice vlan id should be 4088");
-        assertTrue(SwitchCLIUtilsMNG.checkVoiceVlan(), "Auto VoIP Mode should be Enable");
-        assertTrue(SwitchCLIUtilsMNG.getVoiceInfo(1, 0).contains("7"), "Class Value should be 7");
+        assertTrue(SwitchCLIUtils.getVoiceVlan().contains(vlanId), "Voice vlan id should be 4088");
+        assertTrue(SwitchCLIUtils.checkVoiceVlan(), "Auto VoIP Mode should be Enable");
+        assertTrue(SwitchCLIUtils.getVoiceInfo(1, 0).contains("7"), "Class Value should be 7");
     }
 }

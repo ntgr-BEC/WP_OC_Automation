@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -72,14 +72,14 @@ public class Testcase extends TestCaseBase {
         assertTrue(wstp.getSTPMode() == iMode, "check stp mode");
         handle.waitCmdReady("mode stp", false);
         
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 1, "verify stp is enabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 1, "verify stp is enabled");
     }
     
     @Step("Test Step 4: Enable port STP status, then check STP state;")
     public void step5() {
         wstp.setSTPMode(iMode, false, true);
         MyCommonAPIs.sleepsync();
-//        assertTrue(SwitchCLIUtilsMNG.isPortLagSTPMode("lag 1"), "verify stp is enabled on lag");
+//        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag 1"), "verify stp is enabled on lag");
     }
     
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")
@@ -92,7 +92,7 @@ public class Testcase extends TestCaseBase {
     public void step8() {
         assertTrue(wstp.getSTPMode() == iMode, "check disable mode");
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 0, "verify stp is disabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 0, "verify stp is disabled");
     }
     
 }

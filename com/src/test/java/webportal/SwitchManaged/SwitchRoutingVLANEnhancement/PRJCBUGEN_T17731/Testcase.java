@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -59,7 +59,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Config success, check by Insight and Switch local;")
     public void step3() {
         handle.waitCmdReady(vlanId, false);
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         assertTrue(switchTelnet.checkVlanDHCP(vlanId), "By default dhcp mode is on for vlan");
     }
 }

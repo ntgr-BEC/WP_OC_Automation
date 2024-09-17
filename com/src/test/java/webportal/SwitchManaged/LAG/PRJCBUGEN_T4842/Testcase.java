@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -97,9 +97,9 @@ public class Testcase extends TestCaseBase {
         tmpStr2 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchLag(false, true), false);
         tmpStr1 = tmpStr1.toLowerCase();
         tmpStr2 = tmpStr2.toLowerCase();
-        assertTrue(SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "port g3 is Tagged");
+        assertTrue(SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "port g3 is Tagged");
         assertTrue(tmpStr1.contains(vlanId), "port g3 is in vlan: " + vlanId);
-        assertTrue(!SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "port g4 is UnTagged");
+        assertTrue(!SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "port g4 is UnTagged");
         assertTrue(tmpStr2.contains(vlanId), "port g4 is in vlan: " + vlanId);
     }
 

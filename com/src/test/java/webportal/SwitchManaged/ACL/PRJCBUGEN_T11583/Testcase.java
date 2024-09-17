@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -69,10 +69,10 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny %s %s %s %s", netsp.camData.fromip, netsp.camData.fromipmask, netsp.camData.toip, netsp.camData.toipmask);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip host: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip host: " + tmpStr);
     }
 
     @Step("Test Step 4: Edit the policy info under network setup")
@@ -96,12 +96,12 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.camData.toip, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny %s %s %s %s", netsp.camData.fromip, netsp.camData.fromipmask, netsp.camData.toip, netsp.camData.toipmask);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip host: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip host: " + tmpStr);
         tmpStr = String.format("deny %s %s %s %s", netsp.camData.fromip, netsp.camData.fromipmask, tmpStr1, netsp.camData.toipmask);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify old deny ip host is removed: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify old deny ip host is removed: " + tmpStr);
     }
 
     @Step("Test Step 6: Edit the policy,disable range of device under network setup")
@@ -121,12 +121,12 @@ public class Testcase extends TestCaseBase {
     public void step7() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = String.format("deny %s", netsp.camData.fromip);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip from: " + tmpStr);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(netsp.camData.toip), "verify deny ip to: " + netsp.camData.toip);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip from: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(netsp.camData.toip), "verify deny ip to: " + netsp.camData.toip);
         tmpStr = String.format("deny %s %s", netsp.camData.fromip, tmpStr1);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify old deny ip host is removed: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify old deny ip host is removed: " + tmpStr);
     }
 }

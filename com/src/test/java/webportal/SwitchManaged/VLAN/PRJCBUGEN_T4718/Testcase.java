@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
-        boolean result2 = SwitchCLIUtilsMNG.checkVoiceVlan();
+        boolean result2 = SwitchCLIUtils.checkVoiceVlan();
         if (result2) {
             micResult = true;
         } else {
@@ -89,7 +89,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 1 Fail:show auto-voip, cli is:" + result2);
         }
 
-        /*String result1 = SwitchCLIUtilsMNG.getVoiceVlan();
+        /*String result1 = SwitchCLIUtils.getVoiceVlan();
         System.out.println(result1);
         if (result1.contains("4088")) {
             micResult = true;
@@ -98,7 +98,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 2 Fail:show voice vlan interface all, 1 cli is:" + result1);
         }*/
         
-        String result1 = SwitchCLIUtilsMNG.getVoiceVlan("4088");
+        String result1 = SwitchCLIUtils.getVoiceVlan("4088");
         System.out.println(result1);       
         if (result1.contains("4088")) {
             micResult = true;
@@ -115,7 +115,7 @@ public class Testcase extends TestCaseBase implements Config {
     // vlanPage.editVlanWithPorts("Voice VLAN", "1234", "Voice VLAN", null, null, null, null, null, null, null);
     // MyCommonAPIs.sleep(20000);
     //
-    // boolean result2 = SwitchCLIUtilsMNG.checkVoiceVlan();
+    // boolean result2 = SwitchCLIUtils.checkVoiceVlan();
     // if (result2) {
     // micResult = true;
     // } else {
@@ -123,7 +123,7 @@ public class Testcase extends TestCaseBase implements Config {
     // assertTrue(micResult, "----Check Point 3 Fail:show auto-voip, cli is:" + result2);
     // }
     //
-    // String result1 = SwitchCLIUtilsMNG.getVoiceVlan();
+    // String result1 = SwitchCLIUtils.getVoiceVlan();
     // System.out.println(result1);
     // if (result1.contains("1234")) {
     // micResult = true;
@@ -142,7 +142,7 @@ public class Testcase extends TestCaseBase implements Config {
     // vlanPage.addVoiceVlanWithPorts("Voice VLAN", "3000", null, null, null, null, null, null, null);
     // MyCommonAPIs.sleep(25000);
     //
-    // boolean result2 = SwitchCLIUtilsMNG.checkVoiceVlan();
+    // boolean result2 = SwitchCLIUtils.checkVoiceVlan();
     // if (result2) {
     // micResult = true;
     // } else {
@@ -150,7 +150,7 @@ public class Testcase extends TestCaseBase implements Config {
     // assertTrue(micResult, "----Check Point 5 Fail:show auto-voip, cli is:" + result2);
     // }
     //
-    // String result1 = SwitchCLIUtilsMNG.getVoiceVlan();
+    // String result1 = SwitchCLIUtils.getVoiceVlan();
     // System.out.println(result1);
     // if (result1.contains("3000")) {
     // micResult = true;

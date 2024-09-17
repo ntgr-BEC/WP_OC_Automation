@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
         if (!toContinue)
             return;
 
-        SwitchCLIUtilsMNG.updateSWFirmwareOld(true);
+        SwitchCLIUtils.updateSWFirmwareOld(true);
 
         fmpp.gotoPage();
         fmpp.addSchedule(true, false, false);

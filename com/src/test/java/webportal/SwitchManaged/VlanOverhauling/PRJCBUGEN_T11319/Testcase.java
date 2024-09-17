@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -89,12 +89,12 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 5: check cli successfully")
     public void step5() {
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
-        assertFalse(SwitchCLIUtilsMNG.isTagPort("g1", vlanId1), "port1 should be untag");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g2", vlanId1), "port2 should be tag");
-        String tmpStr = SwitchCLIUtilsMNG.getPortInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortPvid.contains(vlanId1), "port1 pvid should be to vlan1");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
+        assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId1), "port1 should be untag");
+        assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId1), "port2 should be tag");
+        String tmpStr = SwitchCLIUtils.getPortInfo("g1");
+        assertTrue(SwitchCLIUtils.PortClass.sPortPvid.contains(vlanId1), "port1 pvid should be to vlan1");
     }
 
     @Step("Test Step 6: set port 1 pvid as 100")
@@ -106,12 +106,12 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 7: check cli successfully")
     public void step7() {
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
-        assertFalse(SwitchCLIUtilsMNG.isTagPort("g1", vlanId1), "port1 should be untag");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g2", vlanId1), "port2 should be tag");
-        String tmpStr = SwitchCLIUtilsMNG.getPortInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortPvid.contains(vlanId2), "port2 pvid should be to vlan2");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
+        assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId1), "port1 should be untag");
+        assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId1), "port2 should be tag");
+        String tmpStr = SwitchCLIUtils.getPortInfo("g1");
+        assertTrue(SwitchCLIUtils.PortClass.sPortPvid.contains(vlanId2), "port2 pvid should be to vlan2");
     }
 
 }

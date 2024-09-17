@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -68,14 +68,14 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny host"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny host"+": "+tmpStr);
         tmpStr = "deny any";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny any"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask"+": "+tmpStr);
     }
 
     @Step("Test Step 4: Edit Access type to \"Access deny from this device\" under network setup")
@@ -93,14 +93,14 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: verify vlan on webportal")
     public void step5() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny host"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny host"+": "+tmpStr);
         tmpStr = "deny any " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no deny any"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no deny any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask new"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask new"+": "+tmpStr);
     }
 
     @Step("Test Step 6: Edit Access type to \"Access deny to this device\" under network setup")
@@ -118,13 +118,13 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 7: verify vlan on webportal")
     public void step7() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no deny host"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no deny host"+": "+tmpStr);
         tmpStr = "deny any " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny any"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask new"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny ip mask new"+": "+tmpStr);
     }
 }

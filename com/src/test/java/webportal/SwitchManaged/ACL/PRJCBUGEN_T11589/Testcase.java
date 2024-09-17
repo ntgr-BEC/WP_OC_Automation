@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -65,10 +65,10 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + netsp.camData.frommac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac: " + tmpStr);
     }
 
     @Step("Test Step 4: Edit custom deny policy. from-a1:a1:a1:a1:a1:00,to-b1:b1:b1:b1:b1:00")
@@ -88,10 +88,10 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(":11:22", false);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "deny " + netsp.camData.frommac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac: " + tmpStr);
         tmpStr = "deny " + tmpStr1;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed: " + tmpStr);
     }
 }

@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -92,25 +92,25 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         // check on sw1 CLI
         for (int i = 0; i < SW1PORTCLI.length; i++) {
-            String portall = SwitchCLIUtilsMNG.getPortInfo(SW1PORTCLI[i]);
-            if (SwitchCLIUtilsMNG.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {
+            String portall = SwitchCLIUtils.getPortInfo(SW1PORTCLI[i]);
+            if (SwitchCLIUtils.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {
                 micResult = true;
             } else {
                 micResult = false;
                 assertTrue(micResult,
-                        "actualRate is " + SwitchCLIUtilsMNG.PortClass.sPortEgressRate + ", expect egress value  is" + expectRateLimitValue);
+                        "actualRate is " + SwitchCLIUtils.PortClass.sPortEgressRate + ", expect egress value  is" + expectRateLimitValue);
             }
-            if (SwitchCLIUtilsMNG.PortClass.sPortStormControlRate.contains(expectStormControlValue)) {
+            if (SwitchCLIUtils.PortClass.sPortStormControlRate.contains(expectStormControlValue)) {
                 micResult = true;
             } else {
                 micResult = false;
-                assertTrue(micResult, "actual Rate is " + SwitchCLIUtilsMNG.PortClass.sPortStormControlRate
+                assertTrue(micResult, "actual Rate is " + SwitchCLIUtils.PortClass.sPortStormControlRate
                         + ",but expect strom Control Rate value  is" + expectStormControlValue);
             }
         }
 
-        String portSpeed = SwitchCLIUtilsMNG.getPortInfo(WebportalParam.sw1LagPort1CLI);
-        if (SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100")) {
+        String portSpeed = SwitchCLIUtils.getPortInfo(WebportalParam.sw1LagPort1CLI);
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("100")) {
             micResult = true;
         } else {
             micResult = false;
@@ -155,20 +155,20 @@ public class Testcase extends TestCaseBase implements Config {
     public void step7() {
         // check on sw1 CLI
         for (int i = 0; i < SW1PORTCLI.length; i++) {
-            String portall = SwitchCLIUtilsMNG.getPortInfo(SW1PORTCLI[i]);
-            if (SwitchCLIUtilsMNG.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {
+            String portall = SwitchCLIUtils.getPortInfo(SW1PORTCLI[i]);
+            if (SwitchCLIUtils.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {
                 micResult = true;
             } else {
                 micResult = false;
                 assertTrue(micResult,
-                        "actualRate is " + SwitchCLIUtilsMNG.PortClass.sPortEgressRate + ", expect egress value  is" + expectRateLimitValue);
+                        "actualRate is " + SwitchCLIUtils.PortClass.sPortEgressRate + ", expect egress value  is" + expectRateLimitValue);
             }
 
-            if (SwitchCLIUtilsMNG.PortClass.sPortStormControlRate.contains(expectStormControlValue)) {
+            if (SwitchCLIUtils.PortClass.sPortStormControlRate.contains(expectStormControlValue)) {
                 micResult = true;
             } else {
                 micResult = false;
-                assertTrue(micResult, "actual Rate is " + SwitchCLIUtilsMNG.PortClass.sPortStormControlRate
+                assertTrue(micResult, "actual Rate is " + SwitchCLIUtils.PortClass.sPortStormControlRate
                         + ",but expect strom Control Rate value  is" + expectStormControlValue);
             }
         }

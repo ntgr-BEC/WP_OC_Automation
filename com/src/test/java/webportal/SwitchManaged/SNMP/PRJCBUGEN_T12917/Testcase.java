@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, false);
         handle.waitCmdReady(sIp, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on cli for text: " + sIp);
     }
 
@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, false);
         handle.waitCmdReady(sIp, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on cli for text: " + sIp);
     }
 
@@ -73,9 +73,9 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(true, sIp, sPw, false);
         handle.waitCmdReady(sPw, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sPw), "check option on cli for text: " + sPw);
-        assertTrue(SwitchCLIUtilsMNG.SNMPClass.isTrapEnable, "check option trap status should be enabled");
+        assertTrue(SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should be enabled");
     }
 
 }

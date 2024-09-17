@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchIpSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -149,6 +149,6 @@ public class Testcase extends TestCaseBase {
         String sStaticIp = handle.getVlan1StaticIp(false);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
         assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
-        assertTrue(SwitchCLIUtilsMNG.getVlan1Ip().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
+        assertTrue(SwitchCLIUtils.getVlan1Ip().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
     }
 }

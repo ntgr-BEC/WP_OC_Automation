@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getEgressRateValue(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(expectValue)) {
             micResult = true;
@@ -106,7 +106,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 6: Check egress rate is 100 on CLI")
     public void step6() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getEgressRateValue(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(EGRESS_MAX)) {
             micResult = true;
@@ -137,7 +137,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 8: Check egress rate 0 on CLI")
     public void step8() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getEgressRateValue(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(EGRESS_MIN)) {
             micResult = true;

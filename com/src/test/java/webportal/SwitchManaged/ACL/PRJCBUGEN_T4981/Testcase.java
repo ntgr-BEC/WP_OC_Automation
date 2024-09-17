@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -72,9 +72,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: On device,generate 1 mac acl binding to the vlan\n" + "--Allow:source mac 22-22-22-33-33-33")
     public void step3() {
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:source mac 22-22-22-33-33-33");
     }
 
@@ -92,12 +92,12 @@ public class Testcase extends TestCaseBase {
             + "2.Old mac acl is deleted")
     public void step5() {
         handle.waitCmdReady(oldmac, true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:source mac 22-22-22-33-33-44");
         tmpStr = String.format("permit %s 00:00:00:00:00:00 any", oldmac);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Old mac acl is deleted"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Old mac acl is deleted"+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -113,8 +113,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 7: On device,have 1 mac acl bindint to the vlan\n" + "--Allow:des mac:22-22-22-33-33-44")
     public void step7() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:des mac:22-22-22-33-33-44");
     }
 
@@ -132,10 +132,10 @@ public class Testcase extends TestCaseBase {
             + "--Allow:des mac:22-22-22-33-33-44")
     public void step9() {
         handle.waitCmdReady(String.format("permit %s", ipaclMac), false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:des mac:22-22-22-33-33-44");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:source mac 22-22-22-33-33-44");
     }
 
@@ -151,11 +151,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 11: On device,have 1 mac acl bindint to the vlan\n" + "--Allow:source mac:22-22-22-33-33-44")
     public void step11() {
         handle.waitCmdReady("permit any", true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit any %s 00:00:00:00:00:00", ipaclMac)),
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit any %s 00:00:00:00:00:00", ipaclMac)),
                 "Allow:des mac:22-22-22-33-33-44");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:source mac 22-22-22-33-33-44");
     }
 

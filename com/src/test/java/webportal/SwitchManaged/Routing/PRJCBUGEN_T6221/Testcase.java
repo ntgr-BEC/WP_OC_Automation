@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
         wvp.gotoPage();
         wvp.deleteAllVlan();
     }

@@ -14,8 +14,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -59,7 +59,7 @@ public class Testcase extends TestCaseBase implements Config {
     
     @Step("Test Step 2: Web Portal check default VLAN configuration")
     public void step2() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = "";
         if (WebportalParam.isRltkSW1) {
             result2 = switchTelnet.getCLICommand("show running-config");
@@ -101,7 +101,7 @@ public class Testcase extends TestCaseBase implements Config {
         
         if (!WebportalParam.sw1Model.contains("GS716") && !WebportalParam.sw1Model.contains("MS510")
                 && !WebportalParam.sw1Model.contains("GS724")) {
-            SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+            SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
             String result2 = "";
             if (WebportalParam.isRltkSW1) {
                 result2 = switchTelnet.getCLICommand("show running-config");
@@ -149,7 +149,7 @@ public class Testcase extends TestCaseBase implements Config {
         String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
         String port2 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]);
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
-        if (SwitchCLIUtilsMNG.isTagPort(port1, vlanId) && result1.contains("4089")) {
+        if (SwitchCLIUtils.isTagPort(port1, vlanId) && result1.contains("4089")) {
             micResult = true;
         } else {
             micResult = false;
@@ -157,7 +157,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
         
         String result2 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
-        if (SwitchCLIUtilsMNG.isTagPort(port2, vlanId) && result2.contains("4089")) {
+        if (SwitchCLIUtils.isTagPort(port2, vlanId) && result2.contains("4089")) {
             micResult = true;
         } else {
             micResult = false;
