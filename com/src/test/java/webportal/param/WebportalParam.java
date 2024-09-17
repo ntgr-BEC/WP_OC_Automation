@@ -1174,7 +1174,7 @@ public class WebportalParam {
 
     public static String getDeviceMacCSVSKU(String devName) {
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/SKUSerialNo.csv";
-        return getCSVData(csvFile, "DEVICE NAME", "MAC Address (Ex : AA:BB:CC:DD:EE:FF)", devName);
+        return getCSVData(csvFile, "DEVICE NAME", "MAC", devName);
     }
 
     public static String getDeviceSerialNoSKU(String devName) {

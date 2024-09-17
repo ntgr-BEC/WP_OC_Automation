@@ -112,4 +112,5 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           AddMultiple               = $x("//b[text()=\"Add Multiple Devices\"]");
     //Added by Anusha for pro bulk onboarding
     public SelenideElement           Remove               = $x("//*[@id=\"content\"]/div[6]/div/div[2]/button[1]");
+    public SelenideElement           errorMessageBulkOnboard   = $x("(//*[@id='content']//span[@class='WarnIcon']/..)");
 }

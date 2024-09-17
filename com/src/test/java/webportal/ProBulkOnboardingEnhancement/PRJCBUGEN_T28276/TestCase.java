@@ -92,10 +92,8 @@ public class TestCase extends TestCaseBase {
         new AccountPage(false).enterLocation(locationName);
         DeviceBulkOnboardingPage.GoToSummaryPage(locationName);
 
-//        String filePath = DeviceBulkOnboardingPage.GetcurrentPath();
-//        filePath = filePath + "PRJCBUGEN_T28276\\Bulkonbord.csv";
-        String filePath= "C:\\WebPoratlAutomation\\com\\src\\test\\java\\webportal\\ProBulkOnboardingEnhancement\\PRJCBUGEN_T28276\\Bulkonbord.csv";
-	//	C:\WebPoratlAutomation\com\src\test\java\webportal\ProBulkOnboardingEnhancement\PRJCBUGEN_T28276
+        String filePath = DeviceBulkOnboardingPage.GetcurrentPath1();
+        filePath = filePath + "\\PRJCBUGEN_T28276\\Bulkonbord.csv";
         System.out.println(filePath);
         System.out.println("check where the screen is");
 
@@ -122,10 +120,7 @@ public class TestCase extends TestCaseBase {
         NoofRows = count - 1;
         System.out.println("AP Count : " + NoofRows);
 
-        DeviceBulkOnboardingPage.ImportmultipledevicesformatFile(filePath);
-        assertTrue(new DevicesDashPage(false).checkNumberOfDevicesOrganization1().equals("Threedevice"), "More device exits");
-        int temp = new DevicesDashPage(false).checkNumberOfDevicesOrganization11();
-        assertTrue((NoofRows == temp), "Devices count is not matched with CSV file.");
+        assertTrue(DeviceBulkOnboardingPage.bulkOnboardingErrorMessagesVerify(filePath),"Error message not shown correctly");
 
     }
 

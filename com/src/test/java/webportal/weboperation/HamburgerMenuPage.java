@@ -66,6 +66,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Arrays;
+
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.pdfbox.text.PDFTextStripperByArea;
 /**
  * @author Netgear
  */
@@ -4150,24 +4159,24 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void clickCreditsPlus(int devNum, int vpnNum, int icpNum) {
-        if (devCreditsAllocate.isDisplayed()) {
-            devCreditsAllocate.click();
-        }
-        for (int i = 0; i < devNum; i++) {
-            $x(String.format(creditsPlusBtn, "1")).click();
-            MyCommonAPIs.sleepi(1);
-        }
-        vpnCreditsAllocate.click();
-        for (int i = 0; i < vpnNum; i++) {
-            $x(String.format(creditsPlusBtn, "3")).click();
-            MyCommonAPIs.sleepi(1);
-        }
-        icpCreditsAllocate.click();
-        for (int i = 0; i < icpNum; i++) {
-            $x(String.format(creditsPlusBtn, "2")).click();
-            MyCommonAPIs.sleepi(1);
-        }
-    }
+//      if (devCreditsAllocate.isDisplayed()) {
+//          devCreditsAllocate.click();
+//      }
+      for (int i = 0; i < devNum; i++) {
+          $x(String.format(creditsPlusBtn, "1")).click();
+          MyCommonAPIs.sleepi(1);
+      }
+      vpnCreditsAllocate.click();
+      for (int i = 0; i < vpnNum; i++) {
+          $x(String.format(creditsPlusBtn, "3")).click();
+          MyCommonAPIs.sleepi(1);
+      }
+      icpCreditsAllocate.click();
+      for (int i = 0; i < icpNum; i++) {
+          $x(String.format(creditsPlusBtn, "2")).click();
+          MyCommonAPIs.sleepi(1);
+      }
+  }
 
     public void configCreditAllocation(String name, int devNum, int vpnNum, int icpNum) {
         logger.info("enter the allocation");
@@ -5652,7 +5661,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         accountmanager.click();
         MyCommonAPIs.sleepi(20);
+        MUB.hover();
+        MyCommonAPIs.sleepi(1);
         MUB.click();
+        MyCommonAPIs.sleepi(10);
     }
 
     public String checkUserLoggedInn() {
@@ -8255,6 +8267,65 @@ public boolean verifyLocalGUIofSwitch() {
   
   return result;
 }
+
+//AddedByPratik
+public boolean verifyInvoiceFileData() {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    downlaodInvoice();
+    MyCommonAPIs.sleepi(5);
+    String userHome = System.getProperty("user.home");
+    File downloadsFolder = new File(userHome, "Downloads");
+    if (!downloadsFolder.exists() || !downloadsFolder.isDirectory()) {
+        System.out.println("Downloads folder does not exist or is not a directory.");
+        return result;
+    }
+
+    File[] downloadedFiles = downloadsFolder.listFiles(file -> !file.isDirectory());
+    if (downloadedFiles != null && downloadedFiles.length > 0) {
+        File latestFile = Arrays.stream(downloadedFiles)
+                                .max((f1, f2) -> Long.compare(f1.lastModified(), f2.lastModified()))
+                                .orElse(null);
+
+        if (latestFile != null) {
+            System.out.println("Latest file found: " + latestFile.getName());
+            String name = latestFile.getName();
+            if (name.endsWith(".pdf")) {
+                try (PDDocument document = PDDocument.load(latestFile)) {
+                    PDFTextStripper pdfStripper = new PDFTextStripper();
+                    String text = pdfStripper.getText(document);
+                    System.out.println("PDF Content:");
+                    System.out.println(text);
+                    if (text.contains("Total Paid") && text.contains("$")) {
+                        result = true;
+                        System.out.println("Premium invoice file data verified.");
+                    } else {
+                        System.out.println("The PDF does not contain the expected text.");
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Error reading the PDF file: " + e.getMessage());
+                }
+            } else {
+                System.out.println("The latest file is not a PDF.");
+            }
+        } else {
+            System.out.println("No files found in the Downloads folder.");
+        }
+    } else {
+        System.out.println("No files found in the Downloads folder.");
+    }
+
+    return result;
+}    
+// added by Pratik
+public void OpenCreditAllocationPageFor2ndorg() {
+    CreditAllocation.click();
+    MyCommonAPIs.sleepi(5);
+    secOrgCreditAllocation.click();
+    MyCommonAPIs.sleepi(3);
+}
+
 }
 
 

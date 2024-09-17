@@ -532,7 +532,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        directPurchaseTdFour     = $x(directPurchaseTableBasic + "//td[4]");
     public static SelenideElement cancelSubscription       = $x("//button[text()='" + WebportalParam.getLocText("Cancel Subscription") + "']");
 
-    public SelenideElement MUB                            = $x("//a[text() = 'Monthly Usage Billing']");
+    public SelenideElement MUB                            = $x("//div[contains(@class,'leftMenuHave')]//a[text() = 'Monthly Usage Billing']");
     public SelenideElement MUBcancelation                 = $x("//u[text() = 'Cancellation Policy']");
     public SelenideElement cancelationKB                  = $x("//*[@id=\"articlePage:frm:articleStats\"]/h1");
     public SelenideElement ManagePaymentMethods           = $x("//span[text() = 'Manage Payment Methods']");
@@ -920,6 +920,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  selectAllNoti               = $x("//span[@class=\"icon-bulk-edit-2\"]"); 
   public SelenideElement  selectCheckBox               = $x("//*[@id=\"selectAllCheck\"]/../i"); 
   public SelenideElement  deleteNoti                   = $x("//*[@id=\"btnDelete1\"]"); 
+  public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
+  public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
   
 }
 

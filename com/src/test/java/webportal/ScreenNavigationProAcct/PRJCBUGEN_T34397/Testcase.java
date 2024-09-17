@@ -84,7 +84,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Allocate Credits ;")
     public void step3() {
         new HamburgerMenuPage().openAccountMgmt();
-        new HamburgerMenuPage(false).OpenCreditAllocationPage();
+        new HamburgerMenuPage(false).OpenCreditAllocationPageFor2ndorg();
         new HamburgerMenuPage(false).clickCreditsPlus(1, 0, 0);
         new HamburgerMenuPage(false).clickOnAllocateButtonforsave();
     }
