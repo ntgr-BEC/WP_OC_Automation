@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T4834") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("008-Change port speed which belong to lag") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4834") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p1", enabled = false) // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1", enabled = true) // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         portIndex = Integer.parseInt(WebportalParam.sw1LagPort1);
         portIndex1 = Integer.parseInt(WebportalParam.sw1LagPort2);
