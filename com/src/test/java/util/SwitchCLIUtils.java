@@ -843,10 +843,14 @@ public class SwitchCLIUtils {
         String result;
         port = WebportalParam.getSwitchPort(WebportalParam.sw1Model, port);
         if (st.isRltkSW) {
-            result = st.sendCLICommandClear("show running-config interfaces " + port, vlanId);
+            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
             if (result.contains("tagged") && !result.contains("untagged"))
                 return true;
-        } else {
+        } else if(WebportalParam.sw1Model.contains("M4350")|| WebportalParam.sw1Model.contains("M4250")){
+            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
+            if (result.contains("tagging"))
+                return true;            
+        }else {        
             result = st.sendCLICommandClear("show vlan port " + port, vlanId);
             if (result.contains("Tagged"))
                 return true;
