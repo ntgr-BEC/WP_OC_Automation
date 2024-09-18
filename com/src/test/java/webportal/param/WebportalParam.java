@@ -655,10 +655,10 @@ public class WebportalParam {
         return sw1Model.contains("XS516");
     }
     public static boolean isSwitcM4250(String model) {
-        return sw1Model.contains("M4250");
+        return model.contains("M4250");
     }
     public static boolean isSwitcM4350(String model) {
-        return sw1Model.contains("M4350");
+        return model.contains("M4350");
     }
 
     /**
