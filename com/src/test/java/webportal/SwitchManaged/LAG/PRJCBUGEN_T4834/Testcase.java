@@ -87,6 +87,7 @@ public class Testcase extends TestCaseBase {
         ecs.get(1).click();
         wgp.portSpeedSelect.selectOption(2); // ms510 does not support 10M
         wgp.saveButton.click();
+        wgp.clickBoxLastButton();
     }
 
     // Each step is a single test step from Jira Test Case

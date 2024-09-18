@@ -97,7 +97,7 @@ public class WiredLAGPage extends WiredLAGPageElement {
     public void addLag(String lagName, boolean isSelect2Ports, boolean isSelect2ndport) {
         addLagIcon.click();
         MyCommonAPIs.waitReady();
-        MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(20);
         waitElement(".common-useplanblk");
         ElementsCollection ecs = switchesChoice;
         assertTrue(ecs.size() > 1, "There must be 2 switches");
