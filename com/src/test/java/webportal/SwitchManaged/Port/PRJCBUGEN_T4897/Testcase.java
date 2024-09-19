@@ -106,6 +106,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 6: Check egress rate is 100 on CLI")
     public void step6() {
         // check on dut CLI
+        MyCommonAPIs.sleepi(180);
         SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getEgressRateValue(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(EGRESS_MAX)) {
@@ -137,6 +138,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 8: Check egress rate 0 on CLI")
     public void step8() {
         // check on dut CLI
+        MyCommonAPIs.sleepi(180);
         SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getEgressRateValue(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(EGRESS_MIN)) {

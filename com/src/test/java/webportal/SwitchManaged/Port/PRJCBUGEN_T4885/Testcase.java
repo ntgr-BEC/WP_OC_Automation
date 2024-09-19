@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: Config successfully,and ports' status is 100M full-duplex on webportal")
     public void step3() {
-        MyCommonAPIs.sleep(60 * 1000);
+        MyCommonAPIs.sleep(120 * 1000);  // replaced 60 by 180
         // check sw1 on webportal
         for (int i = 0; i < sw1port.length; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
@@ -83,7 +83,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Config successfully,and ports' status is 100M full-duplex on CLI")
     public void step4() {
         // check on dut CLI
-        String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);
+        String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);        //replaced g1 by WebportalParam.sw1Port1
         if (SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 1) {
             micResult = true;
         } else {
