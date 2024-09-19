@@ -28,7 +28,7 @@ public class Testcase extends TestCaseBase {
     @Description("012-Create vlan 0 vlan 4093 and vlan 4094") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11323") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
