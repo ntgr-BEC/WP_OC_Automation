@@ -14,6 +14,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -73,9 +74,17 @@ public class Testcase extends TestCaseBase {
     public void step4() {
         wstp.setSTPMode(iMode, true, false);
         MyCommonAPIs.sleepsync();
-        
-        assertTrue(SwitchCLIUtils.isPortLagSTPMode("0/3"), "verify stp is enabled");
-        assertFalse(SwitchCLIUtils.isPortLagSTPMode("0/2"), "verify stp is not enabled");
+        String port = null;
+        if(WebportalParam.sw1Model.contains("M4350")) {
+             port = "1/0/";
+        }
+        if(WebportalParam.sw1Model.contains("M4250")) {
+            port = "0/";
+       }else {
+           port = "g";
+       }
+        assertTrue(SwitchCLIUtils.isPortLagSTPMode(port+"3"), "verify stp is enabled");
+        assertFalse(SwitchCLIUtils.isPortLagSTPMode(port+"2"), "verify stp is not enabled");
     }
     
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")

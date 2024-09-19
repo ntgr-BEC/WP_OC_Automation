@@ -75,11 +75,12 @@ public class Testcase extends TestCaseBase {
         assertTrue(SwitchCLIUtils.getSTPMode() == 2, "verify rstp is enabled");
     }
 
-    @Step("Test Step 4: Enable port STP status, then check STP state;")
+    @Step("Test Step 4: Enable port STP status, then check STP state and add LAG;")
     public void step4() {
         wstp.setSTPMode(iMode, false, true);
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag1"), "verify rstp is enabled on lag");
+        MyCommonAPIs.sleepi(120);
+        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag 1"), "verify rstp is enabled on lag");
     }
 
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")
