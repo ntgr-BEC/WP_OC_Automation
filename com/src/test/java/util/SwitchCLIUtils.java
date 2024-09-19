@@ -760,11 +760,11 @@ public class SwitchCLIUtils {
         SwitchTelnet st = connectSW(false, true);
         port = WebportalParam.getSwitchPort(WebportalParam.sw1Model, port);
         String sResult;
-        sResult = st.sendCLICommandClear("show running-config interface " + port, "spanning-tree");
+        sResult = st.sendCLICommandClear("show running-config interface " + port, null);
         if (!st.isRltkSW) {
-            if (WebportalParam.sw1Model.toLowerCase().contains("xs516") || WebportalParam.sw1Model.toLowerCase().contains("gs724")  || WebportalParam.sw1Model.toLowerCase().contains("gs748") || WebportalParam.sw1Model.toLowerCase().contains("gs510tpp")){
-                if (!sResult.contains("port mode"))
-                    return true;
+            if (WebportalParam.sw1Model.toLowerCase().contains("xs516") || WebportalParam.sw1Model.toLowerCase().contains("gs724") || WebportalParam.sw1Model.toLowerCase().contains("m4350") || WebportalParam.sw1Model.toLowerCase().contains("m4250")|| WebportalParam.sw1Model.toLowerCase().contains("gs748") || WebportalParam.sw1Model.toLowerCase().contains("gs510tpp")){
+                if (!sResult.contains("port mode")) 
+                    return true; 
                 else
                     return false;
                 
