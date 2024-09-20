@@ -28,7 +28,8 @@ public class Testcase extends TestCaseBase implements Config {
     String vlan3   = "vlan3";
     String vlanId3 = "905";
     String portsId = "1,2,3";
-
+    
+    
     @Feature("Switch.Port") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4909") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("036-Assign port to vlan") // It's a testcase title from Jira Test Case.
@@ -37,6 +38,12 @@ public class Testcase extends TestCaseBase implements Config {
     @Test(alwaysRun = true, groups = "p3")
     public void test() throws Exception {
         runTest(this);
+        
+        if((WebportalParam.sw1Model).equals("M250")) {
+            String g= "0/";
+        } else {
+                String g="1/0/";
+        }
     }
 
     // Each step is a single test step from Jira Test Case

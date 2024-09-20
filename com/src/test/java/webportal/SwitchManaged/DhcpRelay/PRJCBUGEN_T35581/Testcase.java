@@ -92,12 +92,12 @@ public class Testcase extends TestCaseBase {
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
-        handle.waitCmdReady("l2-relay", true);
+        handle.waitCmdReady("l2relay", true);
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("ip dhcp l2-relay");
-        boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+        boolean relayConfig = tmpStr.contains("dhcp l2relay");
+        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
         assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
         assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
 
