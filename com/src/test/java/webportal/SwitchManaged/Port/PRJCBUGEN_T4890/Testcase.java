@@ -105,6 +105,9 @@ public class Testcase extends TestCaseBase implements Config {
         ddpmg.rebootDevice(WebportalParam.sw1serialNo);
         handle.waitDeviceOnline();
 
+        DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
+        devicesDashPage.enterDevicesSwitchSummary(DEVICE_INFO.get("Serial Number"));
+        
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         String description = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortDescription();
         if (description.equals(DESCRIPTION_2)) {
