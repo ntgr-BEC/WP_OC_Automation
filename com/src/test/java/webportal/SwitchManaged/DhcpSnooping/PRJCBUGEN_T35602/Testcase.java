@@ -38,7 +38,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T35602") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that user is able to save the global config by clicking save button") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35602") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
     }
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 2: Enable Dhcp Snooping Admin mode and VLAN 100, VLAN 200 mode check the CLI")
+    @Step("Test Step 2: Enable Dhcp Snooping Admin mode and VLAN 100 mode check the CLI")
     public void step2() {
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
@@ -89,15 +89,15 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
         handle.refresh();
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("200"));
-        
+
         handle.refresh();
         assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan 100 should be enable");
         assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("200").isSelected(), "User vlan 100 should be enable");
 
-        MyCommonAPIs.sleepsync();
         handle.waitCmdReady("dhcp snooping", true);
-      
+        MyCommonAPIs.sleepsync();
+
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100,200");
@@ -109,7 +109,7 @@ public class Testcase extends TestCaseBase {
     //Each step is a single test step from Jira Test Case
     @Step("Test Step 3: Disable DHCP Snooping Admin Mode and VLAN 200 mode and check the CLI")
     public void step3() {
-
+        
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
@@ -117,17 +117,12 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("200"));
         
         handle.refresh();
-  
-        System.out.println(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected());
-        System.out.println(WiredDhcpSnoopingElement.selectUserVlanbutton("200").isSelected());
-      
-        //Checking whether the DHCP SNOOPING MODE and VLAN200 toggle button is disabled 
         assertFalse(WiredDhcpSnoopingElement.selectUserVlanbutton("200").isSelected(), "User vlan should be disable");
         assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be disabled");
         
         MyCommonAPIs.sleepsync();
-        handle.waitCmdReady("dhcp snooping", true);  
-        
+        handle.waitCmdReady("dhcp snooping", true);
+      
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 200");
         assertFalse(vlanSnoopingConfig, "Dhcp Snooping vlan 200 should be enabled");

@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T35604") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that user is able to enable or disable trust mode in port config") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35604") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }

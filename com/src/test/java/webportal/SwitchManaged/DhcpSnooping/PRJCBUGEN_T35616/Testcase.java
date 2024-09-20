@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that If user disable the DHCP relay then the previous config on DHCP Snooping should"
             + " remain the same on the Selected VLAN") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35615") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -93,15 +93,17 @@ public class Testcase extends TestCaseBase {
         wdrp.enableOrDisableDhcpRelayconfigModes(WiredDhcpRelayElement.selectUserVlan("100"));
 
         handle.refresh();
+        System.out.println("dsfdsfgdfgdf"+WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled());
+        System.out.println("dsfdsfgdfgdf"+WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled());
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
         
-        handle.waitCmdReady("l2-relay", true);
+        handle.waitCmdReady("l2relay", true);
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("ip dhcp l2-relay");
-        boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+        boolean relayConfig = tmpStr.contains("dhcp l2relay");
+        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
         if (relayConfig && vlanRelayConfig) {
             micResult = true;
         } else {
@@ -123,8 +125,8 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
 
         handle.refresh();
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-        assertTrue(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+        assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
         
         handle.waitCmdReady("dhcp snooping", true);
         MyCommonAPIs.sleepsync();
@@ -146,17 +148,17 @@ public class Testcase extends TestCaseBase {
 
         handle.refresh();
         wdrp.enableOrDisableDhcpRelayconfigModes(WiredDhcpRelayElement.selectUserVlan("100"));
-
+        
         handle.refresh();
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
         
-        handle.waitCmdReady("l2-relay", true);
+        handle.waitCmdReady("l2relay", true);
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("ip dhcp l2-relay");
-        boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+        boolean relayConfig = tmpStr.contains("dhcp l2relay");
+        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
         assertFalse(relayConfig, "Relay admin should be disable");
         assertFalse(vlanRelayConfig, "100 vlan relay mode should be disable");
         
