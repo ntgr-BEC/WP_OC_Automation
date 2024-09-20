@@ -122,7 +122,7 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
         Action actions = action.build();
         actions.perform();
         ButtonElements.saveButton();
-        MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(60);
     }
     
     public String modifyMaxFrameSizeRandom() {
