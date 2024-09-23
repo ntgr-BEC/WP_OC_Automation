@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
     @Description("020-ADD lag port to network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11317") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }

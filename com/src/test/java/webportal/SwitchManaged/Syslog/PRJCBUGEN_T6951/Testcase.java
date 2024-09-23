@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
     @Description("003-Verify parameter validity of syslog server by Insight") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T6951") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         //throw new RuntimeException("Check Issue");
          runTest(this);

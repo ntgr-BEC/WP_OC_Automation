@@ -14,6 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -61,11 +62,14 @@ public class Testcase extends TestCaseBase implements Config {
         wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
         expectRateLimitValue = wiredGroupPortConfigPage.rateLimitValue.replace("%", "").trim();
         expectStormControlValue = wiredGroupPortConfigPage.stromControlValue.replace("%", "").trim();
+        System.out.println("expectRateLimitValue = "+ expectRateLimitValue );   
+        System.out.println("expectStormControlValue = "+ expectStormControlValue );   
     }
 
     @Step("Test Step 3: Check configuration on webportal")
     public void step3() {
         // check sw1 on webportal
+        MyCommonAPIs.sleepi(120);
         for (int i = 0; i < SW1PORT.length; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
@@ -75,7 +79,8 @@ public class Testcase extends TestCaseBase implements Config {
             String egressRate = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getEgressRateValue();
             Selenide.refresh();
             String stormControlRate = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getStormControlRateValue();
-            String portSpeed = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortSpeed();       
+            String portSpeed = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortSpeed(); 
+            System.out.println("egressRate = "+ egressRate );   
             System.out.println("stormControlRate = "+ stormControlRate );            
             if (expectRateLimitValue.contains(egressRate) && expectStormControlValue.contains(stormControlRate)
                     && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(PORT_SPEED, portSpeed)) {
@@ -91,6 +96,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on sw1 CLI
+        MyCommonAPIs.sleepi(180);
         for (int i = 0; i < SW1PORTCLI.length; i++) {
             String portall = SwitchCLIUtils.getPortInfo(SW1PORTCLI[i]);
             if (SwitchCLIUtils.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {
@@ -154,6 +160,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 7: Check configuration on CLI")
     public void step7() {
         // check on sw1 CLI
+        MyCommonAPIs.sleepi(180);
         for (int i = 0; i < SW1PORTCLI.length; i++) {
             String portall = SwitchCLIUtils.getPortInfo(SW1PORTCLI[i]);
             if (SwitchCLIUtils.PortClass.sPortEgressRate.contains(expectRateLimitValue)) {

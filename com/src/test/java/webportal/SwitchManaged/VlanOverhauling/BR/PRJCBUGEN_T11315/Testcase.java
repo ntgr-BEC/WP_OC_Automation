@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VlanOverhauling.PRJCBUGEN_T11315;
+package webportal.SwitchManaged.VlanOverhauling.BR.PRJCBUGEN_T11315;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -32,7 +32,7 @@ public class Testcase extends TestCaseBase {
     @Description("028-config vlan network for 2*switch and 1*BR500 at the same time") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11315") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }

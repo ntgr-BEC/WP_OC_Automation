@@ -29,7 +29,7 @@ public class Testcase extends TestCaseBase {
     @Description("016-Verify protocol-based VoIP function via default template of Voice network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11327") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }

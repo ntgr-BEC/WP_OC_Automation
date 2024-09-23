@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("009-verify set lag access/trunk/delete for a special VLAN") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4835") // It's a testcase id/link from Jira Test Case.
     @Issue("PRJCBUGEN-19122")
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         portIndex = Integer.parseInt(WebportalParam.sw1LagPort1);
         portIndex1 = Integer.parseInt(WebportalParam.sw1LagPort2);
