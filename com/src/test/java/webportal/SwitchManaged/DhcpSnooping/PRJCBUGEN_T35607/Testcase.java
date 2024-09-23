@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T35604") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that user is able to enable or disable trust mode in port config") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35604") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -59,12 +59,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: enable trust mode and check the CLI")
     public void step2() {
 
-        wdsp.enablePortSpecificConfigOnPort(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1), "Trust Mode", null);
+        wdsp.enablePortSpecificConfigOnPort(WebportalParam.sw1LagPort1, "Trust Mode", null);
         handle.refresh();
         
-        assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
+        assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(WebportalParam.sw1LagPort1).isDisplayed());
         
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("ip dhcp snooping trust"), "Trust mode not enabled");
     }
     
@@ -72,12 +72,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Disable trust mode and check the CLI")
     public void step3() {
 
-        wdsp.deletePortConfigTrustOrInvalidPackets(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1));
+        wdsp.deletePortConfigTrustOrInvalidPackets(WebportalParam.sw1LagPort1);
 
         handle.refresh();
-        assertFalse(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
+        assertFalse(WiredDhcpSnoopingElement.txtPortTrustModeCheck(WebportalParam.sw1LagPort1).isDisplayed());
         
-        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("ip dhcp snooping trust"), "trust mode should be disabled");
 
     }

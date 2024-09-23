@@ -33,6 +33,12 @@ public class Testcase extends TestCaseBase implements Config {
     @Test(alwaysRun = true, groups = "p3")
     public void test() throws Exception {
         runTest(this);
+        
+        if((WebportalParam.sw1Model).equals("M250")) {
+            String g= "0/";
+        } else {
+                String g="1/0/";
+        }
     }
 
     // Each step is a single test step from Jira Test Case

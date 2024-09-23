@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that If Switch is Rebooted and activities back then the previous config DHCP Snooping should "
             + "remain the same on the Selected VLAN") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35615") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -92,26 +92,26 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
 
         handle.refresh();
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-        assertTrue(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+        assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
 
     }
     
     @Step("Test Step 4: check in the GUI")
     public void step4() {
-        ddpmg.gotoPage();
-        ddpmg.waitDevicesReboot(WebportalParam.sw1serialNo);
+        ddp.gotoPage();
+        ddp.waitDevicesReboot(WebportalParam.sw1serialNo);
         
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
 
         handle.refresh();
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-        assertTrue(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+        assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
 
-        handle.waitCmdReady("dhcp snooping", true);
         MyCommonAPIs.sleepsync();
-
+        handle.waitCmdReady("dhcp snooping", true);
+       
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100");

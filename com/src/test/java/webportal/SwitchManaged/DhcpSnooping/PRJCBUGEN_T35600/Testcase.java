@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that user is able to enable or disable MAC address validation mode in Global Config") // It's a testcase title from Jira
                                                                                                               // Test Case.
     @TmsLink("PRJCBUGEN-T35600") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
