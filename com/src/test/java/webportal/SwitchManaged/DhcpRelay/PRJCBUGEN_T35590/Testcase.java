@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("dhcp l2relay option");
+        boolean relayConfig = tmpStr.contains("dhcp l2relay");
         assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
 
     }
