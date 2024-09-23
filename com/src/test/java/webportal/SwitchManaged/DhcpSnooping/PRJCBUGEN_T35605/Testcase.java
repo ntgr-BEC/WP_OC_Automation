@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort1).isDisplayed());
         assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort2).isDisplayed());
         
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface" + WebportalParam.sw1LagPort1CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("ip dhcp snooping log-invalid"), "Invalid packets logging not enabled");
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
                 .contains("ip dhcp snooping log-invalid"), "Invalid packets logging not enabled");
