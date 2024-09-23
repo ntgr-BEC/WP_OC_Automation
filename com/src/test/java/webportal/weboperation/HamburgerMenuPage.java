@@ -203,21 +203,48 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // createaccount.doubleClick();
         String url = MyCommonAPIs.getCurrentUrl();
         open(url.replace("login", "signup"));
+        if(createfirstname.isDisplayed()) {
         waitElement(createfirstname);
+        }else {
+            waitElement(createfirstname1);
+        }
+        if(createemailaddress.isDisplayed()) {
         createemailaddress.sendKeys(map.get("Email Address"));
+        }else
+            createemailaddress1.sendKeys(map.get("Email Address"));
+        System.out.println("email visible");
+        if(confirmemail.isDisplayed()) {
         confirmemail.sendKeys(map.get("Confirm Email"));
+        }else
+        confirmemail1.sendKeys(map.get("Confirm Email"));
     }
 
     public void inputAccountOtherInfo(Map<String, String> map) {
+        if(createfirstname.isDisplayed()) {
         createfirstname.sendKeys(map.get("First Name"));
+        }else
+         createfirstname1.sendKeys(map.get("First Name"));
         MyCommonAPIs.sleepi(1);
+        if(createlastname.isDisplayed()) {
         createlastname.sendKeys(map.get("Last Name"));
+        }else
+            createlastname1.sendKeys(map.get("Last Name"));
         MyCommonAPIs.sleepi(1);
+        if(createpassword.isDisplayed()) {
         createpassword.sendKeys(map.get("Password"));
+        }else
+            createpassword1.sendKeys(map.get("Password"));
         MyCommonAPIs.sleepi(1);
+        if(confirmpassword.isDisplayed()) {
         confirmpassword.sendKeys(map.get("Confirm Password"));
+        }else
+            confirmpassword1.sendKeys(map.get("Confirm Password"));
         MyCommonAPIs.sleepi(5);
+        if(selectcountry.isDisplayed()) {
         selectcountry.selectOption(map.get("Country"));
+        }else {
+            selectcountry1.selectOption(map.get("Country"));
+        }
         MyCommonAPIs.sleepi(2);
     }
 
@@ -230,10 +257,20 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (eles.last().isDisplayed()) {
                 eles.last().click();
             }
+        }else {   
+            MyCommonAPIs.sleepi(10);
+            acceptPolicy1.click();       
         }
+        if(continuebutton.isDisplayed()) {    
         if (continuebutton.isEnabled()) {
             continuebutton.click();
         }
+        }else {
+            if (continuebutton1.isEnabled()) {
+                continuebutton1.click();
+        }
+        }
+        
     }
 
     public void createAccount(Map<String, String> map) {
@@ -256,10 +293,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             loginButtonLandingPage.click();
             MyCommonAPIs.sleepi(10);
             inputAccountInfo(map);
-            MyCommonAPIs.sleepi(30);
-            if (newnothanks.isDisplayed()) {
-                newnothanks.click();
+            MyCommonAPIs.sleepi(15);
+            
+            if(loginPwdNewcognito.isDisplayed()) {
+            loginPwdNewcognito.sendKeys(map.get("Password"));
+            SigninbuttonCognito.click();
             }
+            MyCommonAPIs.sleepi(15);
+            
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
             }
@@ -280,21 +321,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             closeLockedWindow.click();
         } else {
             inputAccountInfo(map);
-            MyCommonAPIs.sleepi(30);
-            if (newnothanks.isDisplayed()) {
-                newnothanks.click();
+            MyCommonAPIs.sleepi(15);
+            
+            if(loginPwdNewcognito.isDisplayed()) {
+            loginPwdNewcognito.sendKeys(map.get("Password"));
+            SigninbuttonCognito.click();
             }
+            MyCommonAPIs.sleepi(15);
+
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
             }
-            waitElement(finishPage);
+//            waitElement(finishPage);
             if (finishCreate.isDisplayed()) {
                 finishCreate.click();
             }
             if (finishbutton.isDisplayed()) {
                 finishbutton.click();
             }
-            MyCommonAPIs.sleepi(15);
+            MyCommonAPIs.sleepi(20);
             String url = MyCommonAPIs.getCurrentUrl();
             if (!url.contains("billing")) {
                 waitElement(notificationicon);
