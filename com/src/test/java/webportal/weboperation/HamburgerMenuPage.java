@@ -13,7 +13,9 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,34 +24,25 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.codeborne.selenide.SelenideElement;
 import javax.print.DocFlavor.URL;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.sis.util.Static;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.Element;
 import com.mysql.cj.fabric.xmlrpc.base.Array;
-import com.strobel.decompiler.patterns.Pattern;
-
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
@@ -57,24 +50,16 @@ import webportal.publicstep.UserManage;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.HamburgerMenuElement;
 import webportal.webelements.InsightServicesPageElement;
-import util.MyCommonAPIs;
-
 import java.io.File;
 import java.time.Duration;
 import java.nio.file.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.Arrays;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Configuration;
+import static com.codeborne.selenide.Selenide.*;
 
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.InputStream;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 /**
  * @author Netgear
  */
@@ -489,11 +474,24 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void finishSignup(String phonenum) {
+        MyCommonAPIs.sleepi(5);
+        if($x("//div[@class='flag-container']").isDisplayed()) {
         waitElement($x("//div[@class='flag-container']"));
         MyCommonAPIs.sleepi(8);
         $x("//div[@class='flag-container']").click();
+        }else {
+            $x("//*[text()=\"SMS Text Message\"]/../../span").click();
+            $x("//*[text() ='Continue']").click();
+         } 
         MyCommonAPIs.sleepi(3);
+        if($x("//li[@data-country-code='us']").isDisplayed()) {
         $x("//li[@data-country-code='us']").click();
+        }else {
+            $x("//*[@id=\"scroll-style\"]/div[2]/div/form/div[2]/div/ngx-intl-tel-input/div/div/div[1]/div[3]").click();
+            $x("//*[@id=\"iti-0__item-au\"]/span[1]").hover();
+            MyCommonAPIs.sleepi(3);
+            $x("//*[@id=\"iti-0__item-au\"]/span[1]").click();
+        }
         MyCommonAPIs.sleepi(3);
         logger.info("Input phone number is:" + phonenum);
         if (inputphone.exists()) {
@@ -570,6 +568,37 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
         }
         return code;
+    }
+    
+    
+    
+    public String GetOtpForInsight(String mobileNumber) {
+        
+        logger.info("Checking OTP for country: " + "finland" + ", mobile number: " + mobileNumber);
+        
+        // Open the Quackr page for the specific country and mobile number
+        open("https://quackr.io/temporary-numbers/" + "finland" + "/" + "358" + mobileNumber);
+        MyCommonAPIs.sleepi(5);
+
+        // Find elements containing "Insight" in their text
+        List<SelenideElement> elements = $$x("//*[contains(text(),'Insight ')]");
+        
+        for (SelenideElement element : elements) {
+            String text = element.getText();
+            if (text.contains("Insight")) {
+                Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find()) {
+                    String otp = matcher.group();
+                    logger.info("OTP found: " + otp);
+                    back();
+                    return otp; // Return the OTP if found
+                }
+            }
+        }
+
+        logger.info("No OTP found.");
+        return null; // Return null if no OTP is found
     }
 
     public void addTwoFAPhonenum(String newphonenum) {
@@ -782,21 +811,49 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         loginsettings.click();
         MyCommonAPIs.sleepi(10);
         twostepverification.click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(10);        
         SelenideElement phonelist = $x("//div[@class='FactorNmae ng-binding']");
-        System.out.println(phonelist);
+        
+        if($x("//span[text()='Enable']/../md-switch").isDisplayed()) {
+
         if (phonelist.exists() && !phonelist.getText().equals("")) {
+            System.out.println("inside if");
             if (phonelist.getText().contains(phonenum.substring(phonenum.length() - 4, phonenum.length()))) {
+                System.out.println("inside phonelist");
                 if ($x("//span[text()='Enable']").exists()
-                        && $x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false")) {
+                        &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                    System.out.println("inside click");
                     $x("(//span[text()='Enable']/..//div)[4]").click();
                 }
             }
         } else {
-            if ($x("//span[text()='Enable']").exists() && $x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false")) {
+            System.out.println("inside else");
+            if ($x("//span[text()='Enable']").exists() && ($x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false") )) {
+                System.out.println("inside enable");
                 $x("(//span[text()='Enable']/..//div)[4]").click();
             }
             finishSignup(phonenum);
+        }
+        }else {
+            
+            if (phonelist.exists() && !phonelist.getText().equals("")) {
+                System.out.println("inside if");
+                if (phonelist.getText().contains(phonenum.substring(phonenum.length() - 4, phonenum.length()))) {
+                    System.out.println("inside phonelist");
+                    if ($x("//span[text()='Enable']").exists()
+                            &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                        System.out.println("inside click");
+                        $x("(//span[text()='Enable']/..//div)[4]").click();
+                    }
+                }
+            } else {
+                System.out.println("inside else");
+                if ($x("//span[text()='Enable']").exists() &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                    System.out.println("inside enable");
+                    $x("(//span[text()='Enable']/..//div)[4]").click();
+                }
+                finishSignup(phonenum);
+            }
         }
         MyCommonAPIs.sleepi(10);
         Selenide.back();

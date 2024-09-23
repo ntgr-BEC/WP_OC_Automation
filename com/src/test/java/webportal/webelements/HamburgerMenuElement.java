@@ -221,7 +221,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement updateprofile     = $x(
             "//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Update Profile") + "']");
     public SelenideElement        emailverifydialog = $x("//*[@aria-label='Email Verification Reminder']");
-    public SelenideElement        cancelbutton      = $x("//div[@class='buttonBlock ']/button");
+    public SelenideElement        cancelbutton      = $x("//*[text()='Cancel']");
     public SelenideElement        editprofile       = $x("//span[text()='Edit Profile']");
     public SelenideElement        firstname         = $x("//label[text()='First Name*']/../input");
     public SelenideElement        lastname          = $x("//label[text()='Last Name*']/../input");
@@ -458,7 +458,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement addphone           = $x("//button/span[text()='" + WebportalParam.getLocText("Add Phone Number") + "']");
     public static SelenideElement Next               = $x("//span[contains(text(),'Next')]");
 
-    public SelenideElement        verifybutton = $x("//div[@ng-show='OTP' and @class='wrapper']//span[text()='Verify']");
+    public SelenideElement        verifybutton = $x("//span[text()='Verify']");
     public SelenideElement        dontTrust    = $x("//span[contains(@translate,'dont_trust')]/..");
     public static String          finishPage   = "//div[@ng-show='logging' and @aria-hidden='false']";
     public static SelenideElement finishMsg    = $x("//h3[text()='" + WebportalParam.getLocText("Account Created") + "']");
