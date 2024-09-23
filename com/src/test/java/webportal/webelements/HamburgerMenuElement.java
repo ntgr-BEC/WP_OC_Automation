@@ -413,6 +413,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public static SelenideElement createaccount      = $x("(//u[text()='" + WebportalParam.getLocText("Create an Account") + "'])[1]");
     public static SelenideElement createaccountold   = $x("(//u[text()='" + WebportalParam.getLocText("Create account") + "'])[1]");
+    public static SelenideElement createaccountcognito      = $x("//*[text()=' Create an Account ']");
     public SelenideElement        createfirstname    = $x("//label[text()='First Name']/../input");
     public SelenideElement        createfirstname1   = $x("//*[@id=\"ip_firstName\"]");
     public SelenideElement        createlastname     = $x("//label[text()='Last Name']/../input");
@@ -802,6 +803,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement CrditAllocationText                 = $x("//div[text()='Credit Allocation']");
   public SelenideElement OrgTextCredit                       = $x("//div[@class='clientDataDetailSection']//li[contains(text(),'Organizations')]");
   public static SelenideElement SignUpPro                    = $x("//*[@id=\"insight_signup\"]/span/a");
+  public static SelenideElement SignUpProCognito             = $x("//*[@id=\"insight_signup\"]");
   public static SelenideElement ErrorTextForenterprise       = $x("//div[@id='ssidModalError']");
   
   

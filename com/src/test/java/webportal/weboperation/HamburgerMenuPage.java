@@ -6668,13 +6668,24 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
             MyCommonAPIs.sleepi(10);
         }         
+        MyCommonAPIs.sleepi(5);
         if (createaccount.exists()) {
             createaccount.click();
         }
+        else
+        {
+            createaccountcognito.click();
+        }
+        
         MyCommonAPIs.sleepi(10);
         if(SignUpPro.exists()){
             SignUpPro.click();
             result=true;
+        }
+        else {
+            SignUpProCognito.click();
+            result=true;
+            
         }
         MyCommonAPIs.sleepi(10);
         addemailprohardbundle.sendKeys(Email);
