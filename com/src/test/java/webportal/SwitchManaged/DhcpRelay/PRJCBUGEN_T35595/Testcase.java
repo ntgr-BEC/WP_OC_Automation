@@ -108,8 +108,8 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          MyCommonAPIs.sleepsync();
 
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean relayConfig = tmpStr.contains("ip dhcp l2-relay");
-         boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+         boolean relayConfig = tmpStr.contains("dhcp l2relay");
+         boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
          assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
          assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
 
@@ -137,8 +137,8 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          MyCommonAPIs.sleepsync();
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
-         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100");
+         boolean snoopingConfig = tmpStr.contains("dhcp snooping");
+         boolean vlanSnoopingConfig = tmpStr.contains("dhcp snooping vlan 100");
          assertTrue(snoopingConfig, "Dhcp Snooping should be enabled");
          assertTrue(vlanSnoopingConfig, "Dhcp Snooping vlan 100 should be enabled");
 
@@ -163,14 +163,14 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          MyCommonAPIs.sleepsync();
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
-         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100");
+         boolean snoopingConfig = tmpStr.contains("dhcp snooping");
+         boolean vlanSnoopingConfig = tmpStr.contains("dhcp snooping vlan 100");
          assertFalse(snoopingConfig, "Dhcp Snooping should be enabled");
          assertFalse(vlanSnoopingConfig, "Dhcp Snooping vlan 100 should be enabled");
          
          String tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean relayConfig = tmpStr1.contains("ip dhcp l2-relay");
-         boolean vlanRelayConfig = tmpStr1.contains("ip dhcp l2-relay vlan 100");
+         boolean relayConfig = tmpStr1.contains("dhcp l2relay");
+         boolean vlanRelayConfig = tmpStr1.contains("dhcp l2relay vlan 100");
          assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
          assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
      }

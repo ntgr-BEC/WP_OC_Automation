@@ -78,6 +78,8 @@ public class Testcase extends TestCaseBase {
 
         // Define the total number of ports
         int totalPorts = WiredDhcpRelayElement.allPorts.size();
+        
+        if(totalPorts ==16 || totalPorts < 16 ) {
 
         for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
 
@@ -85,6 +87,24 @@ public class Testcase extends TestCaseBase {
             assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot(Integer.toString(portNumber)));
 
         }
+        }else {
+            
+            totalPorts = totalPorts/2;
+            
+            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+                    
+            handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
+            assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot(Integer.toString(portNumber)));
+            }
+            
+           for (int portNumber = 0; portNumber < totalPorts; portNumber++) {                
+                handle.click(WiredDhcpRelayElement.txtPortSelectionnext(Integer.toString(portNumber)));
+                assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNotnext(Integer.toString(portNumber)));
+                }
+            
+        }
+
+            
 
         assertTrue(WiredDhcpRelayElement.deselectAllButton.isDisplayed());
 
@@ -96,11 +116,29 @@ public class Testcase extends TestCaseBase {
 
         // Define the total number of ports
         int totalPorts = WiredDhcpRelayElement.allPorts.size();
+        
+        if(totalPorts ==16 || totalPorts < 16 ) {
 
         for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
 
             handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
 
+        }
+        }else {
+            
+            totalPorts = totalPorts/2;
+            
+            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+
+                handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
+
+            }
+            
+            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+
+                handle.click(WiredDhcpRelayElement.txtPortSelectionnext(Integer.toString(portNumber)));
+
+            }
         }
         
         int numberOfPorts = WiredDhcpRelayElement.allPorts.size();

@@ -73,14 +73,21 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             if (loginEmailNew.exists()) {
                 loginEmailNew.clear();
                 loginEmailNew.sendKeys(user);
-            } else {
+            } else if (loginEmailCognito.exists()) {
+                loginEmailCognito.clear();
+                loginEmailCognito.sendKeys(user);
+            }else {
                 loginEmailNew1.clear();
                 loginEmailNew1.sendKeys(user);
             }
+            
             sleepi(1);
             if (loginPwdNew.exists()) {
                 loginPwdNew.clear();
                 loginPwdNew.sendKeys(passwd);
+            } else if (loginPwdCognito.exists()) {
+                loginPwdCognito.clear();
+                loginPwdCognito.sendKeys(passwd);
             } else {
                 loginPwdNew1.clear();
                 loginPwdNew1.sendKeys(passwd);
@@ -89,6 +96,12 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             sleepi(5);
             if (loginButtonNew.exists()) {
                 loginButtonNew.click();
+            }else {
+                loginButtonCognito.click();
+           }
+            sleepi(10);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
             }
 
             waitElementNot(loginButtonNew);

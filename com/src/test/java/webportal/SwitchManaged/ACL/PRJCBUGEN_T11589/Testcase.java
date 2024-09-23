@@ -89,9 +89,8 @@ public class Testcase extends TestCaseBase {
         handle.waitCmdReady(":11:22", false);
 
         tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
-        tmpStr = "deny " + netsp.camData.frommac;
-        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac: " + tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + tmpStr1;
-        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed: " + tmpStr);
     }
 }

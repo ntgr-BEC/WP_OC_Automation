@@ -77,6 +77,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
+        MyCommonAPIs.sleepi(180);
         SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getStormControlRate(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(stormControlRatetvalue)) {

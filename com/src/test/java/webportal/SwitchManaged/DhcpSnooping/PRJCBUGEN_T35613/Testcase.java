@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that if the DHCP Snooping configuration is applied from the insight portal , it should be reflected in the LOCAL GUI of the switch") // It's a testcase title from Jira
                                                                                                               // Test Case.
     @TmsLink("PRJCBUGEN-T35613") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -52,6 +52,11 @@ public class Testcase extends TestCaseBase {
         handle.gotoLocationWireSettings();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMACAddressValidation);
+        
+        MyCommonAPIs.sleepsync();    
+        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+        boolean str1 = tmpStr.contains("no ip dhcp snooping verify mac-address");
+        assertTrue(str1, "Dhcp Snooping Mac Address is not enabled");
         
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
@@ -79,7 +84,7 @@ public class Testcase extends TestCaseBase {
     }
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 2: Enable DHCP Snooping MAC address Validation and check the CLI")
+    @Step("Test Step 2: Enable DHCP Snooping MAC address Validation and Enable VLAN 100 and check the CLI")
     public void step2() {
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
@@ -87,15 +92,17 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
         handle.refresh();
 
-        wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMACAddressValidation);
-        handle.refresh();
+        wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMACAddressValidation);     
+        handle.refresh(); 
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
         handle.refresh();
 
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMACAddressValidation.isEnabled(), "DHCP Snooping Mac validation not enabled");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMACAddressValidationbutton.isSelected(), "DHCP Snooping Mac validation not enabled");
+        assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
 
-        handle.waitCmdReady("dhcp snooping", true);
         MyCommonAPIs.sleepsync();
+        handle.waitCmdReady("dhcp snooping", true);
+      
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
@@ -112,27 +119,27 @@ public class Testcase extends TestCaseBase {
 
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 3: enable trust mode and check the CLI")
+    @Step("Test Step 3: enable trust mode and invaled packetd and check the CLI")
     public void step3() {
 
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingPortConfig);
 
-        wdsp.enablePortSpecificConfigOnPort(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1) - 1), "Trust Mode", "Invalid Packets");
+        wdsp.enablePortSpecificConfigOnPort(WebportalParam.sw1LagPort1, "Trust Mode", "Invalid Packets");
         handle.refresh();
 
-        assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1) - 1)).isDisplayed());
-        assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
+        assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(WebportalParam.sw1LagPort1).isDisplayed());
+        assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort1).isDisplayed());
 
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("ip dhcp snooping trust"), "Trust mode not enabled");
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("ip dhcp snooping logging"), "Invalid packets logging not enabled");
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
+                .contains("ip dhcp snooping log-invalid"), "Invalid packets logging not enabled");
     }
     
     @AfterMethod(alwaysRun = true)
     public void restore() {
         
-        wdsp.deletePortConfigTrustOrInvalidPackets(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1));
+        wdsp.deletePortConfigTrustOrInvalidPackets(WebportalParam.sw1LagPort1);
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);

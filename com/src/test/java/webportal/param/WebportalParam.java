@@ -655,10 +655,10 @@ public class WebportalParam {
         return sw1Model.contains("XS516");
     }
     public static boolean isSwitcM4250(String model) {
-        return sw1Model.contains("M4250");
+        return model.contains("M4250");
     }
     public static boolean isSwitcM4350(String model) {
-        return sw1Model.contains("M4350");
+        return model.contains("M4350");
     }
 
     /**
@@ -786,7 +786,7 @@ public class WebportalParam {
         // return false;
         if (text.startsWith("GC728X") || text.startsWith("GC728XP") || text.startsWith("GC752X") || text.startsWith("GC752XP")
                 || text.startsWith("GC110P") || text.startsWith("GS724Tv6") || text.startsWith("GS748Tv6") || text.startsWith("XS508TM")
-                || text.startsWith("XS516TM") || text.startsWith("XS724TM") || text.startsWith("GS510TPP"))
+                || text.startsWith("XS516TM") || text.startsWith("XS724TM") || text.startsWith("GS510TPP") || text.startsWith("M4350") || text.startsWith("M4250"))
             return false;
         return true;
     }

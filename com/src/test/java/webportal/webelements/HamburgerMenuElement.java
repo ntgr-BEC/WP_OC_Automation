@@ -414,18 +414,29 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement createaccount      = $x("(//u[text()='" + WebportalParam.getLocText("Create an Account") + "'])[1]");
     public static SelenideElement createaccountold   = $x("(//u[text()='" + WebportalParam.getLocText("Create account") + "'])[1]");
     public SelenideElement        createfirstname    = $x("//label[text()='First Name']/../input");
+    public SelenideElement        createfirstname1   = $x("//*[@id=\"ip_firstName\"]");
     public SelenideElement        createlastname     = $x("//label[text()='Last Name']/../input");
+    public SelenideElement        createlastname1     = $x("//*[@id=\"ip_lastName\"]");
     public SelenideElement        createemailaddress = $x("//label[text()='Email Address']/../input");
+    public SelenideElement        createemailaddress1 = $x("//*[@id=\"mat-input-0\"]");
     public SelenideElement        confirmemail       = $x("//label[text()='Confirm Email Address']/../input");
+    public SelenideElement        confirmemail1       = $x("//*[@id=\"cnfEmail\"]");
     public SelenideElement        createpassword     = $x("//label[text()='Password']/..//input");
+    public SelenideElement        createpassword1     = $x("//*[@id=\"ip_pwdSignup\"]");
     public SelenideElement        confirmpassword    = $x("//label[text()='Confirm Password']/..//input");
+    public SelenideElement        confirmpassword1    = $x("//*[@id=\"ip_cnfPwd\"]");
     public SelenideElement        selectcountry      = $x("//label[text()='Choose Country']/..//select");
+    public SelenideElement        selectcountry1      = $x("//*[@id=\"mat-input-6\"]");
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
+    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
     public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
     public static SelenideElement policyText1        = $x("//*[@id=\"smart-form-register2\"]/fieldset/div[1]/section[2]/label/p");
     public static SelenideElement policyText2        = $x("//*[@id=\"_secSubscReg\"]/label/p");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
     public SelenideElement        continuebutton     = $("#signupBtn_i");
+    public SelenideElement        continuebutton1     = $("#signupForm > div.buttonBlock.mb20.ml30 > button");
+    public SelenideElement loginPwdNewcognito    = $("#mat-input-8");
+    public SelenideElement SigninbuttonCognito    = $x("//*[@id=\"Login-btn\"]");
     public static SelenideElement emailerror         = $x(
             "//label[@for='email']/..//div[text()='" + WebportalParam.getLocText("Please enter a valid email address.") + "']");
     public static SelenideElement confirmemailerror  = $x(
@@ -436,9 +447,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
             "//label[@for='input_3']/..//div[contains(text(),'" + WebportalParam.getLocText("Allowed symbols are") + " ! @ # $ % ^ & * ( )')]");
     public static SelenideElement confirmpwderror    = $x(
             "//label[@for='input_4']/..//div[text()='" + WebportalParam.getLocText("Password and Confirm Password must be same.") + "']");
-    public SelenideElement        nothanks           = $x("//a[text()='No Thanks']");
-    public static SelenideElement newnothanks        = $x(
-            "//div[@ng-show='signupStepThree' and @aria-hidden='false']//button[text()='" + WebportalParam.getLocText("No Thanks") + "']");
+  
     public static SelenideElement NoThankYou         = $x("//u[text()='No thank you']");
     
     public static SelenideElement yesenbale          = $x("(//button[text()='" + WebportalParam.getLocText("Yes, Enable") + "'])[1]");
@@ -922,6 +931,9 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  deleteNoti                   = $x("//*[@id=\"btnDelete1\"]"); 
   public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
   public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
+  
+  
+
   
 }
 
