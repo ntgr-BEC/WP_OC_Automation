@@ -89,6 +89,7 @@ public class WebportalParam {
     public static String                               loginPassword;
     public static String                               loginName1;
     public static String                               loginPassword1;
+    public static String                               CountryOTP;
     public static String                               adminName;
     public static String                               adminPassword;
     public static String                               SecondadminName;
@@ -314,6 +315,7 @@ public class WebportalParam {
         loginName1 = xmlManager.getValueFromWebPortalXml("//loginName1");
         loginPassword1 = xmlManager.getValueFromWebPortalXml("//loginPassword1");
         adminName = xmlManager.getValueFromWebPortalXml("//adminName");
+        CountryOTP = xmlManager.getValueFromWebPortalXml("//CountryOTP");
         adminPassword = xmlManager.getValueFromWebPortalXml("//adminPassword");
         SecondadminName = xmlManager.getValueFromWebPortalXml("//SecondAdmin");
         SecondadminPassword = xmlManager.getValueFromWebPortalXml("//SecondAdminPassword");        

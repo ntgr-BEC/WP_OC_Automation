@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -34,7 +35,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new HamburgerMenuPage().addTwoFAPhonenumAndChangePrimary("7015168317", "5417083275");
+        new HamburgerMenuPage().addTwoFAPhonenumAndChangePrimary("7015168317", "5417083275", WebportalParam.CountryOTP);
         new HamburgerMenuPage().disableTwoFA();
         System.out.println("start to do tearDown");
     }
@@ -52,13 +53,13 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         String oldphonenum = "5417083275";
         String newphonenum = "7015168317";
-        new HamburgerMenuPage().enableTwoFA(oldphonenum);
-        new HamburgerMenuPage().addTwoFAPhonenumAndChangePrimary(oldphonenum, newphonenum);
+        new HamburgerMenuPage().enableTwoFA(oldphonenum, WebportalParam.CountryOTP);
+        new HamburgerMenuPage().addTwoFAPhonenumAndChangePrimary(oldphonenum, newphonenum, WebportalParam.CountryOTP);
 
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        new HamburgerMenuPage(false).checkTwoFAIsCorrect(newphonenum, true);
+        new HamburgerMenuPage(false).checkTwoFAIsCorrect(newphonenum, true, WebportalParam.CountryOTP);
 
         boolean result = new HamburgerMenuPage().checkLoginSuccessful();
 

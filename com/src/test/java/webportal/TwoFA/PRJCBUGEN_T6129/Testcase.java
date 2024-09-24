@@ -16,6 +16,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
+import webportal.param.WebportalParam;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -66,7 +67,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
 
-        assertTrue(new HamburgerMenuPage(false).checkTwoFaPage(accountInfo, false, ""),
+        assertTrue(new HamburgerMenuPage(false).checkTwoFaPage(accountInfo, false, "", WebportalParam.CountryOTP),
                 "User cannot get redirected to \" Select verification method  \" page");
     }
 
