@@ -35,6 +35,7 @@ import javax.print.DocFlavor.URL;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.sis.util.Static;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -59,6 +60,8 @@ import java.nio.file.Paths;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.*;
+import javax.net.ssl.*;
+import java.security.cert.X509Certificate;
 
 /**
  * @author Netgear
@@ -347,7 +350,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(30);
     }
 
-    public boolean checkTwoFaPage(Map<String, String> map, boolean verification, String phonenum) {
+    public boolean checkTwoFaPage(Map<String, String> map, boolean verification, String phonenum, String Country) {
         boolean result = false;
         long t= System.currentTimeMillis();
         long end = t+12000;
@@ -436,7 +439,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 result = false;
             }
             if (result && !phonenum.equals("")) {
-                finishSignup(phonenum);
+                finishSignup(phonenum, Country);
                 MyCommonAPIs.sleepi(10);
                 dontTrust.click();
                 MyCommonAPIs.sleepi(10);
@@ -473,7 +476,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     }
 
-    public void finishSignup(String phonenum) {
+    public void finishSignup(String phonenum, String Country) {
         MyCommonAPIs.sleepi(5);
         if($x("//div[@class='flag-container']").isDisplayed()) {
         waitElement($x("//div[@class='flag-container']"));
@@ -508,12 +511,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
 
         waitElement(verifybutton);
-        String code = getAuthCode(phonenum, pairMessage);
+        String code = getAuthCode(phonenum, pairMessage, Country);
         logger.info("Confirmation code is:" + code);
+        
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         MyCommonAPIs.sleepi(10);
+        int i =1;
         for (int id = 0; id < 6; id++) {
-            $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
+//            $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
             // $("#" + String.valueOf(id)).sendKeys(code.substring(id, id + 1));
+//            OTPbox(String.valueOf(id)).sendKeys(code.substring(id, id + 1));                       
+            $x("(//*[@autocomplete=\"one-time-code\"])["+String.valueOf(i)+"]").sendKeys(code.substring(id, id + 1));
+            i++;
+            
         }
         verifybutton.click();
         MyCommonAPIs.sleepi(30);
@@ -528,64 +540,102 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         
     }
 
-    public String getAuthCode(String phonenum, String needMsg) {
-        int i = 0;
-        int s = 0;
-        boolean get = false;
-        String code = "";
-        while (i < 10) {
-            i += 1;
-            MyCommonAPIs.sleep(10, "fetch sms now");
-            try {
-                Document doc = Jsoup.connect("https://freephonenum.com/us/receive-sms/" + phonenum).timeout(100000).get();
-                Elements tables = doc.select("[class=table table-striped table-responsive]").select("tbody").select("tr");
-                while (s < tables.size()) {
-                    if (s == 3) {
-                        s += 1;
-                        continue;
-                    }
-                    // else if (s >= 20) {
-                    // get = true;
-                    // break;
-                    // }
-                    String time = tables.get(s).select("td").get(0).text();
-                    String message = tables.get(s).select("td").get(2).text();
-                    logger.info(String.format("%s-%s", time, message));
-                    if (message.indexOf(needMsg) != -1) {
-                        code = message.substring(message.indexOf(". This") - 6, message.indexOf(". This"));
-                        if (!code.equals("")) {
-                            get = true;
-                            break;
-                        }
-                    }
-                    s += 1;
+    public String getAuthCode(String phonenum, String needMsg, String Country)  {
+        String code = null;
+        
+        
+     // Open a new tab using JavaScript
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://quackr.io/temporary-numbers/" +Country + phonenum;
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        String currentUrl=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl);
+        MyCommonAPIs.sleepi(30);
+
+        List<SelenideElement> elements = $$x("//*[contains(text(),'NETGEAR ')]");
+        
+        for (SelenideElement element : elements) {
+            String text = element.getText();
+            System.out.println("text is"+ text);
+            if (text.contains("NETGEAR")) {
+                Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find()) {
+                    String otp = matcher.group();
+                    logger.info("OTP found: " + otp);
+                    back();
+                    return otp; // Return the OTP if found
                 }
-                if (get) {
-                    break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
-        return code;
-    }
+
+        
+       
+        
+        
+        logger.info("No OTP found.");
+        return null; // Return null if no OTP is found
+        
+        
+//        boolean get = false;
+//        
+//        try {
+//            // Fetch the page
+//            Document doc = Jsoup.connect("https://quackr.io/temporary-numbers/australia/61" + phonenum)
+//                                 .timeout(10000) // 10 seconds
+//                                 .get();
+//            
+//            System.out.println(doc.html());
+//
+//            // Select the elements
+//            Elements rows = doc.select(".rounded.shadow.dark div, .rounded.shadow.dark p");
+//            System.out.println("Number of elements found: " + rows.size());
+//
+//            for (org.jsoup.nodes.Element row : rows) {
+//                String message = row.text(); // Get the full text of the element
+//                System.out.println("Message: " + message);
+//
+//                if (message.contains(needMsg)) {
+//                    // Extract the OTP
+//                    int startIndex = message.indexOf(needMsg) + needMsg.length() + 1;
+//                    code = message.substring(startIndex, startIndex + 6).trim(); // Adjust based on your OTP format
+//                    if (!code.isEmpty()) {
+//                        get = true;
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        } catch (HttpStatusException e) {
+//            System.err.println("HTTP error fetching URL. Status=" + e.getStatusCode() + ", URL=" + e.getUrl());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        
+      
+
+        }
+    
     
     
     
     public String GetOtpForInsight(String mobileNumber) {
         
-        logger.info("Checking OTP for country: " + "finland" + ", mobile number: " + mobileNumber);
+        logger.info("Checking OTP for country: " + "australia" + ", mobile number: " + mobileNumber);
         
         // Open the Quackr page for the specific country and mobile number
-        open("https://quackr.io/temporary-numbers/" + "finland" + "/" + "358" + mobileNumber);
+       
+        open("https://quackr.io/temporary-numbers/" + "australia" + "/" + "61" + mobileNumber);
         MyCommonAPIs.sleepi(5);
 
         // Find elements containing "Insight" in their text
-        List<SelenideElement> elements = $$x("//*[contains(text(),'Insight ')]");
+        List<SelenideElement> elements = $$x("//*[contains(text(),'NETGEAR')]");
         
         for (SelenideElement element : elements) {
             String text = element.getText();
-            if (text.contains("Insight")) {
+            if (text.contains("NETGEAR")) {
                 Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
                 Matcher matcher = pattern.matcher(text);
                 if (matcher.find()) {
@@ -601,7 +651,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         return null; // Return null if no OTP is found
     }
 
-    public void addTwoFAPhonenum(String newphonenum) {
+    public void addTwoFAPhonenum(String newphonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -630,13 +680,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (addsmsverification.exists() && !phonelist.getText().contains(newphonenum.substring(newphonenum.length() - 4, newphonenum.length()))) {
             logger.info("Add phone number is:" + newphonenum);
             addsmsverification.click();
-            finishSignup(newphonenum);
+            finishSignup(newphonenum, Country);
             MyCommonAPIs.sleepi(20);
             if (addsmsverification.exists()
                     && !phonelist.getText().contains(newphonenum.substring(newphonenum.length() - 4, newphonenum.length()))) {
                 logger.info("Add phone number failed once, then add again.");
                 addsmsverification.click();
-                finishSignup(newphonenum);
+                finishSignup(newphonenum, Country);
                 MyCommonAPIs.sleepi(10);
             }
         } else {
@@ -761,7 +811,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
     }
 
-    public void addTwoFAPhonenumAndChangePrimary(String oldphonenum, String newphonenum) {
+    public void addTwoFAPhonenumAndChangePrimary(String oldphonenum, String newphonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -780,7 +830,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (!(phonelist.getText().substring(phonelist.getText().indexOf("*", 5) + 2, phonelist.getText().indexOf("*", 5) + 6)
                 .equals(newphonenum.substring(newphonenum.length() - 4, newphonenum.length())))) {
             addsmsverification.click();
-            finishSignup(newphonenum);
+            finishSignup(newphonenum, Country);
             MyCommonAPIs.sleepi(10);
             deleteprimarynum.click();
             MyCommonAPIs.sleepi(5);
@@ -797,7 +847,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         Selenide.back();
     }
 
-    public void enableTwoFA(String phonenum) {
+    public void enableTwoFA(String phonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -832,7 +882,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 System.out.println("inside enable");
                 $x("(//span[text()='Enable']/..//div)[4]").click();
             }
-            finishSignup(phonenum);
+            finishSignup(phonenum, Country);
         }
         }else {
             
@@ -852,20 +902,24 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                     System.out.println("inside enable");
                     $x("(//span[text()='Enable']/..//div)[4]").click();
                 }
-                finishSignup(phonenum);
+                finishSignup(phonenum, Country);
             }
         }
         MyCommonAPIs.sleepi(10);
         Selenide.back();
     }
 
-    public void resendMessageByTwoFA(String phonenum) {
+    public void resendMessageByTwoFA(String phonenum, String Country) {
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         waitElement($x("//input[@id='0']"));
         $x("//span[text()='Resend Message']/..").click();
         MyCommonAPIs.sleepi(20);
-        String code = getAuthCode(phonenum, authMessage);
+        String code = getAuthCode(phonenum, authMessage, Country);
         logger.info("Confirmation code is:" + code);
+        MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         MyCommonAPIs.sleepi(10);
         for (int id = 0; id < 6; id++) {
             $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
@@ -886,15 +940,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
     }
 
-    public boolean checkTwoFAUseSameCodeLogin(String phonenum) {
+    public boolean checkTwoFAUseSameCodeLogin(String phonenum, String Country) {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.inputLogin(WebportalParam.loginName, WebportalParam.loginPassword);
         boolean result = false;
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         waitElement($x("//input[@id='0']"));
-        String code = getAuthCode(phonenum, authMessage);
+        String code = getAuthCode(phonenum, authMessage, Country);
         logger.info("Confirmation code is:" + code);
         MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         for (int id = 0; id < 6; id++) {
             $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
             // $("#" + String.valueOf(id)).sendKeys(code.substring(id, id + 1));
@@ -930,15 +987,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         return result;
     }
 
-    public boolean checkTwoFAIsCorrect(String phonenum, boolean verification) {
+    public boolean checkTwoFAIsCorrect(String phonenum, boolean verification, String Country) {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.inputLogin(WebportalParam.loginName, WebportalParam.loginPassword);
         boolean result = false;
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         // waitElement($x("//input[@id='0']"));
         if (verification) {
-            String code = getAuthCode(phonenum, authMessage);
+            String code = getAuthCode(phonenum, authMessage, Country);
             MyCommonAPIs.sleepi(10);
+            Selenide.switchTo().window(0);
+            String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+            System.out.print(currentUrl1);
             logger.info("Confirmation code is:" + code);
             for (int id = 0; id < 6; id++) {
                 $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
@@ -959,7 +1019,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 ls += 1;
             }
         } else {
-            String code = getAuthCode(phonenum, authMessage);
+            String code = getAuthCode(phonenum, authMessage, Country);
+            MyCommonAPIs.sleepi(10);
+            Selenide.switchTo().window(0);
+            String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+            System.out.print(currentUrl1);
             logger.info("Confirmation code is:" + code);
             MyCommonAPIs.sleepi(10);
             for (int id = 0; id < 6; id++) {
@@ -8437,6 +8501,27 @@ public void OpenCreditAllocationPageFor2ndorg() {
     MyCommonAPIs.sleepi(5);
     secOrgCreditAllocation.click();
     MyCommonAPIs.sleepi(3);
+}
+
+
+public class SSLUtil {
+    public void disableCertificateValidation() {
+        try {
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                new X509TrustManager() {
+                    public X509Certificate[] getAcceptedIssuers() { return null; }
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) { }
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) { }
+                }
+            };
+
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 }
