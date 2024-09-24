@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -21,6 +22,9 @@ import webportal.weboperation.WebportalLoginPage;
  *
  */
 public class Testcase extends TestCaseBase {
+    
+    String oldphonenum = "489921018";
+   
 
     @Feature("TwoFA") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T6192") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -44,19 +48,23 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
+        
+       
+      
 
         // handle.gotoLoction();
     }
 
     @Step("Test Step 2: Enable 2FA and check login is correct;")
     public void step2() {
-        String oldphonenum = "5417083275";
-        new HamburgerMenuPage().enableTwoFA(oldphonenum);
+             
+
+        new HamburgerMenuPage().enableTwoFA(oldphonenum,WebportalParam.CountryOTP);
 
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        new HamburgerMenuPage(false).checkTwoFAIsCorrect(oldphonenum, true);
+        new HamburgerMenuPage(false).checkTwoFAIsCorrect(oldphonenum, true, WebportalParam.CountryOTP);
 
         boolean result = new HamburgerMenuPage().checkLoginSuccessful();
 

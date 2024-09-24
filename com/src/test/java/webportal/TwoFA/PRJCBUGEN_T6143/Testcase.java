@@ -12,6 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
+import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -36,7 +37,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275");
+        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275", WebportalParam.CountryOTP);
         new HamburgerMenuPage().disableTwoFA();
         System.out.println("start to do tearDown");
     }
@@ -52,13 +53,13 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Enable 2FA and enters wrong OTP, check login is correct;")
     public void step2() {
-        new HamburgerMenuPage().enableTwoFA("5417083275");
+        new HamburgerMenuPage().enableTwoFA("5417083275", WebportalParam.CountryOTP);
         MyCommonAPIs.sleepi(10);
 
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        assertTrue(new HamburgerMenuPage(false).checkTwoFAIsCorrect("5417083275", false), "Login successful.");
+        assertTrue(new HamburgerMenuPage(false).checkTwoFAIsCorrect("5417083275", false, WebportalParam.CountryOTP), "Login successful.");
     }
 
 }

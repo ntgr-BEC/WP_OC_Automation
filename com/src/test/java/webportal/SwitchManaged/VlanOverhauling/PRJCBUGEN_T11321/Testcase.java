@@ -12,6 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -24,7 +25,7 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     String vlanName    = "testvlan";
-    String vlanId      = "1320";
+    String vlanId      = "10";
     String networkName = "testnet" + vlanId;
 
     @Feature("Switch.VlanOverhauling") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -54,8 +55,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Create a maximum of 256 VLANs. And each vlan with a 32 character name.And assign all ports to all vlan.")
     public void step2() {
         netsp.gotoPage();
-        for (int i = 0; i < 255; i++) {
+        for (int i = 0; i < 252; i++) {
+            MyCommonAPIs.sleepi(10);
             vlanId = String.format("%d", Integer.parseInt(vlanId) + i);
+            System.out.printf("create VLAN: %s", vlanId);
             networkName = vlanName + vlanId;
             netsp.createNetwork(networkName, 0, networkName, vlanId);
         }
