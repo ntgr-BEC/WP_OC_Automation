@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -68,8 +69,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: ​​​​​Generate 2 ip acl on switch,the IP acl name format is\n"
             + "\"i+ip+mask+vlan+number\",so the name is \"i20111000020\" and \"i201110000202\"")
     public void step3() {
+        
+        MyCommonAPIs.sleepsync();
         String sRet = handle.waitCmdReady(expStr2, false);
-        sRet = SwitchCLIUtils.getIpMACACL(true, "20");
+        sRet = SwitchCLIUtils.getIpMACACL(true, "20");  
+        System.out.println(sRet);
         assertTrue(sRet.contains(expStr1));
         assertTrue(sRet.contains(expStr2));
     }

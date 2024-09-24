@@ -142,6 +142,7 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         vlanPage.deleteVlan("100");
+        handle.refresh();
         vlanPage.deleteVlan("200");
         MyCommonAPIs.sleep(8000);
         vlanPage.deleteAllVlan();
