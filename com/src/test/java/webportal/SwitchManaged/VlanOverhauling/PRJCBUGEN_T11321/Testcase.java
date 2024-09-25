@@ -25,8 +25,9 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     String vlanName    = "testvlan";
-    String vlanId      = "10";
+    String vlanId = "10";
     String networkName = "testnet" + vlanId;
+    int j=0;
 
     @Feature("Switch.VlanOverhauling") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T11321") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -56,6 +57,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         netsp.gotoPage();
         for (int i = 0; i < 252; i++) {
+            String vlanId = "10";
             MyCommonAPIs.sleepi(10);
             vlanId = String.format("%d", Integer.parseInt(vlanId) + i);
             System.out.printf("create VLAN: %s", vlanId);
