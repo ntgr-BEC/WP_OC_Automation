@@ -73,6 +73,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Create 24 vlans that every vlan include 1 IP ACL")
     public void step2() {
         for (int i = 1; i <= 24; i++) {
+            MyCommonAPIs.sleepi(10);
             wvp.gotoPage();
             vlanName = String.format("10%d", i);
             lsExpectVlan.add(vlanName);
@@ -105,6 +106,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 5: verify all acl")
     public void step6() {
+        MyCommonAPIs.sleepsync();
         handle.waitCmdReady(lsExpectACL.get(lsExpectACL.size() - 1), false);
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         for (String acl : lsExpectACL) {

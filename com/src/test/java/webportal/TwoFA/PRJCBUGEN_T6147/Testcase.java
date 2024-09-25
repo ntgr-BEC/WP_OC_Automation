@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -35,7 +36,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275");
+        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275", WebportalParam.CountryOTP);
         new HamburgerMenuPage().disableTwoFA();
         System.out.println("start to do tearDown");
     }
@@ -52,12 +53,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Enable 2FA and use Same confirm code login, check result;")
     public void step2() {
         String oldphonenum = "5417083275";
-        new HamburgerMenuPage().enableTwoFA(oldphonenum);
+        new HamburgerMenuPage().enableTwoFA(oldphonenum, WebportalParam.CountryOTP);
 
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        assertTrue(new HamburgerMenuPage(false).checkTwoFAUseSameCodeLogin(oldphonenum), "Login successful");
+        assertTrue(new HamburgerMenuPage(false).checkTwoFAUseSameCodeLogin(oldphonenum, WebportalParam.CountryOTP), "Login successful");
     }
 
 }

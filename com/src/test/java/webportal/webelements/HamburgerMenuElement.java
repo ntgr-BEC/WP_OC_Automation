@@ -933,6 +933,10 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  deleteNoti                   = $x("//*[@id=\"btnDelete1\"]"); 
   public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
   public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
+  public SelenideElement OTPbox(String text) {
+      SelenideElement OTPbox = $x("//*[@id=otp_'" + text + "'_pxotx8mdd3m1g2wx3u");
+      return OTPbox;
+  }
   
   
 

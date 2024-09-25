@@ -12,6 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
+import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -50,14 +51,14 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Enable 2FA and check resend message;")
     public void step2() {
-        new HamburgerMenuPage().enableTwoFA("5417083275");
+        new HamburgerMenuPage().enableTwoFA("5417083275", WebportalParam.CountryOTP);
         MyCommonAPIs.sleepi(10);
 
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        new HamburgerMenuPage(false).checkTwoFAIsCorrect("5417083275", false);
-        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275");
+        new HamburgerMenuPage(false).checkTwoFAIsCorrect("5417083275", false, WebportalParam.CountryOTP);
+        new HamburgerMenuPage(false).resendMessageByTwoFA("5417083275", WebportalParam.CountryOTP);
 
         assertTrue(new HamburgerMenuPage().checkLoginSuccessful(), "Login successful");
     }
