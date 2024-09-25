@@ -48,4 +48,10 @@ public class WebportalLoginPageElement extends MyCommonAPIs {
     public SelenideElement loginEmailCognito  = $x("//*[@id=\"mat-input-0\"]");
     public SelenideElement loginPwdCognito    = $x("//*[@id=\"mat-input-1\"]");
     public SelenideElement loginButtonCognito    = $x("//*[@id=\"Login-btn\"]");
+    
+    public SelenideElement OTPInYopmail           = $x("//*[contains(text(),\"NETGEAR account\")]/../../tr[5]");
+    public SelenideElement continuebutton         = $x("//span[text()=\"Continue\"]");
+    public SelenideElement dontTrust              = $x("//span[text()=\"Don't Trust \"]");
+    public SelenideElement notificationicon       = $x("//div[contains(@data-tooltip,'Notification')]");
+    
 }

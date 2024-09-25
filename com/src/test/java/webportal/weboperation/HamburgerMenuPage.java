@@ -8524,6 +8524,24 @@ public class SSLUtil {
     }
 }
 
+public void enableTwoFAEmail() {
+    updateprofile.click();
+    MyCommonAPIs.sleepi(10);
+    if (cancelbutton.exists()) {
+        cancelbutton.click();
+    } 
+    loginsettings.click();
+    MyCommonAPIs.sleepi(10);
+    twostepverification.click();
+    MyCommonAPIs.sleepi(10);        
+    enable2FA.click();
+    MyCommonAPIs.sleepi(10);  
+    waitElement(email2FA);
+    Continue.click();
+    MyCommonAPIs.sleepi(5);  
+    Selenide.back();
+    
+}
 }
 
 
