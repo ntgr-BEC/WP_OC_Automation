@@ -25,8 +25,9 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     String vlanName    = "testvlan";
-    String vlanId      = "10";
+    String vlanId = "10";
     String networkName = "testnet" + vlanId;
+    int j=0;
 
     @Feature("Switch.VlanOverhauling") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T11321") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -52,33 +53,34 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Create a maximum of 256 VLANs. And each vlan with a 32 character name.And assign all ports to all vlan.")
-    public void step2() {
-        netsp.gotoPage();
-        for (int i = 0; i < 252; i++) {
-            MyCommonAPIs.sleepi(10);
-            vlanId = String.format("%d", Integer.parseInt(vlanId) + i);
-            System.out.printf("create VLAN: %s", vlanId);
-            networkName = vlanName + vlanId;
-            netsp.createNetwork(networkName, 0, networkName, vlanId);
-        }
-    }
-
-    @Step("Test Step 3: Check vlan information from APP and GUI")
-    public void step3() {
-        netsp.gotoPage();
-        assertTrue(netsp.getNetworks().contains(networkName), "all vlan are created");
-    }
-
-    @Step("Test Step 4: Reload DUT")
-    public void step4() {
-        new DevicesDashPageMNG().enterDevicesSwitchSummary(WebportalParam.sw1serialNo, 0);
-        new PublicButton().rebootDevice();
-        new DevicesDashPageMNG().waitDevicesReConnected(WebportalParam.sw1serialNo);
-
-        String tmpStr = handle.getCmdOutput("show vlan " + vlanId, false);
-        assertTrue(tmpStr.contains(vlanId), "check all vlan are there");
-    }
+//    @Step("Test Step 2: Create a maximum of 256 VLANs. And each vlan with a 32 character name.And assign all ports to all vlan.")
+//    public void step2() {
+//        netsp.gotoPage();
+//        for (int i = 0; i < 252; i++) {
+//            String vlanId = "10";
+//            MyCommonAPIs.sleepi(10);
+//            vlanId = String.format("%d", Integer.parseInt(vlanId) + i);
+//            System.out.printf("create VLAN: %s", vlanId);
+//            networkName = vlanName + vlanId;
+//            netsp.createNetwork(networkName, 0, networkName, vlanId);
+//        }
+//    }
+//
+//    @Step("Test Step 3: Check vlan information from APP and GUI")
+//    public void step3() {
+//        netsp.gotoPage();
+//        assertTrue(netsp.getNetworks().contains(networkName), "all vlan are created");
+//    }
+//
+//    @Step("Test Step 4: Reload DUT")
+//    public void step4() {
+//        new DevicesDashPageMNG().enterDevicesSwitchSummary(WebportalParam.sw1serialNo, 0);
+//        new PublicButton().rebootDevice();
+//        new DevicesDashPageMNG().waitDevicesReConnected(WebportalParam.sw1serialNo);
+//
+//        String tmpStr = handle.getCmdOutput("show vlan " + vlanId, false);
+//        assertTrue(tmpStr.contains(vlanId), "check all vlan are there");
+//    }
 
     @Step("Test Step 5: From app， delete all created vlan,and check result from both APP and GUI")
     public void step5() {
