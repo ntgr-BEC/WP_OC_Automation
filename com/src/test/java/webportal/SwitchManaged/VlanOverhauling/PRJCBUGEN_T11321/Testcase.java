@@ -63,6 +63,11 @@ public class Testcase extends TestCaseBase {
             System.out.printf("create VLAN: %s", vlanId);
             networkName = vlanName + vlanId;
             netsp.createNetwork(networkName, 0, networkName, vlanId);
+            netsp.openNetwork(networkName);
+            netsp.gotoStep(2);
+            netsp.setNetwork2(WebportalParam.sw1LagPort2, 1, "", 0);    //select a port and set as TRUNK 
+            netsp.finishAllStep();
+            MyCommonAPIs.sleepi(10);
         }
     }
 

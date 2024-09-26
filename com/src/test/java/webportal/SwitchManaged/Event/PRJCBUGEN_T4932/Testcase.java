@@ -13,6 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.webelements.EventElement;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -61,17 +62,20 @@ public class Testcase extends TestCaseBase {
         assertTrue(evtp.getEventCount() > 0, "there must be some events");
     }
 
-    @Step("Test Step 3: There is one new critical logs and detailed information is correct;")
+    @Step("Test Step 3: There is one new warning logs and detailed information is correct;")
     public void step3() {
         assertTrue(handle.pageSource().contains(EventElement.sWarning), "there must be a event with Warning type");
     }
 
-    @Step("Test Step 4: Delete the critical log by Insight App;")
+    @Step("Test Step 4: Delete the warning log by Insight App;")
     public void step4() {
+        
+        MyCommonAPIs.sleepi(10);
         List<String> lsEvent1 = evtp.getEventDesc();
         evtp.deleteOneEvent(EventElement.sWarning);
+        MyCommonAPIs.sleepi(20);
         List<String> lsEvent2 = evtp.getEventDesc();
 
-        assertTrue(!lsEvent1.equals(lsEvent2), "one Critical type is removed");
+        assertTrue(!lsEvent1.equals(lsEvent2), "one Warning type is removed");
     }
 }

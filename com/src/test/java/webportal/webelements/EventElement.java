@@ -20,7 +20,7 @@ public class EventElement extends MyCommonAPIs {
 
     public SelenideElement txtCount        = $("#notificationDrop span");
     public SelenideElement btnNotify       = $("#notificationDrop img");
-    public String          sTableListLine1 = ".notification-list li h5";
+    public String          sTableListLine1 = ".notification-list li h5";  
     public String          sTableListLine2 = ".notification-list li p";
     public SelenideElement btnSeeAll       = $("#notificationPadd button");
 
@@ -108,4 +108,6 @@ public class EventElement extends MyCommonAPIs {
     public String getnotificationcontent(int idx) {
         return $x("//tbody//tr[" + idx + "]/td/div/div[2]/p[2]/span").getText();
     }
+    
+    public SelenideElement        deviceStatusOnInsight      = $x("//*[@id=\"tdDevStatusdevicesDash0\"]");
 }

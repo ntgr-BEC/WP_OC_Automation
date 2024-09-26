@@ -26,6 +26,9 @@ import webportal.weboperation.WebportalLoginPage;
 public class Testcase extends TestCaseBase {
     String tclname = getClass().getName();
     String tmpStr;
+    String         vlanId      = "700";
+    String         vlanName    = "testvlan700";
+    String         networkName = "testnet" + vlanId;
 
     @Feature("Switch.Event") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4933") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -50,14 +53,14 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         evtp.gotoPage();
-        evtp.makeEvent(false);
+        evtp.makeInformationEvent(false,networkName, 0, vlanName, vlanId);
     }
 
     @Step("Test Step 2: Insight App check notifications;")
     public void step2() {
         Selenide.refresh();
         if (!evtp.getEventType().contains(EventElement.sNotifications)) {
-            evtp.makeEvent(true);
+            evtp.makeInformationEvent(false,networkName, 0, vlanName, vlanId);
         }
 
         evtp.gotoPage();

@@ -14,6 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.webelements.EventElement;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -50,13 +51,15 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         evtp.gotoPage();
-        evtp.makeEvent(false);
+        evtp.makeCriticalEvent(false, "Disconnect");
+        evtp.makeCriticalEvent(false, "Connect");
     }
 
     @Step("Test Step 2: Insight App check notifications;")
     public void step2() {
         if (!evtp.getEventType().contains(EventElement.sCritical)) {
-            evtp.makeEvent(true);
+            evtp.makeCriticalEvent(true,"Disconnect");
+            evtp.makeCriticalEvent(true,"Connect");
         }
 
         evtp.gotoPage();
@@ -70,9 +73,17 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Delete the critical log by Insight App;")
     public void step4() {
+        System.out.println("0000000000000");
+       
         List<String> lsEvent1 = evtp.getEventDesc();
+        MyCommonAPIs.sleepi(30);
+        System.out.println("lsEvent1"+ lsEvent1);
         evtp.deleteOneEvent(EventElement.sCritical);
+        MyCommonAPIs.sleepi(20);
+        System.out.println("lsEvent1"+ lsEvent1);
         List<String> lsEvent2 = evtp.getEventDesc();
+        System.out.println("3333333333");
+        System.out.println("lsEvent2"+ lsEvent2);
 
         assertTrue(!lsEvent1.equals(lsEvent2), "one Critical type is removed");
     }

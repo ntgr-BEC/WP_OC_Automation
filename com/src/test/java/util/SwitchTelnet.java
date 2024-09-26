@@ -579,4 +579,16 @@ public class SwitchTelnet {
         else
             return true;
     }
+    
+    public void switchDisconnect() {
+        setEnable();
+        telnet.write("application stop CloudAgent");
+        MyCommonAPIs.sleepi(120);
+    }
+    
+    public void switchConnect() {
+        setEnable();
+        telnet.write("application start CloudAgent");
+        MyCommonAPIs.sleepi(120);
+    }
 }

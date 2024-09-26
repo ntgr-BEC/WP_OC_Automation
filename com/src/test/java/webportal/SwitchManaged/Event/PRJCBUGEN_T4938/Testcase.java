@@ -47,7 +47,8 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
         evtp.gotoPage();
         if (!(handle.pageSource().contains(tmpStr1) || handle.pageSource().contains(tmpStr2))) {
-            evtp.makeEvent(true);
+            evtp.makeCriticalEvent(false, "Disconnect");
+            evtp.makeCriticalEvent(false, "Connect");
         }
     }
 
