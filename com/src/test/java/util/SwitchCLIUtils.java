@@ -1166,7 +1166,7 @@ public class SwitchCLIUtils {
                 aclResult = aclResult.toLowerCase();
             }
             
-            logger.info(String.format("<%s><%s>", ispermitACL, aclResult));
+            logger.info(String.format("aclResult is <%s><%s>", ispermitACL, aclResult));
         }
     }
     

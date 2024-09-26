@@ -117,13 +117,13 @@ public class Testcase extends TestCaseBase {
     public void step7() {
         handle.sleepsync();
         tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit any %s 00:00:00:00:00:00", ipaclMac)),
                 "Allow:des mac:22-22-22-33-33-44");
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 8: On allow device list,select the mac address \"22-22-22-33-33-44\",edit option\n"
-            + "to select all (\"allow access from this device\" and \"allow access to this\n" + "device\")")
+            + "to select all (\"allow access from this device\" and \"allow access to this\n" + "device\")")      //select both from and to 
     public void step8() {
         wvp.openIpFilterMacAuth(ipaclMac, false);
         wvp.ipFilterMacOpt = 0;
@@ -137,7 +137,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
         handle.waitCmdReady(String.format("permit %s", ipaclMac), false);
         tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit any %s 00:00:00:00:00:00", ipaclMac)),
                 "Allow:des mac:22-22-22-33-33-44");
         assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00 any", ipaclMac)),
                 "Allow:source mac 22-22-22-33-33-44");
