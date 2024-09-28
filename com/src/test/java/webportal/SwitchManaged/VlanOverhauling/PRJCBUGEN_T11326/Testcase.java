@@ -13,6 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -79,7 +80,15 @@ public class Testcase extends TestCaseBase {
         netsp.finishAllStep();
 
         handle.sleepsync();
+        if (new WebportalParam().sw1Model.contains("M4350")){
+            assertFalse(SwitchCLIUtils.isTagPort("1/0/3", vlanId), "port g3 is Untagged");
+            
+        }else  if (new WebportalParam().sw1Model.contains("M4250")){
+            assertFalse(SwitchCLIUtils.isTagPort("0/3", vlanId), "port g3 is Untagged");
+            
+        }else {
         assertFalse(SwitchCLIUtils.isTagPort("g3", vlanId), "port g3 is Untagged");
+        }
     }
 
     @Step("Test Step 5: Successful")
