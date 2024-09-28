@@ -47,17 +47,17 @@ public class NetworkSetupPage extends NetworkSetupElement {
             netName = "Management VLAN";
         }
         logger.info(netName);
-//        waitElement(lsNetworks);
-//        for (SelenideElement se : $$(lsNetworks)) {
-//            if (getText(se).contains(netName)) {
-//                System.out.print("check in if");
-//                se.hover();
-//                SelenideElement editicon_ele = $x(String.format(editicon, netName));
-//                editicon_ele.click();
-//                break;
-//            }
-//        }
-        clickEditIcon(netName);
+        waitElement(lsNetworks);
+        for (SelenideElement se : $$(lsNetworks)) {
+            if (getText(se).contains(netName)) {
+                System.out.print("check in if");
+                se.hover();
+                SelenideElement editicon_ele = $x(String.format(editicon, netName));
+                editicon_ele.click();
+                break;
+            }
+        }
+//        clickEditIcon(netName);
         waitReady();
         sleep(5, "wait date to be loaded");
     }
@@ -123,7 +123,7 @@ public class NetworkSetupPage extends NetworkSetupElement {
         takess("delete All data");
         initDeleteImagePos();
         for (String vn : getNetworks()) {
-            if (vn.contains("Management") || vn.contains("vlan2 Network")) {
+            if (vn.contains("Management VLAN") || vn.contains("vlan2 Network") || vn.contains("Management")) {
             } else {
                 deleteNetwork(vn);
             }
