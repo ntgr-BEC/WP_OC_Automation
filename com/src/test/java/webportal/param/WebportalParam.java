@@ -304,6 +304,15 @@ public class WebportalParam {
     public static String pr2macaddress;
     public static String pr2Firmware;
     public static String pr2Model;
+    
+    public static String baseURI;
+    public static String token;
+    public static String apikey;
+    public static String xsrfToken;
+    public static String accountId;
+    public static String networkId;
+    public static String orgId;
+
 
     public WebportalParam() {
         logger.info("init start");
@@ -582,6 +591,14 @@ public class WebportalParam {
         pr2macaddress = xmlManager.getValueFromWebPortAndDut("PR2", "Mac_Address");
         pr2Firmware = xmlManager.getValueFromWebPortAndDut("PR2", "Firmware");
         pr2Model = xmlManager.getValueFromWebPortAndDut("PR2", "Model");
+        
+        baseURI = xmlManager.getValueFromWebPortAndDut("Api_Main", "baseURI");
+        apikey = xmlManager.getValueFromWebPortAndDut("Api_Main", "apikey");
+        xsrfToken = xmlManager.getValueFromWebPortAndDut("Api_Main", "xsrfToken");
+        accountId = xmlManager.getValueFromWebPortAndDut("Api_Main", "accountId"); 
+        networkId = xmlManager.getValueFromWebPortAndDut("Api_Main", "networkId"); 
+        orgId = xmlManager.getValueFromWebPortAndDut("Api_Main", "orgId"); 
+        token = xmlManager.getValueFromWebPortAndDut("Api_Main", "token");
         
         // init for multiple language suports
         languageDict = excelUnit.ntgrAnalysisJsonFile();

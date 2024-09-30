@@ -3,7 +3,7 @@
     <ConfigBy>GUI</ConfigBy>
     <!-- must be one of: chrome, firefox, iexplore -->
     <BrowserType>chrome</BrowserType>
-    <!--BrowserPath>C:/Program Files/Google/Chrome/Application</BrowserPath-->
+    <BrowserPath>C:/Chrome-bin/chrome.exe</BrowserPath>
     <!-- must be one of: wp(web portal), br500, br1000 -->
     <DUTType>wp</DUTType>
     <!-- used for sanity testing: 1 for standard topo, 0 for single switch mode -->
@@ -11,43 +11,39 @@
     <!-- must be one of: en, jp, de, fr, es, it, cn -->
     <BrowserLanguage>en</BrowserLanguage>
     <!-- wp version-server type-device type-browser language-->
-    <WebPortalVersion>7.2.4.17-GS728TXPv3-Failrun</WebPortalVersion>
-    <Responsible>jack</Responsible>
-    <loginInfo>
-        <loginName>maintbeta03@mailinator.com</loginName>
+    <WebPortalVersion>6.8.4.8-GC110P</WebPortalVersion>
+    <Responsible>jim</Responsible>
+    <loginInfo>    
+        <loginName>a2pre@yopmail.com</loginName>
         <loginPassword>Netgear1@</loginPassword>
-		<adminName>xxxx@mailinator.com</adminName>
+		<adminName>1wpre@yopmail.com</adminName>
 		<adminPassword>Netgear1@</adminPassword>
-		<managerName>xxxx@mailinator.com</managerName>
+		<managerName>a2write@yopmail.com</managerName>
 		<managerPassword>Netgear1@</managerPassword>
-        <ownerName>xxxx@mailinator.com</ownerName>
+        <ownerName>a2owner@yopmail.com</ownerName>
 		<ownerPassword>Netgear1@</ownerPassword>
-        <readManagerName>xxxx@mailinator.com</readManagerName>
+        <readManagerName>a2read@yopmail.com</readManagerName>
 		<readManagerPassword>Netgear1@</readManagerPassword>
-		<voucherManagerName>xxxx@mailinator.com</voucherManagerName>
-		<voucherManagerPassword>Netgear1@</voucherManagerPassword>
-        <adminSupportUser>xxxx@mailinator.com</adminSupportUser>
-        <l2SupportUser>xxxx@mailinator.com</l2SupportUser>
-        <l3SupportUser>xxxx@mailinator.com</l3SupportUser>
-		<SecondAdmin>xxxx@mailinator.com</SecondAdmin>
+        <adminSupportUser>im74adminSupport@yopmail.com</adminSupportUser>
+        <l2SupportUser>im74l2support@yopmail.com</l2SupportUser>
+        <l3SupportUser>im74l3support@yopmail.com</l3SupportUser>
+		<SecondAdmin>s1i1@yopmail.com</SecondAdmin>
 		<SecondAdminPassword>Netgear1@</SecondAdminPassword>
-		<loginName1>xxxx@mailinator.com</loginName1>
-        <loginPassword1>Netgear1@</loginPassword1>
-		<Country>United States of America</Country>
         <!-- Its password to devices which is same as location password -->
         <locationPassword>Netgear1@</locationPassword>
         <!-- aux-qa pri-qa maint-qa maint-beta beta -->
-        <serverUrl>https://accounts-stg.netgear.com/login?redirectUrl=https:%2F%2Fmaint-beta.insight.netgear.com%2F</serverUrl>
+        <serverUrl>https://maint-qa.insight.netgear.com/</serverUrl>
 		<Promocode1>insightfeesoff</Promocode1>
 		<Promocode2>insightfeesoff</Promocode2>
 		<Promocode3>insightfeesoff</Promocode3>
         <!-- defaultUser: 0 to loginName, 1 to adminName, 2 to managerName, 3 to ownerName, 4 to readManagerName -->
         <defaultUser>0</defaultUser>
+		<Country>Sri Lanka</Country>
     </loginInfo>
-    <Organizations>BEC</Organizations>
-    <location1>office</location1>
-    <location2>office</location2>
-    <location3>office</location3>
+    <Organizations>Netgear</Organizations>
+    <location1>office1</location1>
+    <location2>office2</location2>
+    <location3>office3</location3>
     <!-- 0 to disable, 1 to enable using proxy for browser -->
     <ProxySvrEnable>0</ProxySvrEnable>
     <ProxySvr>http://10.40.1.183:6000</ProxySvr>
@@ -55,7 +51,7 @@
     <SeleniumSvrEnable>0</SeleniumSvrEnable>
     <SeleniumSvr>127.0.0.1:4444</SeleniumSvr>
     <!-- used for downloading firmware -->
-    <TftpSvr>172.16.255.22</TftpSvr>
+    <TftpSvr>10.1.1.2</TftpSvr>
     <!-- used for checking vpn client feature on MAC -->
     <VPNClientIp>10.1.1.3</VPNClientIp>
     <!-- used for upload result to log system -->
@@ -64,9 +60,10 @@
     <MailReceiver>jim.xie@netgear.com</MailReceiver>
     <!-- used for client vpn for windows, registe it on wp first manually -->
     <VPNClientUser>wp7217@mailforspam.com</VPNClientUser>
-    <SW1>SW19</SW1>
-    <SW2>SW13</SW2>
-	
+    <Api_Main>Api_Main</Api_Main>
+    <PR1>PR1</PR1>
+    <SW1>SW6</SW1>
+    <SW2>SW5</SW2>
     <AP1>AP1</AP1>
     <AP2>AP2</AP2>
     <AP3>AP3</AP3>
@@ -76,15 +73,13 @@
     <AP7>AP7</AP7>
     <AP8>AP8</AP8>
     <AP9>AP9</AP9>
-    <BR1>BR20</BR1>
-    <BR2>BR21</BR2>
+    <BR1>BR21</BR1>
+    <BR2>BR20</BR2>
     <BR3>BR22</BR3>
     <ORBI1>OB1</ORBI1>
 	<ORBI2>OB2</ORBI2>
 	<ORBI3>OB3</ORBI3>
-	<ORBI4>OB4</ORBI4>
 	<NAS1>NAS1</NAS1>
 	<CLIENT>Client1</CLIENT>
-	<CLIENT1>Client_1</CLIENT1>
-	<CLIENT2>Client_2</CLIENT2>
+	<CLIENT1>Client1</CLIENT1>
 </config>
