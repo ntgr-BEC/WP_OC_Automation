@@ -43,15 +43,15 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
+        
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
-        
+
         handle.gotoLoction();
     }
 
     @Step("Test Step 2: Edit profile with enter a combination of numbers, alphabets and special;")
     public void step2() {
-        Map<String, String> oldProfileInfo = new HamburgerMenuPage().getProfile();
 
         Map<String, String> profileInfo = new HashMap<String, String>();
         profileInfo.put("First Name", "ham123#");
@@ -79,7 +79,6 @@ public class Testcase extends TestCaseBase {
                 break;
             }
         }
-        new HamburgerMenuPage().editProfile(oldProfileInfo);
         MyCommonAPIs.sleepi(10);
         assertTrue(result, "Edit profile unsuccessful.");
     }

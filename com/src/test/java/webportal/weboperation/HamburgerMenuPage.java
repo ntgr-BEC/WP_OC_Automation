@@ -1083,7 +1083,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void changeEmail(String newEmail, String confirmEmail, String password) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
             refresh();
@@ -1096,82 +1098,191 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         logger.info("Start change email...");
         changeemail.click();
-        waitElement(newemail);
-        newemail.sendKeys(newEmail);
-        confirmmail.sendKeys(confirmEmail);
-        currentpassword.sendKeys(password);
-        submitchangeemail.click();
-        WebCheck.checkHrefIcon(URLParam.hrefDevices);
-        if (okconformation.exists()) {
-
-            okconformation.click();
+        MyCommonAPIs.sleepi(10);
+        if (newemailCognito.exists()) {
+            newemailCognito.sendKeys(newEmail);
+        } else {
+            waitElement(newemail);
+            newemail.sendKeys(newEmail);
         }
-        if (Invalidsession.isDisplayed()) {
-            Invalidsession.click();
+        MyCommonAPIs.sleep(10);
+        if (confirmmailCognito.exists()) {
+            confirmmailCognito.sendKeys(confirmEmail);
+        } else {
+            waitElement(confirmmail);
+            confirmmail.sendKeys(confirmEmail);
         }
-
-        waitReady();
-        // waitElement($x("//span[text()='Login']"));
-        // MyCommonAPIs.sleepi(20);
-        // String url = MyCommonAPIs.getCurrentUrl();
-        // if (url.contains("/account?") || !url.equals(WebportalParam.serverUrlLogin)) {
-        // backToLogin();
-        // logger.info("Change email has been error.");
-        // } else {
-        // waitElement($x("//span[text()='Login']"));
-        // }
+        MyCommonAPIs.sleep(10);
+        if (currentpasswordCognito.exists()) {
+            currentpasswordCognito.sendKeys(password);
+        } else {
+            waitElement(currentpassword);
+            currentpassword.sendKeys(password);
+        }
+        MyCommonAPIs.sleep(10);
+        if (submitchangeemailCognito.exists()) {
+            submitchangeemailCognito.click();
+        } else {
+            waitElement(submitchangeemail);
+            submitchangeemail.click();
+        }
+        MyCommonAPIs.sleepi(10);
+        String otp = "";
+        if (verifyOtpScreenCognito.exists()) {
+            String originalTab = WebDriverRunner.getWebDriver().getWindowHandle();
+            executeJavaScript("window.open('https://www.yopmail.com', '_blank');");
+            for (String tab : WebDriverRunner.getWebDriver().getWindowHandles()) {
+                if (!tab.equals(originalTab)) {
+                    WebDriverRunner.getWebDriver().switchTo().window(tab);
+                    break;
+                }
+            }
+            MyCommonAPIs.sleepi(5);
+            String inputElement = "//input[@id='login']";
+            $x(inputElement).clear();
+            $x(inputElement).sendKeys(confirmEmail);
+            $x("//button[@title='Check Inbox @yopmail.com']").click();
+            MyCommonAPIs.sleepi(10);
+            SelenideElement frame = $("iframe[name='ifinbox']");
+            Selenide.switchTo().frame(frame);
+            MyCommonAPIs.sleepi(10);
+            System.out.println(checkemailtitle.getText());
+            if (checkemailtitle.getText().contains("Change Your Account Email Address")) {
+                logger.info("Received Device Online Notification email.");
+                switchTo().defaultContent();
+                SelenideElement mailFrame = $("[name='ifmail']");
+                MyCommonAPIs.sleepi(10);
+                mailFrame.shouldBe(Condition.visible);// Adjust timeout as needed
+                switchTo().frame(mailFrame);
+                MyCommonAPIs.sleepi(10);
+                confirmEmailOtpYopmail.scrollIntoView(true);
+                String otpText = confirmEmailOtpYopmail.getText();
+                System.out.println("OTP is: " + otpText);
+                MyCommonAPIs.sleepi(1);
+                switchTo().defaultContent();
+                WebDriverRunner.getWebDriver().close();
+                MyCommonAPIs.sleepi(2);
+                WebDriverRunner.getWebDriver().switchTo().window(originalTab);
+                MyCommonAPIs.sleepi(2);
+                System.out.println(otpText);
+                enterChangeemailOTP.click();
+                MyCommonAPIs.sleepi(2);
+                enterOTP.setValue(otpText);
+                //executeJavaScript("arguments[0].value = arguments[1];", enterChangeemailOTP.getWrappedElement(), otpText);
+                MyCommonAPIs.sleep(10);
+                submitchangeemailCognito.click();
+                MyCommonAPIs.sleepi(10);
+            }
+        } else {
+            MyCommonAPIs.sleepi(5);
+            logger.info("Cognito servcer is not present");
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            if (okconformation.exists()) {
+                okconformation.click();
+            } else if (Invalidsession.isDisplayed()) {
+                Invalidsession.click();
+            } else {
+                logger.info("Done");
+            }
+        }
     }
 
     public void editProfile(Map<String, String> map) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
+            refresh();
             MyCommonAPIs.sleepi(10);
             if (cancelbutton.exists()) {
                 cancelbutton.click();
             }
         }
         editprofile.click();
-        waitElement(firstname);
+        MyCommonAPIs.sleepi(10);
         logger.info("Start edit profile...");
-        MyCommonAPIs.sleepi(5);
         if (map.containsKey("First Name")) {
+            firstNameCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            firstNameCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+             firstNameCognito.setValue(map.get("First Name"));
+        } else if (map.containsKey("First Name") && firstname.exists()) {
             // firstname.clear();
             // MyCommonAPIs.sleepi(3);
             firstname.setValue(map.get("First Name"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Last Name")) {
+            lastNameCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            lastNameCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+             lastNameCognito.setValue(map.get("Last Name"));
+        } else if (map.containsKey("Last Name") && lastname.exists()) {
             // lastname.clear();
             // MyCommonAPIs.sleepi(3);
             lastname.setValue(map.get("Last Name"));
         }
-        if (map.containsKey("Choose Country")) {
-            MyCommonAPIs.sleepi(3);
-            choosecountry.selectOption(map.get("Choose Country"));
-        }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("State")) {
+            stateCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            stateCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            stateCognito.setValue(map.get("State"));
+        } else if (map.containsKey("State") && state.exists()) {
             // state.clear();
             // MyCommonAPIs.sleepi(3);
             state.setValue(map.get("State"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("City")) {
+            cityCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            cityCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            cityCognito.setValue(map.get("City"));
+        } else if (map.containsKey("City") && city.exists()) {
             // city.clear();
             // MyCommonAPIs.sleepi(3);
             city.setValue(map.get("City"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Street Address")) {
+            streetAddCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            streetAddCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            streetAddCognito.setValue(map.get("Street Address"));
+        } else if (map.containsKey("Street Address") && streetaddress.exists()) {
             // streetaddress.clear();
             // MyCommonAPIs.sleepi(3);
             streetaddress.setValue(map.get("Street Address"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Apartment or Suite")) {
+            apartmentCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            apartmentCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            apartmentCognito.setValue(map.get("Apartment or Suite"));
+        } else if (map.containsKey("Apartment or Suite") && apartmentorsuite.exists()) {
             // apartmentorsuite.clear();
             // MyCommonAPIs.sleepi(3);
             apartmentorsuite.setValue(map.get("Apartment or Suite"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Postal/ZIP Code")) {
+            zipcodeCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            zipcodeCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            zipcodeCognito.setValue(map.get("Postal/ZIP Code"));
+        } else if (map.containsKey("Postal/ZIP Code") && postalzipcode.exists()) {
             // postalzipcode.clear();
             // MyCommonAPIs.sleepi(3);
             postalzipcode.setValue(map.get("Postal/ZIP Code"));
@@ -1179,18 +1290,22 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(15);
         savebutton.click();
         MyCommonAPIs.sleepi(15);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         }
-        MyCommonAPIs.sleepi(10);
-        $x("//div[@ng-show='acntMgnt' and @aria-hidden='false']//span[@ng-show='thirdParty']/a").click();
+//        MyCommonAPIs.sleepi(10);
+//        $x("//div[@ng-show='acntMgnt' and @aria-hidden='false']//span[@ng-show='thirdParty']/a").click();
         logger.info("Finish edit profile...");
     }
 
     public Map<String, String> getProfile() {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
             MyCommonAPIs.sleepi(10);
@@ -1199,19 +1314,34 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
         }
         editprofile.click();
-        waitElement(firstname);
-        logger.info("Get user profile...");
-        Map<String, String> profileInfo = new HashMap<String, String>();
-        profileInfo.put("First Name", firstname.getValue());
-        profileInfo.put("Last Name", lastname.getValue());
-        profileInfo.put("Choose Country", choosecountry.getText());
-        profileInfo.put("State", state.getValue());
-        profileInfo.put("City", city.getValue());
-        profileInfo.put("Street Address", streetaddress.getValue());
-        profileInfo.put("Apartment or Suite", apartmentorsuite.getValue());
-        profileInfo.put("Postal/ZIP Code", postalzipcode.getValue());
-        WebCheck.checkHrefIcon(URLParam.hrefDevices);
-        return profileInfo;
+        MyCommonAPIs.sleepi(15);
+        if (firstNameCognito.exists()) {
+            logger.info("Get user profile...");
+            Map<String, String> profileInfo = new HashMap<String, String>();
+            profileInfo.put("First Name", firstNameCognito.getValue());
+            profileInfo.put("Last Name", lastNameCognito.getValue());
+            //profileInfo.put("Choose Country", choosecountry.getText());
+            profileInfo.put("State", stateCognito.getValue());
+            profileInfo.put("City", cityCognito.getValue());
+            profileInfo.put("Street Address", streetAddCognito.getValue());
+            profileInfo.put("Apartment or Suite", apartmentCognito.getValue());
+            profileInfo.put("Postal/ZIP Code", zipcodeCognito.getValue());  
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            return profileInfo;
+        } else {
+            logger.info("Get user profile...");
+            Map<String, String> profileInfo = new HashMap<String, String>();
+            profileInfo.put("First Name", firstname.getValue());
+            profileInfo.put("Last Name", lastname.getValue());
+            profileInfo.put("Choose Country", choosecountry.getText());
+            profileInfo.put("State", state.getValue());
+            profileInfo.put("City", city.getValue());
+            profileInfo.put("Street Address", streetaddress.getValue());
+            profileInfo.put("Apartment or Suite", apartmentorsuite.getValue());
+            profileInfo.put("Postal/ZIP Code", postalzipcode.getValue());
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            return profileInfo;
+        }
     }
 
     public boolean checkLogout() {
