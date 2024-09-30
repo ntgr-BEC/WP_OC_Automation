@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4704;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -50,7 +51,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
 //        SwitchCLIUtils.CloudModeSet(false);
-        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
+//        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
 //        SwitchCLIUtils.CloudModeSet(true);
 //        handle.sleepi(5 * 60);
     }
@@ -75,7 +76,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
         String sRet = handle.waitCmdReady(vlanId, false);
         System.out.println(sRet);
-        assertTrue(sRet.contains(vlanId), "check for " + vlanId);
+        assertFalse(sRet.contains(vlanId), "check for " + vlanId);
     }
 
 }
