@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -36,16 +37,17 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtils.CloudModeSet(true);
+        SwitchCLIUtils.SwitchOfflineOnline("Connect");         //will make switch online
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Open page and goto Vlan Page")
     public void step1() {
-        SwitchCLIUtils.CloudModeSet(false);
-        handle.sleepi(5 * 60);
-        SwitchCLIUtils.CloudModeSet(true);
-
+        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");     //will make switch offline
+//        SwitchCLIUtils.CloudModeSet(false);
+//        handle.sleepi(5 * 60);
+//        SwitchCLIUtils.CloudModeSet(true);
+     
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
 
