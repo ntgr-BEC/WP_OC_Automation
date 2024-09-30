@@ -1476,7 +1476,7 @@ public class SwitchCLIUtils {
             MyCommonAPIs.sleepi(300);
         }
         else if(status.equals("Connect")) {
-            doSwitchCommandforDeviceDisconnect(0);         //status is Connected
+            doSwitchCommandforDeviceDisconnect(2);         //status is Connected
             MyCommonAPIs.sleepi(300);
         }      
     }
