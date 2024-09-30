@@ -72,11 +72,15 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 2: Create 24 vlans that every vlan include 1 IP ACL")
     public void step2() {
-        for (int i = 1; i <= 24; i++) {
+        for (int i = 0; i < 24; i++) {
+            MyCommonAPIs.sleepi(10);
             wvp.gotoPage();
-            vlanName = String.format("10%d", i);
+            String vlanName= "10";
+            vlanName = String.format("%d", Integer.parseInt(vlanName) + i);
+//            vlanName = String.format("10%d", i);
             lsExpectVlan.add(vlanName);
             System.out.printf("create vlan: %s\n", vlanName);
+            System.out.printf("Count="+ (i+1));
             wvp.openVlan(vlanName, vlanName, 0);
             ipaclIp = String.format("100.1.1.%d", i);
             lsExpectACL.add(ipaclIp);
@@ -100,11 +104,12 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 4: webportal app pop up error message")
     public void step5() {
-        assertTrue(handle.getPageErrorMsg().contains("max"));
+        assertTrue(handle.getPageErrorMsg().contains("Vlan binding ACLS limit exceeded."));
     }
     
     @Step("Test Step 5: verify all acl")
     public void step6() {
+        MyCommonAPIs.sleepsync();
         handle.waitCmdReady(lsExpectACL.get(lsExpectACL.size() - 1), false);
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         for (String acl : lsExpectACL) {

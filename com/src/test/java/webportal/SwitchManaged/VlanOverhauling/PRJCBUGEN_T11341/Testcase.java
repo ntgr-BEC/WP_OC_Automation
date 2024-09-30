@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         netsp.gotoPage();
         netsp.openNetwork("Management VLAN");
-        if (netsp.warning.exists()) {
+        if (netsp.warning.isDisplayed()) {
             netsp.okWarning.click();
             MyCommonAPIs.sleepi(3); 
         }

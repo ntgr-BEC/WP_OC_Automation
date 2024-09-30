@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -63,10 +64,10 @@ public class Testcase extends TestCaseBase {
         String[] oldphonenum = {
                 "7015168317", "7077190993", "8044064234"
         };
-        new HamburgerMenuPage().enableTwoFA(oldphonenum[0]);
+        new HamburgerMenuPage().enableTwoFA(oldphonenum[0], WebportalParam.CountryOTP);
 
         for (int i = 0; i < oldphonenum.length; i++) {
-            new HamburgerMenuPage().addTwoFAPhonenum(oldphonenum[i]);
+            new HamburgerMenuPage().addTwoFAPhonenum(oldphonenum[i], WebportalParam.CountryOTP);
         }
 
         assertTrue(new HamburgerMenuPage().checkPhonenumMaxLimit("6203221059"), "Add 5 SMS factors successful.");

@@ -13,7 +13,9 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -22,34 +24,26 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
-import java.util.ArrayList;
-import java.util.List;
-
+import com.codeborne.selenide.SelenideElement;
 import javax.print.DocFlavor.URL;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.sis.util.Static;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
-import com.google.inject.matcher.Matcher;
 import com.google.inject.spi.Element;
 import com.mysql.cj.fabric.xmlrpc.base.Array;
-import com.strobel.decompiler.patterns.Pattern;
-
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
@@ -57,24 +51,18 @@ import webportal.publicstep.UserManage;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.HamburgerMenuElement;
 import webportal.webelements.InsightServicesPageElement;
-import util.MyCommonAPIs;
-
 import java.io.File;
 import java.time.Duration;
 import java.nio.file.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.Duration;
-import java.util.Arrays;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.Configuration;
+import static com.codeborne.selenide.Selenide.*;
+import javax.net.ssl.*;
+import java.security.cert.X509Certificate;
 
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.InputStream;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
 /**
  * @author Netgear
  */
@@ -362,7 +350,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(30);
     }
 
-    public boolean checkTwoFaPage(Map<String, String> map, boolean verification, String phonenum) {
+    public boolean checkTwoFaPage(Map<String, String> map, boolean verification, String phonenum, String Country) {
         boolean result = false;
         long t= System.currentTimeMillis();
         long end = t+12000;
@@ -451,7 +439,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 result = false;
             }
             if (result && !phonenum.equals("")) {
-                finishSignup(phonenum);
+                finishSignup(phonenum, Country);
                 MyCommonAPIs.sleepi(10);
                 dontTrust.click();
                 MyCommonAPIs.sleepi(10);
@@ -488,12 +476,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     }
 
-    public void finishSignup(String phonenum) {
+    public void finishSignup(String phonenum, String Country) {
+        MyCommonAPIs.sleepi(5);
+        if($x("//div[@class='flag-container']").isDisplayed()) {
         waitElement($x("//div[@class='flag-container']"));
         MyCommonAPIs.sleepi(8);
         $x("//div[@class='flag-container']").click();
+        }else {
+            $x("//*[text()=\"SMS Text Message\"]/../../span").click();
+            $x("//*[text() ='Continue']").click();
+         } 
         MyCommonAPIs.sleepi(3);
+        if($x("//li[@data-country-code='us']").isDisplayed()) {
         $x("//li[@data-country-code='us']").click();
+        }else {
+            $x("//*[@id=\"scroll-style\"]/div[2]/div/form/div[2]/div/ngx-intl-tel-input/div/div/div[1]/div[3]").click();
+            $x("//*[@id=\"iti-0__item-au\"]/span[1]").hover();
+            MyCommonAPIs.sleepi(3);
+            $x("//*[@id=\"iti-0__item-au\"]/span[1]").click();
+        }
         MyCommonAPIs.sleepi(3);
         logger.info("Input phone number is:" + phonenum);
         if (inputphone.exists()) {
@@ -510,12 +511,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
 
         waitElement(verifybutton);
-        String code = getAuthCode(phonenum, pairMessage);
+        String code = getAuthCode(phonenum, pairMessage, Country);
         logger.info("Confirmation code is:" + code);
+        
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         MyCommonAPIs.sleepi(10);
+        int i =1;
         for (int id = 0; id < 6; id++) {
-            $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
+//            $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
             // $("#" + String.valueOf(id)).sendKeys(code.substring(id, id + 1));
+//            OTPbox(String.valueOf(id)).sendKeys(code.substring(id, id + 1));                       
+            $x("(//*[@autocomplete=\"one-time-code\"])["+String.valueOf(i)+"]").sendKeys(code.substring(id, id + 1));
+            i++;
+            
         }
         verifybutton.click();
         MyCommonAPIs.sleepi(30);
@@ -530,49 +540,118 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         
     }
 
-    public String getAuthCode(String phonenum, String needMsg) {
-        int i = 0;
-        int s = 0;
-        boolean get = false;
-        String code = "";
-        while (i < 10) {
-            i += 1;
-            MyCommonAPIs.sleep(10, "fetch sms now");
-            try {
-                Document doc = Jsoup.connect("https://freephonenum.com/us/receive-sms/" + phonenum).timeout(100000).get();
-                Elements tables = doc.select("[class=table table-striped table-responsive]").select("tbody").select("tr");
-                while (s < tables.size()) {
-                    if (s == 3) {
-                        s += 1;
-                        continue;
-                    }
-                    // else if (s >= 20) {
-                    // get = true;
-                    // break;
-                    // }
-                    String time = tables.get(s).select("td").get(0).text();
-                    String message = tables.get(s).select("td").get(2).text();
-                    logger.info(String.format("%s-%s", time, message));
-                    if (message.indexOf(needMsg) != -1) {
-                        code = message.substring(message.indexOf(". This") - 6, message.indexOf(". This"));
-                        if (!code.equals("")) {
-                            get = true;
-                            break;
-                        }
-                    }
-                    s += 1;
+    public String getAuthCode(String phonenum, String needMsg, String Country)  {
+        String code = null;
+        
+        
+     // Open a new tab using JavaScript
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://quackr.io/temporary-numbers/" +Country + phonenum;
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        String currentUrl=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl);
+        MyCommonAPIs.sleepi(30);
+
+        List<SelenideElement> elements = $$x("//*[contains(text(),'NETGEAR ')]");
+        
+        for (SelenideElement element : elements) {
+            String text = element.getText();
+            System.out.println("text is"+ text);
+            if (text.contains("NETGEAR")) {
+                Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find()) {
+                    String otp = matcher.group();
+                    logger.info("OTP found: " + otp);
+                    back();
+                    return otp; // Return the OTP if found
                 }
-                if (get) {
-                    break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
-        return code;
+
+        
+       
+        
+        
+        logger.info("No OTP found.");
+        return null; // Return null if no OTP is found
+        
+        
+//        boolean get = false;
+//        
+//        try {
+//            // Fetch the page
+//            Document doc = Jsoup.connect("https://quackr.io/temporary-numbers/australia/61" + phonenum)
+//                                 .timeout(10000) // 10 seconds
+//                                 .get();
+//            
+//            System.out.println(doc.html());
+//
+//            // Select the elements
+//            Elements rows = doc.select(".rounded.shadow.dark div, .rounded.shadow.dark p");
+//            System.out.println("Number of elements found: " + rows.size());
+//
+//            for (org.jsoup.nodes.Element row : rows) {
+//                String message = row.text(); // Get the full text of the element
+//                System.out.println("Message: " + message);
+//
+//                if (message.contains(needMsg)) {
+//                    // Extract the OTP
+//                    int startIndex = message.indexOf(needMsg) + needMsg.length() + 1;
+//                    code = message.substring(startIndex, startIndex + 6).trim(); // Adjust based on your OTP format
+//                    if (!code.isEmpty()) {
+//                        get = true;
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        } catch (HttpStatusException e) {
+//            System.err.println("HTTP error fetching URL. Status=" + e.getStatusCode() + ", URL=" + e.getUrl());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        
+      
+
+        }
+    
+    
+    
+    
+    public String GetOtpForInsight(String mobileNumber) {
+        
+        logger.info("Checking OTP for country: " + "australia" + ", mobile number: " + mobileNumber);
+        
+        // Open the Quackr page for the specific country and mobile number
+       
+        open("https://quackr.io/temporary-numbers/" + "australia" + "/" + "61" + mobileNumber);
+        MyCommonAPIs.sleepi(5);
+
+        // Find elements containing "Insight" in their text
+        List<SelenideElement> elements = $$x("//*[contains(text(),'NETGEAR')]");
+        
+        for (SelenideElement element : elements) {
+            String text = element.getText();
+            if (text.contains("NETGEAR")) {
+                Pattern pattern = Pattern.compile("\\b\\d{6}\\b");
+                Matcher matcher = pattern.matcher(text);
+                if (matcher.find()) {
+                    String otp = matcher.group();
+                    logger.info("OTP found: " + otp);
+                    back();
+                    return otp; // Return the OTP if found
+                }
+            }
+        }
+
+        logger.info("No OTP found.");
+        return null; // Return null if no OTP is found
     }
 
-    public void addTwoFAPhonenum(String newphonenum) {
+    public void addTwoFAPhonenum(String newphonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -601,13 +680,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (addsmsverification.exists() && !phonelist.getText().contains(newphonenum.substring(newphonenum.length() - 4, newphonenum.length()))) {
             logger.info("Add phone number is:" + newphonenum);
             addsmsverification.click();
-            finishSignup(newphonenum);
+            finishSignup(newphonenum, Country);
             MyCommonAPIs.sleepi(20);
             if (addsmsverification.exists()
                     && !phonelist.getText().contains(newphonenum.substring(newphonenum.length() - 4, newphonenum.length()))) {
                 logger.info("Add phone number failed once, then add again.");
                 addsmsverification.click();
-                finishSignup(newphonenum);
+                finishSignup(newphonenum, Country);
                 MyCommonAPIs.sleepi(10);
             }
         } else {
@@ -732,7 +811,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
     }
 
-    public void addTwoFAPhonenumAndChangePrimary(String oldphonenum, String newphonenum) {
+    public void addTwoFAPhonenumAndChangePrimary(String oldphonenum, String newphonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -751,7 +830,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (!(phonelist.getText().substring(phonelist.getText().indexOf("*", 5) + 2, phonelist.getText().indexOf("*", 5) + 6)
                 .equals(newphonenum.substring(newphonenum.length() - 4, newphonenum.length())))) {
             addsmsverification.click();
-            finishSignup(newphonenum);
+            finishSignup(newphonenum, Country);
             MyCommonAPIs.sleepi(10);
             deleteprimarynum.click();
             MyCommonAPIs.sleepi(5);
@@ -768,7 +847,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         Selenide.back();
     }
 
-    public void enableTwoFA(String phonenum) {
+    public void enableTwoFA(String phonenum, String Country) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
@@ -782,33 +861,65 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         loginsettings.click();
         MyCommonAPIs.sleepi(10);
         twostepverification.click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(10);        
         SelenideElement phonelist = $x("//div[@class='FactorNmae ng-binding']");
-        System.out.println(phonelist);
+        
+        if($x("//span[text()='Enable']/../md-switch").isDisplayed()) {
+
         if (phonelist.exists() && !phonelist.getText().equals("")) {
+            System.out.println("inside if");
             if (phonelist.getText().contains(phonenum.substring(phonenum.length() - 4, phonenum.length()))) {
+                System.out.println("inside phonelist");
                 if ($x("//span[text()='Enable']").exists()
-                        && $x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false")) {
+                        &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                    System.out.println("inside click");
                     $x("(//span[text()='Enable']/..//div)[4]").click();
                 }
             }
         } else {
-            if ($x("//span[text()='Enable']").exists() && $x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false")) {
+            System.out.println("inside else");
+            if ($x("//span[text()='Enable']").exists() && ($x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false") )) {
+                System.out.println("inside enable");
                 $x("(//span[text()='Enable']/..//div)[4]").click();
             }
-            finishSignup(phonenum);
+            finishSignup(phonenum, Country);
+        }
+        }else {
+            
+            if (phonelist.exists() && !phonelist.getText().equals("")) {
+                System.out.println("inside if");
+                if (phonelist.getText().contains(phonenum.substring(phonenum.length() - 4, phonenum.length()))) {
+                    System.out.println("inside phonelist");
+                    if ($x("//span[text()='Enable']").exists()
+                            &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                        System.out.println("inside click");
+                        $x("(//span[text()='Enable']/..//div)[4]").click();
+                    }
+                }
+            } else {
+                System.out.println("inside else");
+                if ($x("//span[text()='Enable']").exists() &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
+                    System.out.println("inside enable");
+                    $x("(//span[text()='Enable']/..//div)[4]").click();
+                }
+                finishSignup(phonenum, Country);
+            }
         }
         MyCommonAPIs.sleepi(10);
         Selenide.back();
     }
 
-    public void resendMessageByTwoFA(String phonenum) {
+    public void resendMessageByTwoFA(String phonenum, String Country) {
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         waitElement($x("//input[@id='0']"));
         $x("//span[text()='Resend Message']/..").click();
         MyCommonAPIs.sleepi(20);
-        String code = getAuthCode(phonenum, authMessage);
+        String code = getAuthCode(phonenum, authMessage, Country);
         logger.info("Confirmation code is:" + code);
+        MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         MyCommonAPIs.sleepi(10);
         for (int id = 0; id < 6; id++) {
             $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
@@ -829,15 +940,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
     }
 
-    public boolean checkTwoFAUseSameCodeLogin(String phonenum) {
+    public boolean checkTwoFAUseSameCodeLogin(String phonenum, String Country) {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.inputLogin(WebportalParam.loginName, WebportalParam.loginPassword);
         boolean result = false;
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         waitElement($x("//input[@id='0']"));
-        String code = getAuthCode(phonenum, authMessage);
+        String code = getAuthCode(phonenum, authMessage, Country);
         logger.info("Confirmation code is:" + code);
         MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
         for (int id = 0; id < 6; id++) {
             $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
             // $("#" + String.valueOf(id)).sendKeys(code.substring(id, id + 1));
@@ -873,15 +987,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         return result;
     }
 
-    public boolean checkTwoFAIsCorrect(String phonenum, boolean verification) {
+    public boolean checkTwoFAIsCorrect(String phonenum, boolean verification, String Country) {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.inputLogin(WebportalParam.loginName, WebportalParam.loginPassword);
         boolean result = false;
         SelenideElement continuebutton = $x("//span[text()='Resend Message']/../../..//span[text()='Continue']");
         // waitElement($x("//input[@id='0']"));
         if (verification) {
-            String code = getAuthCode(phonenum, authMessage);
+            String code = getAuthCode(phonenum, authMessage, Country);
             MyCommonAPIs.sleepi(10);
+            Selenide.switchTo().window(0);
+            String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+            System.out.print(currentUrl1);
             logger.info("Confirmation code is:" + code);
             for (int id = 0; id < 6; id++) {
                 $x("//*[@id='" + String.valueOf(id) + "']").sendKeys(code.substring(id, id + 1));
@@ -902,7 +1019,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 ls += 1;
             }
         } else {
-            String code = getAuthCode(phonenum, authMessage);
+            String code = getAuthCode(phonenum, authMessage, Country);
+            MyCommonAPIs.sleepi(10);
+            Selenide.switchTo().window(0);
+            String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+            System.out.print(currentUrl1);
             logger.info("Confirmation code is:" + code);
             MyCommonAPIs.sleepi(10);
             for (int id = 0; id < 6; id++) {
@@ -962,7 +1083,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void changeEmail(String newEmail, String confirmEmail, String password) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
             refresh();
@@ -975,82 +1098,191 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         logger.info("Start change email...");
         changeemail.click();
-        waitElement(newemail);
-        newemail.sendKeys(newEmail);
-        confirmmail.sendKeys(confirmEmail);
-        currentpassword.sendKeys(password);
-        submitchangeemail.click();
-        WebCheck.checkHrefIcon(URLParam.hrefDevices);
-        if (okconformation.exists()) {
-
-            okconformation.click();
+        MyCommonAPIs.sleepi(10);
+        if (newemailCognito.exists()) {
+            newemailCognito.sendKeys(newEmail);
+        } else {
+            waitElement(newemail);
+            newemail.sendKeys(newEmail);
         }
-        if (Invalidsession.isDisplayed()) {
-            Invalidsession.click();
+        MyCommonAPIs.sleep(10);
+        if (confirmmailCognito.exists()) {
+            confirmmailCognito.sendKeys(confirmEmail);
+        } else {
+            waitElement(confirmmail);
+            confirmmail.sendKeys(confirmEmail);
         }
-
-        waitReady();
-        // waitElement($x("//span[text()='Login']"));
-        // MyCommonAPIs.sleepi(20);
-        // String url = MyCommonAPIs.getCurrentUrl();
-        // if (url.contains("/account?") || !url.equals(WebportalParam.serverUrlLogin)) {
-        // backToLogin();
-        // logger.info("Change email has been error.");
-        // } else {
-        // waitElement($x("//span[text()='Login']"));
-        // }
+        MyCommonAPIs.sleep(10);
+        if (currentpasswordCognito.exists()) {
+            currentpasswordCognito.sendKeys(password);
+        } else {
+            waitElement(currentpassword);
+            currentpassword.sendKeys(password);
+        }
+        MyCommonAPIs.sleep(10);
+        if (submitchangeemailCognito.exists()) {
+            submitchangeemailCognito.click();
+        } else {
+            waitElement(submitchangeemail);
+            submitchangeemail.click();
+        }
+        MyCommonAPIs.sleepi(10);
+        String otp = "";
+        if (verifyOtpScreenCognito.exists()) {
+            String originalTab = WebDriverRunner.getWebDriver().getWindowHandle();
+            executeJavaScript("window.open('https://www.yopmail.com', '_blank');");
+            for (String tab : WebDriverRunner.getWebDriver().getWindowHandles()) {
+                if (!tab.equals(originalTab)) {
+                    WebDriverRunner.getWebDriver().switchTo().window(tab);
+                    break;
+                }
+            }
+            MyCommonAPIs.sleepi(5);
+            String inputElement = "//input[@id='login']";
+            $x(inputElement).clear();
+            $x(inputElement).sendKeys(confirmEmail);
+            $x("//button[@title='Check Inbox @yopmail.com']").click();
+            MyCommonAPIs.sleepi(10);
+            SelenideElement frame = $("iframe[name='ifinbox']");
+            Selenide.switchTo().frame(frame);
+            MyCommonAPIs.sleepi(10);
+            System.out.println(checkemailtitle.getText());
+            if (checkemailtitle.getText().contains("Change Your Account Email Address")) {
+                logger.info("Received Device Online Notification email.");
+                switchTo().defaultContent();
+                SelenideElement mailFrame = $("[name='ifmail']");
+                MyCommonAPIs.sleepi(10);
+                mailFrame.shouldBe(Condition.visible);// Adjust timeout as needed
+                switchTo().frame(mailFrame);
+                MyCommonAPIs.sleepi(10);
+                confirmEmailOtpYopmail.scrollIntoView(true);
+                String otpText = confirmEmailOtpYopmail.getText();
+                System.out.println("OTP is: " + otpText);
+                MyCommonAPIs.sleepi(1);
+                switchTo().defaultContent();
+                WebDriverRunner.getWebDriver().close();
+                MyCommonAPIs.sleepi(2);
+                WebDriverRunner.getWebDriver().switchTo().window(originalTab);
+                MyCommonAPIs.sleepi(2);
+                System.out.println(otpText);
+                enterChangeemailOTP.click();
+                MyCommonAPIs.sleepi(2);
+                enterOTP.setValue(otpText);
+                //executeJavaScript("arguments[0].value = arguments[1];", enterChangeemailOTP.getWrappedElement(), otpText);
+                MyCommonAPIs.sleep(10);
+                submitchangeemailCognito.click();
+                MyCommonAPIs.sleepi(10);
+            }
+        } else {
+            MyCommonAPIs.sleepi(5);
+            logger.info("Cognito servcer is not present");
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            if (okconformation.exists()) {
+                okconformation.click();
+            } else if (Invalidsession.isDisplayed()) {
+                Invalidsession.click();
+            } else {
+                logger.info("Done");
+            }
+        }
     }
 
     public void editProfile(Map<String, String> map) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
+            refresh();
             MyCommonAPIs.sleepi(10);
             if (cancelbutton.exists()) {
                 cancelbutton.click();
             }
         }
         editprofile.click();
-        waitElement(firstname);
+        MyCommonAPIs.sleepi(10);
         logger.info("Start edit profile...");
-        MyCommonAPIs.sleepi(5);
         if (map.containsKey("First Name")) {
+            firstNameCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            firstNameCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+             firstNameCognito.setValue(map.get("First Name"));
+        } else if (map.containsKey("First Name") && firstname.exists()) {
             // firstname.clear();
             // MyCommonAPIs.sleepi(3);
             firstname.setValue(map.get("First Name"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Last Name")) {
+            lastNameCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            lastNameCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+             lastNameCognito.setValue(map.get("Last Name"));
+        } else if (map.containsKey("Last Name") && lastname.exists()) {
             // lastname.clear();
             // MyCommonAPIs.sleepi(3);
             lastname.setValue(map.get("Last Name"));
         }
-        if (map.containsKey("Choose Country")) {
-            MyCommonAPIs.sleepi(3);
-            choosecountry.selectOption(map.get("Choose Country"));
-        }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("State")) {
+            stateCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            stateCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            stateCognito.setValue(map.get("State"));
+        } else if (map.containsKey("State") && state.exists()) {
             // state.clear();
             // MyCommonAPIs.sleepi(3);
             state.setValue(map.get("State"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("City")) {
+            cityCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            cityCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            cityCognito.setValue(map.get("City"));
+        } else if (map.containsKey("City") && city.exists()) {
             // city.clear();
             // MyCommonAPIs.sleepi(3);
             city.setValue(map.get("City"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Street Address")) {
+            streetAddCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            streetAddCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            streetAddCognito.setValue(map.get("Street Address"));
+        } else if (map.containsKey("Street Address") && streetaddress.exists()) {
             // streetaddress.clear();
             // MyCommonAPIs.sleepi(3);
             streetaddress.setValue(map.get("Street Address"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Apartment or Suite")) {
+            apartmentCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            apartmentCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            apartmentCognito.setValue(map.get("Apartment or Suite"));
+        } else if (map.containsKey("Apartment or Suite") && apartmentorsuite.exists()) {
             // apartmentorsuite.clear();
             // MyCommonAPIs.sleepi(3);
             apartmentorsuite.setValue(map.get("Apartment or Suite"));
         }
+        MyCommonAPIs.sleepi(1);
         if (map.containsKey("Postal/ZIP Code")) {
+            zipcodeCognito.shouldBe(Condition.visible);
+            MyCommonAPIs.sleep(1);
+            zipcodeCognito.scrollIntoView(true);
+            MyCommonAPIs.sleep(1);
+            zipcodeCognito.setValue(map.get("Postal/ZIP Code"));
+        } else if (map.containsKey("Postal/ZIP Code") && postalzipcode.exists()) {
             // postalzipcode.clear();
             // MyCommonAPIs.sleepi(3);
             postalzipcode.setValue(map.get("Postal/ZIP Code"));
@@ -1058,18 +1290,22 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(15);
         savebutton.click();
         MyCommonAPIs.sleepi(15);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         }
-        MyCommonAPIs.sleepi(10);
-        $x("//div[@ng-show='acntMgnt' and @aria-hidden='false']//span[@ng-show='thirdParty']/a").click();
+//        MyCommonAPIs.sleepi(10);
+//        $x("//div[@ng-show='acntMgnt' and @aria-hidden='false']//span[@ng-show='thirdParty']/a").click();
         logger.info("Finish edit profile...");
     }
 
     public Map<String, String> getProfile() {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbutton.exists()) {
+        if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
+        } else if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
             MyCommonAPIs.sleepi(10);
@@ -1078,19 +1314,34 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
         }
         editprofile.click();
-        waitElement(firstname);
-        logger.info("Get user profile...");
-        Map<String, String> profileInfo = new HashMap<String, String>();
-        profileInfo.put("First Name", firstname.getValue());
-        profileInfo.put("Last Name", lastname.getValue());
-        profileInfo.put("Choose Country", choosecountry.getText());
-        profileInfo.put("State", state.getValue());
-        profileInfo.put("City", city.getValue());
-        profileInfo.put("Street Address", streetaddress.getValue());
-        profileInfo.put("Apartment or Suite", apartmentorsuite.getValue());
-        profileInfo.put("Postal/ZIP Code", postalzipcode.getValue());
-        WebCheck.checkHrefIcon(URLParam.hrefDevices);
-        return profileInfo;
+        MyCommonAPIs.sleepi(15);
+        if (firstNameCognito.exists()) {
+            logger.info("Get user profile...");
+            Map<String, String> profileInfo = new HashMap<String, String>();
+            profileInfo.put("First Name", firstNameCognito.getValue());
+            profileInfo.put("Last Name", lastNameCognito.getValue());
+            //profileInfo.put("Choose Country", choosecountry.getText());
+            profileInfo.put("State", stateCognito.getValue());
+            profileInfo.put("City", cityCognito.getValue());
+            profileInfo.put("Street Address", streetAddCognito.getValue());
+            profileInfo.put("Apartment or Suite", apartmentCognito.getValue());
+            profileInfo.put("Postal/ZIP Code", zipcodeCognito.getValue());  
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            return profileInfo;
+        } else {
+            logger.info("Get user profile...");
+            Map<String, String> profileInfo = new HashMap<String, String>();
+            profileInfo.put("First Name", firstname.getValue());
+            profileInfo.put("Last Name", lastname.getValue());
+            profileInfo.put("Choose Country", choosecountry.getText());
+            profileInfo.put("State", state.getValue());
+            profileInfo.put("City", city.getValue());
+            profileInfo.put("Street Address", streetaddress.getValue());
+            profileInfo.put("Apartment or Suite", apartmentorsuite.getValue());
+            profileInfo.put("Postal/ZIP Code", postalzipcode.getValue());
+            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+            return profileInfo;
+        }
     }
 
     public boolean checkLogout() {
@@ -8382,6 +8633,45 @@ public void OpenCreditAllocationPageFor2ndorg() {
     MyCommonAPIs.sleepi(3);
 }
 
+
+public class SSLUtil {
+    public void disableCertificateValidation() {
+        try {
+            TrustManager[] trustAllCerts = new TrustManager[]{
+                new X509TrustManager() {
+                    public X509Certificate[] getAcceptedIssuers() { return null; }
+                    public void checkClientTrusted(X509Certificate[] certs, String authType) { }
+                    public void checkServerTrusted(X509Certificate[] certs, String authType) { }
+                }
+            };
+
+            SSLContext sc = SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, new java.security.SecureRandom());
+            HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+public void enableTwoFAEmail() {
+    updateprofile.click();
+    MyCommonAPIs.sleepi(10);
+    if (cancelbutton.exists()) {
+        cancelbutton.click();
+    } 
+    loginsettings.click();
+    MyCommonAPIs.sleepi(10);
+    twostepverification.click();
+    MyCommonAPIs.sleepi(10);        
+    enable2FA.click();
+    MyCommonAPIs.sleepi(10);  
+    waitElement(email2FA);
+    Continue.click();
+    MyCommonAPIs.sleepi(5);  
+    Selenide.back();
+    
+}
 }
 
 

@@ -29,7 +29,7 @@ public class Testcase extends TestCaseBase {
     Random              r           = new Random();
     int                 num         = r.nextInt(10000000);
     String              mailname    = "apwptest" + String.valueOf(num);
-    String email = mailname + "@mailinator.com";
+    String email = mailname + "@yopmail.com";
 
     @Feature("HamburgerMenu") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T15500") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -43,24 +43,13 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.contains("#/organization/dashboard") | !url.contains("#/dashboard/account")) {
-            // new HamburgerMenuPage(false).backToLogin();
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(email, WebportalParam.loginPassword);
-        }
-
-        new HamburgerMenuPage().changeEmail(WebportalParam.loginName, WebportalParam.loginName, WebportalParam.loginPassword);
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
-
         System.out.println("start to do tearDown");
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
-        //assertTrue(false, "This case has issue.");
+        
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
 

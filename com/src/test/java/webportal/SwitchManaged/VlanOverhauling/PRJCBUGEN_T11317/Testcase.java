@@ -38,7 +38,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        netsp.deleteNetwork(vlanName);
         wlp.gotoLagPage();
         wlp.deleteLag();
         wlp.deleteLagCli();

@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 3: check cli")
     public void step3() {
         String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
-        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]);
+        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw2Model, sw1port[1]);
 
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
         if (!SwitchCLIUtils.isTagPort(port1, vlanId) && result1.contains("100")) {

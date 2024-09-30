@@ -85,8 +85,18 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Check vlan 600 configuration by APP and GUI")
     public void step5() {
         assertTrue(netsp.getNetworks().contains(vlanName), "network is created on wp");
+        if (new WebportalParam().sw1Model.contains("M4350")){
+            assertTrue(SwitchCLIUtils.isTagPort("1/0/1", vlanId), "port g1 is Tagged");
+            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is Tagged");
+            
+        }else  if (new WebportalParam().sw1Model.contains("M4250")){
+            assertTrue(SwitchCLIUtils.isTagPort("0/1", vlanId), "port g1 is Tagged");
+            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is Tagged");
+            
+        }else {
         assertTrue(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is Tagged");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is Tagged");
+        }
     }
 
     @Step("Test Step 6: Delete VLAN 600 by APP")
@@ -99,6 +109,12 @@ public class Testcase extends TestCaseBase {
     public void step7() {
         handle.waitCmdReady(vlanId, true);
         assertFalse(netsp.getNetworks().contains(vlanName), "network is deleted on wp");
+        if (new WebportalParam().sw1Model.contains("M4350")){
+            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId), "port g1 is not Tagged");
+        }else if (new WebportalParam().sw1Model.contains("M4250")){
+            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId), "port g1 is not Tagged");
+        }else {
         assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is not Tagged");
+        }
     }
 }

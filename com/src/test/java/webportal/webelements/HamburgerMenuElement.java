@@ -221,7 +221,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement updateprofile     = $x(
             "//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Update Profile") + "']");
     public SelenideElement        emailverifydialog = $x("//*[@aria-label='Email Verification Reminder']");
-    public SelenideElement        cancelbutton      = $x("//div[@class='buttonBlock ']/button");
+    public SelenideElement        cancelbutton      = $x("//*[text()='Cancel']");
     public SelenideElement        editprofile       = $x("//span[text()='Edit Profile']");
     public SelenideElement        firstname         = $x("//label[text()='First Name*']/../input");
     public SelenideElement        lastname          = $x("//label[text()='Last Name*']/../input");
@@ -459,7 +459,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement addphone           = $x("//button/span[text()='" + WebportalParam.getLocText("Add Phone Number") + "']");
     public static SelenideElement Next               = $x("//span[contains(text(),'Next')]");
 
-    public SelenideElement        verifybutton = $x("//div[@ng-show='OTP' and @class='wrapper']//span[text()='Verify']");
+    public SelenideElement        verifybutton = $x("//span[text()='Verify']");
     public SelenideElement        dontTrust    = $x("//span[contains(@translate,'dont_trust')]/..");
     public static String          finishPage   = "//div[@ng-show='logging' and @aria-hidden='false']";
     public static SelenideElement finishMsg    = $x("//h3[text()='" + WebportalParam.getLocText("Account Created") + "']");
@@ -934,8 +934,26 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
   public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
   
-  
-
+  public SelenideElement  enable2FA                    = $x("(//span[text()='Enable']/..//div)[4]");
+  public SelenideElement  email2FA                     = $x("//*[text()=\"Email (default)\"]"); 
+  public SelenideElement  Continue                    = $x("//*[text() ='Continue']");
+  //AddedByPratikForCognito
+  public SelenideElement        cancelbuttonCognito         = $x("//div[contains(@class,'buttonBlock')]//button[contains(@class,'cancel')]");
+  public SelenideElement        newemailCognito             = $x("//input[@id='mat-input-0']");
+  public SelenideElement        confirmmailCognito          = $x("//input[@id='mat-input-1']");
+  public SelenideElement        currentpasswordCognito      = $x("//input[@id='mat-input-2']");
+  public SelenideElement        submitchangeemailCognito    = $x("//span[text()='Submit']");
+  public SelenideElement        verifyOtpScreenCognito      = $x("//p[contains(text(),'sent a Verification code')]");
+  public SelenideElement        confirmEmailOtpYopmail      = $x("//td[text()='Verification Code: ']/b");
+  public SelenideElement        enterChangeemailOTP         = $x("//label[@for='ip_otp' or @aria-owns='ip_otp']");
+  public SelenideElement        enterOTP                    = $x("//input[@id='ip_otp']");
+  public SelenideElement        firstNameCognito            = $x("//input[@formcontrolname='firstName']");
+  public SelenideElement        lastNameCognito             = $x("//input[@formcontrolname='lastName']");
+  public SelenideElement        stateCognito                = $x("//input[@formcontrolname='state']");
+  public SelenideElement        cityCognito                 = $x("//input[@formcontrolname='city']");
+  public SelenideElement        streetAddCognito            = $x("//input[@formcontrolname='address']");
+  public SelenideElement        apartmentCognito            = $x("//input[@formcontrolname='address2']");
+  public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']"); 
   
 }
 

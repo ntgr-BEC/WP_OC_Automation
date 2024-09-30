@@ -19,6 +19,7 @@ import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.webelements.EventElement;
+import webportal.weboperation.NetworkSetupPage;
 
 public class EventPage extends EventElement {
     Logger logger = Logger.getLogger("EventPage");
@@ -39,6 +40,7 @@ public class EventPage extends EventElement {
         int maxSize = 0;
         int curSize = getEventCount();
         while (maxSize != curSize) {
+            System.out.println("inside while loop");
             curSize = getEventCount();
             for (int i = 0; i < 30; i++) {
                 actions.sendKeys(Keys.PAGE_DOWN).perform();
@@ -50,13 +52,15 @@ public class EventPage extends EventElement {
     }
     
     public void gotoPage() {
-        open(URLParam.hrefEvent, true);
+        open(URLParam.hrefEvent, true);  
         initFlag();
         showAllEvent();
     }
     
     public boolean isAllTypeEventShown() {
         List<String> lsEvent = getEventType();
+        System.out.println("lsEvent"+ lsEvent );
+        
         if (lsEvent.contains(sCritical) && lsEvent.contains(sWarning) && lsEvent.contains(sNotifications))
             return false;
         return true;
@@ -101,6 +105,7 @@ public class EventPage extends EventElement {
     }
     
     public List<String> getEventDesc() {
+        System.out.println(sEventDesc);
         return getTexts(sEventDesc);
     }
     
@@ -132,6 +137,7 @@ public class EventPage extends EventElement {
         
         assertTrue(bFind, "no event found");
         logger.info("find event at " + iPos);
+        System.out.println(String.format(sCheckOneRow, sTable, iPos+1));
         click($(String.format(sCheckOneRow, sTable, iPos+1)), true);
         takess("selected one event");
     }
@@ -241,4 +247,62 @@ public class EventPage extends EventElement {
         return result;
     }
     
+    public void makeCriticalEvent(boolean toNew, String status) {
+        System.out.println("isAllTypeEventShown"+isAllTypeEventShown());
+     
+        if (toNew || isAllTypeEventShown()) {
+            // make event, create an existed vlan and reboot will make warning, device disconnect will make critical & info
+            if (status.equals("Disconnect")) {
+                doSwitchCommandforDeviceDisconnect(1);
+                refresh();
+                new DevicesDashPage();
+                waitReady();
+                for(int i=0;i<8;i++) {
+                    System.out.println("Inside for");
+                    MyCommonAPIs.sleepi(60);
+                    refresh();        
+                    System.out.println("deviceStatusOnInsight"+ deviceStatusOnInsight);
+                    if(deviceStatusOnInsight.getText().contains("Device is disconnected")) {
+                      System.out.println("Device is disconnected via switch command");
+                      break;
+                }
+                } 
+                System.out.println("###################");
+            }
+            else if(status.equals("Connect")) {
+                doSwitchCommandforDeviceDisconnect(0);         //status is Connected
+                refresh();
+                new DevicesDashPage();
+                waitReady();
+                for(int i=0;i<8;i++) {
+                    MyCommonAPIs.sleepi(60);
+                    refresh();
+                    if(deviceStatusOnInsight.getText().contains("Connected")) {
+                      System.out.println("Device is connected via switch command");
+                        break;
+                }
+                }  
+            }
+                System.out.println("out of for loop");
+            gotoPage();    //navigating to Notification page
+            refresh();
+            showAllEvent();
+        }
+       }
+    
+    public void makeInformationEvent(boolean toNew,String netName, int vlanType, String vlanName, String vlanId) {
+        if (toNew || isAllTypeEventShown()) {
+            // make event, create an vlan will make information, reboot will make waring & device disconnect will make Critical
+//            doSwitchCommand(1);
+            logger.info(netName + "/" + vlanType + "/" + vlanName + "/" + vlanId);
+            new NetworkSetupPage().gotoPage();
+            if (!(new NetworkSetupPage().getNetworks()).contains(netName)) {
+                new NetworkSetupPage().clickAdd();
+                new NetworkSetupPage().setNetwork1(netName, null, vlanType, vlanName, vlanId);
+                new NetworkSetupPage().finishAllStep();
+            }
+            refresh();
+            showAllEvent();
+        }
+    }
 }
