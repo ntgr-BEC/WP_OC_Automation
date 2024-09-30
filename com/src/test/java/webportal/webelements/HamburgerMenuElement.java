@@ -937,7 +937,23 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  enable2FA                    = $x("(//span[text()='Enable']/..//div)[4]");
   public SelenideElement  email2FA                     = $x("//*[text()=\"Email (default)\"]"); 
   public SelenideElement  Continue                    = $x("//*[text() ='Continue']");
- 
+  //AddedByPratikForCognito
+  public SelenideElement        cancelbuttonCognito         = $x("//div[contains(@class,'buttonBlock')]//button[contains(@class,'cancel')]");
+  public SelenideElement        newemailCognito             = $x("//input[@id='mat-input-0']");
+  public SelenideElement        confirmmailCognito          = $x("//input[@id='mat-input-1']");
+  public SelenideElement        currentpasswordCognito      = $x("//input[@id='mat-input-2']");
+  public SelenideElement        submitchangeemailCognito    = $x("//span[text()='Submit']");
+  public SelenideElement        verifyOtpScreenCognito      = $x("//p[contains(text(),'sent a Verification code')]");
+  public SelenideElement        confirmEmailOtpYopmail      = $x("//td[text()='Verification Code: ']/b");
+  public SelenideElement        enterChangeemailOTP         = $x("//label[@for='ip_otp' or @aria-owns='ip_otp']");
+  public SelenideElement        enterOTP                    = $x("//input[@id='ip_otp']");
+  public SelenideElement        firstNameCognito            = $x("//input[@formcontrolname='firstName']");
+  public SelenideElement        lastNameCognito             = $x("//input[@formcontrolname='lastName']");
+  public SelenideElement        stateCognito                = $x("//input[@formcontrolname='state']");
+  public SelenideElement        cityCognito                 = $x("//input[@formcontrolname='city']");
+  public SelenideElement        streetAddCognito            = $x("//input[@formcontrolname='address']");
+  public SelenideElement        apartmentCognito            = $x("//input[@formcontrolname='address2']");
+  public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']"); 
   
 }
 
