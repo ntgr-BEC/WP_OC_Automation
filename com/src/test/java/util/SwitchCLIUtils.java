@@ -1469,4 +1469,32 @@ public class SwitchCLIUtils {
             st.sendCLICommandClear("spanning-tree", null);
         }
     }
+    
+    public static void SwitchOfflineOnline( String status) {
+        if (status.equals("Disconnect")) {
+            doSwitchCommandforDeviceDisconnect(1);
+            MyCommonAPIs.sleepi(300);
+        }
+        else if(status.equals("Connect")) {
+            doSwitchCommandforDeviceDisconnect(0);         //status is Connected
+            MyCommonAPIs.sleepi(300);
+        }      
+    }
+    
+    public static void doSwitchCommandforDeviceDisconnect(int cmdIndex) {
+        logger.info("Will generate a critical notification");
+        SwitchTelnet st = new SwitchTelnet(WebportalParam.sw1IPaddress, WebportalParam.loginDevicePassword, true);
+        if (cmdIndex == 1) {
+            logger.info("try to disconncet sw");
+            st.switchDisconnect();
+            new Pause().seconds(60, "sleep for switch disconnect");
+        } else if (cmdIndex == 2) {
+            logger.info("try to connect sw");
+            st.switchConnect();
+            new Pause().seconds(60, "sleep for switch connect");
+     
+        }
+        logger.info("try to disconnect the switch via command");
+    }
 }
+
