@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -39,7 +40,8 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        SwitchCLIUtils.CloudModeSet(true);
+//        SwitchCLIUtils.CloudModeSet(true);
+        SwitchCLIUtils.SwitchOfflineOnline("Connect");
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.deleteAllVlan();
@@ -47,10 +49,10 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
-        SwitchCLIUtils.CloudModeSet(false);
-        
-        SwitchCLIUtils.CloudModeSet(true);
-        handle.sleepi(5 * 60);
+//        SwitchCLIUtils.CloudModeSet(false);
+        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
+//        SwitchCLIUtils.CloudModeSet(true);
+//        handle.sleepi(5 * 60);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -70,6 +72,7 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 3: Check vlan 100 on switch")
     public void step3() {
+        MyCommonAPIs.sleepsync();
         String sRet = handle.waitCmdReady(vlanId, false);
         System.out.println(sRet);
         assertTrue(sRet.contains(vlanId), "check for " + vlanId);
