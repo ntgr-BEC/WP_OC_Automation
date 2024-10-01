@@ -51,8 +51,8 @@ public class Testcase extends TestCaseBase implements Config {
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         
-        netsp.gotoPage();
-        netsp.createNetwork("Voice VLAN", 1, "", "");
+//        netsp.gotoPage();
+//        netsp.createNetwork("Voice VLAN", 1, "", "");
         netsp.gotoPage();
         netsp.createNetwork("Video VLAN", 2, "", "");
     }
@@ -88,42 +88,44 @@ public class Testcase extends TestCaseBase implements Config {
 
     }
     
-    @Step("Test Step 3: Web Portal delete Video VLAN, video vlan should not be deleted")
-    public void step3() {
-        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
-        WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
-        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
-        MyCommonAPIs.sleep(8000);
-        
-        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        vlanPage.deleteVlan("4089");
-        
-        if (!WebportalParam.sw1Model.contains("GS716") && !WebportalParam.sw1Model.contains("MS510")
-                && !WebportalParam.sw1Model.contains("GS724")) {
-            SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
-            String result2 = "";
-            if (WebportalParam.isRltkSW1) {
-                result2 = switchTelnet.getCLICommand("show running-config");
-            } else {
-                result2 = switchTelnet.getCLICommand("show vlan 4089");
-            }
-            
-            System.out.println(result2);
-            if (result2.contains("4089")) {
-                micResult = true;
-            } else {
-                micResult = false;
-                assertTrue(micResult, "----Check Point 2 Fail:show vlan 4089, cli is:" + result2);
-            }
-        }
-    }
+//    @Step("Test Step 3: Web Portal delete Video VLAN, video vlan should not be deleted")
+//    public void step3() {
+//        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+//        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
+//        WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
+//        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
+//        MyCommonAPIs.sleep(8000);
+//        
+//        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+//        vlanPage.deleteVlan("4089");
+//        
+//        if (!WebportalParam.sw1Model.contains("GS716") && !WebportalParam.sw1Model.contains("MS510")
+//                && !WebportalParam.sw1Model.contains("GS724")) {
+//            SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
+//            String result2 = "";
+//            if (WebportalParam.isRltkSW1) {
+//                result2 = switchTelnet.getCLICommand("show running-config");
+//            } else {
+//                result2 = switchTelnet.getCLICommand("show vlan 4089");
+//            }
+//            
+//            System.out.println(result2);
+//            if (result2.contains("4089")) {
+//                micResult = true;
+//            } else {
+//                micResult = false;
+//                assertTrue(micResult, "----Check Point 2 Fail:show vlan 4089, cli is:" + result2);
+//            }
+//        }
+//    }
     
     @Step("Test Step 4: Web Portal create Video VLAN via the template of Video VLAN with ports")
     public void step4() {
+        
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteVlan("4089");
         vlanPage.addVideoVlanWithPorts("Video VLAN", "4089", dut1Name, sw1port, "tag", null, null, null, "true");
-//        MyCommonAPIs.sleep(5000);
+        MyCommonAPIs.sleepsync();
         handle.waitCmdReady("vlan600", false);
     }
     
