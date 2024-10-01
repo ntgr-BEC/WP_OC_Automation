@@ -110,4 +110,5 @@ public class EventElement extends MyCommonAPIs {
     }
     
     public SelenideElement        deviceStatusOnInsight      = $x("//*[@id=\"tdDevStatusdevicesDash0\"]");
+    public SelenideElement InformationEvent                  = $x("//li[text()=\"Information\"]");
 }
