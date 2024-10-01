@@ -301,6 +301,7 @@ public class EventPage extends EventElement {
                 new NetworkSetupPage().setNetwork1(netName, null, vlanType, vlanName, vlanId);
                 new NetworkSetupPage().finishAllStep();
             }
+            gotoPage();    //navigating to Notification page
             refresh();
             showAllEvent();
         }

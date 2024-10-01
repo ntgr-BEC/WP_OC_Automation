@@ -17,6 +17,8 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import webportal.webelements.EventElement;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -43,6 +45,9 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -75,10 +80,17 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Delete the critical log by Insight App;")
     public void step4() {
         Selenide.refresh();
-        List<String> lsEvent1 = evtp.getEventDesc();
+        evtp.InformationEvent.click();
+//        List<String> lsEvent1 = evtp.getEventDesc();
+//        List<String> lsEvent2 = evtp.getEventDesc();
+//        assertTrue(!lsEvent1.equals(lsEvent2), "one information type is removed");
+        int event1= evtp.getEventCount();
+        System.out.println(event1);
         evtp.deleteOneEvent(EventElement.sNotifications);
-        List<String> lsEvent2 = evtp.getEventDesc();
-
-        assertTrue(!lsEvent1.equals(lsEvent2), "one information type is removed");
+        evtp.InformationEvent.click();
+        int event2= evtp.getEventCount();
+        System.out.println(event2);
+       
+        assertTrue(event1!=(event2), "one information type is removed");    
     }
 }
