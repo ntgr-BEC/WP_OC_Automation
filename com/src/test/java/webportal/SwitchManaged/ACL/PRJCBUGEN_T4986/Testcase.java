@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -97,8 +97,8 @@ public class Testcase extends TestCaseBase {
         wvp.ipMAMDeviceCancel.click();
 
         handle.waitCmdReady(oldMask, true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s", ipaclIp)));
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s", ipaclIp)));
     }
 
     // Each step is a single test step from Jira Test Case

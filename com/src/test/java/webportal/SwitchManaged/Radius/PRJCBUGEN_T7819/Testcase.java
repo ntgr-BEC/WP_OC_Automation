@@ -12,8 +12,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSummaryPage;
@@ -70,10 +70,10 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 4: Go to Switch CLI to check port option")
     public void step4() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw2IPaddress, false);
-        SwitchCLIUtilsMNG.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand(
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw2IPaddress, false);
+        SwitchCLIUtils.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand(
                 "show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw2Model, WebportalParam.sw2LagPort1)));
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 2, "check radius option on port");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 2, "check radius option on port");
     }
     
     @Step("Test Step 5: Back to Web Portal, view Switch Daskboard and ports status")

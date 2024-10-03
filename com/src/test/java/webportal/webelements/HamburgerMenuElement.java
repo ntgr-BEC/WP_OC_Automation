@@ -221,7 +221,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement updateprofile     = $x(
             "//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Update Profile") + "']");
     public SelenideElement        emailverifydialog = $x("//*[@aria-label='Email Verification Reminder']");
-    public SelenideElement        cancelbutton      = $x("//div[@class='buttonBlock ']/button");
+    public SelenideElement        cancelbutton      = $x("//*[text()='Cancel']");
     public SelenideElement        editprofile       = $x("//span[text()='Edit Profile']");
     public SelenideElement        firstname         = $x("//label[text()='First Name*']/../input");
     public SelenideElement        lastname          = $x("//label[text()='Last Name*']/../input");
@@ -413,19 +413,31 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public static SelenideElement createaccount      = $x("(//u[text()='" + WebportalParam.getLocText("Create an Account") + "'])[1]");
     public static SelenideElement createaccountold   = $x("(//u[text()='" + WebportalParam.getLocText("Create account") + "'])[1]");
+    public static SelenideElement createaccountcognito      = $x("//*[text()=' Create an Account ']");
     public SelenideElement        createfirstname    = $x("//label[text()='First Name']/../input");
+    public SelenideElement        createfirstname1   = $x("//*[@id=\"ip_firstName\"]");
     public SelenideElement        createlastname     = $x("//label[text()='Last Name']/../input");
+    public SelenideElement        createlastname1     = $x("//*[@id=\"ip_lastName\"]");
     public SelenideElement        createemailaddress = $x("//label[text()='Email Address']/../input");
+    public SelenideElement        createemailaddress1 = $x("//*[@id=\"mat-input-0\"]");
     public SelenideElement        confirmemail       = $x("//label[text()='Confirm Email Address']/../input");
+    public SelenideElement        confirmemail1       = $x("//*[@id=\"cnfEmail\"]");
     public SelenideElement        createpassword     = $x("//label[text()='Password']/..//input");
+    public SelenideElement        createpassword1     = $x("//*[@id=\"ip_pwdSignup\"]");
     public SelenideElement        confirmpassword    = $x("//label[text()='Confirm Password']/..//input");
+    public SelenideElement        confirmpassword1    = $x("//*[@id=\"ip_cnfPwd\"]");
     public SelenideElement        selectcountry      = $x("//label[text()='Choose Country']/..//select");
+    public SelenideElement        selectcountry1      = $x("//*[@id=\"mat-input-6\"]");
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
+    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
     public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
     public static SelenideElement policyText1        = $x("//*[@id=\"smart-form-register2\"]/fieldset/div[1]/section[2]/label/p");
     public static SelenideElement policyText2        = $x("//*[@id=\"_secSubscReg\"]/label/p");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
     public SelenideElement        continuebutton     = $("#signupBtn_i");
+    public SelenideElement        continuebutton1     = $("#signupForm > div.buttonBlock.mb20.ml30 > button");
+    public SelenideElement loginPwdNewcognito    = $("#mat-input-8");
+    public SelenideElement SigninbuttonCognito    = $x("//*[@id=\"Login-btn\"]");
     public static SelenideElement emailerror         = $x(
             "//label[@for='email']/..//div[text()='" + WebportalParam.getLocText("Please enter a valid email address.") + "']");
     public static SelenideElement confirmemailerror  = $x(
@@ -436,9 +448,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
             "//label[@for='input_3']/..//div[contains(text(),'" + WebportalParam.getLocText("Allowed symbols are") + " ! @ # $ % ^ & * ( )')]");
     public static SelenideElement confirmpwderror    = $x(
             "//label[@for='input_4']/..//div[text()='" + WebportalParam.getLocText("Password and Confirm Password must be same.") + "']");
-    public SelenideElement        nothanks           = $x("//a[text()='No Thanks']");
-    public static SelenideElement newnothanks        = $x(
-            "//div[@ng-show='signupStepThree' and @aria-hidden='false']//button[text()='" + WebportalParam.getLocText("No Thanks") + "']");
+  
     public static SelenideElement NoThankYou         = $x("//u[text()='No thank you']");
     
     public static SelenideElement yesenbale          = $x("(//button[text()='" + WebportalParam.getLocText("Yes, Enable") + "'])[1]");
@@ -449,7 +459,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement addphone           = $x("//button/span[text()='" + WebportalParam.getLocText("Add Phone Number") + "']");
     public static SelenideElement Next               = $x("//span[contains(text(),'Next')]");
 
-    public SelenideElement        verifybutton = $x("//div[@ng-show='OTP' and @class='wrapper']//span[text()='Verify']");
+    public SelenideElement        verifybutton = $x("//span[text()='Verify']");
     public SelenideElement        dontTrust    = $x("//span[contains(@translate,'dont_trust')]/..");
     public static String          finishPage   = "//div[@ng-show='logging' and @aria-hidden='false']";
     public static SelenideElement finishMsg    = $x("//h3[text()='" + WebportalParam.getLocText("Account Created") + "']");
@@ -532,7 +542,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        directPurchaseTdFour     = $x(directPurchaseTableBasic + "//td[4]");
     public static SelenideElement cancelSubscription       = $x("//button[text()='" + WebportalParam.getLocText("Cancel Subscription") + "']");
 
-    public SelenideElement MUB                            = $x("//a[text() = 'Monthly Usage Billing']");
+    public SelenideElement MUB                            = $x("//div[contains(@class,'leftMenuHave')]//a[text() = 'Monthly Usage Billing']");
     public SelenideElement MUBcancelation                 = $x("//u[text() = 'Cancellation Policy']");
     public SelenideElement cancelationKB                  = $x("//*[@id=\"articlePage:frm:articleStats\"]/h1");
     public SelenideElement ManagePaymentMethods           = $x("//span[text() = 'Manage Payment Methods']");
@@ -793,6 +803,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement CrditAllocationText                 = $x("//div[text()='Credit Allocation']");
   public SelenideElement OrgTextCredit                       = $x("//div[@class='clientDataDetailSection']//li[contains(text(),'Organizations')]");
   public static SelenideElement SignUpPro                    = $x("//*[@id=\"insight_signup\"]/span/a");
+  public static SelenideElement SignUpProCognito             = $x("//*[@id=\"insight_signup\"]");
   public static SelenideElement ErrorTextForenterprise       = $x("//div[@id='ssidModalError']");
   
   
@@ -920,6 +931,29 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  selectAllNoti               = $x("//span[@class=\"icon-bulk-edit-2\"]"); 
   public SelenideElement  selectCheckBox               = $x("//*[@id=\"selectAllCheck\"]/../i"); 
   public SelenideElement  deleteNoti                   = $x("//*[@id=\"btnDelete1\"]"); 
+  public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
+  public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
+  
+  public SelenideElement  enable2FA                    = $x("(//span[text()='Enable']/..//div)[4]");
+  public SelenideElement  email2FA                     = $x("//*[text()=\"Email (default)\"]"); 
+  public SelenideElement  Continue                    = $x("//*[text() ='Continue']");
+  //AddedByPratikForCognito
+  public SelenideElement        cancelbuttonCognito         = $x("//div[contains(@class,'buttonBlock')]//button[contains(@class,'cancel')]");
+  public SelenideElement        newemailCognito             = $x("//input[@id='mat-input-0']");
+  public SelenideElement        confirmmailCognito          = $x("//input[@id='mat-input-1']");
+  public SelenideElement        currentpasswordCognito      = $x("//input[@id='mat-input-2']");
+  public SelenideElement        submitchangeemailCognito    = $x("//span[text()='Submit']");
+  public SelenideElement        verifyOtpScreenCognito      = $x("//p[contains(text(),'sent a Verification code')]");
+  public SelenideElement        confirmEmailOtpYopmail      = $x("//td[text()='Verification Code: ']/b");
+  public SelenideElement        enterChangeemailOTP         = $x("//label[@for='ip_otp' or @aria-owns='ip_otp']");
+  public SelenideElement        enterOTP                    = $x("//input[@id='ip_otp']");
+  public SelenideElement        firstNameCognito            = $x("//input[@formcontrolname='firstName']");
+  public SelenideElement        lastNameCognito             = $x("//input[@formcontrolname='lastName']");
+  public SelenideElement        stateCognito                = $x("//input[@formcontrolname='state']");
+  public SelenideElement        cityCognito                 = $x("//input[@formcontrolname='city']");
+  public SelenideElement        streetAddCognito            = $x("//input[@formcontrolname='address']");
+  public SelenideElement        apartmentCognito            = $x("//input[@formcontrolname='address2']");
+  public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']"); 
   
 }
 

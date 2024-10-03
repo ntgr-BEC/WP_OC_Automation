@@ -95,7 +95,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
         assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
 
     }
@@ -115,8 +115,8 @@ public class Testcase extends TestCaseBase {
          MyCommonAPIs.sleepsync();
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean relayConfig = tmpStr.contains("ip dhcp l2-relay");
-         boolean vlanRelayConfig = tmpStr.contains("ip dhcp l2-relay vlan 100");
+         boolean relayConfig = tmpStr.contains("dhcp l2relay");
+         boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
          assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
          assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
          

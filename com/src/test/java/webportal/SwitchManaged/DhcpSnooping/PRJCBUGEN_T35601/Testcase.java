@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
                                                                                                                                  // title from Jira
                                                                                                                                  // Test Case.
     @TmsLink("PRJCBUGEN-T35601") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -91,12 +91,12 @@ public class Testcase extends TestCaseBase {
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
 
         handle.refresh();
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-        assertTrue(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+        assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
 
-        handle.waitCmdReady("dhcp snooping", true);
         MyCommonAPIs.sleepsync();
-
+        handle.waitCmdReady("dhcp snooping", true);
+  
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean snoopingConfig = tmpStr.contains("ip dhcp snooping");
         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100");

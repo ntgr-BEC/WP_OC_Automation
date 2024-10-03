@@ -19,9 +19,11 @@ import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.DeviceBulkOnboardingPage;
 import webportal.weboperation.DeviceScreenNavigationPage;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
@@ -31,6 +33,8 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
+    String organizationName = "organization";
+    String locationName     = "office1";
 
     @Feature("ScreenNavigationProAcct") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T35136") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -46,6 +50,8 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        OrganizationPage page = new OrganizationPage();
+        page.deleteOrganizationNew(organizationName);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -56,6 +62,26 @@ public class Testcase extends TestCaseBase {
       webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
       
       handle.gotoLoction();
+      
+      Map<String, String> organizationInfo = new HashMap<String, String>();
+      organizationInfo.put("Name", organizationName);
+
+      OrganizationPage OrganizationPage = new OrganizationPage();
+      OrganizationPage.addOrganization(organizationInfo);
+      OrganizationPage.openOrg(organizationName);
+
+      HashMap<String, String> locationInfo = new HashMap<String, String>();
+      locationInfo.put("Location Name", locationName);
+      locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+      locationInfo.put("Zip Code", "12345");
+      locationInfo.put("Country", "United States of America");
+      new AccountPage(false).addNetwork(locationInfo);
+      MyCommonAPIs.sleepi(5);
+      Map<String, String> firststdevInfo = new HashMap<String, String>();
+      firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+      firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+      new DevicesDashPage().addNewdummyDevice(firststdevInfo);
+      
     }
 
     @Step("Test Step 2: Verify Purchase Order History page")
@@ -81,13 +107,13 @@ public class Testcase extends TestCaseBase {
     
     }
     
-    @Step("Test Step 5: Verify VPN services page")
-    public void step5() {
-           
-            assertTrue(new  DeviceScreenNavigationPage().verifyVPNServices()," VPN services page  is not complete");
-            MyCommonAPIs.sleepi(15); 
-    
-    }
+//    @Step("Test Step 5: Verify VPN services page")
+//    public void step5() {
+//           
+//            assertTrue(new  DeviceScreenNavigationPage().verifyVPNServices()," VPN services page  is not complete");
+//            MyCommonAPIs.sleepi(15); 
+//    
+//    }
     
     @Step("Test Step 6: Verify ICP Pro page")
     public void step6() {

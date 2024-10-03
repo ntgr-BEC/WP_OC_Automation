@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchIpSettingsPage;
@@ -58,13 +58,13 @@ public class Testcase extends TestCaseBase implements Config {
     public void step3() {
         handle.waitCmdReady(IPINFO.get("DNS Server1"), false);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         String DNSName = switchTelnet.getDNS();
         if (DNSName.contains(IPINFO.get("DNS Server1")) && DNSName.contains(IPINFO.get("DNS Server2"))) {
             micResult = true;
         }
         assertTrue(micResult);
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
 
     @AfterMethod(alwaysRun = true)

@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -101,8 +101,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 6: Check MAC ACLs on device")
     public void step6() {
         handle.waitCmdReady("m151515151515161616161616100", false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "allow mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "allow mac acl");
         assertTrue(tmpStr.contains("m121212121212000000000000100"), "permit 12:12:12:12:12:12");
         assertTrue(tmpStr.contains("m131313131313000000000000100"), "permit 13:13:13:13:13:13");
         assertTrue(tmpStr.contains("m1414141414140000000000001002"), "permit any 14:14:14:14:14:14");
@@ -120,7 +120,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 8: All 5 mac acls are deleted on device")
     public void step8() {
         handle.waitCmdReady("m151515151515161616161616100", true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
         assertFalse(tmpStr.contains("m121212121212000000000000100"), "no permit 12:12:12:12:12:12");
         assertFalse(tmpStr.contains("m131313131313000000000000100"), "no permit 13:13:13:13:13:13");
         assertFalse(tmpStr.contains("m1414141414140000000000001002"), "no permit any 14:14:14:14:14:14");

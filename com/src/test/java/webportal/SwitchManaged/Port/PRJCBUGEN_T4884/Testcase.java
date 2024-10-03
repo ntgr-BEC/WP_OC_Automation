@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: Config successfully,and ports' status is 10M half-duplex on webportal")
     public void step3() {
-        MyCommonAPIs.sleep(60 * 1000);
+        MyCommonAPIs.sleep(120 * 1000);    //replaced 60 by 180
         // check sw1 on webportal
         for (int i = 0; i < sw1port.length; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
@@ -83,8 +83,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Config successfully,and ports' status is 10M half-duplex on CLI")
     public void step4() {
         // check on dut CLI
-        String portall = SwitchCLIUtilsMNG.getPortInfo("g1");
-        if (SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("10") && (SwitchCLIUtilsMNG.PortClass.duplexMode == 1)) {
+        String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);        //replaced g1 by WebportalParam.sw1Port1
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("10") && (SwitchCLIUtils.PortClass.duplexMode == 1)) {
             micResult = true;
         } else {
             micResult = false;

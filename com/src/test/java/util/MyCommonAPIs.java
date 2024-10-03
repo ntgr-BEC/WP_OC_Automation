@@ -951,9 +951,9 @@ public class MyCommonAPIs {
     public void waitDeviceOnline() {
         RunCommand.waitSWAlive(WebportalParam.sw1IPaddress);
         boolean bTimeout = true;
-        if (!WebportalParam.isRltkSW1) {
+        if (!WebportalParam.isRltkSW1) {   
             for (int i = 0; i < 12; i++) {
-                if (!waitCliReady("show application status CloudAgent", "Operational", false).equals(g_sTimeout)) {
+                if (!waitCliReady("show application status CloudAgent", "Connected", false).equals(g_sTimeout)) {
                     bTimeout = false;
                     break;
                 }
@@ -2420,5 +2420,22 @@ public class MyCommonAPIs {
     public boolean getCheckPointResult() {
         iGCheckPoint = 0;
         return bGCheckPoint;
+    }
+    
+    
+    public void doSwitchCommandforDeviceDisconnect(int cmdIndex) {
+        logger.info("Will generate a critical notification");
+        SwitchTelnet st = new SwitchTelnet(WebportalParam.sw1IPaddress, WebportalParam.loginDevicePassword, true);
+        if (cmdIndex == 1) {
+            logger.info("try to disconncet sw");
+            st.switchDisconnect();
+            new Pause().seconds(60, "sleep for switch disconnect");
+        } else if (cmdIndex == 2) {
+            logger.info("try to connect sw");
+            st.switchConnect();
+            new Pause().seconds(60, "sleep for switch connect");
+            waitDeviceOnline();
+        }
+        logger.info("try to disconnect the switch via command");
     }
 }

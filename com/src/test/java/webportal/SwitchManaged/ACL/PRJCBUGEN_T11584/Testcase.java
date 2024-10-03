@@ -15,7 +15,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -82,10 +82,10 @@ public class Testcase extends TestCaseBase {
 //        tmpStr = handle.getCmdOutputShowRunningConfig(false);
 //        assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 //
-//        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-//        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+//        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+//        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
 //        for (String s : lsExpectACL) {
-//            assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s %s", s, netsp.camData.fromipmask)),
+//            assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s %s", s, netsp.camData.fromipmask)),
 //                    "verify permit ip host" + s);
 //        }
 //    }
@@ -100,9 +100,9 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.camData.fromip, true);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
         for (String s : lsExpectACL) {
-            assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s %s", s, netsp.camData.fromipmask)),
+            assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s %s", s, netsp.camData.fromipmask)),
                     "verify no permit ip host " + s);
         }
     }

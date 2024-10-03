@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 0: Downgrade firmware")
     public void step0() {
-        SwitchCLIUtilsMNG.updateSWFirmwareOld(true);
+        SwitchCLIUtils.updateSWFirmwareOld(true);
     }
     
     // Each step is a single test step from Jira Test Case

@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSummaryPage;

@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -83,15 +83,15 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: verify ip/mac acl on webportal")
     public void step4() {
         handle.waitCmdReady("11:22:00", false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "allow ip acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "allow ip acl");
         tmpStr = "permit 192.168.1.0 0.0.0.255";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Create IP ACL successfully" + ": " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Create IP ACL successfully" + ": " + tmpStr);
         
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "allow mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "allow mac acl");
         tmpStr = "permit aa:bb:cc:11:22:00 00:00:00:00:00:00 any";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Create MAC ACL successfully" + ": " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Create MAC ACL successfully" + ": " + tmpStr);
     }
     
 }

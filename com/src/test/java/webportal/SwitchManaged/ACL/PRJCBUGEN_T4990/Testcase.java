@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -84,11 +84,11 @@ public class Testcase extends TestCaseBase {
         assertTrue(ls.contains(ipaclName));
 
         handle.waitCmdReady(ipaclIp, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
         tmpStr = String.format("deny %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "deny,source ip 100.1.1.100,mask 0.255.255.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "deny,source ip 100.1.1.100,mask 0.255.255.255"+": "+tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -106,11 +106,11 @@ public class Testcase extends TestCaseBase {
             + "--deny,source ip 100.1.1.111,mask 0.0.255.255\n" + "--permit all")
     public void step5() {
         handle.waitCmdReady(wvp.ipFilterIpMask, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
         tmpStr = String.format("deny %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "deny,source ip 100.1.1.111,mask 0.0.255.255"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "deny,source ip 100.1.1.111,mask 0.0.255.255"+": "+tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Verify Mask"+": "+tmpStr);
     }
 
 }

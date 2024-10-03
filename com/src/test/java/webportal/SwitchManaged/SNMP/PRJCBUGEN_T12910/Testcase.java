@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -27,7 +27,7 @@ public class Testcase extends TestCaseBase {
     @TmsLink("PRJCBUGEN-T12910") // It's a testcase id/link from Jira Test Case.
     @Test(alwaysRun = true, groups = "p3") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
-        SwitchCLIUtilsMNG.cleanSNMP(true);
+        SwitchCLIUtils.cleanSNMP(true);
         runTest(this);
     }
 
@@ -52,7 +52,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Go to switch local GUI, check default SNMP config")
     public void step2() {
-        SwitchCLIUtilsMNG.getSNMPInfo();
-        assertFalse(SwitchCLIUtilsMNG.SNMPClass.snmpResult.length() > 10, "check option on cli");
+        SwitchCLIUtils.getSNMPInfo();
+        assertFalse(SwitchCLIUtils.SNMPClass.snmpResult.length() > 10, "check option on cli");
     }
 }

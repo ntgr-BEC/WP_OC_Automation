@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchPortMirrorPage;
@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         // check on dut CLI
         String tocheck;
-        String result1 = SwitchCLIUtilsMNG.getPortMirror();
+        String result1 = SwitchCLIUtils.getPortMirror();
         System.out.println(result1);
         tocheck = "destination interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, dstports[0]);
         if (result1.contains(tocheck)) {

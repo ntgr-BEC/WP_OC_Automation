@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -78,10 +78,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Allow,source ip-11.1.1.1/0.0.0.255,destination ip-12.1.1.1/0.0.0.255")
     public void step3() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult.contains(
+                SwitchCLIUtils.ACLClass.aclResult.contains(
                         String.format("permit %s %s %s %s", wvp.camData.fromip, wvp.camData.fromipmask, wvp.camData.toip, wvp.camData.toipmask)),
                 "source ip-11.1.1.1/0.0.0.255,destination ip-12.1.1.1/0.0.0.255");
     }
@@ -101,10 +101,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Allow,source ip-13.1.1.1/0.0.255.255,destination ip-12.1.1.1/0.0.0.255")
     public void step5() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult.contains(
+                SwitchCLIUtils.ACLClass.aclResult.contains(
                         String.format("permit %s %s %s %s", wvp.camData.fromip, wvp.camData.fromipmask, wvp.camData.toip, wvp.camData.toipmask)),
                 "Allow,source ip-13.1.1.1/0.0.255.255,destination ip-12.1.1.1/0.0.0.255");
     }

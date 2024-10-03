@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do tearDown");
         wvp.gotoPage();
         wvp.deleteAllVlan();
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
     }
     
     // Each step is a single test step from Jira Test Case
@@ -55,7 +55,7 @@ public class Testcase extends TestCaseBase {
         
         new AccountPage().enterEditNetworkPage();
         rtp.gotoPage();
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
     }
     
     @Step("Test Step 2: Add gateway to a known ip address")

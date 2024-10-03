@@ -135,8 +135,9 @@ public class SwitchTelnet {
      
         if(isRltkSW) {
             telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
-            }else {
+            System.out.println("inside port number 60000");            }else {
                 telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+                System.out.println("inside port number 23"); 
             }
         return telnet;
     }
@@ -146,8 +147,9 @@ public class SwitchTelnet {
         TelnetOperator telnet = new TelnetOperator("VT220", ">"); // Windows,用VT220,否则会乱码
         if(isRltkSW) {
             telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
-            }else {
+            System.out.println("inside port number 60000");            }else {
                 telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+                System.out.println("inside port number 23"); 
             }
         return telnet;
     }
@@ -161,8 +163,9 @@ public class SwitchTelnet {
         }
         if(isRltkSW) {
             telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
-            }else {
+            System.out.println("inside port number 60000");            }else {
                 telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+                System.out.println("inside port number 23"); 
             }
         return telnet;
     }
@@ -575,5 +578,17 @@ public class SwitchTelnet {
             return false;
         else
             return true;
+    }
+    
+    public void switchDisconnect() {
+        setEnable();
+        telnet.write("application stop CloudAgent");
+        MyCommonAPIs.sleepi(120);
+    }
+    
+    public void switchConnect() {
+        setEnable();
+        telnet.write("application start CloudAgent");
+        MyCommonAPIs.sleepi(120);
     }
 }

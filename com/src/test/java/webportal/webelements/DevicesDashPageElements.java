@@ -243,9 +243,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
                 deviceModelIndex = 5;
                 deviceUptimeIndex = 10;
             } else {
-                deviceIpIndex = 7;
+                deviceIpIndex = 10;
                 deviceModelIndex = 5;
-                deviceUptimeIndex = 8;
+                deviceUptimeIndex = 11;
             }
         }
         

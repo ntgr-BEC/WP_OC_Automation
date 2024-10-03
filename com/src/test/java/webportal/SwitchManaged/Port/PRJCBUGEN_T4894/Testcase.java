@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(2000);
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         String framesize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getMaxFrameSize();
-        if (framesize.equals(FRAME_SIZE_MIN)) {
+        if (framesize.equals(FRAME_SIZE_MIN)) {    
             micResult = true;
         } else {
             micResult = false;
@@ -78,9 +78,10 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check min frame size 1518  on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        MyCommonAPIs.sleepi(180);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         String frameSize = switchTelnet.getMaxFrameSize(WebportalParam.sw1LagPort1CLI);
-        if (!frameSize.contains(FRAME_SIZE_MIN)) {
+        if (frameSize.contains(FRAME_SIZE_MIN)) {
             micResult = true;
         } else {
             micResult = false;
@@ -108,7 +109,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 6: Check max frame size 9198 on CLI")
     public void step6() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        MyCommonAPIs.sleepi(180);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         String frameSize = switchTelnet.getMaxFrameSize(WebportalParam.sw1LagPort1CLI);
         if (frameSize.contains(FRAME_SIZE_MAX)) {
             micResult = true;

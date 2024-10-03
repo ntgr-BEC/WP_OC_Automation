@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -68,9 +68,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Check the time schedule configuration on switch")
     public void step4() {
         handle.waitCmdReady(sTestStr, false);
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g1");
         assertTrue(tmpStr.contains(sTestStr), "verify the timer schedule is set");
-        tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g2");
+        tmpStr = SwitchCLIUtils.getPoEInfo("g2");
         assertFalse(tmpStr.contains(sTestStr), "verify the timer schedule is not set");
     }
 }

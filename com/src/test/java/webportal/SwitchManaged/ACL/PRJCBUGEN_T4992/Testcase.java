@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,10 +75,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Allow,source ip 100.1.1.1/0.0.0.0,des ip 100.1.1.2/0.0.0.0")
     public void step3() {
         handle.waitCmdReady(wvp.camData.toip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit %s", wvp.camData.fromip);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "source ip -100.1.1.1"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "source ip -100.1.1.1"+": "+tmpStr);
     }
 
 }

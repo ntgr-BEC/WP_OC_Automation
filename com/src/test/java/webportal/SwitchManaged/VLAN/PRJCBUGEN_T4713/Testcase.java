@@ -14,8 +14,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -84,7 +84,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet.sendCLICommand("show run", null);
         System.out.println(result2);
         if (result2.toLowerCase().contains("voice vlan") || (result2.toLowerCase().contains("auto-voip"))) {
@@ -94,7 +94,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 2 Fail:show auto-voip, cli is:" + result2);
         }
 
-//        String result1 = SwitchCLIUtilsMNG.getVoiceInfo(0, 0);
+//        String result1 = SwitchCLIUtils.getVoiceInfo(0, 0);
 //        System.out.println(result1);
 //        if (result1.contains("7")) {
 //            micResult = true;
@@ -103,7 +103,7 @@ public class Testcase extends TestCaseBase implements Config {
 //            assertTrue(micResult, "----Check Point 3 Fail:show auto-voip protocol-based interface all, 1 cli is:" + result1);
 //        }
 //
-//        result1 = SwitchCLIUtilsMNG.getVoiceInfo(0, 1);
+//        result1 = SwitchCLIUtils.getVoiceInfo(0, 1);
 //        if (result1.toLowerCase().contains("enabled")) {
 //            micResult = true;
 //        } else {
@@ -119,7 +119,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 5 Fail:show auto-voip protocol-based interface all, 3 cli is:" + result2);
         }
         
-//        String result1 = SwitchCLIUtilsMNG.getVoiceVlan();
+//        String result1 = SwitchCLIUtils.getVoiceVlan();
         if (result2.toLowerCase().contains("voice-vlan") &&  (result2.toLowerCase().contains("voip"))) {
             micResult = true;
         }else if(result2.toLowerCase().contains("auto-voip protocol-based") &&  (result2.toLowerCase().contains("auto-voip oui-based"))) {

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,12 +75,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Generate 2 IP ACLs on switch:\n" + "--Deny,source-100.1.1.1/0.0.0.0,des-100.1.1.20/0.0.0.0\n" + "--Permit all")
     public void step3() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = wvp.camData.fromip;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,source-100.1.1.1/0.0.0.0"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,source-100.1.1.1/0.0.0.0"+": "+tmpStr);
         tmpStr = wvp.camData.toip;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "Deny,des-100.1.1.20/0.0.0.0"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "Deny,des-100.1.1.20/0.0.0.0"+": "+tmpStr);
     }
 
 }

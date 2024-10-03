@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase implements Config {
         wiredGroupPortConfigPage2.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING3);
         handle.waitCmdReady("vlan200", false);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet
                 .sendCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]), null);
         System.out.println(result2);
@@ -79,7 +79,7 @@ public class Testcase extends TestCaseBase implements Config {
         vlanPage.deleteAllVlan();
         MyCommonAPIs.sleep(5000);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet
                 .sendCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]), null);
         System.out.println(result2);

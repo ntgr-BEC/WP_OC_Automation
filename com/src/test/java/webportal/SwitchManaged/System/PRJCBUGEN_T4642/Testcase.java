@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.WebportalLoginPage;
@@ -61,10 +61,10 @@ public class Testcase extends TestCaseBase implements Config {
     public void step3() {
         handle.waitCmdReady(DEVIENAME1, false);
         
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String newName = switchTelnet.getDeviceName();
         assertTrue(newName.contains(DEVIENAME1), "check device name");
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
     
     @Step("Test Step 4: reboot device")

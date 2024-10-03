@@ -16,7 +16,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -100,7 +100,7 @@ public class Testcase extends TestCaseBase {
     public void step4() {
         if (bUserDefined) {
             handle.waitCmdReady(sExpectedtValue, false);
-            tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
+            tmpStr = SwitchCLIUtils.getPoEInfo("g1");
             assertTrue(tmpStr.contains(sCurrentValue), "verify the power limit is set to 3");
         }
     }
@@ -152,7 +152,7 @@ public class Testcase extends TestCaseBase {
     public void step10() {
         if (bUserDefined) {
             handle.waitCmdReady(sExpectedtValue, false);
-            tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
+            tmpStr = SwitchCLIUtils.getPoEInfo("g1");
             assertTrue(tmpStr.contains(sCurrentValue), "1. verify the power limit is set to " + sCurrentValue);
         }
     }
@@ -174,7 +174,7 @@ public class Testcase extends TestCaseBase {
     public void step13() {
         if (bUserDefined) {
             MyCommonAPIs.sleepsync();
-            tmpStr = SwitchCLIUtilsMNG.getPoEInfo("g1");
+            tmpStr = SwitchCLIUtils.getPoEInfo("g1");
             assertFalse(tmpStr.contains(sExpectedtValue), "verify the power limit is set to default, not: " + sExpectedtValue);
         }
     }

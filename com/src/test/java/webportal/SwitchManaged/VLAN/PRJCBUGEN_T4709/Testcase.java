@@ -46,40 +46,40 @@ public class Testcase extends TestCaseBase implements Config {
 
     }
 
-//    @Step("Test Step 2: Create vlan with id 0 from Web Portal.")
-//    public void step2() {
-//        netsp.gotoPage();
-//        netsp.clickAdd();
-//        netsp.setNetwork1("testnet", "", 0, "vlan0", "0");
-//
-//        String result1 = handle.getPageErrorMsg();
-//        System.out.println("getPageErrorMsg:" + result1);
-//        if (result1.length() > 0) {
-//            micResult = true;
-//        } else {
-//            micResult = false;
-//            assertTrue(micResult, "----Check Point 1 Fail:add vlan 0 getPageErrorMsg is:" + result1);
-//        }
-//    }
-//
-//    @Step("Test Step 3: Create vlan with id 4094 from Web Portal.")
-//    public void step3() {
-//        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-//        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
-//
-//        netsp.gotoPage();
-//        netsp.clickAdd();
-//        netsp.setNetwork1("testnet", "", 0, "vlan4094", "4094");
-//
-//        String result1 = handle.getPageErrorMsg();
-//        System.out.println("getPageErrorMsg:" + result1);
-//        if (result1.length() > 0) {
-//            micResult = true;
-//        } else {
-//            micResult = false;
-//            assertTrue(micResult, "----Check Point 2 Fail:add vlan 4093 getPageErrorMsg is:" + result1);
-//        }
-//    }
+    @Step("Test Step 2: Create vlan with id 0 from Web Portal.")
+    public void step2() {
+        netsp.gotoPage();
+        netsp.clickAdd();
+        netsp.setNetwork1("testnet", "", 0, "vlan0", "0");
+
+        String result1 = handle.getPageErrorMsg();
+        System.out.println("getPageErrorMsg:" + result1);
+        if (result1.length() > 0) {
+            micResult = true;
+        } else {
+            micResult = false;
+            assertTrue(micResult, "----Check Point 1 Fail:add vlan 0 getPageErrorMsg is:" + result1);
+        }
+    }
+
+    @Step("Test Step 3: Create vlan with id 4094 from Web Portal.")
+    public void step3() {
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
+
+        netsp.gotoPage();
+        netsp.clickAdd();
+        netsp.setNetwork1("testnet", "", 0, "vlan4094", "4094");
+
+        String result1 = handle.getPageErrorMsg();
+        System.out.println("getPageErrorMsg:" + result1);
+        if (result1.length() > 0) {
+            micResult = true;
+        } else {
+            micResult = false;
+            assertTrue(micResult, "----Check Point 2 Fail:add vlan 4093 getPageErrorMsg is:" + result1);
+        }
+    }
 
     @Step("Test Step 4: Create vlan with id 4093 from Web Portal.")
     public void step4() {

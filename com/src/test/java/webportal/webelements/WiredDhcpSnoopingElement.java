@@ -31,6 +31,12 @@ public class WiredDhcpSnoopingElement extends MyCommonAPIs {
     public static SelenideElement dhcpSnoopingMode                 = $x("//h5[text()='DHCP Snooping Mode']/..//span");
     public static SelenideElement dhcpSnoopingMACAddressValidation = $x("//h5[text()='MAC Address Validation']/..//span");
     public static SelenideElement saveGlobalConfiguration          = $x("//button[@id='saveEditVlan']");
+    
+    public static SelenideElement dhcpSnoopingModebutton          = $x("//h5[text()='DHCP Snooping Mode']/../label/input");
+    public static SelenideElement selectUserVlanbutton(String vlanId) {
+        return $x(String.format("//td[text()='%s']/../td[2]/label/input", vlanId));   
+    }
+    public static SelenideElement dhcpSnoopingMACAddressValidationbutton = $x("//h5[text()='MAC Address Validation']/../label/input");
 
     /**
      * 
@@ -55,11 +61,11 @@ public class WiredDhcpSnoopingElement extends MyCommonAPIs {
 
 
     public static SelenideElement txtPortTrustModeCheck(String portNo) {
-        return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/..//span[@id='spnEtherNetPortsjuhiii9GroupPrt%s'][1]", portNo, portNo));
+        return $x(String.format("//*[text()='%s' and @id='spnEtherNetPortsGroupPrt1']/../span[2]", portNo));
     }
 
     public static SelenideElement txtPortInvalidPacketsCheck(String portNo) {
-        return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/..//span[@id='spnEtherNetPortsjuhiii9GroupPrt%s'][2]", portNo, portNo));
+        return $x(String.format("//*[text()='%s' and @id='spnEtherNetPortsGroupPrt1']/../span[3]", portNo));
     }
 
     public boolean isEnable(SelenideElement el) {
@@ -93,6 +99,13 @@ public class WiredDhcpSnoopingElement extends MyCommonAPIs {
         SelenideElement srcport = $x(
                 String.format("%s/../..//ul[@id='ulSwitchModlGroupPrt0']/..//span[text()='%s']", getSwitchXpath(deviceName), portNo));
       
+        return srcport;
+    }
+    
+    public static SelenideElement buttonSelection(String deviceName, String text) {
+        SelenideElement srcport = $x(
+
+                String.format("%s/../..//following-sibling::div/div[2]/button[text()='%s']", getSwitchXpath(deviceName),text));
         return srcport;
     }
 

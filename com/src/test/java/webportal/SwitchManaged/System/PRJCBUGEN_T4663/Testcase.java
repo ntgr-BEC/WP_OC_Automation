@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -91,13 +91,13 @@ public class Testcase extends TestCaseBase implements Config {
         } else {
             tmpStr5 = MyCommonAPIs.getCmdOutput("show sysinfo", false);
         }
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g1", vlanId), "port1 is tagged");
+        assertTrue(SwitchCLIUtils.isTagPort("g1", vlanId), "port1 is tagged");
         assertTrue(tmpStr1.contains(vlanId), "port 1 is in vlan 200");
-        assertTrue(!SwitchCLIUtilsMNG.isTagPort("g2", vlanId), "port2 is untagged");
+        assertTrue(!SwitchCLIUtils.isTagPort("g2", vlanId), "port2 is untagged");
         assertTrue(tmpStr2.contains(vlanId), "port 2 is in vlan 200");
 
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, false)), "addpmgort lag");
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, true)), "addpmgort lag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, false)), "addpmgort lag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, true)), "addpmgort lag");
         assertTrue(tmpStr5.contains(devName), devName);
     }
 

@@ -12,7 +12,8 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -30,7 +31,7 @@ public class Testcase extends TestCaseBase {
     @Description("048-Create a vlan via the template of \"Data Network\" and change it default settings") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11316") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -38,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        netsp.deleteNetwork(vlanName);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -78,12 +79,21 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Check vlan 8 configuration on device side")
     public void step4() {
         handle.waitCmdReady(vlanId, false);
-        SwitchCLIUtilsMNG.getIGMPSnoopingInfo(vlanId);
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
-        assertFalse(SwitchCLIUtilsMNG.isTagPort("g1", vlanId), "port g1 is tagged");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g2", vlanId), "port g2 is not tagged");
+        SwitchCLIUtils.getIGMPSnoopingInfo(vlanId);
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
+        if (new WebportalParam().sw1Model.contains("M4350")){
+            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId), "port g1 is tagged");
+            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is not tagged");
+        }
+        else   if (new WebportalParam().sw1Model.contains("M4250")){
+            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId), "port g1 is tagged");
+            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is not tagged");
+        } else {
+        assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is tagged");
+        assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is not tagged");
+        }
 
-        // assertTrue(SwitchCLIUtilsMNG.getPortInfo("g1").contains("6"), "check traffic priority");
+        // assertTrue(SwitchCLIUtils.getPortInfo("g1").contains("6"), "check traffic priority");
     }
 }

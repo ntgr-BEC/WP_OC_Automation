@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -79,10 +79,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: 2.On Switch,generate 2 mac acls,one is allow source mac,other is allow des")
     public void step4() {
         handle.waitCmdReady(ipaclMac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "allow mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "allow mac acl");
         tmpStr = ipaclMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "allow source mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "allow source mac"+": "+tmpStr);
     }
 
 }

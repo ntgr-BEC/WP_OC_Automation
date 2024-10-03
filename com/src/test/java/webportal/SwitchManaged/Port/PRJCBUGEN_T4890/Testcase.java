@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.AccountPage;
@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase implements Config {
         String description = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortDescription();
 
         handle.waitCmdReady("aaaaaaaaaaa", false);
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String cliDescription = switchTelnet.getPortDescription(WebportalParam.sw1LagPort1CLI);
         System.out.println(description);
         System.out.println(cliDescription);
@@ -105,6 +105,9 @@ public class Testcase extends TestCaseBase implements Config {
         ddpmg.rebootDevice(WebportalParam.sw1serialNo);
         handle.waitDeviceOnline();
 
+        DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
+        devicesDashPage.enterDevicesSwitchSummary(DEVICE_INFO.get("Serial Number"));
+        
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         String description = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortDescription();
         if (description.equals(DESCRIPTION_2)) {

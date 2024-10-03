@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, true);
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(!tmpStr.contains(sPw), "check no option on cli for text: " + sPw);
     }
 }

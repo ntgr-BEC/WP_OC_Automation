@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -32,7 +32,7 @@ public class Testcase extends TestCaseBase {
     @Description("010-Set port STP status on LAG port and verify the function under RSTP protocol") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T6059") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
@@ -72,14 +72,15 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         assertTrue(wstp.getSTPMode() == iMode, "check rstp mode");
 
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 2, "verify rstp is enabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 2, "verify rstp is enabled");
     }
 
-    @Step("Test Step 4: Enable port STP status, then check STP state;")
+    @Step("Test Step 4: Enable port STP status, then check STP state and add LAG;")
     public void step4() {
         wstp.setSTPMode(iMode, false, true);
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtilsMNG.isPortLagSTPMode("lag1"), "verify rstp is enabled on lag");
+        MyCommonAPIs.sleepi(120);
+        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag 1"), "verify rstp is enabled on lag");
     }
 
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")
@@ -92,7 +93,7 @@ public class Testcase extends TestCaseBase {
     public void step6() {
         assertTrue(wstp.getSTPMode() == iMode, "check disable mode");
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 0, "verify stp is disabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 0, "verify stp is disabled");
     }
 
 }

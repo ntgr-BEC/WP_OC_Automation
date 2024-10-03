@@ -12,7 +12,8 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -65,9 +66,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Successful(igmpstate is disabled by default)")
     public void step3() {
         handle.waitCmdReady(vlanId, false);
-        SwitchCLIUtilsMNG.getIGMPSnoopingInfo(vlanId);
-        assertFalse(SwitchCLIUtilsMNG.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is enabled");
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
+        SwitchCLIUtils.getIGMPSnoopingInfo(vlanId);
+        assertFalse(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is enabled");
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
     }
 
     @Step("Test Step 4: Change igmpState to enable by Insight")
@@ -79,13 +80,21 @@ public class Testcase extends TestCaseBase {
         netsp.finishAllStep();
 
         handle.sleepsync();
-        assertFalse(SwitchCLIUtilsMNG.isTagPort("g3", vlanId), "port g3 is Untagged");
+        if (new WebportalParam().sw1Model.contains("M4350")){
+            assertFalse(SwitchCLIUtils.isTagPort("1/0/3", vlanId), "port g3 is Untagged");
+            
+        }else  if (new WebportalParam().sw1Model.contains("M4250")){
+            assertFalse(SwitchCLIUtils.isTagPort("0/3", vlanId), "port g3 is Untagged");
+            
+        }else {
+        assertFalse(SwitchCLIUtils.isTagPort("g3", vlanId), "port g3 is Untagged");
+        }
     }
 
     @Step("Test Step 5: Successful")
     public void step5() {
-        SwitchCLIUtilsMNG.getIGMPSnoopingInfo(vlanId);
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
-        assertTrue(SwitchCLIUtilsMNG.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
+        SwitchCLIUtils.getIGMPSnoopingInfo(vlanId);
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
+        assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
     }
 }

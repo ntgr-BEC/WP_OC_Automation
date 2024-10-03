@@ -83,6 +83,7 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
         clickPort(WebportalParam.sw2LagPort2, 1);
         setSelected(cbEnablePort, true, true);
         clickButton(0);
+        clickBoxLastButton();
         sleepsync();
     }
     

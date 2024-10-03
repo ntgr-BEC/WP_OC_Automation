@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -128,27 +128,27 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 9: After switch reload, check switch info on Web Portal and device Web GUI")
     public void step9() {
         String tmpStr1, tmpStr2, tmpStr3, tmpStr4, tmpStr5, tmpStr6;
-        tmpStr1 = SwitchCLIUtilsMNG.getPortInfo("g1");
+        tmpStr1 = SwitchCLIUtils.getPortInfo("g1");
         assertTrue(tmpStr1.contains(sPortDesc), "check: " + sPortDesc);
         
-        tmpStr2 = SwitchCLIUtilsMNG.getPortInfo("g2");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.isShutdown, "check shutdown");
+        tmpStr2 = SwitchCLIUtils.getPortInfo("g2");
+        assertTrue(SwitchCLIUtils.PortClass.isShutdown, "check shutdown");
         
-        tmpStr3 = SwitchCLIUtilsMNG.getPortInfo("g3");
+        tmpStr3 = SwitchCLIUtils.getPortInfo("g3");
         assertTrue(tmpStr3.contains("15400"), "check power limit 15.4w");
         
-        tmpStr4 = SwitchCLIUtilsMNG.getPoEInfo("g4");
-        assertTrue(!SwitchCLIUtilsMNG.PoEClass.isEnabled, "check status Disabled");
+        tmpStr4 = SwitchCLIUtils.getPoEInfo("g4");
+        assertTrue(!SwitchCLIUtils.PoEClass.isEnabled, "check status Disabled");
         
-        tmpStr5 = SwitchCLIUtilsMNG.getPortInfo("g5");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortStormControlRate.contains("50"), "check storm-control broadcast level 50");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortEgressRate.contains("50"), "check traffic-shape 50");
+        tmpStr5 = SwitchCLIUtils.getPortInfo("g5");
+        assertTrue(SwitchCLIUtils.PortClass.sPortStormControlRate.contains("50"), "check storm-control broadcast level 50");
+        assertTrue(SwitchCLIUtils.PortClass.sPortEgressRate.contains("50"), "check traffic-shape 50");
         
-        tmpStr6 = SwitchCLIUtilsMNG.getPortInfo("g6");
+        tmpStr6 = SwitchCLIUtils.getPortInfo("g6");
         assertTrue(tmpStr6.contains("pvid 4089"), "check vlan pvid 4089");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.duplexMode == 1, "check speed 10");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("10"), "check full-duplex");
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortFramesize.contains(sFrameSize), "check mtu size: " + sFrameSize);
+        assertTrue(SwitchCLIUtils.PortClass.duplexMode == 1, "check speed 10");
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("10"), "check full-duplex");
+        assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(sFrameSize), "check mtu size: " + sFrameSize);
     }
     
     @AfterMethod(alwaysRun = true)

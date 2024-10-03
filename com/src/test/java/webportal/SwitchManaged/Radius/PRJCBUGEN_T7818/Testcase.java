@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSummaryPage;
@@ -70,8 +70,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Back to Web Portal, view Switch Daskboard and ports status")
     public void step4() {
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 0, "check radius option on port");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 0, "check radius option on port");
 
         DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
         devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);

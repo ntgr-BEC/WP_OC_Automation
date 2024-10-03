@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import util.TimeUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -57,9 +57,9 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: get device time in CLI")
     public void step3() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         switchDate = switchTelnet.getSNTPTime();
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
 
     @Step("Test Step 4: Computational time difference")

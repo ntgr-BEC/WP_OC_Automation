@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Story("PRJCBUGEN_T4730") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("057-Add lag port to Private vlan") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4730") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, enabled = false, groups = "p3")
+    @Test(alwaysRun = true, enabled = true, groups = "p3")
     public void test() throws Exception {
         if (!WebportalParam.isRltkSW1) {
             runTest(this);
@@ -58,8 +58,8 @@ public class Testcase extends TestCaseBase implements Config {
     public void step3() {
         handle.waitCmdReady(vlanName, false);
         String lagPort = WebportalParam.getSwitchLag(false, false);
-        String sta = SwitchCLIUtilsMNG.getPortInfo(lagPort);
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(lagPort), "Port must be lag");
+        String sta = SwitchCLIUtils.getPortInfo(lagPort);
+        assertTrue(SwitchCLIUtils.isLagPort(lagPort), "Port must be lag");
         assertTrue(sta.contains("private-vlan"), "Port must be belong to private-vlan");
         assertTrue(sta.contains("3098"), "Port must be belong to staff");
         assertTrue(sta.contains("3099"), "Port must be belong to guest");

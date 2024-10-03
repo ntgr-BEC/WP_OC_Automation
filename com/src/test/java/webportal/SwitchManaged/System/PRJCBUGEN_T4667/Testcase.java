@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -80,9 +80,9 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 5: Check last reboot time on switch GUI")
     public void step5() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getSystemUptime();
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
         if (rate.contains("0 days 0 h")) {
             micResult = true;
         } else {

@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSummaryPage;
@@ -102,7 +102,7 @@ public class Testcase extends TestCaseBase implements Config {
     
     @Step("Test Step 6: Verify whether configured changes reflect in local GUI")
     public void step6() {
-        assertTrue(SwitchCLIUtilsMNG.isTagPort(WebportalParam.sw1LagPort2CLI, vlanId2), "port 5 is tagged");
+        assertTrue(SwitchCLIUtils.isTagPort(WebportalParam.sw1LagPort2CLI, vlanId2), "port 5 is tagged");
     }
     
 

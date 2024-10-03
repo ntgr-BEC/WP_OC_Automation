@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -57,7 +57,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: offline switch before deploy \"Factory Default\" command from Web Portal")
     public void step3() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
     }
 
     @Step("Test Step 4: Deploy \"Factory Default\" command from Web Portal to Switch")
@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 5: Online switch")
     public void step5() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         handle.sleep(2 * 60, "wait device to do reload");
     }
 
@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase implements Config {
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.waitAllSwitchDevicesConnected();

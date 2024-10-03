@@ -10,7 +10,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.APUtils;
 import util.BRUtils;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase implements Config {
                 } else if (devType == 3) {
                     bUpdated = new BRUtils().updateSystemFirmware(1);
                 } else {
-                    bUpdated = SwitchCLIUtilsMNG.updateSWFirmwareOld(false);
+                    bUpdated = SwitchCLIUtils.updateSWFirmwareOld(false);
                 }
 
                 if (bUpdated) {

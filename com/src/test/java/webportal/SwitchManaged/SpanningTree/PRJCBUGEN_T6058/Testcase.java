@@ -13,7 +13,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -32,7 +33,7 @@ public class Testcase extends TestCaseBase {
     @Description("008-Set port STP status on physical port and verify the function under RSTP protocol") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T6058") // It's a testcase id/link from Jira Test Case.
     
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
@@ -68,16 +69,27 @@ public class Testcase extends TestCaseBase {
         assertTrue(wstp.getSTPMode() == iMode, "check rstp mode");
         
         handle.waitCmdReady("mode stp", true);
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 2, "verify rstp is enabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 2, "verify rstp is enabled");
     }
     
     @Step("Test Step 4: Enable port STP status, then check STP state;")
     public void step4() {
         wstp.setSTPMode(iMode, true, false);
         MyCommonAPIs.sleepsync();
+        String port = null;
+        if(WebportalParam.sw1Model.contains("M4350")) {
+             port = "1/0/";
+        }
+        if(WebportalParam.sw1Model.contains("M4250")) {
+            port = "0/";
+       }else {
+           port = "g";
+       }
         
-        assertTrue(SwitchCLIUtilsMNG.isPortLagSTPMode("g3"), "verify stp is enabled");
-        assertFalse(SwitchCLIUtilsMNG.isPortLagSTPMode("g2"), "verify stp is not enabled");
+        System.out.println(port);
+        MyCommonAPIs.sleepsync();
+        assertTrue(SwitchCLIUtils.isPortLagSTPMode(port+"3"), "verify stp is enabled");
+        assertFalse(SwitchCLIUtils.isPortLagSTPMode(port+"2"), "verify stp is not enabled");
     }
     
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")
@@ -90,7 +102,7 @@ public class Testcase extends TestCaseBase {
     public void step6() {
         assertTrue(wstp.getSTPMode() == iMode, "check disable mode");
         MyCommonAPIs.sleepsync();
-        assertTrue(SwitchCLIUtilsMNG.getSTPMode() == 0, "verify stp is disabled");
+        assertTrue(SwitchCLIUtils.getSTPMode() == 0, "verify stp is disabled");
     }
     
 }

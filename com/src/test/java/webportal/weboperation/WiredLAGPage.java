@@ -97,6 +97,7 @@ public class WiredLAGPage extends WiredLAGPageElement {
     public void addLag(String lagName, boolean isSelect2Ports, boolean isSelect2ndport) {
         addLagIcon.click();
         MyCommonAPIs.waitReady();
+        MyCommonAPIs.sleepi(30);
         waitElement(".common-useplanblk");
         ElementsCollection ecs = switchesChoice;
         assertTrue(ecs.size() > 1, "There must be 2 switches");
@@ -262,9 +263,17 @@ public class WiredLAGPage extends WiredLAGPageElement {
             String[] sRet = getCmdOutputLines("show port-channel all", false);
             for (String str : sRet) {
                 if (str.contains(lagName)) {
+                    if(WebportalParam.sw1Model.contains("M4")){
+                        if (!str.contains(String.format("1/0/%s", portIndex))) {
+                            bRet = false;
+                            logger.info("match error: 001");
+                        }
+                        
+                    }else {
                     if (!str.contains(String.format("g%s", portIndex))) {
                         bRet = false;
                         logger.info("match error: 001");
+                    }
                     }
                     if (adminMode) {
                         if (!str.contains("En.")) {

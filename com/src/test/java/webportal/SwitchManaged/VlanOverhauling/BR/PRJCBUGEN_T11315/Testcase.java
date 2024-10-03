@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VlanOverhauling.PRJCBUGEN_T11315;
+package webportal.SwitchManaged.VlanOverhauling.BR.PRJCBUGEN_T11315;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.BRUtils;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -32,7 +32,7 @@ public class Testcase extends TestCaseBase {
     @Description("028-config vlan network for 2*switch and 1*BR500 at the same time") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11315") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 5: check vlan 100 on two switch and one BR500")
     public void step5() {
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
 
         String tagPort = vlanId + "t";
         handle.waitRestReady(BRUtils.api_lan_port_stats, tagPort, false, 0);

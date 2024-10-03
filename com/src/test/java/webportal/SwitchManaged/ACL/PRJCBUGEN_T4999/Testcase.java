@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -76,10 +76,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: verify 5 acl")
     public void step3() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = wvp.camData.fromip;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "check: " + wvp.camData.fromip+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "check: " + wvp.camData.fromip+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -92,8 +92,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: verify no acl")
     public void step5() {
         handle.waitCmdReady(wvp.camData.fromip, true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, null);
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, null);
         tmpStr = wvp.camData.fromip;
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "check no: " + wvp.camData.fromip+": "+tmpStr);
+        assertTrue(!SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "check no: " + wvp.camData.fromip+": "+tmpStr);
     }
 }

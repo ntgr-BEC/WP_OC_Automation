@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -94,8 +94,8 @@ public class Testcase extends TestCaseBase {
         
         String tocheck1 = MyCommonAPIs.getCmdOutput("show running-config interface vlan " + vlanId, false);
         String tocheck2 = MyCommonAPIs.getCmdOutput("show running-config interface vlan " + vlanId, true);
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort("g2", vlanId), "g2 is added to switch in tag");
+        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
+        assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "g2 is added to switch in tag");
         if (!rtp.isRoutingDisabled(WebportalParam.sw1Model)) {
             assertTrue(tocheck1.contains(ip1), "switch 1 with ip1");
         }

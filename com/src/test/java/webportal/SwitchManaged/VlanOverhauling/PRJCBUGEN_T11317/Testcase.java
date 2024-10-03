@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
     @Description("020-ADD lag port to network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11317") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -38,7 +38,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        netsp.deleteNetwork(vlanName);
         wlp.gotoLagPage();
         wlp.deleteLag();
         wlp.deleteLagCli();
@@ -78,12 +78,12 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Lag1 is untaged in vlan 100")
     public void step4() {
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, false)), "g4 is added to lag");
-        assertTrue(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, true)), "g5 is added to lag");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is added to vlan");
-        assertTrue(SwitchCLIUtilsMNG.isPortInVlan(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is added to vlan");
-        assertTrue(!SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is untag");
-        assertTrue(!SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is untag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, false)), "g4 is added to lag");
+        assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, true)), "g5 is added to lag");
+        assertTrue(SwitchCLIUtils.isPortInVlan(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is added to vlan");
+        assertTrue(SwitchCLIUtils.isPortInVlan(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is added to vlan");
+        assertTrue(!SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is untag");
+        assertTrue(!SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is untag");
     }
 
     @Step("Test Step 5: Go to vlan 100,and change lag1 type to Trunk port")
@@ -100,7 +100,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 6: Lag1 is taged in vlan 100")
     public void step6() {
-        assertTrue(SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is tag");
-        assertTrue(SwitchCLIUtilsMNG.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is tag");
+        assertTrue(SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, false), vlanId), "g4 is tag");
+        assertTrue(SwitchCLIUtils.isTagPort(WebportalParam.getSwitchLag(false, true), vlanId), "g5 is tag");
     }
 }

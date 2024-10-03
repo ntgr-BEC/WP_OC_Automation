@@ -30,7 +30,7 @@ import com.codeborne.selenide.WebDriverRunner;
 
 import util.MyCommonAPIs;
 import util.RunCommand;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
@@ -104,7 +104,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
                     // it's time to update ip in case of changed
                     if (sSWSerialNo.equals(WebportalParam.sw1serialNo)) {
                         WebportalParam.sw1IPaddress = sSWIP;
-                        SwitchCLIUtilsMNG.setSwitchIp(false);
+                        SwitchCLIUtils.setSwitchIp(false);
                     } else if (WebportalParam.enaTwoSwitchMode && sSWSerialNo.equals(WebportalParam.sw2serialNo)) {
                         WebportalParam.sw2IPaddress = sSWIP;
                     } else if (sSWSerialNo.equals(WebportalParam.br1serialNo)) {

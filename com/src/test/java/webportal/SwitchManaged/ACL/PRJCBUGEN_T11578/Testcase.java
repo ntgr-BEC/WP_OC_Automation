@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -68,14 +68,14 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit host"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit host"+": "+tmpStr);
         tmpStr = "permit any " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no permit any"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no permit any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask"+": "+tmpStr);
     }
 
     @Step("Test Step 4: Under Network setup,edit Access type to \"access allow to this device\"")
@@ -93,14 +93,14 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: verify vlan on webportal")
     public void step5() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no permit host"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no permit host"+": "+tmpStr);
         tmpStr = "permit any " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
     }
 
     @Step("Test Step 6: Under Network setup,edit Access type to \"access allow from this device\" and \"access allow to this device\"")
@@ -118,14 +118,14 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 7: verify vlan on webportal")
     public void step7() {
         handle.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit host"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit host"+": "+tmpStr);
         tmpStr = "permit any " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
     }
 
     @Step("Test Step 8: Under Network setup.edit Access type to \"access allow to this device\"")
@@ -144,13 +144,13 @@ public class Testcase extends TestCaseBase {
     public void step9() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = "permit " + netsp.mamData.devIp;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify no permit host"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify no permit host"+": "+tmpStr);
         tmpStr = "permit any " + netsp.mamData.devIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit any"+": "+tmpStr);
         tmpStr = netsp.mamData.devMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip mask new"+": "+tmpStr);
     }
 }

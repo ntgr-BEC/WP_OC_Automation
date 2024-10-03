@@ -11,8 +11,8 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -66,13 +66,13 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: After save and deploy the command, go to swtich local GUI check the configuration")
     public void step4() {
         handle.waitCmdReady(ip1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1ManagePort);
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check radius option on port");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1ManagePort);
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check radius option on port");
         
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw2IPaddress, false);
-        SwitchCLIUtilsMNG.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand(
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw2IPaddress, false);
+        SwitchCLIUtils.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand(
                 "show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw2Model, WebportalParam.sw2ManagePort)));
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check radius option on port");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check radius option on port");
     }
     
 }

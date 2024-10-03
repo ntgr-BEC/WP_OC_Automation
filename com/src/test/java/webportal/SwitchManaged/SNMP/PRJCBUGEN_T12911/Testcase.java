@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.SnmpUtils;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -32,7 +32,7 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         if (!snmpp.isSnmpDisabled()) {
             sIp = webportalParam.getLocalNetIp(false);
-            SwitchCLIUtilsMNG.cleanSNMP(true);
+            SwitchCLIUtils.cleanSNMP(true);
             runTest(this);
         }
     }
@@ -74,10 +74,10 @@ public class Testcase extends TestCaseBase {
         handle.waitDeviceOnline();
         handle.waitCmdReady(sIp, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
-        assertTrue(SwitchCLIUtilsMNG.SNMPClass.isReadyOnly, "check option community should be ready only");
-        assertTrue(!SwitchCLIUtilsMNG.SNMPClass.isTrapEnable, "check option trap status should be disable");
-        assertTrue(SwitchCLIUtilsMNG.SNMPClass.snmpResult.contains(sIp), "check option on cli ip: " + sIp);
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
+        assertTrue(SwitchCLIUtils.SNMPClass.isReadyOnly, "check option community should be ready only");
+        assertTrue(!SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should be disable");
+        assertTrue(SwitchCLIUtils.SNMPClass.snmpResult.contains(sIp), "check option on cli ip: " + sIp);
     }
 
     @Step("Test Step 4: Try to get some mib data by Mib Browser")

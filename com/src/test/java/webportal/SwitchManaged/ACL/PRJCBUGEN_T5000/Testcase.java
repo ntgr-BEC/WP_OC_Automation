@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -75,8 +75,8 @@ public class Testcase extends TestCaseBase {
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
         
         System.out.println("1st step");
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         
         if(WebportalParam.sw1Model.contains("M250") || WebportalParam.sw1Model.contains("M350")){
             tmpStr = "permit ip any";
@@ -84,11 +84,11 @@ public class Testcase extends TestCaseBase {
         tmpStr = "permit any";
         }       
         System.out.println("2nd  step");
-        System.out.println("ACL result is " + SwitchCLIUtilsMNG.ACLClass.aclResult);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip any: " + tmpStr);
+        System.out.println("ACL result is " + SwitchCLIUtils.ACLClass.aclResult);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip any: " + tmpStr);
         tmpStr = "permit " + wvp.camData.fromip;
         System.out.println("now tmpStr is "+tmpStr);        
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit ip host: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
