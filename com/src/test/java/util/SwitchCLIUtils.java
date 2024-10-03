@@ -1029,7 +1029,7 @@ public class SwitchCLIUtils {
         SwitchTelnet st = connectSW(false, true);
         String result;
         if (!st.isRltkSW) {
-            result = st.sendCLICommandClear("show network", null);
+            result = st.sendCLICommandClear("show ip management", null);
         } else {
             result = st.sendCLICommandClear("show ip", null);
         }
