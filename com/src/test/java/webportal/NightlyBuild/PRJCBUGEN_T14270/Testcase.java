@@ -53,10 +53,11 @@ public class Testcase extends TestCaseBase {
         new APUtils(WebportalParam.ap1IPaddress).changeAPtoLocal();
         MyCommonAPIs.sleepi(300);
         
-        new FileHandling().deleteAllExcept("tftpd32");
-        
+        new FileHandling().deleteAllExcept("tftpd32.exe");
+
         String fileName = new FileHandling().fetchFileName();
-        
+        System.out.println(fileName);
+        MyCommonAPIs.sleepi(300);
         new APUtils(WebportalParam.ap1IPaddress).upgrageFirmware(fileName);
         MyCommonAPIs.sleepi(500);
         

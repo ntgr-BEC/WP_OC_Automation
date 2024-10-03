@@ -23,12 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_AddNetwork{
+public class Api_AddSsid{
     WebportalParam webportalParam = new WebportalParam();
-    Map<String, String> endPointUrl = new HashMap<String,String>();
+    Map<String, String> endPointUrl = new HashMap<String, String>();
+    Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
-    
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -39,33 +39,32 @@ public class Api_AddNetwork{
     public void test() throws Exception {
         step1();
     }
+    
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
+    {   MyCommonAPIs.sleepi(3);     
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
     public Response step1()
-    {        
+    { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        Response add = new Api_AddNetwork().step1();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");    
+           
+       
         headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
+        headers.put("apikey",WebportalParam.apikey);    
+        headers.put("accountId",WebportalParam.accountId);
+       
+        pathParams.put("networkId",networkId);
+        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"SSID_TEST\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"mpskList\":[],\"isMPSKEnabled\":\"0\",\"custProfileEnable\":\"0\",\"custProfileId\":\"\"}}";       
         //TO PERFORM ANY REQUEST
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Network_Sanity"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        networkId=getResponse.jsonPath().getString("networkInfo[0].networkId");
-        System.out.print("network ID under response"+networkId);
         return getResponse;
         
     }

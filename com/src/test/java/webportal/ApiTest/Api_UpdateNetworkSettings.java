@@ -1,9 +1,6 @@
 package webportal.ApiTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -22,10 +19,12 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class Api_DeleteNetwork{
+
+public class Api_UpdateNetworkSettings{
     WebportalParam webportalParam = new WebportalParam();
-    String networkId;
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -39,33 +38,23 @@ public class Api_DeleteNetwork{
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
+    {
+        Response add = new Api_AddNetwork().step1();
+        String networkId=add.jsonPath().getString("networkId");
         Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",networkId);
-        
-        Map<String, String> pathParamsadd = new HashMap<String, String>();
-        pathParamsadd.put("accountId",WebportalParam.accountId);
-        String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        
-        
-        //TO ADD NETWORK AND RETRIEVE NETWORK ID
-        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
-       
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-   
-        
+        String requestBody="{\"updateBroadcastToUnicast\":{\"broadcastToUnicastKey\":\"1\",\"igmpSnoopingKey\":\"0\",\"hardwareAssistedDatapath\":\"1\"},\"updateEnergyEfficiencyMode\":{\"energyEfficiencyMode\":\"0\",\"autoOnOffMode\":\"0\",\"antennaPowerSave\":\"0\"},\"arpProxy\":\"1\",\"syslogProbeClients\":\"0\"}";
         //TO PERFORM ANY REQUEST
-        Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse2.then().body("response.status", equalTo(true));        
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Network_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        
+                
     }
+
 }
-
-

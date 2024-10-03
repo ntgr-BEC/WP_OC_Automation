@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import util.MyCommonAPIs;
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -26,6 +26,10 @@ import static io.restassured.RestAssured.*;
 
 public class Api_UpdateNetwork{
     WebportalParam webportalParam = new WebportalParam();
+    String networkId;
+    Map<String, String> endPointUrl = new HashMap<String, String>();
+    Map<String, String> headers = new HashMap<String, String>();
+    Map<String, String> pathParamsupdate = new HashMap<String, String>();
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -36,21 +40,31 @@ public class Api_UpdateNetwork{
     public void test() throws Exception {
         step1();
     }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {  MyCommonAPIs.sleepi(5);
+        System.out.print("network id in tare down "+networkId);
+        pathParamsupdate.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParamsupdate, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Map<String, String> endPointUrl = new HashMap<String, String>();
+        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Map<String, String> headers = new HashMap<String, String>();
+        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId); 
         headers.put("networkId",WebportalParam.networkId);
         Map<String, String> pathParamsadd = new HashMap<String, String>();
         pathParamsadd.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParamsupdate = new HashMap<String, String>();
-        pathParamsupdate.put("networkId",WebportalParam.networkId);
+        
+        
         String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         String requestBody2="{\"networkInfo\":{\"name\":\"office12\"}}";
         
@@ -60,10 +74,13 @@ public class Api_UpdateNetwork{
         //TO ADD NETWORK AND RETRIEVE NETWORK ID
         Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
         getResponse1.then().body("response.status", equalTo(true));
+        networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
+        pathParamsupdate.put("networkId",networkId);
    
         Response getResponse2 = ApiRequest.sendPutRequest(endPointUrl.get("Network_Sanity"), requestBody2, headers, pathParamsupdate, null); 
         getResponse2.then().body("response.status", equalTo(true));
+        String nnetworkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
+
         
     }
-
 }
