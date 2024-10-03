@@ -223,4 +223,58 @@ public class FileHandling extends HamburgerMenuElement {
        
        return wantedline;      
        }  
+   
+   public String fetchFileName () {
+       String Filename = "";
+       String folderPath = "C:\\auto";
+       // Create a File object for the folder
+       File folder = new File(folderPath);
+
+       // Check if the folder exists and is a directory
+       if (folder.exists() && folder.isDirectory()) {
+           // Get all files in the folder
+           File[] listOfFiles = folder.listFiles();
+
+           if (listOfFiles != null) {
+               // Iterate through the files and add their names to the list
+               for (File file : listOfFiles) {
+                   if (file.isFile()) {
+                       return Filename = file.getName();  // Add file name to the list
+                   }
+               }
+           }
+       }
+    return Filename;
+   }
+
+    public static void deleteAllExcept(String fileToKeep) {
+        File folder1 = new File("C:\\auto");
+
+        // Check if the folder exists and is a directory
+        if (folder1.exists() && folder1.isDirectory()) {
+            // Get the list of files in the folder
+            File[] listOfFiles = folder1.listFiles();
+
+            if (listOfFiles != null) {
+                // Iterate through the files
+                for (File file : listOfFiles) {
+                    // Delete the file if its name doesn't match the file to keep
+                    if (file.isFile() && !file.getName().equals(fileToKeep)) {
+                        boolean deleted = file.delete(); // Delete the file
+                        if (deleted) {
+                            System.out.println("Deleted: " + file.getName());
+                        } else {
+                            System.out.println("Failed to delete: " + file.getName());
+                        }
+                    }
+                }
+            }
+        } else {
+            System.out.println("The folder does not exist or is not a directory.");
+        }
+        
+    }
+       
+   
+   
        }

@@ -1205,10 +1205,7 @@ public class WebportalParam {
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/ACL_List.xlsx";
         return getCSVData(csvFile, "DEVICE NAME", "Actuallist", devName);
     }
-   
-    
-    
-    
+        
     public static boolean ManagedorSMart(String text) {
         System.out.println("checkSwitchType:" + text);
         // if (text.startsWith("GS") || text.startsWith("GC108P") || text.startsWith("MS"))

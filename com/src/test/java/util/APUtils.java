@@ -208,7 +208,6 @@ public class APUtils extends MyCommonAPIs {
         return result;
     }
     
-   
     
     public String get80211status(String cmd) {
         String result = "";
@@ -1594,5 +1593,27 @@ public String getSsidStatusClientIso1(String m, String n, String SSID, String Mo
     }
     return status;
 }
+
+
+public void changeAPtoLocal() {  
+        logger.info("entered WAC model");
+        plink.getOutput("conf_set system:basicSettings:cloudStatus 0", default_timeout_ssh);
+        plink.getOutput("conf_set system:basicSettings:cloudConnectivityUI 0", default_timeout_ssh);
+        plink.getOutput("conf_save", default_timeout_ssh);       
+    
+}
+
+
+public void changeAPtoNetgear() {  
+    logger.info("entered WAC model");
+    plink.getOutput("conf_set system:basicSettings:cloudStatus 1", default_timeout_ssh);
+    plink.getOutput("conf_set system:basicSettings:cloudConnectivityUI 1", default_timeout_ssh);      
+
+}
+
+public void upgrageFirmware(String fileName) {  
+    plink.getOutput(String.format("/usr/local/bin/firmware-upgrade-tftp %s %s reboot check", fileName, WebportalParam.TftpSvr), 240);
+}
+
 }
 
