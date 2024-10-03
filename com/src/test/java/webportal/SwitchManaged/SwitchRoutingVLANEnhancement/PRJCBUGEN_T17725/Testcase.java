@@ -53,7 +53,8 @@ public class Testcase extends TestCaseBase {
                 ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
                 netsp.gotoPage();
             }
-            netsp.deleteAllNetwork();
+            netsp.deleteNetwork(net1Name);
+            netsp.deleteNetwork(net2Name);
         }
     }
     

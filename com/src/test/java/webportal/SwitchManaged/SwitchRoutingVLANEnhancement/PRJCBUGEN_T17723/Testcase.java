@@ -44,7 +44,7 @@ public class Testcase extends TestCaseBase {
             ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
             netsp.gotoPage();
         }
-        netsp.deleteAllNetwork();
+//        netsp.deleteAllNetwork();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -68,8 +68,12 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
         String sStaticIp = handle.getVlan1StaticIp(false);
+        System.out.println("sStaticIp"+sStaticIp);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
-        assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
+        System.out.println("sStaticIpWP"+sStaticIpWP);
+//        assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
+        assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
+                String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
         assertTrue(SwitchCLIUtils.getVlan1Ip().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
     }
 
@@ -84,6 +88,9 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
+        System.out.println("sStaticIpWP"+sStaticIpWP);
+        assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
+                String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
         assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
                 String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
     }

@@ -78,6 +78,7 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
+        System.out.println(sStaticIpWP);
         assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
                 String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
         assertTrue(SwitchCLIUtils.getVlan1Ip().contains(WebportalParam.sw1IPaddress),

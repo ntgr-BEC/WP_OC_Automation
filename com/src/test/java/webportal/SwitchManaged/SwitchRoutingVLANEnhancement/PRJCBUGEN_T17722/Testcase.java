@@ -147,7 +147,9 @@ public class Testcase extends TestCaseBase {
         
         ddpmg.gotoPage();
         String sStaticIp = handle.getVlan1StaticIp(false);
+        System.out.println("sStaticIp"+sStaticIp);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
+        System.out.println("sStaticIpWP"+sStaticIpWP);
         assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
         assertTrue(SwitchCLIUtils.getVlan1Ip().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
     }
