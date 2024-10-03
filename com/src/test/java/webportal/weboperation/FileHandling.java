@@ -237,9 +237,12 @@ public class FileHandling extends HamburgerMenuElement {
 
            if (listOfFiles != null) {
                // Iterate through the files and add their names to the list
-               for (File file : listOfFiles) {
-                   if (file.isFile()) {
-                       return Filename = file.getName();  // Add file name to the list
+               for (File file : listOfFiles) {                 
+                    if (file.isFile()) {
+                         Filename = file.getName();
+                      if(!file.getName().equals("tftpd32.exe") && !file.getName().equals("tftpd32.ini")) {
+                       return Filename = file.getName();// Add file name to the list
+                      }
                    }
                }
            }
@@ -248,7 +251,7 @@ public class FileHandling extends HamburgerMenuElement {
    }
 
     public static void deleteAllExcept(String fileToKeep) {
-        File folder1 = new File("C:\\auto");
+        File folder1 = new File("C:\\Auto");
 
         // Check if the folder exists and is a directory
         if (folder1.exists() && folder1.isDirectory()) {
@@ -259,7 +262,7 @@ public class FileHandling extends HamburgerMenuElement {
                 // Iterate through the files
                 for (File file : listOfFiles) {
                     // Delete the file if its name doesn't match the file to keep
-                    if (file.isFile() && !file.getName().equals(fileToKeep)) {
+                    if (file.isFile() && !file.getName().equals(fileToKeep) && !file.getName().equals("tftpd32.ini")) {
                         boolean deleted = file.delete(); // Delete the file
                         if (deleted) {
                             System.out.println("Deleted: " + file.getName());
