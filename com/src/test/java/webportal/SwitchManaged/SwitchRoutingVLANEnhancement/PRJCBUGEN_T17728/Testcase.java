@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Try to create new routing VLAN with DHCP/Static mode")
     public void step3() {
         netsp.gotoPage();
-        netsp.createNetwork(netName, vlanId, 2);
+        netsp.createNetwork(netName, vlanId, 0);
     }
 
     @Step("Test Step 4: Config failed, Insight should popup error message")

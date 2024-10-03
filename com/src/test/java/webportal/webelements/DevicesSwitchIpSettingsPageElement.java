@@ -4,6 +4,7 @@
 package webportal.webelements;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -20,6 +21,6 @@ public class DevicesSwitchIpSettingsPageElement extends MyCommonAPIs {
     public SelenideElement dnsServer2        = $("#inpDenServSwitchIpSett");
     public SelenideElement saveBtn           = $("#btnSaveSwitchIpSett");
     public SelenideElement alert             = $(".alert-danger");
-    public SelenideElement dhcpAutomatically = $("#lblSwitchSwitchIpSett");
+    public SelenideElement dhcpAutomatically  = $x("//*[@id=\"spnSliderSwitchIpSett\"]");
     public String          SwitchIpSet       = "spnSliderSwitchIpSett";
 }
