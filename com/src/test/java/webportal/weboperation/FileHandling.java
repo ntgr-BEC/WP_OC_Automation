@@ -247,34 +247,34 @@ public class FileHandling extends HamburgerMenuElement {
     return Filename;
    }
 
-    public static void deleteAllExcept(String fileToKeep) {
-        File folder1 = new File("C:\\auto");
+   public static void deleteAllExcept(String fileToKeep, String path) {
+       File folder1 = new File(path);
 
-        // Check if the folder exists and is a directory
-        if (folder1.exists() && folder1.isDirectory()) {
-            // Get the list of files in the folder
-            File[] listOfFiles = folder1.listFiles();
+       // Check if the folder exists and is a directory
+       if (folder1.exists() && folder1.isDirectory()) {
+           // Get the list of files in the folder
+           File[] listOfFiles = folder1.listFiles();
 
-            if (listOfFiles != null) {
-                // Iterate through the files
-                for (File file : listOfFiles) {
-                    // Delete the file if its name doesn't match the file to keep
-                    if (file.isFile() && !file.getName().equals(fileToKeep)) {
-                        boolean deleted = file.delete(); // Delete the file
-                        if (deleted) {
-                            System.out.println("Deleted: " + file.getName());
-                        } else {
-                            System.out.println("Failed to delete: " + file.getName());
-                        }
-                    }
-                }
-            }
-        } else {
-            System.out.println("The folder does not exist or is not a directory.");
-        }
-        
-    }
-       
-   
-   
+           if (listOfFiles != null) {
+               // Iterate through the files
+               for (File file : listOfFiles) {
+                   // Delete the file if its name doesn't match the file to keep
+                   if (file.isFile() && !file.getName().equals(fileToKeep) && !file.getName().equals("tftpd32.ini")) {
+                       boolean deleted = file.delete(); // Delete the file
+                       if (deleted) {
+                           System.out.println("Deleted: " + file.getName());
+                       } else {
+                           System.out.println("Failed to delete: " + file.getName());
+                       }
+                   }
+               }
+           }
+       } else {
+           System.out.println("The folder does not exist or is not a directory.");
        }
+       
+   }
+}
+   
+   
+       
