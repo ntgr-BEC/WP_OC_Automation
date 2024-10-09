@@ -10,15 +10,15 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import testbase.TestCaseBaseApi;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 
 import static io.restassured.RestAssured.*;
 
 
-public class Api_AddOrganization{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_AddOrganization extends TestCaseBaseApi{
+
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -33,6 +33,17 @@ public class Api_AddOrganization{
     @Step("Send get request to {url}")
     public void step1()
     {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         RestAssured.baseURI=WebportalParam.baseURI;
         String aid1=WebportalParam.accountId;
         String responsebody="{\"mailto:orginfo\":{\"orgname\":\"rest1103\",\"ownername\":\"\",\"owneremail\":\"sudheer.duggisetty@netgear.com\",\"persPhnNo\":\"\",\"busiPhnNo\":\"\",\"emailRecipient\":[\"1\",\"2\"],\"pushRecipient\":[\"1\",\"2\"],\"deviceOwnership\":\"1\",\"repRecipient\":[\"1\",\"2\"],\"isSchedule\":\"1\",\"frequency\":\"1\",\"applyToAllOrg\":\"0\"}}";

@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import testbase.TestCaseBaseApi;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -23,8 +23,8 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_DeleteNetwork{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_DeleteNetwork extends TestCaseBaseApi{
+
     String networkId;
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.

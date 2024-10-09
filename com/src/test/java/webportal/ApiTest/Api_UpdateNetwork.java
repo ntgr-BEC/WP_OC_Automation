@@ -15,6 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
@@ -24,8 +25,8 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_UpdateNetwork{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_UpdateNetwork extends TestCaseBaseApi{
+
     String networkId;
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();

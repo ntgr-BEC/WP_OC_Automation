@@ -20,14 +20,15 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteSsid extends TestCaseBaseApi{
-    String networkId;
-    Map<String, String> endPointUrl = new HashMap<String, String>();
+public class Api_SetWirelessSettings extends TestCaseBaseApi{
+    
+    Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
+    Map<String, String> pathParams = new HashMap<String, String>();
+    String networkId;
 
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -39,6 +40,7 @@ public class Api_DeleteSsid extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+  
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
@@ -48,28 +50,27 @@ public class Api_DeleteSsid extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
-  
     @Step("Send get request to {url}")
     public void step1()
-    { 
-        List<Response> response = new Api_AddSsid().step1();
-        Response add=response.get(0);
-        Response ssidid=response.get(1);
-        String id=ssidid.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
+    {
+        Response add = new Api_AddNetwork().step1();
         networkId=add.jsonPath().getString("networkInfo[0].networkId");
-
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
-      
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        pathParams.put("id",id);      
         
-      //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));                                         
-    }                  
+        endPointUrl = new ApiRequest().ENDPOINT_URL;
+        
+        headers.put("token",WebportalParam.token);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);        
+        
+        pathParams.put("networkId",networkId);
+        String requestBody = "{\"rfSettings\":{\"bandWlan0\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"0\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan1\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"1\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan2\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"2\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null}}}";
+
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Wireless_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        
+                
     }
 
+}

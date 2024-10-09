@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import testbase.TestCaseBaseApi;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -23,8 +23,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_UpdateNetworkSettings{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_UpdateNetworkSettings extends TestCaseBaseApi{
+
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.

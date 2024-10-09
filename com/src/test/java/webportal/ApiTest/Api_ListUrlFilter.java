@@ -24,10 +24,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_AddNetwork extends TestCaseBaseApi{
+public class Api_ListUrlFilter extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
+    Map<String, String> pathParams = new HashMap<String, String>();
     String networkId;
     
     
@@ -43,32 +44,28 @@ public class Api_AddNetwork extends TestCaseBaseApi{
 //    @AfterMethod(alwaysRun=true)
 //    public void teardown()
 //    { 
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//        pathParams.put("networkId",networkId);
-//        
+//        pathParams.put("networkId",networkId);    
 //        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
 //        getResponse1.then().body("response.status", equalTo(true));
 //    }
   
     @Step("Send get request to {url}")
-    public Response step1()
-    {        
+    public void step1()
+    {
+//        Response add = new Api_AddNetwork().step1();
+//        networkId=add.jsonPath().getString("networkInfo[0].networkId"); 
+        networkId="6706295538d0722a4bb1262a";
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        //TO PERFORM ANY REQUEST
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        networkId=getResponse.jsonPath().getString("networkInfo[0].networkId");
-        System.out.print("network ID under response"+networkId);
-        return getResponse;
+        pathParams.put("networkId",networkId);
         
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Url_Filter"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+                           .body("response.message", equalTo("Network getInfo successfully"));
+                      
     }
                   
     }
