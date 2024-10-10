@@ -339,6 +339,11 @@ import util.*;
                 put("Ssid_Sanity", "insightappcom/api/network/v1/{networkId}/{id}");
                 put("Url_Filter", "insightappcom/api/network/v1/{networkId}/urlFilter");
                 put("Wireless_Settings", "insightappcom/api/network/v1/{networkId}/radioConfig");
+                put("Ars_Sanity", "insightappcom/api/network/v1/arsConfig/{networkId}");
+                put("InstantWifi_Sanity", "insightappcom/api/network/v1/networkRFSettings/{networkId}");
+                put("FastRoaming_Sanity", "insightappcom/api/network/v1/fastRoaming/{networkId}");
+                put("DefaultNatSsids_Sanity", "insightappcom/api/network/v1/natSsid");
+                put("RadiusServerConfig_Sanity", "/insightappcom/api/network/v1/radiusServerConfig");
             }
         };
         
