@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Reboot;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -12,6 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -19,12 +20,14 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class Api_AddSsid{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_RebootDevice extends TestCaseBaseApi{
+
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -40,32 +43,23 @@ public class Api_AddSsid{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    {   MyCommonAPIs.sleepi(3);     
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");    
-           
-       
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
        
-        pathParams.put("networkId",networkId);
-        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"SSID_TEST\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"mpskList\":[],\"isMPSKEnabled\":\"0\",\"custProfileEnable\":\"0\",\"custProfileId\":\"\"}}";       
+        
+        String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
         //TO PERFORM ANY REQUEST
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Network_Sanity"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
         getResponse.then().body("response.status", equalTo(true));
-        return getResponse;
+        
+
         
     }
                   

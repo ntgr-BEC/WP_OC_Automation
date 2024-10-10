@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Location.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import testbase.TestCaseBaseApi;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -23,8 +23,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_DeleteSsid{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_VlanListing extends TestCaseBaseApi{
+
+    String networkId;
+    Map<String, String> headers = new HashMap<String, String>();
+    Map<String, String> endPointUrl = new HashMap<String, String>();
+    Map<String, String> pathParams = new HashMap<String, String>();
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -35,29 +39,34 @@ public class Api_DeleteSsid{
     public void test() throws Exception {
         step1();
     }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
-        Response add = new Api_AddSsid().step1();
-        String id=add.jsonPath().getString("id");
-        Map<String, String> endPointUrl = new HashMap<String, String>();
+    {
+        Response add = new Api_AddNetwork().step1();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Map<String, String> headers = new HashMap<String, String>();
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("id",id);      
         
-      //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
+
+        headers.put("token",WebportalParam.token);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);     
+        
+        
+        pathParams.put("networkId",networkId);
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Vlan_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        
-        
-    }
-                  
+                
     }
 
+}
