@@ -2,6 +2,9 @@ package webportal.NightlyBuild.PRJCBUGEN_T13875;
 
 import static org.testng.Assert.assertTrue;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -19,6 +22,9 @@ import webportal.weboperation.WebportalLoginPage;
  * @author Tejeshwini K V
  */
 public class Testcase extends TestCaseBase {
+    String organizationName = "NewOrg";
+    
+    
     @Feature("NightlyBuild") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T13875") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that user is able to create an organization") // It's a testcase title from Jira Test Case.
@@ -31,6 +37,8 @@ public class Testcase extends TestCaseBase {
     
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        OrganizationPage page = new OrganizationPage();
+        page.deleteOrganizationNew(organizationName);
     }
     
     // Each step is a single test step from Jira Test Case
@@ -45,6 +53,10 @@ public class Testcase extends TestCaseBase {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
 
-        assertTrue(page.AddOrg.exists(), "check Add org must be existed for admin user");
+        Map<String, String> organizationInfo = new HashMap<String, String>();
+        organizationInfo.put("Name", organizationName);
+        
+        page.addOrganization(organizationInfo);
+        assertTrue(page.checkOrganizationIsExist(organizationName), "check user is able to create an organization without an owner");
     }
 }

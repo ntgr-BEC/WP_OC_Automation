@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
+    @Step("Test Step 2: Enable IGMP and Disable;")
     public void step2() {
         new WirelessQuickViewPage().IGMPEnable();
         MyCommonAPIs.sleepi(10);

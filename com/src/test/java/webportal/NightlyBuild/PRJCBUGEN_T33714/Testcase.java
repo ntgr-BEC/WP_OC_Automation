@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-        new WirelessQuickViewPage(false).deleteOrgSsidYes("PRJCBUGEN_T33714");
+        new WirelessQuickViewPage(false).deleteALLSSID();
         System.out.println("start to do tearDown");
     }
 
@@ -80,6 +80,7 @@ public class Testcase extends TestCaseBase {
           
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);  
           new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
+          new WirelessQuickViewPage(false).deleteALLSSID();
           Map<String, String> locationInfo = new HashMap<String, String>();
           locationInfo.put("SSID", "apwp14270");
           locationInfo.put("Security", "WPA2 Personal");

@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase {
     }
 
   
-    @Step("Test Step 2:  Add WIFI ssid and now connect client to this ssid;")
+    @Step("Test Step 2:  Add WIFI ssid ;")
     public void step2() {     
         ssidInfo.put("SSID", "apwp22552");
         ssidInfo.put("Security", "WPA2 Personal Mixed");

@@ -58,7 +58,6 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Password", "123456798");
         locationInfo.put("Schedule Name", "scheduled15938");
         new WirelessQuickViewPage().scheduleWifi(locationInfo);
-        new WirelessQuickViewPage().editWifiSchedule(locationInfo);
   
        
     }

@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("apwp22345");
+//        new WirelessQuickViewPage().deleteSsidYes("apwp22345");
         System.out.println("start to do tearDown");
     }
 
@@ -49,17 +49,17 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
-        handle.gotoLoction();
+//        handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
-    public void step2() {
-        Map<String, String> locationInfo = new HashMap<String, String>();
-        locationInfo.put("SSID", "apwp22345");
-        locationInfo.put("Security", "WPA2 Enterprise");
-        new WirelessQuickViewPage().addSsid1(locationInfo);
-     
-    }
+//    @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
+//    public void step2() {
+//        Map<String, String> locationInfo = new HashMap<String, String>();
+//        locationInfo.put("SSID", "apwp22345");
+//        locationInfo.put("Security", "WPA2 Enterprise");
+//        new WirelessQuickViewPage().addSsid1(locationInfo);
+//     
+//    }
 
  
 

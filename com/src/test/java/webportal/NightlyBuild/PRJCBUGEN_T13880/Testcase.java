@@ -42,8 +42,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-        new WirelessQuickViewPage(false).deleteOrgSsidYes(locationInfo.get("SSID"));
+        new OrganizationPage(false).openOrg(organizationName);
+        new OrganizationPage(false).goToOrgSsid(organizationName);
+        new WirelessQuickViewPage(false).deleteALLSSID();
     }
 
     // Each step is a single test step from Jira Test Case

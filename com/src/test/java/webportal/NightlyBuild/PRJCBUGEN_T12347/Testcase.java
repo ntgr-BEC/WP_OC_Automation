@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
+    @Step("Test Step 2: Add WIFI ssid;")
     public void step2() {
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("SSID", "apwp12347");

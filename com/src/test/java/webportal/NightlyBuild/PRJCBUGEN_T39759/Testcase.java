@@ -29,7 +29,7 @@ import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author Ravishankar S
+ * @author Tejeshwini K V
  *
  */
 public class Testcase extends TestCaseBase {
@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
        
     }
 
-    @Step("Test Step 2: Add WIFI ssid and enable instant captive portal, check client connect wifi;")
+    @Step("Test Step 2: Add WIFI ssid and enable instant captive portal;")
     public void step2() {
         mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num);
         new OrganizationPage(false).openOrg(WebportalParam.Organizations);

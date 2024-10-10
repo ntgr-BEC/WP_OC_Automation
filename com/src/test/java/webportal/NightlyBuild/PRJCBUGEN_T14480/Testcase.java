@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 2: Add WIFI ssid and add url to blacklist,connect client to this ssid;")
+    @Step("Test Step 2: Add WIFI ssid and add url to blacklist;")
     public void step2() {
         Map<String, String> ssidInfo = new HashMap<String, String>();
         ssidInfo.put("SSID", "apwp14480");

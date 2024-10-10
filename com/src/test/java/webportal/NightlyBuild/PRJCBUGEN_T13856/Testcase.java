@@ -51,15 +51,7 @@ public class Testcase extends TestCaseBase {
 	@AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        AccountPage AccountPage =new AccountPage();
-        MyCommonAPIs.waitElement(sOrganizationLocationElement);
-        ElementsCollection esc = $$(sOrganizationLocationElement);
-        for (SelenideElement locelem : esc) { 
-            if(locelem.getText().equals(WebportalParam.location1)) { 
-                System.out.println(locelem.getText()+"is deleteds");
-                AccountPage.deleteLocation(locelem.getText());
-            }
-            }       
+        new AccountPage().deleteOneLocation("NewLocation");
     }
 
     @Step("Test Step 1: Log in to a premium account;")
@@ -71,7 +63,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2:Click on Add location icon")
     public void step2() throws IOException {
         HashMap<String, String> locationInfo = new HashMap<String, String>();      
-        locationInfo.put("Location Name", WebportalParam.location1);
+        locationInfo.put("Location Name", "NewLocation");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "12345");
         locationInfo.put("Country", "China");

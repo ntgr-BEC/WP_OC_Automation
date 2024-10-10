@@ -47,13 +47,7 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
-    
-    @BeforeMethod(alwaysRun = true)
-    public void tearUp() {
-       
-       new PostManPage().Deregister(WebportalParam.ap1serialNo);
-        
-    }
+     
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {

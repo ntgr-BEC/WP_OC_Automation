@@ -55,7 +55,7 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 2: Enable ACL Policy popup is shown because  no device is added;")
+    @Step("Test Step 2: Enable ACL Policy ;")
     public void step2() {
         Map<String, String> ssidInfo = new HashMap<String, String>();
         ssidInfo.put("SSID", "apwp14476");

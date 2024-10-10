@@ -55,7 +55,7 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage().checkDeviceInAdminAccount();
     }
 
-    @Step("Test Step 2: Edit Wifi ssid and let client connect it;")
+    @Step("Test Step 2: Edit Wifi ssid")
     public void step2() {
         Map<String, String> ssidInfo = new HashMap<String, String>();
         ssidInfo.put("SSID", "apwp14274");
