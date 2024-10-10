@@ -14,26 +14,29 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class Api_AddNetwork extends TestCaseBaseApi{
+public class Api_GetFastRoaming extends TestCaseBaseApi{
 
-    Map<String, String> endPointUrl = new HashMap<String,String>();
+    Map<String, String> endPointUrl = new HashMap<String, String>();
+    Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetFastRoaming") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets Instat WIFI config from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -43,7 +46,7 @@ public class Api_AddNetwork extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
+    {    
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
         
@@ -52,23 +55,21 @@ public class Api_AddNetwork extends TestCaseBaseApi{
     }
   
     @Step("Send get request to {url}")
-    public Response step1()
-    {        
+    public void step1()
+    { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        Response add = new Api_AddNetwork().step1();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");    
+           
         headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        //TO PERFORM ANY REQUEST
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        headers.put("apikey",WebportalParam.apikey);    
+        headers.put("accountId",WebportalParam.accountId);
+       
+        pathParams.put("networkId",networkId);
+      
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("FastRoaming_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        networkId=getResponse.jsonPath().getString("networkInfo[0].networkId");
-        System.out.print("network ID under response"+networkId);
-        return getResponse;
         
     }
                   
