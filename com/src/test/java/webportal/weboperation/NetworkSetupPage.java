@@ -430,6 +430,8 @@ public class NetworkSetupPage extends NetworkSetupElement {
         } else if (vlanIpMode == 1) {
             String ipnet = String.format("192.168.%s.1", (int) (Math.random() * 255));
             setNetwork4(false, nextIP(ipnet, 10), nextIP(ipnet, 20));
+            System.out.println(nextIP(ipnet, 10));
+            System.out.println(nextIP(ipnet, 20));
         }
         finishAllStep();
     }

@@ -584,7 +584,7 @@ public class NetworkSetupElement extends MyCommonAPIs {
     public SelenideElement txtMask      = $("input[name*=subnetMask]");
     public String          stxtSwitchIp = "//h5[text()='%s']/../div/input";
     public String          allInput     = "input[data-type*=ipAddress]";
-    public SelenideElement btnVlanWarn  = $(".vlanIpWarningModal.in button");
+    public SelenideElement btnVlanWarn  = $x("//*[text()=\"DHCP or static routing mode is enabled on other VLANs. In order to disable routing on the Management VLAN, first disable routing on the other VLANs.\"]");
 
     /**
      * @param isdhcp

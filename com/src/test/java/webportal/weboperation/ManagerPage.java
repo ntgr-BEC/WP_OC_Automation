@@ -72,7 +72,7 @@ public class ManagerPage extends ManagerPageElement {
             invitebutton.click();
             MyCommonAPIs.sleepi(5);
             logger.info("Finish add manager.");
-            invitebuttonsentok.click();
+//            invitebuttonsentok.click();
             MyCommonAPIs.sleepi(5);
         }
     }

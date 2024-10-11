@@ -3608,6 +3608,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(2);
         $x(basicElement + "/button[1]").click();
         MyCommonAPIs.sleepsync();
+        System.out.println("1111111.");
         System.out.println(checkemailtitle.getText());
         if (checkemailtitle.getText().contains("Invite owner email")) {
             result = true;
@@ -3623,7 +3624,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             logger.info("Received insight premium free trial email.");
         } else if (checkemailtitle.getText().contains("Invite manager email")) {
             result = true;
-            logger.info("Received invite manager email.");
+            logger.info("Invite manager email.");
         } else if (checkemailtitle.getText().contains("Verify your email address on MyNETGEAR")) {
             result = true;
             logger.info("Received verify email.");
@@ -8670,7 +8671,7 @@ public void enableTwoFAEmail() {
     Continue.click();
     MyCommonAPIs.sleepi(5);  
     Selenide.back();
-    
+        
 }
 }
 
