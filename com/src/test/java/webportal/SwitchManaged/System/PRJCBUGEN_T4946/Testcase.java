@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.publicstep.PublicButton;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -92,10 +92,10 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 5: Check device can login")
     public void step5() {
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         boolean result1 = switchTelnet.isLoginSuccess();
         assertTrue(result1, "Waive the reboot command, but device can't login");
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
     }
 
     @AfterMethod(alwaysRun = true)

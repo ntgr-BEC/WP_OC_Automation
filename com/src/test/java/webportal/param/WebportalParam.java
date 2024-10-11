@@ -89,6 +89,7 @@ public class WebportalParam {
     public static String                               loginPassword;
     public static String                               loginName1;
     public static String                               loginPassword1;
+    public static String                               CountryOTP;
     public static String                               adminName;
     public static String                               adminPassword;
     public static String                               SecondadminName;
@@ -303,6 +304,15 @@ public class WebportalParam {
     public static String pr2macaddress;
     public static String pr2Firmware;
     public static String pr2Model;
+    
+    public static String baseURI;
+    public static String token;
+    public static String apikey;
+    public static String xsrfToken;
+    public static String accountId;
+    public static String networkId;
+    public static String orgId;
+
 
     public WebportalParam() {
         logger.info("init start");
@@ -314,6 +324,7 @@ public class WebportalParam {
         loginName1 = xmlManager.getValueFromWebPortalXml("//loginName1");
         loginPassword1 = xmlManager.getValueFromWebPortalXml("//loginPassword1");
         adminName = xmlManager.getValueFromWebPortalXml("//adminName");
+        CountryOTP = xmlManager.getValueFromWebPortalXml("//CountryOTP");
         adminPassword = xmlManager.getValueFromWebPortalXml("//adminPassword");
         SecondadminName = xmlManager.getValueFromWebPortalXml("//SecondAdmin");
         SecondadminPassword = xmlManager.getValueFromWebPortalXml("//SecondAdminPassword");        
@@ -348,15 +359,15 @@ public class WebportalParam {
         sw1deveiceName = xmlManager.getValueFromWebPortAndDut("SW1", "DeviceName");
         sw1IPaddress = xmlManager.getValueFromWebPortAndDut("SW1", "Ip_Address");
         sw1ManagePort = xmlManager.getValueFromWebPortAndDut("SW1", "Mangeport").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
+                "").replace("1/0/", "").replace("0/", "");
         sw1LagPort1CLI = xmlManager.getValueFromWebPortAndDut("SW1", "LagPort1");
         sw1LagPort2CLI = xmlManager.getValueFromWebPortAndDut("SW1", "LagPort2");
         sw1LagPort1 = xmlManager.getValueFromWebPortAndDut("SW1", "LagPort1").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
+                "").replace("1/0/", "").replace("0/", "");
         sw1LagPort2 = xmlManager.getValueFromWebPortAndDut("SW1", "LagPort2").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
-        sw1Port1 = xmlManager.getValueFromWebPortAndDut("SW1", "Port1").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "");
-        sw1Port6 = xmlManager.getValueFromWebPortAndDut("SW1", "Port6").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "");
+                "").replace("1/0/", "").replace("0/", "");
+        sw1Port1 = xmlManager.getValueFromWebPortAndDut("SW1", "Port1").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "").replace("1/0/", "").replace("0/", "");
+        sw1Port6 = xmlManager.getValueFromWebPortAndDut("SW1", "Port6").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "").replace("1/0/", "").replace("0/", "");
         sw2deveiceName = xmlManager.getValueFromWebPortAndDut("SW2", "DeviceName");
         sw2serialNo = xmlManager.getValueFromWebPortAndDut("SW2", "SerialNo");
         sw2Model = xmlManager.getValueFromWebPortAndDut("SW2", "Model");
@@ -364,14 +375,14 @@ public class WebportalParam {
         sw2deveiceName = xmlManager.getValueFromWebPortAndDut("SW2", "DeviceName");
         sw2IPaddress = xmlManager.getValueFromWebPortAndDut("SW2", "Ip_Address");
         sw2ManagePort = xmlManager.getValueFromWebPortAndDut("SW2", "Mangeport").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
+                "").replace("1/0/", "").replace("0/", "");
         sw2LagPort1CLI = xmlManager.getValueFromWebPortAndDut("SW2", "LagPort1");
         sw2LagPort2CLI = xmlManager.getValueFromWebPortAndDut("SW2", "LagPort2");
         sw2LagPort1 = xmlManager.getValueFromWebPortAndDut("SW2", "LagPort1").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
+                "").replace("1/0/", "").replace("0/", "");
         sw2LagPort2 = xmlManager.getValueFromWebPortAndDut("SW2", "LagPort2").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g",
-                "");
-        sw2Port6 = xmlManager.getValueFromWebPortAndDut("SW2", "Port6").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "");
+                "").replace("1/0/", "").replace("0/", "");
+        sw2Port6 = xmlManager.getValueFromWebPortAndDut("SW2", "Port6").replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "").replace("1/0/", "").replace("0/", "");
         macVPNClientIp = xmlManager.getValueFromWebPortalXml("//VPNClientIp");
         winVPNClientUser = xmlManager.getValueFromWebPortalXml("//VPNClientUser");
 
@@ -581,6 +592,14 @@ public class WebportalParam {
         pr2Firmware = xmlManager.getValueFromWebPortAndDut("PR2", "Firmware");
         pr2Model = xmlManager.getValueFromWebPortAndDut("PR2", "Model");
         
+        baseURI = xmlManager.getValueFromWebPortAndDut("Api_Main", "baseURI");
+        apikey = xmlManager.getValueFromWebPortAndDut("Api_Main", "apikey");
+        xsrfToken = xmlManager.getValueFromWebPortAndDut("Api_Main", "xsrfToken");
+        accountId = xmlManager.getValueFromWebPortAndDut("Api_Main", "accountId"); 
+        networkId = xmlManager.getValueFromWebPortAndDut("Api_Main", "networkId"); 
+        orgId = xmlManager.getValueFromWebPortAndDut("Api_Main", "orgId"); 
+        token = xmlManager.getValueFromWebPortAndDut("Api_Main", "token");
+        
         // init for multiple language suports
         languageDict = excelUnit.ntgrAnalysisJsonFile();
         logger.info("init end");
@@ -616,7 +635,7 @@ public class WebportalParam {
             return 28;
         if (model.contains("752"))
             return 52;
-        if (model.contains("716") || model.contains("516"))
+        if ((model.contains("716") || model.contains("516")) || model.contains("M4350")|| model.contains("M4250"))
             return 16;
         if (model.contains("108"))
             return 8;
@@ -654,6 +673,12 @@ public class WebportalParam {
     public static boolean isSwitcXS516() {
         return sw1Model.contains("XS516");
     }
+    public static boolean isSwitcM4250(String model) {
+        return model.contains("M4250");
+    }
+    public static boolean isSwitcM4350(String model) {
+        return model.contains("M4350");
+    }
 
     /**
      * @param model
@@ -680,6 +705,10 @@ public class WebportalParam {
             name = "mg";
         } else if (isSwitcXS516(model)) {
             name = "xg";
+        } else if(isSwitcM4350(model)) {
+            name = "1/0/";
+        }else if(isSwitcM4250(model)) {
+            name = "0/";
         }
         String toreturn = String.format("%s%s", name, port);
         logger.info(String.format("model/port/return: %s/%s/%s", model, port, toreturn));
@@ -693,8 +722,9 @@ public class WebportalParam {
      * @return return g3, mg4, xmg5
      */
     public static String getSwitchPort(String model, String port) {
-        if (!port.contains("lag")) {
-            port = port.replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "");
+        if (!port.contains("lag"))  {
+            port = port.replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "").replace("1/0/", "").replace("0/", "");
+            System.out.println(port);
             return getSwitchPort(model, Integer.parseInt(port));
         } else {
             return port;
@@ -775,7 +805,7 @@ public class WebportalParam {
         // return false;
         if (text.startsWith("GC728X") || text.startsWith("GC728XP") || text.startsWith("GC752X") || text.startsWith("GC752XP")
                 || text.startsWith("GC110P") || text.startsWith("GS724Tv6") || text.startsWith("GS748Tv6") || text.startsWith("XS508TM")
-                || text.startsWith("XS516TM") || text.startsWith("XS724TM") || text.startsWith("GS510TPP"))
+                || text.startsWith("XS516TM") || text.startsWith("XS724TM") || text.startsWith("GS510TPP") || text.startsWith("M4350") || text.startsWith("M4250"))
             return false;
         return true;
     }
@@ -1163,7 +1193,7 @@ public class WebportalParam {
 
     public static String getDeviceMacCSVSKU(String devName) {
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/SKUSerialNo.csv";
-        return getCSVData(csvFile, "DEVICE NAME", "MAC Address (Ex : AA:BB:CC:DD:EE:FF)", devName);
+        return getCSVData(csvFile, "DEVICE NAME", "MAC", devName);
     }
 
     public static String getDeviceSerialNoSKU(String devName) {
@@ -1175,4 +1205,15 @@ public class WebportalParam {
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/ACL_List.xlsx";
         return getCSVData(csvFile, "DEVICE NAME", "Actuallist", devName);
     }
+        
+    public static boolean ManagedorSMart(String text) {
+        System.out.println("checkSwitchType:" + text);
+        // if (text.startsWith("GS") || text.startsWith("GC108P") || text.startsWith("MS"))
+        // return true;
+        // return false;
+        if (text.startsWith("M4"))
+            return true;
+        return true;
+    }
+
 }

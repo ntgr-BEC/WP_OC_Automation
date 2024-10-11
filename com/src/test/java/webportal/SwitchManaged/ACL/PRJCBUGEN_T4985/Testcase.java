@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -101,17 +101,17 @@ public class Testcase extends TestCaseBase {
             + "6.permit all")
     public void step6() {
         MyCommonAPIs.sleepsync();
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
         tmpStr = "deny a1:a1:a1:a1:a1:a1 00:00:00:00:00:00 any";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = "deny any a1:a1:a1:a1:a1:b1 00:00:00:00:00:00";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = "deny any a1:a1:a1:a1:a1:22 00:00:00:00:00:00";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = "deny a1:a1:a1:a1:a1:22 00:00:00:00:00:00 any";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
         tmpStr = "deny a1:a1:a1:a1:a1:77 00:00:00:00:00:00 a1:a1:a1:a1:11:88 00:00:00:00:00:00";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -124,8 +124,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 8: All policies are deleted")
     public void step8() {
         handle.waitCmdReady("1:11:88", true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "100");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.aclResult.contains(ipaclMac), ipaclMac);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "100");
+        assertTrue(!SwitchCLIUtils.ACLClass.aclResult.contains(ipaclMac), ipaclMac);
     }
 
 }

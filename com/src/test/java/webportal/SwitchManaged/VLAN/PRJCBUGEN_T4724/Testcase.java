@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchSummaryPage;
@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result1 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false).toLowerCase();
         if (WebportalParam.sw1Model.contains("M4250")) {
-        if (!SwitchCLIUtilsMNG.isTagPort("0/1", vlanId) && result1.contains("1")) {
+        if (!SwitchCLIUtils.isTagPort("0/1", vlanId) && result1.contains("1")) {
             micResult = true;
         } else {
             micResult = false;
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
         }else if (WebportalParam.sw1Model.contains("M4350")) {
             System.out.println(result1.contains("1"));
-            if (!SwitchCLIUtilsMNG.isTagPort("1/0/1", vlanId) && result1.contains("1")) {
+            if (!SwitchCLIUtils.isTagPort("1/0/1", vlanId) && result1.contains("1")) {
                 micResult = true;
             } else {
                 micResult = false;
@@ -97,14 +97,14 @@ public class Testcase extends TestCaseBase implements Config {
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, length), false)
                 .toLowerCase();
         if (WebportalParam.sw1Model.contains("M4250")) {
-        if (!SwitchCLIUtilsMNG.isTagPort("0/" + length, vlanId) && result2.contains("1")) {
+        if (!SwitchCLIUtils.isTagPort("0/" + length, vlanId) && result2.contains("1")) {
             micResult = true;
         } else {
             micResult = false;
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1 for last port, 1 cli is:" + result2);
         }
     }else if (WebportalParam.sw1Model.contains("M4350")) {
-        if (!SwitchCLIUtilsMNG.isTagPort("1/0/" + length, vlanId) && result2.contains("1")) {
+        if (!SwitchCLIUtils.isTagPort("1/0/" + length, vlanId) && result2.contains("1")) {
             micResult = true;
         } else {
             micResult = false;

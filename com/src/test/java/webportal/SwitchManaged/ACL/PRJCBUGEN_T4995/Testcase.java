@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,10 +75,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: verify record")
     public void step3() {
         handle.waitCmdReady(wvp.camData.toip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "1995");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "1995");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit %s", wvp.camData.fromip);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "to ip"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "to ip"+": "+tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -96,14 +96,14 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: verify record again")
     public void step5() {
         handle.waitCmdReady(wvp.camData.toip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "1995");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "1995");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = ipaclMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "ip changed before"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "ip changed before"+": "+tmpStr);
         tmpStr = wvp.camData.fromip;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "changed to fromip"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "changed to fromip"+": "+tmpStr);
         tmpStr = wvp.camData.toip;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "changed to toip"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "changed to toip"+": "+tmpStr);
     }
 
 }

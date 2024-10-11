@@ -28,7 +28,7 @@ public class Testcase extends TestCaseBase {
     @Description("008-Insight web portal check notifications after reboot device") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4938") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
@@ -47,7 +47,8 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
         evtp.gotoPage();
         if (!(handle.pageSource().contains(tmpStr1) || handle.pageSource().contains(tmpStr2))) {
-            evtp.makeEvent(true);
+            evtp.makeCriticalEvent(false, "Disconnect");
+            evtp.makeCriticalEvent(false, "Connect");
         }
     }
 

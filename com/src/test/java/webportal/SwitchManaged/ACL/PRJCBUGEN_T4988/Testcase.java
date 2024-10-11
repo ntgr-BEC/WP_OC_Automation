@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,12 +75,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: ​​​​​On device,generate 1 IP acl on device:\n" + "--Allow,source ip 11.1.1.1,mask 0.0.0.255")
     public void step3() {
         handle.waitCmdReady("i1111100025550", false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify the ip is set: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify the ip is set: " + tmpStr);
         tmpStr = wvp.ipFilterIpMask;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify the mask is set: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify the mask is set: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -95,10 +95,10 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 5: ​​​​​​​​​​On device,generate 1 IP acl on device:\n" + "--Allow,destination ip 11.1.1.1,mask 0.0.0.255")
     public void step5() {
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit any %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify the new ip is set: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify the new ip is set: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -115,12 +115,12 @@ public class Testcase extends TestCaseBase {
             + "--Allow,des ip 11.1.1.1,mask 0.0.0.255")
     public void step7() {
         handle.waitCmdReady(String.format("permit %s", ipaclIp), false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit any %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "new ip allow from on device: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "new ip allow from on device: " + tmpStr);
         tmpStr = String.format("permit %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "new ip allow to on device: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "new ip allow to on device: " + tmpStr);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -136,10 +136,10 @@ public class Testcase extends TestCaseBase {
             + "2.Old ip acl is deleted")
     public void step9() {
         handle.waitCmdReady(String.format("permit %s", ipaclIp), true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = String.format("permit any %s", ipaclIp);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "new ip allow to only on device: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "new ip allow to only on device: " + tmpStr);
     }
 
 }

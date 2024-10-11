@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase implements Config {
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.waitAllSwitchDevicesConnected();

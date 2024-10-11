@@ -760,11 +760,11 @@ public class SwitchCLIUtils {
         SwitchTelnet st = connectSW(false, true);
         port = WebportalParam.getSwitchPort(WebportalParam.sw1Model, port);
         String sResult;
-        sResult = st.sendCLICommandClear("show running-config interface " + port, "spanning-tree");
+        sResult = st.sendCLICommandClear("show running-config interface " + port, null);
         if (!st.isRltkSW) {
-            if (WebportalParam.sw1Model.toLowerCase().contains("xs516") || WebportalParam.sw1Model.toLowerCase().contains("gs724")  || WebportalParam.sw1Model.toLowerCase().contains("gs748") || WebportalParam.sw1Model.toLowerCase().contains("gs510tpp")){
-                if (!sResult.contains("port mode"))
-                    return true;
+            if (WebportalParam.sw1Model.toLowerCase().contains("xs516") || WebportalParam.sw1Model.toLowerCase().contains("gs724") || WebportalParam.sw1Model.toLowerCase().contains("m4350") || WebportalParam.sw1Model.toLowerCase().contains("m4250")|| WebportalParam.sw1Model.toLowerCase().contains("gs748") || WebportalParam.sw1Model.toLowerCase().contains("gs510tpp")){
+                if (!sResult.contains("port mode")) 
+                    return true; 
                 else
                     return false;
                 
@@ -843,10 +843,14 @@ public class SwitchCLIUtils {
         String result;
         port = WebportalParam.getSwitchPort(WebportalParam.sw1Model, port);
         if (st.isRltkSW) {
-            result = st.sendCLICommandClear("show running-config interfaces " + port, vlanId);
+            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
             if (result.contains("tagged") && !result.contains("untagged"))
                 return true;
-        } else {
+        } else if(WebportalParam.sw1Model.contains("M4350")|| WebportalParam.sw1Model.contains("M4250")){
+            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
+            if (result.contains("tagging"))
+                return true;            
+        }else {        
             result = st.sendCLICommandClear("show vlan port " + port, vlanId);
             if (result.contains("Tagged"))
                 return true;
@@ -1025,7 +1029,7 @@ public class SwitchCLIUtils {
         SwitchTelnet st = connectSW(false, true);
         String result;
         if (!st.isRltkSW) {
-            result = st.sendCLICommandClear("show network", null);
+            result = st.sendCLICommandClear("show ip management", null);
         } else {
             result = st.sendCLICommandClear("show ip", null);
         }
@@ -1162,7 +1166,7 @@ public class SwitchCLIUtils {
                 aclResult = aclResult.toLowerCase();
             }
             
-            logger.info(String.format("<%s><%s>", ispermitACL, aclResult));
+            logger.info(String.format("aclResult is <%s><%s>", ispermitACL, aclResult));
         }
     }
     
@@ -1465,4 +1469,32 @@ public class SwitchCLIUtils {
             st.sendCLICommandClear("spanning-tree", null);
         }
     }
+    
+    public static void SwitchOfflineOnline( String status) {
+        if (status.equals("Disconnect")) {
+            doSwitchCommandforDeviceDisconnect(1);
+            MyCommonAPIs.sleepi(300);
+        }
+        else if(status.equals("Connect")) {
+            doSwitchCommandforDeviceDisconnect(2);         //status is Connected
+            MyCommonAPIs.sleepi(300);
+        }      
+    }
+    
+    public static void doSwitchCommandforDeviceDisconnect(int cmdIndex) {
+        logger.info("Will generate a critical notification");
+        SwitchTelnet st = new SwitchTelnet(WebportalParam.sw1IPaddress, WebportalParam.loginDevicePassword, true);
+        if (cmdIndex == 1) {
+            logger.info("try to disconncet sw");
+            st.switchDisconnect();
+            new Pause().seconds(60, "sleep for switch disconnect");
+        } else if (cmdIndex == 2) {
+            logger.info("try to connect sw");
+            st.switchConnect();
+            new Pause().seconds(60, "sleep for switch connect");
+     
+        }
+        logger.info("try to disconnect the switch via command");
+    }
 }
+

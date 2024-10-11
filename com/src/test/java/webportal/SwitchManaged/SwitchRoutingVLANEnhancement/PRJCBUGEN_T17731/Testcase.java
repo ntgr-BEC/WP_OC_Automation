@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -29,7 +29,7 @@ public class Testcase extends TestCaseBase {
     @Description("006-Create new routing VLAN with DHCP mode") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T17731") // It's a testcase id/link from Jira Test Case.
     
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        netsp.deleteNetwork(netName);
     }
     
     // Each step is a single test step from Jira Test Case
@@ -59,7 +59,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Config success, check by Insight and Switch local;")
     public void step3() {
         handle.waitCmdReady(vlanId, false);
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         assertTrue(switchTelnet.checkVlanDHCP(vlanId), "By default dhcp mode is on for vlan");
     }
 }

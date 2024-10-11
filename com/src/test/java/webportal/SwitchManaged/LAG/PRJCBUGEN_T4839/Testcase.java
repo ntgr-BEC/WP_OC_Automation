@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.CommonDataType;
 import webportal.param.CommonDataType.EditLagData;
 import webportal.param.WebportalParam;
@@ -126,7 +126,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 9: Lag 1 is deleted successfully.")
     public void step9() {
         MyCommonAPIs.sleepsync();
-        assertFalse(SwitchCLIUtilsMNG.isLagPort(WebportalParam.getSwitchLag(false, false)), "lag 1 is removed - 1");
+        assertFalse(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, false)), "lag 1 is removed - 1");
     }
 
 }

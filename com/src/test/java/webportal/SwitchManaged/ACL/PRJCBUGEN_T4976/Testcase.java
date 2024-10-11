@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -62,6 +63,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Create one vlan,deploy 26 IP ACL for this vlan")
     public void step2() {
         for (int i = 1; i <= 26; i++) {
+            MyCommonAPIs.sleepi(10);
             ipaclIp = String.format("200.1.1.%d", i);
             System.out.printf("create ip acl: %s", ipaclIp);
             wvp.editVlanIpFilteringAllow(vlanName, ipaclName, ipaclIp);

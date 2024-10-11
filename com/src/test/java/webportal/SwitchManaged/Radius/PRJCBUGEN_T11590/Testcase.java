@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.setSwitchInfo(WebportalParam.sw1IPaddress, WebportalParam.sw1Model);
+        SwitchCLIUtils.setSwitchInfo(WebportalParam.sw1IPaddress, WebportalParam.sw1Model);
         netsp.gotoPage();
         netsp.deleteAllNetwork();
     }
@@ -53,8 +53,8 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        SwitchCLIUtilsMNG.forceMangeportAuth();
-        SwitchCLIUtilsMNG.cleanRadius();
+        SwitchCLIUtils.forceMangeportAuth();
+        SwitchCLIUtils.cleanRadius();
     }
 
     @Step("Test Step 2: Go to Location->Edit Location-> RADIUS")
@@ -71,18 +71,18 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 4: Go to local switch GUI, Radius server info is deployed and enable on VLAN200")
     public void step4() {
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isServerConfiged, "check radius server option");
-//        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check 1st sw port mode g1");
-        // tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g3");
-        // assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus != 1, "check 1st sw port mode g3");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        assertTrue(SwitchCLIUtils.RadiusClass.isServerConfiged, "check radius server option");
+//        assertTrue(SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check 1st sw port mode g1");
+        // tmpStr = SwitchCLIUtils.getRadiusInfo("g3");
+        // assertTrue(SwitchCLIUtils.RadiusClass.portStatus != 1, "check 1st sw port mode g3");
         
-        SwitchCLIUtilsMNG.setSwitchInfo(WebportalParam.sw2IPaddress, WebportalParam.sw2Model);
-        tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g3");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check 2nd sw port mode g3");
-        // tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g1");
-        // assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus != 1, "check 2nd sw port mode g1");
+        SwitchCLIUtils.setSwitchInfo(WebportalParam.sw2IPaddress, WebportalParam.sw2Model);
+        tmpStr = SwitchCLIUtils.getRadiusInfo("g3");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check 2nd sw port mode g3");
+        // tmpStr = SwitchCLIUtils.getRadiusInfo("g1");
+        // assertTrue(SwitchCLIUtils.RadiusClass.portStatus != 1, "check 2nd sw port mode g1");
     }
     
     @Step("Test Step 5: Go to Network setup,edit VLAN200,disable radius server option.")
@@ -97,13 +97,13 @@ public class Testcase extends TestCaseBase {
     
 //    @Step("Test Step 6: Go to local switch GUI, Radius server info is deployed and disable on VLAN200")
 //    public void step6() {
-//        SwitchCLIUtilsMNG.setSwitchInfo(WebportalParam.sw1IPaddress, WebportalParam.sw1Model);
-//        SwitchCLIUtilsMNG.getRadiusInfo("g1");
-//        assertTrue(!SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option on 1st switch");
+//        SwitchCLIUtils.setSwitchInfo(WebportalParam.sw1IPaddress, WebportalParam.sw1Model);
+//        SwitchCLIUtils.getRadiusInfo("g1");
+//        assertTrue(!SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option on 1st switch");
 //        
-//        SwitchCLIUtilsMNG.setSwitchInfo(WebportalParam.sw2IPaddress, WebportalParam.sw2Model);
-//        SwitchCLIUtilsMNG.getRadiusInfo("g1");
-//        assertTrue(!SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check dot1x option on 2nd switch");
+//        SwitchCLIUtils.setSwitchInfo(WebportalParam.sw2IPaddress, WebportalParam.sw2Model);
+//        SwitchCLIUtils.getRadiusInfo("g1");
+//        assertTrue(!SwitchCLIUtils.RadiusClass.isEnabled, "check dot1x option on 2nd switch");
 //    }
     
     @AfterMethod(alwaysRun = true)

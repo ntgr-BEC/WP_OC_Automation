@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -60,8 +60,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 3: Check port 1 speed mode")
     public void step3() {
         handle.waitCmdReady(PORTSPEED_CLI, false);
-        expectValue = SwitchCLIUtilsMNG.getPortInfo("g" + WebportalParam.sw1Port6);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100") && SwitchCLIUtilsMNG.PortClass.duplexMode == 1, "check port speed/deplex");
+        expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
     }
 
     @Step("Test Step 4: Change port speed mode to 100M half")
@@ -77,8 +77,8 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 5: Check port 1 speed mode")
     public void step5() {
-        expectValue = SwitchCLIUtilsMNG.getPortInfo("g" + WebportalParam.sw1Port6);
-        assertTrue(SwitchCLIUtilsMNG.PortClass.sPortSpeed.contains("100") && SwitchCLIUtilsMNG.PortClass.duplexMode == 2, "check port speed/deplex");
+        expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 2, "check port speed/deplex");
     }
 
     @AfterMethod(alwaysRun = true)

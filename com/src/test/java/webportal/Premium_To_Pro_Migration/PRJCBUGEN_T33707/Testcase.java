@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -24,6 +25,7 @@ import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.OrganizationPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 import com.codeborne.selenide.Selenide;
 
@@ -48,16 +50,18 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap1serialNo);
+        
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        if (new OrganizationPage().checkOrganizationIsExist(organizationName)){
-            new OrganizationPage().deleteOrganizationNew(organizationName);
-            System.out.println("start to do tearDown");
-        } else {
-            new AccountPage().deleteOneLocation("OnBoardingTest");
-            System.out.println("start to do tearDown");
-        }
+        new AccountPage().deleteOneLocation("OnBoardingTest");
+        System.out.println("start to do tearDown");
     }
 
     // Each step is a single test step from Jira Test Case
@@ -80,8 +84,43 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
-    @Step("Test Step 2: Add diff diff icp credits;")
+    @Step("Test Step 2: Create New location;")
     public void step2() {
+        
+//      new HamburgerMenuPage(false).clickAddInsightIncludedDevices();
+        new HamburgerMenuPage(false).closeLockedDialog();
+        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", "OnBoardingTest");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "4560");
+        locationInfo.put("Country", "Australia");
+        new AccountPage().addNetwork(locationInfo);
+        
+    }
+    
+    
+    @Step("Test Step 3: Add device To the Network;")
+    public void step3() {
+        
+        new AccountPage(false).enterLocation(WebportalParam.location1);
+        
+         new AccountPage().enterLocation("OnBoardingTest");
+        
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+       
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
+        
+        System.out.println(firststdevInfo);
+ 
+                
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        
+    }
+    
+    @Step("Test Step 4: Add diff diff icp credits;")
+    public void step4() {
         
 //      new HamburgerMenuPage(false).clickAddInsightIncludedDevices();
         Map<String, String> CaptivePortalPaymentInfo = new HashMap<String, String>();

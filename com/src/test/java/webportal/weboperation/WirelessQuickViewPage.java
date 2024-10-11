@@ -65,6 +65,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public WirelessQuickViewPage() {
         // TODO Auto-generated constructor stub
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
+        MyCommonAPIs.sleepi(5);
         waitElement(settingsorquickview);
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
@@ -2945,6 +2946,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result;
     }
 
+    public int getApUptime(String serialNumber) {
+        int upTime = 0;
+        String text = getText(String.format(uptime, serialNumber));
+        String regEx = "[^0-9]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(text);
+        upTime = Integer.parseInt(m.replaceAll("").trim());
+        logger.info("Uptime number:" + String.valueOf(upTime));
+        return upTime;
+    }
     public int getApUptime() {
         int upTime = 0;
         String text = getText(String.format(uptime, WebportalParam.ap1serialNo));
@@ -10331,7 +10342,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void enableLogProbing(boolean flag) {
         MyCommonAPIs.sleepi(10);
         setSelected($x("(//input[@id='enableBlackList'])[5]/../span"), flag);
-        $x("(//input[@id='enableBlackList'])[5]/../span").click();
+//        $x("(//input[@id='enableBlackList'])[5]/../span").click();
         MyCommonAPIs.sleepi(10);
         if(SaveIGMP.exists()) {
         new WirelessQuickViewPage(false).SaveIGMP.click();
@@ -10367,12 +10378,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(30);
         waitElement(questionLogProbinginfo);
         String info = questionLogProbinginfo.getText();
-        String infor = questionLogProbinginfo.getSelectedText();
-        String inforr = questionLogProbinginfo.getValue();
-        System.out.println("----------------------");
         System.out.println(info);
-        System.out.println(infor);
-        System.out.println(inforr);
         return info;
     }
 

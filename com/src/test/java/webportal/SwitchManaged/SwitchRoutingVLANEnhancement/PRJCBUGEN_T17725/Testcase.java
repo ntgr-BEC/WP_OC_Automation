@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchIpSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -53,7 +53,8 @@ public class Testcase extends TestCaseBase {
                 ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
                 netsp.gotoPage();
             }
-            netsp.deleteAllNetwork();
+            netsp.deleteNetwork(net1Name);
+            netsp.deleteNetwork(net2Name);
         }
     }
     
@@ -130,6 +131,6 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
         assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
-        assertTrue(SwitchCLIUtilsMNG.getNetworkIp().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
+        assertTrue(SwitchCLIUtils.getNetworkIp().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
     }
 }

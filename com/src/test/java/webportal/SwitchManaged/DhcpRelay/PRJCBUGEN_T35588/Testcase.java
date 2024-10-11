@@ -72,9 +72,9 @@ public class Testcase extends TestCaseBase {
 
 
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("ip dhcp l2-relay option"), "admin mode not enabled");
+                .contains("dhcp l2relay option"), "admin mode not enabled");
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort2CLI, false)
-                .contains("ip dhcp l2-relay option"), "admin mode not enabled");
+                .contains("dhcp l2relay option"), "admin mode not enabled");
 
     }
 
@@ -88,7 +88,7 @@ public class Testcase extends TestCaseBase {
         assertFalse(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
         
         assertFalse(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("ip dhcp l2-relay option"), "admin mode should be disabled");
+                .contains("dhcp l2relay option"), "admin mode should be disabled");
 
     }
 

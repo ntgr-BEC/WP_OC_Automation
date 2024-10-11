@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -80,14 +80,14 @@ public class Testcase extends TestCaseBase implements Config {
        
         
 
-        if (!SwitchCLIUtilsMNG.isTagPort(portNo, vlanId)) {
+        if (!SwitchCLIUtils.isTagPort(portNo, vlanId)) {
             micResult = true;
         } else {
             micResult = false;
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1 for first port");
         }
 
-        if (!SwitchCLIUtilsMNG.isTagPort(prefixportNo + length, vlanId)) {
+        if (!SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId)) {
             micResult = true;
         } else {
             micResult = false;
@@ -107,7 +107,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false)
                 .toLowerCase();
-        if (!SwitchCLIUtilsMNG.isTagPort(portNo, vlanId) && result1.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort(portNo, vlanId) && result1.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -117,7 +117,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, length), false)
                 .toLowerCase();
-        if (!SwitchCLIUtilsMNG.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -136,7 +136,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         String result1 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false).toLowerCase();
-        if (SwitchCLIUtilsMNG.isTagPort(portNo, vlanId) && result1.contains("200")) {
+        if (SwitchCLIUtils.isTagPort(portNo, vlanId) && result1.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -146,7 +146,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, length), false)
                 .toLowerCase();
-        if (SwitchCLIUtilsMNG.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
+        if (SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -163,7 +163,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(5000);
 
         String checkPort = portNo;
-        if (!SwitchCLIUtilsMNG.isTagPort(checkPort, vlanId) && !SwitchCLIUtilsMNG.isPortInVlan(checkPort, "200")) {
+        if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -171,7 +171,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
 
         checkPort = prefixportNo + length;
-        if (!SwitchCLIUtilsMNG.isTagPort(checkPort, vlanId) && !SwitchCLIUtilsMNG.isPortInVlan(checkPort, "200")) {
+        if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {
             micResult = false;

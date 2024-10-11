@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -67,10 +67,10 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check allow acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "check allow acl");
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
     }
 
     @Step("Test Step 4: On allow device list,select the mac address \"22-22-22-33-33-33\",edit to 22-22-22-33-33-44\"")
@@ -89,11 +89,11 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.mamData.devMac, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac"+": "+tmpStr);
         tmpStr = "permit " + tmpStr1;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac is removed"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac is removed"+": "+tmpStr);
     }
 
     @Step("Test Step 6: On allow device list,select the mac address \"22-22-22-33-33-44\",edit option from \"allow access from this device\" to \"\"allow access to this device\"\"")
@@ -112,11 +112,11 @@ public class Testcase extends TestCaseBase {
     public void step7() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit any " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct is changed"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct is changed"+": "+tmpStr);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct is changed"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct is changed"+": "+tmpStr);
     }
 
     @Step("Test Step 8: On allow device list,select the mac address \"22-22-22-33-33-44\",edit option\r\n"
@@ -136,11 +136,11 @@ public class Testcase extends TestCaseBase {
     public void step9() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit any " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct from"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct from"+": "+tmpStr);
     }
 
     @Step("Test Step 10: Edit option to \"allow access from this device\" again")
@@ -159,10 +159,10 @@ public class Testcase extends TestCaseBase {
     public void step11() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "permit any " + netsp.mamData.devMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
         tmpStr = "permit " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify permit mac direct to"+": "+tmpStr);
     }
 }

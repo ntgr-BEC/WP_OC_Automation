@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -75,12 +75,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: On Switch,generated a mac acl binding to vlan200\n" + "--allow,source-11:11:11:11:11:11,des-22:22:22:22:22:22")
     public void step3() {
         handle.waitCmdReady(wvp.camData.frommac, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "allow mac acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
+        assertTrue(SwitchCLIUtils.ACLClass.ispermitACL, "allow mac acl");
         tmpStr = wvp.camData.tomac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "check mac entry" + ": " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "check mac entry" + ": " + tmpStr);
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult
+                SwitchCLIUtils.ACLClass.aclResult
                         .contains(String.format("permit %s 00:00:00:00:00:00 %s 00:00:00:00:00:00", wvp.camData.frommac, wvp.camData.tomac)),
                 "allow,source-11:11:11:11:11:11,des-22:22:22:22:22:22");
     }
@@ -104,12 +104,12 @@ public class Testcase extends TestCaseBase {
         assertTrue(ls.contains(wvp.camData.frommac));
         
         handle.waitCmdReady(oldmac, true);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, "200");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, "200");
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult
+                SwitchCLIUtils.ACLClass.aclResult
                         .contains(String.format("permit %s 00:00:00:00:00:00 %s 00:00:00:00:00:00", wvp.camData.frommac, wvp.camData.tomac)),
                 "allow,source-11:11:11:11:11:22,des-22:22:22:22:22:33");
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00", oldmac)),
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(String.format("permit %s 00:00:00:00:00:00", oldmac)),
                 "no allow,source-11:11:11:11:11:11,des-22:22:22:22:22:22");
     }
     

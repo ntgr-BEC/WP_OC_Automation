@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
         snmpp.clickSave();
         handle.waitCmdReady(sStr, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sStr), "check option on cli for text: " + sStr);
 
         sStr = "test@test123";
@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
         snmpp.clickSave();
         handle.waitCmdReady(sStr, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sStr), "check option on cli for text: " + sStr);
 
         sStr = "test@test123test";
@@ -72,7 +72,7 @@ public class Testcase extends TestCaseBase {
         snmpp.clickSave();
         handle.waitCmdReady(sStr, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sStr), "check option on cli for text: " + sStr);
     }
 

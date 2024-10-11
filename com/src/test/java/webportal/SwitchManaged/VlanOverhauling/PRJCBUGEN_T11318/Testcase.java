@@ -11,7 +11,8 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.MyCommonAPIs;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -29,23 +30,24 @@ public class Testcase extends TestCaseBase {
     @Description("026-Config a vlan when DUT is out of line") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11318") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.SwitchOfflineOnline("Connect");         //will make switch online
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Open page and goto Vlan Page")
     public void step1() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
-        handle.sleepi(5 * 60);
-        SwitchCLIUtilsMNG.CloudModeSet(true);
-
+        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");     //will make switch offline
+//        SwitchCLIUtils.CloudModeSet(false);
+//        handle.sleepi(5 * 60);
+//        SwitchCLIUtils.CloudModeSet(true);
+     
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
 

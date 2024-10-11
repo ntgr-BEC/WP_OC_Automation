@@ -25,7 +25,10 @@ public class WebportalLoginPageElement extends MyCommonAPIs {
     public SelenideElement loginEmailNew  = $x("//*[@id=\"_ipEmlLgn\"]");
     public SelenideElement loginPwdNew1   = $x("//*[@id='input_1']");
     public SelenideElement loginPwdNew    = $("#searchinput");
+    
     public SelenideElement loginButtonNew = $("form[name*=loginForm] button");
+    public static SelenideElement NoThankYou         = $x("//u[text()='No thank you']");
+    
    
 
     public SelenideElement CheckWhatsNew = $(".WhatsNewModal.in button");
@@ -41,4 +44,14 @@ public class WebportalLoginPageElement extends MyCommonAPIs {
     public SelenideElement goToInsightAcc   = $x("//p/a[@data-target='.goToMyAccModal']");
     public SelenideElement YesButton        = $x("//button[@class='btn btn-primary' and text()='Yes']");
     public SelenideElement loginButton1 = $x("//button[@id='Login-btn']");
+    
+    public SelenideElement loginEmailCognito  = $x("//*[@id=\"mat-input-0\"]");
+    public SelenideElement loginPwdCognito    = $x("//*[@id=\"mat-input-1\"]");
+    public SelenideElement loginButtonCognito    = $x("//*[@id=\"Login-btn\"]");
+    
+    public SelenideElement OTPInYopmail           = $x("//*[contains(text(),\"NETGEAR account\")]/../../tr[5]");
+    public SelenideElement continuebutton         = $x("//span[text()=\"Continue\"]");
+    public SelenideElement dontTrust              = $x("//span[text()=\"Don't Trust \"]");
+    public SelenideElement notificationicon       = $x("//div[contains(@data-tooltip,'Notification')]");
+    
 }

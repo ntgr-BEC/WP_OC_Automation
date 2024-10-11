@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Story("PRJCBUGEN_T4728") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("055-Create Private VLAN via template of Guest+Employee Network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4728") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, enabled = false, groups = "p1")
+    @Test(alwaysRun = true, enabled = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -91,7 +91,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result1 = switchTelnet.getCLICommand("show running-config");
         System.out.println(result1);
         if (result1.contains("vlan 1000") && result1.contains("private-vlan primary") && result1.contains("private-vlan association 3098-3099")) {
@@ -116,7 +116,8 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = switchTelnet
                 .getCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]));
         System.out.println(result2);
-        if (result2.contains("switchport mode private-vlan promiscuous") && result2.contains("switchport private-vlan mapping 1000 3098-3099")) {
+//        if (result2.contains("switchport mode private-vlan promiscuous") && result2.contains("switchport private-vlan mapping 1000 3098-3099")) {
+        if (result2.contains("switchport mode private-vlan host") && result2.contains("switchport private-vlan host-association 1000 3098")) {
             micResult = true;
         } else {
             micResult = false;

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchIpSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     @Description("009-Change Management VLAN mode from Static to None") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T17726") // It's a testcase id/link from Jira Test Case.
     
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -49,7 +49,8 @@ public class Testcase extends TestCaseBase {
             ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
             netsp.gotoPage();
         }
-        netsp.deleteAllNetwork();
+        netsp.deleteNetwork(net1Name);
+        netsp.deleteNetwork(net2Name);
     }
     
     // Each step is a single test step from Jira Test Case
@@ -123,9 +124,11 @@ public class Testcase extends TestCaseBase {
         ddpmg.rebootSwitchDevice();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
 
-        String sStaticIp = handle.getVlan1StaticIp(false);
+//        String sStaticIp = handle.getVlan1StaticIp(false);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
-        assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
-        assertTrue(SwitchCLIUtilsMNG.getNetworkIp().contains(sStaticIp), String.format("check ip is expected on cli: %s/%s", sStaticIp, sStaticIpWP));
+        assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
+                String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
+//        assertTrue(sStaticIpWP.equals(sStaticIp), String.format("check ip is expected on wp: %s/%s", sStaticIp, sStaticIpWP));
+        assertTrue(SwitchCLIUtils.getNetworkIp().contains(sStaticIpWP), String.format("check ip is expected on cli: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
     }
 }

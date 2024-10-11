@@ -54,7 +54,7 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        webportalLoginPage.defaultLogin();
     }
 
     @Step("Test Step 2: Create Location ")

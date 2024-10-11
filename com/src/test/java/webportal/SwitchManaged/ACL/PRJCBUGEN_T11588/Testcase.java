@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -68,10 +68,10 @@ public class Testcase extends TestCaseBase {
         tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(String.format("vlan %s", vlanId)), "verify vlan");
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
+        assertFalse(SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         tmpStr = "deny " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac"+": "+tmpStr);
     }
 
     @Step("Test Step 4: Edit mac address from \"11:11:11:11:11:11\" to \"11:11:11:11:11:22\"")
@@ -90,11 +90,11 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         handle.waitCmdReady(netsp.mamData.devMac, false);
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "deny " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac"+": "+tmpStr);
         tmpStr = "deny " + tmpStr1;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac is removed"+": "+tmpStr);
     }
 
     @Step("Test Step 6: Edit option from \"Deny access from this device\" to \"Deny access to this device\"")
@@ -113,11 +113,11 @@ public class Testcase extends TestCaseBase {
     public void step7() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "deny any " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct is changed"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct is changed"+": "+tmpStr);
         tmpStr = "deny " + netsp.mamData.devMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct is changed"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct is changed"+": "+tmpStr);
     }
 
     @Step("Test Step 8: Edit option select all (\"Deny access from this device\" and \"Deny access to this device\")")
@@ -136,11 +136,11 @@ public class Testcase extends TestCaseBase {
     public void step9() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "deny any " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
         tmpStr = "deny " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct from"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct from"+": "+tmpStr);
     }
 
     @Step("Test Step 10: Edit mac acl --policy:deny --Mac address: 11:11:11:11:11:33 --option:Deny access from this device")
@@ -159,10 +159,10 @@ public class Testcase extends TestCaseBase {
     public void step11() {
         handle.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(false, vlanId);
+        tmpStr = SwitchCLIUtils.getIpMACACL(false, vlanId);
         tmpStr = "deny any " + netsp.mamData.devMac;
-        assertFalse(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
+        assertFalse(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
         tmpStr = "deny " + netsp.mamData.devMac;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "verify deny mac direct to"+": "+tmpStr);
     }
 }

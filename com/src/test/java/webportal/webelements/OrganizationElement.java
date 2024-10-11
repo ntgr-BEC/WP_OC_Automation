@@ -430,7 +430,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement        locationWPA2EnterpriseOrgSsidSecurity                   = $x("//td[text()='WPA2 Enterprise']");
     public SelenideElement        locationWPA3EnterpriseOrgSsidSecurity                   = $x("//td[text()='WPA3 Enterprise']");
     public SelenideElement        nodataAvailable                                         = $x("//td[text()='No Data Available']");
-    public SelenideElement        orgwideSSIDToggleSwitchOnOff                            = $x("(//span[@class='cstmSlider cstmRound'])[3]");
+    public SelenideElement        orgwideSSIDToggleSwitchOnOff                            = $x("//h6[text()='Organization-wide SSID']/..//span[@class='cstmSlider cstmRound']");
     public SelenideElement        orgClick                         = $x("//*[@id=\"_divorgDiv1\"]/div");
     public SelenideElement        netgear                           = $x("//*[@id=\"logoInsightPro\"]/a/img");
 

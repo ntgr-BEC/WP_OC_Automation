@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -51,15 +51,15 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Switchover the device to offline status, Insight go to Wired-->Setting-->SNMP config page, enable SNMP tran, config valid IP address and community string, click Save;")
     public void step2() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
         snmpp.setSnmp(false, sIp, sPw, false);
     }
 
     @Step("Test Step 3: Switch over the device to online status, check SNMP config by Insight and Switch local GUI;")
     public void step3() {
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
 
-        tmpStr = SwitchCLIUtilsMNG.getSNMPInfo();
+        tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on cli for text after online: " + sIp);
     }
 }

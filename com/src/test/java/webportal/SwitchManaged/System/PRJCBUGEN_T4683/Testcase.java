@@ -13,7 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.WebportalLoginPage;
@@ -52,7 +52,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: modify devices to Cloud Management Mode disable")
     public void step3() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
     }
 
     public void step4() {
@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void restore() {
         System.out.println("start to do restore");
         try {
-            SwitchCLIUtilsMNG.CloudModeSet(true);
+            SwitchCLIUtils.CloudModeSet(true);
         } catch (Throwable e) {
             e.printStackTrace();
         }

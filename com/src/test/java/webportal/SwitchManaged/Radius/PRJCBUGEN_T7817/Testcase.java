@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -76,8 +76,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Go to local switch GUI, Radius server info is deployed and enable on VLAN200")
     public void step4() {
         handle.waitCmdReady(lagName, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check radius option is enabled");
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check radius option on port");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(SwitchCLIUtils.RadiusClass.isEnabled, "check radius option is enabled");
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check radius option on port");
     }
 }

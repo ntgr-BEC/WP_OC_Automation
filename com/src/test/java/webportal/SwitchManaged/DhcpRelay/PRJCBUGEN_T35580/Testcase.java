@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean str1 = tmpStr.contains("ip dhcp l2-relay");
+        boolean str1 = tmpStr.contains("dhcp l2relay");
         assertTrue(str1, "Dhcp L2 Relay is not enabled");
 
     }
@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean str1 = tmpStr.contains("ip dhcp l2-relay");
+        boolean str1 = tmpStr.contains("dhcp l2relay");
         assertFalse(str1, "Dhcp L2 Relay line is there");
 
     }

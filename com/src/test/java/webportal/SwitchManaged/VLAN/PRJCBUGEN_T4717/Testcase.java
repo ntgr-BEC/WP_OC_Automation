@@ -14,7 +14,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
@@ -76,14 +76,14 @@ public class Testcase extends TestCaseBase implements Config {
 
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
         String result2 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
-        if (!SwitchCLIUtilsMNG.isTagPort(port1, vlanId) && result1.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort(port1, vlanId) && result1.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 200 on dut1, 1 cli is:" + result1);
         }
 
-        if (SwitchCLIUtilsMNG.isTagPort(port2, vlanId) && result2.contains("200")) {
+        if (SwitchCLIUtils.isTagPort(port2, vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -102,7 +102,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]), false)
                 .toLowerCase();
-        if (!SwitchCLIUtilsMNG.isTagPort(prefixport + sw1port[1], vlanId) && result2.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort(prefixport + sw1port[1], vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;

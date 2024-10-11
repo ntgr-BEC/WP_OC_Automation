@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that user is able to redirected to Port config page by clicking the port config") // It's a testcase title from
                                                                                                                    // Jira Test Case.
     @TmsLink("PRJCBUGEN-T35603") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }

@@ -40,7 +40,7 @@ package webportal.SwitchManaged.DhcpSnooping.PRJCBUGEN_T35597;
      @Story("PRJCBUGEN_T35597") // It's a testcase id/link from Jira Test Case but replace - with _.
      @Description("Test to verify global and Port configuration is present under DHCP Snooping config") // It's a testcase title from Jira Test Case.
      @TmsLink("PRJCBUGEN-T35597") // It's a testcase id/link from Jira Test Case.
-     @Test(alwaysRun = true, groups = "p2")
+     @Test(alwaysRun = true, groups = "p1")
      public void test() throws Exception {
          runTest(this);
      }

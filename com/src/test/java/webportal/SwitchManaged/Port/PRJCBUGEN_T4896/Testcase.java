@@ -13,7 +13,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -77,7 +77,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Check configuration on CLI")
     public void step4() {
         // check on dut CLI
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress);
+        MyCommonAPIs.sleepi(180);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress);
         String rate = switchTelnet.getStormControlRate(WebportalParam.sw1LagPort1CLI);
         if (rate.contains(stormControlRatetvalue)) {
             micResult = true;

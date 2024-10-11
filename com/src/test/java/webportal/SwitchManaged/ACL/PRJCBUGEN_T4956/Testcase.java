@@ -14,7 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -83,11 +83,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: ​On switch,generate 2 IP ACLs")
     public void step5() {
         String sRet = handle.waitCmdReady(ipaclIp, false);
-        sRet = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        sRet = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         String tmpStr = "deny any";
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "deny to any: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "deny to any: " + tmpStr);
         tmpStr = ipaclIp;
-        assertTrue(SwitchCLIUtilsMNG.ACLClass.aclResult.contains(tmpStr), "check ip acl: " + tmpStr);
+        assertTrue(SwitchCLIUtils.ACLClass.aclResult.contains(tmpStr), "check ip acl: " + tmpStr);
     }
 }

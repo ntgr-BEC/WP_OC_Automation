@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -65,9 +65,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: After save and deploy the command, go to swtich local GUI check the configuration")
     public void step4() {
         handle.waitCmdReady(ip1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check radius option on port");
-        assertTrue(!SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check radius option");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check radius option on port");
+        assertTrue(!SwitchCLIUtils.RadiusClass.isEnabled, "check radius option");
     }
 
 }

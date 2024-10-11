@@ -14,8 +14,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.WebportalLoginPage;
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase implements Config {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: make switch offline")
     public void step1() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
     }
 
     @Step("Test Step 2: edit device name")
@@ -54,9 +54,9 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(10 * 1000);
         Selenide.refresh();
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(webportalParam.sw1IPaddress);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         newName = switchTelnet.getDeviceName();
-        SwitchTelnetMNG.disconnect();
+        SwitchTelnet.disconnect();
         assertTrue(newName.contains(oldName), "check device name");
     }
 
@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void restore() {
         System.out.println("start to do restore");
         try {
-            SwitchCLIUtilsMNG.CloudModeSet(true);
+            SwitchCLIUtils.CloudModeSet(true);
         } catch (Throwable e) {
             e.printStackTrace();
         }

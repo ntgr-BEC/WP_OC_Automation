@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -95,7 +95,7 @@ public class Testcase extends TestCaseBase {
         handle.waitCmdReady(sTestStr, false);
         MyCommonAPIs.sleepsync();
 
-        tmpStr = SwitchCLIUtilsMNG.getPoETimeRange(sTestStr);
+        tmpStr = SwitchCLIUtils.getPoETimeRange(sTestStr);
         assertTrue(tmpStr.contains(new SimpleDateFormat("yyyy").format(new Date())),
                 "PRJCBUGEN-30390--can not deploy POE Downtime schedules with Daily or Weekly to the switch");
 

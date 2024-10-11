@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -33,7 +33,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T4830") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("006-Create lag when DUT is offline") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4830") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         portIndex = Integer.parseInt(WebportalParam.sw1LagPort1);
         portIndex1 = Integer.parseInt(WebportalParam.sw1LagPort2);
@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         wlp.gotoLagPage();
         wlp.deleteLag();
         MyCommonAPIs.sleepi(4);
@@ -52,9 +52,9 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
         handle.sleepi(5);
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         handle.sleepi(4 * 60);
     }
 

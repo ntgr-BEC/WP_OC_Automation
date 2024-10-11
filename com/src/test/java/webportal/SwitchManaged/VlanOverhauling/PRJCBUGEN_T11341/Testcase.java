@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         netsp.gotoPage();
         netsp.openNetwork("Management VLAN");
-        if (netsp.warning.exists()) {
+        if (netsp.warning.isDisplayed()) {
             netsp.okWarning.click();
             MyCommonAPIs.sleepi(3); 
         }
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Check vlan 600 configuration by APP and GUI")
     public void step3() {
         handle.waitCmdReady(vlanId, false);
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         assertTrue(switchTelnet.checkVlanDHCP(vlanId), "By default dhcp mode is on for vlan");
     }
 }

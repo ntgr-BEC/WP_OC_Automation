@@ -41,8 +41,8 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
     public static SelenideElement deselectAllButton = $x("//button[text()='Deselect All']");
     
     
-    public static ElementsCollection allSelectChecks              = $$x("//span[@class='ethernet-count']/../i[@class='icon icon-check']");
-    public static ElementsCollection allPorts              = $$x("//i[@class=\"icon icon-ethernet\"]/../span[@class='ethernet-count']");
+    public static ElementsCollection allSelectChecks              = $$x("//span[@class='ethernet-count']/../../../li[@class = 'portSelected']");
+    public static ElementsCollection allPorts              = $$x("//span[@class='ethernet-count']/../i[@class='icon icon-check']");
     public static ElementsCollection allAdminModes         = $$x("//span[@class='icon-L1 Sright']");
     
     public static SelenideElement checkSelected = $x("//i[@class='icon icon-check']");
@@ -56,6 +56,10 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
     public static SelenideElement txtPortSelection(String portNo) {
         return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']", portNo));
     }
+       
+    public static SelenideElement txtPortSelectionnext(String portNo) {
+        return $x(String.format("(//div[@id='divSwitchPortsGroupPrt%s'])[2]", portNo));
+    }
     
     public static SelenideElement txtPortAdminModeCheck(String portNo) {
         return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/..//span[@id='spnEtherNetPortsjuhiii9GroupPrt%s'][1]", portNo, portNo));
@@ -67,6 +71,10 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
     
     public static boolean checkPortSelectedOrNot(String portNo) {
         return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/../i[@class='icon icon-check']", portNo)).isDisplayed();
+        
+    }
+    public static boolean checkPortSelectedOrNotnext(String portNo) {
+        return $x(String.format("(//div[@id='divSwitchPortsGroupPrt%s']/../i[@class='icon icon-check'])[2]", portNo)).isDisplayed();
         
     }
     

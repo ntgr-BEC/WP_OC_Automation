@@ -34,7 +34,7 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T35599") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that user is able to enable or disable DHCP snooping mode in global config") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35599") // It's a testcase id/link from Jira Test Case.
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -60,11 +60,11 @@ public class Testcase extends TestCaseBase {
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
 
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "DHCP Snooping Mode not enabled");
+        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "DHCP Snooping Mode not enabled");
 
-        handle.waitCmdReady("Snooping", true);
         MyCommonAPIs.sleepsync();
-
+        handle.waitCmdReady("Snooping", true);
+     
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean str1 = tmpStr.contains("ip dhcp snooping");
         assertTrue(str1, "Dhcp Snooping is not enabled");
@@ -78,11 +78,11 @@ public class Testcase extends TestCaseBase {
         handle.refresh();
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
 
-        assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "DHCP Snooping Mode not disabled");
+        assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "DHCP Snooping Mode not disabled");
 
-        handle.waitCmdReady("snooping", true);
         MyCommonAPIs.sleepsync();
-
+        handle.waitCmdReady("snooping", true);
+     
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean str1 = tmpStr.contains("ip dhcp snooping");
         assertFalse(str1, "Dhcp Snooping line is there");

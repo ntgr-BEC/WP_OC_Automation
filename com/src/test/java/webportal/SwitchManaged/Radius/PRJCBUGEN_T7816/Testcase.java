@@ -12,8 +12,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
-import util.SwitchTelnetMNG;
+import util.SwitchCLIUtils;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -67,12 +67,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Go to local switch GUI, Radius server info is deployed and enable on VLAN200")
     public void step4() {
         handle.waitCmdReady(ip1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 1, "check radius option on g4 of sw1");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 1, "check radius option on g4 of sw1");
         
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw2IPaddress, false);
-        SwitchCLIUtilsMNG.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw2Model, WebportalParam.sw2LagPort1)));
-        assertTrue(SwitchCLIUtilsMNG.RadiusClass.portStatus == 2, "check radius option on g4 of sw2");
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw2IPaddress, false);
+        SwitchCLIUtils.RadiusClass.init(switchTelnet, switchTelnet.getCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw2Model, WebportalParam.sw2LagPort1)));
+        assertTrue(SwitchCLIUtils.RadiusClass.portStatus == 2, "check radius option on g4 of sw2");
     }
     
     @Step("Test Step 5: Disable radius server option on VLAN200 level")
@@ -88,8 +88,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 6: Go to local switch GUI, Radius server info is deployed and enable on VLAN200")
     public void step6() {
         handle.waitCmdReady(ip1, false);
-        String tmpStr = SwitchCLIUtilsMNG.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
-        assertTrue(!SwitchCLIUtilsMNG.RadiusClass.isEnabled, "check radius option");
+        String tmpStr = SwitchCLIUtils.getRadiusInfo("g" + WebportalParam.sw1LagPort1);
+        assertTrue(!SwitchCLIUtils.RadiusClass.isEnabled, "check radius option");
     }
     
 }

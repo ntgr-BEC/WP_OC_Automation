@@ -5,11 +5,17 @@
 package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 import java.util.Map;
 import java.util.logging.Logger;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
@@ -73,14 +79,21 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             if (loginEmailNew.exists()) {
                 loginEmailNew.clear();
                 loginEmailNew.sendKeys(user);
-            } else {
+            } else if (loginEmailCognito.exists()) {
+                loginEmailCognito.clear();
+                loginEmailCognito.sendKeys(user);
+            }else {
                 loginEmailNew1.clear();
                 loginEmailNew1.sendKeys(user);
             }
+            
             sleepi(1);
             if (loginPwdNew.exists()) {
                 loginPwdNew.clear();
                 loginPwdNew.sendKeys(passwd);
+            } else if (loginPwdCognito.exists()) {
+                loginPwdCognito.clear();
+                loginPwdCognito.sendKeys(passwd);
             } else {
                 loginPwdNew1.clear();
                 loginPwdNew1.sendKeys(passwd);
@@ -89,6 +102,12 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             sleepi(5);
             if (loginButtonNew.exists()) {
                 loginButtonNew.click();
+            }else {
+                loginButtonCognito.click();
+           }
+            sleepi(10);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
             }
 
             waitElementNot(loginButtonNew);
@@ -330,4 +349,79 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         }
         return result;
     }
-}
+    
+    public void twoFaEmailLogin(String emailAddress, String passWord) {
+        boolean isfailed = true;
+        long t = System.currentTimeMillis();
+        long end = t + 12000;
+        System.out.println("going inside while");
+        while (System.currentTimeMillis() < end) {
+            System.out.println("inside while");
+            Selenide.refresh();
+            if (loginNowButton.exists()) {
+                loginNowButton.click();
+                break;
+            }
+            MyCommonAPIs.sleepi(2);
+        }
+        if (isInLoginPage()) {
+            System.out.printf("try to login with user: %s\n", emailAddress);
+            for (int i = 0; i < 5; i++) {
+                logger.info("checking to input credit...");
+                if (inputLogin(emailAddress, passWord)) {
+                    isfailed = false;
+                    break;
+                }
+            }
+        }
+        String OTP = email2FAOTP(emailAddress);
+        logger.info("Confirmation code is:" + OTP);
+        MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
+        String currentUrl1=new MyCommonAPIs().getCurrentUrl();
+        System.out.print(currentUrl1);
+        MyCommonAPIs.sleepi(10);
+        int i =0;
+        for (int id = 0; id < 6; id++) {
+            $x("(//*[@autocomplete=\"one-time-code\"])["+String.valueOf(i)+"]").sendKeys(OTP.substring(id, id + 1));
+            i++;  
+        }
+        continuebutton.click();
+        MyCommonAPIs.sleepi(10);
+        dontTrust.click();
+        int ls = 0;
+        while (ls < 5) {
+            MyCommonAPIs.sleepi(20);
+            if (!notificationicon.exists()) {
+                refresh();
+            } else {
+                break;
+            }
+            ls += 1;
+        }
+    }
+        
+    
+        
+    public String email2FAOTP(String emailaddress) {
+        
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(5);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(emailaddress);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+        String OTP = OTPInYopmail.getText();
+        System.out.println(OTP);
+        return OTP;
+            
+        }
+       
+    }
+   

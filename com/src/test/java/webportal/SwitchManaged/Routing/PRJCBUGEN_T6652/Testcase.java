@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -33,13 +33,13 @@ public class Testcase extends TestCaseBase {
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
         runTest(this);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        SwitchCLIUtilsMNG.cleanIpRouter();
+        SwitchCLIUtils.cleanIpRouter();
     }
 
     // Each step is a single test step from Jira Test Case

@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
@@ -43,15 +43,15 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         WebportalParam.updateSwitchOneOption(false, null);
     }
     
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
-        SwitchCLIUtilsMNG.CloudModeSet(false);
+        SwitchCLIUtils.CloudModeSet(false);
         handle.sleepi(5);
-        SwitchCLIUtilsMNG.CloudModeSet(true);
+        SwitchCLIUtils.CloudModeSet(true);
         handle.sleepi(4 * 60);
     }
 

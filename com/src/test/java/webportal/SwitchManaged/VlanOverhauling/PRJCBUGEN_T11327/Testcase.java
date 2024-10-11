@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -29,7 +29,7 @@ public class Testcase extends TestCaseBase {
     @Description("016-Verify protocol-based VoIP function via default template of Voice network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T11327") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p3")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Check all ports: Auto VoIP Mode should be Enable, Operational Status should be Up, Prioritization Type should be Remark and Class Value should be 7")
     public void step4() {
-        assertTrue(SwitchCLIUtilsMNG.checkVoiceVlan(), "Auto VoIP Mode should be Enable");
-        assertTrue(SwitchCLIUtilsMNG.getVoiceInfo(0, 0).contains("7"), "Class Value should be 7");
+        assertTrue(SwitchCLIUtils.checkVoiceVlan(), "Auto VoIP Mode should be Enable");
+        assertTrue(SwitchCLIUtils.getVoiceInfo(0, 0).contains("7"), "Class Value should be 7");
     }
 }

@@ -11,7 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesSwitchIpSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -31,7 +31,7 @@ public class Testcase extends TestCaseBase {
     @Description("005-Change Management VLAN mode from Static to DHCP on device IP Setting page") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T17724") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
@@ -78,9 +78,10 @@ public class Testcase extends TestCaseBase {
         ddpmg.gotoPage();
         ddpmg.waitDevicesReConnected(WebportalParam.sw1serialNo);
         String sStaticIpWP = ddpmg.getDeviceIP(WebportalParam.sw1serialNo);
+        System.out.println(sStaticIpWP);
         assertTrue(sStaticIpWP.equals(WebportalParam.sw1IPaddress),
                 String.format("check ip is expected on wp: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
-        assertTrue(SwitchCLIUtilsMNG.getVlan1Ip().contains(WebportalParam.sw1IPaddress),
+        assertTrue(SwitchCLIUtils.getVlan1Ip().contains(WebportalParam.sw1IPaddress),
                 String.format("check ip is expected on cli: %s/%s", WebportalParam.sw1IPaddress, sStaticIpWP));
     }
 }

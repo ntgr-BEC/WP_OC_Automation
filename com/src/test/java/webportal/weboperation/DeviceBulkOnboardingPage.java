@@ -17,6 +17,14 @@ import webportal.param.URLParam;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.DeviceBulkOnboardingElement;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static com.codeborne.selenide.Selenide.*;
+
 
 public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
 
@@ -735,6 +743,24 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         }
         Viewdevice.click();
         MyCommonAPIs.sleepi(10);
+    }
+    
+    //AddedByPratik
+    public boolean bulkOnboardingErrorMessagesVerify(String FilePath) {
+        boolean result = false;
+        Robot robot;
+        changeaddDeviceButton.click();
+        MyCommonAPIs.sleepi(2);
+        addMultiDevicechange.click();
+        MyCommonAPIs.sleepi(5);
+        browseButton.sendKeys(FilePath);
+        MyCommonAPIs.sleepi(10);
+        SelenideElement messageElement = $(".d-flex.align-items-center.justify-content-between p");
+        String expectedMessage = "12 errors found. The following devices were not added due to errors. If you want to add these devices, check the name, serial number, or location of each device, and then try again, or you can continue without these devices at this time.";
+        messageElement.shouldHave(Condition.text(expectedMessage));
+        Assert.assertEquals(messageElement.text().trim(), expectedMessage, "Message verification failed.");
+        result = true;
+        return result;
     }
     
 }

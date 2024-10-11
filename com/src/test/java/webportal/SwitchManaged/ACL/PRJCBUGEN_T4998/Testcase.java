@@ -12,7 +12,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
-import util.SwitchCLIUtilsMNG;
+import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -81,10 +81,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Generate 2 IP acls on device\n" + "--deny,source-1.1.1.1/0.0.0.255,destination-2.2.2.2/0.0.0.255\n" + "--permit all")
     public void step3() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, "50");
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, "50");
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult.contains(
+                SwitchCLIUtils.ACLClass.aclResult.contains(
                         String.format("deny %s %s %s %s", wvp.camData.fromip, wvp.camData.fromipmask, wvp.camData.toip, wvp.camData.toipmask)),
                 "deny,source-1.1.1.1/0.0.0.255,destination-2.2.2.2/0.0.0.255");
     }
@@ -111,10 +111,10 @@ public class Testcase extends TestCaseBase {
             + "--deny,source-1.1.1.2/0.0.255.255,destination-2.2.2.3/0.0.255.255\n" + "--permit all")
     public void step5() {
         handle.waitCmdReady(wvp.camData.fromip, false);
-        tmpStr = SwitchCLIUtilsMNG.getIpMACACL(true, null);
-        assertTrue(!SwitchCLIUtilsMNG.ACLClass.ispermitACL, "check deny acl");
+        tmpStr = SwitchCLIUtils.getIpMACACL(true, null);
+        assertTrue(!SwitchCLIUtils.ACLClass.ispermitACL, "check deny acl");
         assertTrue(
-                SwitchCLIUtilsMNG.ACLClass.aclResult.contains(
+                SwitchCLIUtils.ACLClass.aclResult.contains(
                         String.format("deny %s %s %s %s", wvp.camData.fromip, wvp.camData.fromipmask, wvp.camData.toip, wvp.camData.toipmask)),
                 "deny,source-1.1.1.2/0.0.255.255,destination-2.2.2.3/0.0.255.255");
     }

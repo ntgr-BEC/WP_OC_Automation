@@ -15,7 +15,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import util.SwitchTelnetMNG;
+import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(5000);
         handle.waitCmdReady("vlan200", false);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet.getCLICommand("show vlan 200");
         System.out.println(result2);
         if (result2.contains("vlan200")) {
@@ -79,7 +79,7 @@ public class Testcase extends TestCaseBase implements Config {
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.editVlanWithPorts("vlan200", "200", vlanName, null, null, null, null, null, null, null);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet.getCLICommand("show vlan 200");
         System.out.println(result2);
         if (result2.contains(vlanName)) {
@@ -114,7 +114,7 @@ public class Testcase extends TestCaseBase implements Config {
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.editVlanWithPorts(vlanName, "200", "xx", null, null, null, null, null, null, null);
 
-        SwitchTelnetMNG switchTelnet = new SwitchTelnetMNG(WebportalParam.sw1IPaddress, false);
+        SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet.getCLICommand("show vlan 200");
         System.out.println(result2);
         if (result2.contains("xx")) {

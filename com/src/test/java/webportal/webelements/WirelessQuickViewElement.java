@@ -583,11 +583,16 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement deleteSsid(String text) {
         SelenideElement Ssid = $x("//p[@title='" + text + "']/../../../td[11]//i[2]");
         System.out.println(Ssid);
-        if (!Ssid.exists()) {
+        if (!Ssid.isDisplayed()) {
+            if($x("//p[@title='" + text + "']/../../../td[10]//i[3]").isDisplayed()) {
             Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[3]");
+            }else {
+                Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[2]");
+            }
             System.out.println(Ssid);
         }
         return Ssid;
+    
     }
 
     public SelenideElement deleteScheduledwifi(String wifi) {
