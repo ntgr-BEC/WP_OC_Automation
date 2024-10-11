@@ -19,9 +19,7 @@ import org.apache.tika.sax.BodyContentHandler;
 import org.xml.sax.SAXException;
 
 import io.qameta.allure.Step;
-import util.APUtils;
 import util.MyCommonAPIs;
-import webportal.param.WebportalParam;
 import webportal.webelements.HamburgerMenuElement;
 
 //import org.apache.tika.parser.pdf.PDFParser;  
@@ -224,9 +222,9 @@ public class FileHandling extends HamburgerMenuElement {
        return wantedline;      
        }  
    
-   public String fetchFileName () {
+   public String fetchFileName (String Path) {
        String Filename = "";
-       String folderPath = "C:\\auto";
+       String folderPath = Path;
        // Create a File object for the folder
        File folder = new File(folderPath);
 
@@ -249,15 +247,15 @@ public class FileHandling extends HamburgerMenuElement {
        }
     return Filename;
    }
-    public static void deleteAllExcept(String fileToKeep) {
-        File folder1 = new File("C:\\Auto");
-   public static void deleteAllExcept(String fileToKeep, String path) {
-       File folder1 = new File(path);
 
-       // Check if the folder exists and is a directory
-       if (folder1.exists() && folder1.isDirectory()) {
-           // Get the list of files in the folder
-           File[] listOfFiles = folder1.listFiles();
+    public static void deleteAllExcept(String fileToKeep, String path) {
+        File folder1 = new File(path);
+
+        // Check if the folder exists and is a directory
+        if (folder1.exists() && folder1.isDirectory()) {
+            // Get the list of files in the folder
+            File[] listOfFiles = folder1.listFiles();
+
             if (listOfFiles != null) {
                 // Iterate through the files
                 for (File file : listOfFiles) {
@@ -277,26 +275,4 @@ public class FileHandling extends HamburgerMenuElement {
         }
         
     }
-           if (listOfFiles != null) {
-               // Iterate through the files
-               for (File file : listOfFiles) {
-                   // Delete the file if its name doesn't match the file to keep
-                   if (file.isFile() && !file.getName().equals(fileToKeep) && !file.getName().equals("tftpd32.ini")) {
-                       boolean deleted = file.delete(); // Delete the file
-                       if (deleted) {
-                           System.out.println("Deleted: " + file.getName());
-                       } else {
-                           System.out.println("Failed to delete: " + file.getName());
-                       }
-                   }
-               }
-           }
-       } else {
-           System.out.println("The folder does not exist or is not a directory.");
        }
-       
-   }
-}
-   
-   
-       
