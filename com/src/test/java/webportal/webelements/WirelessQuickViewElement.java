@@ -1516,6 +1516,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
      public SelenideElement        proceed              = $x("//*[@id=\"walledGarden\"]");
     
+     public static SelenideElement    broadcastTogglebutton                          = $x("//*[@id=\"broadCastSSID\"]");
 }
 
 
