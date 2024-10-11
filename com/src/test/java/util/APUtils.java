@@ -1202,7 +1202,7 @@ public class APUtils extends MyCommonAPIs {
    
     public String Addeditssid() {
 
-        MyCommonAPIs.sleepi(120);
+//        MyCommonAPIs.sleepi(120);
         String status = "";
             logger.info("entered WAC model");
             status = plink.getOutput("iwconfig | grep -i essid", default_timeout_ssh);
@@ -1614,6 +1614,7 @@ public void changeAPtoNetgear() {
 public void upgrageFirmware(String fileName) {  
     plink.getOutput(String.format("/usr/local/bin/firmware-upgrade-tftp %s %s reboot check", fileName, WebportalParam.TftpSvr), 240);
 }
+
 
 }
 
