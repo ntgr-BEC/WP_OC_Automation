@@ -65,6 +65,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public WirelessQuickViewPage() {
         // TODO Auto-generated constructor stub
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
+        MyCommonAPIs.sleepi(5);
         waitElement(settingsorquickview);
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
