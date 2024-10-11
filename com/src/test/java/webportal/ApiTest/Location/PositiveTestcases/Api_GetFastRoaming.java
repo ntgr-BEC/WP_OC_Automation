@@ -36,7 +36,7 @@ public class Api_GetFastRoaming extends TestCaseBaseApi{
     
     @Feature("Api_GetFastRoaming") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets Instat WIFI config from the particular network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets fast roaming data from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
