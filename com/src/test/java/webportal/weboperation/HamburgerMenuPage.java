@@ -1081,11 +1081,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void changeEmail(String newEmail, String confirmEmail, String password) {
+        
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
-        if (cancelbuttonCognito.exists()) {
-            cancelbuttonCognito.click();
-        } else if (cancelbutton.exists()) {
+        if (cancelbutton.exists()) {
             cancelbutton.click();
         } else {
             refresh();
@@ -1098,93 +1097,125 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         logger.info("Start change email...");
         changeemail.click();
-        MyCommonAPIs.sleepi(10);
-        if (newemailCognito.exists()) {
-            newemailCognito.sendKeys(newEmail);
-        } else {
-            waitElement(newemail);
-            newemail.sendKeys(newEmail);
+        waitElement(newemail);
+        newemail.sendKeys(newEmail);
+        confirmmail.sendKeys(confirmEmail);
+        currentpassword.sendKeys(password);
+        submitchangeemail.click();
+        WebCheck.checkHrefIcon(URLParam.hrefDevices);
+        if (okconformation.exists()) {
+
+            okconformation.click();
         }
-        MyCommonAPIs.sleep(10);
-        if (confirmmailCognito.exists()) {
-            confirmmailCognito.sendKeys(confirmEmail);
-        } else {
-            waitElement(confirmmail);
-            confirmmail.sendKeys(confirmEmail);
+        if (Invalidsession.isDisplayed()) {
+            Invalidsession.click();
         }
-        MyCommonAPIs.sleep(10);
-        if (currentpasswordCognito.exists()) {
-            currentpasswordCognito.sendKeys(password);
-        } else {
-            waitElement(currentpassword);
-            currentpassword.sendKeys(password);
-        }
-        MyCommonAPIs.sleep(10);
-        if (submitchangeemailCognito.exists()) {
-            submitchangeemailCognito.click();
-        } else {
-            waitElement(submitchangeemail);
-            submitchangeemail.click();
-        }
-        MyCommonAPIs.sleepi(10);
-        String otp = "";
-        if (verifyOtpScreenCognito.exists()) {
-            String originalTab = WebDriverRunner.getWebDriver().getWindowHandle();
-            executeJavaScript("window.open('https://www.yopmail.com', '_blank');");
-            for (String tab : WebDriverRunner.getWebDriver().getWindowHandles()) {
-                if (!tab.equals(originalTab)) {
-                    WebDriverRunner.getWebDriver().switchTo().window(tab);
-                    break;
-                }
-            }
-            MyCommonAPIs.sleepi(5);
-            String inputElement = "//input[@id='login']";
-            $x(inputElement).clear();
-            $x(inputElement).sendKeys(confirmEmail);
-            $x("//button[@title='Check Inbox @yopmail.com']").click();
-            MyCommonAPIs.sleepi(10);
-            SelenideElement frame = $("iframe[name='ifinbox']");
-            Selenide.switchTo().frame(frame);
-            MyCommonAPIs.sleepi(10);
-            System.out.println(checkemailtitle.getText());
-            if (checkemailtitle.getText().contains("Change Your Account Email Address")) {
-                logger.info("Received Device Online Notification email.");
-                switchTo().defaultContent();
-                SelenideElement mailFrame = $("[name='ifmail']");
-                MyCommonAPIs.sleepi(10);
-                mailFrame.shouldBe(Condition.visible);// Adjust timeout as needed
-                switchTo().frame(mailFrame);
-                MyCommonAPIs.sleepi(10);
-                confirmEmailOtpYopmail.scrollIntoView(true);
-                String otpText = confirmEmailOtpYopmail.getText();
-                System.out.println("OTP is: " + otpText);
-                MyCommonAPIs.sleepi(1);
-                switchTo().defaultContent();
-                WebDriverRunner.getWebDriver().close();
-                MyCommonAPIs.sleepi(2);
-                WebDriverRunner.getWebDriver().switchTo().window(originalTab);
-                MyCommonAPIs.sleepi(2);
-                System.out.println(otpText);
-                enterChangeemailOTP.click();
-                MyCommonAPIs.sleepi(2);
-                enterOTP.setValue(otpText);
-                //executeJavaScript("arguments[0].value = arguments[1];", enterChangeemailOTP.getWrappedElement(), otpText);
-                MyCommonAPIs.sleep(10);
-                submitchangeemailCognito.click();
-                MyCommonAPIs.sleepi(10);
-            }
-        } else {
-            MyCommonAPIs.sleepi(5);
-            logger.info("Cognito servcer is not present");
-            WebCheck.checkHrefIcon(URLParam.hrefDevices);
-            if (okconformation.exists()) {
-                okconformation.click();
-            } else if (Invalidsession.isDisplayed()) {
-                Invalidsession.click();
-            } else {
-                logger.info("Done");
-            }
-        }
+//        updateprofile.click();
+//        MyCommonAPIs.sleepi(10);
+//        if (cancelbuttonCognito.exists()) {
+//            cancelbuttonCognito.click();
+//        } else if (cancelbutton.exists()) {
+//            cancelbutton.click();
+//        } else {
+//            refresh();
+//            MyCommonAPIs.sleepi(10);
+//            if (cancelbutton.exists()) {
+//                cancelbutton.click();
+//            }
+//        }
+//        loginsettings.click();
+//        MyCommonAPIs.sleepi(5);
+//        logger.info("Start change email...");
+//        changeemail.click();
+//        MyCommonAPIs.sleepi(10);
+//        if (newemailCognito.exists()) {
+//            newemailCognito.sendKeys(newEmail);
+//        } else {
+//            waitElement(newemail);
+//            newemail.sendKeys(newEmail);
+//        }
+//        MyCommonAPIs.sleep(10);
+//        if (confirmmailCognito.exists()) {
+//            confirmmailCognito.sendKeys(confirmEmail);
+//        } else {
+//            waitElement(confirmmail);
+//            confirmmail.sendKeys(confirmEmail);
+//        }
+//        MyCommonAPIs.sleep(10);
+//        if (currentpasswordCognito.exists()) {
+//            currentpasswordCognito.sendKeys(password);
+//        } else {
+//            waitElement(currentpassword);
+//            currentpassword.sendKeys(password);
+//        }
+//        MyCommonAPIs.sleep(10);
+//        if (submitchangeemailCognito.exists()) {
+//            submitchangeemailCognito.click();
+//        } else {
+//            waitElement(submitchangeemail);
+//            submitchangeemail.click();
+//        }
+//        MyCommonAPIs.sleepi(10);
+//        String otp = "";
+//        if (verifyOtpScreenCognito.exists()) {
+//            String originalTab = WebDriverRunner.getWebDriver().getWindowHandle();
+//            executeJavaScript("window.open('https://www.yopmail.com', '_blank');");
+//            for (String tab : WebDriverRunner.getWebDriver().getWindowHandles()) {
+//                if (!tab.equals(originalTab)) {
+//                    WebDriverRunner.getWebDriver().switchTo().window(tab);
+//                    break;
+//                }
+//            }
+//            MyCommonAPIs.sleepi(5);
+//            String inputElement = "//input[@id='login']";
+//            $x(inputElement).clear();
+//            $x(inputElement).sendKeys(confirmEmail);
+//            $x("//button[@title='Check Inbox @yopmail.com']").click();
+//            MyCommonAPIs.sleepi(10);
+//            SelenideElement frame = $("iframe[name='ifinbox']");
+//            Selenide.switchTo().frame(frame);
+//            MyCommonAPIs.sleepi(10);
+//            System.out.println(checkemailtitle.getText());
+//            if (checkemailtitle.getText().contains("Change Your Account Email Address")) {
+//                logger.info("Received Device Online Notification email.");
+//                switchTo().defaultContent();
+//                SelenideElement mailFrame = $("[name='ifmail']");
+//                MyCommonAPIs.sleepi(10);
+//                mailFrame.shouldBe(Condition.visible);// Adjust timeout as needed
+//                switchTo().frame(mailFrame);
+//                MyCommonAPIs.sleepi(10);
+//                confirmEmailOtpYopmail.scrollIntoView(true);
+//                String otpText = confirmEmailOtpYopmail.getText();
+//                System.out.println("OTP is: " + otpText);
+//                MyCommonAPIs.sleepi(1);
+//                switchTo().defaultContent();
+//                WebDriverRunner.getWebDriver().close();
+//                MyCommonAPIs.sleepi(2);
+//                WebDriverRunner.getWebDriver().switchTo().window(originalTab);
+//                MyCommonAPIs.sleepi(2);
+//                System.out.println(otpText);
+//                enterChangeemailOTP.click();
+//                MyCommonAPIs.sleepi(2);
+//                enterOTP.setValue(otpText);
+//                //executeJavaScript("arguments[0].value = arguments[1];", enterChangeemailOTP.getWrappedElement(), otpText);
+//                MyCommonAPIs.sleep(10);
+//                submitchangeemailCognito.click();
+//                MyCommonAPIs.sleepi(10);
+//            }
+//        } else {
+//            MyCommonAPIs.sleepi(5);
+//            logger.info("Cognito servcer is not present");
+//            WebCheck.checkHrefIcon(URLParam.hrefDevices);
+//            if (okconformation.exists()) {
+//                okconformation.click();
+//            } else if (Invalidsession.isDisplayed()) {
+//                Invalidsession.click();
+//            } else {
+//                logger.info("Done");
+//            }
+//        }
+        
+        
     }
 
     public void editProfile(Map<String, String> map) {
