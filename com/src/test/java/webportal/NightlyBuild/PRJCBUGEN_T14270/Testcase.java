@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
 
 //         Define the command to run the Python script using Python interpreter
         String pythonExe = "C:\\Program Files\\Python38\\python.exe";  // or the full path to Python like "C:\\Python39\\python.exe"
-        String command = "C:\\Users\\Admin\\PycharmProjects\\pythonProject\\jfrog_fw_download.py";
+        String command = "C:\\jfrog";
 
         new FileHandling().deleteAllExcept("tftpd32.exe");
 

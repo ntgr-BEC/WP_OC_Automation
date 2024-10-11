@@ -41,10 +41,7 @@ public class Testcase extends TestCaseBase {
 
     @Feature("NightlyBuild") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T16635") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("verify instant captive portal  when user select tier type as \"social login\" with only Facebook selected as login mode") // It's
-                                                                                                                                                         // a
-                                                                                                                                                      // Test
-                                                                                                                                                         // Case.
+    @Description("verify instant captive portal  when user select tier type as \"social login\" with only Facebook selected as login mode") // It's                                                                                                                                                         // a                                                                                                                                                      // Test                                                                                                                                                         // Case.
     @TmsLink("PRJCBUGEN-T16635") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority

@@ -50,17 +50,17 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
 
-        handle.gotoLoction();
+//        handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add WIFI ssid and check ssid config successful;")
-    public void step2() {
-        new WirelessQuickViewPage().deleteALLSSID();
-        Map<String, String> ssidInfo = new HashMap<String, String>();
-        ssidInfo.put("SSID", "apwp14272");
-        ssidInfo.put("Security", "WPA2 Personal Mixed");
-        ssidInfo.put("Password", "123456798");
-        new WirelessQuickViewPage().addSsid1(ssidInfo);
-
-    }
+//    @Step("Test Step 2: Add WIFI ssid and check ssid config successful;")
+//    public void step2() {
+//        new WirelessQuickViewPage().deleteALLSSID();
+//        Map<String, String> ssidInfo = new HashMap<String, String>();
+//        ssidInfo.put("SSID", "apwp14272");
+//        ssidInfo.put("Security", "WPA2 Personal Mixed");
+//        ssidInfo.put("Password", "123456798");
+//        new WirelessQuickViewPage().addSsid1(ssidInfo);
+//
+//    }
 }

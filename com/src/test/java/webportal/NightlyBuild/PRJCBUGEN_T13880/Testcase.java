@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
         new OrganizationPage(false).openOrg(organizationName);
         new OrganizationPage(false).goToOrgSsid(organizationName);
         
-        locationInfo.put("SSID", "PRJCBUGEN_T113880");
+        locationInfo.put("SSID", "orgwideNew");
         locationInfo.put("Security", "Open");
         new OrganizationPage(false).CreateOrgSSId(locationInfo);
 
