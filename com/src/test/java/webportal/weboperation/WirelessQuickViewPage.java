@@ -11219,4 +11219,31 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result;
     }
     
+    // Added by Anusha H
+    public void broadcastToggleButton(String ssid, String Enable) {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleep(5);
+        if (checkSsidIsExist(ssid)) {
+            clickEditSsid(ssid);
+        }
+  
+        if (Enable.equals("0")) {
+            setSelected(broadcastTogglebutton, false);
+            sleepi(5);
+        } else {
+            setSelected(broadcastTogglebutton, true);
+            sleepi(5);
+        }
+      
+        editsave.click();
+        waitReady();
+        MyCommonAPIs.sleepi(3);
+        confirmok.click();
+        MyCommonAPIs.sleepi(4);
+        }
+    
+  
 }
