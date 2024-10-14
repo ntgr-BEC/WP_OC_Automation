@@ -399,5 +399,53 @@ public boolean OrbiProAx5YrSubscriptioncheckPro(String serialNo) {
 
 }   
 
+//AddedByPratik
+public boolean verifyOneYearInsightIncludedwithHardware() {
+  boolean result = false;
+  if (hamburgermenu.exists()) {
+      hamburgermenu.click();
+      if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
+          hamburgermenu.click();
+      }
+  } else if (hamburgermenunew.exists()) {
+      hamburgermenunew.click();
+      if (hamburgermenunew.getAttribute("aria-expanded").equals("false")) {
+          hamburgermenunew.click();
+      }
+  }
+  accountmanager.click();
+  MyCommonAPIs.sleepi(3);
+  closeLockedDialog();
+  if(PurchaseHistory.isDisplayed()) {
+  PurchaseHistory.click();
+  }
+  MyCommonAPIs.sleepi(3);
+  if (!OneYearInsightIncludedwithHardware.exists()) {
+      result = true;
+      logger.info("After deleteing all devices One Year Insight Included with Hardware is not shown");
+  }
+  return result;
+}
+//AddedByPratik
+public void gotoPurchaseHistoiry() {
+  if (hamburgermenu.exists()) {
+      hamburgermenu.click();
+      if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
+          hamburgermenu.click();
+      }
+  } else if (hamburgermenunew.exists()) {
+      hamburgermenunew.click();
+      if (hamburgermenunew.getAttribute("aria-expanded").equals("false")) {
+          hamburgermenunew.click();
+      }
+  }
+  accountmanager.click();
+  MyCommonAPIs.sleepi(3);
+  closeLockedDialog();
+  if(PurchaseHistory.isDisplayed()) {
+  PurchaseHistory.click();
+  }
+  MyCommonAPIs.sleepi(3);
+}
 
 }
