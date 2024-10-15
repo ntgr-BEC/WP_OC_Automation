@@ -405,8 +405,9 @@ public SelenideElement srNounderOneYearInsightIncludedwithHardwarePRO(String tex
     return activationDate;
 }
 
-//AddedByPratik
-public void gotoPurchaseHistoiry() {
+
+public boolean verifyOneYearInsightIncludedwithHardware() {
+  boolean result = false;
   if (hamburgermenu.exists()) {
       hamburgermenu.click();
       if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
@@ -430,6 +431,14 @@ public void gotoPurchaseHistoiry() {
 //AddedByPratik
 public boolean verifyOneYearInsightIncludedwithHardware() {
   boolean result = false;
+  if (!OneYearInsightIncludedwithHardware.exists()) {
+      result = true;
+      logger.info("After deleteing all devices One Year Insight Included with Hardware is not shown");
+  }
+  return result;
+}
+//AddedByPratik
+public void gotoPurchaseHistoiry() {
   if (hamburgermenu.exists()) {
       hamburgermenu.click();
       if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
@@ -453,6 +462,7 @@ public boolean verifyOneYearInsightIncludedwithHardware() {
       logger.info("After deleteing all devices One Year Insight Included with Hardware is not shown");
   }
   return result;
+
 }
 
 }

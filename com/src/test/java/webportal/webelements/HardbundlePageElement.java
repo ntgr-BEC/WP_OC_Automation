@@ -93,5 +93,9 @@ public class HardbundlePageElement extends MyCommonAPIs{
         SelenideElement Ssid = $x("//*[text()='" + text + "']/../../../../../td[4]");
         return Ssid;
     }
-  
+    //AddedByPratik
+    public SelenideElement srNounderOneYearInsightIncludedwithHardwarePRO(String text) {
+        SelenideElement activationDate = $x("//span[contains(text(), '"+ text +"')]");
+        return activationDate;
+    }
 }
