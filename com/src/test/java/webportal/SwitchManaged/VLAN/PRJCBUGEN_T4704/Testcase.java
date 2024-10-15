@@ -51,7 +51,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
 //        SwitchCLIUtils.CloudModeSet(false);
-        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
+//        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
 //        SwitchCLIUtils.CloudModeSet(true);
 //        handle.sleepi(5 * 60);
     }

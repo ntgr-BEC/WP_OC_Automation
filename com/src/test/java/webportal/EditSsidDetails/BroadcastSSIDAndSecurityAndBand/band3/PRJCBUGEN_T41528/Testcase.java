@@ -1,5 +1,6 @@
 package webportal.EditSsidDetails.BroadcastSSIDAndSecurityAndBand.band3.PRJCBUGEN_T41528;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.io.BufferedReader;
@@ -37,10 +38,13 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     Map<String, String> ssidInfo = new HashMap<String, String>();
+    String n2="";
+    String m2="";
+    String band2 = "6.0";
     
     @Feature("EditSsidDetails.NatModeAndSecurityAndBand.3band") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T41528") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Edit a SSID from 2.4 and 5ghz to 6ghz with NAT mode ") // It's a testcase title from Jira Test Case.
+    @Description("Edit a SSID from 2.4 and 5ghz to 6ghz with broadcast SSID disable/enable ") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T41528") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -50,9 +54,10 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes(ssidInfo.get("SSID"));
+        new WirelessQuickViewPage().broadcastToggleButton(ssidInfo.get("SSID"), "1");
+        new WirelessQuickViewPage(false).deleteSsidYes(ssidInfo.get("SSID"));
         try {
-            new WirelessQuickViewPage().deleteFolder("C:\\Auto\\filename.txt");
+            new WirelessQuickViewPage(false).deleteFolder("C:\\Auto\\filename.txt");
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -78,18 +83,9 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Band", "Uncheck6 GHz");
         new WirelessQuickViewPage().addAndEdit(ssidInfo);
     }  
-        
-    @Step("Test Step 3 :Edit a SSID from 2.4 and 5ghz to 6 ghz with NAT mode ;")
+    
+    @Step("Test Step 3: Write to a file;")
     public void step3() {
-        ssidInfo.put("Band", "Click 5ghz and 6ghz and 2.4ghz");
-        ssidInfo.put("Security", "WPA3 Personal");
-        new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
-        new WirelessQuickViewPage().NatToBridge(ssidInfo.get("SSID"));
-    }
-           
-         
-    @Step("Test Step 4: Write to a file;")
-    public void step4() {
              
         MyCommonAPIs.sleepi(50);
         String VapIndex = new APUtils(WebportalParam.ap1IPaddress).Addeditssid();
@@ -97,13 +93,9 @@ public class Testcase extends TestCaseBase {
         new FileHandling().writeFile("C:\\Auto\\filename.txt",VapIndex);       
     }
                  
-    @Step("Test Step 5: To verify the SSID ids broadcasted or not;")
-    public void step5() throws IOException {
-             
-        String n2="";
-        String m2="";
-        String band2 = "6.0";
-        
+    @Step("Test Step 4: To verify the SSID ids broadcasted or not;")
+    public void step4() throws IOException {
+  
         String check2 = new FileHandling().ssidBroadcast("C:\\Auto\\filename.txt",ssidInfo.get("SSID"), band2);        
         System.out.println(check2);           
         n2=check2.substring(4,5);
@@ -111,6 +103,21 @@ public class Testcase extends TestCaseBase {
         System.out.print(n2+" \t"+ m2+"\n");
         
         assertTrue(new APUtils(WebportalParam.ap1IPaddress).Addeditssid1(n2,m2,WebportalParam.ap1Model), "ssid(6) is not broadcasted");
-        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getNatStatus(WebportalParam.ap1Model), "CONFIG NOT PUSHED");
+        assertFalse(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n2,m2,WebportalParam.ap1Model), "CONFIG NOT PUSHED");
+    }          
+        
+    @Step("Test Step 5 :Edit a SSID from 2.4 and 5ghz to 6 ghz with broadcast SSID disable/enable ;")
+    public void step5() {
+        ssidInfo.put("Band", "Click 5ghz and 6ghz and 2.4ghz");
+        new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
+        new WirelessQuickViewPage(false).broadcastToggleButton(ssidInfo.get("SSID"), "0");
+    }
+           
+    @Step("Test Step 6: To verify the SSID ids broadcasted or not;")
+    public void step6() throws IOException {
+            
+        MyCommonAPIs.sleepi(120);
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).Addeditssid1(n2,m2,WebportalParam.ap1Model), "ssid(6) is not broadcasted");
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n2,m2,WebportalParam.ap1Model), "CONFIG NOT PUSHED") ;
          }    
          }         

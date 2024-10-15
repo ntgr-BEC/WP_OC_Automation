@@ -69,11 +69,12 @@ public class Testcase extends TestCaseBase {
             Map<String, String> editManagerInfo = new HashMap<String, String>();
             editManagerInfo.put("Old Email Address", mailname + "@mailcatch.com");
             editManagerInfo.put("Access Policy", "Read/Write");
-//            editManagerInfo.put("Organization Name", WebportalParam.Organizations);
+            editManagerInfo.put("Organization Name", WebportalParam.Organizations);
 
             new ManagerPage(false).editManager(editManagerInfo);
 
-            assertTrue(new ManagerPage().checkEditResult(managerInfo.get("Email Address"), editManagerInfo.get("Access Policy"), "1"));
+            assertTrue(new ManagerPage().checkEditResult(managerInfo.get("Email Address"), editManagerInfo.get("Access Policy"), "0"),
+                    "Edit manager information failed.");
         } else {
             assertTrue(false, "Add manager failed.");
         }

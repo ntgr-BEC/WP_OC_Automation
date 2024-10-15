@@ -1,5 +1,6 @@
 package webportal.EditSsidDetails.BroadcastSSIDAndSecurityAndBand.band2.PRJCBUGEN_T41524;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import java.io.BufferedReader;
@@ -35,12 +36,18 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
-
+   
     Map<String, String> ssidInfo = new HashMap<String, String>();
+    String n="";
+    String m="";
+    String n1="";
+    String m1="";
+    String band = "2.4";
+    String band1 = "5.0";
     
     @Feature("EditSsidDetails.BroadcastSSIDAndSecurityAndBand.2band") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T41524") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Edit a SSID from WPA2 personal to open with Nat mode") // It's a testcase title from Jira Test Case.
+    @Description("Edit a SSID from WPA2 personal to open with broadcast SSID disable/enable") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T41524") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -50,14 +57,16 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes(ssidInfo.get("SSID"));
+        new WirelessQuickViewPage().broadcastToggleButton(ssidInfo.get("SSID"), "1");
+        new WirelessQuickViewPage(false).deleteSsidYes(ssidInfo.get("SSID"));
         try {
-            new WirelessQuickViewPage().deleteFolder("C:\\Auto\\filename.txt");
+            new WirelessQuickViewPage(false).deleteFolder("C:\\Auto\\filename.txt");
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } 
         System.out.println("start to do tearDown");
+        
     }
 
     // Each step is a single test step from Jira Test Case
@@ -78,17 +87,9 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Band", "Uncheck6 GHz");
         new WirelessQuickViewPage().addAndEdit(ssidInfo);
     }  
-       
-    @Step("Test Step 3 :Edit a SSID from WPA2 personal to WPA2 personal mixed with Nat mode ;")
+    
+    @Step("Test Step 3: Create and write into a file;")
     public void step3() {
-        MyCommonAPIs.sleepi(10);
-        ssidInfo.put("Security", "Open");
-        new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
-        new WirelessQuickViewPage().NatToBridge(ssidInfo.get("SSID"));
-     }
-           
-    @Step("Test Step 4: Create and write into a file;")
-    public void step4() {
              
          new FileHandling().createFile("C:\\Auto\\filename.txt");
            
@@ -99,16 +100,9 @@ public class Testcase extends TestCaseBase {
            
     }
     
-    @Step("Test Step 5: To verify the SSID ids broadcasted or not;")
-    public void step5() throws IOException {
-       
-        String n="";
-        String m="";
-        String n1="";
-        String m1="";
-        String band = "2.4";
-        String band1 = "5.0";
-       
+    @Step("Test Step 4: To verify the SSID ids broadcasted or not;")
+    public void step4() throws IOException {
+ 
        
        String check = new FileHandling().ssidBroadcast("C:\\Auto\\filename.txt",ssidInfo.get("SSID"), band);        
        System.out.println(check);           
@@ -124,6 +118,27 @@ public class Testcase extends TestCaseBase {
        
        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n,m,ssidInfo), "CONFIG NOT PUSHED") ;
        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n1,m1,ssidInfo), "CONFIG NOT PUSHED") ;
-       assertTrue(new APUtils(WebportalParam.ap1IPaddress).getNatStatus(WebportalParam.ap1Model), "CONFIG NOT PUSHED");
+       assertFalse(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n,m,WebportalParam.ap1Model), "CONFIG NOT PUSHED") ;
+       assertFalse(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n1,m1,WebportalParam.ap1Model), "CONFIG NOT PUSHED") ;
+       
+    }
+       
+    @Step("Test Step 5 :Edit a SSID from WPA2 personal to WPA2 personal mixed with broadcast SSID disable/enable ;")
+    public void step5() {
+        MyCommonAPIs.sleepi(10);
+        ssidInfo.put("Security", "Open");
+        new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
+        new WirelessQuickViewPage(false).broadcastToggleButton(ssidInfo.get("SSID"), "0");
+     }
+        
+    
+    @Step("Test Step 6: To verify the SSID ids broadcasted or not;")
+    public void step6() throws IOException {
+       
+        MyCommonAPIs.sleepi(120);
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n,m,ssidInfo), "CONFIG NOT PUSHED") ;
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n1,m1,ssidInfo), "CONFIG NOT PUSHED") ;
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n,m,WebportalParam.ap1Model), "CONFIG NOT PUSHED") ;
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcastSSIDtogglebutton(n1,m1,WebportalParam.ap1Model), "CONFIG NOT PUSHED") ;
     }  
 }
