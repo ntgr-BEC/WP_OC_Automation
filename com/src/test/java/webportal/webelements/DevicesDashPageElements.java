@@ -477,5 +477,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement delteDevicesfromOneLocation(String serialNumber) {
         return $x("//td[text()='"+serialNumber+"']/..//img[@class='deleteDeviceIcon']");
     }
+	
+	 public SelenideElement dropdownclick                 = $x("/html/body/form/table/tbody/tr/td[2]/select");
+    public SelenideElement submit                 = $x("//input[@type = 'submit']");
+    public SelenideElement sucessmessage                 = $x("//center[2]");
 
 }
