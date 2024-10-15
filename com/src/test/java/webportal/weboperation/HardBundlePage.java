@@ -406,27 +406,7 @@ public SelenideElement srNounderOneYearInsightIncludedwithHardwarePRO(String tex
 }
 
 
-public boolean verifyOneYearInsightIncludedwithHardware() {
-  boolean result = false;
-  if (hamburgermenu.exists()) {
-      hamburgermenu.click();
-      if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
-          hamburgermenu.click();
-      }
-  } else if (hamburgermenunew.exists()) {
-      hamburgermenunew.click();
-      if (hamburgermenunew.getAttribute("aria-expanded").equals("false")) {
-          hamburgermenunew.click();
-      }
-  }
-  accountmanager.click();
-  MyCommonAPIs.sleepi(3);
-  closeLockedDialog();
-  if(PurchaseHistory.isDisplayed()) {
-  PurchaseHistory.click();
-  }
-  MyCommonAPIs.sleepi(3);
-}
+
 
 //AddedByPratik
 public boolean verifyOneYearInsightIncludedwithHardware() {
@@ -438,7 +418,8 @@ public boolean verifyOneYearInsightIncludedwithHardware() {
   return result;
 }
 //AddedByPratik
-public void gotoPurchaseHistoiry() {
+public boolean gotoPurchaseHistoiry() {
+    boolean result = false;
   if (hamburgermenu.exists()) {
       hamburgermenu.click();
       if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {

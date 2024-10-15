@@ -191,8 +191,6 @@ public class WebportalParam {
     public static String ap6deveiceName;
     public static String ap7deveiceName;
     public static String ap8deveiceName;
-    public static String ap9deveiceName;
-    public static String ap10deveiceName;
     public static String ap5IPaddress;
     public static String ap6IPaddress;
     public static String ap7IPaddress;
@@ -218,8 +216,8 @@ public class WebportalParam {
     public static String ap2deveiceName;
     public static String ap2Firmware;
     public static String ap2Model;
-    public static String ap10serialNo;
-    public static String ap10macaddress;
+
+
 
     public static String ap3IPaddress;
     public static String ap4IPaddress;
