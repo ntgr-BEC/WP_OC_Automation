@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Location.NegativeTestcases.Network;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -12,7 +12,7 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import util.MyCommonAPIs;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -21,12 +21,17 @@ import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import testbase.TestCaseBaseApi;
 
 
-public class Api_UpdateNetworkSettings{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_LocationPasswordSanity extends TestCaseBaseApi{
+
+    Map<String, String> endPointUrl = new HashMap<String,String>();
+    Map<String, String> headers = new HashMap<String, String>();
+    String networkId;
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    
+    @Feature("password less than 8") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -35,26 +40,33 @@ public class Api_UpdateNetworkSettings{
     public void test() throws Exception {
         step1();
     }
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
     public void step1()
-    {
-        Response add = new Api_AddNetwork().step1();
-        String networkId=add.jsonPath().getString("networkId");
-        Map<String, String> endPointUrl = new HashMap<String, String>();
+    {        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Map<String, String> headers = new HashMap<String, String>();
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
+        headers.put("networkId",WebportalParam.networkId); 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        String requestBody="{\"updateBroadcastToUnicast\":{\"broadcastToUnicastKey\":\"1\",\"igmpSnoopingKey\":\"0\",\"hardwareAssistedDatapath\":\"1\"},\"updateEnergyEfficiencyMode\":{\"energyEfficiencyMode\":\"0\",\"autoOnOffMode\":\"0\",\"antennaPowerSave\":\"0\"},\"arpProxy\":\"1\",\"syslogProbeClients\":\"0\"}";
+        pathParams.put("accountId",WebportalParam.accountId);
+        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Network_Settings"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        
-                
+
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(false));
+       
+    }
+                  
     }
 
-}
