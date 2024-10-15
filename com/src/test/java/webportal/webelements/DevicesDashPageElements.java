@@ -481,5 +481,23 @@ public class DevicesDashPageElements extends MyCommonAPIs {
 	 public SelenideElement dropdownclick                 = $x("/html/body/form/table/tbody/tr/td[2]/select");
     public SelenideElement submit                 = $x("//input[@type = 'submit']");
     public SelenideElement sucessmessage                 = $x("//center[2]");
+    
+    //AddedByPratik   
+    public SelenideElement scrollToMac(String mac) {
+        return $x("//td[text()='"+mac+"']");
+    } 
+    public SelenideElement enableDisableManagedSwitch(String srno) {
+        return $x("//td[text()='"+srno+"']/..//span[@class='cstmSlider cstmRound']");
+    }
+    public SelenideElement unmanagedStatus(String srno) {
+        return $x("//td[text()='"+srno+"']/..//label[text()='Unmanaged']");
+    }
+    public SelenideElement yesButtonforSwitch               = $x("//p[contains(text(),'Are you sure you want to unmanage')]/../..//button[text()='Yes']");
+    public SelenideElement confirmmationMessage             = $x("//*[contains(text(),'Your configuration has been applied')]");
+    public SelenideElement yesbuttonforunmanagetoman        = $x("//p[contains(text(),'Setting device to managed will reboot')]/../..//button[text()='Yes']");
+    public SelenideElement deviceCreditsPremacc             = $x("//p[text()='Device Credits']/..//h2//text()");
+    public SelenideElement insightDevicesPremacc            = $x("//p[text()='Insight Devices']/..//h2//text()");
+    public SelenideElement availableCreditsPremacc          = $x("//p[text()='Available Credits']/..//h2//text()");
+    
 
 }

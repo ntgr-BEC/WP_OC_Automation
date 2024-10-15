@@ -1,10 +1,8 @@
-<<<<<<<< HEAD:com/src/test/java/webportal/ApiTest/Reboot/Positivetestcases/Api_RebootDevice.java
-package webportal.ApiTest.Reboot.Positivetestcases;
-========
-package webportal.ApiTest;
->>>>>>>> ce5721cde1122128184c1baed8ebc23489d6d9cc:com/src/test/java/webportal/ApiTest/Api_DeleteSsid.java
-import static org.hamcrest.CoreMatchers.equalTo;
 
+package webportal.ApiTest.Reboot.Positivetestcases;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import testbase.TestCaseBaseApi;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -27,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_DeleteSsid{
+public class Api_RebootDevice extends TestCaseBaseApi{
     WebportalParam webportalParam = new WebportalParam();
     
     @Feature("RebootDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -43,8 +41,8 @@ public class Api_DeleteSsid{
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Response add = new Api_AddSsid().step1();
-        String id=add.jsonPath().getString("id");
+//        Response add = new Api_AddSsid().step1();
+//        String id=add.jsonPath().getString("id");
         Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Map<String, String> headers = new HashMap<String, String>();
@@ -53,20 +51,18 @@ public class Api_DeleteSsid{
         headers.put("accountId",WebportalParam.accountId);
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("id",id);      
+//        pathParams.put("id",id);      
         
-<<<<<<<< HEAD:com/src/test/java/webportal/ApiTest/Reboot/Positivetestcases/Api_RebootDevice.java
+
         String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
         getResponse.then().body("response.status", equalTo(true))
                            .body("response.message", equalTo("Success in fetching reboot now information."));
-========
-      //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
->>>>>>>> ce5721cde1122128184c1baed8ebc23489d6d9cc:com/src/test/java/webportal/ApiTest/Api_DeleteSsid.java
+
+ 
+
         
         
         
