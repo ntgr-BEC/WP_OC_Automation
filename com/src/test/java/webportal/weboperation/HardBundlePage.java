@@ -400,6 +400,12 @@ public boolean OrbiProAx5YrSubscriptioncheckPro(String serialNo) {
 }   
 
 //AddedByPratik
+public SelenideElement srNounderOneYearInsightIncludedwithHardwarePRO(String text) {
+    SelenideElement activationDate = $x("//span[contains(text(), '"+ text +"')]");
+    return activationDate;
+}
+
+
 public boolean verifyOneYearInsightIncludedwithHardware() {
   boolean result = false;
   if (hamburgermenu.exists()) {
@@ -420,6 +426,11 @@ public boolean verifyOneYearInsightIncludedwithHardware() {
   PurchaseHistory.click();
   }
   MyCommonAPIs.sleepi(3);
+}
+
+//AddedByPratik
+public boolean verifyOneYearInsightIncludedwithHardware() {
+  boolean result = false;
   if (!OneYearInsightIncludedwithHardware.exists()) {
       result = true;
       logger.info("After deleteing all devices One Year Insight Included with Hardware is not shown");
@@ -446,6 +457,12 @@ public void gotoPurchaseHistoiry() {
   PurchaseHistory.click();
   }
   MyCommonAPIs.sleepi(3);
+  if (!OneYearInsightIncludedwithHardware.exists()) {
+      result = true;
+      logger.info("After deleteing all devices One Year Insight Included with Hardware is not shown");
+  }
+  return result;
+
 }
 
 }

@@ -3153,8 +3153,7 @@ public boolean verifySettingPageFilterAirbridge() {
                     waitDevicesReConnected(WebportalParam.sw2serialNo);
                 }
             }
-    
-            //AddedByPratik
+
             public boolean disablemanagedUnmanagedSwitch(String srno) {
                 boolean result = false;
                 MyCommonAPIs.sleepi(10);
@@ -3181,7 +3180,32 @@ public boolean verifySettingPageFilterAirbridge() {
                 }
                 return result;
             }
+            
+            
+            public void enablemanagedUnmanagedSwitch(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                scrollToMac(WebportalParam.ap5macaddress).scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                waitElement(enableDisableManagedSwitch(srno));
+                enableDisableManagedSwitch(srno).click();
+                MyCommonAPIs.sleepi(10);
+                yesbuttonforunmanagetoman.click();
+                MyCommonAPIs.sleepi(1);
+            }
             //AddedByPratik
+            public boolean verifyManageUnmanageswiutchIsthereafternewdeviceonboard(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(5);
+                if (enableDisableManagedSwitch(srno).exists() || unmanagedStatus(srno).exists()) {
+                    result = true;
+                    logger.info("Test case passed successfully");
+                }
+                return result;
+            }            
+            
+            
+          //AddedByPratik
             public boolean disablemanagedSwitch(String srno) {
                 boolean result = false;
                 MyCommonAPIs.sleepi(10);

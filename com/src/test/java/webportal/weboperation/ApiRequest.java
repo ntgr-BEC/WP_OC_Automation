@@ -200,6 +200,130 @@ import util.*;
             return response;
             
         }
+        
+        public static Response sendGetRequest(String endpoint, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams ,int expectedcode) {
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .when()
+                    .get(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();
+            String responseBody=response.getBody().asString();
+            if(responseBody.contains("Invalid session")) {
+                throw new RuntimeException("Token has expired. Please refresh your token");
+            }
+            return response;
+        }
+
+        // Generic POST request method
+        public static Response sendPostRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+     Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .post(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+     response.prettyPrint();     
+     return response;
+            
+            
+            
+        }
+
+        // Generic PUT request method
+        public static Response sendPutRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .put(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();
+            String responseBody=response.getBody().asString();
+            if(responseBody.contains("Invalid session")) {
+                throw new RuntimeException("Token has expired. Please refresh your token");
+            }
+            
+            
+            return response;
+            
+        }
+            
+
+        // Generic DELETE request method
+        public static Response sendDeleteRequest(String endpoint, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+           
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();
+            String responseBody=response.getBody().asString();
+//            if(responseBody.contains("Invalid session")) {
+//                throw new RuntimeException("Token has expired. Please refresh your token");
+//            }
+            return response;
+            
+        }
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
              *
@@ -207,9 +331,27 @@ import util.*;
             private static final long serialVersionUID = 1L;
             {
                 put("Network_Sanity", "insightappcom/api/network/v1/{networkId}");
-                put("Add_Network", "insightappcom/api/network/v1/{accountId}");
+                put("Add_Network", "insightappcom/api/network/v1/premium/{accountId}");
                 put("Vlan_Sanity","insightappcom/api/network/v1/vlans/{networkId}");
-                
+                put("Add_Ssid", "insightappcom/api/network/v1/ssid/{networkId}");
+                put("Network_Settings", "insightappcom/api/network/v1/{networkId}/broadcasttounicast");
+                put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
+                put("Ssid_Sanity", "insightappcom/api/network/v1/{networkId}/{id}");
+                put("Url_Filter", "insightappcom/api/network/v1/{networkId}/urlFilter");
+                put("Wireless_Settings", "insightappcom/api/network/v1/{networkId}/radioConfig");
+                put("Ars_Sanity", "insightappcom/api/network/v1/arsConfig/{networkId}");
+                put("InstantWifi_Sanity", "insightappcom/api/network/v1/networkRFSettings/{networkId}");
+                put("FastRoaming_Sanity", "insightappcom/api/network/v1/fastRoaming/{networkId}");
+                put("DefaultNatSsids_Sanity", "insightappcom/api/network/v1/natSsid");
+                put("RadiusServerConfig_Sanity", "insightappcom/api/network/v1/radiusServerConfig");
+                put("ScheduleWifi_Sanity", "insightappcom/api/network/v1/scheduleSsid/{networkId}");
+                put("SNMP_Sanity", "insightappcom/api/network/v1/snmp/{accountId}/{networkId}");
+                put("Syslog_Settings", "insightappcom/api/network/v1/sysLog/{networkId}");
+                put("SystemHealthDetails_Sanity", "insightappcom/api/network/v1/systemHealthDetails/{accountId}/{networkId}");
+                put("TrafficPolices_Sanity", "insightappcom/api/network/v1/wirelessNetwork/trafficPolicies/{networkId}/{id}");
+                put("Country_List", "insightappcom/api/public/v1/countryList");
+                put("Insight_Models", "insightappcom/api/public/v1/models");
+                put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
             }
         };
         

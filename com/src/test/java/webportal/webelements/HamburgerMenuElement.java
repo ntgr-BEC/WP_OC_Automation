@@ -953,7 +953,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement        cityCognito                 = $x("//input[@formcontrolname='city']");
   public SelenideElement        streetAddCognito            = $x("//input[@formcontrolname='address']");
   public SelenideElement        apartmentCognito            = $x("//input[@formcontrolname='address2']");
-  public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']");   
+  public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']"); 
+    
   //AddedByPratikForPurchaseOrderHistoryenhancement
   public SelenideElement  insightIncludedHardBundleCSV      = $x("//span[text()='Insight Included with Hardware']/..//span[@class='icon-export-csv']");
   public SelenideElement  insightLicenseFileCSV             = $x("//span[text()='Pro user Insight Licenses']/..//span[@class='icon-export-csv']");
@@ -961,5 +962,6 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  deviceCreditsPremacc              = $x("//p[text()='Device Credits']/..//h2");
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
+
 }
 

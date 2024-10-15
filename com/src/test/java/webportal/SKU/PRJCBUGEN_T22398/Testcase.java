@@ -65,7 +65,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "United States of America");
+        locationInfo.put("Country", "Canada");
         new AccountPage().addNetwork(locationInfo);
         
     }
@@ -83,7 +83,8 @@ public class Testcase extends TestCaseBase {
        
 //        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         
-        assertTrue(new DevicesDashPage(false).addNewdummyDeviceError(firststdevInfo), "got error");
+       assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Onedevice"), "More device exits");
+
        
     }
 
