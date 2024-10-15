@@ -84,15 +84,17 @@ public class Api_GetSystemHealthDetails extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SystemHealthDetails_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        //DEFAULT SNMP SERVER CONFIG INFO 
-//        getResponse.then().statusCode(200)
-//        .body("details.communityId", equalTo(""))
-//        .body("details.ipAddress", equalTo(""))
-//        .body("details.status", equalTo("0"))
-//        .body("details.ipMask", equalTo("255.255.255.255"))
-//        .body("details.accessType", equalTo("1"))
-//        .body("details.version", equalTo("3"));
-    }
-                  
+//        DEFAULT SYSTEM HEALTH DETAILS   
+        getResponse.then().statusCode(200)
+        .body("details.totalConnectedClients", equalTo("0"))
+        .body("details.healthStatus", equalTo("Everything OK"))
+        .body("details.healthStatusCode", equalTo("0"))
+        .body("details.notificationCount", equalTo(0))
+        .body("details.criticalCount", equalTo(0))
+        .body("details.warningCount", equalTo(0))
+        .body("details.totalUnreadUserAlarms", equalTo(1))
+        .body("details.totalWirelessConnectedClients", equalTo(0));
+       
+    }                  
     }
 

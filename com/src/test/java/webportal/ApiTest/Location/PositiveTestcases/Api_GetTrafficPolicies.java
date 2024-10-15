@@ -73,16 +73,20 @@ public class Api_GetTrafficPolicies extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
+        pathParams.put("networkId","networkId");
         pathParams.put("id",id); 
          
         //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("TrafficPolices_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        //DEFAULT SCHEDULE WIFI DATA
-//        getResponse.then().body("response.message", equalTo("Ssid schedule data not present"));
-    }
-                  
+        //DEFAULT  STATUS
+        getResponse.then().statusCode(200)
+        .body("response.message", equalTo("Return dhcp offer broadcast to unicast successfully")) // Assert message
+        .body("details.networkId", equalTo(networkId)) // Assert networkId
+        .body("details.id", equalTo(id)) // Assert id
+        .body("details.dhcpOfferBcastToUcast", equalTo("0")) // Assert dhcpOfferBcastToUcast
+        .body("details.ssid", equalTo("SSID_TEST")); // Assert ssid
+    }               
     }
 

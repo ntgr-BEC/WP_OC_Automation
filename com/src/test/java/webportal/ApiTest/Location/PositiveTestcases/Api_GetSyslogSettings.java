@@ -69,6 +69,13 @@ public class Api_GetSyslogSettings extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Syslog_Settings"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
+        //DEFAULT SYSLOG STATUS
+        getResponse.then().statusCode(200)
+        .body("sysLogSettings.syslogStatus", equalTo("0")) // Assert syslogStatus
+        .body("sysLogSettings.syslogServerPort", equalTo("514")) // Assert syslogServerPort
+        .body("sysLogSettings.syslogProbeClients", equalTo("0")) // Assert syslogProbeClients
+        .body("sysLogSettings.syslogSt", equalTo("0")) // Assert syslogSt
+        .body("sysLogSettings.syslogServerIp", equalTo("0.0.0.0")); // Assert syslogServerIp
     }
                   
     }
