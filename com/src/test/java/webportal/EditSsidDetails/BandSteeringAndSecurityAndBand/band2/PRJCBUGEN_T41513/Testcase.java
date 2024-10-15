@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         new WirelessQuickViewPage().deleteSsidYes(ssidInfo.get("SSID"));
         try {
-            new WirelessQuickViewPage().deleteFolder("C:\\Auto\\filename.txt");
+            new WirelessQuickViewPage(false).deleteFolder("C:\\Auto\\filename.txt");
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Password", "123456798");
         ssidInfo.put("Band", "Uncheck6 GHz");
         new WirelessQuickViewPage().addAndEdit(ssidInfo);
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(60);
         assertFalse(new APUtils(WebportalParam.ap1IPaddress).getBandSteeringStatus(WebportalParam.ap1Model), "band steering is not enabled and config is not pushed");
     }  
        
@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
         ssidInfo.put("Security", "WPA3 Personal Mixed (WPA2 + WPA3)");
         new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
-       new WirelessQuickViewPage().enableBandSteering(ssidInfo.get("SSID"));
+       new WirelessQuickViewPage(false).enableBandSteering(ssidInfo.get("SSID"));
      }
     
     @Step("Test Step 4: Create and write into a file;")
@@ -127,6 +127,7 @@ public class Testcase extends TestCaseBase {
        
        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n,m,ssidInfo), "CONFIG NOT PUSHED") ;
        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSecurityStatus1(WebportalParam.ap1Model,ssidInfo.get("Security"),n1,m1,ssidInfo), "CONFIG NOT PUSHED") ;
-       assertTrue(new WirelessQuickViewPage().check80211enable(ssidInfo.get("SSID")), "802 is enabled");
+       assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBandSteeringStatus1(n,m,WebportalParam.ap1Model), "band steering is not enabled and config is not pushed");
+       assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBandSteeringStatus1(n1,m1,WebportalParam.ap1Model), "band steering is not enabled and config is not pushed");
     }  
 }

@@ -62,7 +62,19 @@ import com.codeborne.selenide.Configuration;
 import static com.codeborne.selenide.Selenide.*;
 import javax.net.ssl.*;
 import java.security.cert.X509Certificate;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import java.io.FileReader;
+import java.io.IOException;
+
+
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import java.io.FileReader;
+import java.io.IOException;
 /**
  * @author Netgear
  */
@@ -86,6 +98,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     StringBuilder concatenatedFileNames = new StringBuilder();
     static Path filePath           = Paths.get("C:\\Users\\DELL\\Downloads", expectedFileName);
     String fileNamesString         = "";
+
+    static String insightIncludedHardwareFileName = "Insight Included with Hardware.csv";
+    static String insightLicenseFileFileName = "Pro user Insight Licenses.csv";
+    static String insightSubscriptionFileFileName = "Insight Subscriptions.csv";
+    static String insightSubscriptionFileFileName1 = "Insight Subscriptions (1).csv";
+    static String insightSubscriptionFileFileName2 = "Insight Subscriptions (2).csv";
+    static String insightSubscriptionFileFileName3 = "Insight Subscriptions (3).csv";
+    static String insightSubscriptionFileFileName4 = "Insight Subscriptions (4).csv";
+    int actualdevshown = 0;
 
     public HamburgerMenuPage() {
         // TODO Auto-generated constructor stub
@@ -3608,7 +3629,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(2);
         $x(basicElement + "/button[1]").click();
         MyCommonAPIs.sleepsync();
-        System.out.println("1111111.");
         System.out.println(checkemailtitle.getText());
         if (checkemailtitle.getText().contains("Invite owner email")) {
             result = true;
@@ -3624,7 +3644,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             logger.info("Received insight premium free trial email.");
         } else if (checkemailtitle.getText().contains("Invite manager email")) {
             result = true;
-            logger.info("Invite manager email.");
+            logger.info("Received invite manager email.");
         } else if (checkemailtitle.getText().contains("Verify your email address on MyNETGEAR")) {
             result = true;
             logger.info("Received verify email.");
@@ -8671,8 +8691,230 @@ public void enableTwoFAEmail() {
     Continue.click();
     MyCommonAPIs.sleepi(5);  
     Selenide.back();
-        
+    
 }
+
+
+//AddedByPratik
+public int verifyDeviceCredits() {
+open(URLParam.hrefPaymentSubscription, true);
+MyCommonAPIs.sleepi(15);
+String dc = deviceCreditsPremacc.getText().trim();
+String ic = insightDevicesPremacc.getText().trim();
+String ac = availableCreditsPremacc.getText().trim();
+int dcv = 0;
+int icv = 0;
+int acv = 0;
+try {
+    dcv = Integer.parseInt(dc);
+    System.out.println("The integer value is: " + dcv);
+} catch (NumberFormatException e) {
+    System.out.println("The text is not a valid integer.");
+}
+try {
+    icv = Integer.parseInt(ic);
+    System.out.println("The integer value is: " + icv);
+} catch (NumberFormatException e) {
+    System.out.println("The text is not a valid integer.");
+}
+try {
+    acv = Integer.parseInt(ac);
+    System.out.println("The integer value is: " + acv);
+} catch (NumberFormatException e) {
+    System.out.println("The text is not a valid integer.");
+}
+actualdevshown = dcv-acv;
+if (actualdevshown==icv) {
+    logger.info("Available Devices: "+actualdevshown);
+}
+return actualdevshown;
+}
+
+public boolean verifyInsightIncludedCSVFileDownload() throws InterruptedException {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    waitElement(insightIncludedHardBundleCSV);
+    System.out.println("Step1: Passed");
+    if (insightIncludedHardBundleCSV.exists()) {
+        System.out.println(" CSV File download button is visible on credit allocation page");
+        insightIncludedHardBundleCSV.click();
+        MyCommonAPIs.sleepi(5);
+        getFileNamesandVerify();
+        MyCommonAPIs.sleepi(5);
+        System.out.println("Step2: Passed");
+        String concatenatedString = concatenatedFileNames.toString();
+        String[] stringArray = concatenatedString.split(", ");
+        for (int i = 0; i<=1000; i++ ) {
+            System.out.println("Step4: Passed"+stringArray[i]);
+            if (stringArray[i].equals(insightIncludedHardwareFileName)) {
+                result = true;
+                System.out.println("Step4: Passed"+stringArray[i]);
+                break;
+            }
+        }
+        
+    }
+    return result;
+}
+
+
+//AddedByPratik 
+public boolean verifyInsightIncludedCSVFileDownload() throws InterruptedException {
+  boolean result = false;
+  MyCommonAPIs.sleepi(10);
+  waitElement(insightIncludedHardBundleCSV);
+  System.out.println("Step1: Passed");
+  if (insightIncludedHardBundleCSV.exists()) {
+      System.out.println(" CSV File download button is visible on credit allocation page");
+      insightIncludedHardBundleCSV.click();
+      MyCommonAPIs.sleepi(5);
+      getFileNamesandVerify();
+      MyCommonAPIs.sleepi(5);
+      System.out.println("Step2: Passed");
+      String concatenatedString = concatenatedFileNames.toString();
+      String[] stringArray = concatenatedString.split(", ");
+      for (int i = 0; i<=1000; i++ ) {
+          System.out.println("Step4: Passed"+stringArray[i]);
+          if (stringArray[i].equals(insightIncludedHardwareFileName)) {
+              result = true;
+              System.out.println("Step4: Passed"+stringArray[i]);
+              break;
+          }
+      }
+      
+  }
+  return result;
+}
+
+//AddedByPratik 
+public boolean verifyInsightLicenseCSVFileDownload() throws InterruptedException {
+boolean result = false;
+MyCommonAPIs.sleepi(10);
+waitElement(insightLicenseFileCSV);
+System.out.println("Step1: Passed");
+if (insightLicenseFileCSV.exists()) {
+    System.out.println(" CSV File download button is visible on credit allocation page");
+    insightLicenseFileCSV.click();
+    MyCommonAPIs.sleepi(5);
+    getFileNamesandVerify();
+    MyCommonAPIs.sleepi(5);
+    System.out.println("Step2: Passed");
+    String concatenatedString = concatenatedFileNames.toString();
+    String[] stringArray = concatenatedString.split(", ");
+    for (int i = 0; i<=1000; i++ ) {
+        System.out.println("Step4: Passed"+stringArray[i]);
+        if (stringArray[i].equals(insightLicenseFileFileName)) {
+            result = true;
+            System.out.println("Step4: Passed"+stringArray[i]);
+            break;
+        }
+    }
+    
+}
+return result;
+}
+
+//AddedByPratik 
+public boolean verifyInsightSubscriptionCSVFileDownload() throws InterruptedException {
+boolean result = false;
+MyCommonAPIs.sleepi(10);
+waitElement(insightSubscriptionFileCSV);
+System.out.println("Step1: Passed");
+if (insightSubscriptionFileCSV.exists()) {
+  System.out.println(" CSV File download button is visible on credit allocation page");
+  insightSubscriptionFileCSV.click();
+  MyCommonAPIs.sleepi(5);
+  getFileNamesandVerify();
+  MyCommonAPIs.sleepi(5);
+  System.out.println("Step2: Passed");
+  String concatenatedString = concatenatedFileNames.toString();
+  String[] stringArray = concatenatedString.split(", ");
+  for (int i = 0; i<=1000; i++ ) {
+      System.out.println("Step4: Passed"+stringArray[i]);
+      if (stringArray[i].equals(insightSubscriptionFileFileName) || stringArray[i].equals(insightSubscriptionFileFileName1) || stringArray[i].equals(insightSubscriptionFileFileName2) 
+              || stringArray[i].equals(insightSubscriptionFileFileName3) || stringArray[i].equals(insightSubscriptionFileFileName4)) {
+          result = true;
+          System.out.println("Step4: Passed"+stringArray[i]);
+          break;
+      }
+  }
+  
+}
+return result;
+}
+
+//AddedByPratik
+public boolean testCSVContent() throws CsvValidationException {
+  boolean result = false;
+  String downloadsPath = System.getProperty("user.home") + "\\Downloads";
+  String fileNamePattern = "Insight Subscriptions";
+  File[] files = new File(downloadsPath).listFiles((dir, name) -> name.startsWith(fileNamePattern) && name.endsWith(".csv"));
+
+  if (files == null || files.length == 0) {
+      System.out.println("No matching files found.");
+      return result;
+  }
+  File latestFile = files[0];
+  for (File file : files) {
+      if (file.lastModified() > latestFile.lastModified()) {
+          latestFile = file;
+      }
+  }
+
+  try (CSVReader reader = new CSVReader(new FileReader(latestFile))) {
+      String[] nextLine;
+      int lineNumber = 0;
+
+      while ((nextLine = reader.readNext()) != null) {
+          if (lineNumber == 0) {
+              Assert.assertEquals(nextLine[0], "Subscriptions", "First column does not match expected value.");
+          }
+          lineNumber++;
+      }
+      System.out.println("Number of Rows: " + lineNumber);
+      result = lineNumber > 0; // Return true if there are rows
+  } catch (IOException e) {
+      e.printStackTrace();
+  }
+
+  return result;
+}
+  
+//AddedByPratik
+public int verifyDeviceCredits() {
+  open(URLParam.hrefPaymentSubscription, true);
+  MyCommonAPIs.sleepi(15);
+  String dc = deviceCreditsPremacc.getText().trim();
+  String ic = insightDevicesPremacc.getText().trim();
+  String ac = availableCreditsPremacc.getText().trim();
+  int dcv = 0;
+  int icv = 0;
+  int acv = 0;
+  try {
+      dcv = Integer.parseInt(dc);
+      System.out.println("The integer value is: " + dcv);
+  } catch (NumberFormatException e) {
+      System.out.println("The text is not a valid integer.");
+  }
+  try {
+      icv = Integer.parseInt(ic);
+      System.out.println("The integer value is: " + icv);
+  } catch (NumberFormatException e) {
+      System.out.println("The text is not a valid integer.");
+  }
+  try {
+      acv = Integer.parseInt(ac);
+      System.out.println("The integer value is: " + acv);
+  } catch (NumberFormatException e) {
+      System.out.println("The text is not a valid integer.");
+  }
+  actualdevshown = dcv-acv;
+  if (actualdevshown==icv) {
+      logger.info("Available Devices: "+actualdevshown);
+  }
+  return actualdevshown;
+}
+
 }
 
 

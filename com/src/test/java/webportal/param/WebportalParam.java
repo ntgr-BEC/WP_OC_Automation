@@ -190,6 +190,9 @@ public class WebportalParam {
     public static String ap5deveiceName;
     public static String ap6deveiceName;
     public static String ap7deveiceName;
+    public static String ap8deveiceName;
+    public static String ap9deveiceName;
+    public static String ap10deveiceName;
     public static String ap5IPaddress;
     public static String ap6IPaddress;
     public static String ap7IPaddress;
@@ -200,18 +203,23 @@ public class WebportalParam {
     public static String ap7serialNo;
     public static String ap8serialNo;
     public static String ap9serialNo;
+    public static String ap10serialNo;
     public static String ap4macaddress;
     public static String ap5macaddress;
     public static String ap6macaddress;
     public static String ap7macaddress;
     public static String ap8macaddress;
     public static String ap9macaddress;
-
+    public static String ap9deveiceName;
+    public static String ap10deveiceName;
+    public static String ap10macaddress;
     public static String ap2IPaddress;
     public static String ap2serialNo;
     public static String ap2deveiceName;
     public static String ap2Firmware;
     public static String ap2Model;
+    public static String ap10serialNo;
+    public static String ap10macaddress;
 
     public static String ap3IPaddress;
     public static String ap4IPaddress;
@@ -503,10 +511,17 @@ public class WebportalParam {
         ap1Firmware = xmlManager.getValueFromWebPortAndDut("AP1", "Firmware");
         ap1Model = xmlManager.getValueFromWebPortAndDut("AP1", "Model");
         ap1TargetFirmware = xmlManager.getValueFromWebPortAndDut("AP1", "TargetFirmware");
+        ap9deveiceName = xmlManager.getValueFromWebPortAndDut("AP9", "DeviceName");
+        ap10deveiceName = xmlManager.getValueFromWebPortAndDut("AP10", "DeviceName");
+        ap9serialNo = xmlManager.getValueFromWebPortAndDut("AP9", "SerialNo");
+        ap10serialNo = xmlManager.getValueFromWebPortAndDut("AP10", "SerialNo");
 
         ap5deveiceName = xmlManager.getValueFromWebPortAndDut("AP5", "DeviceName");
         ap6deveiceName = xmlManager.getValueFromWebPortAndDut("AP6", "DeviceName");
         ap7deveiceName = xmlManager.getValueFromWebPortAndDut("AP7", "DeviceName");
+        ap8deveiceName = xmlManager.getValueFromWebPortAndDut("AP8", "DeviceName");
+        ap9deveiceName = xmlManager.getValueFromWebPortAndDut("AP9", "DeviceName");
+        ap10deveiceName = xmlManager.getValueFromWebPortAndDut("AP10", "DeviceName");
         ap5IPaddress = xmlManager.getValueFromWebPortAndDut("AP5", "Ip_Address");
         ap6IPaddress = xmlManager.getValueFromWebPortAndDut("AP6", "Ip_Address");
         ap7IPaddress = xmlManager.getValueFromWebPortAndDut("AP7", "Ip_Address");
@@ -522,12 +537,15 @@ public class WebportalParam {
         ap7serialNo = xmlManager.getValueFromWebPortAndDut("AP7", "SerialNo");
         ap8serialNo = xmlManager.getValueFromWebPortAndDut("AP8", "SerialNo");
         ap9serialNo = xmlManager.getValueFromWebPortAndDut("AP9", "SerialNo");
+        ap10serialNo = xmlManager.getValueFromWebPortAndDut("AP10", "SerialNo");
         ap4macaddress = xmlManager.getValueFromWebPortAndDut("AP4", "Mac_Address");
         ap5macaddress = xmlManager.getValueFromWebPortAndDut("AP5", "Mac_Address");
         ap6macaddress = xmlManager.getValueFromWebPortAndDut("AP6", "Mac_Address");
         ap7macaddress = xmlManager.getValueFromWebPortAndDut("AP7", "Mac_Address");
         ap8macaddress = xmlManager.getValueFromWebPortAndDut("AP8", "Mac_Address");
-
+        ap10macaddress = xmlManager.getValueFromWebPortAndDut("AP10", "Mac_Address");
+        ap9macaddress = xmlManager.getValueFromWebPortAndDut("AP9", "Mac_Address");
+        
         ap2IPaddress = xmlManager.getValueFromWebPortAndDut("AP2", "Ip_Address");
         ap2serialNo = xmlManager.getValueFromWebPortAndDut("AP2", "SerialNo");
         ap2deveiceName = xmlManager.getValueFromWebPortAndDut("AP2", "DeviceName");

@@ -343,7 +343,15 @@ import util.*;
                 put("InstantWifi_Sanity", "insightappcom/api/network/v1/networkRFSettings/{networkId}");
                 put("FastRoaming_Sanity", "insightappcom/api/network/v1/fastRoaming/{networkId}");
                 put("DefaultNatSsids_Sanity", "insightappcom/api/network/v1/natSsid");
-                put("RadiusServerConfig_Sanity", "/insightappcom/api/network/v1/radiusServerConfig");
+                put("RadiusServerConfig_Sanity", "insightappcom/api/network/v1/radiusServerConfig");
+                put("ScheduleWifi_Sanity", "insightappcom/api/network/v1/scheduleSsid/{networkId}");
+                put("SNMP_Sanity", "insightappcom/api/network/v1/snmp/{accountId}/{networkId}");
+                put("Syslog_Settings", "insightappcom/api/network/v1/sysLog/{networkId}");
+                put("SystemHealthDetails_Sanity", "insightappcom/api/network/v1/systemHealthDetails/{accountId}/{networkId}");
+                put("TrafficPolices_Sanity", "insightappcom/api/network/v1/wirelessNetwork/trafficPolicies/{networkId}/{id}");
+                put("Country_List", "insightappcom/api/public/v1/countryList");
+                put("Insight_Models", "insightappcom/api/public/v1/models");
+                put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
             }
         };
         

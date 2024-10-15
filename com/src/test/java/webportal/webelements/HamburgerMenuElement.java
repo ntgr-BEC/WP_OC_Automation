@@ -466,7 +466,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("(//tr[@class=\"mail_row  email_unread pointer click-set\"])[1]");
+    public SelenideElement        checkemailtitle       = $x("(//body[@class=\"bodyinbox yscrollbar\"]//div[@class=\"lms\"])[1]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -954,6 +954,14 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement        streetAddCognito            = $x("//input[@formcontrolname='address']");
   public SelenideElement        apartmentCognito            = $x("//input[@formcontrolname='address2']");
   public SelenideElement        zipcodeCognito              = $x("//input[@formcontrolname='zipcode']"); 
-  
+    
+  //AddedByPratikForPurchaseOrderHistoryenhancement
+  public SelenideElement  insightIncludedHardBundleCSV      = $x("//span[text()='Insight Included with Hardware']/..//span[@class='icon-export-csv']");
+  public SelenideElement  insightLicenseFileCSV             = $x("//span[text()='Pro user Insight Licenses']/..//span[@class='icon-export-csv']");
+  public SelenideElement  insightSubscriptionFileCSV        = $x("//span[text()='Insight Subscriptions']/..//span[@class='icon-export-csv']");
+  public SelenideElement  deviceCreditsPremacc              = $x("//p[text()='Device Credits']/..//h2");
+  public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
+  public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
+
 }
 

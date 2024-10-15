@@ -6523,5 +6523,38 @@ public class OrganizationPage extends OrganizationElement {
         }
         return result;
     }
+    
+    //AddedByPratik
+    public void creditAllocation11(String name) {
+        if (checkOrganizationIsExist(name)) {
+            dropdownOrganizationElement(name).click();
+            MyCommonAPIs.sleepi(2);
+            allocateCredits.click();
+            MyCommonAPIs.sleepi(5);
+            if (deviceCredits.exists()) {
+                deviceCreditsTextbox.sendKeys("1");
+                MyCommonAPIs.sleepi(1);
+                allocateBtn.click();
+                MyCommonAPIs.sleepi(5);
+            }
+        }
+    }
 
+
+    //AddedByPratik
+    public void creditAllocation11(String name) {
+        if (checkOrganizationIsExist(name)) {
+            dropdownOrganizationElement(name).click();
+            MyCommonAPIs.sleepi(2);
+            allocateCredits.click();
+            MyCommonAPIs.sleepi(5);
+            if (deviceCredits.exists()) {
+                deviceCreditsTextbox.sendKeys("1");
+                MyCommonAPIs.sleepi(1);
+                allocateBtn.click();
+                MyCommonAPIs.sleepi(5);
+            }
+        }
+    }
+    
 }

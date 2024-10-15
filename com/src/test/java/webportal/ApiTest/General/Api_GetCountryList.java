@@ -1,4 +1,4 @@
-package webportal.ApiTest.Reboot;
+package webportal.ApiTest.General;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -14,28 +14,29 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
-
+import static org.hamcrest.Matchers.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_RebootDevice extends TestCaseBaseApi{
+public class Api_GetCountryList extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetCountryList") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets country list from the particular account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -43,25 +44,21 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         step1();
     }
     
-  
     @Step("Send get request to {url}")
     public void step1()
     { 
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
+        endPointUrl = new ApiRequest().ENDPOINT_URL;  
+           
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-       
-        
-        String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
-        //TO PERFORM ANY REQUEST
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
+      
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Country_List"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-
-        
+        //THE NO. OF WIRELESS REGION ARE 126
+        getResponse.then().statusCode(200)
+        .body("countryList", hasSize(126));
     }
-                  
-    }
-
+}
