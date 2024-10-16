@@ -33,10 +33,10 @@ public class Api_AddSsid extends TestCaseBaseApi{
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
+    @Feature("Api_AddSsid") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Addition of ssid") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
