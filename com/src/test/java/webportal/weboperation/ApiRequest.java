@@ -333,7 +333,7 @@ import util.*;
                 put("Network_Sanity", "insightappcom/api/network/v1/{networkId}");
                 put("Add_Network", "insightappcom/api/network/v1/premium/{accountId}");
                 put("Vlan_Sanity","insightappcom/api/network/v1/vlans/{networkId}");
-                put("Add_Ssid", "insightappcom/api/network/v1/ssid/{networkId}");
+                put("Add_Ssid", "insightappcom/api/wireless/v1/ssid/{networkId}");
                 put("Network_Settings", "insightappcom/api/network/v1/{networkId}/broadcasttounicast");
                 put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
                 put("Ssid_Sanity", "insightappcom/api/network/v1/{networkId}/{id}");

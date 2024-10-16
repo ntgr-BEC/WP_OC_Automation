@@ -41,8 +41,8 @@ public class Api_AddSsid extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
-    }
-    
+   }
+    @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
        
