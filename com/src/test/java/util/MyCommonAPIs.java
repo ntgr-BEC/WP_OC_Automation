@@ -217,7 +217,7 @@ public class MyCommonAPIs {
             WebportalParam.browserIsFailed = true;
             TestCaseBase.startBrowser();
         }
-        
+          System.out.println("file name inside"+fileName);
         return fileName;
     }
     
