@@ -352,6 +352,7 @@ import util.*;
                 put("Country_List", "insightappcom/api/public/v1/countryList");
                 put("Insight_Models", "insightappcom/api/public/v1/models");
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
+                put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
             }
         };
         

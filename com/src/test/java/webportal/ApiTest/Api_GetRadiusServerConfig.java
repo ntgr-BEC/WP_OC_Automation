@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.PositiveTestcases;
+package webportal.ApiTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;

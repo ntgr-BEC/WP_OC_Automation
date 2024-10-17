@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.PositiveTestcases;
+package webportal.ApiTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetFastRoaming extends TestCaseBaseApi{
+public class Api_GetInstantWifi extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("Api_GetFastRoaming") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetInstantWifi") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets fast roaming data from the particular network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets Instat WIFI config from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -68,7 +68,7 @@ public class Api_GetFastRoaming extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
       
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("FastRoaming_Sanity"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("InstantWifi_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
     }

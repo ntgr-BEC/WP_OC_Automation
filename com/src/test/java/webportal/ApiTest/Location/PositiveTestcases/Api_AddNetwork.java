@@ -22,6 +22,7 @@ import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class Api_AddNetwork extends TestCaseBaseApi{
@@ -29,6 +30,9 @@ public class Api_AddNetwork extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000);
+    String name    = "office" + String.valueOf(randomNumber);
     
     
     @Feature("Api_AddNetwork") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -61,7 +65,7 @@ public class Api_AddNetwork extends TestCaseBaseApi{
         headers.put("networkId",WebportalParam.networkId); 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
+        String requestBody="{\"networkInfo\":[{\"name\":\"" +name +"\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
