@@ -44,20 +44,20 @@ public class Api_UpdateLocationAddress extends TestCaseBaseApi{
         step1();
     }
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    {  MyCommonAPIs.sleepi(5);
-//        System.out.print("network id in tare down "+networkId);
-//        pathParamsupdate.put("networkId",networkId);
-//        
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParamsupdate, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//    }
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {  
+        System.out.print("network id in tare down "+networkId);
+        pathParamsupdate.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParamsupdate, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
     public void step1()
     {
-    {     Response add = new Api_AddNetwork().step1();
+         Response add = new Api_AddNetwork().step1();
           networkId=add.jsonPath().getString("networkInfo[0].networkId"); 
       
 
@@ -68,15 +68,16 @@ public class Api_UpdateLocationAddress extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId); 
 
         pathParamsupdate.put("networkId",networkId);
-     
+        
 
         String requestBody="{\"locationAndRegion\":{\"address\":{\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"GT\"},\"timezone\":\"102\"}}";
         
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Update_Location_Address"), requestBody, headers, pathParamsupdate, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.status", equalTo(true))
+                             .body("response.message", equalTo("Success"));
  
 
         
-    }
+    
 }
 }

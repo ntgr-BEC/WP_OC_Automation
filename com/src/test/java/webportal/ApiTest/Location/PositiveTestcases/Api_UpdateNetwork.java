@@ -44,7 +44,7 @@ public class Api_UpdateNetwork extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    {  MyCommonAPIs.sleepi(5);
+    { 
         System.out.print("network id in tare down "+networkId);
         pathParamsupdate.put("networkId",networkId);
         
