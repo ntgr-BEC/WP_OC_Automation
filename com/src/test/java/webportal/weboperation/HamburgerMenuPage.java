@@ -6722,13 +6722,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean checkEmailMessageForDeviceReboot(String mailname) {
         boolean result = false;
         logger.info("Check email address is:" + mailname);
-        open("https://yopmail.com/");
-        MyCommonAPIs.sleepi(5);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(10);
         String inputElement = "//input[@id='login']";
         $x(inputElement).clear();
         $x(inputElement).sendKeys(mailname);
         $x("//button[@title='Check Inbox @yopmail.com']").click();
-        SelenideElement frame = $("iframe[name='ifinbox']");
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
         MyCommonAPIs.sleepsync();
         System.out.println(checkemailtitle.getText());
@@ -6743,13 +6746,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean checkEmailMessageForDeviceOnline(String mailname) {
         boolean result = false;
         logger.info("Check email address is:" + mailname);
-        open("https://yopmail.com/");
-        MyCommonAPIs.sleepi(5);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(10);
         String inputElement = "//input[@id='login']";
         $x(inputElement).clear();
         $x(inputElement).sendKeys(mailname);
         $x("//button[@title='Check Inbox @yopmail.com']").click();
-        SelenideElement frame = $("iframe[name='ifinbox']");
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
         MyCommonAPIs.sleepsync();
         System.out.println(checkemailtitle.getText());

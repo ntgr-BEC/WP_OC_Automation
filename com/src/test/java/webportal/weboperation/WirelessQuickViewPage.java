@@ -8281,6 +8281,13 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             enableECP();
+            
+            if(map.containsKey("ECP Type")) {
+                selectDropdown.click();
+                MyCommonAPIs.sleepi(4);
+                selectJaze.click();
+                MyCommonAPIs.sleepi(2);
+            }
 
             if (map.containsKey("Splash Page URL")) {
                 MyCommonAPIs.sleepi(4);

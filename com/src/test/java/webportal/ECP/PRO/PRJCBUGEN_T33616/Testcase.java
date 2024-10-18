@@ -83,6 +83,7 @@ public class Testcase extends TestCaseBase {
     public void step4() {
         
         ECPInfo.put("Walled Garden", "*.jazenetworks.com");
+        ECPInfo.put("ECP Type", "Jaze");
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
     
        
