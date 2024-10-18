@@ -359,6 +359,7 @@ import util.*;
                 put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
                 put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
+                put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
             }
         };
         
