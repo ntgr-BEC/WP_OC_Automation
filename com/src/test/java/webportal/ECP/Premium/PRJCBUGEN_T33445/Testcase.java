@@ -77,6 +77,7 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("IPv4 Address", "180.179.56.164");
         ECPInfo.put("Password", "jazenetworks");
         ECPInfo.put("Allow HTTPS", "Enable");
+        ECPInfo.put("ECP Type", "Jaze");
 
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
         MyCommonAPIs.sleepi(120);

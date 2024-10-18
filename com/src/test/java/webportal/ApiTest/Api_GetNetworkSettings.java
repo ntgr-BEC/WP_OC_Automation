@@ -1,8 +1,5 @@
-package webportal.ApiTest.Location.PositiveTestcases;
+package webportal.ApiTest;
 import static org.hamcrest.CoreMatchers.equalTo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -16,16 +13,19 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.param.CommonDataType;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class Api_AddLogPort extends TestCaseBaseApi{
-    WebportalParam webportalParam = new WebportalParam();
+
+public class Api_GetNetworkSettings extends TestCaseBaseApi{
+
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -39,31 +39,23 @@ public class Api_AddLogPort extends TestCaseBaseApi{
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
+    {
+        Response add = new Api_AddNetwork().step1();
+        String networkId=add.jsonPath().getString("networkInfo[0].networkId");
         Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId); 
-        headers.put("networkId",WebportalParam.networkId);
-        Map<String, String> pathParamsadd = new HashMap<String, String>();
-        pathParamsadd.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParamsupdate = new HashMap<String, String>();
-        pathParamsupdate.put("networkId",WebportalParam.networkId);
-        String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        String requestBody2="{\"networkInfo\":{\"name\":\"office12\"}}";
+        headers.put("accountId",WebportalParam.accountId);        
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
         
-
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Network_Settings"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
         
-        
-        //TO ADD NETWORK AND RETRIEVE NETWORK ID
-        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-   
-        Response getResponse2 = ApiRequest.sendPutRequest(endPointUrl.get("Network_Sanity"), requestBody2, headers, pathParamsupdate, null); 
-        getResponse2.then().body("response.status", equalTo(true));
-        
+                
     }
 
 }

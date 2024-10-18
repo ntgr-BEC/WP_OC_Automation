@@ -66,7 +66,7 @@ public class Api_GetArsConfig extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
       
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Wireless_Settings"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Ars_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
     }

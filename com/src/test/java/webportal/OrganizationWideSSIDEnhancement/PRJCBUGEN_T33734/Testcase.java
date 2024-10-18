@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-        new WirelessQuickViewPage(false).deleteOrgSsidYes("PRJCBUGEN_T33734");
+        new WirelessQuickViewPage(false).deleteSsidYes("PRJCBUGEN_T33734");
         System.out.println("start to do tearDown");
     }
 

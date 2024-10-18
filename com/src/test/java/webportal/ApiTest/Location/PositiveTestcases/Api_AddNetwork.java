@@ -22,6 +22,7 @@ import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 
 public class Api_AddNetwork extends TestCaseBaseApi{
@@ -29,12 +30,15 @@ public class Api_AddNetwork extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000);
+    String name    = "office" + String.valueOf(randomNumber);
     
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
+    @Feature("Api_AddNetwork") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T002") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Api_AddNetwork_adds network") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T002") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -61,7 +65,7 @@ public class Api_AddNetwork extends TestCaseBaseApi{
         headers.put("networkId",WebportalParam.networkId); 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
+        String requestBody="{\"networkInfo\":[{\"name\":\"" +name +"\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 

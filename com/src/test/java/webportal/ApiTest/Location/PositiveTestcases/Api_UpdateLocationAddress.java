@@ -17,6 +17,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
+
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -25,17 +26,18 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_UpdateNetwork extends TestCaseBaseApi{
-
-    String networkId;
+public class Api_UpdateLocationAddress extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> pathParamsupdate = new HashMap<String, String>();
+    String networkId;
+
+
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
+    @Feature("Update_Location_Address") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T007") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Updating the locations address") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T007") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -44,7 +46,7 @@ public class Api_UpdateNetwork extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
+    {  
         System.out.print("network id in tare down "+networkId);
         pathParamsupdate.put("networkId",networkId);
         
@@ -54,34 +56,28 @@ public class Api_UpdateNetwork extends TestCaseBaseApi{
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
+    {
+         Response add = new Api_AddNetwork().step1();
+          networkId=add.jsonPath().getString("networkInfo[0].networkId"); 
+      
+
         
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
-        
+        endPointUrl = new ApiRequest().ENDPOINT_URL;        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId); 
-        headers.put("networkId",WebportalParam.networkId);
-        Map<String, String> pathParamsadd = new HashMap<String, String>();
-        pathParamsadd.put("accountId",WebportalParam.accountId);
-        
-        
-        String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        String requestBody2="{\"networkInfo\":{\"name\":\"office12\"}}";
-        
 
-        
-        
-        //TO ADD NETWORK AND RETRIEVE NETWORK ID
-        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
         pathParamsupdate.put("networkId",networkId);
-   
-        Response getResponse2 = ApiRequest.sendPutRequest(endPointUrl.get("Network_Sanity"), requestBody2, headers, pathParamsupdate, null); 
-        getResponse2.then().body("response.status", equalTo(true));
-        String nnetworkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
+        
+
+        String requestBody="{\"locationAndRegion\":{\"address\":{\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"GT\"},\"timezone\":\"102\"}}";
+        
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Update_Location_Address"), requestBody, headers, pathParamsupdate, null); 
+        getResponse.then().body("response.status", equalTo(true))
+                             .body("response.message", equalTo("Success"));
+ 
 
         
-    }
+    
+}
 }

@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.PositiveTestcases;
+package webportal.ApiTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -13,6 +13,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -20,14 +21,10 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteSsid extends TestCaseBaseApi{
-    String networkId;
-    Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> headers = new HashMap<String, String>();
+public class Api_UpdateNetworkSettings extends TestCaseBaseApi{
 
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -39,37 +36,26 @@ public class Api_DeleteSsid extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
-        List<Response> response = new Api_AddSsid().step1();
-        Response add=response.get(0);
-        Response ssidid=response.get(1);
-        String id=ssidid.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");
-
+    {
+        Response add = new Api_AddNetwork().step1();
+        String networkId=add.jsonPath().getString("networkId");
+        Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-      
+        Map<String, String> headers = new HashMap<String, String>();
         headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-        pathParams.put("id",id);      
+        String requestBody="{\"updateBroadcastToUnicast\":{\"broadcastToUnicastKey\":\"1\",\"igmpSnoopingKey\":\"0\",\"hardwareAssistedDatapath\":\"1\"},\"updateEnergyEfficiencyMode\":{\"energyEfficiencyMode\":\"0\",\"autoOnOffMode\":\"0\",\"antennaPowerSave\":\"0\"},\"arpProxy\":\"1\",\"syslogProbeClients\":\"0\"}";
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Network_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
         
-      //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));                                         
-    }                  
+                
     }
 
+}

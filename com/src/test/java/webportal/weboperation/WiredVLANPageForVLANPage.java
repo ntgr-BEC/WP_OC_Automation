@@ -424,219 +424,219 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
 
     }
 
+//     AddedByPratik
+    public void CreateVLANforClientIsolation(String vlan) {
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        editnetwork.click();
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        gotoNetworksetup.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        addVlanPlusSym.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        networkName.setValue("office1");
+        MyCommonAPIs.sleepi(5);
+        vlanDesc.setValue("VLAN for Client Isolation Testing");
+        MyCommonAPIs.sleepi(5);
+        vlanName1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        vlanName1.click();
+        MyCommonAPIs.sleepi(1);
+        vlanName1.setValue("manvlan40707");
+        MyCommonAPIs.sleepi(5);
+        vlanId1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        vlanId1.click();
+        MyCommonAPIs.sleepi(1);
+        vlanId1.setValue("20");
+        MyCommonAPIs.sleepi(5);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        confirmBtn.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        confirmBtn.click();
+        MyCommonAPIs.sleepi(10);
+        if (successfulMessage.exists()) {
+            logger.info("VLAN with ID 20 created successfully");
+        }
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+    }
+
     // AddedByPratik
-//    public void CreateVLANforClientIsolation(String vlan) {
-//        MyCommonAPIs.sleepi(10);
-//        waitReady();
-//        editnetwork.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(10);
-//        gotoNetworksetup.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        addVlanPlusSym.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        networkName.setValue("office1");
-//        MyCommonAPIs.sleepi(5);
-//        vlanDesc.setValue("VLAN for Client Isolation Testing");
-//        MyCommonAPIs.sleepi(5);
-//        vlanName1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        vlanName1.click();
-//        MyCommonAPIs.sleepi(1);
-//        vlanName1.setValue("manvlan40707");
-//        MyCommonAPIs.sleepi(5);
-//        vlanId1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        vlanId1.click();
-//        MyCommonAPIs.sleepi(1);
-//        vlanId1.setValue("20");
-//        MyCommonAPIs.sleepi(5);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        confirmBtn.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        confirmBtn.click();
-//        MyCommonAPIs.sleepi(10);
-//        if (successfulMessage.exists()) {
-//            logger.info("VLAN with ID 20 created successfully");
-//        }
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//    }
-//
-//    // AddedByPratik
-//    public void deleteVLAN(String vlan) {
-//        MyCommonAPIs.sleepi(10);
-//        waitReady();
-//        editnetwork.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(10);
-//        gotoNetworksetup.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        logger.info("Delete VLAN.");
-//        dataCustomVlan(vlan).hover();
-//        MyCommonAPIs.sleep(3000);
-//        executeJavaScript("arguments[0].removeAttribute('class')", editVLAN(vlan));
-//        MyCommonAPIs.sleep(3000);
-//        deleteCustomVlan(vlan).waitUntil(Condition.visible, 60 * 1000).click();
-//        MyCommonAPIs.sleepi(30);
-//        delVLANConfirmbtn.click();
-//        MyCommonAPIs.sleep(5 * 1000);
-//    }
-//    
-//    // AddedByPratik
-//    public void CreateVLANToTestPort(String vlan, String id) {
-//        MyCommonAPIs.sleepi(10);
-//        waitReady();
-//        editnetwork.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(10);
-//        gotoNetworksetup.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        addVlanPlusSym.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        networkName.setValue(vlan);
-//        MyCommonAPIs.sleepi(5);
-//        vlanDesc.setValue("VLAN for Port Testing");
-//        MyCommonAPIs.sleepi(5);
-//        vlanName1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        vlanName1.click();
-//        MyCommonAPIs.sleepi(1);
-//        vlanName1.setValue(vlan);
-//        MyCommonAPIs.sleepi(5);
-//        vlanId1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        vlanId1.click();
-//        MyCommonAPIs.sleepi(1);
-//        vlanId1.setValue(id);
-//        MyCommonAPIs.sleepi(5);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        Next1.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//        confirmBtn.scrollIntoView(true);
-//        MyCommonAPIs.sleepi(1);
-//        confirmBtn.click();
-//        MyCommonAPIs.sleepi(10);
-//        if (successfulMessage.exists()) {
-//            logger.info("VLAN with ID 20 created successfully");
-//        }
-//        Next1.click();
-//        MyCommonAPIs.sleepi(10);
-//    }
-//    
-//    // AddedByPratik
-//    public boolean editExistingVLANSelectportsAndSave(String vlan) {
-//        boolean result = false;
-//        MyCommonAPIs.sleepi(10);
-//        waitReady();
-//        editnetwork.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(10);
-//        gotoNetworksetup.click();
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        waitReady();
-//        MyCommonAPIs.sleepi(5);
-//        logger.info("Delete VLAN.");
-//        dataCustomVlan(vlan).hover();
-//        MyCommonAPIs.sleep(3000);
-//        executeJavaScript("arguments[0].removeAttribute('class')", editVLAN(vlan));
-//        MyCommonAPIs.sleep(3000);
-//        editCustomVlan(vlan).waitUntil(Condition.visible, 60 * 1000).click();
-//        MyCommonAPIs.sleepi(30);
-//        Next1.click();
-//        MyCommonAPIs.sleepi(30);
-//        if (wiredSettingText.exists() && portMembersText.exists()) {
-//            selectPortIfSw(WebportalParam.sw1serialNo, "2").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw1serialNo, "2").click();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw1serialNo, "3").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw1serialNo, "3").click();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw1serialNo, "4").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw1serialNo, "4").click();
-//            MyCommonAPIs.sleepi(1);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "2").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "2").click();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "3").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "3").click();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "4").hover();
-//            MyCommonAPIs.sleep(30);
-//            selectPortIfSw(WebportalParam.sw2serialNo, "4").click();
-//            MyCommonAPIs.sleepi(1);
-//            Next1.scrollIntoView(true);
-//            MyCommonAPIs.sleepi(1);
-//            Next1.click();
-//            MyCommonAPIs.sleepi(5);
-//            if (portModeWarningMsg.exists()) {
-//                String temp = portModeWarningMsg.text();
-//                System.out.println("Warning Error Message: "+temp);
-//                logger.info("Getting warning error message");
-//                accessPortBtn.click();
-//                MyCommonAPIs.sleepi(1);
-//                Next1.scrollIntoView(true);
-//                MyCommonAPIs.sleepi(1);
-//                Next1.click();
-//                MyCommonAPIs.sleepi(10);
-//                Next1.scrollIntoView(true);
-//                MyCommonAPIs.sleepi(1);
-//                Next1.click();
-//                MyCommonAPIs.sleepi(10);
-//                Next1.scrollIntoView(true);
-//                MyCommonAPIs.sleepi(1);
-//                Next1.click();
-//                MyCommonAPIs.sleepi(10);
-//                confirmBtn.scrollIntoView(true);
-//                MyCommonAPIs.sleepi(1);
-//                confirmBtn.click();
-//                MyCommonAPIs.sleepi(10);
-//                if (successfulMessage.exists()) {
-//                    logger.info("VLAN with ID 20 created successfully");
-//                    result = true;
-//                }
-//                Next1.click();
-//                MyCommonAPIs.sleepi(10);
-//            }
-//            
-//        }
-//        return result;
-//    }
+    public void deleteVLAN(String vlan) {
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        editnetwork.click();
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        gotoNetworksetup.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        logger.info("Delete VLAN.");
+        dataCustomVlan(vlan).hover();
+        MyCommonAPIs.sleep(3000);
+        executeJavaScript("arguments[0].removeAttribute('class')", editVLAN(vlan));
+        MyCommonAPIs.sleep(3000);
+        deleteCustomVlan(vlan).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleepi(30);
+        delVLANConfirmbtn.click();
+        MyCommonAPIs.sleep(5 * 1000);
+    }
+    
+    // AddedByPratik
+    public void CreateVLANToTestPort(String vlan, String id) {
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        editnetwork.click();
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        gotoNetworksetup.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        addVlanPlusSym.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        networkName.setValue(vlan);
+        MyCommonAPIs.sleepi(5);
+        vlanDesc.setValue("VLAN for Port Testing");
+        MyCommonAPIs.sleepi(5);
+        vlanName1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        vlanName1.click();
+        MyCommonAPIs.sleepi(1);
+        vlanName1.setValue(vlan);
+        MyCommonAPIs.sleepi(5);
+        vlanId1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        vlanId1.click();
+        MyCommonAPIs.sleepi(1);
+        vlanId1.setValue(id);
+        MyCommonAPIs.sleepi(5);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        Next1.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+        confirmBtn.scrollIntoView(true);
+        MyCommonAPIs.sleepi(1);
+        confirmBtn.click();
+        MyCommonAPIs.sleepi(10);
+        if (successfulMessage.exists()) {
+            logger.info("VLAN with ID 20 created successfully");
+        }
+        Next1.click();
+        MyCommonAPIs.sleepi(10);
+    }
+    
+    // AddedByPratik
+    public boolean editExistingVLANSelectportsAndSave(String vlan) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        editnetwork.click();
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        gotoNetworksetup.click();
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        waitReady();
+        MyCommonAPIs.sleepi(5);
+        logger.info("Delete VLAN.");
+        dataCustomVlan(vlan).hover();
+        MyCommonAPIs.sleep(3000);
+        executeJavaScript("arguments[0].removeAttribute('class')", editVLAN(vlan));
+        MyCommonAPIs.sleep(3000);
+        editCustomVlan(vlan).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleepi(30);
+        Next1.click();
+        MyCommonAPIs.sleepi(30);
+        if (wiredSettingText.exists() && portMembersText.exists()) {
+            selectPortIfSw(WebportalParam.sw1serialNo, "2").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw1serialNo, "2").click();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw1serialNo, "3").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw1serialNo, "3").click();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw1serialNo, "4").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw1serialNo, "4").click();
+            MyCommonAPIs.sleepi(1);
+            selectPortIfSw(WebportalParam.sw2serialNo, "2").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw2serialNo, "2").click();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw2serialNo, "3").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw2serialNo, "3").click();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw2serialNo, "4").hover();
+            MyCommonAPIs.sleep(30);
+            selectPortIfSw(WebportalParam.sw2serialNo, "4").click();
+            MyCommonAPIs.sleepi(1);
+            Next1.scrollIntoView(true);
+            MyCommonAPIs.sleepi(1);
+            Next1.click();
+            MyCommonAPIs.sleepi(5);
+            if (portModeWarningMsg.exists()) {
+                String temp = portModeWarningMsg.text();
+                System.out.println("Warning Error Message: "+temp);
+                logger.info("Getting warning error message");
+                accessPortBtn.click();
+                MyCommonAPIs.sleepi(1);
+                Next1.scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                Next1.click();
+                MyCommonAPIs.sleepi(10);
+                Next1.scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                Next1.click();
+                MyCommonAPIs.sleepi(10);
+                Next1.scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                Next1.click();
+                MyCommonAPIs.sleepi(10);
+                confirmBtn.scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                confirmBtn.click();
+                MyCommonAPIs.sleepi(10);
+                if (successfulMessage.exists()) {
+                    logger.info("VLAN with ID 20 created successfully");
+                    result = true;
+                }
+                Next1.click();
+                MyCommonAPIs.sleepi(10);
+            }
+            
+        }
+        return result;
+    }
 }

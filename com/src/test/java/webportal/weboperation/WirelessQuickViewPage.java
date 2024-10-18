@@ -8281,6 +8281,13 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             enableECP();
+            
+            if(map.containsKey("ECP Type")) {
+                selectDropdown.click();
+                MyCommonAPIs.sleepi(4);
+                selectJaze.click();
+                MyCommonAPIs.sleepi(2);
+            }
 
             if (map.containsKey("Splash Page URL")) {
                 MyCommonAPIs.sleepi(4);
@@ -11246,5 +11253,41 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(4);
         }
     
-  
+    public void GoToNetworkSettings() {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        if (Advance1.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        }
+        MyCommonAPIs.sleepi(3);
+    }
+
+    public void GoToMeshSettings() {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        if (Advance1.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance1).perform();
+            a.moveToElement(MeshSetting).click().perform();
+        }
+        MyCommonAPIs.sleepi(3);
+    }
 }
+
+  

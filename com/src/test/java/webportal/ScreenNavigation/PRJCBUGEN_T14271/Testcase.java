@@ -118,14 +118,8 @@ public class Testcase extends TestCaseBase {
         assertTrue(new  DeviceScreenNavigationPage().MeshSettingTab(),"MeshSettingTab Screens are not complete");
         MyCommonAPIs.sleepi(3);
     }
-    @Step("Test Step 13: LoadBalancingTab page;")
+    @Step("Test Step 13: ManagementLanSettingTab page;")
     public void step13() {
-        assertTrue(new  DeviceScreenNavigationPage().LoadBalancingTab(),"LoadBalancingTab Screens are not complete");
-        MyCommonAPIs.sleepi(3);
-    }
-
-    @Step("Test Step 14: ManagementLanSettingTab page;")
-    public void step14() {
         assertTrue(new  DeviceScreenNavigationPage().ManagementLanSetting(),"ManagementLanSettingTab Screens are not complete");
         MyCommonAPIs.sleepi(3);
     }

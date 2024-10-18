@@ -1207,7 +1207,7 @@ public class APUtils extends MyCommonAPIs {
    
     public String Addeditssid() {
 
-//        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(120);
         String status = "";
             logger.info("entered WAC model");
             status = plink.getOutput("iwconfig | grep -i essid", default_timeout_ssh);

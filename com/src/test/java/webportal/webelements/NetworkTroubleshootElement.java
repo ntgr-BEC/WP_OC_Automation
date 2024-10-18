@@ -107,7 +107,7 @@ public class NetworkTroubleshootElement extends MyCommonAPIs {
     public static SelenideElement                    PacketTransmittedcheck  = $x("//*[@id=\"pingAndTraceTest\"]/div/div[3]/div/div[2]/div/p[9]");
     public static SelenideElement                    CompleteResult          = $x("//*[@id=\"pingAndTraceTest\"]/div/div[3]/div/div[2]");
     
-    public static SelenideElement                    CompleteResult1          = $x("//*[@id=\"divDPingTraceRoute\"]/div[4]/div/div[3]");
+    public static SelenideElement                    CompleteResult1          = $x("(//*[@class=\"OrganizationPro\"])[1]");
     public static SelenideElement                    CloseResult             = $x("//*[@id=\"main\"]/div/div[4]/div/div/div[1]/button/img");
     public static SelenideElement                    CompleteResultTraceRoute = $x("//*[@id=\"pingAndTraceTest\"]/div/div[3]/div/div[2]");
     public static SelenideElement                    Pinglookupclose         = $x( "//*[@id=\"main\"]/div/div[3]/div/div/div[1]/button/img");

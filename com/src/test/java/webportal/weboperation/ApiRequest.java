@@ -145,6 +145,10 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+            if(pathParams == null)
+            {
+                pathParams=new HashMap<>();
+            }
             Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -333,7 +337,7 @@ import util.*;
                 put("Network_Sanity", "insightappcom/api/network/v1/{networkId}");
                 put("Add_Network", "insightappcom/api/network/v1/premium/{accountId}");
                 put("Vlan_Sanity","insightappcom/api/network/v1/vlans/{networkId}");
-                put("Add_Ssid", "insightappcom/api/network/v1/ssid/{networkId}");
+                put("Add_Ssid", "insightappcom/api/wireless/v1/ssid/{networkId}");
                 put("Network_Settings", "insightappcom/api/network/v1/{networkId}/broadcasttounicast");
                 put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
                 put("Ssid_Sanity", "insightappcom/api/network/v1/{networkId}/{id}");
@@ -352,6 +356,10 @@ import util.*;
                 put("Country_List", "insightappcom/api/public/v1/countryList");
                 put("Insight_Models", "insightappcom/api/public/v1/models");
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
+                put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
+                put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
+                put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
+                put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
             }
         };
         

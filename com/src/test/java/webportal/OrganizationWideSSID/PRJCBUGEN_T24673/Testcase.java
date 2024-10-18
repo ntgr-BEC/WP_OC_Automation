@@ -118,7 +118,7 @@ public class Testcase extends TestCaseBase {
       public void step5() {
           
           new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-          new WirelessQuickViewPage(false).deleteOrgSsidYes("apwp14270");
+          new WirelessQuickViewPage(false).deleteSsidYes("apwp14270");
           
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);
           new MyCommonAPIs().gotoLoction(WebportalParam.location1);
