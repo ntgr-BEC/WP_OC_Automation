@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-        new WirelessQuickViewPage(false).deleteOrgSsidYes("apwp14270");
+        new WirelessQuickViewPage(false).deleteSsidYes("apwp14270");
         System.out.println("start to do tearDown");
     }
 
@@ -284,7 +284,7 @@ public class Testcase extends TestCaseBase {
           new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
           
           new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-          new WirelessQuickViewPage(false).deleteOrgSsidYes("apwp14271");
+          new WirelessQuickViewPage(false).deleteSsidYes("apwp14271");
           
       }
 }

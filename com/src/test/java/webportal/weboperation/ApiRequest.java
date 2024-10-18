@@ -145,6 +145,10 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+            if(pathParams == null)
+            {
+                pathParams=new HashMap<>();
+            }
             Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -353,6 +357,8 @@ import util.*;
                 put("Insight_Models", "insightappcom/api/public/v1/models");
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
                 put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
+                put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
+                put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
             }
         };
         

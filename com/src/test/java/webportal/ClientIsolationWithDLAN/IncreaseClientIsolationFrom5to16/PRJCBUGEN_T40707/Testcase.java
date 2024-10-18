@@ -83,7 +83,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Create VLAN with edit Network page and connect client")
     public void step3() {
         
-//        new WiredVLANPageForVLANPage().CreateVLANforClientIsolation(vlan);
+        new WiredVLANPageForVLANPage().CreateVLANforClientIsolation(vlan);
         assertTrue(new WirelessQuickViewPage().editSSIDandEnableClientIsolationAndSelectVLAN20(locationInfo.get("SSID"), urls, vlan),
                 "SSID having Client isolation with VLAN20 is not saved");
         MyCommonAPIs.sleepi(180);
