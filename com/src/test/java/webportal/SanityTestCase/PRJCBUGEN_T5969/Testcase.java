@@ -94,15 +94,15 @@ public class Testcase extends TestCaseBase {
                 
                 new WebportalLoginPage().inputLogin(WebportalParam.loginName,WebportalParam.loginPassword);
 
-                MyCommonAPIs.sleep(1 * 120, "wait 30 sec for webportal");
+                MyCommonAPIs.sleep(1 * 120, "wait 120 sec for webportal");
                               
-//                 check elements for upgrade account/add new location/org or loc list/account locked
+//              check elements for upgrade account/add new location/org or loc list/account locked
                 assertTrue($(".MobileDevice").exists() && $(".userNameBlock .fontSize12").exists() && $("#headerLocName").exists()&& $("#_divlocDiv0").exists());             
                 
                 handle.gotoLoction();
-                MyCommonAPIs.sleep(1 * 30, "wait 30 sec for webportal");
+                MyCommonAPIs.sleep(1 * 120, "wait 30 sec for webportal");
                 new DevicesDashPage().GoToDevicesDashPage();
-                MyCommonAPIs.sleep(1 * 30, "wait 30 sec for webportal");
+                MyCommonAPIs.sleep(1 * 120, "wait 30 sec for webportal");
                 assertTrue($("#_divAddDevLocDash").exists() && $("#ancUsrDropDwndevicesDash").exists());
                 MyCommonAPIs.sleep(1 * 120, "wait 90 sec for webportal");
                 UserManage userManage = new UserManage();
@@ -115,6 +115,7 @@ public class Testcase extends TestCaseBase {
                 iCount++;
                 try {
                     String ss = MyCommonAPIs.takess();
+                    System.out.println("file name is "+ss);
                     System.out.printf("Total<%s>/count<%s>\\n",iTotal,iCount);
                     if ((iTotal > 1) && (iCount > 0)) {
                         new RunCommand().SendeMailPython(false, 0, 0, ss);

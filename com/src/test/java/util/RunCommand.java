@@ -187,7 +187,7 @@ public class RunCommand {
             try {
                 final String[] envp = null;
                 
-                proc = Runtime.getRuntime().exec(String.format("C:/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe mailerbeta.py %s", isOk), envp, new File("C:/Python312"));
+                proc = Runtime.getRuntime().exec(String.format("C:/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe mailer.py %s", isOk), envp, new File("C:/Python312"));
                 try {
                     
                     proc.waitFor(20, TimeUnit.SECONDS);
@@ -221,7 +221,7 @@ public class RunCommand {
             try {
                 System.out.println(String.format("C:/Python312/python.exe mailer.py %s", fileName));
                 final String[] envp = null;
-                proc = Runtime.getRuntime().exec(String.format("C:/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe mailerbeta.py %s %s", isOk, fileName), envp, new File("C:/Python312"));
+                proc = Runtime.getRuntime().exec(String.format("C:/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe mailer.py %s %s", isOk, fileName), envp, new File("C:/Python312"));
                 try {
                     proc.waitFor(20, TimeUnit.SECONDS);
                     BufferedReader stdInput = new BufferedReader(new 
