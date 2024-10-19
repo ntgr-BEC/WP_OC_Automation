@@ -55,11 +55,6 @@ public class Testcase extends TestCaseBase {
         OrganizationPage.openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
         new DeviceGroupPage().disableSysLog();
-        MyCommonAPIs.sleepi(3);   
-        new WirelessQuickViewPage().goToNetworkSetting();
-        MyCommonAPIs.sleepi(3);   
-        new WirelessQuickViewPage(false).enableLogProbing(false);
-         
     }
 
     // Each step is a single test step from Jira Test Case

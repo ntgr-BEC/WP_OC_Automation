@@ -58,11 +58,11 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(3);
         new WirelessQuickViewPage().goToNetworkSetting();
         MyCommonAPIs.sleepi(3);
-        new WirelessQuickViewPage(false).enableLogProbing(false);
+        new WirelessQuickViewPage(false).enableLogProbing(true);
          
     }
 
-    // Each step is a single test step from Jira Test Case
+//     Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
@@ -73,7 +73,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Go to Syslog and enable")
     public void step2() {
-        new OrganizationPage().openOrg(WebportalParam.Organizations);
+
         OrganizationPage.openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
         new DeviceGroupPage().EnableSysLog("1.1.1.1", "514");

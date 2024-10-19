@@ -55,7 +55,7 @@ public class DeviceGroupPage extends DeviceGroupElement {
         }
         MyCommonAPIs.sleepi(5);
         SysLog.click();
-        MyCommonAPIs.sleepi(5);
+
      }
     
     public void GoToLED(String locationName) {
@@ -79,13 +79,17 @@ public class DeviceGroupPage extends DeviceGroupElement {
      }
     public void EnableSysLog(String IP, String Port) {
         enbleSysLog.click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(3);
         SysLogIP.clear();
         SysLogIP.sendKeys(IP);
+        MyCommonAPIs.sleepi(3);
         SysLogPort.clear();
         SysLogPort.sendKeys(Port);
+        MyCommonAPIs.sleepi(3);
         Apply.click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(3);
+        okSys.click();
+
      }
     
     public void EnableSNMP(String IP, String CString) {

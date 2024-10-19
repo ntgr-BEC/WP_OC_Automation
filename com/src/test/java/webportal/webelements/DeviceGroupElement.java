@@ -186,6 +186,6 @@ public class DeviceGroupElement extends MyCommonAPIs {
     }
     
     public static SelenideElement        enableSysLogText                         =$x("//*[@id=\"sysLogForm\"]/div/div/form/div[2]/div/div[1]/div[1]/h5");
-    
+    public static SelenideElement okSys   = $x("//*[@id=\"SuccsEditWirNet\"]");
 }
 
