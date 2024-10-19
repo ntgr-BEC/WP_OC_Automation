@@ -8266,13 +8266,16 @@ public boolean checkSubscriptionsFreeTrial() {
 public boolean checkEmailMessageForCustomReports(String mailname) {
     boolean result = false;
     logger.info("Check email address is:" + mailname);
-    open("https://yopmail.com/");
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    String url = "https://yopmail.com";
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
     MyCommonAPIs.sleepi(5);
+    Selenide.switchTo().window(1);
     String inputElement = "//input[@id='login']";
     $x(inputElement).clear();
     $x(inputElement).sendKeys(mailname);
     $x("//button[@title='Check Inbox @yopmail.com']").click();
-    SelenideElement frame = $("iframe[name='ifinbox']");
+    SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
     MyCommonAPIs.sleepsync();
    
