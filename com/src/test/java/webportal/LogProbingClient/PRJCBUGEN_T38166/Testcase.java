@@ -50,6 +50,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+      
          
     }
 
@@ -59,10 +60,7 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         handle.gotoLoction();
-        OrganizationPage.openOrg(WebportalParam.Organizations);
-        new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
-        new DeviceGroupPage().disableSysLog();
-        MyCommonAPIs.sleepi(180); 
+
 
     }
 

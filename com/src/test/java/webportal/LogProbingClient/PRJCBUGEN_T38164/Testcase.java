@@ -51,6 +51,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+       
     }
 
     // Each step is a single test step from Jira Test Case
@@ -64,7 +65,6 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Go to Syslog and enable")
     public void step2() {
-        new OrganizationPage().openOrg(WebportalParam.Organizations);
         OrganizationPage.openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
         assertTrue(new DeviceGroupPage().enableSysLogText.exists(),"Feature missing");

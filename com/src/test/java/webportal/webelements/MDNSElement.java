@@ -32,7 +32,7 @@ public class MDNSElement extends MyCommonAPIs {
     public SelenideElement closepopup                 =  $x("//*[@id=\"addNewPolicy\"]/div/div/form/div[1]/button/img");
     public SelenideElement clickDiscoveredServices    =  $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[2]/div[2]/div[1]/div/ul/li[2]");
     public SelenideElement Refresh                    =  $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[2]/div[2]/div[1]/div/div/div/span");
-    public SelenideElement Warrning                   =   $x("//*[@id=\"divMainWirSett\"]/div[7]/div/div/div[2]");
+    public SelenideElement Warrning                   =   $x("(//*[@class=\"modal-body\"])[11]");
     public SelenideElement Warrning1                  =  $x("//button[text()='OK']/../../../..//p[@class=\"fontSemiBold\"]");
     public SelenideElement settingsorquickview        = $x("//*[@id=\"divLocBarwirquickView\"]/div[2]/a");
     public SelenideElement addssid                    = $("#divssidWirSett");

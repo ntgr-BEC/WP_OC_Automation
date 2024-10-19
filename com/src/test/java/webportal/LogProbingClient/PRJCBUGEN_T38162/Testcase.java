@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(3);
         new WirelessQuickViewPage().goToNetworkSetting();
         MyCommonAPIs.sleepi(3);
-        new WirelessQuickViewPage(false).enableLogProbing(false);
+        new WirelessQuickViewPage(false).enableLogProbing(true);
          
     }
 
