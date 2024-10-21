@@ -54,7 +54,8 @@ public class Testcase extends TestCaseBase {
     @BeforeMethod(alwaysRun = true)
     public void tearUp() {
        
-       new PostManPage().Deregister(WebportalParam.ap1serialNo);
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+       new PostManPage().Deregister(WebportalParam.ap6serialNo);
         
     }
 
@@ -109,8 +110,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
        
         
-        firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
         
         System.out.println(firststdevInfo);
  
