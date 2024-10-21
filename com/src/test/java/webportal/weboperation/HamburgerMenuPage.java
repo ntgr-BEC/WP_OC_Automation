@@ -1141,7 +1141,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             currentpassword.sendKeys(password);
         }
         MyCommonAPIs.sleep(10);
-        if (submitchangeemailCognito.exists()) {
+        if (submitchangeemailCognito.exists() && !(submitBtn.exists())) {
             submitchangeemailCognito.click();
         } else {
             waitElement(submitchangeemail);
@@ -1214,6 +1214,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (cancelbuttonCognito.exists()) {
             cancelbuttonCognito.click();
         } else if (cancelbutton.exists()) {
+            MyCommonAPIs.sleepi(1);
             cancelbutton.click();
         } else {
             refresh();
@@ -1225,7 +1226,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         editprofile.click();
         MyCommonAPIs.sleepi(10);
         logger.info("Start edit profile...");
-        if (map.containsKey("First Name")) {
+        if (map.containsKey("First Name") && firstNameCognito.exists()) {
             firstNameCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             firstNameCognito.scrollIntoView(true);
@@ -1237,7 +1238,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             firstname.setValue(map.get("First Name"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("Last Name")) {
+        if (map.containsKey("Last Name") && lastNameCognito.exists()) {
             lastNameCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             lastNameCognito.scrollIntoView(true);
@@ -1249,7 +1250,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             lastname.setValue(map.get("Last Name"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("State")) {
+        if (map.containsKey("State") && stateCognito.exists()) {
             stateCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             stateCognito.scrollIntoView(true);
@@ -1261,7 +1262,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             state.setValue(map.get("State"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("City")) {
+        if (map.containsKey("City") && cityCognito.exists()) {
             cityCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             cityCognito.scrollIntoView(true);
@@ -1273,7 +1274,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             city.setValue(map.get("City"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("Street Address")) {
+        if (map.containsKey("Street Address") && streetAddCognito.exists()) {
             streetAddCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             streetAddCognito.scrollIntoView(true);
@@ -1285,7 +1286,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             streetaddress.setValue(map.get("Street Address"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("Apartment or Suite")) {
+        if (map.containsKey("Apartment or Suite") && apartmentCognito.exists()) {
             apartmentCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             apartmentCognito.scrollIntoView(true);
@@ -1297,7 +1298,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             apartmentorsuite.setValue(map.get("Apartment or Suite"));
         }
         MyCommonAPIs.sleepi(1);
-        if (map.containsKey("Postal/ZIP Code")) {
+        if (map.containsKey("Postal/ZIP Code") && zipcodeCognito.exists()) {
             zipcodeCognito.shouldBe(Condition.visible);
             MyCommonAPIs.sleep(1);
             zipcodeCognito.scrollIntoView(true);
