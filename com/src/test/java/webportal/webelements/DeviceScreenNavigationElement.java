@@ -470,8 +470,8 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement   RxData                               = $x("//span[text()=\"Rx Data\"]");
   public SelenideElement   Clearstats                           = $x("//*[@id=\"divShowStatics\"]/div[3]/button"); 
 
-  public SelenideElement   Settings                             = $x("//*[@id=\"header\"]/div[2]/div/div[1]");
-  public SelenideElement   Fullscreen                           = $x("//*[@id=\"header\"]/div[2]/div/div[3]/i/img");
+  public SelenideElement   Settings                             = $x("//*[@class=\"settingMenu AdminDropDown dropdown-toggle\"]");
+  public SelenideElement   Fullscreen                           = $x("//*[@class=\"AdminDropDown viewFullSreenIcon verticleAlignTop zIndex3\"]");
   public SelenideElement   UserName                             = $x("//div[@class=\"userNameBlock\"]");
   public SelenideElement   NotificationBell                     = $x("//*[@id=\"notificationDrop\"]/div/img");
   public SelenideElement   Userimage                            = $x("//*[@class=\"userProfilePicBlock\"]");

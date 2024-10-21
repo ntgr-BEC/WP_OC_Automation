@@ -107,8 +107,8 @@ public class Testcase extends TestCaseBase {
     
     }
     
-//    @Step("Test Step 5: Verify VPN services page")
-//    public void step5() {
+//    @Step("Test Step 5: Verify VPN services page")   //Stoped VPN services
+//    public void step5() {  
 //           
 //            assertTrue(new  DeviceScreenNavigationPage().verifyVPNServices()," VPN services page  is not complete");
 //            MyCommonAPIs.sleepi(15); 
@@ -123,13 +123,13 @@ public class Testcase extends TestCaseBase {
     
     }
     
-    @Step("Test Step 7: Verify MUB page")
-    public void step7() {
-           
-            assertTrue(new  DeviceScreenNavigationPage().verifyMUBPage(),"MUB page  is not complete");
-            MyCommonAPIs.sleepi(15); 
-    
-    }
+//    @Step("Test Step 7: Verify MUB page")      //only found if the account country is CANADA or US
+//    public void step7() {
+//           
+//            assertTrue(new  DeviceScreenNavigationPage().verifyMUBPage(),"MUB page  is not complete");
+//            MyCommonAPIs.sleepi(15); 
+//    
+//    }
     
     @Step("Test Step 8: Verify Manage Notifications page")
     public void step8() {

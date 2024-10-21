@@ -83,7 +83,7 @@ public class Testcase extends TestCaseBase {
        icpInfo.put("Login Modes", "Register.");
        new WirelessQuickViewPage().enableCaptivePortalType(ssidInfo.get("SSID"), icpInfo);
 
-       MyCommonAPIs.sleepi(60);
+       MyCommonAPIs.sleepi(100);
 
        assertTrue(new WirelessQuickViewPage().connectClient(ssidInfo), "Client cannot connected.");
 

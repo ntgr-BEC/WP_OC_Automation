@@ -70,9 +70,9 @@ public class Testcase extends TestCaseBase {
        locationInfo.put("SSID", "apwp14008");
        locationInfo.put("Security", "WPA2 Personal Mixed");
        locationInfo.put("Password", "123456798");
-       new WirelessQuickViewPage().addSsidNat(locationInfo);      
+//       new WirelessQuickViewPage().addSsidNat(locationInfo);      
       String check= new WirelessQuickViewPage().enableMpskNat(locationInfo.get("SSID")); 
-       MyCommonAPIs.sleepi(120);
+       MyCommonAPIs.sleepi(80);
        assertTrue(check.contains("Warning"), "CONFIG FOR MPSK  PUSHED");
        assertTrue(!new APUtils(WebportalParam.ap1IPaddress).Mpskstatus(WebportalParam.ap1Model), "CONFIG FOR MPSK PUSHED");
        

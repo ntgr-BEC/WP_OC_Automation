@@ -905,7 +905,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         TopologyPage.click();
         MyCommonAPIs.sleepi(2); 
         boolean result = false;       
-        System.out.println(LabelISP.isDisplayed());
+//        System.out.println(LabelISP.isDisplayed());
         System.out.println(Label3dots .isDisplayed());
         Label3dots.click();
         MyCommonAPIs.sleepi(2);
