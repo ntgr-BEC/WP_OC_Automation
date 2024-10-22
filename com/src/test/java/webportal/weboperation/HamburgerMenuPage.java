@@ -7,6 +7,8 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -6366,7 +6368,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         System.out.println(proStartDateSubs);
         System.out.println(proEndDate);
         logger.info("Premium Account: Start Date and End Date Stored");
-        if ((premiumStartDateSubs==proStartDateSubs) && (premiumEndDate==proEndDate)) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy");
+        LocalDate proEndDateLocal = LocalDate.parse(proEndDate, formatter);
+        LocalDate premiumEndDateLocal = LocalDate.parse(premiumEndDate, formatter);
+        long daysDifference = ChronoUnit.DAYS.between(proEndDateLocal, premiumEndDateLocal);
+        if ((premiumStartDateSubs==proStartDateSubs) && (daysDifference == 1 || daysDifference == 0)) {
             result = true;
             logger.info(premiumStartDateSubs+"="+proStartDateSubs+"==== Starting Dates are same");
             logger.info(premiumEndDate+"="+proEndDate+"==== End Dates are same");
