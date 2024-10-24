@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-//        new OrganizationPage(false).DeleteSchedule(Name);
+        new OrganizationPage(false).DeleteSchedule(Name);
         System.out.println("start to do tearDown");
     }
 

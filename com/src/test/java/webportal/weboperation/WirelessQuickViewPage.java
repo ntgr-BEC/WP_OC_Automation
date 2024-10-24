@@ -65,6 +65,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public WirelessQuickViewPage() {
         // TODO Auto-generated constructor stub
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
+        MyCommonAPIs.sleepi(5);
         waitElement(settingsorquickview);
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
@@ -8280,6 +8281,13 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             enableECP();
+            
+            if(map.containsKey("ECP Type")) {
+                selectDropdown.click();
+                MyCommonAPIs.sleepi(4);
+                selectJaze.click();
+                MyCommonAPIs.sleepi(2);
+            }
 
             if (map.containsKey("Splash Page URL")) {
                 MyCommonAPIs.sleepi(4);
@@ -10343,11 +10351,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         setSelected($x("(//input[@id='enableBlackList'])[5]/../span"), flag);
 //        $x("(//input[@id='enableBlackList'])[5]/../span").click();
         MyCommonAPIs.sleepi(10);
-        if(SaveIGMP.exists()) {
+        if(SaveIGMP.isDisplayed()) {
         new WirelessQuickViewPage(false).SaveIGMP.click();
         }
         MyCommonAPIs.sleepi(5);
-        if(ConformSaveIGMP.exists()) {
+        if(ConformSaveIGMP.isDisplayed()) {
         new WirelessQuickViewPage(false).ConformSaveIGMP.click();
     }      
     }
@@ -11219,4 +11227,67 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result;
     }
     
+    // Added by Anusha H
+    public void broadcastToggleButton(String ssid, String Enable) {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleep(5);
+        if (checkSsidIsExist(ssid)) {
+            clickEditSsid(ssid);
+        }
+  
+        if (Enable.equals("0")) {
+            setSelected(broadcastTogglebutton, false);
+            sleepi(5);
+        } else {
+            setSelected(broadcastTogglebutton, true);
+            sleepi(5);
+        }
+      
+        editsave.click();
+        waitReady();
+        MyCommonAPIs.sleepi(3);
+        confirmok.click();
+        MyCommonAPIs.sleepi(4);
+        }
+    
+    public void GoToNetworkSettings() {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        if (Advance1.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        }
+        MyCommonAPIs.sleepi(3);
+    }
+
+    public void GoToMeshSettings() {
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        if (Advance1.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance1).perform();
+            a.moveToElement(MeshSetting).click().perform();
+        }
+        MyCommonAPIs.sleepi(3);
+    }
 }
+
+  

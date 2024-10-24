@@ -73,6 +73,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         Map<String, String> ECPInfo = new HashMap<String, String>();
         ECPInfo.put("Walled Garden", "*.jazenetworks.com");
+        ECPInfo.put("ECP Type", "Jaze");
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
         MyCommonAPIs.sleepi(60);
         

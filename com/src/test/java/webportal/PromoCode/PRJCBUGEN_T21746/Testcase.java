@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -19,6 +20,7 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -40,6 +42,13 @@ public class Testcase extends TestCaseBase {
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
+    }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
     }
 
     @AfterMethod(alwaysRun = true)

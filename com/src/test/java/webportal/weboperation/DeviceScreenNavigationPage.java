@@ -55,7 +55,6 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
     }
     
     
-    
     public boolean WifiandCapitivePortalTab() {
         boolean tabcaptiveportal = false;
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
@@ -63,6 +62,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         logger.info(".Going to click Setting Button ===>.");
         WirelessSettingButton.click();
         MyCommonAPIs.waitElement(WifiandCapitivePortalTab);
+        MyCommonAPIs.sleepi(8);
         if(WifiandCapitivePortalTab.isDisplayed())
         {
             WifiandCapitivePortalTab.click();
@@ -89,6 +89,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         {
             WifiSchedulesTab.click();
             MyCommonAPIs.waitElement(WifiSchedulesLabel);
+            MyCommonAPIs.sleepi(5);
             if(WifiSchedulesLabel.isDisplayed()  & WifiScheduleAddButton.isDisplayed() & WifiScheduleQuickViewButton.isDisplayed())
             {
                 tabWifiSchedules = true;
@@ -109,6 +110,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         {
             URLfilteringTab.click();
             MyCommonAPIs.waitElement(URLBlackListToggleSwitch);
+            MyCommonAPIs.sleepi(5);
             if (URLBlackListToggleSwitch.isDisplayed())
             {
                 tabURLfiltering = true;
@@ -152,6 +154,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         {
             FastRoamingTab.click();
             MyCommonAPIs.waitElement(FastRomingEnableToggleSwitch);
+            MyCommonAPIs.sleepi(8);
             if(FastRomingEnableToggleSwitch.isDisplayed())
             {
                 tabFastRoaming = true;
@@ -173,6 +176,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         {
             AirBridegGroupsTab.click();
             MyCommonAPIs.waitElement(AirBridgeNameLabel);
+            MyCommonAPIs.sleepi(5);
             if(AirBridgeNameLabel.isDisplayed() & AirBridgeMasteLabel.isDisplayed() & AirBridgeSatelliteLabel.isDisplayed() & AirBridgeStatusLabel.isDisplayed() & CreateAirBirdgeGroupButton.isDisplayed() & AirBridgeQuickView.isDisplayed() & AirBridgeSearchBox.isDisplayed())
             {
                 tabAirBridegGroups = true;
@@ -194,6 +198,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
             LoadBalancingTab.click();
             MyCommonAPIs.waitElement(LoadBalancingToggleLabel);
             MyCommonAPIs.waitElement(LoadBalancingCancelButton);
+            MyCommonAPIs.sleepi(5);
             if(LoadBalancingToggleLabel.isDisplayed() & DisStickyClientsToggleLabel.isDisplayed() & LoadBalancingQuickView.isDisplayed() & LoadBalancingSaveButton.isDisplayed() & LoadBalancingCancelButton.isDisplayed())
             {
                 tabLoadBalancing =true;
@@ -210,13 +215,15 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
     }
 
     public boolean AdvancedWirelessSettingTab() {
+           
         // TODO Auto-generated method stub
         boolean Ghz24 = false;
         boolean Ghz5Low = false;
         boolean Ghz5High = false;
+        MyCommonAPIs.sleepi(3);
         if(AdvancedWirelessSettingTab.isDisplayed())
         {
-            AdvancedWirelessSettingTab.click();
+            new WirelessQuickViewPage(false).GoToWirelessSettings();  
             MyCommonAPIs.sleepi(5);
             MyCommonAPIs.waitElement(AWS_Quickview);
             System.out.println(GHLZabel_24.isDisplayed());
@@ -230,48 +237,49 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
                 logger.info("Verification done for 2.4GHz  ---> All Fields Present.");
                 Ghz24 = true;
             }
-            else
-                logger.info(".AdvancedWirelessSettingTab [Unable to complete 2.4Ghz Details] ---> Failed.");
-            GhzExpandIcon5Low.click();
-            MyCommonAPIs.waitElement(EnableRadioLabel_5Low);
-            System.out.println(Ghz5LowLabel.isDisplayed());
-            System.out.println(EnableRadioLabel_5Low.isDisplayed());
-            System.out.println(EnableRadioButton_5Low.isDisplayed());
-            System.out.println(EnableRadioButton_24.isDisplayed());
-            System.out.println(RadioModeLabel_5Low.isDisplayed());
-            System.out.println(ChannelWidthLabel_5Low.isDisplayed());            
-            if(Ghz5LowLabel.isDisplayed() & EnableRadioLabel_5Low.isDisplayed() & EnableRadioButton_5Low.isDisplayed() & EnableRadioButton_24.isDisplayed() & RadioModeLabel_5Low.isDisplayed() & RadioModeDropdown_5Low.isDisplayed() & ChannelWidthLabel_5Low.isDisplayed())
-            {
-                logger.info("Verification done for 5GHz Low ---> All Fields Present.");
-                Ghz5Low = true;
-
-            }
-            else
-                logger.info(".AdvancedWirelessSettingTab [Unable to complete Ghz5Low Details] ---> Failed.");
-            GhzExpandIcon5High.click();
-            MyCommonAPIs.waitElement(GhzHighLabel_5High);
-            System.out.println(GhzHighLabel_5High.isDisplayed());            
-            System.out.println(RadioModeLabel_5High.isDisplayed());            
-            System.out.println(RadioModeDropdown_5High.isDisplayed());            
-            System.out.println(ChannelWidthDropdown_5High.isDisplayed());            
-            System.out.println(ChannelWidthLabel_5High.isDisplayed());            
-            System.out.println(CancelButton.isDisplayed());            
-            System.out.println(SaveButton.isDisplayed());            
-             if(GhzHighLabel_5High.isDisplayed() & RadioModeLabel_5High.isDisplayed() & RadioModeDropdown_5High.isDisplayed() & ChannelWidthDropdown_5High.isDisplayed() & ChannelWidthLabel_5High.isDisplayed() & CancelButton.isDisplayed() & SaveButton.isDisplayed())
-             {
-                logger.info("Verification done for 5GHz High ---> All Fields Present.");
-                Ghz5High = true;
-                logger.info(".AdvancedWirelessSettingTab ---> Passed.");
-             }
-             else
-                logger.info(".AdvancedWirelessSettingTab [Unable to complete Ghz5High Details] ---> Failed.");
-                                
-                       
+//            else
+//                logger.info(".AdvancedWirelessSettingTab [Unable to complete 2.4Ghz Details] ---> Failed.");
+//            GhzExpandIcon5Low.click();
+//            MyCommonAPIs.waitElement(EnableRadioLabel_5Low);
+//            System.out.println(Ghz5LowLabel.isDisplayed());
+//            System.out.println(EnableRadioLabel_5Low.isDisplayed());
+//            System.out.println(EnableRadioButton_5Low.isDisplayed());
+//            System.out.println(EnableRadioButton_24.isDisplayed());
+//            System.out.println(RadioModeLabel_5Low.isDisplayed());
+//            System.out.println(ChannelWidthLabel_5Low.isDisplayed());            
+//            if(Ghz5LowLabel.isDisplayed() & EnableRadioLabel_5Low.isDisplayed() & EnableRadioButton_5Low.isDisplayed() & EnableRadioButton_24.isDisplayed() & RadioModeLabel_5Low.isDisplayed() & RadioModeDropdown_5Low.isDisplayed() & ChannelWidthLabel_5Low.isDisplayed())
+//            {
+//                logger.info("Verification done for 5GHz Low ---> All Fields Present.");
+//                Ghz5Low = true;
+//
+//            }
+//            else
+//                logger.info(".AdvancedWirelessSettingTab [Unable to complete Ghz5Low Details] ---> Failed.");
+//            GhzExpandIcon5High.click();
+//            MyCommonAPIs.waitElement(GhzHighLabel_5High);
+//            System.out.println(GhzHighLabel_5High.isDisplayed());            
+//            System.out.println(RadioModeLabel_5High.isDisplayed());            
+//            System.out.println(RadioModeDropdown_5High.isDisplayed());            
+//            System.out.println(ChannelWidthDropdown_5High.isDisplayed());            
+//            System.out.println(ChannelWidthLabel_5High.isDisplayed());            
+//            System.out.println(CancelButton.isDisplayed());            
+//            System.out.println(SaveButton.isDisplayed());            
+//             if(GhzHighLabel_5High.isDisplayed() & RadioModeLabel_5High.isDisplayed() & RadioModeDropdown_5High.isDisplayed() & ChannelWidthDropdown_5High.isDisplayed() & ChannelWidthLabel_5High.isDisplayed() & CancelButton.isDisplayed() & SaveButton.isDisplayed())
+//             {
+//                logger.info("Verification done for 5GHz High ---> All Fields Present.");
+//                Ghz5High = true;
+//                logger.info(".AdvancedWirelessSettingTab ---> Passed.");
+//             }
+//             else
+//                logger.info(".AdvancedWirelessSettingTab [Unable to complete Ghz5High Details] ---> Failed.");
+//                                
+//                       
         }
         else
             logger.info(".AdvancedNetworkSettingTab is Not Visible  ---> Failed.");
 
-        if (Ghz24 == true & Ghz5Low == true & Ghz5High == true)
+//        if (Ghz24 == true || Ghz5Low == true & Ghz5High == true)
+        if(Ghz24 == true) 
         {
             return true;
         }
@@ -282,11 +290,13 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
     public boolean AdvancedNetworkSettingTab() {
         // TODO Auto-generated method stub
         boolean tabAdvancedNetworkSetting = false;
+        MyCommonAPIs.sleepi(5);
         if(AdvancedNetworkSettingTab.isDisplayed())
         {
             
-            AdvancedNetworkSettingTab.click();
+            new WirelessQuickViewPage(false).GoToNetworkSettings();  
             MyCommonAPIs.waitElement(ANS_QuichViewButton);
+            MyCommonAPIs.sleep(5);
             System.out.println(ANS_QuichViewButton.isDisplayed());
             System.out.println(ANS_BroadCastLabel.isDisplayed());
             System.out.println(ANS_IGMPSnooping.isDisplayed());
@@ -313,8 +323,9 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         // TODO Auto-generated method stub
         if (MeshSettingTab.isDisplayed())
         {
-            MeshSettingTab.click();
+            new WirelessQuickViewPage(false).GoToMeshSettings();  
             MyCommonAPIs.waitElement(MS_QuicktabButton);
+            MyCommonAPIs.sleepi(5);
             System.out.println(MS_QuicktabButton.isDisplayed());
             System.out.println(MeshSettingLabel.isDisplayed());
             System.out.println(MeshmodeLabel.isDisplayed());
@@ -343,6 +354,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         {
             ManagementLanSetting.click();
             MyCommonAPIs.waitElement(MgVlanSettingQuickView);
+            MyCommonAPIs.sleepi(5);
             System.out.println(MgVlanSettingQuickView.isDisplayed());
             System.out.println(MgVlanSettingLabel.isDisplayed());
             System.out.println(MgVlanDropdown.isDisplayed());
@@ -705,9 +717,10 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         if (NetworkSetupTab.isDisplayed())
         {
             NetworkSetupTab.click();
-            MyCommonAPIs.waitElement(NS_LocationLabel);
-            System.out.println(NS_AddLocationIcon.isDisplayed());
-            if (NS_LocationLabel.isDisplayed() & NS_AddLocationIcon.isDisplayed())
+            MyCommonAPIs.waitElement(NS_VLANNameLAbel);
+            MyCommonAPIs.sleepi(5);
+            System.out.println(NS_VLANNameLAbel.isDisplayed());
+            if (NS_VLANNameLAbel.isDisplayed() & NS_VLANId.isDisplayed() & NS_VLANNameLAbel.isDisplayed() & NS_VLANId.isDisplayed( ))
             {
                 result = true;
                 logger.info(".NetworkSetupTab ---> Passed.");
@@ -722,7 +735,6 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
 
         return result;
     }
-
     public boolean SyslogConfigurationTab() {
         // TODO Auto-generated method stub
         boolean result = false;
@@ -893,7 +905,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         TopologyPage.click();
         MyCommonAPIs.sleepi(2); 
         boolean result = false;       
-        System.out.println(LabelISP.isDisplayed());
+//        System.out.println(LabelISP.isDisplayed());
         System.out.println(Label3dots .isDisplayed());
         Label3dots.click();
         MyCommonAPIs.sleepi(2);

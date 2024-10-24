@@ -2589,6 +2589,10 @@ public void checkDeviceInAdminAccount3() {
     }
     
     public void deleteDevice1(String Device) {
+        WebCheck.checkHrefIcon(URLParam.hrefDevices);
+        String pageName = this.getClass().getSimpleName();
+        logger = Logger.getLogger(pageName);
+        logger.info("init...");
         MyCommonAPIs.sleep(10);
         hoverDevice(Device).hover();
         MyCommonAPIs.sleep(3000);
@@ -3149,6 +3153,83 @@ public boolean verifySettingPageFilterAirbridge() {
                     waitDevicesReConnected(WebportalParam.sw2serialNo);
                 }
             }
-    
+
+            public boolean disablemanagedUnmanagedSwitch(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                scrollToMac(WebportalParam.ap5macaddress).scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                waitElement(enableDisableManagedSwitch(srno));
+                enableDisableManagedSwitch(srno).click();
+                MyCommonAPIs.sleepi(10);
+                yesButtonforSwitch.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(confirmmationMessage);
+                if (confirmmationMessage.exists()) {
+                    String confmMsg = confirmmationMessage.getText();
+                    System.out.println(confmMsg);
+                    MyCommonAPIs.sleepi(1);
+                    if (unmanagedStatus(srno).exists()) {
+                        logger.info("Managed Unmanaged switch is working fine for AP");
+                        result = true;
+                        enableDisableManagedSwitch(srno).click();
+                        MyCommonAPIs.sleepi(10);
+                        yesbuttonforunmanagetoman.click();
+                        MyCommonAPIs.sleepi(1);
+                    }
+                }
+                return result;
+            }
+            
+            
+            public void enablemanagedUnmanagedSwitch(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                scrollToMac(WebportalParam.ap5macaddress).scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                waitElement(enableDisableManagedSwitch(srno));
+                enableDisableManagedSwitch(srno).click();
+                MyCommonAPIs.sleepi(10);
+                yesbuttonforunmanagetoman.click();
+                MyCommonAPIs.sleepi(1);
+            }
+            //AddedByPratik
+            public boolean verifyManageUnmanageswiutchIsthereafternewdeviceonboard(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(5);
+                if (enableDisableManagedSwitch(srno).exists() || unmanagedStatus(srno).exists()) {
+                    result = true;
+                    logger.info("Test case passed successfully");
+                }
+                return result;
+            }            
+            
+            
+          //AddedByPratik
+            public boolean disablemanagedSwitch(String srno) {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                scrollToMac(WebportalParam.ap5macaddress).scrollIntoView(true);
+                MyCommonAPIs.sleepi(1);
+                waitElement(enableDisableManagedSwitch(srno));
+                enableDisableManagedSwitch(srno).click();
+                MyCommonAPIs.sleepi(10);
+                yesButtonforSwitch.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(confirmmationMessage);
+                if (confirmmationMessage.exists()) {
+                    String confmMsg = confirmmationMessage.getText();
+                    System.out.println(confmMsg);
+                    MyCommonAPIs.sleepi(1);
+                    if (unmanagedStatus(srno).exists()) {
+                        logger.info("Managed Unmanaged switch is working fine for AP");
+                        result = true;    
+                        MyCommonAPIs.sleepi(1);
+                    }
+                }
+                return result;
+            }
+           
+            
 }
     

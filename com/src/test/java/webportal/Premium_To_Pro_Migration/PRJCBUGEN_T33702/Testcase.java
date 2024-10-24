@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -24,6 +25,7 @@ import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.OrganizationPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 import com.codeborne.selenide.Selenide;
 
@@ -49,6 +51,14 @@ public class Testcase extends TestCaseBase {
         runTest(this);
     }
 
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+       new PostManPage().Deregister(WebportalParam.ap6serialNo);
+        
+    }
+    
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new AccountPage().deleteOneLocation("OnBoardingTest");

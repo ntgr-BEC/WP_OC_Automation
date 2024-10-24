@@ -81,7 +81,7 @@ public class TestCase extends TestCaseBase {
         
         DeviceBulkOnboardingPage DeviceBulkOnboardingPage = new DeviceBulkOnboardingPage(); 
         String filePath = DeviceBulkOnboardingPage.GetcurrentPath1();
-        filePath = filePath + "\\PRJCBUGEN_T28279\\Bulkonbord.csv";
+        filePath = filePath + "\\PRJCBUGEN_T28281\\Bulkonbord.csv";
         System.out.println(filePath);
         System.out.println("check where the screen is");
         DeviceBulkOnboardingPage.ImportmultipledevicesformatFile1(filePath);

@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add WIFI ssid with WPA2 Enterprise security and enable ECP;")
     public void step2() {
         
-        ssidInfo.put("SSID", "apwp40819");
+        ssidInfo.put("SSID", "apwp41481");
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
         new WirelessQuickViewPage().addSsid1(ssidInfo); 

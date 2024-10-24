@@ -91,7 +91,7 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    InstantWifiQuickkview               = $x("//a[@id='quickView']");
   
   public SelenideElement    FastRoamingTab                      = $x("//div[@class=\"leftMenuItems\"][1]/div[6]/a");
-  public SelenideElement    FastRomingEnableToggleSwitch        = $x("(//span[@class='cstmSlider cstmRound'])[3]");
+  public SelenideElement    FastRomingEnableToggleSwitch        = $x("(//span[@class='cstmSlider cstmRound'])[4]");
   
   public SelenideElement    AirBridegGroupsTab                  =  $x("//div[@class=\"leftMenuItems\"][1]/div[7]/a");
   public SelenideElement    AirBridgeNameLabel                  = $x("//th[contains(text(),'Name')]");
@@ -109,14 +109,14 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    LoadBalancingSaveButton             = $(".btn.saveBtn");
   public SelenideElement    LoadBalancingCancelButton           = $x("//button[@class=\"btn cancelBtn\"][1]");
   
-  public SelenideElement    AdvancedWirelessSettingTab          = $x("//div[@class=\"leftMenuItems\"][1]/div[10]/a");
+  public SelenideElement    AdvancedWirelessSettingTab          = $x("//div[@class=\"leftMenuItems\"][1]/div[11]/a");
   public SelenideElement    AWS_Quickview                       = $x("//a[@id='quickView']");
   public SelenideElement    GHLZabel_24                         = $x("//span[contains(text(),'2.4GHz')]");
-  public SelenideElement    EnableRadioLabel_24                 = $x("//form[@class=\"client-form\"]/div[1]/div[1]/div[@class=\"networksetting NotificationsAcor\"]/div[@class=\"overflow\"]/div[@class=\"nsaccord-detail show\"]/div[1]/div[1]/div[1]/h5[1]");
-  public SelenideElement    RadioModeLabel_24                   = $x("//div[@class=\"nsaccord-detail show\"]/div[1]/div[1]/div[2]/div[1]/h5[1]");
-  public SelenideElement    RadioModeDropdown_24                = $x("//div[@class=\"nsaccord-detail show\"]/div[1]/div[1]/div[2]/select[1]");
-  public SelenideElement    ChannelWidthLabel_24                = $x("//div[@class=\"nsaccord-detail show\"]/div[1]/div[1]/div[3]/h5[1]");
-  public SelenideElement    ChannelWidthDropdown_24             = $x("//div[@class=\"nsaccord-detail show\"]/div[1]/div[1]/div[3]/select[1]");
+  public SelenideElement    EnableRadioLabel_24                 = $x("(//*[@class=\"cstmSlider cstmRound\"])[4]");
+  public SelenideElement    RadioModeLabel_24                   = $x("(//*[text()=\"Radio Mode\"])[1]");
+  public SelenideElement    RadioModeDropdown_24                = $x("(//*[@class=\"form-control formValidate inputTextField\"])[5]");
+  public SelenideElement    ChannelWidthLabel_24                = $x("(//*[text()=\"Channel Width\"])[1]");
+  public SelenideElement    ChannelWidthDropdown_24             = $x("(//*[@id=\"dropdown-width\"])[1]");
   public SelenideElement    GhzExpandIcon_24                    = $x("//form[@class=\"client-form\"]/div[1]/div[1]/div[1]/div[1]/h3[1]/span[2]/i[2]");
   public SelenideElement    GhzExpandIcon5Low                   = $x("//form[@class=\"client-form\"]/div[2]/div[1]/div[1]/div[1]/h3[1]/span[2]/i[2]");
   public SelenideElement    GhzExpandIcon5High                  = $x("//form[@class=\"client-form\"]/div[3]/div[1]/div[1]/div[1]/h3[1]/span[2]/i[2]");
@@ -136,12 +136,12 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    CancelButton                        = $x("//button[@id='btnCancelUpdateRadiChnl']");
   public SelenideElement    SaveButton                          = $x("//button[@id='btnSaveUpdteRadiChnl']");
   
-  public SelenideElement    AdvancedNetworkSettingTab           =  $x("//div[@class=\"leftMenuItems\"][1]/div[9]/a");
+  public SelenideElement    AdvancedNetworkSettingTab           =  $x("//div[@class=\"leftMenuItems\"][1]/div[11]/a");
   public SelenideElement    ANS_QuichViewButton                 = $x("//a[@id='quickView']");
   public SelenideElement    ANS_BroadCastLabel                  = $x("//h5[contains(text(),'Broadcast-to-Unicast')]");
   public SelenideElement    ANS_IGMPSnooping                    = $x("//h5[contains(text(),'IGMP Snooping')]");
-  public SelenideElement    ANS_BroadcastToggleButton           = $x("//div[@class=\"statidetails\"][1]/div[1]/div[1]/div[1]/label[1]");
-  public SelenideElement    ANS_IGMPToggleButton                = $x("//div[@class=\"statidetails\"][1]/div[1]/div[1]/div[2]/label[1]");
+  public SelenideElement    ANS_BroadcastToggleButton           = $x("(//*[@class=\"cstmSlider cstmRound\"])[4]");
+  public SelenideElement    ANS_IGMPToggleButton                = $x("(//*[@class=\"cstmSlider cstmRound\"])[5]");
   public SelenideElement    ANS_CancelButton                    = $x("//button[@class=\"btn cancelBtn\"]");
   public SelenideElement    ANS_SaveButton                      = $x("//button[@class=\"btn saveBtn\"]");
   
@@ -154,7 +154,7 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    MS_Cancel_Button                    = $x("//button[@class=\"btn cancelBtn\"]");
   public SelenideElement    MS_Save_Button                      = $x("//button[@class=\"btn saveBtn\"]");
   
-  public SelenideElement    ManagementLanSetting                = $x("//div[@class=\"leftMenuItems\"][1]/div[11]/a[1]");
+  public SelenideElement    ManagementLanSetting                = $x("//div[@class=\"leftMenuItems\"][1]/div[9]/a[1]");
   public SelenideElement    MgVlanSettingQuickView              = $x("//a[@id='quickView']");
   public SelenideElement    MgVlanSettingLabel                  = $x("//h3[@id='hAdvanceSetteditWirNet']");
   public SelenideElement    MgVlanDropdown                      = $x("//div[@class=\"statidetails statidetailsVisible\"]/div[1]/div[1]/div[1]/select[1]");
@@ -166,7 +166,7 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    MgvlanSaveButton                    = $x("//button[@class=\"btn saveBtn\"]");
 
   public SelenideElement    WiredSettingButton                  = $("#settingsView");
-  public SelenideElement    VLANNetworkSetupTab                 = $x("//div[@class=\"leftMenuItems\"]/div[1]/a[1]");
+  public SelenideElement    VLANNetworkSetupTab                 = $x("//div[@class=\"leftMenuItems\"]/div[2]/a[1]");
   public SelenideElement    VLANNameLabel                       = $x("//th[@id='tdwiredVlan']");
   public SelenideElement    VLANIDLabel                         = $x("//th[@id='td2wiredVlan']");
   public SelenideElement    NetworkTypeLabel                    = $x("//th[@id='td3wiredVlan']");
@@ -174,15 +174,15 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    quickViewButton                     = $x("//a[@id='quickView']");
   public SelenideElement    AddVLANButton                       = $x("//a[@id='ancOpenwiredVlan']/span[1]");
   
-  public SelenideElement    GroupPortSettingsTab                = $x("//div[@class=\"leftMenuItems\"]/div[2]/a[1]"); 
-  public SelenideElement    LAGTab                              = $x("//div[@class=\"leftMenuItems\"]/div[3]/a[1]");
+  public SelenideElement    GroupPortSettingsTab                = $x("//div[@class=\"leftMenuItems\"]/div[3]/a[1]"); 
+  public SelenideElement    LAGTab                              = $x("//div[@class=\"leftMenuItems\"]/div[4]/a[1]");
   public SelenideElement    AddLAGButton                        = $x("//div[@class=\"col-md-6 col-md-offset-6 locationBarIcons\"]");
   
-  public SelenideElement    SpanningTreeTab                     = $x("//div[@class=\"leftMenuItems\"]/div[4]/a[1]");
-  public SelenideElement    PoEDowntimeSchedulesTab             = $x("//div[@class=\"leftMenuItems\"]/div[5]/a[1]");
+  public SelenideElement    SpanningTreeTab                     = $x("//div[@class=\"leftMenuItems\"]/div[5]/a[1]");
+  public SelenideElement    PoEDowntimeSchedulesTab             = $x("//div[@class=\"leftMenuItems\"]/div[6]/a[1]");
   public SelenideElement    AddPoppupwiredPoeSchButton          = $x("//a[@id='ancAddPoppupwiredPoeSch']/span[1]");
   public SelenideElement    CreatePOEDowntimeScheduleButton     = $x("//div[@class=\"PoeShedulesBlock\"]/div[1]/div[1]/p[3]/button[1]");
-  public SelenideElement    RADIUSConfigurationTab              = $x("//div[@class=\"leftMenuItems\"]/div[6]/a[1]");
+  public SelenideElement    RADIUSConfigurationTab              = $x("//div[@class=\"leftMenuItems\"]/div[7]/a[1]");
   
   public SelenideElement    LocationHamburgerButton             = $x("//div[@id=\"locationDivsContainer\"][1]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/a[1]");
   public SelenideElement    EditLocationButton                  = $x("//div[@id=\"locationDivsContainer\"]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[1]/ul[1]/li[1]/a[1]/b[1]");
@@ -235,20 +235,22 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
 
   
   public SelenideElement    NetworkSetupTab                     = $x("//div[@class=\"leftMenuItems\"][1]/div[3]/a[1]");
-  public SelenideElement    NS_LocationLabel                    = $x("//h3[contains(text(),'Location')]");
-  public SelenideElement    NS_AddLocationIcon                  = $x("//div[@class=\"col-md-6 col-md-offset-6 locationBarIcons\"]/div[1]");
+  public SelenideElement    NS_VLANNameLAbel                    = $x("//*[@id=\"trnetworkVlan\"]/th[1]");
+  public SelenideElement    NS_VLANId                           = $x("//*[@id=\"trnetworkVlan\"]/th[2]");
+  public SelenideElement    NS_Desc                             = $x("//*[@id=\"trnetworkVlan\"]/th[3]");
+  public SelenideElement    NS_NetworkType                      = $x("//*[@id=\"trnetworkVlan\"]/th[4]");
   
   public SelenideElement    SyslogConfigurationTab              = $x("//div[@class=\"leftMenuItems\"][1]/div[4]/a[1]");
   public SelenideElement    EnableSyslogLabel                   = $x("//h5[contains(text(),'Enable Syslog')]");
-  public SelenideElement    EnableSyslogtoggleswitch            = $x("//label[@class=\"cmnSwitch\"]");
+  public SelenideElement    EnableSyslogtoggleswitch            = $x("(//label[@class=\"cmnSwitch\"])[3]");
   public SelenideElement    SLC_CancelButton                    = $x("//button[@class=\"btn ipbtn cancelBtn\"]");
   public SelenideElement    SLC_SaveButton                      = $x("//button[@class=\"btn saveBtn\"]");
   
   public SelenideElement    LEDSettingsTab                      = $x("//div[@class=\"leftMenuItems\"][1]/div[5]/a[1]");
   public SelenideElement    LEDSettingLabel                     = $x("//h5[contains(text(),'LED Settings')]");
-  public SelenideElement    LEDSettingDropdown                  = $x("//div[@class=\"statidetails statidetailsVisible\"][1]/div[1]/div[1]/div[1]/div[1]/div[1]");
-  public SelenideElement    LEDSettingCancelButton            = $x("//button[@class=\"btn cancelBtn firmwareUpdate\"]");
-  public SelenideElement    LEDSettingSaveButton              = $x("//button[@class=\"btn saveBtn\"]");
+  public SelenideElement    LEDSettingDropdown                  = $x("//*[@class=\"Dropdown-placeholder is-selected\"]");
+  public SelenideElement    LEDSettingCancelButton              = $x("//button[@class=\"btn cancelBtn firmwareUpdate\"]");
+  public SelenideElement    LEDSettingSaveButton                = $x("//button[@class=\"btn saveBtn\"]");
   
   public SelenideElement    RoutingTab                          = $x("//div[@class=\"leftMenuItems\"][1]/div[6]/a[1]");
   public SelenideElement    RoutingVlanLabel                    = $x("//span[contains(text(),'Routing VLANs')]");
@@ -468,8 +470,8 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement   RxData                               = $x("//span[text()=\"Rx Data\"]");
   public SelenideElement   Clearstats                           = $x("//*[@id=\"divShowStatics\"]/div[3]/button"); 
 
-  public SelenideElement   Settings                             = $x("//*[@id=\"header\"]/div[2]/div/div[1]");
-  public SelenideElement   Fullscreen                           = $x("//*[@id=\"header\"]/div[2]/div/div[3]/i/img");
+  public SelenideElement   Settings                             = $x("//*[@class=\"settingMenu AdminDropDown dropdown-toggle\"]");
+  public SelenideElement   Fullscreen                           = $x("//*[@class=\"AdminDropDown viewFullSreenIcon verticleAlignTop zIndex3\"]");
   public SelenideElement   UserName                             = $x("//div[@class=\"userNameBlock\"]");
   public SelenideElement   NotificationBell                     = $x("//*[@id=\"notificationDrop\"]/div/img");
   public SelenideElement   Userimage                            = $x("//*[@class=\"userProfilePicBlock\"]");

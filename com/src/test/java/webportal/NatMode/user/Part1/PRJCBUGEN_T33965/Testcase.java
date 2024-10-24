@@ -75,13 +75,12 @@ public class Testcase extends TestCaseBase {
        MyCommonAPIs.sleepi(60);
        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo); 
        MyCommonAPIs.sleepi(30);
-
+       
        
    }
    @Step("Test Step 4: Check whether the configurations are pushed to the ap")
    public void step4() {
-       
-       new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
+       new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
        MyCommonAPIs.sleepi(120);
        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getSsidStat(WebportalParam.ap1Model), "CONFIG NOT PUSHED");
    }

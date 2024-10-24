@@ -70,7 +70,7 @@ public class PostManPage  extends MyCommonAPIs{
         
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // Create the HTTP POST request
-            HttpPost postRequest = new HttpPost("https://ocapi-qa.netgear.com/api/v2/ocProductRegisterDeactivate/?accessToken=2_5ZEyfo7eQb6Uul75sIhcBcGIwVIlibU7QpNVRogxffKFEaU6-q58AnrCnVjzgyT2dLw_JjhYR-zyZK2XzyzYmW0YB-tEWIXcps91uPKlyWf6UDQtvdFJVytWVyQf1ux2U46iSRibg9b7Puel_VCx5y2piphlhyMPFcv9Pw_J4to6");
+            HttpPost postRequest = new HttpPost("https://ocapi-qa.netgear.com/api/v2/ocProductRegisterDeactivate/?accessToken=2_57EvMz8EpvY7H6tRKjbYwgE7ix77DTwM6SfN8onOiioA2HBoRTvDV805Mda6td7JqJ5CJ4hbAsO0v1hDGPd57CBFrd52IL1iaa4qvrptR5LwtD6KBhz8rq3uTBP_isrJJPZxQxdOEH8BbExzHhhmgiP076qkA22KClVQYFOZNw8e");
 
             // Add headers
             postRequest.setHeader("Content-Type", "application/x-www-form-urlencoded");

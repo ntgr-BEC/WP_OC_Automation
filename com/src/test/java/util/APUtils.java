@@ -6,9 +6,14 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.WebDriverRunner;
 
 import webportal.param.WebportalParam;
+import webportal.webelements.DevicesDashPageElements;
 import webportal.weboperation.DevicesDashPage;
 
 public class APUtils extends MyCommonAPIs {
@@ -1613,6 +1618,41 @@ public void changeAPtoNetgear() {
 
 public void upgrageFirmware(String fileName) {  
     plink.getOutput(String.format("/usr/local/bin/firmware-upgrade-tftp %s %s reboot check", fileName, WebportalParam.TftpSvr), 240);
+}
+
+public void Setserver(String APIP){  
+    logger.info("entered WAC model");
+//    String url = WebportalParam.serverUrlLogin.substring(0, WebportalParam.serverUrlLogin.indexOf("."));
+//    System.out.println("URL is "+ url);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    String oprnURL = "http://"+APIP+":9999/insight_server";
+    String username = "admin";
+    String password = "Netgear1@";
+    
+    // Construct the URL with basic authentication
+    String url = "http://" + username + ":" + password + "@172.16.19.41:9999/insight_server";
+
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+    Selenide.switchTo().window(1);
+    String currentURL = new MyCommonAPIs().getCurrentUrl();
+    System.out.println(currentURL);
+    MyCommonAPIs.sleepi(5);     
+    if(url.contains("maint-beta")) {
+        System.out.println("inside Maint-beta");
+        new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
+    }else if(url.contains("pri-qa")) {
+        System.out.println("inside Pri-qa");
+        new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
+    }
+    new DevicesDashPageElements().submit.click();
+    
+    MyCommonAPIs.sleepi(5);
+    if(new DevicesDashPageElements().sucessmessage.exists()) {
+    System.out.println(new DevicesDashPageElements().sucessmessage.getText());
+    }
+    MyCommonAPIs.sleepi(5);
+    Selenide.switchTo().window(0);   
+
 }
 
 }

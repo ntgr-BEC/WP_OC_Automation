@@ -192,4 +192,43 @@ public class WiredVLANForVLANElement extends MyCommonAPIs {
 
     public String alertString = alert.getSearchCriteria();
     public SelenideElement vlanrow = $x("//*[@id=\"theadwiredVlan\"]/..");
+    
+    //AddedByPratik
+    public SelenideElement  addVlanPlusSym      = $x("//span[@class='icon-add']");
+    public SelenideElement  networkName         = $x("//input[@name='networkName']");
+    public SelenideElement  vlanDesc            = $x("//input[@name='vlanDesc']");
+    public SelenideElement  vlanName1           = $x("//input[@name='vlanName']");
+    public SelenideElement  vlanId1             = $x("//input[@name='vlanId']");
+    public SelenideElement  confirmBtn          = $x("//button[text()='Confirm']");
+    public SelenideElement  successfulMessage   = $x("//p[contains(text(),'successfully completed')]");
+    public SelenideElement  delVLANConfirmbtn   = $x("//button[text()='Yes, Continue']");
+    public SelenideElement  wiredSettingText    = $x("//h3[text()='Settings']");
+    public SelenideElement  portMembersText     = $x("//span[text()='Port Members']");
+    public SelenideElement  portModeWarningMsg  = $x("//div[contains(text(),'The port modes are not selected. Please select the port modes')]");
+    public SelenideElement  accessPortBtn       = $x("//button[text()='Access Port']");
+  //AddedByPratik
+    public SelenideElement editVLAN(String text) {
+        SelenideElement vlan = $x("//td[text()='" + text + "']/..//p");
+        return vlan;
+    }
+  //AddedByPratik 
+    public SelenideElement deleteCustomVlan(String text) {
+        SelenideElement vlan = $x("//td[text()='" + text + "']/../td[5]/p/i[2]");
+        return vlan;
+    }
+    //AddedByPratik 
+    public SelenideElement dataCustomVlan(String text) {
+        SelenideElement vlan = $x("//td[text()='" + text + "']/../td[4]");
+        return vlan;
+    }
+    //AddedByPratik 
+    public SelenideElement editCustomVlan(String text) {
+        SelenideElement vlan = $x("//td[text()='" + text + "']/../td[5]/p/i[1]");
+        return vlan;
+    }
+    //AddedByPratik 
+    public SelenideElement selectPortIfSw(String text, String num) {
+        SelenideElement selectPort = $x("//span[text()='Port Members']/../..//h5[text()='"+ text +"']/../../../../../..//*[text()='"+ num +"']");
+        return selectPort;
+    }
 }

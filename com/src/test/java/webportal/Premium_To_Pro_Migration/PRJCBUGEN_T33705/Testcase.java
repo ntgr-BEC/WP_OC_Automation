@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -24,6 +25,7 @@ import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.OrganizationPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
@@ -50,6 +52,14 @@ public class Testcase extends TestCaseBase {
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
+    }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+       new PostManPage().Deregister(WebportalParam.ap6serialNo);
+        
     }
 
     @AfterMethod(alwaysRun = true)
@@ -81,10 +91,36 @@ public class Testcase extends TestCaseBase {
 
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
+        
+        new HamburgerMenuPage(false).closeLockedDialog();
+        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", "OnBoardingTest");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+        new AccountPage().addNetwork(locationInfo);
+    }
+    
+    @Step("Test Step 2: Add dummy hardbundle device To the Network;")
+    public void step2() {
+        
+new AccountPage().enterLocation("OnBoardingTest");
+        
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        
+        System.out.println(firststdevInfo);
+                
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        
+        boolean result = true;
+        
     }
          
-    @Step("Test Step 2: Check buy icp services;")
-    public void step2() {
+    @Step("Test Step 3: Check buy icp services;")
+    public void step3() {
          
         Map<String, String> CaptivePortalPaymentInfo = new HashMap<String, String>();
         CaptivePortalPaymentInfo = new CommonDataType().CARD_INFO;
@@ -108,23 +144,23 @@ public class Testcase extends TestCaseBase {
             assertTrue(result, "<2> Captive portal services credits is incorrect.");
     } 
         
-    @Step("Test Step 3: Check start date and end date of icp subscription and upgrade to pro;")
-    public void step3() {
+    @Step("Test Step 4: Check start date and end date of icp subscription and upgrade to pro;")
+    public void step4() {
         
         new MyCommonAPIs().open(URLParam.hrefICP, true);
         new HamburgerMenuPage(false).premiumVPNServicesStartDateEndDate();
         
     }
 
-    @Step("Test Step 4: Navigate to Account Management, check upgrade to pro option and click on it;")
-    public void step4() {
+    @Step("Test Step 5: Navigate to Account Management, check upgrade to pro option and click on it;")
+    public void step5() {
         System.out.println("starting with setup 2");
         assertTrue(new HamburgerMenuPage().insightPritoinsightPro(),"Failed navigate to Account Management");
         
     }
     
-    @Step("Test Step 5: Check upgraded to pro")
-    public void step5() {
+    @Step("Test Step 6: Check upgraded to pro")
+    public void step6() {
         
         Map<String, String> businessInfo = new HashMap<String, String>();
         businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
@@ -137,19 +173,13 @@ public class Testcase extends TestCaseBase {
         businessInfo.put("Business Phone Number", "1234567890");
         new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
         assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
+        assertTrue(new HamburgerMenuPage(false).addLocationsToOrg(organizationName), "Location is not Successfully added to new created orgnizqation");
         
     }
     
-    @Step("Test Step 6: create new organization and verify icp start date and end date in pro account with premium")
-    public void step6() {
-        
-        new OrganizationPage(false).gotoDashboard();
-        Map<String, String> organizationInfo = new HashMap<String, String>();
-        organizationInfo.put("Name", organizationName);
-
-        OrganizationPage OrganizationPage = new OrganizationPage();
-        OrganizationPage.addOrganization(organizationInfo);
-        
+    @Step("Test Step 7: create new organization and verify icp start date and end date in pro account with premium")
+    public void step7() {
+                
         new MyCommonAPIs().open(URLParam.hrefICP, true);
         assertTrue(new HamburgerMenuPage(false).proVPNServicesStartDateEndDate(), "Both Dates are not matching");
         

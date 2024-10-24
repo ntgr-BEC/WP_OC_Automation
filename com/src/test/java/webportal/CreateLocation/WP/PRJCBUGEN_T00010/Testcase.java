@@ -42,6 +42,7 @@ public class Testcase extends TestCaseBase {
    
 	@AfterMethod(alwaysRun = true)
     public void tearDown() {
+	    new AccountPage().deleteOneLocation(WebportalParam.location1);
         System.out.println("start to do tearDown");       
     }
 
@@ -49,6 +50,14 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
+        
+        HashMap<String, String> locationInfo = new HashMap<String, String>();      
+        locationInfo.put("Location Name", WebportalParam.location1);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "12345");
+        locationInfo.put("Country", "China");
+        new AccountPage().addNetwork(locationInfo);
+        MyCommonAPIs.waitReady();
       }
 
     @Step("Test Step 2: Edit Location and Change Password")

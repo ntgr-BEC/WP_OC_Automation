@@ -83,37 +83,9 @@ public class Testcase extends TestCaseBase {
        icpInfo.put("Login Modes", "Register.");
        new WirelessQuickViewPage().enableCaptivePortalType(ssidInfo.get("SSID"), icpInfo);
 
-       MyCommonAPIs.sleepi(60);
+       MyCommonAPIs.sleepi(100);
 
-     
-
-       int sum = 0;
-       while (true) {
-           MyCommonAPIs.sleepi(10);
-           if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp14540")
-                   .indexOf("true") != -1) {
-               break;
-           } else if (sum > 30) {
-               assertTrue(false, "Client cannot connected.");
-               break;
-           }
-           sum += 1;
-       }
-
-       boolean result1 = false;
-       if (!new Javasocket()
-               .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp14540 12345678 WPA2PSK aes")
-               .equals("true")) {
-           result1 = false;
-           MyCommonAPIs.sleepi(20);
-           if (new Javasocket()
-                   .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp14540 12345678 WPA2PSK aes")
-                   .equals("true")) {
-               result1 = true;
-           }
-       }
-
-       assertTrue(result1, "Client cannot connected.");
+       assertTrue(new WirelessQuickViewPage().connectClient(ssidInfo), "Client cannot connected.");
 
    }
 

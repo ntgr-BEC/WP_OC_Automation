@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         new WirelessQuickViewPage().deleteSsidYes(ssidInfo.get("SSID"));
         try {
-            new WirelessQuickViewPage().deleteFolder("C:\\Auto\\filename.txt");
+            new WirelessQuickViewPage(false).deleteFolder("C:\\Auto\\filename.txt");
         } catch (Throwable e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Password", "123456798");
         ssidInfo.put("Band", "Uncheck6 GHz");
         new WirelessQuickViewPage().addAndEdit(ssidInfo);
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(60);
         assertFalse(new APUtils(WebportalParam.ap1IPaddress).getBandSteeringStatus(WebportalParam.ap1Model), "band steering is not enabled and config is not pushed");
     }  
         
@@ -86,9 +86,8 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         ssidInfo.put("Band", "Click 5ghz");
         new WirelessQuickViewPage().addAndEditSsid(ssidInfo.get("SSID"), ssidInfo); 
-        new WirelessQuickViewPage().enableBandSteering(ssidInfo.get("SSID"));
-           }
-           
+        new WirelessQuickViewPage(false).enableBandSteering(ssidInfo.get("SSID"));
+     }    
          
     @Step("Test Step 4: Write to a file;")
     public void step4() {

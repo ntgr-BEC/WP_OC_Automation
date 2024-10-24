@@ -324,6 +324,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])[2]");
     public SelenideElement NetworkSettings        = $x("(//*[text() = 'Network Settings'])[1]");
     public SelenideElement WirelessSetting        = $x("(//*[text() = 'Wireless Settings'])[2]");
+    public SelenideElement MeshSetting            = $x("//*[text() = 'Mesh Settings']");
     public SelenideElement staIGMP                = $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[1]/div/div/div/div[2]/label/span");
     public SelenideElement staIGMP1               = $x("//input[@id='enableBlackList'])[2]");
     public SelenideElement staB2UC                = $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[1]/div/div/div/div[1]/label/span");
@@ -583,11 +584,16 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement deleteSsid(String text) {
         SelenideElement Ssid = $x("//p[@title='" + text + "']/../../../td[11]//i[2]");
         System.out.println(Ssid);
-        if (!Ssid.exists()) {
+        if (!Ssid.isDisplayed()) {
+            if($x("//p[@title='" + text + "']/../../../td[10]//i[3]").isDisplayed()) {
             Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[3]");
+            }else {
+                Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[2]");
+            }
             System.out.println(Ssid);
         }
         return Ssid;
+    
     }
 
     public SelenideElement deleteScheduledwifi(String wifi) {
@@ -1516,6 +1522,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
      public SelenideElement        proceed              = $x("//*[@id=\"walledGarden\"]");
     
+     public static SelenideElement    broadcastTogglebutton                          = $x("//*[@id=\"broadCastSSID\"]");
+     
+     public SelenideElement        selectDropdown             = $x("//*[@class=\"selectweek padding-top-5 inputTextField p-b-5 cursor-pointer\"]");
+     public SelenideElement        selectJaze              = $x("//*[text()=\"Jaze Networks\"]");
 }
 
 

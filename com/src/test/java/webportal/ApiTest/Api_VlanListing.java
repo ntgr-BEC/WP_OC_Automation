@@ -12,7 +12,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-
+import testbase.TestCaseBaseApi;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -23,8 +24,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_VlanListing{
-    WebportalParam webportalParam = new WebportalParam();
+public class Api_VlanListing extends TestCaseBaseApi{
+
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();

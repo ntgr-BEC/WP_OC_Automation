@@ -37,6 +37,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        
         System.out.println("start to do tearDown");
     }
 
@@ -77,5 +78,13 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).logInAsThisUser(WebportalParam.loginName);
 
         assertTrue(new HamburgerMenuPage().checkAccountEmail(WebportalParam.loginName), "Login account failed.");
+        
+        userManage.logout();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminSupportUser, WebportalParam.loginPassword);
+        
+        if ($x(String.format(new HamburgerMenuPage(false).supportRequestTableEmail, WebportalParam.loginName)).exists()) {
+            new HamburgerMenuPage(false).endAccessSupportUser(WebportalParam.loginName);
+        }
+        
     }
 }

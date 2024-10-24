@@ -86,10 +86,7 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().goToNetworkSetting();
         MyCommonAPIs.sleepi(3);   
         new WirelessQuickViewPage(false).enableLogProbing(true);
-        MyCommonAPIs.sleepi(3);
-        new WirelessQuickViewPage(false).SaveIGMP.click();
-        MyCommonAPIs.sleepi(5);
-        new WirelessQuickViewPage(false).ConformSaveIGMP.click();
+
        
 }
     

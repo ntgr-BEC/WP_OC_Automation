@@ -83,6 +83,7 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Secret", "rMVCMqW+UMwXZQn+KYfe8GeXm3E6w9y9");
         ECPInfo.put("Key", "GCDKNGYD2XETKBZ9");
         ECPInfo.put("Failsafe", "Enable");
+        ECPInfo.put("ECP Type", "Jaze");
         new WirelessQuickViewPage(false).enableECP(ssidInfo.get("SSID"), ECPInfo);
         
         MyCommonAPIs.sleepi(60);

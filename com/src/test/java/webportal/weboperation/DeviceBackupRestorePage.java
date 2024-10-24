@@ -188,29 +188,30 @@ public class DeviceBackupRestorePage extends DeviceBackupRestoreElement {
 
     public void deleteAllBackup() {
         takess("delete All data");
-        for (int i = 1; i < 4; i++) {
-            if (hasBackup()) {
-                int iPos = 1;
-                String sRow = String.format("%s tr:nth-of-type(%d)", sTableDevices, iPos);
+        for (int i = 1; i <= 3; i++) { 
+            if (hasBackup()) { 
+                
+                String sRow = String.format("%s tr:nth-of-type(%d)", sTableDevices, i);  
                 String sCell = String.format("%s td:last-child", sRow);
-                for (int k = 0; k < 2; k++) {
+
+                int imageCount = $$(sRow).get(0).$$("img").size();
+                System.out.println("imageCount: "+imageCount);
+                if (imageCount > 3) {
                     $(sCell).hover();
-                    int j = $$(sRow).get(iPos).$$("img").size();
-                    if ((j > 0) && (3 < j)) {
-                        $$(sRow).get(iPos).$$("img").get(3).click();
-                        break;
-                    }
+                    $$(sRow).get(0).$$("img").get(3).click();
+                    sleepi(4);
                     waitReady();
+                    clickBoxLastButton();
+                    MyCommonAPIs.sleepi(5);
+                    break;
                 }
-                sleepi(4);
                 waitReady();
-                clickBoxLastButton();
-                MyCommonAPIs.sleepi(5);
             } else {
                 break;
             }
         }
     }
+
 
     public void uploadBackup() {
         btnUpload.click();
@@ -242,8 +243,8 @@ public class DeviceBackupRestorePage extends DeviceBackupRestoreElement {
         sleep(300, "wait device is reonline");
     }
 
-    public void restoreBackupNew(String backupName) {
-        editLineNew(sTableDevices, 1, backupName, 1);
+    public void restoreBackupNew(String backupName1) {
+        editLineNew(sTableDevices, 1, backupName1, 1);
         clickBoxLastButton();
         waitReady();
         waitBackupRestore();
