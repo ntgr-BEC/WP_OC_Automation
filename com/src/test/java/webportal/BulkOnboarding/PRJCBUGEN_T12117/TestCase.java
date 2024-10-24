@@ -72,7 +72,7 @@ public class TestCase extends TestCaseBase {
     @Step("Test Step 3:  Browse across the webportal in  all the Device adding screen click on the (+) option and In List down option we should see \" Add Multiple Device \" ")
     public void step3() {
         HamburgerMenuPage hamburgearMenuPage =  new HamburgerMenuPage();
-//        hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
+        hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
         new AccountPage().enterLocation(locationName); 
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.openOrg(organizationName);

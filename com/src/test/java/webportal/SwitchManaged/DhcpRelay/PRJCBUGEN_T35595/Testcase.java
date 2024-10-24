@@ -104,8 +104,8 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
          assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
-         handle.waitCmdReady("l2-relay", true);
          MyCommonAPIs.sleepsync();
+         handle.waitCmdReady("l2-relay", true);
 
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
          boolean relayConfig = tmpStr.contains("dhcp l2relay");
@@ -156,10 +156,10 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
          
          handle.refresh();
-         assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-         assertTrue(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+         assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+         assertFalse(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
          
-         handle.waitCmdReady("dhcp snooping", true);
+         handle.waitCmdReady("l2-relay", true);
          MyCommonAPIs.sleepsync();
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);

@@ -26,16 +26,16 @@ import webportal.weboperation.WebportalLoginPage;
 
 public class TestCase extends TestCaseBase {
     
-    String organizationName = "PRJCBUGEN_T12112";
+    String organizationName = "PRJCBUGEN_T1211234";
     String locationName     = "BulkOnboarding";
     String warning   = "Cannot add devices from CSV file. Use CSV template column headings, and save file in .CSV format.";
     boolean micResult = false;
     
     
     @Feature("Bulk Onboarding") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T12112") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T1211234") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that user is able to add bulk devices from Summary screens.") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T12112") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T1211234") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     
