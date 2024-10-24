@@ -156,8 +156,8 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
          
          handle.refresh();
-         assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingMode.isEnabled(), "Admin Mode should be enabled");
-         assertFalse(WiredDhcpSnoopingElement.selectUserVlan("100").isEnabled(), "User vlan should be enable");
+         assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
+         assertFalse(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
          
          handle.waitCmdReady("l2-relay", true);
          MyCommonAPIs.sleepsync();

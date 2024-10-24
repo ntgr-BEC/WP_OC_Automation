@@ -71,15 +71,15 @@ public class Testcase extends TestCaseBase {
         assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2)-1)).isDisplayed());
 
       //check the cli output on sw1LagPort1CLI
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay option"), "admin mode not enabled");
         
         //check the cli output on sw1LagPort2CLI
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort2CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort2CLI, false)
+        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
                 .contains("dhcp l2relay option"), "admin mode not enabled");
 
 
@@ -97,9 +97,9 @@ public class Testcase extends TestCaseBase {
         assertFalse(WiredDhcpRelayElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
 
         //check the CLI output on sw1lagPort1CLI
-        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
-        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interfaces " + WebportalParam.sw1LagPort1CLI, false)
+        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay option"), "admin mode should be disabled");
 
     }
