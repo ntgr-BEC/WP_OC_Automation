@@ -78,7 +78,7 @@ public class TestCase extends TestCaseBase {
     @Step("Test Step 3: Go to the Summary page and import CVS with wrong format")
     public void step3() {
         
-   assertTrue(new AccountPage(false).GreenBanner.isDisplayed(),"green banner does not exits");
+       assertTrue(new AccountPage(false).GreenBanner.isDisplayed(),"green banner does not exits");
         HamburgerMenuPage hamburgearMenuPage =  new HamburgerMenuPage();
         hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
         OrganizationPage OrganizationPage = new OrganizationPage();
@@ -86,14 +86,15 @@ public class TestCase extends TestCaseBase {
         new AccountPage(false).enterLocation(locationName);
         
         boolean Result = false;
-        DeviceBulkOnboardingPage DeviceBulkOnboardingPage = new DeviceBulkOnboardingPage();         
+        DeviceBulkOnboardingPage DeviceBulkOnboardingPage = new DeviceBulkOnboardingPage();     
+        DeviceBulkOnboardingPage.GoToSummaryPage(locationName);
         
         String filePath = DeviceBulkOnboardingPage.GetcurrentPath();
         filePath = filePath + "PRJCBUGEN_T28281\\Bulkonbord.csv";
         System.out.println(filePath);
         System.out.println("check where the screen is");
 
-       new  DeviceBulkOnboardingPage().addMultipleDeviceViaBanner(filePath);
+       new  DeviceBulkOnboardingPage().ImportCvsFilestoragescreen(filePath);
        
        assertTrue(new DevicesDashPage(false).checkNumberOfDevicesOrganization().equals("Threedevice"), "More device exits");
        
