@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 

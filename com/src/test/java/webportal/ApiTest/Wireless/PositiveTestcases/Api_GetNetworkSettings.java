@@ -1,8 +1,5 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -16,15 +13,18 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.param.CommonDataType;
+import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class Api_UpdateSsid extends TestCaseBaseApi{
+
+public class Api_GetNetworkSettings extends TestCaseBaseApi{
 
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -39,8 +39,9 @@ public class Api_UpdateSsid extends TestCaseBaseApi{
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
-//        new Api_AddSsid().step1();
+    {
+        Response add = new Api_AddNetwork().step1();
+        String networkId=add.jsonPath().getString("networkInfo[0].networkId");
         Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Map<String, String> headers = new HashMap<String, String>();
@@ -48,18 +49,13 @@ public class Api_UpdateSsid extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("id","66fba254abee9135d7bbe478");
-//        pathParams.put("ssidId",WebportalParam.ssidId);
-        
-        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"enable\":\"1\",\"ssid\":\"SSIDTest002\",\"vlanId\":\"1\",\"vlanType\":1,\"radioBand\":\"8\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"rrmSt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":0,\"uploadRateLimit\":\"65536\",\"downloadRateLimit\":\"65536\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"fbCpStatus\":\"0\",\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"4\",\"bandChanged\":\"1\",\"vlanChanged\":\"0\",\"nameChanged\":\"0\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":1440},\"iotRadiusServer\":\"0\",\"iotRadiusPolicyId\":\"\",\"iotRadiusServerId\":\"\",\"mduStatus\":\"0\",\"isMdnsEnabled\":false,\"ars\":{\"wlan0\":{\"status\":\"0\",\"densityLevel\":\"0\",\"multicastRate\":\"11\"},\"wlan1\":{\"status\":\"0\",\"densityLevel\":\"0\",\"multicastRate\":\"24\"}},\"mpskList\":[],\"isMPSKEnabled\":\"0\",\"custProfileEnable\":\"0\",\"custProfileId\":\"\"}}";
+        pathParams.put("networkId",networkId);
         
         //TO PERFORM ANY REQUEST
-   
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Update_Ssid"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Network_Settings"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-  
         
+                
     }
 
 }
