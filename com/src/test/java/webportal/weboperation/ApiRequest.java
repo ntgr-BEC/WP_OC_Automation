@@ -365,7 +365,8 @@ import util.*;
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
                 put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
                 put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");
-                put("Get_Organization_List", "insightappcom/api/organization/v1/{accountId}");                            
+                put("Get_Organization_List", "insightappcom/api/organization/v1/{accountId}");       
+                put("Mesh_Info", "insightappcom/api/wireless/v1/meshInfo/{networkId}"); 
             }
         };
         
