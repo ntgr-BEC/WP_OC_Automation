@@ -371,6 +371,7 @@ import util.*;
                 put("List_Wireless_Networks", "insightappcom/api/wireless/v1/ssidList/{networkId}");
                 put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
+                put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
             }
         };
         

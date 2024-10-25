@@ -49,11 +49,13 @@ public class Api_GetMeshInfo extends TestCaseBaseApi{
     {
 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        Response add = new Api_AddNetwork().step1();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");  
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId); 
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",networkId);
    
         
         //TO PERFORM ANY REQUEST
