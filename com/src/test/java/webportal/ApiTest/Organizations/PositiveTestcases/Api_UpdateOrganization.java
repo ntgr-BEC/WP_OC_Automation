@@ -18,7 +18,6 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Api_AddSsid;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
