@@ -221,7 +221,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement updateprofile     = $x(
             "//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Update Profile") + "']");
     public SelenideElement        emailverifydialog = $x("//*[@aria-label='Email Verification Reminder']");
-    public SelenideElement        cancelbutton      = $x("//*[text()='Cancel']");
+    public SelenideElement        cancelbutton      = $x("//*[normalize-space(text())='Cancel']");
     public SelenideElement        editprofile       = $x("//span[text()='Edit Profile']");
     public SelenideElement        firstname         = $x("//label[text()='First Name*']/../input");
     public SelenideElement        lastname          = $x("//label[text()='Last Name*']/../input");
@@ -962,6 +962,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  deviceCreditsPremacc              = $x("//p[text()='Device Credits']/..//h2");
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
+  public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
 
 }
 

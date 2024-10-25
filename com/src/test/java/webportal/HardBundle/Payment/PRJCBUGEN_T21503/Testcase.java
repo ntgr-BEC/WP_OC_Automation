@@ -1,4 +1,4 @@
-package webportal.HardBundle.PRJCBUGEN_T21504;
+package webportal.HardBundle.Payment.PRJCBUGEN_T21503;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.Assert.assertTrue;
@@ -19,7 +19,6 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
-import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
@@ -41,13 +40,12 @@ public class Testcase extends TestCaseBase {
     Random r = new Random();
     int num = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num);
-    Map<String, String> paymentInfo = new HashMap<String, String>();
     
 
     @Feature("Hardbundle") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T21504") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify the behavior for a hard bundle device subscription if a premium annual user migrates to a PRO account") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T21504") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T21503") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify the behavior for a hard bundle device subscription if a premium monthly user migrates to a PRO account") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T21503") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -63,7 +61,6 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-//        webportalLoginPage.loginByUserPassword("apwptest1235645@mailinator.com","Netgear#123");
         
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
@@ -72,7 +69,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
-        accountInfo.put("Country", "United States");
+        accountInfo.put("Country", "Australia");
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
           
@@ -80,7 +77,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Create Location ")
     public void step2() {
         
-        new HamburgerMenuPage();
+//       new HardBundlePage().GoTocreateLocation();
         
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", locationName);
@@ -99,30 +96,37 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
         
         
-        firststdevInfo.put("Serial Number1", WebportalParam.getDeviceSerialNoCSV("sw4"));
-        firststdevInfo.put("MAC Address1", WebportalParam.getDeviceMacCSV("sw4"));
+        firststdevInfo.put("Serial Number1", WebportalParam.getDeviceSerialNoCSV("sw3"));
+        firststdevInfo.put("MAC Address1", WebportalParam.getDeviceMacCSV("sw3"));
         
+                
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
-        MyCommonAPIs.sleep(9000);
-        assertTrue(new HardBundlePage().CheckOneHBadded(WebportalParam.getDeviceSerialNoCSV("sw4")), "Hardbundle to not listed in subscription");
+        
+        assertTrue(new HardBundlePage().CheckOneHBadded(WebportalParam.getDeviceSerialNoCSV("sw3")), "Hardbundle to not listed in subscription");
     }
     
-    @Step("Test Step 4: chnage premium Trail to Premium Yearly;")
+    @Step("Test Step 4: change premium Trail to Premium Monthly;")
     public void step4() {
-        paymentInfo = new CommonDataType().CARD_INFO;
-        paymentInfo.put("Subscription Time", "Yearly");
-        paymentInfo.put("Number of Device Credits", "3");
-        paymentInfo.put("First Name", "New");
-        paymentInfo.put("Last Name", "New");
+        
+        Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo.put("Subscription Time", "Monthly");
+        paymentInfo.put("Number of Device Credits", "1");
+        paymentInfo.put("First Name", mailname);
+        paymentInfo.put("Last Name", "T17512");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Springs Rd");
-        paymentInfo.put("City", "Red Bank");
-        paymentInfo.put("Zip", "32003");
-        paymentInfo.put("Country", "US");
-        paymentInfo.put("State", "Florida");
+        paymentInfo.put("Street Address", "Main Street");
+        paymentInfo.put("City", "Montville");
+        paymentInfo.put("Zip", "4560");
+        paymentInfo.put("Country", "Australia");
+        paymentInfo.put("State", "Queensland");
+        paymentInfo.put("Card Number", "5193911111111112");
+        paymentInfo.put("CVV Number", "123");
+        paymentInfo.put("Expiration Month", "May");
+        paymentInfo.put("Expiration Year", "2030");
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage().checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 0)), "Amount is incorrect.");
+        assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 0)), "Amount is incorrect.");
+   
     }
     
     @Step("Test Step 5: logout and migrates to a PRO account.")
@@ -159,7 +163,7 @@ public class Testcase extends TestCaseBase {
         
          new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         
-         assertTrue(new HardBundlePage().CheckOneHBadded(WebportalParam.getDeviceSerialNoCSV("sw4")), "Hardbundle to not listed in subscription");
+         assertTrue(new HardBundlePage().CheckOneHBadded(WebportalParam.getDeviceSerialNoCSV("sw3")), "Hardbundle to not listed in subscription");
     }
     
     

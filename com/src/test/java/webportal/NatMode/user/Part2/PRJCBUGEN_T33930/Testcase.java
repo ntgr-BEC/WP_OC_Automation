@@ -99,44 +99,17 @@ public class Testcase extends TestCaseBase {
        new WirelessQuickViewPage().addSsidNat(ssidInfo);
 
        new WirelessQuickViewPage().editCaptivePortal(ssidInfo.get("SSID"), "http://www.rediff.com", "sri office", "welcome to sri office");
-       MyCommonAPIs.sleepi(50);
+       MyCommonAPIs.sleepi(120);
 
 
        
-       int sum = 0;
-       while (true) {
-           MyCommonAPIs.sleepi(10);
-           if (new Javasocket()
-                   .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp14008")
-                   .indexOf("true") != -1) {
-               break;
-           } else if (sum > 30) {
-               assertTrue(false, "Client cannot connected.");
-               break;
-           }
-           sum += 1;
-       }
-
-       boolean result1 = true;
-       if (!new Javasocket()
-               .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp14008 12345678 WPA2PSK aes")
-               .equals("true")) {
-           result1 = false;
-           MyCommonAPIs.sleepi(20);
-           if (new Javasocket()
-                   .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp14008 12345678 WPA2PSK aes")
-                   .equals("true")) {
-               result1 = true;
-           }
-       }
-       assertTrue(result1, "Client cannot connected.");
-       }
+       assertTrue(new WirelessQuickViewPage().connectClient(ssidInfo), "Client cannot connected.");
+   }
    
    
    @Step("Test Step 3: Check whether captive portal page is shown or not;")
    public void step3() {
-//       MyCommonAPIs.sleepi(80);
-//       assertTrue(new APUtils(WebportalParam.ap1IPaddress).getNatStatus(WebportalParam.ap1Model), "CONFIG FOR NAT NOT PUSHED");
+
        assertTrue(
                new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
                        "WAFruncaptive PRJCBUGEN-T14477.py www.rediff.com test test").indexOf("finalresult: 1") != -1,

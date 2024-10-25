@@ -57,7 +57,7 @@ public class Api_FirmwareUpgrade extends TestCaseBaseApi{
         pathParamsupdate.put("deviceCount","1");
    
 
-        String requestBody="{\"fwInfo\":{\"fwUpgrade\":\"firmwareUpgrade\",\"serialNo\":\"4XT178EX0110C\"}}";
+        String requestBody="{\"fwInfo\":{\"fwUpgrade\":\"firmwareUpgrade\",\"serialNo\":\""+WebportalParam.ap1serialNo+"\"}}";
         
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Firmware_Upgrade"), requestBody, headers, pathParamsupdate, null); 
 

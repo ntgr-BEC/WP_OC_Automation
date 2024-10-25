@@ -118,8 +118,8 @@ public class MDNSPage extends MDNSElement {
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
         selectGateway.selectOption("AP");
-        MyCommonAPIs.sleepi(4);     
-        $x("//div[@id='mdnsFirmwareInfo']//button[text()='OK. Got it']").click();
+        MyCommonAPIs.sleepi(8);     
+        $x("(//button[text()='OK. Got it'])[2]").click();
         MyCommonAPIs.sleepi(4);
         MyCommonAPIs.sleepi(4);     
         setSelected($x("//*[@id=\"enableBlackList\"]"), true);
@@ -140,9 +140,7 @@ public class MDNSPage extends MDNSElement {
         } else {
             okbutton1.click();
         }
-        okbutton.click();
-        MyCommonAPIs.sleepi(4);
-        okbutton.click();
+      
         return result;    
     }
     

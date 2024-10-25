@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_GetWirelessSettings extends TestCaseBaseApi{
+public class Api_SetWirelessSettings extends TestCaseBaseApi{
     
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -32,9 +32,9 @@ public class Api_GetWirelessSettings extends TestCaseBaseApi{
     String networkId;
 
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetWirelessSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test sets WirelessSetting details from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -64,9 +64,11 @@ public class Api_GetWirelessSettings extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);        
         
         pathParams.put("networkId",networkId);
+        String requestBody = "{\"rfSettings\":{\"bandWlan0\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"0\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan1\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"1\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan2\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"2\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null}}}";
+
         
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Wireless_Settings"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Wireless_Settings"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
                 

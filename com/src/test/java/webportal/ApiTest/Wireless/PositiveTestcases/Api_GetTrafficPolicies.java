@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetRadiusServerConfig extends TestCaseBaseApi{
+public class Api_GetTrafficPolicies extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
@@ -38,9 +38,9 @@ public class Api_GetRadiusServerConfig extends TestCaseBaseApi{
     String networkId;
     
     
-    @Feature("Api_GetRadiusServerConfig") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetTrafficPolicies") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets radius server configuration from the particular API") // It's a testcase title from Jira Test Case.
+    @Description("This test gets schedule wifi configuration from the particular API") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -62,32 +62,31 @@ public class Api_GetRadiusServerConfig extends TestCaseBaseApi{
     { 
         
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");  
+        List<Response> response = new Api_AddSsid().step1();
+        Response add=response.get(0);
+        Response ssidid=response.get(1);
+        String id=ssidid.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");
         
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-        headers.put("networkId",networkId);
-      
+
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId","networkId");
+        pathParams.put("id",id); 
+         
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("RadiusServerConfig_Sanity"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("TrafficPolices_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        //DEFAULT RADIUS SERVER CONFIG INFO 
+        //DEFAULT  STATUS
         getResponse.then().statusCode(200)
-        .body("details.radiusConfigInfo.authenticationStatus802_1x", equalTo("0"))
-        .body("details.radiusConfigInfo.reAuthenticationTime", equalTo("3600"))
-        .body("details.radiusConfigInfo.accountingStatus", equalTo("1"))
-        .body("details.radiusConfigInfo.primaryServer.ipAddress", equalTo("0.0.0.0"))
-        .body("details.radiusConfigInfo.primaryServer.portNumber", equalTo("1812"))
-        .body("details.radiusConfigInfo.primaryServer.secretKey", equalTo("sharedsecret"))
-        .body("details.radiusConfigInfo.secondaryServer.ipAddress", equalTo("0.0.0.0"))
-        .body("details.radiusConfigInfo.secondaryServer.portNumber", equalTo("1812"))
-        .body("details.radiusConfigInfo.secondaryServer.secretKey", equalTo("sharedsecret"))
-        .body("details.radiusConfigInfo.devices", is(nullValue()))
-        .body("details.radiusConfigInfo.nasIdentifier", equalTo("NONE"));
-    }
-                  
+        .body("response.message", equalTo("Return dhcp offer broadcast to unicast successfully")) // Assert message
+        .body("details.networkId", equalTo(networkId)) // Assert networkId
+        .body("details.id", equalTo(id)) // Assert id
+        .body("details.dhcpOfferBcastToUcast", equalTo("0")) // Assert dhcpOfferBcastToUcast
+        .body("details.ssid", equalTo("SSID_TEST")); // Assert ssid
+    }               
     }
 

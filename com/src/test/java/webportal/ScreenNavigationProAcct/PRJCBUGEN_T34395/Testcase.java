@@ -34,7 +34,7 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
-    String organizationName = "organization";
+    String organizationName = "organization123";
     String locationName     = "office1";
 
     @Feature("Screen Navigation ProAcct IM-7.0") // It's a folder/component name to make test suite more readable from Jira

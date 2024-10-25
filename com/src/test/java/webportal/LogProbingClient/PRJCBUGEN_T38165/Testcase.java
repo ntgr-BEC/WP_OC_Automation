@@ -68,8 +68,8 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(3);   
         String info=new WirelessQuickViewPage(false).verifyProbeUi();
         assertTrue(
-        info.contains("Log Probing Clients feature to log information gathered from devices actively seeking network connections on the configured syslog server"),"Message issue");
-        assertTrue(info.contains("The log message uses the following format:PProbe request-Client:&lt;aa:bb:cc:dd:ee:ff&gt;, SSID: &lt;sample&gt;, BSSID: &lt;aa:bb:cc:dd:ff:ee&gt;, RSSI: &lt;-xx dbM&gt;, Radio: &lt;x&gt;, Channel: &lt;y&gt;"),"Message issue");
+        info.contains("Log Probing Clients feature to log information gathered from devices actively seeking network connections on the configured syslog server."),"Message issue1");
+        assertTrue(info.contains("Probe request-Client:<aa:bb:cc:dd:ee:ff>, SSID: <sample>, BSSID: <aa:bb:cc:dd:ff:ee>, RSSI: <-xx dbM>, Radio: <x>, Channel: <y>"),"Message issue2");
        
     }
     

@@ -10351,11 +10351,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         setSelected($x("(//input[@id='enableBlackList'])[5]/../span"), flag);
 //        $x("(//input[@id='enableBlackList'])[5]/../span").click();
         MyCommonAPIs.sleepi(10);
-        if(SaveIGMP.exists()) {
+        if(SaveIGMP.isDisplayed()) {
         new WirelessQuickViewPage(false).SaveIGMP.click();
         }
         MyCommonAPIs.sleepi(5);
-        if(ConformSaveIGMP.exists()) {
+        if(ConformSaveIGMP.isDisplayed()) {
         new WirelessQuickViewPage(false).ConformSaveIGMP.click();
     }      
     }

@@ -31,6 +31,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
+import com.strobel.decompiler.languages.java.ast.Keys;
 
 import util.APUtils;
 import util.MyCommonAPIs;
@@ -319,9 +320,11 @@ public class OrganizationPage extends OrganizationElement {
                 // // TODO Auto-generated catch block
                 // e.printStackTrace();
                 // }
+             
+                ownerEmail.click();
+                MyCommonAPIs.sleepi(10);
                 ownerEmail.clear();
-                MyCommonAPIs.sleepi(5);
-                ownerEmail.clear();
+                MyCommonAPIs.sleepi(10);
                 ownerEmail.sendKeys(map.get("Email Address"));
             }
             if (map.containsKey("Phone Number")) {
