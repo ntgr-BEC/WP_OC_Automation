@@ -1,4 +1,4 @@
-package webportal.ApiTest.General;
+package webportal.ApiTest.ApiHeaders;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
