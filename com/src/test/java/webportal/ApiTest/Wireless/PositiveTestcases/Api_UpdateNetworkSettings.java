@@ -25,6 +25,9 @@ import java.util.Map;
 
 
 public class Api_UpdateNetworkSettings extends TestCaseBaseApi{
+    Map<String, String> endPointUrl = new HashMap<String, String>();
+    Map<String, String> headers = new HashMap<String, String>();
+    String networkId;
 
     
     @Feature("Api_UpdateNetworkSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -36,15 +39,24 @@ public class Api_UpdateNetworkSettings extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
     public void step1()
     {
         Response add = new Api_AddNetwork().step1();
-        String networkId=add.jsonPath().getString("networkInfo[0].networkId");
-        Map<String, String> endPointUrl = new HashMap<String, String>();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");
+       
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Map<String, String> headers = new HashMap<String, String>();
+        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        

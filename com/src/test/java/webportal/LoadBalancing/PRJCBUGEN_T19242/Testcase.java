@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         new WirelessQuickViewPage().gotoLoadBalancingPage();
 
-        assertTrue(!new WirelessQuickViewPage(false).checkDisassociateSickyClients.exists(), "Load balancing page incorrect.");
+        assertTrue(new WirelessQuickViewPage(false).checkDisassociateSickyClients.exists(), "Load balancing page incorrect.");
     }
 
 }
