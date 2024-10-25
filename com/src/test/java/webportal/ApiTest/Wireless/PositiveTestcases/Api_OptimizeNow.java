@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_ModifyInstantWifi extends TestCaseBaseApi{
+public class Api_OptimizeNow extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("Api_GetInstantWifi") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_OptimizeNow") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test modify Instat WIFI config from the particular network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test to optimize now from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -66,12 +66,15 @@ public class Api_ModifyInstantWifi extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
        
         pathParams.put("networkId",networkId);
-        pathParams.put("requestType","instantWifiLogs");    //requestType can be selectchannels/autoChannel/autoPower/instantWifiLogs
-        String requestBody = "{\"nwRfSettings\":{\"isEnable\":\"1\",\"isExcludeDFS\":\"0\",\"defaultTxPower\":\"1\",\"isInsWifiLogsEnabled\":\"1\"}} or {\"nwRfSettings\":{\"selectedChannelsWlan0\":[\"1\",\"4\",\"8\",\"11\"],\"selectedChannelsWlan1\":[\"36\",\"40\",\"44\",\"48\",\"56\",\"60\",\"64\"],\"selectedChannelsWlan2\":[\"100\",\"104\",\"108\",\"112\",\"116\",\"120\",\"124\",\"128\",\"132\",\"136\",\"140\",\"149\",\"153\",\"157\",\"161\",\"165\"],\"selectedChannelsWlan2_6\":[\"5\",\"21\",\"25\",\"37\",\"53\",\"69\",\"85\",\"101\",\"113\",\"117\",\"133\",\"149\",\"165\",\"181\",\"197\",\"213\",\"229\"]}}";
+        pathParams.put("checkSchedule","true");   //The enumerations are true(Web will check for execution), false(Forced execution).
+        String requestBody = "";
         
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Modify_InstantWIFI"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Optimize_Now"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
+        
+        getResponse.then().statusCode(200)
+        .body("response.message", equalTo("Your configuration has been applied, It may take some time to reflect"));
         
     }
                   
