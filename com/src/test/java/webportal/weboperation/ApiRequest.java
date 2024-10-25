@@ -360,6 +360,11 @@ import util.*;
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
                 put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
                 put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
+				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
+                put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
+                put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");
+                put("Get_Organization_List", "insightappcom/api/organization/v1/{accountId}");
+                              
             }
         };
         
