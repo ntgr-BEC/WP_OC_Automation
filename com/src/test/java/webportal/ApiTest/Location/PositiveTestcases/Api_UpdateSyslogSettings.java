@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Location.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -14,7 +14,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
-import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -27,17 +26,17 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetInstantWifi extends TestCaseBaseApi{
+public class Api_UpdateSyslogSettings extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("Api_GetInstantWifi") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets Instat WIFI config from the particular network ID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
+    @Feature("Api_UpdateSyslogSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T008") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("This test sets syslog settings config to the particular network ID") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T008") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -47,7 +46,6 @@ public class Api_GetInstantWifi extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {    
-        Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
@@ -66,11 +64,18 @@ public class Api_GetInstantWifi extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
        
         pathParams.put("networkId",networkId);
+        
+        String body="{\"sysLogSettings\":{\"syslogStatus\":\"1\",\"syslogServerIp\":\"192.17.1.1\",\"syslogServerPort\":\"514\"}}";
       
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("InstantWifi_Sanity"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Syslog_Settings"), body, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Configuration has been saved successfully for the Network")) // Assert syslogProbeClients
         
+        //UPDATED SYSLOG STATUS ASSERTION
+        .body("sysLogSettings.syslogStatus", equalTo("1")) // Assert syslogStatus
+        .body("sysLogSettings.syslogServerPort", equalTo("514")) // Assert syslogServerPort
+        .body("sysLogSettings.syslogServerIp", equalTo("192.17.1.1")); // Assert syslogServerIp
     }
                   
     }

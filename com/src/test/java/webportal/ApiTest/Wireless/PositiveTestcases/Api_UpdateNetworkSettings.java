@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -24,24 +24,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_SetWirelessSettings extends TestCaseBaseApi{
-    
-    Map<String, String> endPointUrl = new HashMap<String,String>();
+public class Api_UpdateNetworkSettings extends TestCaseBaseApi{
+    Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
     String networkId;
 
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_UpdateNetworkSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test Updates Network Settings from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-  
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
@@ -51,25 +48,25 @@ public class Api_SetWirelessSettings extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
+  
     @Step("Send get request to {url}")
     public void step1()
     {
         Response add = new Api_AddNetwork().step1();
         networkId=add.jsonPath().getString("networkInfo[0].networkId");
-        
+       
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
-        
+        Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-        String requestBody = "{\"rfSettings\":{\"bandWlan0\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"0\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan1\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"1\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null},\"bandWlan2\":{\"autoChannelStatus\":null,\"autoPowerStatus\":null,\"beaconInterval\":\"100\",\"channelName\":null,\"channelWidth\":\"2\",\"dtimInterval\":\"3\",\"guardInterval\":null,\"isChannelAuto\":null,\"isTxPwrAuto\":null,\"maxRateLimit\":\"64\",\"mcsRate\":null,\"operateMode\":\"11be\",\"radioStatus\":\"1\",\"rateLimitStatus\":\"1\",\"rrmCh1\":null,\"rrmCh2\":null,\"rrmCh3\":null,\"selectedChannels\":null,\"txPower\":null}}}";
-
-        
+        String requestBody="{\"updateBroadcastToUnicast\":{\"broadcastToUnicastKey\":\"1\",\"igmpSnoopingKey\":\"0\",\"hardwareAssistedDatapath\":\"1\"},\"updateEnergyEfficiencyMode\":{\"energyEfficiencyMode\":\"0\",\"autoOnOffMode\":\"0\",\"antennaPowerSave\":\"0\"},\"arpProxy\":\"1\",\"syslogProbeClients\":\"0\"}";
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Wireless_Settings"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Network_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("We have saved your configuration, It will be applied once device is added or registered with cloud"));
         
                 
     }
