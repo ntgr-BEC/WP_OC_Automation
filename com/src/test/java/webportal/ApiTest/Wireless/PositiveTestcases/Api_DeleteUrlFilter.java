@@ -42,30 +42,25 @@ public class Api_DeleteUrlFilter extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    { 
-//        pathParams.put("networkId",networkId);    
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//    }
+
   
     @Step("Send get request to {url}")
     public void step1()
     {
         
-           
+        new Api_AddUrlFilter().step1();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
         pathParams.put("networkId",WebportalParam.networkId);
-        String requestBody = "{\"devSecConfigInfo\":{\"enableCustomBlacklist\":1,\"enableExpressionlist\":1,\"urlStatus\":\"1\"}}";
+        String requestBody = "{\"devSecConfigInfo\":{\"enableCustomBlacklist\":\"1\",\"enableExpressionlist\":\"1\",\"urlStatus\":\"1\",\"domain\":[\"javatpoint.com\"]}}";
 
         
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Url_Filter"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Url_Filter"), requestBody, headers, pathParams, null);
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
                            
         
                 

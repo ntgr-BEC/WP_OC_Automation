@@ -1,8 +1,5 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wireless.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -30,17 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetScheduleWifi extends TestCaseBaseApi{
+public class Api_ModifyFastRoaming extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    
-    @Feature("Api_GetScheduleWifi") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_ModifyFastRoaming") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets schedule wifi configuration from the particular API") // It's a testcase title from Jira Test Case.
+    @Description("This test Changes the status and data of fastroaming using Api") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -50,7 +46,8 @@ public class Api_GetScheduleWifi extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
+    {    
+        Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
@@ -60,23 +57,21 @@ public class Api_GetScheduleWifi extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
-        
-        endPointUrl = new ApiRequest().ENDPOINT_URL;  
+        endPointUrl = new ApiRequest().ENDPOINT_URL;
         Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");  
-        
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");    
+           
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-
+       
         pathParams.put("networkId",networkId);
-         
+        pathParams.put("status","0");
+      
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("ScheduleWifi_Sanity"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Modify_FastRoaming"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        //DEFAULT SCHEDULE WIFI DATA
-        getResponse.then().body("response.message", equalTo("Ssid schedule data not present"));
     }
                   
     }

@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_ModifyMacAcl extends TestCaseBaseApi{
+public class Api_DeleteMacAcl extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
@@ -69,12 +69,13 @@ public class Api_ModifyMacAcl extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
        
         pathParams.put("networkId",networkId);
-        pathParams.put("wirelessNetworkId",id);  
+        pathParams.put("id",id);  
         
         String requestBody = "{\"macAuthInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\"}}, {\"macAclConfigInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\",\"macList\":[{\"deviceName\":\"TEScgeck\",\"mac\":\"11:33:11:22:34:77\"}]}}";
         
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Modify_Wireless_MacAcl"), requestBody, headers, pathParams, null); 
+//        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Modify_Wireless_MacAcl"),headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("WirelessMacAcl_Sanity"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
     }
