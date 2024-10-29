@@ -161,6 +161,7 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          
          handle.waitCmdReady("l2-relay", true);
          MyCommonAPIs.sleepsync();
+         MyCommonAPIs.sleepsync();
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
          boolean snoopingConfig = tmpStr.contains("no ip dhcp snooping verify mac-address");

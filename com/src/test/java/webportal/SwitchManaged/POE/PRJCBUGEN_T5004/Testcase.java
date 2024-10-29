@@ -79,6 +79,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         page.goBatchPortConf();
+        System.out.println(sCurrentValue);
         assertTrue(page.getPOEValue().equals(sCurrentValue), "verify the value is set to 7");
     }
 
