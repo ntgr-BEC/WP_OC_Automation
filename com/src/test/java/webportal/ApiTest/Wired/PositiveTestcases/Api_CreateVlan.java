@@ -20,7 +20,9 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -44,12 +46,12 @@ public class Api_CreateVlan extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {        
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public List<Response> step1()
     {
         Response add = new Api_AddNetwork().step1();
         networkId=add.jsonPath().getString("networkInfo[0].networkId");        
@@ -68,7 +70,9 @@ public class Api_CreateVlan extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-                
+        return Arrays.asList(add,getResponse);
+        
+               
     }
 
 }
