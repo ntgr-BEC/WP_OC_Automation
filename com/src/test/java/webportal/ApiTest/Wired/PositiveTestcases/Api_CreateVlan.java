@@ -71,8 +71,7 @@ public class Api_CreateVlan extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true));
         
         return Arrays.asList(add,getResponse);
-        
-               
+                    
     }
 
 }
