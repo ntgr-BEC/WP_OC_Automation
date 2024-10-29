@@ -73,6 +73,7 @@ public class Testcase extends TestCaseBase {
 
         
         MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(60);
       //check the cli output on sw1LagPort1CLI
         
         if(WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
