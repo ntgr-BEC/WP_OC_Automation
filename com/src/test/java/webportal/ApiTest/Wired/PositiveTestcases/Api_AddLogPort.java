@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wired.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
