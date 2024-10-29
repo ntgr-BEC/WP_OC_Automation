@@ -44,8 +44,8 @@ public class Api_CreateVlan extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {        
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
@@ -68,7 +68,9 @@ public class Api_CreateVlan extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-                
+        getResponse.then().statusCode(200)
+        .body("vlan.name", equalTo("VLAN_250"))
+        .body("vlan.vlanId", equalTo("250"));       
     }
 
 }
