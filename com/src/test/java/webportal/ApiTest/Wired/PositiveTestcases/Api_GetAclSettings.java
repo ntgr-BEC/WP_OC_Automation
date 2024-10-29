@@ -1,4 +1,4 @@
-package webportal.ApiTest;
+package webportal.ApiTest.Wired.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -21,19 +21,20 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class Api_VlanListing extends TestCaseBaseApi{
+public class Api_GetAclSettings extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetAclSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test creates retrieves ACL setting of the network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -43,29 +44,39 @@ public class Api_VlanListing extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    {        
+    {  
+        Map<String, String> pathParams = new HashMap<String, String>();
+       pathParams.put("networkId",networkId);    
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
+        List <Response> response = new Api_VlanListing().step1();
+        Response addNetwork=response.get(0);
+        Response addVlan=response.get(1);
+
+        networkId=addNetwork.jsonPath().getString("networkInfo[0].networkId"); 
+        String vlanId=addVlan.jsonPath().getString("vlanConfig[-1].vlanId");
+        System.out.print("---------------------"+vlanId);
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        
+        Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-        
+        pathParams.put("vlanId",vlanId);
+
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Vlan_Sanity"), headers, pathParams, null); 
+     
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Acl"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
+        
+        return getResponse;
         
                 
     }

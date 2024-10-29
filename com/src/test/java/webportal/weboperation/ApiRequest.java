@@ -402,7 +402,7 @@ import util.*;
             {
                 put("Network_Sanity", "insightappcom/api/network/v1/{networkId}");
                 put("Add_Network", "insightappcom/api/network/v1/premium/{accountId}");
-                put("Vlan_Sanity","insightappcom/api/network/v1/vlans/{networkId}");
+                put("Vlan_Sanity","insightappcom/api/wired/v1/vlans/{networkId}");
                 put("Add_Ssid", "insightappcom/api/wireless/v1/ssid/{networkId}");
                 put("Network_Settings", "insightappcom/api/wireless/v1/{networkId}/broadcasttounicast");
                 put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
@@ -440,9 +440,11 @@ import util.*;
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
                 put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
+                put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
+                put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
             }
         };
-        
+         
     }
 
 
