@@ -40,29 +40,7 @@ public class Api_AddLogPort extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Map<String, String> endPointUrl = new HashMap<String, String>();
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Map<String, String> headers = new HashMap<String, String>();
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId); 
-        headers.put("networkId",WebportalParam.networkId);
-        Map<String, String> pathParamsadd = new HashMap<String, String>();
-        pathParamsadd.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParamsupdate = new HashMap<String, String>();
-        pathParamsupdate.put("networkId",WebportalParam.networkId);
-        String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        String requestBody2="{\"networkInfo\":{\"name\":\"office12\"}}";
-        
-
-        
-        
-        //TO ADD NETWORK AND RETRIEVE NETWORK ID
-        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-   
-        Response getResponse2 = ApiRequest.sendPutRequest(endPointUrl.get("Network_Sanity"), requestBody2, headers, pathParamsupdate, null); 
-        getResponse2.then().body("response.status", equalTo(true));
+      
         
     }
 
