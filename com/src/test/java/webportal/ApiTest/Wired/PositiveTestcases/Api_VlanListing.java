@@ -20,7 +20,9 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -49,10 +51,10 @@ public class Api_VlanListing extends TestCaseBaseApi{
     }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public List<Response> step1()
     {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
+        Response addNetwork = new Api_CreateVlan().step1();       
+        networkId=addNetwork.jsonPath().getString("networkInfo[0].networkId");        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
 
@@ -67,7 +69,10 @@ public class Api_VlanListing extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Vlan_Sanity"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-                
+        return Arrays.asList(addNetwork,getResponse);
+        
+//        use for creating and extracting Vlan-Ids
+//        System.out.println(getResponse.jsonPath().getString("vlanConfig[-1].vlanId"));
     }
 
 }

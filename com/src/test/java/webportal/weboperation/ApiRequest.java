@@ -441,6 +441,10 @@ import util.*;
                 put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
                 put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
+                put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
+                put("Get_iPAcl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/ipAclSettings");
+                put("Enable_MacAcl","insightappcom/api/wired/v1/aclSetting/macAuth/{networkId}/vlan/{vlanId}");
+                put("VlanMacAcl_Sanity","insightappcom/api/wired/v1/aclSettings/{networkId}/vlan/{vlanId}");
             }
         };
          
