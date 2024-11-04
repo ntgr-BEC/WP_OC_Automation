@@ -445,6 +445,10 @@ import util.*;
                 put("Get_iPAcl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/ipAclSettings");
                 put("Enable_MacAcl","insightappcom/api/wired/v1/aclSetting/macAuth/{networkId}/vlan/{vlanId}");
                 put("VlanMacAcl_Sanity","insightappcom/api/wired/v1/aclSettings/{networkId}/vlan/{vlanId}");
+                put("AllocateCredits","insightappcom/api/organization/v1/allocateCredit/{orgId}");
+                put("GetAllocateDeviceCredits","insightappcom/api/organization/v1/creditAllocation/{orgId}");
+                put("GetAllocateCredits","insightappcom/api/organization/v1/creditAllocationDetails/{startFrom}");
+                put("Organization_Identifier","insightappcom/api/organization/v1/details/{accountId}/{orgId}");
             }
         };
          
