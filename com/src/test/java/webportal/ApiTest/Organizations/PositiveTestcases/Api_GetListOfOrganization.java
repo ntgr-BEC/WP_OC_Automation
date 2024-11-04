@@ -1,12 +1,16 @@
 package webportal.ApiTest.Organizations.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.testng.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import com.uwyn.jhighlight.fastutil.Arrays;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -16,7 +20,6 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-//import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
@@ -27,6 +30,8 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
+    ArrayList<String> OrgID = new ArrayList<String>();
+    ArrayList<String> OrgIDgetList = new ArrayList<String>();
     String orgId1;
     String orgId2;
     String orgId3;
@@ -41,6 +46,24 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
         step1();
     }
     
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        
+        System.out.println("Start to tare down");
+        Map<String, String> pathParams = new HashMap<String, String>();
+        
+        pathParams.put("accountId",WebportalParam.accountId);  
+        
+        for(int i=0; i<OrgID.size(); i++) {
+            pathParams.put("orgId",OrgID.get(i));
+            Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+            getResponse1.then().body("response.status", equalTo(true));
+        }
+        
+    }  
+    
   
     @Step("Send get request to {url}")
     public void step1()
@@ -48,9 +71,11 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
             Response response1 = new Api_AddOrganization().step1();
             Response response2 = new Api_AddOrganization().step1();
             Response response3 = new Api_AddOrganization().step1();
-            orgId1 = response1.jsonPath().getString("orgInfo.orgId");
-            orgId2 = response2.jsonPath().getString("orgInfo.orgId");
-            orgId3 = response3.jsonPath().getString("orgInfo.orgId");
+            
+            OrgID.add(response1.jsonPath().getString("orgInfo.orgId"));
+            OrgID.add(response2.jsonPath().getString("orgInfo.orgId"));
+            OrgID.add(response3.jsonPath().getString("orgInfo.orgId"));
+            
             endPointUrl = new ApiRequest().ENDPOINT_URL;          
             headers.put("token",WebportalParam.token);
             headers.put("apikey",WebportalParam.apikey);
@@ -61,6 +86,13 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
                        
             Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Organization_List"), headers, pathParams, null); 
             getResponse.then().body("response.status", equalTo(true));
+            OrgIDgetList.add(getResponse.jsonPath().getString("details[0].orgId"));
+            OrgIDgetList.add(getResponse.jsonPath().getString("details[1].orgId"));
+            OrgIDgetList.add(getResponse.jsonPath().getString("details[2].orgId"));
+            
+            boolean areEqual = OrgIDgetList.equals(OrgID);
+            assertTrue(areEqual, "Get List is Not sucessfull");
+
                          
         }
                 
