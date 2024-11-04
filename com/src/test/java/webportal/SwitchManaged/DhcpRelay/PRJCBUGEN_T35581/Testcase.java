@@ -89,6 +89,8 @@ public class Testcase extends TestCaseBase {
         wdrp.enableOrDisableDhcpRelayconfigModes(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton);
 
         handle.refresh();
+        MyCommonAPIs.sleepsync();
+        
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
