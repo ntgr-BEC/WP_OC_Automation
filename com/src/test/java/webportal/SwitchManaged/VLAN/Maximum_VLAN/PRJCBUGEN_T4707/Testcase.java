@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4707;
+package webportal.SwitchManaged.VLAN.Maximum_VLAN.PRJCBUGEN_T4707;
 
 import static org.testng.Assert.assertTrue;
 
