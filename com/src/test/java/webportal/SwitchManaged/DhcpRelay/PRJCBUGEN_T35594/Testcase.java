@@ -62,6 +62,7 @@ public class Testcase extends TestCaseBase {
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         vlanPage.addDataVlanWithPorts("data vlan", "100", null, null, null, null, null, null, null);
         handle.waitCmdReady("100", false);
         handle.refresh();

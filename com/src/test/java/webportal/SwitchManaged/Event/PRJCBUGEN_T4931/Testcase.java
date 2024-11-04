@@ -80,7 +80,6 @@ public class Testcase extends TestCaseBase {
         System.out.println("lsEvent1"+ lsEvent1);
         evtp.deleteOneEvent(EventElement.sCritical);
         MyCommonAPIs.sleepi(20);
-        System.out.println("lsEvent1"+ lsEvent1);
         List<String> lsEvent2 = evtp.getEventDesc();
         System.out.println("3333333333");
         System.out.println("lsEvent2"+ lsEvent2);
