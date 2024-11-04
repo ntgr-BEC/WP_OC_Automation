@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteAPStatistics extends TestCaseBaseApi{
+public class Api_GetAPStatistics extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_DeleteAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will delete AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test will get AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -44,7 +44,6 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
         step1();
     }
 
-  
     @Step("Send get request to {url}")
     public void step1()
     {      
@@ -58,11 +57,10 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
          
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
         getResponse.then().body("response.message", equalTo("Success in deleting AP device statistics"));
-        
-                    
+                     
     }
 
 }
