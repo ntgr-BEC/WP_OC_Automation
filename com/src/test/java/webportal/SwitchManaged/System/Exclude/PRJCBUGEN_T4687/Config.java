@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4687;
+package webportal.SwitchManaged.System.Exclude.PRJCBUGEN_T4687;
 
 /**
  *
