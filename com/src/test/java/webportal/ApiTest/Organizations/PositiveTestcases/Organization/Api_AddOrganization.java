@@ -1,4 +1,4 @@
-package webportal.ApiTest.Organizations.PositiveTestcases;
+package webportal.ApiTest.Organizations.PositiveTestcases.Organization;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -24,19 +24,19 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetAllocateDeviceCredits extends TestCaseBaseApi{
+public class Api_AddOrganization extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    String OrgID;
-    
-    int DC= 3;
-    int ICPC= 1;
-
+    String orgId;
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000);
+    String org    = "Org" + String.valueOf(randomNumber);
+    String owner    = "owner" + String.valueOf(randomNumber);
     
     @Feature("API_Organizations_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Get allocation device credits details.") // It's a testcase title from Jira Test Case.
+    @Description("Get list of organization(s) based on the account identifier.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -47,41 +47,37 @@ public class Api_GetAllocateDeviceCredits extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
-        
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
+        pathParams.put("orgId",orgId);
         pathParams.put("accountId",WebportalParam.accountId);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
-       
     }  
   
     @Step("Send get request to {url}")
-    public void step1()
-    {     
+    public Response step1()
+    { 
+       
+            endPointUrl = new ApiRequest().ENDPOINT_URL;          
+            headers.put("apikey",WebportalParam.apikey);
+            headers.put("token",WebportalParam.token);
+                                   
+            Map<String, String> pathParams = new HashMap<String, String>();
+            pathParams.put("accountId",WebportalParam.accountId);
+            String requestBody1="{\"orgInfo\":{\"orgName\":\""+org+"\",\"ownerName\":\"\",\"ownerEmail\":\""+owner+"@yopmail.com\",\"persPhnNo\":\"\",\"busiPhnNo\":\"\",\"emailRecipient\":[\"1\",\"2\"],\"pushRecipient\":[\"1\",\"2\"],\"deviceOwnership\":\"1\",\"repRecipient\":[\"1\",\"2\"],\"isSchedule\":\"1\",\"frequency\":\"1\",\"applyToAllOrg\":\"0\"}}";       
+            
+            
+            //TO ADD NETWORK AND RETRIEVE NETWORK ID
+            Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Organization"), requestBody1, headers, pathParams, null); 
+            getResponse.then().body("response.status", equalTo(true));
+            orgId=getResponse.jsonPath().getString("orgInfo.orgId");
+            System.out.println("Org ID under response"+ orgId);
+            return getResponse;
+                         
+        }
                 
-        Response response = new Api_AddOrganization().step1();
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
-        
-        Response response1 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
-        
-        endPointUrl = new ApiRequest().ENDPOINT_URL;          
-        
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
-        
-        
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId", OrgID);
-        
-        
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("GetAllocateDeviceCredits"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("details.totalDeviceCredits", equalTo(DC));
     }
 
 
 
-}

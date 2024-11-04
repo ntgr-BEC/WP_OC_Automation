@@ -1,4 +1,4 @@
-package webportal.ApiTest.Organizations.PositiveTestcases;
+package webportal.ApiTest.Organizations.PositiveTestcases.Organization;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
@@ -26,7 +26,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
+public class Api_GetOrganizationIdentifier extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -57,20 +57,7 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
-        
-        
-        pathParams.put("orgId",OrgID1);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        
-        pathParams.put("orgId",OrgID1);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        
-        
-        
+            
         
     }  
     
@@ -79,26 +66,25 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
     public void step1()
     { 
         Response response = new Api_AddOrganization().step1();
-        Response response1 = new Api_AddOrganization().step1();
+
         OrgID = response.jsonPath().getString("orgInfo.orgId");
-        OrgID1 = response.jsonPath().getString("orgInfo.orgId");
         
         Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
-        Response response3 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID1 );
-        
+
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("startFrom", "1");
-        Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("searchText", "Netgear");
+        pathParams.put("accountId", WebportalParam.accountId);
+        pathParams.put("orgId", OrgID);
+
         
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("GetAllocateCredits"), headers, pathParams, queryParams); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Organization_Identifier"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("details.deviceCredit", equalTo(DC));
+        getResponse.then().body("details.instantCpCredit", equalTo(ICPC));
                          
         }
                 
