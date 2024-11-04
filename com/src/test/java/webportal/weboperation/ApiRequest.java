@@ -449,6 +449,21 @@ import util.*;
                 put("GetAllocateDeviceCredits","insightappcom/api/organization/v1/creditAllocation/{orgId}");
                 put("GetAllocateCredits","insightappcom/api/organization/v1/creditAllocationDetails/{startFrom}");
                 put("Organization_Identifier","insightappcom/api/organization/v1/details/{accountId}/{orgId}");
+                put("Vlan_Info","insightappcom/api/wired/v1/vlan/{networkId}/{vlanId}");
+                put("SDM_Status","insightappcom/api/device/v1/sdmstatus/{serailNo}");
+                put("Get_Device","insightappcom/api/device/v1/deviceList/{networkId}/{page}");
+                put("Device_RFChannel","insightappcom/api/device/v1/rfChannel/{networkId}/{serialNo}");
+                put("Device_MeshInfo","insightappcom/api/device/v1/meshInfoDetails/{serialNo}/{networkId}");
+                put("LED_Settings","insightappcom/api/device/v1/ledSettings/{deviceType}/{serialNo}");
+                put("Known_UnknownAPs","insightappcom/api/device/v1/knownUnknownAPs/{networkId}/{serialNo}");
+                put("Device_Diagnostics","insightappcom/api/device/v1/diagnostic/{serailNo}");
+                put("DeviceDetails_ByDeviceIdentifier","insightappcom/api/device/v1/deviceInfo/{deviceId}/{deviceType}/{commandType}");
+                put("DeviceFactoryReset_DeviceReboot","/insightappcom/api/device/v1/deviceFactoryReset/{serialNo}/{deviceType}");
+                put("Device_IPSettings","insightappcom/api/device/v1/device/{deviceType}/{serialNo}/{commandType}");
+                put("ConnectedNeighborsList","insightappcom/api/device/v1/connectedNeighborsList/{serialNo}/{deviceType}/{portId}");
+                put("GetBlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}");
+                put("BlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}/{commandType}");
+                put("AP_Statistics","insightappcom/api/device/v1/apStatistics/{serialNo}");
             }
         };
          
