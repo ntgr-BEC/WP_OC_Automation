@@ -1,6 +1,5 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Public;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -21,23 +20,22 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
-
+import static org.hamcrest.Matchers.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteDevice extends TestCaseBaseApi{
+public class Api_GetTimeZoneList extends TestCaseBaseApi{
 
-    String networkId;
-    Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
+    Map<String, String> headers = new HashMap<String, String>();
     
-    @Feature("Api_DeleteDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetTimeZoneList") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will delete device for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets time Zone list from the particular account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -45,34 +43,23 @@ public class Api_DeleteDevice extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        Response add = new Api_AddDevice().step1();  
-       
-    }  
-    
     @Step("Send get request to {url}")
-    public Response step1()
-    {      
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
-
+    public void step1()
+    { 
+        endPointUrl = new ApiRequest().ENDPOINT_URL;  
+           
         headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);     
-        
-        pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-         
-        //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Device"), headers, pathParams, null); 
+        headers.put("apikey",WebportalParam.apikey);    
+        headers.put("accountId",WebportalParam.accountId);
+      
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("TimeZone_List"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Device deleted."));
-        MyCommonAPIs.sleepi(20);
         
-        return getResponse;
-                          
+        // CHECK THE LIST IS NOT EMPTY AND IS GRETAED THAN ZERO
+        getResponse.then().statusCode(200)
+        .body("timeZoneList", is(not(empty()))) 
+        .body("timeZoneList.size()", greaterThan(0));
+      
     }
-
 }

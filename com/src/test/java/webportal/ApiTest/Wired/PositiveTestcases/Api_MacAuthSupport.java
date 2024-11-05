@@ -1,6 +1,5 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Wired.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -14,7 +13,6 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -22,22 +20,21 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteDevice extends TestCaseBaseApi{
+public class Api_MacAuthSupport extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+
     
-    @Feature("Api_DeleteDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_MacAuthSupport") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will delete device for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test creates enavles MAC Acl settings support") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -47,32 +44,44 @@ public class Api_DeleteDevice extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
-        
-        Response add = new Api_AddDevice().step1();  
-       
-    }  
-    
+    {  
+        Map<String, String> pathParams = new HashMap<String, String>();
+       pathParams.put("networkId",networkId);    
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
+//  not working
     @Step("Send get request to {url}")
     public Response step1()
-    {      
+    {
+        List <Response> response = new Api_VlanListing().step1();
+        Response addNetwork=response.get(0);
+        Response addVlan=response.get(1);
+
+        networkId=addNetwork.jsonPath().getString("networkInfo[0].networkId"); 
+        String vlanId=addVlan.jsonPath().getString("vlanConfig[-1].vlanId");
+        System.out.print("---------------------"+vlanId);
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-         
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        pathParams.put("vlanId",vlanId);
+        
+        String body="{\"macAuthenticationInfo\":{\"mode\":\"1\"}}";
+
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Device"), headers, pathParams, null); 
+     
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Enable_MacAcl"),body, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Device deleted."));
-        MyCommonAPIs.sleepi(20);
+                      
         
         return getResponse;
-                          
+        
+                
     }
 
 }

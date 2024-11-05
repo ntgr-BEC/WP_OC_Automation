@@ -405,7 +405,7 @@ import util.*;
                 put("Vlan_Sanity","insightappcom/api/wired/v1/vlans/{networkId}");
                 put("Add_Ssid", "insightappcom/api/wireless/v1/ssid/{networkId}");
                 put("Network_Settings", "insightappcom/api/wireless/v1/{networkId}/broadcasttounicast");
-                put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
+                put("LagGroup_Sanity", "insightappcom/api/wired/v1/{networkId}/lagGroups");
                 put("Ssid_Sanity", "insightappcom/api/wireless/v1/{networkId}/{id}");
                 put("Url_Filter", "insightappcom/api/wireless/v1/{networkId}/urlFilter");
                 put("Wireless_Settings", "insightappcom/api/wireless/v1/{networkId}/radioConfig");
@@ -467,6 +467,14 @@ import util.*;
                 put("IP_Statistics","insightappcom/api/device/v1/{serialNo}/{deviceType}/{commandType}");
                 put("Delete_Device","insightappcom/api/device/v1/{serialNo}/{networkId}");
                 put("Add_Device","insightappcom/api/device/v1/{networkId}");
+                put("LagGroupId_Sanity", "insightappcom/api/wired/v1/{networkId}/{lagGroupId}/lagGroups");
+                put("Add_Network_Pro","insightappcom/api/network/v1/{accountId}/{orgId}");
+                put("Get_Network_Pro","insightappcom/api/network/v1/networkList/{accountId}/{orgId}");
+                put("Set_SNMP_Configuration","insightappcom/api/network/v1/snmp/{accountId}/{orgId}/{networkId}/{commandType}");
+                put("Fetch_Credits","insightappcom/api/license/v1/creditsInfo");
+                put("Get_Purchase_Confirmation","insightappcom/api/license/v1/licenseInfo");
+                put("Get_Licensekey_Information","insightappcom/api/license/v1/licenseKeyInfo/{type}");
+                put("Add_Purchase_Confirmation","insightappcom/api/license/v1/addLicense");
                 
             }
         };

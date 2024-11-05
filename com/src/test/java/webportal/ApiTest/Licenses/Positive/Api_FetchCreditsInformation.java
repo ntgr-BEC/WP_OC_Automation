@@ -1,5 +1,9 @@
-package webportal.ApiTest.General;
+package webportal.ApiTest.Licenses.Positive;
 import static org.hamcrest.CoreMatchers.equalTo;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -13,30 +17,27 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import util.MyCommonAPIs;
-import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
-public class Api_GetCountryList extends TestCaseBaseApi{
+public class Api_FetchCreditsInformation extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    String networkId;
+    String OrgID;
+    int DC= 2;
+    int ICPC= 2;
+    Response response1;
     
-    @Feature("Api_GetCountryList") // It's a folder/component name to make test suite more readable from Jira Test Case.
+
+    
+    @Feature("API_Licenses_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets country list from the particular account") // It's a testcase title from Jira Test Case.
+    @Description("Fetch credits information for an account.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -44,21 +45,29 @@ public class Api_GetCountryList extends TestCaseBaseApi{
         step1();
     }
     
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        
+        
+       
+    }  
+    
     @Step("Send get request to {url}")
     public void step1()
-    { 
-        endPointUrl = new ApiRequest().ENDPOINT_URL;  
-           
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+    {
       
-        //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Country_List"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        endPointUrl = new ApiRequest().ENDPOINT_URL;  
+        headers.put("token",WebportalParam.token);
+        headers.put("accountId",WebportalParam.accountId);
+        headers.put("apikey",WebportalParam.apikey);
         
-        //THE NO. OF WIRELESS REGION ARE 126
-        getResponse.then().statusCode(200)
-        .body("countryList", hasSize(126));
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Fetch_Credits"), headers, null, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("details.email", equalTo((WebportalParam.adminName).toLowerCase() ));
     }
+  
+  
+
+
 }

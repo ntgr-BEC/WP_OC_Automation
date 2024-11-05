@@ -54,15 +54,14 @@ public class Api_GetConnectedNeighborsList extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);     
      
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-        pathParams.put("deviceType","AP"); 
+        pathParams.put("deviceType","AP");   // The enumerations are AP, SW, ORBI, BR, ORBIPS, MHS, PR.
         pathParams.put("portId","0");
          
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("ConnectedNeighborsList"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
 //        .body("response.message", equalTo("Rougue Ap Data at device level is success"));
-       
-                    
+                   
     }
 
 }

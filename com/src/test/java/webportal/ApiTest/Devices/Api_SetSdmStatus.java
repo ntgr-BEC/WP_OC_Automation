@@ -44,7 +44,6 @@ public class Api_SetSdmStatus extends TestCaseBaseApi{
         step1();
     }
 
-  
     @Step("Send get request to {url}")
     public void step1()
     {      

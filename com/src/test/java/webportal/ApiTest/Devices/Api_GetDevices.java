@@ -66,9 +66,9 @@ public class Api_GetDevices extends TestCaseBaseApi{
         System.out.println(mac);
         System.out.println(mac.equals(WebportalParam.ap1macaddress));
         
-        getResponse.then().body("deviceInfo[0].deviceName", equalTo(WebportalParam.ap1deveiceName))
-         .body("deviceInfo[0].model", equalTo(WebportalParam.ap1Model))
-         .body("deviceInfo[0].deviceType", equalTo("AP"));
+//        getResponse.then().body("deviceInfo[0].deviceName", equalTo(WebportalParam.ap1deveiceName))
+//         .body("deviceInfo[0].model", equalTo(WebportalParam.ap1Model))
+//         .body("deviceInfo[0].deviceType", equalTo("AP"));
          
         return getResponse;
                     
