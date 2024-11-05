@@ -27,23 +27,23 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteAPStatistics extends TestCaseBaseApi{
+public class Api_SetDeviceIPSettings extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+ 
     
-    @Feature("Api_DeleteAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetDeviceIPSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will delete AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test sets device IP settings for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-  
+
     @Step("Send get request to {url}")
     public void step1()
     {      
@@ -51,17 +51,35 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);     
-        headers.put("networkId",WebportalParam.networkId);
+        headers.put("accountId",WebportalParam.accountId);  
         
-        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-         
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("deviceType","AP");
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName); 
+//        The command type value according to the device. The enumerations are provided below.
+//        PR : 1006.
+//        AP : 3.
+//        Switch : 5.
+//        BR : 5(WAN IP setting), 6(LAN IP setting).
+//        ORBI : 2(WAN IP setting), 10(LAN IP setting).
+        pathParams.put("commandType","3");     
+            
+        String requestBody = "{\r\n" + 
+                "  \"basicSettings\": {\r\n" + 
+                "    \"dhcpClientStatus\": \"0\",\r\n" + 
+                "    \"ipAddr\": \"192.212.252.119\",\r\n" + 
+                "    \"netmaskAddr\": \"255.255.255.0\",\r\n" + 
+                "    \"gatewayAddr\": \"192.168.4.1\",\r\n" + 
+                "    \"priDnsAddr\": \"192.168.4.1\",\r\n" + 
+                "    \"sndDnsAddr\": \"192.168.4.12\",\r\n" + 
+                "    \"networkIntegralityCheck\": \"0\"\r\n" + 
+                "  }\r\n" + 
+                "}";
+        
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("IP_Statistics"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in deleting AP device statistics"));
-        
-                    
+                           
     }
 
 }

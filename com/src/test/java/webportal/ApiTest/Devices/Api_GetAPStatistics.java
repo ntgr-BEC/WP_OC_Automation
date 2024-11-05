@@ -59,7 +59,7 @@ public class Api_GetAPStatistics extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in deleting AP device statistics"));
+        getResponse.then().body("response.message", equalTo("Success in getting AP device statistics"));
                      
     }
 

@@ -464,6 +464,10 @@ import util.*;
                 put("GetBlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}");
                 put("BlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}/{commandType}");
                 put("AP_Statistics","insightappcom/api/device/v1/apStatistics/{serialNo}");
+                put("IP_Statistics","insightappcom/api/device/v1/{serialNo}/{deviceType}/{commandType}");
+                put("Delete_Device","insightappcom/api/device/v1/{serialNo}/{networkId}");
+                put("Add_Device","insightappcom/api/device/v1/{networkId}");
+                
             }
         };
          
