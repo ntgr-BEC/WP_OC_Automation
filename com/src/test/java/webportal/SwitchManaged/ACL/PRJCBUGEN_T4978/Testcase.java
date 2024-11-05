@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Issue("PRJCBUGEN-7634")
     @Feature("Switch.ACL") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4978") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("071-Test max vlan number (24) that support to binding ACL") // It's a testcase title from Jira Test Case.
+    @Description("071-Test max vlan number (25) that support to binding ACL") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4978") // It's a testcase id/link from Jira Test Case.
     @Test(alwaysRun = true, groups = "p5") // "p3"
     public void test() throws Exception {
@@ -70,9 +70,9 @@ public class Testcase extends TestCaseBase {
     }
     
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 2: Create 24 vlans that every vlan include 1 IP ACL")
+    @Step("Test Step 2: Create 25 vlans that every vlan include 1 IP ACL")
     public void step2() {
-        for (int i = 0; i < 24; i++) {
+        for (int i = 0; i < 25; i++) {
             MyCommonAPIs.sleepi(10);
             wvp.gotoPage();
             String vlanName= "10";
@@ -90,7 +90,7 @@ public class Testcase extends TestCaseBase {
     }
     
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 3: Create vlan 25 that every vlan include 1 IP ACL")
+    @Step("Test Step 3: Create vlan 26 that every vlan include 1 IP ACL")
     public void step4() {
         vlanName = "120";
         wvp.gotoPage();
