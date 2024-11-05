@@ -1,5 +1,6 @@
-package webportal.ApiTest.Wired.PositiveTestcases;
+package webportal.ApiTest.Devices;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,52 +27,43 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_CreateVlan extends TestCaseBaseApi{
+public class Api_DeviceFactoryReset extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_DeviceFactoryReset") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test creates VLAN from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test will factory reset or reboot the device the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-    
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    {        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
-    public Response step1()
-    {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
+    public void step1()
+    {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-        
-        pathParams.put("networkId",networkId);
-        
-        String requestBody = "{\"vlan\":{\"name\":\"VLAN_250\",\"vlanId\":\"250\",\"trafficClass\":\"0\",\"voipOptimization\":\"0\",\"igmpSnooping\":\"0\",\"overrideTrafficPriority\":\"0\",\"qosConfig\":\"Data\",\"vlanType\":\"6\",\"vlanNwName\":\"VLAN_250\",\"vlanNwDesc\":\"VLAN_250\"}}";
       
-        //TO PERFORM ANY REQUEST
-     
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        pathParams.put("deviceType","AP");
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
+       
+        //will factory reset the device
+        String requestBody = "{\"device Info\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";     
         
-        return add;
-                    
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        
     }
 
 }

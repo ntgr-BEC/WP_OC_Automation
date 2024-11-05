@@ -14,28 +14,28 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
+import webportal.ApiTest.Wireless.PositiveTestcases.Api_AddSsid;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_CreateVlan extends TestCaseBaseApi{
+public class Api_DeleteVlan extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+   
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test creates VLAN from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test delete VLAN from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -45,33 +45,41 @@ public class Api_CreateVlan extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    {        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+    {      
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        Response getResponse1 = ApiRequest.sendGetRequest(endPointUrl.get("Vlan_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
+        
+        System.out.println(getResponse1.jsonPath().getString("vlanConfig[-1].vlanId"));
+        getResponse1.then()
+        .body("vlanConfig[-1].vlanId", equalTo("4089"));
+
+        Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse2.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-
+        List<Response> response = new Api_VlanListing().step1();
+        Response add=response.get(0);
+        Response Vlan=response.get(1);
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");     
+        String Vlanid=  Vlan.jsonPath().getString("vlanConfig[-1].vlanId");     
+      
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
+        Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-        
-        String requestBody = "{\"vlan\":{\"name\":\"VLAN_250\",\"vlanId\":\"250\",\"trafficClass\":\"0\",\"voipOptimization\":\"0\",\"igmpSnooping\":\"0\",\"overrideTrafficPriority\":\"0\",\"qosConfig\":\"Data\",\"vlanType\":\"6\",\"vlanNwName\":\"VLAN_250\",\"vlanNwDesc\":\"VLAN_250\"}}";
-      
-        //TO PERFORM ANY REQUEST
-     
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
+        pathParams.put("vlanId",Vlanid);
+       
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Vlan_Info"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        
-        return add;
-                    
+ 
     }
-
 }

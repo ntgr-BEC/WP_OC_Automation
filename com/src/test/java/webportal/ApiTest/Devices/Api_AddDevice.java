@@ -1,9 +1,13 @@
-package webportal.ApiTest.Wired.PositiveTestcases;
+package webportal.ApiTest.Devices;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import com.alibaba.fastjson.JSONObject;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
@@ -19,23 +23,23 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_CreateVlan extends TestCaseBaseApi{
+public class Api_AddDevice extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
+    Map<String, String> deviceInfo = new HashMap<String, String>();
     
-    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_DeleteAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test creates VLAN from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test will add device for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -43,35 +47,35 @@ public class Api_CreateVlan extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
+    @BeforeMethod(alwaysRun=true)
     public void teardown()
-    {        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
+    { 
+        Response add = new Api_DeleteDevice().step1();     //delete the device first and then add the device
     }
   
     @Step("Send get request to {url}")
     public Response step1()
-    {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
-        endPointUrl = new ApiRequest().ENDPOINT_URL;
-
+    {      
+        endPointUrl = new ApiRequest().ENDPOINT_URL; 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",networkId);
-        
-        String requestBody = "{\"vlan\":{\"name\":\"VLAN_250\",\"vlanId\":\"250\",\"trafficClass\":\"0\",\"voipOptimization\":\"0\",\"igmpSnooping\":\"0\",\"overrideTrafficPriority\":\"0\",\"qosConfig\":\"Data\",\"vlanType\":\"6\",\"vlanNwName\":\"VLAN_250\",\"vlanNwDesc\":\"VLAN_250\"}}";
-      
+        pathParams.put("networkId",WebportalParam.networkId);
+         
+        String requestBody = "{\"deviceInfo\":{\"deviceType\":\"NA\",\"deviceName\":\"6AC2882982991\",\"serialNo\":\"6AC2882982991\",\"model\":\"\",\"macAddress\":\"87:17:87:18:37:91\",\"devicePlateform\":\"WEB\",\"abGroupId\":\"\",\"abDeviceMode\":\"1\"}}";
+       
+        requestBody = requestBody.replace("\"serialNo\":\"6AC2882982991\"", "\"serialNo\":\"" + WebportalParam.ap1deveiceName + "\"");
+        requestBody = requestBody.replace("\"macAddress\":\"87:17:87:18:37:91\"", "\"macAddress\":\"" + WebportalParam.ap1macaddress + "\"");
+        requestBody = requestBody.replace("\"deviceType\":\"NA\"", "\"deviceType\":\"AP\"");
+
         //TO PERFORM ANY REQUEST
-     
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Device"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.message", equalTo("Device added."));
         
-        return add;
-                    
+        return getResponse;
+                          
     }
 
 }

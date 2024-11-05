@@ -1,5 +1,6 @@
-package webportal.ApiTest.Wired.PositiveTestcases;
+package webportal.ApiTest.Devices;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_CreateVlan extends TestCaseBaseApi{
+public class Api_GetDevices extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
@@ -35,42 +36,41 @@ public class Api_CreateVlan extends TestCaseBaseApi{
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test creates VLAN from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets devices the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-    
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    {        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public Response step1()
-    {
-        Response add = new Api_AddNetwork().step1();
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");        
+    {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-        
-        pathParams.put("networkId",networkId);
-        
-        String requestBody = "{\"vlan\":{\"name\":\"VLAN_250\",\"vlanId\":\"250\",\"trafficClass\":\"0\",\"voipOptimization\":\"0\",\"igmpSnooping\":\"0\",\"overrideTrafficPriority\":\"0\",\"qosConfig\":\"Data\",\"vlanType\":\"6\",\"vlanNwName\":\"VLAN_250\",\"vlanNwDesc\":\"VLAN_250\"}}";
       
+        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("page","0");
+         
         //TO PERFORM ANY REQUEST
-     
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Device"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
         
-        return add;
+        System.out.println("Device ID=" +   getResponse.jsonPath().getString("deviceInfo[0].deviceId"));
+        String mac =  getResponse.jsonPath().getString("deviceInfo[0].macAddress").toLowerCase();
+        mac= mac.replace('-', ':'); 
+        System.out.println(mac);
+        System.out.println(mac.equals(WebportalParam.ap1macaddress));
+        
+        getResponse.then().body("deviceInfo[0].deviceName", equalTo(WebportalParam.ap1deveiceName))
+         .body("deviceInfo[0].model", equalTo(WebportalParam.ap1Model))
+         .body("deviceInfo[0].deviceType", equalTo("AP"));
+         
+        return getResponse;
                     
     }
 

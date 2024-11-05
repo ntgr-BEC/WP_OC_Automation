@@ -57,9 +57,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Create vlan 100 and check the configuration")
     public void step2() {
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
-
+        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);       
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         vlanPage.addDataVlanWithPorts("data vlan", "100", null, null, null, null, null, null, null);
         handle.waitCmdReady("100", false);
 
@@ -89,6 +89,8 @@ public class Testcase extends TestCaseBase {
         wdrp.enableOrDisableDhcpRelayconfigModes(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton);
 
         handle.refresh();
+        MyCommonAPIs.sleepsync();
+        
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
