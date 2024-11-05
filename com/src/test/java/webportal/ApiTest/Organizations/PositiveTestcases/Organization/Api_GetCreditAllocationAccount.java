@@ -50,26 +50,26 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
-        
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        
-        
-        pathParams.put("orgId",OrgID1);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        
-        pathParams.put("orgId",OrgID1);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        
-        
+//        
+//        Map<String, String> pathParams = new HashMap<String, String>();
+//        pathParams.put("orgId",OrgID);
+//        pathParams.put("accountId",WebportalParam.accountId);
+//        
+//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//        
+//        
+//        pathParams.put("orgId",OrgID1);
+//        pathParams.put("accountId",WebportalParam.accountId);
+//        
+//        
+//        pathParams.put("orgId",OrgID1);
+//        pathParams.put("accountId",WebportalParam.accountId);
+//        
+//        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//        
+//        
         
         
     }  
@@ -78,13 +78,13 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Response response = new Api_AddOrganization().step1();
-        Response response1 = new Api_AddOrganization().step1();
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
-        OrgID1 = response.jsonPath().getString("orgInfo.orgId");
-        
-        Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
-        Response response3 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID1 );
+//        Response response = new Api_AddOrganization().step1();
+//        Response response1 = new Api_AddOrganization().step1();
+//        OrgID = response.jsonPath().getString("orgInfo.orgId");
+//        OrgID1 = response.jsonPath().getString("orgInfo.orgId");
+//        
+//        Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
+//        Response response3 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID1 );
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
@@ -95,7 +95,7 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("startFrom", "1");
         Map<String, String> queryParams = new HashMap<String, String>();
-        queryParams.put("searchText", "Netgear");
+        queryParams.put("searchText", "Org453");
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("GetAllocateCredits"), headers, pathParams, queryParams); 
         getResponse.then().body("response.status", equalTo(true));

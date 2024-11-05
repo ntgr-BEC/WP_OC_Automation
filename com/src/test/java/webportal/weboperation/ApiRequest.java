@@ -468,6 +468,13 @@ import util.*;
                 put("Delete_Device","insightappcom/api/device/v1/{serialNo}/{networkId}");
                 put("Add_Device","insightappcom/api/device/v1/{networkId}");
                 put("LagGroupId_Sanity", "insightappcom/api/wired/v1/{networkId}/{lagGroupId}/lagGroups");
+                put("Add_Network_Pro","insightappcom/api/network/v1/{accountId}/{orgId}");
+                put("Get_Network_Pro","insightappcom/api/network/v1/networkList/{accountId}/{orgId}");
+                put("Set_SNMP_Configuration","insightappcom/api/network/v1/snmp/{accountId}/{orgId}/{networkId}/{commandType}");
+                put("Fetch_Credits","insightappcom/api/license/v1/creditsInfo");
+                put("Get_Purchase_Confirmation","insightappcom/api/license/v1/licenseInfo");
+                put("Get_Licensekey_Information","insightappcom/api/license/v1/licenseKeyInfo/{type}");
+                put("Add_Purchase_Confirmation","insightappcom/api/license/v1/addLicense");
                 
             }
         };
