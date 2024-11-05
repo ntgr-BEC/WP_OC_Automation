@@ -14,28 +14,28 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
-import webportal.ApiTest.Wireless.PositiveTestcases.Api_AddSsid;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_VlanInfo extends TestCaseBaseApi{
+public class Api_SetVlanMacAcl extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
- 
+
     
-    @Feature("Api_VlanInfo") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetVlanMacAcl") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves Vlan info from vlan identifier from the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test Sets VLAN Mac Acl") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -45,39 +45,45 @@ public class Api_VlanInfo extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    {       
+    {  
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
+       pathParams.put("networkId",networkId);    
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public List<Response> step1()
     {
+        List <Response> response = new Api_VlanListing().step1();
+        Response addNetwork=response.get(0);
+        Response addVlan=response.get(1);
+
+        networkId=addNetwork.jsonPath().getString("networkInfo[0].networkId"); 
+        String vlanId=addVlan.jsonPath().getString("vlanConfig[-1].vlanId");
+        System.out.print("---------------------"+vlanId);
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        List<Response> response = new Api_VlanListing().step1();   //Will create Vlan and it lists vlan ID
-        Response add=response.get(0);
-        Response Vlan=response.get(1);
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");     
-        String Vlanid=  Vlan.jsonPath().getString("vlanConfig[-1].vlanId");     
-      
+
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
-        pathParams.put("vlanId",Vlanid);
+        pathParams.put("vlanId",vlanId);
         
+        String body="{\"macAclList\":{\"mode\":\"1\",\"action\":\"0\",\"macAclRule\":{\"custom\":[{\"aclName\":\"m11221122111111271145113150\",\"sequenceNo\":3,\"srcDeviceName\":\"Test001\",\"srcMac\":\"11:22:11:22:11:11\",\"srcMacMask\":\"00-00-00-00-00-00\",\"destDeviceName\":\"Test002111\",\"destMac\":\"11:27:11:45:11:31\",\"destMacMask\":\"00-00-00-00-00-00\"}]}}}";
+        
+
         //TO PERFORM ANY REQUEST
-        Response getResponse1 = ApiRequest.sendGetRequest(endPointUrl.get("Vlan_Info"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-        
-        getResponse1.then()
-        .body("vlanConfig.vlanId", equalTo(Vlanid))
-        .body("vlanConfig.name", equalTo("VLAN_"+Vlanid));
      
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("VlanMacAcl_Sanity"),body, headers, pathParams, null); 
+        getResponse.then().body("customAddInfo.response.status", equalTo(true))
+                          .body("customAddInfo.response.message", equalTo("success"));
+        
+        return Arrays.asList(addNetwork,addVlan);
+        
+                
     }
 
 }
