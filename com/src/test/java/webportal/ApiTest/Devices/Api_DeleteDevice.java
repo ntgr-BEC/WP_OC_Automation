@@ -14,6 +14,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -34,7 +35,7 @@ public class Api_DeleteDevice extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_DeleteAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_DeleteDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test will delete device for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -68,6 +69,7 @@ public class Api_DeleteDevice extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Device"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         getResponse.then().body("response.message", equalTo("Device deleted."));
+        MyCommonAPIs.sleepi(20);
         
         return getResponse;
                           
