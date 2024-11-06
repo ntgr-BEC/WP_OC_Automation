@@ -14,7 +14,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
-import webportal.ApiTest.Devices.Api_DeleteDevice;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
