@@ -14,6 +14,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -45,7 +46,7 @@ public class Api_SetBlueLedSettings extends TestCaseBaseApi{
     }
 
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
@@ -64,8 +65,8 @@ public class Api_SetBlueLedSettings extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("BlueLED_Settings"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         getResponse.then().body("response.message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
-        
-                    
+        MyCommonAPIs.sleepi(300);
+        return getResponse;        
     }
 
 }

@@ -14,6 +14,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -42,10 +43,24 @@ public class Api_SetSdmStatus extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+        step2();
+    }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        String requestBody= "{ \"status\": 0}";
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("SDM_Status"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
+        MyCommonAPIs.sleepi(10);
+        
     }
 
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
@@ -54,20 +69,25 @@ public class Api_SetSdmStatus extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);     
         headers.put("networkId",WebportalParam.networkId);
         
-        pathParams.put("serailNo",WebportalParam.ap1deveiceName);
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
          
-//        String requestBody= "{\r\n" + 
-//                "  \"status\": 1\r\n" + 
-//                "}";
-        
         String requestBody= "{ \"status\": 1}";
         
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("SDM_Status"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-//        getResponse.then().body("response.message", equalTo("Success in getting SDM status"));
+        getResponse.then().body("response.message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
+        MyCommonAPIs.sleepi(20);
         
+        return getResponse;
                     
+    }
+    
+    @Step("Send get request to {url}")
+    public void step2()
+    {      
+        Response add = new Api_GetSdmStatus().step1();  
+        
     }
 
 }

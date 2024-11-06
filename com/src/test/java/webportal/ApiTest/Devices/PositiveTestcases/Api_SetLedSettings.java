@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,6 +15,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -42,10 +44,24 @@ public class Api_SetLedSettings extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+        step2();
+    }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        String requestBody = "{\"ledSettings\":{\"ledControl\":\"0\"}}";    //set LED settings to default
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("LED_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        MyCommonAPIs.sleepi(10);
+       
     }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
@@ -57,12 +73,21 @@ public class Api_SetLedSettings extends TestCaseBaseApi{
         pathParams.put("deviceType","AP");
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
        
-        String requestBody = "{\"ledSettings\":{\"ledControl\":\"1\"}}";
+        String requestBody = "{\"ledSettings\":{\"ledControl\":\"2\"}}";     //set LED settings to off except power LED
         
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("LED_Settings"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        MyCommonAPIs.sleepi(20);
+        
+        return getResponse;
+    }
+    
+    @Step("Send get request to {url}")
+    public void step2()
+    {      
+        Response add = new Api_GetLedSettings().step1();  
         
     }
 

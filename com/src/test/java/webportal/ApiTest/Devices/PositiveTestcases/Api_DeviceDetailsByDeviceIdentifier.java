@@ -54,11 +54,18 @@ public class Api_DeviceDetailsByDeviceIdentifier extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-        headers.put("networkId",WebportalParam.networkId);
-        
+
         pathParams.put("deviceId",deviceID);
         pathParams.put("deviceType","AP");
-        pathParams.put("commandType","101");
+        pathParams.put("commandType","101");  
+        
+//        The command type according to the device for performing actions on the device. The enumerations are provided below.
+//        ORBI : 21(Dashboard).
+//        MHS : 54(Dashboard).
+//        PR : 54(Dashboard), 56(Statistics).
+//        AP : 82(L2L3ACL), 101(About), 101(Dashboard).
+//        Switch : 11(Switch Port Config), 12(POE Port Config), 13(Device Port Mirroring), 20(Cabletest), 53(About), 54(Dashboard).
+//        BR : 53(About), 54(Dashboard), 55(Attached Device), 56(Statistics).
         
         //TO PERFORM ANY REQUEST  
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("DeviceDetails_ByDeviceIdentifier"), headers, pathParams, null);

@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,6 +15,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -43,12 +45,32 @@ public class Api_GetLedSettings extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    
+    @BeforeMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Response add = new Api_SetLedSettings().step1();     //set the LED setting to off except power lED
+    }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown1()
+    { 
+        String requestBody = "{\"ledSettings\":{\"ledControl\":\"0\"}}";    //set LED settings to default
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("LED_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        MyCommonAPIs.sleepi(10);
+        getResponse.then().body("ledSettings.ledControl", equalTo("0"));   
+       
+    }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-
+       
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
@@ -60,10 +82,10 @@ public class Api_GetLedSettings extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("LED_Settings"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
-        .body("ledSettings.ledControl", equalTo("0"));
+        .body("ledSettings.ledControl", equalTo("2"));            //verify the LED setting is set to  off except power lED
         
       
-       
+       return getResponse;
                     
     }
 

@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -14,6 +15,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -43,9 +45,29 @@ public class Api_GetSdmStatus extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    
+    @BeforeMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Response add = new Api_SetSdmStatus().step1();     //set the SDM status --enabling it
+    }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown1()
+    { 
+        String requestBody= "{ \"status\": 0}";          //set the SDM status --disabling it{default)
+        
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("SDM_Status"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
+        MyCommonAPIs.sleepi(20);
+        getResponse.then().body("details.status", equalTo("0"));
+       
+    }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
@@ -54,13 +76,14 @@ public class Api_GetSdmStatus extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);     
         headers.put("networkId",WebportalParam.networkId);
         
-        pathParams.put("serailNo",WebportalParam.ap1deveiceName);
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
          
         //TO PERFORM ANY REQUES
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SDM_Status"), headers, pathParams, null);
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SDM_Status2"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in getting SDM status"));
-        
+        getResponse.then().body("response.message", equalTo("Success in getting SDM status"))
+        .body("details.status", equalTo("1"));       //verify the set the SDM status --enabled
+        return getResponse;
                     
     }
 

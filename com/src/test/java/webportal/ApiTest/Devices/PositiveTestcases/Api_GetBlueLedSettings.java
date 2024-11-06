@@ -48,7 +48,7 @@ public class Api_GetBlueLedSettings extends TestCaseBaseApi{
     public void step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-
+        Response add = new Api_SetBlueLedSettings().step1();    
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);  
