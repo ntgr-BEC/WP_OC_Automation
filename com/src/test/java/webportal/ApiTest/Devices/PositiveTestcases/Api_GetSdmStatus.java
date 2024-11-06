@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,23 +27,23 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetAPStatistics extends TestCaseBaseApi{
+public class Api_GetSdmStatus extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_GetAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetSdmStatus") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will get AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets SDM status the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-
+  
     @Step("Send get request to {url}")
     public void step1()
     {      
@@ -54,13 +54,14 @@ public class Api_GetAPStatistics extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);     
         headers.put("networkId",WebportalParam.networkId);
         
-        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
+        pathParams.put("serailNo",WebportalParam.ap1deveiceName);
          
-        //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null);
+        //TO PERFORM ANY REQUES
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SDM_Status"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in getting AP device statistics"));
-                     
+        getResponse.then().body("response.message", equalTo("Success in getting SDM status"));
+        
+                    
     }
 
 }

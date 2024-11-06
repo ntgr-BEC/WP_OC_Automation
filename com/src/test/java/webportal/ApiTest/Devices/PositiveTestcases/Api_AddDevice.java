@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 

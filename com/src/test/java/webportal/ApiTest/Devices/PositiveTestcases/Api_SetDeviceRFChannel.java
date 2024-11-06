@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,23 +27,23 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeviceFactoryReset extends TestCaseBaseApi{
+public class Api_SetDeviceRFChannel extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+ 
     
-    @Feature("Api_DeviceFactoryReset") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetDeviceRFChannel") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will factory reset or reboot the device the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test sets device RF channel the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-  
+
     @Step("Send get request to {url}")
     public void step1()
     {      
@@ -51,19 +51,20 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);     
-      
-        pathParams.put("deviceType","AP");
+        headers.put("accountId",WebportalParam.accountId);  
+        
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-       
-        //will factory reset the device
-        String requestBody = "{\"device Info\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";     
+        
+        String requestBody= "{\"rfSettings\":{\"wlan0\":{\"radioStatus\":\"1\",\"operateMode\":\"11ng\",\"guardInterval\":\"0\",\"mcsRate\":\"99\",\"txPower\":\"1\",\"isTxPwrAuto\":\"0\",\"channel\":\"1\",\"isChannelAuto\":\"0\",\"channelWidth\":\"0\"},\"wlan1\":{\"radioStatus\":\"1\",\"operateMode\":\"11ac\",\"guardInterval\":\"0\",\"mcsRate\":\"99\",\"txPower\":\"0\",\"isTxPwrAuto\":\"1\",\"channel\":\"149\",\"isChannelAuto\":\"0\",\"channelWidth\":\"1\"}}}";
         
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Device_RFChannel"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
         
+                    
     }
 
 }

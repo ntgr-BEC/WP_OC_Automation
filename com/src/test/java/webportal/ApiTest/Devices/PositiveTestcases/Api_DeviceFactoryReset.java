@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteAPStatistics extends TestCaseBaseApi{
+public class Api_DeviceFactoryReset extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_DeleteAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_DeviceFactoryReset") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will delete AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test will factory reset or reboot the device the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -52,16 +52,18 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-        headers.put("networkId",WebportalParam.networkId);
-        
+      
+        pathParams.put("deviceType","AP");
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-         
-        //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in deleting AP device statistics"));
+       
+        //will factory reset the device
+        String requestBody = "{\"device Info\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";     
         
-                    
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        
     }
 
 }

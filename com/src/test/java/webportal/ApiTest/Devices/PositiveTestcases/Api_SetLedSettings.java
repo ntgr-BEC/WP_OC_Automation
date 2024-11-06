@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetConnectedNeighborsList extends TestCaseBaseApi{
+public class Api_SetLedSettings extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("VLAN Api_GetKnownUnknownAPs") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("VLAN Api_SetLedSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets connected neighbors list for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test sets led settings of a device the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -52,16 +52,18 @@ public class Api_GetConnectedNeighborsList extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-     
+        headers.put("networkId",WebportalParam.networkId);
+        
+        pathParams.put("deviceType","AP");
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-        pathParams.put("deviceType","AP");   // The enumerations are AP, SW, ORBI, BR, ORBIPS, MHS, PR.
-        pathParams.put("portId","0");
-         
+       
+        String requestBody = "{\"ledSettings\":{\"ledControl\":\"1\"}}";
+        
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("ConnectedNeighborsList"), headers, pathParams, null);
-        getResponse.then().body("response.status", equalTo(true));
-//        .body("response.message", equalTo("Rougue Ap Data at device level is success"));
-                   
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("LED_Settings"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
+        
     }
 
 }

@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,43 +27,40 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeviceDetailsByDeviceIdentifier extends TestCaseBaseApi{
+public class Api_GetAPStatistics extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_DeviceDetailsByDeviceIdentifier") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetAPStatistics") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will get device details by device identifier for  the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test will get AP statistics for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-  
+
     @Step("Send get request to {url}")
     public void step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Response add = new Api_GetDevices().step1();
-        String deviceID= add.jsonPath().getString("deviceInfo[0].deviceId");
-        System.out.println(deviceID);
+
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         headers.put("networkId",WebportalParam.networkId);
         
-        pathParams.put("deviceId",deviceID);
-        pathParams.put("deviceType","AP");
-        pathParams.put("commandType","101");
-        
-        //TO PERFORM ANY REQUEST  
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("DeviceDetails_ByDeviceIdentifier"), headers, pathParams, null);
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
+         
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("AP_Statistics"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
-                   
+        getResponse.then().body("response.message", equalTo("Success in getting AP device statistics"));
+                     
     }
 
 }

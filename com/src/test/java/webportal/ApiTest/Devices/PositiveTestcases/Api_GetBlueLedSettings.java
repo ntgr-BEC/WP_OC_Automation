@@ -1,4 +1,4 @@
-package webportal.ApiTest.Devices;
+package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_SetBlueLedSettings extends TestCaseBaseApi{
+public class Api_GetBlueLedSettings extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
  
     
-    @Feature("Api_SetBlueLedSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetBlueLedSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test sets blue led settings for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
+    @Description("This test gets blue led settings for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -56,14 +56,12 @@ public class Api_SetBlueLedSettings extends TestCaseBaseApi{
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-        pathParams.put("commandType","start");        //The command type. The enumerations are "stop", "start".
-
-        String requestBody ="";
         
         //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("BlueLED_Settings"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("GetBlueLED_Settings"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
+        getResponse.then().body("response.message", equalTo("Blue LED settings info fetched successfully"))
+        .body("details.ledStatus", equalTo("1"));
         
                     
     }
