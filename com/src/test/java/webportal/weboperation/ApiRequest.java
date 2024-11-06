@@ -450,7 +450,7 @@ import util.*;
                 put("GetAllocateCredits","insightappcom/api/organization/v1/creditAllocationDetails/{startFrom}");
                 put("Organization_Identifier","insightappcom/api/organization/v1/details/{accountId}/{orgId}");
                 put("Vlan_Info","insightappcom/api/wired/v1/vlan/{networkId}/{vlanId}");
-                put("SDM_Status","insightappcom/api/device/v1/sdmstatus/{serailNo}");
+                put("SDM_Status","insightappcom/api/device/v1/sdmStatus/{serialNo}");
                 put("Get_Device","insightappcom/api/device/v1/deviceList/{networkId}/{page}");
                 put("Device_RFChannel","insightappcom/api/device/v1/rfChannel/{networkId}/{serialNo}");
                 put("Device_MeshInfo","insightappcom/api/device/v1/meshInfoDetails/{serialNo}/{networkId}");
@@ -488,6 +488,7 @@ import util.*;
                 put("Set_WiredRadius","insightappcom/api/wired/v1/{networkId}/wiredRadiusAuth");
                 put("IpAcl_Sanity","insightappcom/api/wired/v1/ipAclSettings/{networkId}/vlan/{vlanId}");
                 put("Delete_VlanMacAcl","insightappcom/api/wired/v1/macAclSettings/{networkId}/vlan/{vlanId}");
+                put("SDM_Status2","insightappcom/api/device/v1/sdmstatus/{serialNo}");
             }
         };
          
