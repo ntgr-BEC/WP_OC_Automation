@@ -263,18 +263,29 @@ public class WiredLAGPage extends WiredLAGPageElement {
             String[] sRet = getCmdOutputLines("show port-channel all", false);
             for (String str : sRet) {
                 if (str.contains(lagName)) {
-                    if(WebportalParam.sw1Model.contains("M4")){
+                    
+                    
+                    
+                    if(WebportalParam.sw1Model.contains("M4350")){
                         if (!str.contains(String.format("1/0/%s", portIndex))) {
                             bRet = false;
                             logger.info("match error: 001");
                         }
                         
+                    }else if(WebportalParam.sw1Model.contains("M4250")) {
+                    
+                        if (!str.contains(String.format("0/%s", portIndex))) {
+                            bRet = false;
+                            logger.info("match error: 001");
+                        }
+                    
                     }else {
                     if (!str.contains(String.format("g%s", portIndex))) {
                         bRet = false;
                         logger.info("match error: 001");
                     }
                     }
+                                    
                     if (adminMode) {
                         if (!str.contains("En.")) {
                             bRet = false;

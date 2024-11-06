@@ -52,6 +52,7 @@ public class Testcase extends TestCaseBase {
         handle.gotoLocationWireSettings();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingPortConfig);
 
+        MyCommonAPIs.sleepi(5);
         assertTrue(WiredDhcpSnoopingElement.selectButton("Invalid Packets").exists(), "Dhcp snooping invalid packets not available in this page");
     }
 
@@ -60,12 +61,16 @@ public class Testcase extends TestCaseBase {
     public void step2() {
 
         wdsp.enablePortSpecificConfigOnPort(WebportalParam.sw1LagPort1, null,"Invalid Packets");
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         wdsp.enablePortSpecificConfigOnPort(WebportalParam.sw1LagPort2, null,"Invalid Packets");
         handle.refresh();
+        MyCommonAPIs.sleepi(5);
         
         assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort1).isDisplayed());
+        MyCommonAPIs.sleepi(5);
         assertTrue(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort2).isDisplayed());
+        MyCommonAPIs.sleepi(5);
         
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("ip dhcp snooping log-invalid"), "Invalid packets logging not enabled");
@@ -81,6 +86,7 @@ public class Testcase extends TestCaseBase {
         wdsp.deletePortConfigTrustOrInvalidPackets(WebportalParam.sw1LagPort1);
 
         handle.refresh();
+        MyCommonAPIs.sleepi(5);
         assertFalse(WiredDhcpSnoopingElement.txtPortInvalidPacketsCheck(WebportalParam.sw1LagPort1).isDisplayed());
         
         assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
@@ -90,7 +96,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void restore() {
-
+        MyCommonAPIs.sleepi(5);
         wdsp.deletePortConfigTrustOrInvalidPackets(WebportalParam.sw1LagPort2);
 
     }

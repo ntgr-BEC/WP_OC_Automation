@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.ACL.PRJCBUGEN_T4978;
+package webportal.SwitchManaged.ACL.Maximum.PRJCBUGEN_T4978;
 
 import static org.testng.Assert.assertTrue;
 
@@ -98,6 +98,8 @@ public class Testcase extends TestCaseBase {
         wvp.openVlan(vlanName, vlanName, 0);
         
         ipaclIp = String.format("120.1.1.1");
+        lsExpectACL.add(ipaclIp);
+        System.out.printf("create ip acl: %s\n", ipaclIp);
         wvp.editVlanIpFilteringAllow(vlanName, ipaclName, ipaclIp);
     }
     

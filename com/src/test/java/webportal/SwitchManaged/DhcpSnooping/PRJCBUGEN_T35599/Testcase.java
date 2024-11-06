@@ -60,6 +60,7 @@ public class Testcase extends TestCaseBase {
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
 
+        MyCommonAPIs.sleepi(5);
         assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "DHCP Snooping Mode not enabled");
 
         MyCommonAPIs.sleepsync();
@@ -78,6 +79,7 @@ public class Testcase extends TestCaseBase {
         handle.refresh();
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
 
+        MyCommonAPIs.sleepi(5);
         assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "DHCP Snooping Mode not disabled");
 
         MyCommonAPIs.sleepsync();
