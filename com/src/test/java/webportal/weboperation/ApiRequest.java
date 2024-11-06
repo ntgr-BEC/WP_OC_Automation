@@ -483,6 +483,11 @@ import util.*;
                 put("PingTest_Results","insightappcom/api/troubleshoot/v1/pingtestResults/{networkId}/{serialNo}");
                 put("SpeedTest_results","insightappcom/api/troubleshoot/v1/speedtestResults/{networkId}/{serialNo}");
                 put("Traceroute_results","insightappcom/api/troubleshoot/v1/tracerouteTestResults/{networkId}/{serialNo}");
+                put("Set_VlanMembers","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/vlanMembers");
+                put("Switch_CableTest","insightappcom/api/device/v1/switchCableTest/{serialNo}");
+                put("Set_WiredRadius","insightappcom/api/wired/v1/{networkId}/wiredRadiusAuth");
+                put("IpAcl_Sanity","insightappcom/api/wired/v1/ipAclSettings/{networkId}/vlan/{vlanId}");
+                put("Delete_VlanMacAcl","insightappcom/api/wired/v1/macAclSettings/{networkId}/vlan/{vlanId}");
             }
         };
          
