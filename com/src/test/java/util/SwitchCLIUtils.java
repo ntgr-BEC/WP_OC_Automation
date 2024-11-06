@@ -1407,6 +1407,15 @@ public class SwitchCLIUtils {
             //commRes = st.sendCLICommandClear("show snmp community", null);
             //commRes += st.sendCLICommandClear("show snmp host", null);
         } else {
+            
+            if(WebportalParam.sw1Model.contains("M4")) {
+                
+                retTem = st.sendCLICommandClear2("show running-config", null); //retTem = st.sendCLICommandClear("show running-config", null);
+                trapRes = WebportalParam.includeLines(retTem, "Authentication trap", false);
+                commRes = WebportalParam.includeLines(retTem, "snmp community", false);
+                commRes += WebportalParam.includeLines(retTem, "snmp host", false);
+                
+            }else {
             trapRes = st.sendCLICommandClear("show snmptrap", null);
             commRes = st.sendCLICommandClear("show snmpcommunity", null);
             System.out.println("trapRes="+trapRes);
@@ -1414,6 +1423,7 @@ public class SwitchCLIUtils {
                 trapRes = st.sendCLICommandClear("show snmp", null);
             }
             System.out.println("trapRes="+trapRes);
+            }
         }
         
         SNMPClass.init(st, trapRes, commRes);
