@@ -13,7 +13,6 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Devices.Api_GetDevices;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
