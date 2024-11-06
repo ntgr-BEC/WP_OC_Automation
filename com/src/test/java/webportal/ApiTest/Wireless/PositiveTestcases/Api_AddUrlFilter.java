@@ -31,6 +31,7 @@ public class Api_AddUrlFilter extends TestCaseBaseApi{
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     String networkId;
+    String requestBody;
     
     
     @Feature("Api_AddUrlFilter") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -41,6 +42,12 @@ public class Api_AddUrlFilter extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+    }
+    @AfterMethod
+    public void teardown()
+    {
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Url_Filter"), requestBody, headers, pathParams, null);
+        getResponse.then().body("response.status", equalTo(true));
     }
 
   
@@ -53,7 +60,7 @@ public class Api_AddUrlFilter extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
         pathParams.put("networkId",WebportalParam.networkId);
-        String requestBody = "{\"devSecConfigInfo\":{\"enableCustomBlacklist\":1,\"enableExpressionlist\":1,\"urlStatus\":\"1\"}}";
+        requestBody = "{\"devSecConfigInfo\":{\"enableCustomBlacklist\":\"1\",\"enableExpressionlist\":\"1\",\"urlStatus\":\"1\",\"domain\":[\"javatpoint.com\"]}}";
 
         
         //TO PERFORM ANY REQUEST

@@ -54,7 +54,8 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
      * @return  It will take the given port number Xpath
      */
     public static SelenideElement txtPortSelection(String portNo) {
-        return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']", portNo));
+        System.out.println("port number is"+portNo);
+        return $x(String.format("//li[@id='device_0_port_%s']", portNo));
     }
        
     public static SelenideElement txtPortSelectionnext(String portNo) {
@@ -62,11 +63,11 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
     }
     
     public static SelenideElement txtPortAdminModeCheck(String portNo) {
-        return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/..//span[@id='spnEtherNetPortsjuhiii9GroupPrt%s'][1]", portNo, portNo));
+        return $x(String.format("(//li[@id='device_0_port_%s']//span[@id='spnEtherNetPortsjuhiii9GroupPrt1'])[1]", portNo, portNo));
     }
     
     public static SelenideElement txtPortTrustModeCheck(String portNo) {
-        return $x(String.format("//div[@id='divSwitchPortsGroupPrt%s']/..//span[@id='spnEtherNetPortsjuhiii9GroupPrt%s'][2]", portNo, portNo));
+        return $x(String.format("(//li[@id='device_0_port_%s']//span[@id='spnEtherNetPortsjuhiii9GroupPrt1'])[2]", portNo, portNo));
     }
     
     public static boolean checkPortSelectedOrNot(String portNo) {

@@ -66,7 +66,7 @@ public class Api_ModifyInstantWifi extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
        
         pathParams.put("networkId",networkId);
-//        pathParams.put("requestType","1");
+        pathParams.put("requestType","instantWifiLogs");    //requestType can be selectchannels/autoChannel/autoPower/instantWifiLogs
         String requestBody = "{\"nwRfSettings\":{\"isEnable\":\"1\",\"isExcludeDFS\":\"0\",\"defaultTxPower\":\"1\",\"isInsWifiLogsEnabled\":\"1\"}} or {\"nwRfSettings\":{\"selectedChannelsWlan0\":[\"1\",\"4\",\"8\",\"11\"],\"selectedChannelsWlan1\":[\"36\",\"40\",\"44\",\"48\",\"56\",\"60\",\"64\"],\"selectedChannelsWlan2\":[\"100\",\"104\",\"108\",\"112\",\"116\",\"120\",\"124\",\"128\",\"132\",\"136\",\"140\",\"149\",\"153\",\"157\",\"161\",\"165\"],\"selectedChannelsWlan2_6\":[\"5\",\"21\",\"25\",\"37\",\"53\",\"69\",\"85\",\"101\",\"113\",\"117\",\"133\",\"149\",\"165\",\"181\",\"197\",\"213\",\"229\"]}}";
         
         //TO PERFORM ANY REQUEST 

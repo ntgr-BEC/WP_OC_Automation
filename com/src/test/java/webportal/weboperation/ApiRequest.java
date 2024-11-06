@@ -328,6 +328,72 @@ import util.*;
             return response;
             
         }
+        
+        // Generic DELETE request method with delete body
+        public static Response sendDeleteRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
+           
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .statusCode(200)
+                    .extract()
+                    .response();
+            response.prettyPrint();
+            String responseBody=response.getBody().asString();
+            return response;
+            
+        }
+        
+        // Generic PUT request without bodu method
+        public static Response sendPutRequest(String endpoint, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            if(pathParams == null)
+            {
+                pathParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .when()
+                    .put(endpoint)
+                    .then()
+                    .statusCode(200)
+                    .extract()
+                    .response();
+            response.prettyPrint();
+            String responseBody=response.getBody().asString();
+            if(responseBody.contains("Invalid session")) {
+                throw new RuntimeException("Token has expired. Please refresh your token");
+            }
+            
+            
+            return response;
+            
+        }
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
              *
@@ -336,24 +402,25 @@ import util.*;
             {
                 put("Network_Sanity", "insightappcom/api/network/v1/{networkId}");
                 put("Add_Network", "insightappcom/api/network/v1/premium/{accountId}");
-                put("Vlan_Sanity","insightappcom/api/network/v1/vlans/{networkId}");
+                put("Vlan_Sanity","insightappcom/api/wired/v1/vlans/{networkId}");
                 put("Add_Ssid", "insightappcom/api/wireless/v1/ssid/{networkId}");
                 put("Network_Settings", "insightappcom/api/wireless/v1/{networkId}/broadcasttounicast");
-                put("Lag_Group", "insightappcom/api/network/v1/{networkId}/lagGroup");
+                put("LagGroup_Sanity", "insightappcom/api/wired/v1/{networkId}/lagGroups");
                 put("Ssid_Sanity", "insightappcom/api/wireless/v1/{networkId}/{id}");
                 put("Url_Filter", "insightappcom/api/wireless/v1/{networkId}/urlFilter");
                 put("Wireless_Settings", "insightappcom/api/wireless/v1/{networkId}/radioConfig");
                 put("Ars_Sanity", "insightappcom/api/network/v1/arsConfig/{networkId}");
-                put("InstantWifi_Sanity", "insightappcom/api/network/v1/networkRFSettings/{networkId}");
-                put("FastRoaming_Sanity", "insightappcom/api/network/v1/fastRoaming/{networkId}");
-                put("DefaultNatSsids_Sanity", "insightappcom/api/network/v1/natSsid");
+                put("InstantWifi_Sanity", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}");
+                put("Get_FastRoaming", "insightappcom/api/wireless/v1/fastRoaming/{networkId}");
+                put("Modify_FastRoaming", "insightappcom/api/wireless/v1/fastRoaming/{networkId}/{status}");
+                put("DefaultNatSsids_Sanity", "insightappcom/api/wireless/v1/natSsid");
                 put("RadiusServerConfig_Sanity", "insightappcom/api/network/v1/radiusServerConfig");
-                put("ScheduleWifi_Sanity", "insightappcom/api/network/v1/scheduleSsid/{networkId}");
+                put("ScheduleWifi_Sanity", "insightappcom/api/wireless/v1/scheduleSsid/{networkId}");
                 put("SNMP_Sanity", "insightappcom/api/network/v1/snmp/{accountId}/{networkId}");
                 put("Syslog_Settings", "insightappcom/api/network/v1/sysLog/{networkId}");
                 put("Set_SNMP_Settings", "insightappcom/api/network/v1/snmp/{accountId}/{networkId}/{commandType}");
                 put("SystemHealthDetails_Sanity", "insightappcom/api/network/v1/systemHealthDetails/{accountId}/{networkId}");
-                put("TrafficPolices_Sanity", "insightappcom/api/network/v1/wirelessNetwork/trafficPolicies/{networkId}/{id}");
+                put("TrafficPolices_Sanity", "insightappcom/api/wireless/v1/wirelessNetwork/trafficPolicies/{networkId}/{id}");
                 put("Country_List", "insightappcom/api/public/v1/countryList");
                 put("Insight_Models", "insightappcom/api/public/v1/models");
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
@@ -365,10 +432,53 @@ import util.*;
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
                 put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
                 put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");
-                put("Get_Organization_List", "insightappcom/api/organization/v1/{accountId}");                            
+                put("Get_Organization_List", "insightappcom/api/organization/v1/{accountId}");       
+                put("Mesh_Info", "insightappcom/api/wireless/v1/meshInfo/{networkId}"); 
+                put("Optimize_Now", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/optimizeNow/{checkSchedule}");
+                put("List_Wireless_Networks", "insightappcom/api/wireless/v1/ssidList/{networkId}");
+                put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
+                put("API_Headers", "insightappcom/api/v1/apiHeaders");
+                put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
+                put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
+                put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
+                put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
+                put("Get_iPAcl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/ipAclSettings");
+                put("Enable_MacAcl","insightappcom/api/wired/v1/aclSetting/macAuth/{networkId}/vlan/{vlanId}");
+                put("VlanMacAcl_Sanity","insightappcom/api/wired/v1/aclSettings/{networkId}/vlan/{vlanId}");
+                put("AllocateCredits","insightappcom/api/organization/v1/allocateCredit/{orgId}");
+                put("GetAllocateDeviceCredits","insightappcom/api/organization/v1/creditAllocation/{orgId}");
+                put("GetAllocateCredits","insightappcom/api/organization/v1/creditAllocationDetails/{startFrom}");
+                put("Organization_Identifier","insightappcom/api/organization/v1/details/{accountId}/{orgId}");
+                put("Vlan_Info","insightappcom/api/wired/v1/vlan/{networkId}/{vlanId}");
+                put("SDM_Status","insightappcom/api/device/v1/sdmstatus/{serailNo}");
+                put("Get_Device","insightappcom/api/device/v1/deviceList/{networkId}/{page}");
+                put("Device_RFChannel","insightappcom/api/device/v1/rfChannel/{networkId}/{serialNo}");
+                put("Device_MeshInfo","insightappcom/api/device/v1/meshInfoDetails/{serialNo}/{networkId}");
+                put("LED_Settings","insightappcom/api/device/v1/ledSettings/{deviceType}/{serialNo}");
+                put("Known_UnknownAPs","insightappcom/api/device/v1/knownUnknownAPs/{networkId}/{serialNo}");
+                put("Device_Diagnostics","insightappcom/api/device/v1/diagnostic/{serailNo}");
+                put("DeviceDetails_ByDeviceIdentifier","insightappcom/api/device/v1/deviceInfo/{deviceId}/{deviceType}/{commandType}");
+                put("DeviceFactoryReset_DeviceReboot","/insightappcom/api/device/v1/deviceFactoryReset/{serialNo}/{deviceType}");
+                put("Device_IPSettings","insightappcom/api/device/v1/device/{deviceType}/{serialNo}/{commandType}");
+                put("ConnectedNeighborsList","insightappcom/api/device/v1/connectedNeighborsList/{serialNo}/{deviceType}/{portId}");
+                put("GetBlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}");
+                put("BlueLED_Settings","insightappcom/api/device/v1/blueLEDSettings/{serialNo}/{commandType}");
+                put("AP_Statistics","insightappcom/api/device/v1/apStatistics/{serialNo}");
+                put("IP_Statistics","insightappcom/api/device/v1/{serialNo}/{deviceType}/{commandType}");
+                put("Delete_Device","insightappcom/api/device/v1/{serialNo}/{networkId}");
+                put("Add_Device","insightappcom/api/device/v1/{networkId}");
+                put("LagGroupId_Sanity", "insightappcom/api/wired/v1/{networkId}/{lagGroupId}/lagGroups");
+                put("Add_Network_Pro","insightappcom/api/network/v1/{accountId}/{orgId}");
+                put("Get_Network_Pro","insightappcom/api/network/v1/networkList/{accountId}/{orgId}");
+                put("Set_SNMP_Configuration","insightappcom/api/network/v1/snmp/{accountId}/{orgId}/{networkId}/{commandType}");
+                put("Fetch_Credits","insightappcom/api/license/v1/creditsInfo");
+                put("Get_Purchase_Confirmation","insightappcom/api/license/v1/licenseInfo");
+                put("Get_Licensekey_Information","insightappcom/api/license/v1/licenseKeyInfo/{type}");
+                put("Add_Purchase_Confirmation","insightappcom/api/license/v1/addLicense");
+                
             }
         };
-        
+         
     }
 
 

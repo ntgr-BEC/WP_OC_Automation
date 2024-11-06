@@ -73,7 +73,7 @@ public class Api_GetTrafficPolicies extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId","networkId");
+        pathParams.put("networkId",networkId);
         pathParams.put("id",id); 
          
         //TO PERFORM ANY REQUEST 

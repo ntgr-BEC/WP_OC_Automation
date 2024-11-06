@@ -68,7 +68,7 @@ public class Api_GetFastRoaming extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
       
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("FastRoaming_Sanity"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_FastRoaming"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
     }

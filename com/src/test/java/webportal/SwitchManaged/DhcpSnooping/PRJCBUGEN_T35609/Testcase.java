@@ -54,6 +54,7 @@ public class Testcase extends TestCaseBase {
         handle.gotoLocationWireSettings();
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingPortConfig);
 
+        MyCommonAPIs.sleepi(5);
         assertTrue(WiredDhcpSnoopingElement.selectButton("Trust Mode").exists(), "Dhcp snooping trust not available in this page");
     }
 
@@ -67,6 +68,7 @@ public class Testcase extends TestCaseBase {
 
             wdsp.enablePortSpecificConfigOnPort(Integer.toString(portNumber), "Trust Mode", null);
             handle.refresh();
+            MyCommonAPIs.sleepi(5);
             assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(portNumber)).isDisplayed());
 
             String portType = webportalParam.getSwitchPort(webportalParam.sw1Model, portNumber);
@@ -84,7 +86,8 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 3: enable trust mode by selecting all and check the CLI")
     public void step3() {
-
+        
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         handle.click(WiredDhcpSnoopingElement.selectButton("Select All"));
         handle.click(WiredDhcpSnoopingElement.selectButton("Trust Mode"));
@@ -92,7 +95,8 @@ public class Testcase extends TestCaseBase {
 
         int totalPorts = WiredDhcpSnoopingElement.allPorts().size();
         for (int portNumber = 1; portNumber <= totalPorts; portNumber++) {
-
+            
+            MyCommonAPIs.sleepi(5);
             handle.refresh();
             assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(portNumber)).isDisplayed());
 
@@ -110,6 +114,7 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 4: select all and deselect all then check the config")
     public void step4() {
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         handle.click(WiredDhcpSnoopingElement.selectButton("Select All"));
         int totalPorts = WiredDhcpSnoopingElement.allPorts().size();

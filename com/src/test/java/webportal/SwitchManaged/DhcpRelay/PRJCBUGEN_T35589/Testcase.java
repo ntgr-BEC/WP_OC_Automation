@@ -62,25 +62,47 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Enable Admin mode and trust mode check the CLI")
     public void step2() {
 
-        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)), "admin Mode", "trust mode");
+        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))), "admin Mode", "trust mode");
         handle.refresh();
-        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2)-1)), "admin Mode", "trust mode");
+        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2))), "admin Mode", "trust mode");
 
         handle.refresh();
-        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
-        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2)-1)).isDisplayed());
+        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))).isDisplayed());
+        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2))).isDisplayed());
+        
 
+        
+        MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(60);
       //check the cli output on sw1LagPort1CLI
+        
+        if(WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("dhcp l2relay option"), "admin mode not enabled");
-        
+                .contains("dhcp l2relay"), "admin mode not enabled");
+
         //check the cli output on sw1LagPort2CLI
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
         assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
-                .contains("dhcp l2relay option"), "admin mode not enabled");
+                .contains("dhcp l2relay"), "admin mode not enabled");
+        
+        }else {
+            
+            
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
+                    .contains("dhcp l2relay trust"), "admin mode not enabled");
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
+                    .contains("dhcp l2relay option"), "admin mode not enabled");
+
+            //check the cli output on sw1LagPort2CLI
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
+                    .contains("dhcp l2relay trust"), "admin mode not enabled");
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
+                    .contains("dhcp l2relay option"), "admin mode not enabled");
+            
+        }
 
 
     }
@@ -90,25 +112,32 @@ public class Testcase extends TestCaseBase {
     public void step3() {
 
         handle.refresh();
-        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)));
+        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))));
         
         handle.refresh();
-        assertFalse(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
-        assertFalse(WiredDhcpRelayElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1)-1)).isDisplayed());
+        assertFalse(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))).isDisplayed());
+        assertFalse(WiredDhcpRelayElement.txtPortTrustModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))).isDisplayed());
 
         //check the CLI output on sw1lagPort1CLI
+        if(WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
         assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                 .contains("dhcp l2relay trust"), "admin mode not enabled");
         assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("dhcp l2relay option"), "admin mode should be disabled");
-
+                .contains("dhcp l2relay"), "admin mode should be disabled");
+        }else
+        {
+            assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
+                    .contains("dhcp l2relay trust"), "admin mode not enabled");
+            assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
+                    .contains("dhcp l2relay option"), "admin mode should be disabled");   
+        }
     }
     
     @AfterMethod(alwaysRun = true)
     public void restore() {
 
         handle.refresh();
-        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2)-1)));
+        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2))));
 
     }
 
