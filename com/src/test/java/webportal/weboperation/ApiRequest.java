@@ -475,7 +475,14 @@ import util.*;
                 put("Get_Purchase_Confirmation","insightappcom/api/license/v1/licenseInfo");
                 put("Get_Licensekey_Information","insightappcom/api/license/v1/licenseKeyInfo/{type}");
                 put("Add_Purchase_Confirmation","insightappcom/api/license/v1/addLicense");
-                
+                put("DNSLookUp","insightappcom/api/troubleshoot/v1/dnsLookup/{networkId}");
+                put("PingTest","insightappcom/api/troubleshoot/v1/pingTest/{networkId}");
+                put("SpeedTest","insightappcom/api/troubleshoot/v1/speedTest/{networkId}");
+                put("Traceroute","insightappcom/api/troubleshoot/v1/traceRoute/{networkId}");
+                put("DNSLookUp_Results","insightappcom/api/troubleshoot/v1/dnslookupResults/{networkId}/{serialNo}");
+                put("PingTest_Results","insightappcom/api/troubleshoot/v1/pingtestResults/{networkId}/{serialNo}");
+                put("SpeedTest_results","insightappcom/api/troubleshoot/v1/speedtestResults/{networkId}/{serialNo}");
+                put("Traceroute_results","insightappcom/api/troubleshoot/v1/tracerouteTestResults/{networkId}/{serialNo}");
             }
         };
          
