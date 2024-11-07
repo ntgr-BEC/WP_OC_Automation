@@ -81,6 +81,10 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+            if(pathParams == null)
+            {
+                pathParams=new HashMap<>();
+            }
             Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -489,6 +493,7 @@ import util.*;
                 put("IpAcl_Sanity","insightappcom/api/wired/v1/ipAclSettings/{networkId}/vlan/{vlanId}");
                 put("Delete_VlanMacAcl","insightappcom/api/wired/v1/macAclSettings/{networkId}/vlan/{vlanId}");
                 put("SDM_Status2","insightappcom/api/device/v1/sdmstatus/{serialNo}");
+                put("RadiusServer_Sanity","insightappcom/api/wired/v1/radiusServerConfig");
             }
         };
          
