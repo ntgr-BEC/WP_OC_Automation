@@ -23,7 +23,7 @@ public class ManagerPageElement extends MyCommonAPIs {
     public SelenideElement        grantaccessall   = $x("//input[@id='isApplyCheckBox']/../i");
     public SelenideElement        invitebutton     = $("#saveOrgBtn");
     public SelenideElement        invitebuttonsentok = $x("//*[@id=\"successModalInviteManager\"]");
-    public SelenideElement        successdialogmsg = $x("//p[text()=\"Your invitation has been sent.\"]"); //("//p[text()='" + WebportalParam.getLocText("Your invitation has been sent.") + "']");
+    public SelenideElement        successdialogmsg = $x("//p[text()='Your invitation has been sent.']"); //("//p[text()='" + WebportalParam.getLocText("Your invitation has been sent.") + "']");
     public SelenideElement        invitesuccessok  = $("#successModalInviteManager");
     public static SelenideElement removemanager    = $x("//button[text()='" + WebportalParam.getLocText("Remove") + "']");
 //    public SelenideElement       OrgCountMgrPage   = $x("//select[@name='managerType']");
@@ -172,9 +172,34 @@ public class ManagerPageElement extends MyCommonAPIs {
         return element;
     }
     
+    //AddedBypratik 
+    public SelenideElement verifyExistingManger(String name) {
+        SelenideElement verifyExistingManger    = $x("//td[text()='"+ name +"']/..//td[text()='Active']");
+        return verifyExistingManger;
+    }
     
+    //AddedBypratik 
+    public SelenideElement verifySecondaryAdmin(String name) {
+        SelenideElement verifySecondaryAdmin    = $x("//td[text()='"+ name +"']");
+        return verifySecondaryAdmin;
+    }
     
- 
+    //AddedBypratik 
+    public SelenideElement deleteSecAdmin(String name) {
+        SelenideElement deleteSecAdmin    = $x("//td[text()='"+ name +"']/..//img[@class='deleteDeviceIcon']");
+        return deleteSecAdmin;
+    }
+    
+    //AddedByPratik
+    public SelenideElement secondaryAdminOpt         = $x("//a[@href=\"#/organization/secondaryAdmin\"]");
+    public SelenideElement addSecAdmin               = $x("//div[@id='_divMoreIconOrg']");
+    public SelenideElement secondaryadminname        = $x("//input[@id='secondaryAdminName']");
+    public SelenideElement secondaryAdminEmail       = $x("//input[@id='secondaryAdminEmail']");
+    public SelenideElement addSecondaryAdminButton   = $x("//button[@id='saveOrgBtn']");
+    public SelenideElement successMsg1               = $x("//div[text()='Your invitation has been sent successfully. Please ']");
+    public SelenideElement successMsg2               = $x("//*[text()='to see invited secondary admins.']");
+    public SelenideElement successMsg3               = $x("//a[text()='click here']");
+    public SelenideElement pendingStatus             = $x("//*[text()='Pending']");
 }
 
 
