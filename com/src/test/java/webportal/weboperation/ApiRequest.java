@@ -496,6 +496,8 @@ import util.*;
                 put("RadiusServer_Sanity","insightappcom/api/wired/v1/radiusServerConfig");
                 put("Set_StaticRoute","insightappcom/api/wired/v1/staticRouteInfo/{networkId}");
                 put("StaticRoute_Sanity","insightappcom/api/wired/v1/staticRoute/{networkId}");
+                put("Set_SpanningTree","insightappcom/api/wired/v1/spanningTree/{networkId}");
+                put("Get_SpanningTree","insightappcom/api/wired/v1/spanningTreeInfo/{networkId}");
             }
         };
          
