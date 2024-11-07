@@ -43,6 +43,8 @@ import webportal.webelements.OrganizationElement;
 import webportal.weboperation.WirelessQuickViewPage;
 import webportal.webelements.WirelessQuickViewElement;
 
+
+
 public class OrganizationPage extends OrganizationElement {
     String date    = "";
     String timearr = "";
@@ -320,11 +322,10 @@ public class OrganizationPage extends OrganizationElement {
                 // // TODO Auto-generated catch block
                 // e.printStackTrace();
                 // }
-             
                 ownerEmail.click();
-                MyCommonAPIs.sleepi(10);
-                ownerEmail.clear();
-                MyCommonAPIs.sleepi(10);
+                sleep(1000);
+                executeJavaScript("arguments[0].value = '';", ownerEmail);
+                sleep(1000);
                 ownerEmail.sendKeys(map.get("Email Address"));
             }
             if (map.containsKey("Phone Number")) {
