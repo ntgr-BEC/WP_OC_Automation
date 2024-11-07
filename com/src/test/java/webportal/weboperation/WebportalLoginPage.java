@@ -422,6 +422,17 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         return OTP;
             
         }
+    
+    //AddedByPratik
+    public boolean verifyLoginPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        if (loginButtonNew.exists() || loginButtonCognito.exists()) {
+            logger.info("Invite manager link is working fine landed on login page");
+            result = true;
+       }
+        return result;
+    }
        
     }
    
