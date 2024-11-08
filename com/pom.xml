@@ -205,6 +205,12 @@
     		<version>5.5.2</version> <!-- Check for the latest version -->
 		</dependency>
 		<dependency>
+    		<groupId>junit</groupId>
+    		<artifactId>junit</artifactId>
+    		<version>4.13.2</version> <!-- Make sure you use a version compatible with your setup -->
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
         <groupId>io.rest-assured</groupId>
         <artifactId>rest-assured</artifactId>
         <version>4.5.1</version>
