@@ -43,7 +43,9 @@ import webportal.webelements.OrganizationElement;
 import webportal.weboperation.WirelessQuickViewPage;
 import webportal.webelements.WirelessQuickViewElement;
 
-
+import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Selenide.*;
+import org.junit.Test;
 
 public class OrganizationPage extends OrganizationElement {
     String date    = "";
@@ -6544,7 +6546,72 @@ public class OrganizationPage extends OrganizationElement {
         }
     }
 
-
+    //AddedbyPratik
+    public boolean selectExistingOwner(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(1);
+        waitElement(sOrganizationLocationElement1);
+        if (checkOrganizationIsExist(map.get("Name"))) {
+            dropdownOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            editOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            waitElement(NameOrg);
+            MyCommonAPIs.sleepi(1);
+            dropdown.selectOptionByValue(map.get("Email Address"));
+            MyCommonAPIs.sleepi(1);
+            SelenideElement selectedOption = dropdown.getSelectedOption();
+            if (selectedOption.getValue().equals(map.get("Email Address"))) {
+                result = true;
+            }
+            MyCommonAPIs.sleepi(1);
+            selectNotificationAndReport(map);
+            if (map.containsKey("Scheduled Reports")) {
+                if (map.get("Scheduled Reports").equals("disable")) {
+                    if (!scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduledreport.click();
+                    }
+                } else if (map.get("Scheduled Reports").equals("enable")) {
+                    if (scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduledreport.click();
+                    }
+                }
+            }
+            if (map.containsKey("Scheduled Reports Option")) {
+                switch (map.get("Scheduled Reports")) {
+                case "weekly":
+                    if (!scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduleweekly.selectRadio("1");
+                    }
+                    break;
+                case "monthly":
+                    if (!schedulemonthly.has(Condition.attribute("disabled"))) {
+                        schedulemonthly.selectRadio("2");
+                    }
+                    break;
+                }
+            }
+            SaveOrg.click();
+            logger.info("--------------- Organisation is Edited Succesfully ----------");
+            Selenide.sleep(10000);
+            if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+                $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+            }
+        }
+        waitReady();
+        return result;
+    }
   
+    //AddedByPratik
+    public boolean verifyActiveOwner(String ownerEmail) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(verifyOwnerEmailonOrgPage(ownerEmail));
+        if (!$("p.hide").is(Condition.visible) && !$("div.hide").is(Condition.visible) && verifyOwnerEmailonOrgPage(ownerEmail).exists()) {
+            result = true;
+            logger.info("Owner is showing active");
+        }
+        return result;
+    }
     
 }
