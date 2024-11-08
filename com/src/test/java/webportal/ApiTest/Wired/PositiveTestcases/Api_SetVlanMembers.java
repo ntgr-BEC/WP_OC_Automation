@@ -45,6 +45,9 @@ public class Api_SetVlanMembers extends TestCaseBaseApi{
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
+        headers.put("token",WebportalParam.token);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);     
         step1();
         step2();
     }
@@ -66,11 +69,7 @@ public class Api_SetVlanMembers extends TestCaseBaseApi{
        Map<String, String> pathParams1 = new HashMap<String, String>();
        pathParams1.put("networkId",WebportalParam.networkId);
        
-       
-       headers.put("token",WebportalParam.token);
-       headers.put("apikey",WebportalParam.apikey);
-       headers.put("accountId",WebportalParam.accountId);     
-       
+
        
        String requestBody = "{\"vlan\":{\"name\":\"VLAN_250\",\"vlanId\":\"250\",\"trafficClass\":\"0\",\"voipOptimization\":\"0\",\"igmpSnooping\":\"0\",\"overrideTrafficPriority\":\"0\",\"qosConfig\":\"Data\",\"vlanType\":\"6\",\"vlanNwName\":\"VLAN_250\",\"vlanNwDesc\":\"VLAN_250\"}}";
 

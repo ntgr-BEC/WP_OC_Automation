@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_VlanInfo extends TestCaseBaseApi{
+public class Api_GetVlanInfo extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();

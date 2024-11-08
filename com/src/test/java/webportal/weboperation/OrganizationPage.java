@@ -45,7 +45,7 @@ import webportal.webelements.WirelessQuickViewElement;
 
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.*;
-import org.junit.Test;
+
 
 public class OrganizationPage extends OrganizationElement {
     String date    = "";

@@ -498,6 +498,7 @@ import util.*;
                 put("StaticRoute_Sanity","insightappcom/api/wired/v1/staticRoute/{networkId}");
                 put("Set_SpanningTree","insightappcom/api/wired/v1/spanningTree/{networkId}");
                 put("Get_SpanningTree","insightappcom/api/wired/v1/spanningTreeInfo/{networkId}");
+                put("Get_VlanMembers","insightappcom/api/wired/v1/vlan/{networkId}/vlanmembers/{vlanId}");
             }
         };
          
