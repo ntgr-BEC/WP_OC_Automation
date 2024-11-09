@@ -55,6 +55,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         
 
         String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
+        requestBody = requestBody.replace("\"serialNo\":\"4XT178EX0110C\"", "\"serialNo\":\"" + WebportalParam.ap1deveiceName + "\"");
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
