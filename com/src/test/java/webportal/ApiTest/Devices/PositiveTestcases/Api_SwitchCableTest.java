@@ -52,7 +52,6 @@ public class Api_SwitchCableTest extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-        headers.put("networkId",WebportalParam.networkId);
         
         pathParams.put("serialNo",WebportalParam.sw1deveiceName);
          
