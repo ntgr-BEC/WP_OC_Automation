@@ -77,6 +77,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  * @author Netgear
  */
@@ -5486,34 +5489,35 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean verify(String lic) {
+
         MyCommonAPIs.sleepi(10);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        MyCommonAPIs.sleepi(10);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
 
-            break;
-        }
-       
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        $x("//*[text()='Organization Level Active Subscription']/..//i[@class='icon icon-icon-collapse']").click();
+
+        MyCommonAPIs.sleepi(5);
+
+        System.out.println("Print the element");
+
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+
+        System.out.println(actOnDateText);
+        System.out.println(expOnDateText);
+
+        int actOnYear = extractYear(actOnDateText);
+        int expOnYear = extractYear(expOnDateText);
+
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
     }
+
     
     public boolean verifyLMS(String lic) {
         MyCommonAPIs.sleepi(10);
@@ -8871,6 +8875,130 @@ public int verifyDeviceCredits() {
       logger.info("Available Devices: "+actualdevshown);
   }
   return actualdevshown;
+}
+//AddedByPratik
+public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
+    boolean result = false;
+    logger.info("Check email address is:" + mailname);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    String url = "https://yopmail.com";
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+    MyCommonAPIs.sleepi(5);
+    Selenide.switchTo().window(1);
+    String inputElement = "//input[@id='login']";
+    $x(inputElement).clear();
+    $x(inputElement).sendKeys(mailname);
+    $x("//button[@title='Check Inbox @yopmail.com']").click();
+    SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+    Selenide.switchTo().frame(frame);
+    MyCommonAPIs.sleepsync();
+   
+    System.out.println(inviteEmailLinkAndText.getText());
+    if (inviteEmailLinkAndText.getText().contains("click here to accept the invitation")) {
+        result = true;
+        logger.info("Received invitation mail");
+    }
+    return result;
+
+}
+//AddedByPratik
+public boolean inviteEmailFillDateandAccept() {
+    boolean result = false;
+    waitElement(inviteEmailLinkAndText);
+    inviteEmailLinkAndText.click();
+    MyCommonAPIs.sleepi(10);
+    ArrayList<String> tabs = new ArrayList<>(WebDriverRunner.getWebDriver().getWindowHandles());
+    if (tabs.size() > 1) {
+        WebDriverRunner.getWebDriver().switchTo().window(tabs.get(tabs.size() - 1));
+        result = true;
+    }
+    System.out.println("Current URL in new tab: " + WebDriverRunner.getWebDriver().getCurrentUrl());
+    
+    return result;
+}
+
+public boolean FillInvitemanagerOwnerInfoAndVerifylogin(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(5);
+    waitElement(ownerconfirmemail);
+    ownerconfirmemail.sendKeys(map.get("Confirm Email"));
+    ownerpassword.sendKeys(map.get("Password"));
+    ownerconfirmpwd.sendKeys(map.get("Confirm Password"));
+    ownercountrycode.selectOption(map.get("Country"));
+    ownerphonenum.sendKeys(map.get("Phone Number"));
+    MyCommonAPIs.sleepi(1);
+    
+    if (policyText1.exists()) {
+        policyText1.click();
+    }
+
+    MyCommonAPIs.sleepi(1);
+    if (policyText2.exists()) {
+        policyText2.click();
+    }
+
+    MyCommonAPIs.sleepi(1);
+    if (signupbuttonForManagerandOwner.exists()) {
+        signupbuttonForManagerandOwner.click();
+    }
+    
+    MyCommonAPIs.sleepi(20);
+    if ($x("//p[text()='Netgear']").exists()) {
+        result = true;
+        logger.info("Account created and loggedin");
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForInvitemangaerOwner1(String mailname) {
+  boolean result = false;
+  logger.info("Check email address is:" + mailname);
+  WebDriver driver = WebDriverRunner.getWebDriver();
+  String url = "https://yopmail.com";
+  ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+  MyCommonAPIs.sleepi(5);
+  Selenide.switchTo().window(3);
+  String inputElement = "//input[@id='login']";
+  $x(inputElement).clear();
+  $x(inputElement).sendKeys(mailname);
+  $x("//button[@title='Check Inbox @yopmail.com']").click();
+  SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+  Selenide.switchTo().frame(frame);
+  MyCommonAPIs.sleepsync();
+ 
+  System.out.println(inviteEmailLinkAndText.getText());
+  if (inviteEmailLinkAndText.getText().contains("click here to accept the invitation")) {
+      result = true;
+      logger.info("Received invitation mail");
+  }
+  return result;
+
+}
+
+//AddedByPratik
+public boolean verifySignUpPage() {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    if (ownerconfirmemail.exists() && ownerpassword.exists() && ownerpassword.exists() && ownerconfirmpwd.exists()) {
+        logger.info("After clicking on invite manager link; landed on sign up page");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+private int extractYear(String dateText) {
+    try {
+        System.out.println("Extracting year from: " + dateText);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+        Date date = dateFormat.parse(dateText);
+        System.out.println("Parsed Date: " + date);
+        return date.getYear() + 1900;
+    } catch (Exception e) {
+        System.err.println("Invalid date format: " + dateText);
+        return -1;
+    }
 }
 
 }

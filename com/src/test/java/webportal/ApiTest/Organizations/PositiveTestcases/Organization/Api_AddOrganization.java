@@ -34,7 +34,7 @@ public class Api_AddOrganization extends TestCaseBaseApi{
     String org    = "Org" + String.valueOf(randomNumber);
     String owner    = "owner" + String.valueOf(randomNumber);
     
-    @Feature("API_Organizations_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_AddOrganization") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Get list of organization(s) based on the account identifier.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.

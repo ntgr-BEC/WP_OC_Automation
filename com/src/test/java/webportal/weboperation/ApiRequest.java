@@ -81,6 +81,10 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+            if(pathParams == null)
+            {
+                pathParams=new HashMap<>();
+            }
             Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -450,7 +454,7 @@ import util.*;
                 put("GetAllocateCredits","insightappcom/api/organization/v1/creditAllocationDetails/{startFrom}");
                 put("Organization_Identifier","insightappcom/api/organization/v1/details/{accountId}/{orgId}");
                 put("Vlan_Info","insightappcom/api/wired/v1/vlan/{networkId}/{vlanId}");
-                put("SDM_Status","insightappcom/api/device/v1/sdmstatus/{serailNo}");
+                put("SDM_Status","insightappcom/api/device/v1/sdmStatus/{serialNo}");
                 put("Get_Device","insightappcom/api/device/v1/deviceList/{networkId}/{page}");
                 put("Device_RFChannel","insightappcom/api/device/v1/rfChannel/{networkId}/{serialNo}");
                 put("Device_MeshInfo","insightappcom/api/device/v1/meshInfoDetails/{serialNo}/{networkId}");
@@ -475,7 +479,26 @@ import util.*;
                 put("Get_Purchase_Confirmation","insightappcom/api/license/v1/licenseInfo");
                 put("Get_Licensekey_Information","insightappcom/api/license/v1/licenseKeyInfo/{type}");
                 put("Add_Purchase_Confirmation","insightappcom/api/license/v1/addLicense");
-                
+                put("DNSLookUp","insightappcom/api/troubleshoot/v1/dnsLookup/{networkId}");
+                put("PingTest","insightappcom/api/troubleshoot/v1/pingTest/{networkId}");
+                put("SpeedTest","insightappcom/api/troubleshoot/v1/speedTest/{networkId}");
+                put("Traceroute","insightappcom/api/troubleshoot/v1/traceRoute/{networkId}");
+                put("DNSLookUp_Results","insightappcom/api/troubleshoot/v1/dnslookupResults/{networkId}/{serialNo}");
+                put("PingTest_Results","insightappcom/api/troubleshoot/v1/pingtestResults/{networkId}/{serialNo}");
+                put("SpeedTest_results","insightappcom/api/troubleshoot/v1/speedtestResults/{networkId}/{serialNo}");
+                put("Traceroute_results","insightappcom/api/troubleshoot/v1/tracerouteTestResults/{networkId}/{serialNo}");
+                put("Set_VlanMembers","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/vlanMembers");
+                put("Switch_CableTest","insightappcom/api/device/v1/switchCableTest/{serialNo}");
+                put("Set_WiredRadius","insightappcom/api/wired/v1/{networkId}/wiredRadiusAuth");
+                put("IpAcl_Sanity","insightappcom/api/wired/v1/ipAclSettings/{networkId}/vlan/{vlanId}");
+                put("Delete_VlanMacAcl","insightappcom/api/wired/v1/macAclSettings/{networkId}/vlan/{vlanId}");
+                put("SDM_Status2","insightappcom/api/device/v1/sdmstatus/{serialNo}");
+                put("RadiusServer_Sanity","insightappcom/api/wired/v1/radiusServerConfig");
+                put("Set_StaticRoute","insightappcom/api/wired/v1/staticRouteInfo/{networkId}");
+                put("StaticRoute_Sanity","insightappcom/api/wired/v1/staticRoute/{networkId}");
+                put("Set_SpanningTree","insightappcom/api/wired/v1/spanningTree/{networkId}");
+                put("Get_SpanningTree","insightappcom/api/wired/v1/spanningTreeInfo/{networkId}");
+                put("Get_VlanMembers","insightappcom/api/wired/v1/vlan/{networkId}/vlanmembers/{vlanId}");
             }
         };
          

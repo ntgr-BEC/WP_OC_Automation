@@ -36,7 +36,7 @@ public class Api_AddLocationPro extends TestCaseBaseApi{
     String OrgID;
 
     
-    @Feature("API_Organizations_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_AddLocationPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Add network from pro account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.

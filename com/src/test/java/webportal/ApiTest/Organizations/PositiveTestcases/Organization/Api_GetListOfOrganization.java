@@ -36,7 +36,7 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
     String orgId2;
     String orgId3;
     
-    @Feature("API_Organizations_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetListOfOrganization") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Get list of organization(s) based on the account identifier.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.

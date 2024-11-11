@@ -595,4 +595,11 @@ public class OrganizationElement extends MyCommonAPIs {
       return SSID;
   }
   
+  //AddedByPratik
+  public SelenideElement        dropdown = $("#existingUser");
+  public SelenideElement verifyOwnerEmailonOrgPage(String ownerEmail) {
+      SelenideElement ownerEmailverify = $x("//h3[text()='"+ ownerEmail +"']");
+      return ownerEmailverify;
+  }
+  
 }
