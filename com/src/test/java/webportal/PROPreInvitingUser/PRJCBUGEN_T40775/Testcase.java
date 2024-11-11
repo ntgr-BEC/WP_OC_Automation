@@ -34,7 +34,7 @@ public class Testcase extends TestCaseBase {
     int    num      = r.nextInt(10000000);
     String mailname = "owner" + String.valueOf(num);
     String ownMail  = mailname + "@yopmail.com";
-    String organizationName = "PRJCBUGEN_T40775";
+    String organizationName = "PRJCBUGEN40775";
 
     @Feature("PROPreInvitingUser") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T40775") // It's a testcase id/link from Jira Test Case but replace - with _.
