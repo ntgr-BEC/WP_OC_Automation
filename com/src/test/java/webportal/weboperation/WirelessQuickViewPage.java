@@ -11288,6 +11288,22 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         MyCommonAPIs.sleepi(3);
     }
+    
+    //AddedByPratik
+    public boolean verifyAllcountUnderSettingsdevicesoption() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(totaldevicesAvilable);
+        String extractedText = totaldevicesAvilable.text();
+        extractedText = extractedText.replace("Devices (", "").replace(")", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        int expectedNumber = 1;
+        if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
+            result = true;
+            logger.info("Total devices count showing correctly on wireless page");
+        }
+        return result;
+    }
 }
 
   
