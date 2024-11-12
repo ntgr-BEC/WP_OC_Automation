@@ -77,7 +77,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 3: Check whether connected connect is shown in client list;")
     public void step3() {
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        MyCommonAPIs.sleepi(60);
+//        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
         assertTrue(new WirelessQuickViewPage().checkClientConnect(WebportalParam.clientwlanmac), "Client cannot connected.");
         new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
     }

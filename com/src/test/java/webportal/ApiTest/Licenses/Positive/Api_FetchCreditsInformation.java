@@ -17,6 +17,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -56,6 +57,7 @@ public class Api_FetchCreditsInformation extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     {
+        new Api_AddOrganization().step1();
       
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
         headers.put("token",WebportalParam.token);

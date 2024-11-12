@@ -1,4 +1,4 @@
-package webportal.ApiTest.Organizations.PositiveTestcases.Location;
+package webportal.ApiTest.Location.PositiveTestcases.Pro;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
@@ -19,7 +19,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;

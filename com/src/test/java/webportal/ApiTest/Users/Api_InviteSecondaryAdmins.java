@@ -1,10 +1,11 @@
-package webportal.ApiTest.Organizations.PositiveTestcases.Organization;
+package webportal.ApiTest.Users;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,38 +27,36 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetOrganizationIdentifier extends TestCaseBaseApi{
+public class Api_InviteSecondaryAdmins extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    String OrgID; 
-    String OrgID1; 
-    int DC= 3;
-    int ICPC= 1;
-
+    Random r        = new Random();
+    int    num      = r.nextInt(10000000);
+    String mailname = "apwptest" + String.valueOf(num) ;
+    String email = mailname + "@yopmail.com";
+    String secadminId ="";
     
-    @Feature("Api_GetOrganizationIdentifier") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_InviteSecondaryAdmins") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Get credit allocation details for an account.") // It's a testcase title from Jira Test Case.
+    @Description("Invite secondary admin for an pro account.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+        step2();
     }
     
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
-        
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-            
+        pathParams.put("secadminId",secadminId);
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_SecAdmin"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Secondary admin deleted successfully"));
         
     }  
     
@@ -65,28 +64,29 @@ public class Api_GetOrganizationIdentifier extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Response response = new Api_AddOrganization().step1();
-
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
         
-        Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
-
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);
+    
+        String requestBody = "{\"email\":\"" + email + "\",\"username\":\"" + WebportalParam.loginPassword + "\"}";
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId", WebportalParam.accountId);
-        pathParams.put("orgId", OrgID);
-
-        
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Organization_Identifier"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("details.deviceCredit", equalTo(DC));
-        getResponse.then().body("details.instantCpCredit", equalTo(ICPC));
+      
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Invite_SecAdmin"), requestBody, headers, pathParams, null);  
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Admin invited successfully."));
                          
         }
+    
+    @Step("Send get request to {url}")
+    public void step2() {
+        
+        Response add =  new Api_GetSecondaryAdmins().step1();
+        secadminId= add.jsonPath().getString("details.adminsList[0]._id");  
+    }
                 
     }
 
