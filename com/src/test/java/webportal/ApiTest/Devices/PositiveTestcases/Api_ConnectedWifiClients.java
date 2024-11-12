@@ -89,9 +89,12 @@ public class Api_ConnectedWifiClients extends TestCaseBaseApi{
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
       
+        String clinetMac = WebportalParam.client1mac;
+        clinetMac = clinetMac.replace(":","-");
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Connected_Clients"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-       
+        getResponse.then().body("response.status", equalTo(true))
+         .body("deviceInfo[0].wlan5LowConnectedClients[0].macAddress", equalTo(clinetMac))
+         .body("deviceInfo[0].wlan5LowConnectedClients[0].associatedSsid", equalTo(ssidInfo.get("SSID")));
         
     }
 }
