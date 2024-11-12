@@ -1,4 +1,4 @@
-package webportal.ApiTest.Organizations.PositiveTestcases.Location;
+package webportal.ApiTest.Location.PositiveTestcases.Pro;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
@@ -27,16 +27,17 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
+public class Api_GetListOfNetwork extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
+    ArrayList<String> LocID = new ArrayList<String>();
+    ArrayList<String> LocIDgetList = new ArrayList<String>();
+    
     String OrgID;
-    String LocID;
-
 
     
-    @Feature("Api_SetSNMPConfiguration") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetListOfNetwork") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Get list of network(s) by organization identifier.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -44,7 +45,7 @@ public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
-
+        step2();
     }
     
     @AfterMethod(alwaysRun=true)
@@ -61,41 +62,46 @@ public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
+       
         Response response = new Api_AddOrganization().step1();
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
-        
+        OrgID = response.jsonPath().getString("orgInfo.orgId");   
+                         
+    }
+    
+    
+    @Step("Send get request to {url}")
+    public void step2()
+    { 
+       
+        Response response = new Api_AddLocationPro().step2(OrgID);
         Response response1 = new Api_AddLocationPro().step2(OrgID);
-        LocID = response1.jsonPath().getString("networkInfo[0].networkId");
+        
+        
+        LocID.add(response.jsonPath().getString("networkInfo[0].networkId"));
+        LocID.add(response1.jsonPath().getString("networkInfo[0].networkId"));
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
         headers.put("apikey",WebportalParam.apikey);
         headers.put("token",WebportalParam.token);
         
+        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
-        pathParams.put("commandType","1");
-        pathParams.put("networkId",LocID);
         pathParams.put("orgId",OrgID);
         
-        
-        String requestBody1="{\r\n" + 
-                "  \"accessType\": \"1\",\r\n" + 
-                "  \"communityId\": \"teju\",\r\n" + 
-                "  \"ipAddress\": \"1.1.1.1\",\r\n" + 
-                "  \"ipMask\": \"255.255.255.255\",\r\n" + 
-                "  \"status\": \"1\",\r\n" + 
-                "  \"version\": \"V2\"\r\n" + 
-                "}";       
-        
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Set_SNMP_Configuration"), requestBody1, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Network_Pro"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("We have saved your configuration and will be applied once device is added or cloud activated in network."));
-                         
-    }
-    
-    
-    
+        
+        LocIDgetList.add(getResponse.jsonPath().getString("details[0].networkId"));
+        LocIDgetList.add(getResponse.jsonPath().getString("details[1].networkId"));
+        
+        System.out.println(LocIDgetList);
+        System.out.println(LocID);
+        System.out.println("output");
+        boolean areEqual = LocIDgetList.equals(LocID);
+        assertTrue(areEqual, "Get List is Not sucessfull");
+     }
                 
     }
 

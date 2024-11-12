@@ -1,8 +1,6 @@
-package webportal.ApiTest.Organizations.PositiveTestcases.Location;
+package webportal.ApiTest.Location.PositiveTestcases.Pro;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.testng.Assert.assertTrue;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -27,25 +25,26 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetListOfNetwork extends TestCaseBaseApi{
+public class Api_AddLocationPro extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    ArrayList<String> LocID = new ArrayList<String>();
-    ArrayList<String> LocIDgetList = new ArrayList<String>();
     
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000);
+    String Loc    = "Loc" + String.valueOf(randomNumber);
     String OrgID;
 
     
-    @Feature("Api_GetListOfNetwork") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_AddLocationPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Get list of network(s) by organization identifier.") // It's a testcase title from Jira Test Case.
+    @Description("Add network from pro account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
-        step2();
+        step2(OrgID);
     }
     
     @AfterMethod(alwaysRun=true)
@@ -59,49 +58,39 @@ public class Api_GetListOfNetwork extends TestCaseBaseApi{
         getResponse1.then().body("response.status", equalTo(true));
     }  
   
-    @Step("Send get request to {url}")
+    @Step("Create Organization")
     public void step1()
     { 
-       
+              
         Response response = new Api_AddOrganization().step1();
         OrgID = response.jsonPath().getString("orgInfo.orgId");   
                          
-    }
-    
+        }
     
     @Step("Send get request to {url}")
-    public void step2()
+    public Response step2(String OrgID)
     { 
        
-        Response response = new Api_AddLocationPro().step2(OrgID);
-        Response response1 = new Api_AddLocationPro().step2(OrgID);
-        
-        
-        LocID.add(response.jsonPath().getString("networkInfo[0].networkId"));
-        LocID.add(response1.jsonPath().getString("networkInfo[0].networkId"));
-        
-        endPointUrl = new ApiRequest().ENDPOINT_URL; 
+        endPointUrl = new ApiRequest().ENDPOINT_URL;     
         
         headers.put("apikey",WebportalParam.apikey);
         headers.put("token",WebportalParam.token);
-        
-        
+               
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
         pathParams.put("orgId",OrgID);
         
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Network_Pro"), headers, pathParams, null); 
+        Map<String, String> queryParams = new HashMap<String, String>();
+        queryParams.put("orgId",OrgID);
+        
+        String requestBody="{\"networkInfo\":[{\"name\":\""+Loc+"\",\"adminPassword\":\"Netgear1@\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}\r\n" + 
+                "";       
+        
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network_Pro"), requestBody, headers, pathParams, queryParams); 
         getResponse.then().body("response.status", equalTo(true));
-        
-        LocIDgetList.add(getResponse.jsonPath().getString("details[0].networkId"));
-        LocIDgetList.add(getResponse.jsonPath().getString("details[1].networkId"));
-        
-        System.out.println(LocIDgetList);
-        System.out.println(LocID);
-        System.out.println("output");
-        boolean areEqual = LocIDgetList.equals(LocID);
-        assertTrue(areEqual, "Get List is Not sucessfull");
-     }
+        return getResponse;
+                         
+        }
                 
     }
 

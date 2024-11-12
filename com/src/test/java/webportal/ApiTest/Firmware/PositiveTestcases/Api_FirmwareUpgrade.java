@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.PositiveTestcases;
+package webportal.ApiTest.Firmware.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -25,16 +25,16 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetFirmwareUpgrade extends TestCaseBaseApi{
+public class Api_FirmwareUpgrade extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> pathParamsupdate = new HashMap<String, String>();
     
-    @Feature("Api_GetFirmwareUpgradeDetails") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_FirmwareUpgrade") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T008") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Retrieves the firmware upgrade details") // It's a testcase title from Jira Test Case.
+    @Description("UPDATE Device Firmware") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T008") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -54,13 +54,12 @@ public class Api_GetFirmwareUpgrade extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId); 
 
         pathParamsupdate.put("networkId",WebportalParam.networkId);
+        pathParamsupdate.put("deviceCount","1");
+   
 
+        String requestBody="{\"fwInfo\":{\"fwUpgrade\":\"firmwareUpgrade\",\"serialNo\":\""+WebportalParam.ap1serialNo+"\"}}";
         
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Firmware_Upgrade_Details"), headers, pathParamsupdate, null); 
-        String serialNo=getResponse.jsonPath().getString("uptoDateDevices[0].deviceName");
-        getResponse.then().body("response.status", equalTo(true));
-        Assert.assertEquals(WebportalParam.ap1serialNo, serialNo);
-        
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Firmware_Upgrade"), requestBody, headers, pathParamsupdate, null); 
 
 }
 }

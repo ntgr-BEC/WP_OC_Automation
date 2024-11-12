@@ -46,14 +46,7 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         step2(Licence);
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-       
-    }  
-    
-    
+
     @Step("Send get request to {url}")
     public void step1()
     {
