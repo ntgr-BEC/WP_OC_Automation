@@ -1,5 +1,5 @@
 
-package webportal.ApiTest.Reboot.Positivetestcases;
+package webportal.ApiTest.Devices.PositiveTestcases;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import testbase.TestCaseBaseApi;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_RebootDevice extends TestCaseBaseApi{
+public class Api_RebootDevice1 extends TestCaseBaseApi{
     WebportalParam webportalParam = new WebportalParam();
     
     @Feature("RebootDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -41,8 +41,6 @@ public class Api_RebootDevice extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
-//        Response add = new Api_AddSsid().step1();
-//        String id=add.jsonPath().getString("id");
         Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Map<String, String> headers = new HashMap<String, String>();
@@ -51,14 +49,16 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
         
         Map<String, String> pathParams = new HashMap<String, String>();
-
-        String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
-        requestBody = requestBody.replace("\"serialNo\":\"4XT178EX0110C\"", "\"serialNo\":\"" + WebportalParam.ap1deveiceName + "\"");
+        pathParams.put("deviceType","AP");    
+        pathParams.put("serialNo",WebportalParam.ap1deveiceName);
+      
+        String requestBody="{\"deviceInfo\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";
+  
         //TO PERFORM ANY REQUEST
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device1"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
-                          .body("response.message", equalTo("Success in fetching reboot now information."));
+                          .body("response.message", equalTo("\"Your configuration has been applied. It may take some time to reflect."));
 
     }
                   
