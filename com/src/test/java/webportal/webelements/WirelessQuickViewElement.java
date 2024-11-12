@@ -1526,6 +1526,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      public SelenideElement        selectDropdown             = $x("//*[@class=\"selectweek padding-top-5 inputTextField p-b-5 cursor-pointer\"]");
      public SelenideElement        selectJaze              = $x("//*[text()=\"Jaze Networks\"]");
+     
+     //AddedbyPratik
+     public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(1)']");
+     public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 1 of 1 entries']");
 }
 
 

@@ -6614,4 +6614,15 @@ public class OrganizationPage extends OrganizationElement {
         return result;
     }
     
+    //AddedByPratik
+    public void gotoDevicesTabunderorgSetting(String OrgName) {
+        openOrg(OrgName);
+        MyCommonAPIs.sleepi(10);
+        Setting.click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(orgsettingsDevicesTab);
+        orgsettingsDevicesTab.click();
+        MyCommonAPIs.sleepi(5);
+    }
+    
 }

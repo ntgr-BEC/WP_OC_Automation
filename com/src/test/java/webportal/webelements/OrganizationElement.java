@@ -601,5 +601,6 @@ public class OrganizationElement extends MyCommonAPIs {
       SelenideElement ownerEmailverify = $x("//h3[text()='"+ ownerEmail +"']");
       return ownerEmailverify;
   }
+  public SelenideElement orgsettingsDevicesTab       = $x("//div[@id='divSideBarSecEditVlan']//a[@href='#/organization/settings/devices']");
   
 }
