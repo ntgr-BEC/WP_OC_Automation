@@ -18,7 +18,7 @@ import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
