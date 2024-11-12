@@ -579,6 +579,8 @@ import util.*;
                 put("Reboot_Device","insightappcom/api/reboot/v1/reboot");
                 put("Clients_Info","insightappcom/api/clients/v1/list/{accountId}/{orgId}/{networkId}/{serialNo}/{type}/{isConnected}/{page}");
                 put("Reboot_Device1","insightappcom/api/device/v1/deviceReboot/{serialNo}/{deviceType}");
+                put("Connected_Clients","insightappcom/api/device/v1/{networkId}/wifiClients/{serialNo}");
+                put("Add_Device_Pro","insightappcom/api/device/v1/{orgId}/{networkId}");
             }
         };
          
