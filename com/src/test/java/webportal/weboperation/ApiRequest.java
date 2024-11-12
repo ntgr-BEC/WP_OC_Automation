@@ -114,6 +114,11 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+        
+        if(pathParams == null)
+        {
+            pathParams=new HashMap<>();
+        }
      Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -499,6 +504,10 @@ import util.*;
                 put("Set_SpanningTree","insightappcom/api/wired/v1/spanningTree/{networkId}");
                 put("Get_SpanningTree","insightappcom/api/wired/v1/spanningTreeInfo/{networkId}");
                 put("Get_VlanMembers","insightappcom/api/wired/v1/vlan/{networkId}/vlanmembers/{vlanId}");
+                put("Add_Manager","insightappcom/api/msp/v1/manager");
+                put("Manager_Sanity","insightappcom/api/msp/v1/manager/{managerId}");
+                put("Get_Manager","insightappcom/api/msp/v1/managersList/{orgId}/{startFrom}");
+                put("Get_OwnersList","insightappcom/api/msp/v1/ownerList");
             }
         };
          

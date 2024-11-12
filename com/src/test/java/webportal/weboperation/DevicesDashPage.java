@@ -3229,7 +3229,60 @@ public boolean verifySettingPageFilterAirbridge() {
                 }
                 return result;
             }
-           
+          
+            //AddedByPratik
+            public boolean verifyAllcountUnderSettingsdevicesoption() {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                waitElement(settingsIconOnHomePage);
+                settingsIconOnHomePage.click();
+                MyCommonAPIs.sleepi(2);
+                waitElement(devicesOptionUnderSetting);
+                devicesOptionUnderSetting.hover();
+                devicesOptionUnderSetting.click();
+                MyCommonAPIs.sleepi(30);
+                waitElement(totaldevicesAvilable);
+                String extractedText = totaldevicesAvilable.text();
+                extractedText = extractedText.replace("Devices (", "").replace(")", "");
+                int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+                int expectedNumber = 4;
+                if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
+                    result = true;
+                    logger.info("Total devices count showing correctly on devices page under settings");
+                }
+                return result;
+            }
+            
+            //AddedByPratik
+            public boolean verifyAllcountUnderOrgSettingsdevicestab() {
+                boolean result = false;
+                waitElement(totaldevicesAvilable);
+                String extractedText = totaldevicesAvilable.text();
+                extractedText = extractedText.replace("Devices(", "").replace(")", "");
+                int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+                int expectedNumber = 4;
+                if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
+                    result = true;
+                    logger.info("Total devices count showing correctly on devices page under settings");
+                }
+                return result;
+            }
+            
+            //AddedByPratik
+            public boolean verifyAllcountUnderDevicesdashPage() {
+                boolean result = false;
+                MyCommonAPIs.sleepi(10);
+                waitElement(totaldevicesAvilable);
+                String extractedText = totaldevicesAvilable.text();
+                extractedText = extractedText.replace("Devices (", "").replace(")", "");
+                int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+                int expectedNumber = 4;
+                if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
+                    result = true;
+                    logger.info("Total devices count showing correctly on devices page under settings");
+                }
+                return result;
+            }
             
 }
     

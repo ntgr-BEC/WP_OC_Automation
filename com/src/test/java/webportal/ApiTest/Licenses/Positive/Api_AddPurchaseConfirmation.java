@@ -17,7 +17,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -46,14 +46,7 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         step2(Licence);
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-       
-    }  
-    
-    
+
     @Step("Send get request to {url}")
     public void step1()
     {

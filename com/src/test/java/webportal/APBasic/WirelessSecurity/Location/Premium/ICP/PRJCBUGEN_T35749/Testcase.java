@@ -85,8 +85,9 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().enableCaptivePortalType(ssidInfo.get("SSID"), icpInfo);
         MyCommonAPIs.sleepi(3 * 60);
         
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+//        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
         assertTrue(new WirelessQuickViewPage().connectClient(ssidInfo),"did not connect to client");
+        MyCommonAPIs.sleepi(60);
     }
 
     
