@@ -20,8 +20,6 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
-//import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 import webportal.weboperation.HamburgerMenuPage;
@@ -103,8 +101,4 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
        
         
     }
-  
-  
-
-
 }

@@ -403,6 +403,67 @@ import util.*;
             return response;
             
         }
+        
+        public boolean connectClient(Map<String, String> map) {
+            MyCommonAPIs.sleepi(30);
+
+            int sum = 0;
+            while (true) {
+                MyCommonAPIs.sleepi(10);
+                if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID " + map.get("SSID"))
+                        .indexOf("true") != -1) {
+                    break;
+                } else if (sum > 30) {
+                    assertTrue(false, "Client cannot connected.");
+                    break;
+                }
+                sum += 1;
+            }
+
+            boolean result1 = true;
+            if (map.get("Security").contains("Open")) {
+
+                System.out.println("enter open");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFopenconnect  " + map.get("SSID"))
+                        .equals("true")) {
+                    result1 = false;
+                    if (new Javasocket()
+                            .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFopenconnect  " + map.get("SSID"))
+                            .equals("true")) {
+                        result1 = true;
+                    }
+                }
+            }
+
+            else if (map.get("Security").contains("WPA3")) {
+                System.out.println("enter WPA3");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA3SAE aes").equals("true")) {
+
+                    result1 = false;
+                    if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                            "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA3SAE aes").equals("true")) {
+                        result1 = true;
+                    }
+                }
+            } else {
+                System.out.println("enter WPA2");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA2PSK aes").equals("true")) {
+                    System.out.println("check this");
+                    result1 = false;
+                    if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                            "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA2PSK aes").equals("true")) {
+                        System.out.println("check this inside");
+                        result1 = true;
+                    }
+                }
+
+            }
+            return result1;
+
+        }
+
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
              *
@@ -508,6 +569,16 @@ import util.*;
                 put("Manager_Sanity","insightappcom/api/msp/v1/manager/{managerId}");
                 put("Get_Manager","insightappcom/api/msp/v1/managersList/{orgId}/{startFrom}");
                 put("Get_OwnersList","insightappcom/api/msp/v1/ownerList");
+                put("Invite_SecAdmin","insightappcom/api/user/v1/secondaryAdmin");
+                put("Get_SecAdmin","insightappcom/api/user/v1/secondaryAdmins/{startFrom}");
+                put("Delete_SecAdmin","insightappcom/api/user/v1/secondaryAdmin/{secadminId}");
+                put("Retrieve_PurchaseOrderHistory","insightappcom/api/user/v1/purchaseHistory/{categoryId}/{timePeriod}");
+                put("Usage_History","insightappcom/api/mub/v1/usageBillingHistory");
+                put("Usage_Billing_Status","insightappcom/api/mub/v1/usageBillingStatus");
+                put("Configure_UsageBilling","insightappcom/api/mub/v1/configureUsageBilling");
+                put("Reboot_Device","insightappcom/api/reboot/v1/reboot");
+                put("Clients_Info","insightappcom/api/clients/v1/list/{accountId}/{orgId}/{networkId}/{serialNo}/{type}/{isConnected}/{page}");
+                put("Reboot_Device1","insightappcom/api/device/v1/deviceReboot/{serialNo}/{deviceType}");
             }
         };
          
