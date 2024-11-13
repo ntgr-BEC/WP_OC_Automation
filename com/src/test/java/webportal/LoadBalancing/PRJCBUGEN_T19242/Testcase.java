@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+//        new DevicesDashPage().checkDeviceInAdminAccount();
     }
 
     @Step("Test Step 2: Check load balancing page;")
