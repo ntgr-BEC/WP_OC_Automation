@@ -6625,4 +6625,100 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(5);
     }
     
+    //AddedByPratik
+    public boolean verifyAllManagerCountonorgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing==expectedNumber) {
+            result = true;
+            logger.info("Total managers count showing correctly on org page");
+        }
+        return result;
+    }
+    
+    // AddedByPratik
+    public boolean verifyAllManagerCountOnOrgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllManagerCountonOrgSettingsPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            viewAllLinkOnOrgPage.click();
+            MyCommonAPIs.sleepi(10);
+            waitElement(managersCountOnOrgSetpage);
+            String extractedText1 = managersCountOnOrgSetpage.text();
+            System.out.println(extractedText1);
+            extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+            System.out.println(extractedText1);
+            int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+            System.out.println(totalNoofDevicesShowing1);
+            if (totalNoofDevicesShowing1 == expectedNumber) {
+                logger.info("Total managers count showing correctly on org setting page");
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public void gotoManagersTabunderorgSetting(String OrgName) {
+        openOrg(OrgName);
+        MyCommonAPIs.sleepi(10);
+        Setting.click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(managersTabOrgSettings);
+        managersTabOrgSettings.click();
+        MyCommonAPIs.sleepi(5);
+    }
+    
+    //AddedByPratik
+    public boolean managersCountOnOrgSettingsPage() {
+     boolean result = false;
+     MyCommonAPIs.sleepi(10);
+     waitElement(managersCountOnOrgSetpage);
+     String extractedText1 = managersCountOnOrgSetpage.text();
+     System.out.println(extractedText1);
+     extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+     System.out.println(extractedText1);
+     int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+     System.out.println(totalNoofDevicesShowing1);
+     int expectedNumber = 2;
+     if (totalNoofDevicesShowing1 == expectedNumber) {
+         logger.info("Total managers count showing correctly on org setting page");
+         result = true;
+     }
+     return result;
+    }
+    
 }
