@@ -1,4 +1,4 @@
-package webportal.RfParameters.PRJCBUGEN_T36179;
+package webportal.RfParameters.Pro.PRJCBUGEN_T36179;
 
 import static org.testng.Assert.assertTrue;
 

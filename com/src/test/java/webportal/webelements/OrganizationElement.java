@@ -602,5 +602,8 @@ public class OrganizationElement extends MyCommonAPIs {
       return ownerEmailverify;
   }
   public SelenideElement orgsettingsDevicesTab       = $x("//div[@id='divSideBarSecEditVlan']//a[@href='#/organization/settings/devices']");
-  
+  public SelenideElement managercountOnOrgPage       = $x("//*[text()='Managers' and text()='2']");
+  public SelenideElement viewAllLinkOnOrgPage        = $x("//*[text()='2' and text()='Managers']/..//a[@href='#/organization/settings/managers']");
+  public SelenideElement managersCountOnOrgSetpage   = $x("//h3[text()='(2)']");
+  public SelenideElement managersTabOrgSettings      = $x("//div[@id='divSideBarSecEditVlan']//a[@href='#/organization/settings/managers']");
 }

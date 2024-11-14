@@ -92,14 +92,14 @@ public class Testcase extends TestCaseBase {
             new WirelessQuickViewPage().GoToWirelessSettings();
               MyCommonAPIs.sleepi(10);
               
-              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow")).equals(dtim2),"Intervals are missing");
-              assertTrue((new WirelessQuickViewPage(false).sliderdtm("1").getAttribute("aria-valuenow")).equals(broadcast2),"Intervals are missing");
+              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow")).equals(dtim2),"Intervals1  are missing");
+              assertTrue((new WirelessQuickViewPage(false).sliderdtm("1").getAttribute("aria-valuenow")).equals(broadcast2),"Intervals2 are missing");
               (new WirelessQuickViewPage(false).beacon("1").getText()).equals(beacon2);
               
               MyCommonAPIs.sleepi(5);
               new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();   
-              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("2").getAttribute("aria-valuenow")).equals(dtim5),"Intervals are missing");
-              assertTrue((new WirelessQuickViewPage(false).sliderdtm("2").getAttribute("aria-valuenow")).equals(broadcast5),"Intervals are missing");
+              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("2").getAttribute("aria-valuenow")).equals(dtim5),"Intervals3 are missing");
+              assertTrue((new WirelessQuickViewPage(false).sliderdtm("2").getAttribute("aria-valuenow")).equals(broadcast5),"Intervals4 are missing");
               (new WirelessQuickViewPage(false).beacon("2").getText()).equals(beacon5);
               
             
