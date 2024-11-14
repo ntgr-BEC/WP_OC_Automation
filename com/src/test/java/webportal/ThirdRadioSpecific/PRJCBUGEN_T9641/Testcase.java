@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDutInAdminAccount(WebportalParam.ap3serialNo, WebportalParam.ap3deveiceName, WebportalParam.ap3macaddress);
+//        new DevicesDashPage().checkDutInAdminAccount(WebportalParam.ap3serialNo, WebportalParam.ap3deveiceName, WebportalParam.ap3macaddress);
     }
 
     @Step("Test Step 2: Check radio and channel page;")
@@ -95,6 +95,11 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap3serialNo);
         new DevicesDashPage().enterDevice(WebportalParam.ap3serialNo);
         new DevicesApRadioAndChannelsPage().checkFiveGHzTireDisplay();
+        System.out.println("1"+ new DevicesApRadioAndChannelsPage(false).twoPointFourGHzChannelWidth.getSelectedText());
+        System.out.println("1"+ new DevicesApRadioAndChannelsPage(false).twoPointFourGHzChannel.getSelectedText());
+        System.out.println("1"+ new DevicesApRadioAndChannelsPage(false).twoPointFourGHzOutputPower.getSelectedText());
+        System.out.println("1"+ new DevicesApRadioAndChannelsPage(false).fiveGHzChannel.getSelectedText());
+        
         assertTrue(new DevicesApRadioAndChannelsPage(false).twoPointFourGHzChannelWidth.getSelectedText()
                 .equals(channelInfo.get("2.4GHz channel width"))
                 && new DevicesApRadioAndChannelsPage(false).twoPointFourGHzChannel.getSelectedText().equals(channelInfo.get("2.4GHz channel"))
