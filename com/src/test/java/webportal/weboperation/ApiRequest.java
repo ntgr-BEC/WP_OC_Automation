@@ -583,6 +583,8 @@ import util.*;
                 put("Add_Device_Pro","insightappcom/api/device/v1/{orgId}/{networkId}");
                 put("Add_Ssid_Pro","insightappcom/api/wireless/v1/{orgId}");
                 put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId");
+                put("Add_Wireless_Network","insightappcom/api/wired/v1/vlan/wirelessnetwork/{networkId}");
+                put("Modify_VlanMembers","insightappcom/api/wired/v1/vlanMembers/{networkId}/vlan/{vlanId}");
             }
         };
          
