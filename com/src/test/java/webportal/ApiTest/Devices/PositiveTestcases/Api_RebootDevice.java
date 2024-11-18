@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Api_RebootDevice1 extends TestCaseBaseApi{
+public class Api_RebootDevice extends TestCaseBaseApi{
     WebportalParam webportalParam = new WebportalParam();
     
     @Feature("RebootDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
