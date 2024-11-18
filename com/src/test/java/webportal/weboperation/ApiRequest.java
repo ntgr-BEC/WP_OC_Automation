@@ -585,6 +585,10 @@ import util.*;
                 put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId");
                 put("Add_Wireless_Network","insightappcom/api/wired/v1/vlan/wirelessnetwork/{networkId}");
                 put("Modify_VlanMembers","insightappcom/api/wired/v1/vlanMembers/{networkId}/vlan/{vlanId}");
+                put("Get_BulkDeplDetails","insightappcom/api/bulk/v1/{orgId}");
+                put("Add_BulkDevices","insightappcom/api/bulk/v1/addBulkDevices/{orgId}/{isBulkAdd}");
+                put("Get_MeshInfo","insightappcom/api/bulk/v1/getMeshInfo/{orgId}");
+                put("Move_Device","insightappcom/api/device/v1/moveDevice/{deviceId}/{networkId}/{orgId}");
             }
         };
          
