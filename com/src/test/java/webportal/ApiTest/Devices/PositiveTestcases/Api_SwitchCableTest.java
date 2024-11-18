@@ -18,6 +18,7 @@ import testbase.TestCaseBaseApi;
 import testbase.TestCaseBase;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 import webportal.param.WebportalParam;
+import webportal.publicstep.UserManage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 import webportal.weboperation.DevicesDashPage;
@@ -71,6 +72,9 @@ public class Api_SwitchCableTest extends TestCaseBaseApi{
         DevicesSwitchCableTestPage cableTestPage = new DevicesSwitchCableTestPage();
                 cableTestPage.logger.info("step3......");     
                 cableTestPage.testCableTest(new String[]{"1","3"});
+                MyCommonAPIs.sleepi(10);
+                UserManage userManage = new UserManage();
+                userManage.logout();
     }
     
     @Step("Send get request to {url}")
