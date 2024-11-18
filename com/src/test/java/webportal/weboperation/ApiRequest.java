@@ -582,13 +582,22 @@ import util.*;
                 put("Connected_Clients","insightappcom/api/device/v1/{networkId}/wifiClients/{serialNo}");
                 put("Add_Device_Pro","insightappcom/api/device/v1/{orgId}/{networkId}");
                 put("Add_Ssid_Pro","insightappcom/api/wireless/v1/{orgId}");
-                put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId");
+                put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
                 put("Add_Wireless_Network","insightappcom/api/wired/v1/vlan/wirelessnetwork/{networkId}");
                 put("Modify_VlanMembers","insightappcom/api/wired/v1/vlanMembers/{networkId}/vlan/{vlanId}");
                 put("Get_BulkDeplDetails","insightappcom/api/bulk/v1/{orgId}");
                 put("Add_BulkDevices","insightappcom/api/bulk/v1/addBulkDevices/{orgId}/{isBulkAdd}");
                 put("Get_MeshInfo","insightappcom/api/bulk/v1/getMeshInfo/{orgId}");
                 put("Move_Device","insightappcom/api/device/v1/moveDevice/{deviceId}/{networkId}/{orgId}");
+                put("OrgSsid_MacAuth","insightappcom/api/wireless/v1/macAuth/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_ByOrgIdentifier","insightappcom/api/wireless/v1/organization/ssidList/{orgId}");
+                put("Modify_SsidPro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
+                put("OrgSsid_RadiusServerConfig","insightappcom/api/wireless/v1/radiusServerConfig/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{orgId}/{wirelessOrgId}");
+                put("LocSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{networkId}/{id}/{orgId}");
+                put("Set_TrafficPolicies","insightappcom/api/wireless/v1/updateTrafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Get_TrafficPolicies","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Set_TrafficPolicies_ForLocSsid","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{networkId}/{id}");
             }
         };
          
