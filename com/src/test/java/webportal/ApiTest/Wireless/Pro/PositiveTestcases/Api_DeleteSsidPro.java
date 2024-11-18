@@ -69,8 +69,8 @@ public class Api_DeleteSsidPro extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
     
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Ssid_Pro"),headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        String id=getResponse.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
+        getResponse.then().body("response.status", equalTo(true))
+         .body("orgNwInfo[0].message", equalTo("Applying your configuration settings. This can take up to 3 minutes to display"));
         
         return getResponse;
     }

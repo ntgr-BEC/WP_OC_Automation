@@ -30,19 +30,17 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class Api_AddSsidPro extends TestCaseBaseApi{
+public class Api_GetTrafficPoliciesPro extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
   
     Map<String, String> headers = new HashMap<String, String>();
     String wirelessOrgId;
-    Random random = new Random();
-    int randomNumber = random.nextInt(1000);
-    String orgSsid    = "Org" + String.valueOf(randomNumber);
+ 
     
-    @Feature("Api_AddSsidPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetTrafficPoliciesPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Addition of ssid to pro account") // It's a testcase title from Jira Test Case.
+    @Description("Get traffic policies (DHCP offer as unicast) from organization SSSID.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -53,6 +51,7 @@ public class Api_AddSsidPro extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
+      
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);
         pathParams.put("wirelessOrgId",wirelessOrgId);
@@ -67,20 +66,23 @@ public class Api_AddSsidPro extends TestCaseBaseApi{
     public Response step1()
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-       
+        List<Response> response=new Api_SetTrafficPoliciesPro().step1();         //DHCP offer will be set to 0
+        Response add = response.get(0);
+        wirelessOrgId= add.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);
-        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\""+orgSsid+"\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"nwIdList\":[\""+WebportalParam.networkId+"\"],\"orgWideSsidStatus\":\"1\"}}";       
+        pathParams.put("wirelessOrgId",wirelessOrgId);
+        
         //TO PERFORM ANY REQUEST
     
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Ssid_Pro"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        wirelessOrgId=getResponse.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
-        System.out.println(wirelessOrgId);
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_TrafficPolicies"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Return dhcp offer broadcast to unicast successfully"))
+        .body("details.dhcpOfferBcastToUcast", equalTo("0"));
         
         return getResponse;
     }
