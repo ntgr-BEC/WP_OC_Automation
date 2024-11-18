@@ -3,6 +3,8 @@ package webportal.ApiTest.Reboot.Positivetestcases;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -59,6 +61,8 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
                           .body("response.message", equalTo("Success in fetching reboot now information."));
+        
+        MyCommonAPIs.sleepi(1000);
 
     }
                   
