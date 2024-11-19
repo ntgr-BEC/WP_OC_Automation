@@ -70,7 +70,7 @@ public class Api_SetLedSettings extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);     
         headers.put("networkId",WebportalParam.networkId);
         
-        pathParams.put("deviceType","AP");
+        pathParams.put("deviceType","AP");                                   //The device type. The enumerations are AP, PR.
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
        
         String requestBody = "{\"ledSettings\":{\"ledControl\":\"2\"}}";     //set LED settings to off except power LED
