@@ -463,6 +463,12 @@ import util.*;
             return result1;
 
         }
+        
+        public static String changeLastPartOfIp(String ipAddress, int desiredValue) {
+            String[] parts = ipAddress.split("\\.");  // Split the IP by "."
+            parts[3] = String.valueOf(desiredValue);  // Change the last part of the IP
+            return String.join(".", parts);  // Join the parts back together
+        }
 
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
@@ -508,7 +514,7 @@ import util.*;
                 put("List_Wireless_Networks", "insightappcom/api/wireless/v1/ssidList/{networkId}");
                 put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
-                put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
+                put("Add_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
                 put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
                 put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
@@ -598,6 +604,7 @@ import util.*;
                 put("Set_TrafficPolicies","insightappcom/api/wireless/v1/updateTrafficPolicies/{orgId}/{wirelessOrgId}");
                 put("Get_TrafficPolicies","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{wirelessOrgId}");
                 put("Set_TrafficPolicies_ForLocSsid","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{networkId}/{id}");
+                
             }
         };
          
