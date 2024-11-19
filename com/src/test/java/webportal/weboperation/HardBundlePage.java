@@ -446,4 +446,31 @@ public boolean gotoPurchaseHistoiry() {
 
 }
 
+//AddedByPratik
+public void verifyAndActivateFreelicenseKeys() {
+    MyCommonAPIs.sleepi(5);
+    if (hamburgermenu.exists()) {
+        hamburgermenu.click();
+        if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
+            hamburgermenu.click();
+        }
+    } else if (hamburgermenunew.exists()) {
+        hamburgermenunew.click();
+        if (hamburgermenunew.getAttribute("aria-expanded").equals("false")) {
+            hamburgermenunew.click();
+        }
+    }
+    accountmanager.click();
+    MyCommonAPIs.sleepi(3);
+    waitElement(subscriptionMenu);
+    subscriptionMenu.click();
+    MyCommonAPIs.sleepi(3);
+    waitElement(activatefreetrail);
+    activatefreetrail.click();
+    MyCommonAPIs.sleepi(3);
+    waitElement(activateButton);
+    activateButton.click();
+    MyCommonAPIs.sleepi(3);
+}
+
 }
