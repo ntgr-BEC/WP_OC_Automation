@@ -1278,18 +1278,17 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocation(String name) {
-        if (checkOrganizationIsExist(name)) {
-            dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
-            MyCommonAPIs.sleepi(5);
-            if (deviceCredits.exists()) {
-                deviceCreditsTextbox.sendKeys("4");
-                MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
-                MyCommonAPIs.sleepi(5);
-            }
-        }
+        MyCommonAPIs.sleepi(5);
+        waitElement(checkOrganizationIsExist(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
     }
 
     public void icpCreditAllocation(String name) {
@@ -6719,6 +6718,26 @@ public class OrganizationPage extends OrganizationElement {
          result = true;
      }
      return result;
+    }
+    
+    //AddedByPratik
+    public void creditAllocation2(String name) {
+        MyCommonAPIs.sleepi(5);
+        waitElement(checkOrganizationIsExist(name));
+        organizationElement(name).click();
+        MyCommonAPIs.sleepi(1);
+        organizationElement1(name).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(dropdownOrganizationElement(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
     }
     
 }

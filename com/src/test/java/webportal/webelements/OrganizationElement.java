@@ -606,4 +606,9 @@ public class OrganizationElement extends MyCommonAPIs {
   public SelenideElement viewAllLinkOnOrgPage        = $x("//*[text()='2' and text()='Managers']/..//a[@href='#/organization/settings/managers']");
   public SelenideElement managersCountOnOrgSetpage   = $x("//h3[text()='(2)']");
   public SelenideElement managersTabOrgSettings      = $x("//div[@id='divSideBarSecEditVlan']//a[@href='#/organization/settings/managers']");
+  public SelenideElement organizationElement1(String name) {
+    SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
+    return organization;
+}
+  
 }

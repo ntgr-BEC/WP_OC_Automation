@@ -98,4 +98,8 @@ public class HardbundlePageElement extends MyCommonAPIs{
         SelenideElement activationDate = $x("//span[contains(text(), '"+ text +"')]");
         return activationDate;
     }
+    public SelenideElement       subscriptionMenu       = $x("//div[contains(@class,'leftMenu')]//a[@href='/#/accountManagement/subScriptionsPro' and text()='Subscriptions']");
+    public SelenideElement       activatefreetrail      = $x("//button[text()='Activate Free Trial']");
+    public SelenideElement       activateButton         = $x("//button[text()='Activate']"); 
+    public SelenideElement       successMsgFreeTrail    = $x("//div[text()='Your 3-Month free trial has been activated successfully. ']"); 
 }
