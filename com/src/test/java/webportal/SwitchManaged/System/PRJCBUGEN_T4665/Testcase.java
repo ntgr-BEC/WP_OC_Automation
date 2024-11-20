@@ -49,7 +49,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 2: create VLAN 555")
     public void step2() {
-        handle.getCmdOutputLines("vlan database; vlan 555", false);
+        handle.getCmdOutputLines("vlan database; vlan 555", false);   //will add a vlan "VLAN 555" through telnet
         String tmpStr = handle.getCmdOutput("show vlan", false);
         assertTrue(tmpStr.contains("555"));
     }
