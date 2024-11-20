@@ -1,6 +1,7 @@
 package webportal.ApiTest.Clients.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
+
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -88,15 +89,13 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>(); 
         pathParams.put("orgId",WebportalParam.orgId);
         pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("page","1");
+        pathParams.put("page","2");
         pathParams.put("serialNo",WebportalParam.ap2deveiceName);
         pathParams.put("type","0");
         pathParams.put("isConnected","1");
         pathParams.put("accountId",WebportalParam.accountId);
-        
-        String requestBody = "";
-      
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Clients_Info"),requestBody, headers, pathParams, null); 
+       
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Clients_Info"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
        
         

@@ -146,9 +146,10 @@ public class SwitchTelnet {
         isRltkSW = WebportalParam.isRltkSW(ip);
         TelnetOperator telnet = new TelnetOperator("VT220", ">"); // Windows,用VT220,否则会乱码
         if(isRltkSW) {
-            telnet.login(ip, 60000, "admin", WebportalParam.loginDevicePassword);
-            System.out.println("inside port number 60000");            }else {
-                telnet.login(ip, 23, "admin", WebportalParam.loginDevicePassword);
+            telnet.login(ip, 60000, "admin", passwd);
+            System.out.println("inside port number 60000");
+            }else {
+                telnet.login(ip, 23, "admin",passwd);
                 System.out.println("inside port number 23"); 
             }
         return telnet;

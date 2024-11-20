@@ -49,5 +49,7 @@ public class ButtonElements extends MyCommonAPIs {
         // TODO Auto-generated constructor stub
 
     }
+    
+    public SelenideElement        dotsicon         = $x("//*[@id=\"divColMdSwitchBtn\"]/div[1]/span");
 
 }
