@@ -67,14 +67,12 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
         rtp.addIpToVlan(vlanId, "", ip1, ip2);
-        new MyCommonAPIs().sleepi(4);
-        System.out.println("return error message is one"+handle.getPageErrorMsg());
+        new MyCommonAPIs().sleepi(4);     
         assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");      
         // rtp.addIpToVlan(vlanId, mask, "", "");
         // assertTrue(handle.getPageErrorMsg().contains("Enter a valid IP Address"), "no ip");
         rtp.addIpToVlan1(vlanId, mask, "", ip2);
         new MyCommonAPIs().sleepi(4);
-        System.out.println("return error message is two"+handle.getPageErrorMsg());
         assertTrue(handle.getPageErrorMsg().contains("enter a valid ip address"), "ip one");
 //        rtp.addIpToVlan(vlanId, "", "", ip2);
 //        assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");
