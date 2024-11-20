@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.PositiveTestcases.Pro;
+package webportal.ApiTest.Location.Pro.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
@@ -27,20 +27,18 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_CloneLocation extends TestCaseBaseApi{
+public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String OrgID;
     String LocID;
-    String OrgIDcopy;
-    String LocIDcopy;
 
 
     
-    @Feature("Api_CloneLocation") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetSNMPConfiguration") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Cloning the location in a pro account") // It's a testcase title from Jira Test Case.
+    @Description("Get list of network(s) by organization identifier.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -58,9 +56,6 @@ public class Api_CloneLocation extends TestCaseBaseApi{
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
-        pathParams.put("orgId",  OrgIDcopy);
-        Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
     }  
   
     @Step("Send get request to {url}")
@@ -76,20 +71,26 @@ public class Api_CloneLocation extends TestCaseBaseApi{
         
         headers.put("apikey",WebportalParam.apikey);
         headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
         
-        Response response2 = new Api_AddOrganization().step1();
-         OrgIDcopy = response2.jsonPath().getString("orgInfo.orgId");
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("commandType","1");
+        pathParams.put("networkId",LocID);
+        pathParams.put("orgId",OrgID);
         
-        Response response3 = new Api_AddLocationPro().step2(OrgID);
-        LocIDcopy = response3.jsonPath().getString("networkInfo[0].networkId");
         
+        String requestBody1="{\r\n" + 
+                "  \"accessType\": \"1\",\r\n" + 
+                "  \"communityId\": \"teju\",\r\n" + 
+                "  \"ipAddress\": \"1.1.1.1\",\r\n" + 
+                "  \"ipMask\": \"255.255.255.255\",\r\n" + 
+                "  \"status\": \"1\",\r\n" + 
+                "  \"version\": \"V2\"\r\n" + 
+                "}";       
         
-        String requestBody1="{\"srcNetworkId\":\""+LocID+"\",\"srcOrgId\":\""+OrgID+"\",\"targetOrganizations\":[{\"networkList\":[\""+LocIDcopy+"\"],\"orgId\":\""+OrgIDcopy+"\"}]}"; 
-        
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Clone_Network"), requestBody1, headers, null, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Set_SNMP_Configuration"), requestBody1, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Success in cloning network details."));
+        getResponse.then().body("response.message", equalTo("We have saved your configuration and will be applied once device is added or cloud activated in network."));
                          
     }
     
