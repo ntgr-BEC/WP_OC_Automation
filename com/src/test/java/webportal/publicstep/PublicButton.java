@@ -19,6 +19,8 @@ public class PublicButton extends ButtonElements {
     }
 
     public void rebootDevice() {
+        dotsicon.click();
+        MyCommonAPIs.sleepi(10);
         reBootIcon.click();
         waitReady();
 
