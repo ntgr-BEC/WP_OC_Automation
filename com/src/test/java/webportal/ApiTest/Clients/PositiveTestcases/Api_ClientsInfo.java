@@ -1,6 +1,7 @@
 package webportal.ApiTest.Clients.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
+
 
 import java.util.Arrays;
 import java.util.HashMap;

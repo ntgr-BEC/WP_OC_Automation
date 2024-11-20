@@ -1,7 +1,8 @@
 package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertTrue;
+
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
