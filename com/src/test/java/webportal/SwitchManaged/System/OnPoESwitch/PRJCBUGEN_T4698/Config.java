@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4698;
+package webportal.SwitchManaged.System.OnPoESwitch.PRJCBUGEN_T4698;
 
 import java.util.HashMap;
 import java.util.Map;

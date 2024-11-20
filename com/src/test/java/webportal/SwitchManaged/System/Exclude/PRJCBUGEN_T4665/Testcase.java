@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4665;
+package webportal.SwitchManaged.System.Exclude.PRJCBUGEN_T4665;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
