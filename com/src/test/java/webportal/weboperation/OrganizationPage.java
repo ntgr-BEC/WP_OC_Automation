@@ -43,6 +43,10 @@ import webportal.webelements.OrganizationElement;
 import webportal.weboperation.WirelessQuickViewPage;
 import webportal.webelements.WirelessQuickViewElement;
 
+import com.codeborne.selenide.Condition;
+import static com.codeborne.selenide.Selenide.*;
+
+
 public class OrganizationPage extends OrganizationElement {
     String date    = "";
     String timearr = "";
@@ -320,11 +324,10 @@ public class OrganizationPage extends OrganizationElement {
                 // // TODO Auto-generated catch block
                 // e.printStackTrace();
                 // }
-             
                 ownerEmail.click();
-                MyCommonAPIs.sleepi(10);
-                ownerEmail.clear();
-                MyCommonAPIs.sleepi(10);
+                sleep(1000);
+                executeJavaScript("arguments[0].value = '';", ownerEmail);
+                sleep(1000);
                 ownerEmail.sendKeys(map.get("Email Address"));
             }
             if (map.containsKey("Phone Number")) {
@@ -1275,18 +1278,17 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocation(String name) {
-        if (checkOrganizationIsExist(name)) {
-            dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
-            MyCommonAPIs.sleepi(5);
-            if (deviceCredits.exists()) {
-                deviceCreditsTextbox.sendKeys("4");
-                MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
-                MyCommonAPIs.sleepi(5);
-            }
-        }
+        MyCommonAPIs.sleepi(5);
+        waitElement(checkOrganizationIsExist(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
     }
 
     public void icpCreditAllocation(String name) {
@@ -6543,7 +6545,199 @@ public class OrganizationPage extends OrganizationElement {
         }
     }
 
-
+    //AddedbyPratik
+    public boolean selectExistingOwner(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(1);
+        waitElement(sOrganizationLocationElement1);
+        if (checkOrganizationIsExist(map.get("Name"))) {
+            dropdownOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            editOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            waitElement(NameOrg);
+            MyCommonAPIs.sleepi(1);
+            dropdown.selectOptionByValue(map.get("Email Address"));
+            MyCommonAPIs.sleepi(1);
+            SelenideElement selectedOption = dropdown.getSelectedOption();
+            if (selectedOption.getValue().equals(map.get("Email Address"))) {
+                result = true;
+            }
+            MyCommonAPIs.sleepi(1);
+            selectNotificationAndReport(map);
+            if (map.containsKey("Scheduled Reports")) {
+                if (map.get("Scheduled Reports").equals("disable")) {
+                    if (!scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduledreport.click();
+                    }
+                } else if (map.get("Scheduled Reports").equals("enable")) {
+                    if (scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduledreport.click();
+                    }
+                }
+            }
+            if (map.containsKey("Scheduled Reports Option")) {
+                switch (map.get("Scheduled Reports")) {
+                case "weekly":
+                    if (!scheduleweekly.has(Condition.attribute("disabled"))) {
+                        scheduleweekly.selectRadio("1");
+                    }
+                    break;
+                case "monthly":
+                    if (!schedulemonthly.has(Condition.attribute("disabled"))) {
+                        schedulemonthly.selectRadio("2");
+                    }
+                    break;
+                }
+            }
+            SaveOrg.click();
+            logger.info("--------------- Organisation is Edited Succesfully ----------");
+            Selenide.sleep(10000);
+            if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+                $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+            }
+        }
+        waitReady();
+        return result;
+    }
   
+    //AddedByPratik
+    public boolean verifyActiveOwner(String ownerEmail) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(verifyOwnerEmailonOrgPage(ownerEmail));
+        if (!$("p.hide").is(Condition.visible) && !$("div.hide").is(Condition.visible) && verifyOwnerEmailonOrgPage(ownerEmail).exists()) {
+            result = true;
+            logger.info("Owner is showing active");
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public void gotoDevicesTabunderorgSetting(String OrgName) {
+        openOrg(OrgName);
+        MyCommonAPIs.sleepi(10);
+        Setting.click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(orgsettingsDevicesTab);
+        orgsettingsDevicesTab.click();
+        MyCommonAPIs.sleepi(5);
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllManagerCountonorgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing==expectedNumber) {
+            result = true;
+            logger.info("Total managers count showing correctly on org page");
+        }
+        return result;
+    }
+    
+    // AddedByPratik
+    public boolean verifyAllManagerCountOnOrgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllManagerCountonOrgSettingsPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            viewAllLinkOnOrgPage.click();
+            MyCommonAPIs.sleepi(10);
+            waitElement(managersCountOnOrgSetpage);
+            String extractedText1 = managersCountOnOrgSetpage.text();
+            System.out.println(extractedText1);
+            extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+            System.out.println(extractedText1);
+            int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+            System.out.println(totalNoofDevicesShowing1);
+            if (totalNoofDevicesShowing1 == expectedNumber) {
+                logger.info("Total managers count showing correctly on org setting page");
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public void gotoManagersTabunderorgSetting(String OrgName) {
+        openOrg(OrgName);
+        MyCommonAPIs.sleepi(10);
+        Setting.click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(managersTabOrgSettings);
+        managersTabOrgSettings.click();
+        MyCommonAPIs.sleepi(5);
+    }
+    
+    //AddedByPratik
+    public boolean managersCountOnOrgSettingsPage() {
+     boolean result = false;
+     MyCommonAPIs.sleepi(10);
+     waitElement(managersCountOnOrgSetpage);
+     String extractedText1 = managersCountOnOrgSetpage.text();
+     System.out.println(extractedText1);
+     extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+     System.out.println(extractedText1);
+     int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+     System.out.println(totalNoofDevicesShowing1);
+     int expectedNumber = 2;
+     if (totalNoofDevicesShowing1 == expectedNumber) {
+         logger.info("Total managers count showing correctly on org setting page");
+         result = true;
+     }
+     return result;
+    }
+    
+    //AddedByPratik
+    public void creditAllocation2(String name) {
+        MyCommonAPIs.sleepi(5);
+        waitElement(checkOrganizationIsExist(name));
+        organizationElement(name).click();
+        MyCommonAPIs.sleepi(1);
+        organizationElement1(name).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(dropdownOrganizationElement(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
+    }
     
 }

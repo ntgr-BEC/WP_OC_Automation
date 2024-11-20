@@ -32,7 +32,7 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
-    String networkId;
+    String id;
     
     @Feature("Api_ModifyMacAcl") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -44,38 +44,35 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    {    
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
+//    @AfterMethod(alwaysRun=true)
+//    public void teardown()
+//    {    
+//        Map<String, String> pathParams = new HashMap<String, String>();
+//        pathParams.put("networkId",networkId);
+//        
+//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//    }
   
     @Step("Send get request to {url}")
     public void step1()
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        List<Response> response = new Api_AddSsid().step1();
-        Response add=response.get(0);
-        Response ssidid=response.get(1);
-        String id=ssidid.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
-        networkId=add.jsonPath().getString("networkInfo[0].networkId");
+        Response response = new Api_AddMacAcl().step1();
+        
+        id=response.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
            
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
        
-        pathParams.put("networkId",networkId);
-        pathParams.put("id",id);  
+        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("wirelessNetworkId",id);  
         
-        String requestBody = "{\"macAuthInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\"}}, {\"macAclConfigInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\",\"macList\":[{\"deviceName\":\"TEScgeck\",\"mac\":\"11:33:11:22:34:77\"}]}}";
+        String requestBody = "{\"deleteMacAclConfigInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\",\"macList\":[\"11-33-11-22-34-77\"]}}";
         
-        //TO PERFORM ANY REQUEST 
-//        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Modify_Wireless_MacAcl"),headers, pathParams, null); 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("WirelessMacAcl_Sanity"), requestBody, headers, pathParams, null); 
+//        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Wireless_MacAcl"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
     }

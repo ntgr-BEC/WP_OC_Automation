@@ -431,8 +431,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
     public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
     public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
-    public static SelenideElement policyText1        = $x("//*[@id=\"smart-form-register2\"]/fieldset/div[1]/section[2]/label/p");
-    public static SelenideElement policyText2        = $x("//*[@id=\"_secSubscReg\"]/label/p");
+    public static SelenideElement policyText1        = $x("//input[@name='mailProgram']/..//i[@id='_iPromoReg']");
+    public static SelenideElement policyText2        = $x("//input[@name='termsAndCondition']/..//i[@id='_iPromoReg']");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
     public SelenideElement        continuebutton     = $("#signupBtn_i");
     public SelenideElement        continuebutton1     = $("#signupForm > div.buttonBlock.mb20.ml30 > button");
@@ -963,6 +963,19 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
   public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
-
+  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here to accept the invitation')]");
+  public SelenideElement  signupbuttonForManagerandOwner    = $x("//button[text()='Sign Up']");
+  public SelenideElement  mubBillingTab                     = $x("//div[@class='leftMenuItems']//a[text()='Monthly Usage Billing']");
+  
+  //AddedByPratik
+  public SelenideElement  mubPaymentsaveBtn                 = $x("//button[@type='submit' and text()=' Save ']");
+  public SelenideElement  enableMUB                         = $x("//h5[text()='Monthly Usage Billing']/..//span[@class='cstmSlider cstmRound']");
+  public SelenideElement  successmsgResult                  = $x("//h2[text()=' Your profile updated successfully! ']");
+  public SelenideElement  gotoDashboardlink                 = $x("//a[text()='Go to dashboard']");
+  public SelenideElement  savedbillingInfoEdit              = $x("//span[@id='billingBlock-savedBilling-editIcon']");
+  public SelenideElement  savedPaymentinfoedit              = $x("//span[@id='paymentBlock-editIcon']");
+  public SelenideElement  usageHistoryTab                   = $x("//li[text()='Usage History']");
+  public SelenideElement  usageHistoryTextVerify            = $x("//p[contains(text(),'available on the first day of the next month.')]");
+  public SelenideElement  mubtextAboutDisableMUB            = $x("//div[contains(text(),'be disabled on the first day of the next month')]");
 }
 

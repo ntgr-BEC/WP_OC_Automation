@@ -31,9 +31,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     @Feature("RF Paramater") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T36176") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T36173") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify,DTIM DEFAULT VALUE IS 2") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T36176") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T36173") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -49,9 +49,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
-
-        handle.gotoLoction();
+        webportalLoginPage.loginByUserPassword("apwptest1325073@mailinator.com","Netgear#123");
+        handle.gotoLoction();     
         
     }
     

@@ -42,21 +42,20 @@ public class Api_ModifyVlanMacAcl extends TestCaseBaseApi{
         step1();
     }
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    {  
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//       pathParams.put("networkId",networkId);    
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//    }
-  
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {  
+        Map<String, String> pathParams = new HashMap<String, String>();
+       pathParams.put("networkId",networkId);    
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
+//  not working
     @Step("Send get request to {url}")
     public Response step1()
     {
         
         List <Response> response =new Api_SetVlanMacAcl().step1();
-//        List <Response> response = new Api_VlanListing().step1();
         Response addNetwork=response.get(0);
         Response addVlan=response.get(1);
 

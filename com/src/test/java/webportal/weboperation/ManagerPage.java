@@ -11,6 +11,7 @@ import com.codeborne.selenide.SelenideElement;
 
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
+import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.ManagerPageElement;
 
@@ -153,10 +154,14 @@ public class ManagerPage extends ManagerPageElement {
 
     public boolean checkEditResult(String email, String policy, String orgnum) {
         boolean result = false;
+        System.out.println(managerlistorganizations(email).getText() +" === "+orgnum);
+        System.out.println(managerlistaccesspolicy(email).getText() +" === "+policy );
+        
         if (managerlistorganizations(email).getText().equals(orgnum) && managerlistaccesspolicy(email).getText().equals(policy)) {
             result = true;
             logger.info("Edited manager information success.");
         }
+        System.out.println("checkSuccessDialog Point 2" + result);
         return result;
     }
 
@@ -167,10 +172,11 @@ public class ManagerPage extends ManagerPageElement {
             result = true;
             logger.info("Your invitation has been sent.");
             MyCommonAPIs.sleepi(5);
+            System.out.println(successdialogmsg.getText());
             invitesuccessok.click();
             waitReady();
         }
-        System.out.println("checkSuccessDialog" + result);
+        System.out.println("checkSuccessDialog Point 1" + result);
         return result;
     }
 
@@ -348,6 +354,126 @@ public class ManagerPage extends ManagerPageElement {
         }
         return result = true;
     
+    }
+    
+    //AddedByPratik
+    public void addManager1(Map<String, String> map) {
+        if (!checkManagerIsExist(map.get("Email Address"))) {
+            addmanager.click();
+            waitElement(managername);
+            managername.sendKeys(map.get("Name"));
+            manageremail.sendKeys(map.get("Email Address"));
+            if (map.containsKey("Manager Type")) {
+                managertype.selectOption(map.get("Manager Type"));
+            }
+            if (map.containsKey("Access Policy")) {
+                manageraccess.selectOption(map.get("Access Policy"));
+            }
+            if (map.containsKey("Organization Name")) {
+                if (!selectorganizationcheck(map.get("Organization Name")).isSelected()) {
+                    selectorganization(map.get("Organization Name")).click();
+                }
+            }
+            if (map.containsKey("Grant Access All")) {
+                grantaccessall.click();
+            }
+            
+            if (map.containsKey("Select All")) {
+                selectAllOrg.click();
+            }
+            MyCommonAPIs.sleepi(5);
+            invitebutton.click();
+        }
+    }
+    
+    //AddedByPratik
+    public boolean verifyExistingManager(String name) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        if (verifyExistingManger(name).exists()) {
+            result = true;
+            System.out.println(verifyExistingManger(name).getText());
+            logger.info("Existing Manger is verifed active and exists");
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean addSecondaryAdmin(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        if (managerdropdown.exists()) {
+            managerdropdown.click();
+        }
+        MyCommonAPIs.sleepi(2);
+        waitElement(secondaryAdminOpt);
+        secondaryAdminOpt.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(addSecAdmin);
+        addSecAdmin.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(secondaryadminname);
+        secondaryadminname.sendKeys(map.get("Name"));
+        MyCommonAPIs.sleepi(1);
+        waitElement(secondaryAdminEmail);
+        secondaryAdminEmail.sendKeys(map.get("Email Address"));
+        MyCommonAPIs.sleepi(1);
+        waitElement(addSecondaryAdminButton);
+        addSecondaryAdminButton.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(successMsg1);
+        if (successMsg1.exists() && successMsg2.exists() && successMsg3.exists()) {
+            successMsg3.click();
+            MyCommonAPIs.sleepi(5);
+            if (pendingStatus.exists() && verifySecondaryAdmin(map.get("Email Address")).exists()) {
+                logger.info("Secondary Admin invited Successfully");
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    //AddedBypratik
+    public void deleteSecondaryAdminEmail(String email) {
+        MyCommonAPIs.sleepi(5);
+        if (managerdropdown.exists()) {
+            managerdropdown.click();
+        }
+        MyCommonAPIs.sleepi(2);
+        waitElement(secondaryAdminOpt);
+        secondaryAdminOpt.click();
+        MyCommonAPIs.sleepi(10);
+        executeJavaScript("arguments[0].removeAttribute('class')", verifySecondaryAdmin(email));
+        MyCommonAPIs.sleep(3000);
+        verifySecondaryAdmin(email).hover();
+        MyCommonAPIs.sleep(3);
+        deleteSecAdmin(email).waitUntil(Condition.visible, 60 * 1000).hover().click();
+        MyCommonAPIs.sleepi(5);
+        if (removemanager.isDisplayed()) {
+            removemanager.click();
+        } else {
+            removemanagernew.click();
+        }
+        MyCommonAPIs.sleep(8 * 1000);
+    }
+    
+    //AddedByPratik
+    public boolean verifyExistingSecondaryAdmin(String name) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        if (managerdropdown.exists()) {
+            managerdropdown.click();
+        }
+        MyCommonAPIs.sleepi(2);
+        waitElement(secondaryAdminOpt);
+        secondaryAdminOpt.click();
+        MyCommonAPIs.sleepi(10);
+        if (verifyExistingManger(name).exists()) {
+            result = true;
+            System.out.println(verifyExistingManger(name).getText());
+            logger.info("Existing secondary Admin is verifed active and exists");
+        }
+        return result;
     }
 
     

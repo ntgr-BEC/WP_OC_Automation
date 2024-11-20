@@ -23,7 +23,7 @@ import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author Tejeshwini K V
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase {

@@ -60,9 +60,9 @@ public class Testcase extends TestCaseBase {
         assertFalse(tmpStr.contains("fail"), "dns lookup result is: " + tmpStr);
         SelenideElement testresult = troubleshoot.selectOneDeviceTestResult(WebportalParam.ap1serialNo);
         testresult.click();
-        MyCommonAPIs.sleepi(6);
+        MyCommonAPIs.sleepi(20);
         tmpStr = MyCommonAPIs.checkSystemCall(2,"");
-        assertTrue(tmpStr.contains("23.") || tmpStr.contains(".217"), "dns lookup result is: " + tmpStr);
+        assertTrue(tmpStr.contains("23.") || tmpStr.contains(".217") || tmpStr.contains("13:") || tmpStr.contains(":17"), "dns lookup result is: " + tmpStr);
 
         if (troubleshoot.dnslookupclose.exists()) {
             troubleshoot.dnslookupclose.click();

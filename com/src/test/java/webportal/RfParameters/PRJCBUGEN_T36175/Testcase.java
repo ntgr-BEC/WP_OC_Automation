@@ -56,8 +56,6 @@ public class Testcase extends TestCaseBase {
     }
 
 
-    
- 
     @Step("Test Step 2: OBSERVE Broadcast INTERVAL VALUE;")
     public void step2() {
         
@@ -65,10 +63,10 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
 
 
-            assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1")).equals("128"),"Intervals are missing 1st");
+           assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1")).equals("128"),"Intervals are missing 1st");
            new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();   
            MyCommonAPIs.sleepi(10);
-           assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("2","4","2")).equals("0"),"Intervals are missing 2nd");
+          assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("2","4","2")).equals("0"),"Intervals are missing 2nd");
           new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click();   
           MyCommonAPIs.sleepi(10);
            assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("3","3","3")).contains("256"),"Intervals are missing 3rd");

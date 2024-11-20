@@ -10158,7 +10158,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         // added by shoib for Densty Slider
         Actions actions = new Actions(WebDriverRunner.getWebDriver());
         actions.dragAndDrop(sliderdtm(level), Interval(hz, inter)).perform();
-
+        
         MyCommonAPIs.sleepi(10);
         if(savead.isEnabled())
         {
@@ -10174,7 +10174,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public Boolean setBeaconvalue(String val, String hz) {
         if (val.matches("[a-zA-Z]+")) {
-            beacon(hz).clear();
+            beacon(hz).setValue(" ");
+            MyCommonAPIs.sleepi(10);
             savead.click();
             String warmessage = warningbeacon.getText();
             return warmessage.equals("Beacon Interval value should be in the range of 100 to 300");
@@ -11287,6 +11288,22 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             a.moveToElement(MeshSetting).click().perform();
         }
         MyCommonAPIs.sleepi(3);
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllcountUnderSettingsdevicesoption() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(totaldevicesAvilable);
+        String extractedText = totaldevicesAvilable.text();
+        extractedText = extractedText.replace("Devices (", "").replace(")", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        int expectedNumber = 1;
+        if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
+            result = true;
+            logger.info("Total devices count showing correctly on wireless page");
+        }
+        return result;
     }
 }
 

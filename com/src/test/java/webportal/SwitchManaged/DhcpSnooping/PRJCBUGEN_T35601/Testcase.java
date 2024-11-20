@@ -61,6 +61,7 @@ public class Testcase extends TestCaseBase {
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.addDataVlanWithPorts("data vlan", "100", null, null, null, null, null, null, null);
         handle.waitCmdReady("100", false);
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         vlanPage.addDataVlanWithPorts("data vlan", "200", null, null, null, null, null, null, null);
         handle.waitCmdReady("200", false);
@@ -87,9 +88,11 @@ public class Testcase extends TestCaseBase {
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
 
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
 
+        MyCommonAPIs.sleepi(5);
         handle.refresh();
         assertTrue(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
@@ -112,6 +115,7 @@ public class Testcase extends TestCaseBase {
         wdsp.gotoDhcpSnoopingConfigPage(WiredDhcpSnoopingElement.dhcpSnoopingGlobalConfig);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.dhcpSnoopingMode);
         handle.refresh();
+        MyCommonAPIs.sleepi(5);
         wdsp.enableOrDisableDhcpSnoopingconfigModes(WiredDhcpSnoopingElement.selectUserVlan("100"));
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         vlanPage.deleteVlan("100");

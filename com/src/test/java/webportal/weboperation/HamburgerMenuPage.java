@@ -77,6 +77,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.FileReader;
 import java.io.IOException;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 /**
  * @author Netgear
  */
@@ -3422,6 +3425,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (proaccountContinue.exists()) {
             proaccountContinue.click();
         }
+        
 
     }
 
@@ -5274,13 +5278,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void FillPaymentMethods(Map<String, String> map) {
+        MyCommonAPIs.sleepi(30);
+        enableMUB.click();
+        MyCommonAPIs.sleepi(10);
         ManagePaymentMethods.click();
         MyCommonAPIs.sleep(3000);
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        MyCommonAPIs.sleep(6000);
+        //TermaandconditionCheckbox.click();
+        //TermaandconditionAccept.click();
+        //MyCommonAPIs.sleep(6000);
         // GoToBillingInfo.click();
-        MyCommonAPIs.sleep(3000);
+        //MyCommonAPIs.sleep(3000);
         billingfirstname.sendKeys(map.get("First Name"));
         billinglastname.sendKeys(map.get("Last Name"));
         billingstreetaddress.sendKeys(map.get("Street Address"));
@@ -5306,6 +5313,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         billingstreetaddress.click();
         billingstreetaddress.clear();    
         billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+        MyCommonAPIs.sleepi(10);
     }
 
     public boolean CheckFreeTrailmessage() {
@@ -5486,34 +5496,35 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean verify(String lic) {
+
         MyCommonAPIs.sleepi(10);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        MyCommonAPIs.sleepi(10);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
 
-            break;
-        }
-       
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        $x("//*[text()='Organization Level Active Subscription']/..//i[@class='icon icon-icon-collapse']").click();
+
+        MyCommonAPIs.sleepi(5);
+
+        System.out.println("Print the element");
+
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+
+        System.out.println(actOnDateText);
+        System.out.println(expOnDateText);
+
+        int actOnYear = extractYear(actOnDateText);
+        int expOnYear = extractYear(expOnDateText);
+
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
     }
+
     
     public boolean verifyLMS(String lic) {
         MyCommonAPIs.sleepi(10);
@@ -6012,8 +6023,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-        waitReady();
-        MyCommonAPIs.sleepsync();
         return result;
     }
 
@@ -8872,6 +8881,272 @@ public int verifyDeviceCredits() {
   }
   return actualdevshown;
 }
+//AddedByPratik
+public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
+    boolean result = false;
+    logger.info("Check email address is:" + mailname);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    String url = "https://yopmail.com";
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+    MyCommonAPIs.sleepi(5);
+    Selenide.switchTo().window(1);
+    String inputElement = "//input[@id='login']";
+    $x(inputElement).clear();
+    $x(inputElement).sendKeys(mailname);
+    $x("//button[@title='Check Inbox @yopmail.com']").click();
+    SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+    Selenide.switchTo().frame(frame);
+    MyCommonAPIs.sleepsync();
+   
+    System.out.println(inviteEmailLinkAndText.getText());
+    if (inviteEmailLinkAndText.getText().contains("click here to accept the invitation")) {
+        result = true;
+        logger.info("Received invitation mail");
+    }
+    return result;
+
+}
+//AddedByPratik
+public boolean inviteEmailFillDateandAccept() {
+    boolean result = false;
+    waitElement(inviteEmailLinkAndText);
+    inviteEmailLinkAndText.click();
+    MyCommonAPIs.sleepi(10);
+    ArrayList<String> tabs = new ArrayList<>(WebDriverRunner.getWebDriver().getWindowHandles());
+    if (tabs.size() > 1) {
+        WebDriverRunner.getWebDriver().switchTo().window(tabs.get(tabs.size() - 1));
+        result = true;
+    }
+    System.out.println("Current URL in new tab: " + WebDriverRunner.getWebDriver().getCurrentUrl());
+    
+    return result;
+}
+
+public boolean FillInvitemanagerOwnerInfoAndVerifylogin(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(5);
+    waitElement(ownerconfirmemail);
+    ownerconfirmemail.sendKeys(map.get("Confirm Email"));
+    ownerpassword.sendKeys(map.get("Password"));
+    ownerconfirmpwd.sendKeys(map.get("Confirm Password"));
+    ownercountrycode.selectOption(map.get("Country"));
+    ownerphonenum.sendKeys(map.get("Phone Number"));
+    MyCommonAPIs.sleepi(1);
+    
+    if (policyText1.exists()) {
+        policyText1.click();
+    }
+
+    MyCommonAPIs.sleepi(1);
+    if (policyText2.exists()) {
+        policyText2.click();
+    }
+
+    MyCommonAPIs.sleepi(1);
+    if (signupbuttonForManagerandOwner.exists()) {
+        signupbuttonForManagerandOwner.click();
+    }
+    
+    MyCommonAPIs.sleepi(20);
+    if ($x("//p[text()='Netgear']").exists()) {
+        result = true;
+        logger.info("Account created and loggedin");
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForInvitemangaerOwner1(String mailname) {
+  boolean result = false;
+  logger.info("Check email address is:" + mailname);
+  WebDriver driver = WebDriverRunner.getWebDriver();
+  String url = "https://yopmail.com";
+  ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+  MyCommonAPIs.sleepi(5);
+  Selenide.switchTo().window(3);
+  String inputElement = "//input[@id='login']";
+  $x(inputElement).clear();
+  $x(inputElement).sendKeys(mailname);
+  $x("//button[@title='Check Inbox @yopmail.com']").click();
+  SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+  Selenide.switchTo().frame(frame);
+  MyCommonAPIs.sleepsync();
+ 
+  System.out.println(inviteEmailLinkAndText.getText());
+  if (inviteEmailLinkAndText.getText().contains("click here to accept the invitation")) {
+      result = true;
+      logger.info("Received invitation mail");
+  }
+  return result;
+
+}
+
+//AddedByPratik
+public boolean verifySignUpPage() {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    if (ownerconfirmemail.exists() && ownerpassword.exists() && ownerpassword.exists() && ownerconfirmpwd.exists()) {
+        logger.info("After clicking on invite manager link; landed on sign up page");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+private int extractYear(String dateText) {
+    try {
+        System.out.println("Extracting year from: " + dateText);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+        Date date = dateFormat.parse(dateText);
+        System.out.println("Parsed Date: " + date);
+        return date.getYear() + 1900;
+    } catch (Exception e) {
+        System.err.println("Invalid date format: " + dateText);
+        return -1;
+    }
+}
+
+//AddedByPratik
+public boolean verifyMUBTab() {
+    boolean result = false;
+    hamburgermenunew.click();
+    MyCommonAPIs.sleepi(5);
+    accountmanager.click();
+    MyCommonAPIs.sleepi(20);
+    waitElement(mubBillingTab);
+    if (mubBillingTab.exists()) {
+        logger.info("MUB option tab is avilable in account management page");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean FillPaymentMethodsAndVerify(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(30);
+    enableMUB.click();
+    MyCommonAPIs.sleepi(10);
+    ManagePaymentMethods.click();
+    MyCommonAPIs.sleepi(30);
+    if (savedbillingInfoEdit.exists() && savedPaymentinfoedit.exists()) {
+        savedbillingInfoEdit.click();
+        MyCommonAPIs.sleepi(2);
+        savedPaymentinfoedit.click();
+        MyCommonAPIs.sleepi(2);
+        billingfirstname.clear();
+        billingfirstname.sendKeys(map.get("First Name"));
+        billinglastname.clear();
+        billinglastname.sendKeys(map.get("Last Name"));
+        billingstreetaddress.clear();
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        billingcity.clear();
+        billingcity.sendKeys(map.get("City"));
+        billingzip.clear();
+        billingzip.sendKeys(map.get("Zip"));
+        billingcountry.selectOption(map.get("Country"));
+        if (billingstate1.isDisplayed()) {
+            billingstate1.selectOption(map.get("State"));
+        } else {
+            billingstate2.clear();
+            billingstate2.sendKeys(map.get("State"));
+        }
+        //GoToPaymentinfo.click();
+        MyCommonAPIs.sleepi(3);
+        paymentcardnumber.clear();
+        paymentcardnumber.setValue(map.get("Card Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentcvvnumber.clear();
+        paymentcvvnumber.setValue(map.get("CVV Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentexpirationmonth.selectOption(map.get("Expiration Month"));
+        paymentexpirationyear.selectOption(map.get("Expiration Year"));
+        MyCommonAPIs.sleepi(2);
+        billingstreetaddress.click();
+        billingstreetaddress.clear();    
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+    } else {
+        billingfirstname.sendKeys(map.get("First Name"));
+        billinglastname.sendKeys(map.get("Last Name"));
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        billingcity.sendKeys(map.get("City"));
+        billingzip.sendKeys(map.get("Zip"));
+        billingcountry.selectOption(map.get("Country"));
+        if (billingstate1.isDisplayed()) {
+            billingstate1.selectOption(map.get("State"));
+        } else {
+            billingstate2.sendKeys(map.get("State"));
+        }
+        GoToPaymentinfo.click();
+        MyCommonAPIs.sleepi(3);
+        paymentcardnumber.clear();
+        paymentcardnumber.setValue(map.get("Card Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentcvvnumber.clear();
+        paymentcvvnumber.setValue(map.get("CVV Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentexpirationmonth.selectOption(map.get("Expiration Month"));
+        paymentexpirationyear.selectOption(map.get("Expiration Year"));
+        MyCommonAPIs.sleepi(2);
+        billingstreetaddress.click();
+        billingstreetaddress.clear();    
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+    }   
+    MyCommonAPIs.sleepi(20);
+    if (successmsgResult.exists()) {
+        logger.info("MUB Billing payment done successfully");
+        result = true;
+        waitElement(gotoDashboardlink);
+        gotoDashboardlink.click();
+        MyCommonAPIs.sleepi(10);
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean GooMUBUsageHistoryAndVerify() {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    hamburgermenunew.click();
+    MyCommonAPIs.sleepi(5);
+    accountmanager.click();
+    MyCommonAPIs.sleepi(20);
+    MUB.click();
+    MyCommonAPIs.sleepi(15);
+    waitElement(usageHistoryTab);
+    usageHistoryTab.click();
+    MyCommonAPIs.sleepi(10);
+    if (usageHistoryTextVerify.exists()) {
+        System.out.println(usageHistoryTextVerify.getText());
+        logger.info("Usage History of MUB Verified");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean GooMUBandVerifyDisableTextNotifications() {
+  boolean result = false;
+  MyCommonAPIs.sleepi(10);
+  hamburgermenunew.click();
+  MyCommonAPIs.sleepi(5);
+  accountmanager.click();
+  MyCommonAPIs.sleepi(20);
+  MUB.click();
+  MyCommonAPIs.sleepi(15);
+  waitElement(mubtextAboutDisableMUB);
+  if (mubtextAboutDisableMUB.exists()) {
+      System.out.println(mubtextAboutDisableMUB.getText());
+      logger.info("Disable text notification about MUB Verified");
+      result = true;
+  }
+  return result;
+}
+
 
 }
 
