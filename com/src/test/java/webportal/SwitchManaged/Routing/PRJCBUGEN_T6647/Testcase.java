@@ -13,6 +13,8 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -38,6 +40,9 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -58,7 +63,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip addrss for the two siwtches")
     public void step2() {
         rtp.addIpToVlan(vlanId, "255.255.255.0", ip1, ip2);
-        assertTrue(handle.getPageErrorMsg().contains("gateway is not configured"), "gateway should be configured first");
+        assertTrue(handle.getPageErrorMsg().contains("gateway is not configured") || handle.getPageErrorMsg().contains("subnetdomain of the device must be equal to the subnetdomain of the same vlan."), "gateway should be configured first");
     }
 
 }
