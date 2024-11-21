@@ -412,7 +412,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public static SelenideElement    DropDown5GhzLow                      = $x("(//*[@id=\"hServRadiChnl\"])[2]");
     public static SelenideElement    DropDown24GhzWireless                        = $x("(//*[@id=\"icon2PlusNsaAccordHeadSettng\"])[1]");
     public static SelenideElement    DropDown5GhzHighWireless                     = $x("(//*[@id=\"icon2PlusNsaAccordHeadSettng\"])[3]");
-    public static SelenideElement    DropDown6GhzHighWireless                     = $x("(//*[@id=\"iconMinNsaAccordHeadSettng\"])[4]");
+    public static SelenideElement    DropDown6GhzHighWireless                     = $x("(//*[@id=\"icon2PlusNsaAccordHeadSettng\"])[4]");
     public static SelenideElement    fiveghzHigh                                  = $x("/html/body/div[2]/div/div[2]/div[3]/div[2]/div[4]/div/div[2]/div/div[2]/div/div/div/form/div[3]/div/div/div/h3");
     public static SelenideElement    channel                                      = $x("/html/body/div[2]/div/div[2]/div[3]/div[2]/div[4]/div/div[2]/div/div[2]/div/div/div/form/div[3]/div/div/div/div/div/div/div[3]/select");
     public static SelenideElement    channels                                      = $x("/html/body/div[2]/div/div[2]/div[3]/div[2]/div[4]/div/div[2]/div/div[2]/div/div/div/form/div[3]/div/div/div/div/div/div/div[3]/select/option");
@@ -633,9 +633,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        save80211                  = $x("//*[@id=\"btnSaveSsideditWirNet\"]");
     public SelenideElement        ok80211                  = $x("//*[@id=\"SuccsEditWirNet\"]");
     public SelenideElement        check80211                  = $x("//*[@id=\"divClearFixeditWirNet\"]/div[4]/div/div/div[2]/label/span");
-    public SelenideElement        Warrning                  = $x("(//h4[text()='Warning']/../../../..//div[@class=\"modal-body\"]/p)[1]");
+    public SelenideElement        Warrning                  = $x("(//*[text()='Warning'])[4]");
     public SelenideElement        Warrning1                  = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[3]");
-    public SelenideElement        okFast                  = $x("(//*[@id=\"myModal\"]/div/div/div[3]/button)[4]");
+    public SelenideElement        okFast                  = $x("(//*[@class='btn btn-danger'])[2]");
     
     public SelenideElement        SDM                  = $x("//*[@id=\"divSideBarSecEditVlan\"]/div/div[10]/a");
     public SelenideElement        enableSDM            = $x("//*[@id=\"inpCheckBoxDiagMod\"]");
@@ -1304,7 +1304,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
                }
                else
                {
-                   SelenideElement inter = $x("(//*[@id=\"divColMdRadiChnl\"]/div[6]/div[2]/div[6]/span[2])["+hz+"]");
+                   SelenideElement inter = $x("(//*[@id=\"divColMdRadiChnl\"]/div[8]/div[2]/div[6]/span[2])["+hz+"]");                                            
                    return inter; 
                }
    }
@@ -1526,6 +1526,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      public SelenideElement        selectDropdown             = $x("//*[@class=\"selectweek padding-top-5 inputTextField p-b-5 cursor-pointer\"]");
      public SelenideElement        selectJaze              = $x("//*[text()=\"Jaze Networks\"]");
+     
+     //AddedbyPratik
+     public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(1)']");
+     public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 1 of 1 entries']");
 }
 
 

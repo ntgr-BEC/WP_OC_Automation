@@ -79,7 +79,8 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "12345");
-        locationInfo.put("Country", "United States of America");
+//        locationInfo.put("Country", "United States of America");
+        locationInfo.put("Country", WebportalParam.Country);
         new AccountPage(false).addNetwork(locationInfo);
         MyCommonAPIs.sleepi(5);
     }

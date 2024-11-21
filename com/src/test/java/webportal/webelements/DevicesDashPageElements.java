@@ -501,5 +501,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement deviceCreditsPremacc             = $x("//p[text()='Device Credits']/..//h2//text()");
     public SelenideElement insightDevicesPremacc            = $x("//p[text()='Insight Devices']/..//h2//text()");
     public SelenideElement availableCreditsPremacc          = $x("//p[text()='Available Credits']/..//h2//text()");
-    
+    public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(4)']");
+    public SelenideElement devicesOptionUnderSetting        = $x("//a[@href='/#/organization/devices']");
+    public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 4 of 4 entries']");
+
 }

@@ -17,7 +17,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
+
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -33,7 +33,7 @@ public class Api_GetLicensekeyInformation extends TestCaseBaseApi{
     String Licence;
 
     
-    @Feature("API_Licenses_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetLicensekeyInformation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Get licensekey information.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.

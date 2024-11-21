@@ -79,7 +79,8 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "12345");
-        locationInfo.put("Country", "United States of America");
+//        locationInfo.put("Country", "United States of America");
+        locationInfo.put("Country", WebportalParam.Country);
         new AccountPage(false).addNetwork(locationInfo);
         MyCommonAPIs.sleepi(5);
     }
@@ -108,7 +109,7 @@ public class Testcase extends TestCaseBase {
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForDeviceReboot(WebportalParam.adminName), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForDeviceReboot(WebportalParam.loginName), "Not received verify email.");
     }
 
 }

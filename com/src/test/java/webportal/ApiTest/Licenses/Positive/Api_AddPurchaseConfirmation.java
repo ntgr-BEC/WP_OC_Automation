@@ -17,7 +17,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Organizations.PositiveTestcases.Organization.Api_AddOrganization;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -35,7 +35,7 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
     
 
     
-    @Feature("API_Licenses_PositiveTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_AddPurchaseConfirmation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Add purchase confirmation key at account and organization.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -46,14 +46,7 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         step2(Licence);
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-       
-    }  
-    
-    
+
     @Step("Send get request to {url}")
     public void step1()
     {

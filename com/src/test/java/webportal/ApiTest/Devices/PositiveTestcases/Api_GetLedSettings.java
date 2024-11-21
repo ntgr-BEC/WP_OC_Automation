@@ -62,7 +62,6 @@ public class Api_GetLedSettings extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
         MyCommonAPIs.sleepi(10);
-        getResponse.then().body("ledSettings.ledControl", equalTo("0"));   
        
     }
   

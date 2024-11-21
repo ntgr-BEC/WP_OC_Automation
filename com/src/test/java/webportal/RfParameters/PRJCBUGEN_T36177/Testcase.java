@@ -76,6 +76,8 @@ public class Testcase extends TestCaseBase {
             broadcast2=new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1");
            new WirelessQuickViewPage(false).setBeaconvalue("125","1");
            MyCommonAPIs.sleepi(5);
+           
+           
            new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();       
            dtim5=new WirelessQuickViewPage(false).DragDensityToDtim("2","2","2");
            broadcast5=new WirelessQuickViewPage(false).DragDensityToBroadcast("2","1","2");
@@ -83,7 +85,7 @@ public class Testcase extends TestCaseBase {
            MyCommonAPIs.sleepi(5);
            
            if(Model.equals("WAC564") || Model.equals("WAC540") || Model.equals("WAX630")) {
-          new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click();          
+             new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click();          
            dtim5h_6=new WirelessQuickViewPage(false).DragDensityToDtim("3","4","3");
            broadcast5h_6=new WirelessQuickViewPage(false).DragDensityToBroadcast("3","4","3");
            new WirelessQuickViewPage(false).setBeaconvalue("225","3");
