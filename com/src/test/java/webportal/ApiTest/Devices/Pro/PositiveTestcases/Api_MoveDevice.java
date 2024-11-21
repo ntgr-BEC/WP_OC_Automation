@@ -20,7 +20,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
-import webportal.ApiTest.Location.PositiveTestcases.Pro.Api_AddLocationPro;
+import webportal.ApiTest.Location.Pro.PositiveTestcases.Api_AddLocationPro;
 import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;

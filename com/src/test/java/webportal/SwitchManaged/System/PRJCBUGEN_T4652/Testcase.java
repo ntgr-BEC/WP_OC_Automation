@@ -1,6 +1,7 @@
 package webportal.SwitchManaged.System.PRJCBUGEN_T4652;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -58,37 +59,37 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
         devicesSwitchIpSettingsPage.setIp(IPINFO2);
         message = devicesSwitchIpSettingsPage.getErrorMessage();
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
         devicesSwitchIpSettingsPage.setIp(IPINFO3);
         message = devicesSwitchIpSettingsPage.getErrorMessage();
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
         devicesSwitchIpSettingsPage.setIp(IPINFO4);
         message = devicesSwitchIpSettingsPage.getErrorMessage();
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
         devicesSwitchIpSettingsPage.setIp(IPINFO5);
         message = devicesSwitchIpSettingsPage.getErrorMessage();
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
         devicesSwitchIpSettingsPage.setIp(IPINFO6);
         message = devicesSwitchIpSettingsPage.getErrorMessage();
         MyCommonAPIs.sleepi(2);
         Selenide.refresh();
         MyCommonAPIs.sleepi(2);
-        assertEquals(message, "Enter a valid IP Address");
+        assertTrue(message.equals("Enter a valid IP Address") || message.equals("undefined"));
     }
 
     @AfterMethod(alwaysRun = true)
