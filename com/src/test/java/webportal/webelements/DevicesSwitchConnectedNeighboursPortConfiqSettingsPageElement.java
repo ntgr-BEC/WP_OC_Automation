@@ -98,8 +98,9 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPageElement exten
     public String          vlanIdOption = "//div[@class=\"tagUntagBlock smart-form m-b-20 d-grid\"]";
     public SelenideElement vlanIdSelect = $x("//*[@id=\"selVlanIdSettng\"]");
     
-    public String          vlanIdStr = "//p[contains(@class,'help-txt') and text()='%s']";
-    public String          vlanRadioStr = vlanIdStr + "/ancestor::div[contains(@class,'d-flex')]//img";
+//    public String          vlanIdStr = "//p[contains(@class,'help-txt') and text()='%s']";
+    public String          vlanIdStr = "//*[@id=\"vlanCheckbox_%s\"]/../i";
+    public String          vlanRadioStr = vlanIdStr + "/../../../../../div[2]/button[contains(text(),\"Tag\")]";
   //p[contains(@class,'help-txt') and text()='35']/ancestor::div[contains(@class,'d-flex')]//img
     
 }
