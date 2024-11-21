@@ -127,9 +127,7 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
         List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
         System.out.println(VLAnIDS);
         System.out.println(VLAnIDS.contains("4088"));
-        if(VLAnIDS.contains("4088")) {  
-        nsp.createNetwork("testnet" + id, 1, name, id);
-        }
+        if(VLAnIDS.contains("4088")) {
         gotoPage();
         openVlan(name, id, 1);
 
@@ -148,6 +146,10 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
         clickSave();
         waitReady();
         MyCommonAPIs.sleep(20000);
+       }
+      else {
+          nsp.createNetwork("testnet" + id, 1, name, id);
+       }
     }
 
     public void editVlanWithPorts(String name, String id, String newname, String dut1Name, String[] ports1, String port1Mode, String dut2Name,
