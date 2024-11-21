@@ -11305,6 +11305,52 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         return result;
     }
+    
+    //AddedByPratik
+    public boolean verifyDropdonwOptionSUnderPowerSettings() {
+        boolean result = true;
+        MyCommonAPIs.sleepi(10);
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(5);
+        powerSettingsDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        $(By.xpath("//select[contains(@class,'inputTextField')]//option[text()='Automatic']"))
+        .shouldBe(Condition.visible);
+        String[] expectedOptions = {"Automatic", "802.3af", "802.3at", "802.3bt"};        
+        for (String option : expectedOptions) {
+            boolean isOptionVisible = $(By.xpath("//select[contains(@class,'inputTextField')]//option[text()='" + option + "']"))
+                .shouldBe(Condition.visible).isDisplayed();
+            System.out.println("Option text: " + $(By.xpath("//select[contains(@class,'inputTextField')]//option[text()='" + option + "']")).getText());
+            if (!isOptionVisible) {
+                result = false;
+                break;  // No need to continue checking if one option is already missing
+            }
+        }
+        return result;
+    }
+    //AddedByPratik
+    public boolean verifyAndselectDropdonwOptionSUnderPowerSettings() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(5);
+        powerSettingsDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        String optionToSelect = "802.3af";
+        $(By.xpath("//select[contains(@class,'inputTextField')]//option[text()='" + optionToSelect + "']")).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        saveButtonPowerSetting.click();
+        MyCommonAPIs.sleepi(5);
+        if(powerSettingWarningPopup.exists()) {
+            System.out.println(powerSettingWarningPopup.getText());
+            MyCommonAPIs.sleepi(1);
+            powerSettingWarningPopupCancel.click();
+            result = true;
+        }
+        return result;
+    }
 }
 
   
