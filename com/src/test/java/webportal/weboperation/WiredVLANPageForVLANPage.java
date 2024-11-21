@@ -124,10 +124,11 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
             String port2Mode, String video) {
         NetworkSetupPage nsp = new NetworkSetupPage();
         nsp.gotoPage();
-        List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
-        System.out.println(VLAnIDS);
-        System.out.println(VLAnIDS.contains("4088"));
-        if(VLAnIDS.contains("4088")) {  
+//        List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
+//        System.out.println(VLAnIDS);
+//        System.out.println(VLAnIDS.contains("4088"));
+//        if(VLAnIDS.contains("4088")) {  
+        if( (!nsp.getNetworks().contains(name)) || (!nsp.getNetworks().contains(id))){
         nsp.createNetwork("testnet" + id, 1, name, id);
         }
         gotoPage();

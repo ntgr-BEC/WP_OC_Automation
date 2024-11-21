@@ -404,6 +404,34 @@ import util.*;
             
         }
         
+        public static Response sendDeleteRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+            
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();       
+            return response;
+            
+        }
+        
         public boolean connectClient(Map<String, String> map) {
             MyCommonAPIs.sleepi(30);
 
