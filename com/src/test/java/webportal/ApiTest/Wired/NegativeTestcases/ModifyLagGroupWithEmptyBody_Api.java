@@ -1,4 +1,4 @@
-package webportal.ApiTest.Wired.PositiveTestcases;
+package webportal.ApiTest.Wired.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -18,6 +18,7 @@ import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Devices.PositiveTestcases.Api_GetDevices;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
+import webportal.ApiTest.Wired.PositiveTestcases.Api_GetLagGroupForNw;
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -26,7 +27,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_ModifyLagPort extends TestCaseBaseApi{
+public class ModifyLagGroupWithEmptyBody_Api extends TestCaseBaseApi{
     
     String networkId;
     String lagGroupId;
@@ -35,9 +36,9 @@ public class Api_ModifyLagPort extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_ModifiyLagPort") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("ModifyLagGroupWithEmptyBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Modifies_Lagport") // It's a testcase title from Jira Test Case.
+    @Description("Modifies_Lagport with Emty Json") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -69,23 +70,19 @@ public class Api_ModifyLagPort extends TestCaseBaseApi{
         
         pathParams.put("networkId",WebportalParam.networkId);
         
-        Response response=new Api_GetLagPort().step1();
+        Response response=new Api_GetLagGroupForNw().step1();
         lagGroupId = response.jsonPath().getString("lagSettings[0].id");
         deviceId = response.jsonPath().getString("lagSettings[0].lagMembers[0].deviceId");
         
-        String requestBody = "{\"lagConfig\":{\"lagObjectId\":\""+lagGroupId+"\",\"adminMode\":1,\"lagMembers\":[{\"deviceId\":\"" +deviceId+"\",\"lagId\":\"0\",\"ports\":[6]}],\"name\":\"Lag001Test\",\"pvid\":1,\"type\":1}}";
+        String requestBody = "{}";
       
         //TO PERFORM ANY REQUEST
      
-        Response getResponse1 = ApiRequest.sendPutRequest(endPointUrl.get("LagGroup_Sanity"), requestBody, headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true))
-                          .body("response.message", equalTo("SwitchLagGroup success on network."));
+        Response getResponse1 = ApiRequest.sendPutRequest(endPointUrl.get("LagGroup_Sanity"), requestBody, headers, pathParams, null,400); 
+        getResponse1.then().body("response.status", equalTo(false))
+                          .body("response.message", equalTo("An error occurred while processing the request. Try again."));
         
 
-
-        
-        
-        
     }
 
 }

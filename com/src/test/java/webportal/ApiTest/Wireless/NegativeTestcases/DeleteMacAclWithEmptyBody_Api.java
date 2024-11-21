@@ -1,4 +1,4 @@
-package webportal.ApiTest.Wireless.PositiveTestcases;
+package webportal.ApiTest.Wireless.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -15,6 +15,7 @@ import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
+import webportal.ApiTest.Wireless.PositiveTestcases.Api_AddMacAcl;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -27,22 +28,23 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_DeleteMacAcl extends TestCaseBaseApi{
+public class DeleteMacAclWithEmptyBody_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String id;
     
-    @Feature("Api_ModifyMacAcl") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("DeleteMacAclWithInvalidBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test modify MAC ACL config from the particular network ID") // It's a testcase title from Jira Test Case.
+    @Description("This Delets modify MAC ACL config with Invalid Json") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
+    
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {    
@@ -69,11 +71,12 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("wirelessNetworkId",id);  
         
-        String requestBody = "{\"deleteMacAclConfigInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\",\"macList\":[\"11-33-11-22-34-77\"]}}";
+        String requestBody = "{}";
         
 //        //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Wireless_MacAcl"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.status", equalTo(false))
+                          .body("response.message", equalTo("A network error has occurred. Try again in a few minutes."));
         
     }
                   

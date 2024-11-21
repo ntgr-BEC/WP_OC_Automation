@@ -26,7 +26,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_AddLagPort extends TestCaseBaseApi{
+public class Api_AddLagGroup extends TestCaseBaseApi{
     
     String networkId;
     String lagGroupId;

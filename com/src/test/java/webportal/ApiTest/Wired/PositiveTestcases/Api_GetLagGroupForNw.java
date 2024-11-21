@@ -26,7 +26,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetLagPort extends TestCaseBaseApi{
+public class Api_GetLagGroupForNw extends TestCaseBaseApi{
     String networkId;
     String lagGroupId;
     String deviceId;
@@ -59,7 +59,7 @@ public class Api_GetLagPort extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public Response step1()
     { 
-        Response response=new Api_AddLagPort().step1();
+        Response response=new Api_AddLagGroup().step1();
              
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 

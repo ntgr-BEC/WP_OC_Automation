@@ -27,7 +27,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetLagGroupPort extends TestCaseBaseApi{
+public class Api_GetLagGroupById extends TestCaseBaseApi{
     String networkId;
     String lagGroupId;
     String deviceId;
@@ -47,7 +47,7 @@ public class Api_GetLagGroupPort extends TestCaseBaseApi{
     @BeforeMethod
     public void tearUp()
     {
-        Response response1=new Api_GetLagPort().step1();
+        Response response1=new Api_GetLagGroupForNw().step1();
         lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         deviceId = response1.jsonPath().getString("lagSettings[0].lagMembers[0].deviceId");
         System.out.print(lagGroupId);
