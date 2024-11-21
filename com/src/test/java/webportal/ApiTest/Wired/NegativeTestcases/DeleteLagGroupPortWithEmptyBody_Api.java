@@ -61,7 +61,7 @@ public class DeleteLagGroupPortWithEmptyBody_Api extends TestCaseBaseApi{
     public void tearUp()
     {
         Response response1=new Api_GetLagPort().step1();
-        lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
+//        lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         System.out.print(lagGroupId);
         
         Response response2=new Api_GetDevices().step1();
