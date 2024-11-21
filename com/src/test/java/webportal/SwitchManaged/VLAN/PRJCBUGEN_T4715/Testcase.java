@@ -51,13 +51,14 @@ public class Testcase extends TestCaseBase implements Config {
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         
+//        netsp.gotoPage();
+//        netsp.createNetwork("Voice VLAN", 1, "", "");
         netsp.gotoPage();
         netsp.createNetwork("Video VLAN", 2, "", "");
     }
     
     @Step("Test Step 2: Web Portal check default VLAN configuration")
     public void step2() {
-        MyCommonAPIs.sleepsync();
         SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = "";
         if (WebportalParam.isRltkSW1) {
@@ -74,16 +75,16 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 4089, cli is:" + result2);
         }
         
-//        if (!WebportalParam.isRltkSW1) {
-//            result2 = switchTelnet.getCLICommand("show vlan 4088");
-//        }
-//        System.out.println(result2);
-//        if (result2.contains("4088")) {
-//            micResult = true;
-//        } else {
-//            micResult = false;
-//            assertTrue(micResult, "----Check Point 2 Fail:show vlan 4088, cli is:" + result2);
-//        }
+        if (!WebportalParam.isRltkSW1) {
+            result2 = switchTelnet.getCLICommand("show vlan 4088");
+        }
+        System.out.println(result2);
+        if (result2.contains("4088")) {
+            micResult = true;
+        } else {
+            micResult = false;
+            assertTrue(micResult, "----Check Point 2 Fail:show vlan 4088, cli is:" + result2);
+        }
 
     }
     
@@ -124,7 +125,8 @@ public class Testcase extends TestCaseBase implements Config {
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.deleteVlan("4089");
         vlanPage.addVideoVlanWithPorts("Video VLAN", "4089", dut1Name, sw1port, "tag", null, null, null, "true");
-        handle.waitCmdReady("4089", false);
+        MyCommonAPIs.sleepsync();
+        handle.waitCmdReady("vlan600", false);
     }
     
     @Step("Test Step 5: Check configuration on webportal")
@@ -134,12 +136,8 @@ public class Testcase extends TestCaseBase implements Config {
         List<String> vlans = vlanPage.getVlans();
         MyCommonAPIs.sleep(3000);
         
-        List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
-        MyCommonAPIs.sleep(3000);
-        System.out.println(VLAnIDS);
-        
         System.out.println("vlan is:" + vlans);
-        if (vlans.contains("Video VLAN") || VLAnIDS.contains("4089")) {
+        if (vlans.contains("Video VLAN")) {
             micResult = true;
         } else {
             micResult = false;

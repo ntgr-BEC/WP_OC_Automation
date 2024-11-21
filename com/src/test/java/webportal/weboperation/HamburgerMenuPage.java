@@ -1108,7 +1108,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changeEmail(String newEmail, String confirmEmail, String password) {
         updateprofile.click();
-        MyCommonAPIs.sleepi(15);
+        MyCommonAPIs.sleepi(10);
         if (cancelbuttonCognito.exists()) {
             cancelbuttonCognito.click();
         } else if (cancelbutton.exists()) {
@@ -1152,7 +1152,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             waitElement(submitchangeemail);
             submitchangeemail.click();
         }
-        MyCommonAPIs.sleepi(15);
+        MyCommonAPIs.sleepi(10);
         String otp = "";
         if (verifyOtpScreenCognito.exists()) {
             String originalTab = WebDriverRunner.getWebDriver().getWindowHandle();
@@ -1163,7 +1163,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                     break;
                 }
             }
-            MyCommonAPIs.sleepi(10);
+            MyCommonAPIs.sleepi(5);
             String inputElement = "//input[@id='login']";
             $x(inputElement).clear();
             $x(inputElement).sendKeys(confirmEmail);

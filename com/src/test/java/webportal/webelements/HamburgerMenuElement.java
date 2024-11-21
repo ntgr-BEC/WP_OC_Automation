@@ -466,7 +466,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("//div[contains(text(),'Change Your Account Email Address')]");
+    public SelenideElement        checkemailtitle       = $x("//*[@class=\"fl\"]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
