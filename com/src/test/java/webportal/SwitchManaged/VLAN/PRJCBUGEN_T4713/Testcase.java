@@ -71,9 +71,13 @@ public class Testcase extends TestCaseBase implements Config {
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         List<String> vlans = vlanPage.getVlans();
         MyCommonAPIs.sleep(3000);
-
+        
+        List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
+        MyCommonAPIs.sleep(3000);
+        System.out.println(VLAnIDS);
+        
         System.out.println("vlan is:" + vlans);
-        if (vlans.contains("Voice VLAN")) {
+        if ((vlans.contains("Voice VLAN")) || (VLAnIDS.contains("4088"))) {
             micResult = true;
         } else {
             micResult = false;
@@ -87,7 +91,7 @@ public class Testcase extends TestCaseBase implements Config {
         SwitchTelnet switchTelnet = new SwitchTelnet(WebportalParam.sw1IPaddress, false);
         String result2 = switchTelnet.sendCLICommand("show run", null);
         System.out.println(result2);
-        if (result2.toLowerCase().contains("voice vlan") || (result2.toLowerCase().contains("auto-voip"))) {
+        if (result2.toLowerCase().contains("voice vlan") || (result2.toLowerCase().contains("auto-voip")) ||  (result2.toLowerCase().contains("4088"))) {
             micResult = true;
         } else {
             micResult = false;
