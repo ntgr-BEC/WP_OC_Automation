@@ -20,7 +20,6 @@ import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Devices.PositiveTestcases.Api_GetDevices;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 import webportal.ApiTest.Wired.PositiveTestcases.Api_GetLagGroupForNw;
-
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
