@@ -57,9 +57,11 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         MyCommonAPIs.sleepi(5);
-        assertTrue(new WirelessQuickViewPage(false).powerSettingsTab.exists(),"Power Setting tab is not available under AP settings page");
-        String optionToSelect = "802.3at";
-        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionSUnderPowerSettings(optionToSelect),"Power Setting options are not selected on power settings page");
+        String powerMode = "802.3at";
+        assertTrue(new WirelessQuickViewPage(false).changePowerModeFromAutomaticToAnymode(powerMode),"Power mode not correctly selected.");   
+        String defaultpowerMode = "Automatic";
+        assertTrue(new WirelessQuickViewPage(false).changePowerModeToAutomatic(defaultpowerMode),"Power mode not correctly selected.");     
+        
     }
 
 }

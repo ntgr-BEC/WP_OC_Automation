@@ -57,16 +57,10 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         MyCommonAPIs.sleepi(5);
-        assertTrue(new WirelessQuickViewPage(false).powerSettingsTab.exists(),"Power Setting tab is not available under AP settings page");
-        String optionToSelect = "802.3at";
-        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings(optionToSelect),"Power Setting options are not selected on power settings page");
-        MyCommonAPIs.sleepi(120);
-        //assertTrue(new DevicesDashPage(false).verifyAPStatusAfterSettingPowerMode(optionToSelect),"AP Status is not changed to Connected (PoE 802.3af only)");
-        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
-        assertTrue(new WirelessQuickViewPage(false).verifyAndselectedpowerOptionIsvisbleOrNot(optionToSelect),"Power Setting options are not visible on power settings page");
-        String optionToSelect1 = "Automatic";
-        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings1(optionToSelect1),"Power Setting options are not selected on power settings page");
-        MyCommonAPIs.sleepi(120);        
+        String powerMode = "802.3at";
+        assertTrue(new WirelessQuickViewPage(false).changePowerModeFromAutomaticToAnymode(powerMode),"Power mode not correctly selected.");   
+        String defaultpowerMode = "Automatic";
+        assertTrue(new WirelessQuickViewPage(false).changePowerModeToAutomatic(defaultpowerMode),"Power mode not correctly selected.");          
         
     }
 
