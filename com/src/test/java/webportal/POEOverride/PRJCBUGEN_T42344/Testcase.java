@@ -1,4 +1,4 @@
-package webportal.POEOverride.PRJCBUGEN_T42323;
+package webportal.POEOverride.PRJCBUGEN_T42344;
 
 import static org.testng.Assert.assertTrue;
 
@@ -29,9 +29,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     @Feature("POEOverride") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T42323") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("power setting option under   devices") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T42323") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T42344") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("notification  when  selected  Auto") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T42344") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -40,7 +40,6 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("PRJCBUGEN_T42323");
         System.out.println("start to do tearDown");
     }
 
@@ -54,11 +53,18 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage().checkDeviceInAdminAccount();
     }
 
-    @Step("Test Step 2: Go to AP settings and verify power settings tab ")
+    @Step("Test Step 2: Go to AP settings and verify power settings tab; verify power settings drop down options. ")
     public void step2() {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         MyCommonAPIs.sleepi(5);
         assertTrue(new WirelessQuickViewPage(false).powerSettingsTab.exists(),"Power Setting tab is not available under AP settings page");
+        String optionToSelect = "802.3at";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings(optionToSelect),"Power Setting options are not selected on power settings page");
+        MyCommonAPIs.sleepi(120);
+        String optionToSelect1 = "Automatic";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings1(optionToSelect1),"Power Setting options are not selected on power settings page");
+        MyCommonAPIs.sleepi(120);        
+        
     }
 
 }

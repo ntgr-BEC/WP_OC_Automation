@@ -292,7 +292,7 @@ public class NetworkSetupPage extends NetworkSetupElement {
      */
     public void createNetwork(String netName, int vlanType, String vlanName, String vlanId) {
         logger.info(netName + "/" + vlanType + "/" + vlanName + "/" + vlanId);
-        if( (!getNetworks().contains(netName)) || (!getNetworks().contains(vlanId))){
+        if (!getNetworks().contains(netName)) {
             clickAdd();
             setNetwork1(netName, null, vlanType, vlanName, vlanId);
             finishAllStep();

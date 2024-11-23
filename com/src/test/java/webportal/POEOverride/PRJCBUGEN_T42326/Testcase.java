@@ -1,4 +1,4 @@
-package webportal.POEOverride.PRJCBUGEN_T42325;
+package webportal.POEOverride.PRJCBUGEN_T42326;
 
 import static org.testng.Assert.assertTrue;
 
@@ -29,9 +29,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     @Feature("POEOverride") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T42325") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Popup   is shown when user changed the power setting") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T42325") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T42326") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("change Power  setting   to  AF from  Auto") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T42326") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -58,7 +58,17 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         MyCommonAPIs.sleepi(5);
         assertTrue(new WirelessQuickViewPage(false).powerSettingsTab.exists(),"Power Setting tab is not available under AP settings page");
-        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionSUnderPowerSettings(),"Power Setting options are not selected on power settings page");
+        String optionToSelect = "802.3af";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings(optionToSelect),"Power Setting options are not selected on power settings page");
+        MyCommonAPIs.sleepi(120);
+        assertTrue(new DevicesDashPage(false).verifyAPStatusAfterSettingPowerMode(optionToSelect),"AP Status is not changed to Connected (PoE 802.3af only)");
+        MyCommonAPIs.sleepi(5);
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectedpowerOptionIsvisbleOrNot(optionToSelect),"Power Setting options are not visible on power settings page");
+        MyCommonAPIs.sleepi(5);
+        String optionToSelect1 = "Automatic";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings1(optionToSelect1),"Power Setting options are not selected on power settings page");
+        MyCommonAPIs.sleepi(120);        
+        
     }
 
 }

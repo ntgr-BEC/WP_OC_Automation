@@ -1,4 +1,4 @@
-package webportal.POEOverride.PRJCBUGEN_T42324;
+package webportal.POEOverride.PRJCBUGEN_T42329;
 
 import static org.testng.Assert.assertTrue;
 
@@ -17,6 +17,7 @@ import testbase.TestCaseBase;
 import util.Javasocket;
 import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
+import webportal.weboperation.DevicesApSummaryPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
@@ -29,9 +30,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     @Feature("POEOverride") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T42324") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("following  power mode IEEE 802.3af, IEEE 802.3at, IEEE 802.3bt and IEEE 802.3bt are present or not") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T42324") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T42329") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("change Power  setting   to  AF from  Auto then   reboot AP") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T42329") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -58,7 +59,24 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         MyCommonAPIs.sleepi(5);
         assertTrue(new WirelessQuickViewPage(false).powerSettingsTab.exists(),"Power Setting tab is not available under AP settings page");
-        assertTrue(new WirelessQuickViewPage(false).verifyDropdonwOptionSUnderPowerSettings(),"Power Setting options are not visible on power settings page");
+        String optionToSelect = "802.3af";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings(optionToSelect),"Power Setting options are not selected on power settings page");     
+    }
+    
+    @Step("Test Step 3: Reboot Ap and verify AF power setting is applied or not. ")
+    public void step3() {
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new DevicesApSummaryPage().clickReboot();
+        MyCommonAPIs.sleepi(180);
+        String optionToSelect = "802.3af";
+        assertTrue(new DevicesDashPage(false).verifyAPStatusAfterSettingPowerMode(optionToSelect),"AP Status is not changed to Connected (PoE 802.3af only)");
+        MyCommonAPIs.sleepi(5);
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectedpowerOptionIsvisbleOrNot(optionToSelect),"Power Setting options are not visible on power settings page");
+        MyCommonAPIs.sleepi(5);
+        String optionToSelect1 = "Automatic";
+        assertTrue(new WirelessQuickViewPage(false).verifyAndselectDropdonwOptionAndSaveSUnderPowerSettings1(optionToSelect1),"Power Setting options are not selected on power settings page");
+        MyCommonAPIs.sleepi(120);        
+        
     }
 
 }
