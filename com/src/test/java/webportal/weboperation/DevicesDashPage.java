@@ -3284,5 +3284,20 @@ public boolean verifySettingPageFilterAirbridge() {
                 return result;
             }
             
+            //AddedByPratik
+            public boolean verifypowerModeonDevicedashPageAPstatus(String powerMode) {
+                boolean result = false;
+                open(WebportalParam.serverUrl+URLParam.hrefDevices);
+                MyCommonAPIs.sleepi(10);
+                waitElement(wbeAPAFPowemodeStatus(powerMode));
+                if (wbeAPAFPowemodeStatus(powerMode).exists()) {
+                    System.out.println(wbeAPAFPowemodeStatus(powerMode).getText());
+                    result = true;
+                    wbeAPAFPowemodeStatus(powerMode).doubleClick();
+                    MyCommonAPIs.sleepi(10);
+                }
+                return result;
+            }
+            
 }
     
