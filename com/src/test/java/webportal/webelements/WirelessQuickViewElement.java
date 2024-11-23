@@ -1535,6 +1535,8 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement saveButtonPowerSetting           = $x("//button[@id='led_Apply']");
      public SelenideElement powerSettingWarningPopup         = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]");
      public SelenideElement powerSettingWarningPopupCancel   = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='Cancel']");
+     public SelenideElement powerSettingWarningPopupOK       = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='OK']");
+     public SelenideElement successMsg                       = $x("//*[contains(text(),'Your configuration has been applied')]");
 }
 
 
