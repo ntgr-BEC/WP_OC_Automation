@@ -14,29 +14,28 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
-import webportal.ApiTest.Wired.PositiveTestcases.Api_SetVlanMacAcl;
+import webportal.ApiTest.Wired.PositiveTestcases.Api_SetVlanIpAclSettings;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class DeleteVlanMacAclWithEmptyBody_Api extends TestCaseBaseApi{
+public class DeleteVlanIpAclSettingsWithInvalidBody_Api extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
 
     
-    @Feature("DeleteVlanMacAclWithInvalidBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("DeleteVlanIpAclSettingsWithInvalidBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test deletes VLAN Mac Acl with Invalid Json") // It's a testcase title from Jira Test Case.
+    @Description("This test deletes Vlan IP ACL with invalid jSon setting of the network") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -56,7 +55,7 @@ public class DeleteVlanMacAclWithEmptyBody_Api extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     {
-        List <Response> response = new Api_SetVlanMacAcl().step1();
+        List <Response> response = new Api_SetVlanIpAclSettings().step1();
         Response addNetwork=response.get(0);
         Response addVlan=response.get(1);
 
@@ -72,19 +71,25 @@ public class DeleteVlanMacAclWithEmptyBody_Api extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",networkId);
         pathParams.put("vlanId",vlanId);
-        
-        String body="{}";
-        
 
-//        TO PERFORM ANY REQUEST
+        String requestBody="{\"mode\":\"1\",\"action\":\"0\",\"manualAclNames\":[\"i192172100dqw31123123002502\"],\"customAclNames\":[]}, {\"mode\":\"1\",\"action\":\"0\",\"manualAclNames\":[\"i192172100002123123123502\"],\"customAclNames\":[]}";
+        //TO PERFORM ANY REQUEST
      
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_VlanMacAcl"),body, headers, pathParams, null); 
-        getResponse.then().body("customDeleteInfo.response.status", equalTo(false))
-                          .body("customDeleteInfo.response.message", equalTo("Invalid action"));
-        
-      
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("IpAcl_Sanity"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("manualDeleteInfo.failureInfo[0].i192172100dqw31123123002502.status", equalTo(false))
+                         .body("manualDeleteInfo.failureInfo[0].i192172100dqw31123123002502.message", equalTo("No ip ACL found"));
         
                 
     }
 
 }
+
+
+
+
+
+
+
+
+
+

@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DeleteStaticRouteWithEmptyBody_Api extends TestCaseBaseApi{
+public class DeleteVlanStaticRouteWithEmptyBody_Api extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
@@ -68,9 +68,9 @@ public class DeleteStaticRouteWithEmptyBody_Api extends TestCaseBaseApi{
         
         //TO PERFORM ANY REQUEST
      
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("StaticRoute_Sanity"),requestBody, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("StaticRoute_Sanity"),requestBody, headers, pathParams, null,400); 
         getResponse.then().body("response.status", equalTo(false))
-                            .body("response.message", equalTo("success"));
+                            .body("response.message", equalTo("An error occurred while deleting the static route. Check the settings and try again."));
                             
 
                     

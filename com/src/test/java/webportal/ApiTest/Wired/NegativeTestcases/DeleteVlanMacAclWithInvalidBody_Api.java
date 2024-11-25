@@ -27,16 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class DeleteVlanMacAclWithEmptyBody_Api extends TestCaseBaseApi{
+public class DeleteVlanMacAclWithInvalidBody_Api extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
 
     
-    @Feature("DeleteVlanMacAclWithInvalidBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("DeleteVlanMacAclWithEmptyBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test deletes VLAN Mac Acl with Invalid Json") // It's a testcase title from Jira Test Case.
+    @Description("This test deletes VLAN Mac Acl with invalid Json") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -73,16 +73,15 @@ public class DeleteVlanMacAclWithEmptyBody_Api extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
         pathParams.put("vlanId",vlanId);
         
-        String body="{}";
+        String body="{\"mode\":\"0\",\"action\":\"0\",\"manualAclNames\":[],\"customAclNames\":[\"m112211221111165hgd7512711451131250\"]}";
         
 
 //        TO PERFORM ANY REQUEST
      
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_VlanMacAcl"),body, headers, pathParams, null); 
         getResponse.then().body("customDeleteInfo.response.status", equalTo(false))
-                          .body("customDeleteInfo.response.message", equalTo("Invalid action"));
+                          .body("customDeleteInfo.failureInfo[0].message", equalTo("No mac ACL found"));
         
-      
         
                 
     }

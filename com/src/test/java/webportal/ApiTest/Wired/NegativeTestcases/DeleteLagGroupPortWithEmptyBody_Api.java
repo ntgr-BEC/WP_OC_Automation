@@ -19,7 +19,7 @@ import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import webportal.ApiTest.Devices.PositiveTestcases.Api_GetDevices;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
-//import webportal.ApiTest.Wired.PositiveTestcases.Api_GetLagPort;
+import webportal.ApiTest.Wired.PositiveTestcases.Api_GetLagGroupForNw;
 import webportal.param.CommonDataType;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -60,8 +60,8 @@ public class DeleteLagGroupPortWithEmptyBody_Api extends TestCaseBaseApi{
     @BeforeMethod
     public void tearUp()
     {
-//        Response response1=new Api_GetLagPort().step1();
-//        lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
+        Response response1=new Api_GetLagGroupForNw().step1();
+        lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         System.out.print(lagGroupId);
         
         Response response2=new Api_GetDevices().step1();
