@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class AddSsidProWithInvalidSsidName_Api extends TestCaseBaseApi{
+public class AddSsidProWithInvalidAuthType_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
   
@@ -38,9 +38,9 @@ public class AddSsidProWithInvalidSsidName_Api extends TestCaseBaseApi{
     String wirelessOrgId;
    
     
-    @Feature("AddSsidProWithInvalidSsidName_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("AddSsidProWithInvalidAuthType_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Addition of ssid to pro account with invalid Ssid name") // It's a testcase title from Jira Test Case.
+    @Description("Addition of ssid to pro account with invalid Radio Band name") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -61,12 +61,12 @@ public class AddSsidProWithInvalidSsidName_Api extends TestCaseBaseApi{
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);
-        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"tfygyggifyiyiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiihj\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Netgear1@\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"nwIdList\":[\""+WebportalParam.networkId+"\"],\"orgWideSsidStatus\":\"1\"}}";       
+        String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"tfygyg\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"200\",\"password\":\"Netgear1@\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"nwIdList\":[\""+WebportalParam.networkId+"\"],\"orgWideSsidStatus\":\"1\"}}";       
         //TO PERFORM ANY REQUEST
     
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Ssid_Pro"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(false))
-        .body("response.message", equalTo("SSID name should be 1-32 characters in length. It should not contain \" and \\"));
+        .body("response.message", equalTo("Invalid authentication type"));
         
         
         

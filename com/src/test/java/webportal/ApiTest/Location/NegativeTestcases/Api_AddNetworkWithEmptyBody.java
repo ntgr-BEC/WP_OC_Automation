@@ -1,8 +1,5 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Location.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -16,18 +13,23 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
+import java.util.HashMap;
+import java.util.Map;
 
-public class Api_AddNetworkWithInvalidApiKey extends TestCaseBaseApi{
 
-    Map<String, String> endPointUrl = new HashMap<String, String>();
+public class Api_AddNetworkWithEmptyBody extends TestCaseBaseApi{
+
+    Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
+    
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -38,27 +40,26 @@ public class Api_AddNetworkWithInvalidApiKey extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    
   
     @Step("Send get request to {url}")
     public void step1()
-    { 
-       
-            endPointUrl = new ApiRequest().ENDPOINT_URL;          
-            headers.put("token",WebportalParam.token);
-            headers.put("apikey","6");
-                                   
-            Map<String, String> pathParams = new HashMap<String, String>();
-            pathParams.put("accountId",WebportalParam.accountId);
-            String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-            
-            
-            //TO ADD NETWORK AND RETRIEVE NETWORK ID
-            Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParams, null, 404); 
-                         
-        }
-                
+    {        
+        endPointUrl = new ApiRequest().ENDPOINT_URL;
+        headers.put("token",WebportalParam.token);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountId);        
+        headers.put("networkId",WebportalParam.networkId); 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("accountId",WebportalParam.accountId);
+        String requestBody="{}";       
+        //TO PERFORM ANY REQUEST
+
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null,400); 
+        getResponse.then().body("response.message", equalTo("A network error has occurred. Try again in a few minutes."))
+                          .body("response.status", equalTo(false));
+        
+        
     }
-
-
+                  
+    }
 
