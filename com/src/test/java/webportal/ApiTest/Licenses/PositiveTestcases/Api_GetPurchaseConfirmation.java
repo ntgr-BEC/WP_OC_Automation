@@ -45,21 +45,14 @@ public class Api_GetPurchaseConfirmation extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        
-       
-    }  
     
     @Step("Send get request to {url}")
     public void step1()
     {
       
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
-        headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("accountId",WebportalParam.accountIdPro);
         headers.put("apikey",WebportalParam.apikey);
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Purchase_Confirmation"), headers, null, null); 

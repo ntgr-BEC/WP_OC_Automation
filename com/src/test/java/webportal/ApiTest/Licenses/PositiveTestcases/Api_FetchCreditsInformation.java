@@ -60,8 +60,8 @@ public class Api_FetchCreditsInformation extends TestCaseBaseApi{
         new Api_AddOrganization().step1();
       
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
-        headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("accountId",WebportalParam.accountIdPro);
         headers.put("apikey",WebportalParam.apikey);
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Fetch_Credits"), headers, null, null); 

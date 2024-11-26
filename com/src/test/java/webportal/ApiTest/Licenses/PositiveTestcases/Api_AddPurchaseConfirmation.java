@@ -61,8 +61,8 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         OrgID = response1.jsonPath().getString("orgInfo.orgId");
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
-        headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("accountId",WebportalParam.accountIdPro);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("OrgId",OrgID);
               
