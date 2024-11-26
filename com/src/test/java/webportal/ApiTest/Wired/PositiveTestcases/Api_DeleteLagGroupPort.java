@@ -47,7 +47,7 @@ public class Api_DeleteLagGroupPort extends TestCaseBaseApi{
     @BeforeMethod
     public void tearUp()
     {
-        Response response1=new Api_GetLagPort().step1();
+        Response response1=new Api_GetLagGroupForNw().step1();
         lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         System.out.print(lagGroupId);
         

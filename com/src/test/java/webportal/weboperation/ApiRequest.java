@@ -404,6 +404,34 @@ import util.*;
             
         }
         
+        public static Response sendDeleteRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+            
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();       
+            return response;
+            
+        }
+        
         public boolean connectClient(Map<String, String> map) {
             MyCommonAPIs.sleepi(30);
 
@@ -463,6 +491,12 @@ import util.*;
             return result1;
 
         }
+        
+        public static String changeLastPartOfIp(String ipAddress, int desiredValue) {
+            String[] parts = ipAddress.split("\\.");  // Split the IP by "."
+            parts[3] = String.valueOf(desiredValue);  // Change the last part of the IP
+            return String.join(".", parts);  // Join the parts back together
+        }
 
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
@@ -508,7 +542,7 @@ import util.*;
                 put("List_Wireless_Networks", "insightappcom/api/wireless/v1/ssidList/{networkId}");
                 put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
-                put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
+                put("Add_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
                 put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
                 put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
@@ -581,6 +615,24 @@ import util.*;
                 put("Reboot_Device1","insightappcom/api/device/v1/deviceReboot/{serialNo}/{deviceType}");
                 put("Connected_Clients","insightappcom/api/device/v1/{networkId}/wifiClients/{serialNo}");
                 put("Add_Device_Pro","insightappcom/api/device/v1/{orgId}/{networkId}");
+                put("Add_Ssid_Pro","insightappcom/api/wireless/v1/{orgId}");
+                put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
+                put("Add_Wireless_Network","insightappcom/api/wired/v1/vlan/wirelessnetwork/{networkId}");
+                put("Modify_VlanMembers","insightappcom/api/wired/v1/vlanMembers/{networkId}/vlan/{vlanId}");
+                put("Get_BulkDeplDetails","insightappcom/api/bulk/v1/{orgId}");
+                put("Add_BulkDevices","insightappcom/api/bulk/v1/addBulkDevices/{orgId}/{isBulkAdd}");
+                put("Get_MeshInfo","insightappcom/api/bulk/v1/getMeshInfo/{orgId}");
+                put("Move_Device","insightappcom/api/device/v1/moveDevice/{deviceId}/{networkId}/{orgId}");
+                put("OrgSsid_MacAuth","insightappcom/api/wireless/v1/macAuth/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_ByOrgIdentifier","insightappcom/api/wireless/v1/organization/ssidList/{orgId}");
+                put("Modify_SsidPro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
+                put("OrgSsid_RadiusServerConfig","insightappcom/api/wireless/v1/radiusServerConfig/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{orgId}/{wirelessOrgId}");
+                put("LocSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{networkId}/{id}/{orgId}");
+                put("Set_TrafficPolicies","insightappcom/api/wireless/v1/updateTrafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Get_TrafficPolicies","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Set_TrafficPolicies_ForLocSsid","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{networkId}/{id}");
+                
             }
         };
          

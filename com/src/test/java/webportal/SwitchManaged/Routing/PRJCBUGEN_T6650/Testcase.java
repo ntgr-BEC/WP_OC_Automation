@@ -11,8 +11,11 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -39,6 +42,9 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -50,8 +56,8 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
         handle.gotoLocationWireSettings();
 
-        wvp.gotoPage();
-        wvp.newVlan(vlanName, vlanId, 0);
+//        wvp.gotoPage();
+//        wvp.newVlan(vlanName, vlanId, 0);
 
         new AccountPage().enterEditNetworkPage();
         rtp.gotoPage();
@@ -61,10 +67,12 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
         rtp.addIpToVlan(vlanId, "", ip1, ip2);
-        assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");
+        new MyCommonAPIs().sleepi(4);     
+        assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");      
         // rtp.addIpToVlan(vlanId, mask, "", "");
         // assertTrue(handle.getPageErrorMsg().contains("Enter a valid IP Address"), "no ip");
-        rtp.addIpToVlan(vlanId, mask, "", "ip2");
+        rtp.addIpToVlan1(vlanId, mask, "", ip2);
+        new MyCommonAPIs().sleepi(4);
         assertTrue(handle.getPageErrorMsg().contains("enter a valid ip address"), "ip one");
 //        rtp.addIpToVlan(vlanId, "", "", ip2);
 //        assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");

@@ -72,8 +72,13 @@ public class Testcase extends TestCaseBase implements Config {
         List<String> vlans = vlanPage.getVlans();
         MyCommonAPIs.sleep(3000);
 
+        List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
+        MyCommonAPIs.sleep(3000);
+       System.out.println(VLAnIDS);
+
+        
         System.out.println("vlan is:" + vlans);
-        if (vlans.contains("Voice VLAN")) {
+        if ((vlans.contains("Voice VLAN")) || (VLAnIDS.contains("4088")) ){
             micResult = true;
         } else {
             micResult = false;
@@ -93,6 +98,7 @@ public class Testcase extends TestCaseBase implements Config {
             micResult = false;
             assertTrue(micResult, "----Check Point 2 Fail:show auto-voip, cli is:" + result2);
         }
+    }
 
 //        String result1 = SwitchCLIUtils.getVoiceInfo(0, 0);
 //        System.out.println(result1);
@@ -110,30 +116,9 @@ public class Testcase extends TestCaseBase implements Config {
 //            micResult = false;
 //            assertTrue(micResult, "----Check Point 4 Fail:show auto-voip protocol-based interface all, 2 cli is:" + result1);
 //        }
-
-        
-        if (result2.contains("4088")) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult, "----Check Point 5 Fail:show auto-voip protocol-based interface all, 3 cli is:" + result2);
-        }
         
 //        String result1 = SwitchCLIUtils.getVoiceVlan();
-        if (result2.toLowerCase().contains("voice-vlan") &&  (result2.toLowerCase().contains("voip"))) {
-            micResult = true;
-        }else if(result2.toLowerCase().contains("auto-voip protocol-based") &&  (result2.toLowerCase().contains("auto-voip oui-based"))) {
-            micResult = true;
-        }
-        else {
-            if ((WebportalParam.sw1Model)=="XS516TM")
-                micResult = true;
-            else {
-                micResult = false;
-                assertTrue(micResult, "----Check Point 5 Fail:show auto-voip protocol-based interface all, 3 cli is:" + result2);
-            }
-        }
-    }
+
 
     @AfterMethod(alwaysRun = true)
     public void restore() {

@@ -8,28 +8,23 @@ import static org.testng.Assert.assertTrue;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.math.BigDecimal;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 
@@ -37,7 +32,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.google.common.io.Files;
 
 import util.APUtils;
 import util.Javasocket;
@@ -48,9 +42,9 @@ import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.WirelessQuickViewElement;
-import java.util.Random;
-import org.openqa.selenium.interactions.Actions;
-import util.*;
+
+import org.openqa.selenium.By;
+
 
 /**
  * @author Netgear
@@ -10158,7 +10152,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         // added by shoib for Densty Slider
         Actions actions = new Actions(WebDriverRunner.getWebDriver());
         actions.dragAndDrop(sliderdtm(level), Interval(hz, inter)).perform();
-
+        
         MyCommonAPIs.sleepi(10);
         if(savead.isEnabled())
         {
@@ -10174,7 +10168,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public Boolean setBeaconvalue(String val, String hz) {
         if (val.matches("[a-zA-Z]+")) {
-            beacon(hz).clear();
+            beacon(hz).setValue(" ");
+            MyCommonAPIs.sleepi(10);
             savead.click();
             String warmessage = warningbeacon.getText();
             return warmessage.equals("Beacon Interval value should be in the range of 100 to 300");
@@ -11301,6 +11296,115 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if ((totalNoofDevicesShowing==expectedNumber) && pageDetailsAnddevices.exists()) {
             result = true;
             logger.info("Total devices count showing correctly on wireless page");
+        }
+        return result;
+    }   
+    //AddedbyPratik
+    public boolean verifyAllPowerSettingOptions() {
+        boolean result = true;
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(10);
+        if ((WebportalParam.ap1Model).equals("WBE710") || (WebportalParam.ap1Model).equals("WBE718")) {
+            powerSettingsDropdown.shouldBe(Condition.visible).click();
+            String[] expectedOptions = {"Automatic", "802.3af", "802.3at"};
+            String xpath = "//select[contains(@class,'inputTextField')]//option[text()='%s']";       
+            for (String expectedOption : expectedOptions) {
+                String formattedXpath = String.format(xpath, expectedOption);
+                System.out.println("Formatted XPath: " + formattedXpath);
+                try {
+                    $(By.xpath(formattedXpath)).shouldBe(Condition.visible);  // Wait for each option to be visible
+                } catch (Exception e) {
+                    System.out.println("Option not visible: " + expectedOption);
+                    return false;
+                }
+            }
+        } else {
+            powerSettingsDropdown.shouldBe(Condition.visible).click();
+            String[] expectedOptions = {"Automatic", "802.3af", "802.3at", "802.3bt"};
+            String xpath = "//select[contains(@class,'inputTextField')]//option[text()='%s']";       
+            for (String expectedOption : expectedOptions) {
+                String formattedXpath = String.format(xpath, expectedOption);
+                System.out.println("Formatted XPath: " + formattedXpath);
+                try {
+                    $(By.xpath(formattedXpath)).shouldBe(Condition.visible);  // Wait for each option to be visible
+                } catch (Exception e) {
+                    System.out.println("Option not visible: " + expectedOption);
+                    return false;
+                }
+            } 
+        }      
+        return result;
+    }
+    //AddedbyPratik
+    public boolean changePowerModeFromAutomaticToAnymode(String powerMode) {
+        boolean result = false;
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(10);
+        powerSettingsDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        if ((powerMode.equals("802.3bt")) && ((WebportalParam.ap1Model).equals("WBE710") || (WebportalParam.ap1Model).equals("WBE718"))){
+            System.out.println("WBE710/718 AP Dont hae bt mode");
+            result = true;
+        } else {
+            $x("//select[contains(@class,'inputTextField')]//option[text()='" + powerMode + "']").click();
+            MyCommonAPIs.sleep(10);
+            saveButtonPowerSetting.click();
+            MyCommonAPIs.sleepi(10);
+            if (powerSettingWarningPopup.exists()) {
+                System.out.println(powerSettingWarningPopup.getText());
+                powerSettingWarningPopupOK.click();
+                MyCommonAPIs.sleepi(120);
+                String selectedPowerMode = powerSettingsDropdown.getText();
+                System.out.println(selectedPowerMode);
+                if (selectedPowerMode.equals(powerMode)) {
+                    System.out.println("Power mode was correctly selected.");
+                    result = true;
+                }
+            }
+        }
+        return result;
+    }
+    //AddedbyPratik
+    public boolean changePowerModeToAutomatic(String defaultpowerMode) {
+        boolean result = false;
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(10);
+        powerSettingsDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        $x("//select[contains(@class,'inputTextField')]//option[text()='" + defaultpowerMode + "']").click();
+        MyCommonAPIs.sleep(10);
+        saveButtonPowerSetting.click();
+        MyCommonAPIs.sleepi(1);   
+        if (successMsg.exists()) {
+            MyCommonAPIs.sleepi(120);
+            String selectedPowerMode = powerSettingsDropdown.getText();
+            System.out.println(selectedPowerMode);
+            if (selectedPowerMode.equals(defaultpowerMode)) {
+                System.out.println("Power mode was correctly selected.");
+                result = true;
+            }
+        }
+        return result;
+    }
+    // AddedbyPratik
+    public boolean verifyAndselectedpowerOptionIsvisbleOrNot(String powerMode) {
+        boolean result = false;
+        waitElement(powerSettingsTab);
+        powerSettingsTab.click();
+        MyCommonAPIs.sleepi(10);
+        if ((powerMode.equals("802.3bt")) && ((WebportalParam.ap1Model).equals("WBE710") || (WebportalParam.ap1Model).equals("WBE718"))) {
+            System.out.println("WBE710/718 AP Dont hae bt mode");
+            result = true;
+        } else {
+            String selectedPowerMode = powerSettingsDropdown.getText();
+            System.out.println(selectedPowerMode);
+            if (selectedPowerMode.equals(powerMode)) {
+                System.out.println("Power mode was correctly selected.");
+                result = true;
+            }
         }
         return result;
     }

@@ -55,26 +55,8 @@ public class Api_TracerouteTest extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
         
-        String requestBody = "{\r\n" + 
-                "  \"command\": [\r\n" + 
-                "    {\r\n" + 
-                "      \"commandParam\": \"netgear.com\",\r\n" + 
-                "        \"size\": 46,\r\n" + 
-                "        \"initTtl\": 1,\r\n" + 
-                "        \"maxTtl\": 30,\r\n" + 
-                "        \"port\": 33434,\r\n" + 
-                "        \"packetsPerHop\": 3,\r\n" + 
-                "        \"interval\": 3,\r\n" + 
-                "        \"commandType\": \"3\"\r\n" + 
-                "    }\r\n" + 
-                "],\r\n" + 
-                "\"serialNo\": [\r\n" + 
-                "    \"6AB40B2B002F8\"\r\n" + 
-                "]\r\n" + 
-                "}";
-                
-        requestBody = requestBody.replace("6AB40B2B002F8", WebportalParam.ap1deveiceName);
-        //TO PERFORM ANY REQUEST 
+        String requestBody = "{\"command\":[{\"commandParam\":\"netgear.com\",\"commandType\":\"4\",\"initTtl\":\"1\",\"interval\":\"3\",\"maxTtl\":\"30\",\"packetSize\":\"string\",\"packetsPerHop\":\"3\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"33434\",\"size\":\"46\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
+
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Traceroute"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
          .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
