@@ -38,7 +38,7 @@ public class Api_SetTrafficPoliciesPro extends TestCaseBaseApi{
     String wirelessOrgId;
  
     
-    @Feature("Api_OrgSsidMacAuthAddDevices") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetTrafficPoliciesPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Set traffic policies (DHCP offer as unicast) from organization SSSID.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case.
@@ -69,9 +69,9 @@ public class Api_SetTrafficPoliciesPro extends TestCaseBaseApi{
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Response add = new Api_AddSsidPro().step1();           //Created the SSID and default DHCPOffer will be enabled
         wirelessOrgId= add.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
     
         pathParams.put("orgId",WebportalParam.orgId);

@@ -51,13 +51,13 @@ public class Api_GetLocSsidDetailsBySsidIdentifer extends TestCaseBaseApi{
     @BeforeMethod(alwaysRun=true)
     public void teardown1()
     { 
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"SSID_TEST\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"mpskList\":[],\"isMPSKEnabled\":\"0\",\"custProfileEnable\":\"0\",\"custProfileId\":\"\"}}";       
         //TO PERFORM ANY REQUEST
 
@@ -71,7 +71,7 @@ public class Api_GetLocSsidDetailsBySsidIdentifer extends TestCaseBaseApi{
     public void teardown()
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("id",id);  
         
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
@@ -84,7 +84,7 @@ public class Api_GetLocSsidDetailsBySsidIdentifer extends TestCaseBaseApi{
     public void step1()
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("id",id);
         pathParams.put("orgId",WebportalParam.orgId);
         
