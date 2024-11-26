@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Location.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -12,7 +12,6 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -22,9 +21,10 @@ import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import testbase.TestCaseBaseApi;
 
 
-public class Api_AddNetworkWithEmptyBody extends TestCaseBaseApi{
+public class Api_DuplicateNetwork extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -40,9 +40,18 @@ public class Api_AddNetworkWithEmptyBody extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
   
     @Step("Send get request to {url}")
-    public void step1()
+    public Response step1()
     {        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         headers.put("token",WebportalParam.token);
@@ -51,13 +60,20 @@ public class Api_AddNetworkWithEmptyBody extends TestCaseBaseApi{
         headers.put("networkId",WebportalParam.networkId); 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{}";       
+        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         //TO PERFORM ANY REQUEST
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null,400); 
-        getResponse.then().body("response.message", equalTo("A network error has occurred. Try again in a few minutes."))
-                          .body("response.status", equalTo(false));
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        Response duplicatenw = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        duplicatenw.then()
+                          .body("response.status", equalTo(false))
+                          .body("response.message",equalTo("Network already exists with the same name"));
         
+        networkId=getResponse.jsonPath().getString("networkInfo[0].networkId");
+        System.out.print("network ID under response"+networkId);
+        return getResponse;
+     
         
     }
                   

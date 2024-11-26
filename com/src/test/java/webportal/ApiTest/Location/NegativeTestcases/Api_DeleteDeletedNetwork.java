@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Location.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -23,10 +23,8 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_DeleteNetworkWithInvalidNwId extends TestCaseBaseApi{
+public class Api_DeleteDeletedNetwork extends TestCaseBaseApi{
 
-    Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -38,23 +36,13 @@ public class Api_DeleteNetworkWithInvalidNwId extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public void step1()
     { 
-        
+        Map<String, String> endPointUrl = new HashMap<String, String>();
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        
+        Map<String, String> headers = new HashMap<String, String>();
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
@@ -69,18 +57,18 @@ public class Api_DeleteNetworkWithInvalidNwId extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
         getResponse1.then().body("response.status", equalTo(true));
         networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
-        String networkIdnew="65ff8c25388dcd5f051bc880";
        
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkIdnew);
+        pathParams.put("networkId",networkId);
    
         
         //TO PERFORM ANY REQUEST
         Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse2.then().body("response.status", equalTo(false))
-                           .body("response.message",equalTo("Some error occured while deleting network, Please try again"));
+        getResponse2.then().body("response.status", equalTo(true));        
         
-
+        Response getResponse3 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse3.then().body("response.status", equalTo(false))
+                           .body("response.message",equalTo("Some error occured while deleting network, Please try again"));
         
         
     }

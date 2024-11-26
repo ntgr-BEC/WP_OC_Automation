@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Wireless.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -12,26 +12,25 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import util.MyCommonAPIs;
-//import webportal.weboperation.WirelessQuickViewPage;
+import testbase.TestCaseBaseApi;
+import webportal.ApiTest.Wireless.PositiveTestcases.Api_AddSsid;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import testbase.TestCaseBaseApi;
 
 
-public class Api_LocationPasswordSanity extends TestCaseBaseApi{
-
-    Map<String, String> endPointUrl = new HashMap<String,String>();
+public class DeleteSsidWithInvalidNtwId_Api extends TestCaseBaseApi{
+    Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
+
     
-    
-    @Feature("password less than 8") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test retrieves VLAN details feom the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -49,24 +48,28 @@ public class Api_LocationPasswordSanity extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
+    
   
     @Step("Send get request to {url}")
     public void step1()
-    {        
+    { 
+        List<Response> response = new Api_AddSsid().step1();
+        Response add=response.get(0);
+        Response ssidid=response.get(1);
+        String id=ssidid.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
+        headers.put("apikey",WebportalParam.apikey);    
+        headers.put("accountId",WebportalParam.accountId);
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        //TO PERFORM ANY REQUEST
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(false));
-       
-    }
-                  
+        pathParams.put("networkId",networkId);
+        pathParams.put("id",":7778hansd");      
+        
+      //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("A network error has occurred. Try again in a few minutes."));                
+    }              
     }
 

@@ -1,5 +1,8 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Location.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -12,24 +15,19 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import util.MyCommonAPIs;
+import testbase.TestCaseBaseApi;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import testbase.TestCaseBaseApi;
 
+public class Api_DeleteNetworkWithInvalidNwId extends TestCaseBaseApi{
 
-public class Api_DuplicateNetwork extends TestCaseBaseApi{
-
-    Map<String, String> endPointUrl = new HashMap<String,String>();
+    Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
-    
     
     @Feature("VLAN Listing") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -40,6 +38,7 @@ public class Api_DuplicateNetwork extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
@@ -51,31 +50,40 @@ public class Api_DuplicateNetwork extends TestCaseBaseApi{
     }
   
     @Step("Send get request to {url}")
-    public Response step1()
-    {        
+    public void step1()
+    { 
+        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
+        headers.put("networkId",networkId);
+        
+        Map<String, String> pathParamsadd = new HashMap<String, String>();
+        pathParamsadd.put("accountId",WebportalParam.accountId);
+        String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
+        
+        
+        //TO ADD NETWORK AND RETRIEVE NETWORK ID
+        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+        networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
+        String networkIdnew="65ff8c25388dcd5f051bc880";
+       
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
+        pathParams.put("networkId",networkIdnew);
+   
+        
         //TO PERFORM ANY REQUEST
+        Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse2.then().body("response.status", equalTo(false))
+                           .body("response.message",equalTo("Some error occured while deleting network, Please try again"));
+        
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
-        Response duplicatenw = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        duplicatenw.then()
-                          .body("response.status", equalTo(false))
-                          .body("response.message",equalTo("Network already exists with the same name"));
         
-        networkId=getResponse.jsonPath().getString("networkInfo[0].networkId");
-        System.out.print("network ID under response"+networkId);
-        return getResponse;
-     
         
     }
-                  
-    }
+}
+
 

@@ -1,4 +1,4 @@
-package webportal.ApiTest.Location.NegativeTestcases.Network;
+package webportal.ApiTest.Location.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_DeleteNetworkWithInvalidApiKey extends TestCaseBaseApi{
+public class Api_AddNetworkWithEmptyApiKey extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -39,15 +39,6 @@ public class Api_DeleteNetworkWithInvalidApiKey extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse3 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse3.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public void step1()
@@ -55,39 +46,18 @@ public class Api_DeleteNetworkWithInvalidApiKey extends TestCaseBaseApi{
        
             endPointUrl = new ApiRequest().ENDPOINT_URL;          
             headers.put("token",WebportalParam.token);
-            headers.put("apikey",WebportalParam.apikey);
-            headers.put("accountId",WebportalParam.accountId);        
-            headers.put("networkId",networkId);
-            
-            Map<String, String> pathParamsadd = new HashMap<String, String>();
-            pathParamsadd.put("accountId",WebportalParam.accountId);
+            headers.put("apikey","");
+                                   
+            Map<String, String> pathParams = new HashMap<String, String>();
+            pathParams.put("accountId",WebportalParam.accountId);
             String requestBody1="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Test@1234\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
             
             
             //TO ADD NETWORK AND RETRIEVE NETWORK ID
-            Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParamsadd, null); 
-            getResponse1.then().body("response.status", equalTo(true));
-            networkId=getResponse1.jsonPath().getString("networkInfo[0].networkId");
-           
-            Map<String, String> pathParams = new HashMap<String, String>();
-            pathParams.put("networkId",networkId);
-            
-            Map<String, String> wrongHeaders = new HashMap<String, String>();
-            wrongHeaders.put("token",WebportalParam.token);
-            wrongHeaders.put("apikey","pP3dO6k6lf2N83UEWUjH480VUXhtqCNqa8g8ONeM");
-            wrongHeaders.put("accountId",WebportalParam.accountId);        
-            wrongHeaders.put("networkId",networkId);
-       
-            
-            //TO PERFORM ANY REQUEST
-            Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), wrongHeaders, pathParams, null, 404); 
-
-                               
+            Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody1, headers, pathParams, null, 404); 
+                         
         }
-        
-
-        
-        
+                
     }
 
 
