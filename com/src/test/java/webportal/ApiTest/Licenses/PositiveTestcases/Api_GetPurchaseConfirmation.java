@@ -1,4 +1,4 @@
-package webportal.ApiTest.Licenses.Positive;
+package webportal.ApiTest.Licenses.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -17,63 +17,53 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
-import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
-import webportal.weboperation.HamburgerMenuPage;
 
 import static io.restassured.RestAssured.*;
 
 
-public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
+public class Api_GetPurchaseConfirmation extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String OrgID;
-    String Licence;
+    int DC= 2;
+    int ICPC= 2;
+    Response response1;
     
 
     
-    @Feature("Api_AddPurchaseConfirmation") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetPurchaseConfirmation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Add purchase confirmation key at account and organization.") // It's a testcase title from Jira Test Case.
+    @Description("Get purchase confirmation keys for an account and organization.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
-        step2(Licence);
     }
     
-
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        
+        
+       
+    }  
+    
     @Step("Send get request to {url}")
     public void step1()
     {
-        Licence = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
-    }
-    
-    @Step("Send get request to {url}")
-    public Response step2(String Licence)
-    {
       
-        Response response1 = new Api_AddOrganization().step1();
-        OrgID = response1.jsonPath().getString("orgInfo.orgId");
-        endPointUrl = new ApiRequest().ENDPOINT_URL; 
-        
+        endPointUrl = new ApiRequest().ENDPOINT_URL;  
         headers.put("token",WebportalParam.token);
         headers.put("accountId",WebportalParam.accountId);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("OrgId",OrgID);
-              
-        System.out.println("license key is"+Licence);
-        System.out.println("license key is"+Licence);
-        String requestBody1="{\"licenseInfo\":{\"licKey\":\""+Licence+"\"}}";
         
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Purchase_Confirmation"),requestBody1, headers, null, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Purchase_Confirmation"), headers, null, null); 
         getResponse.then().body("response.status", equalTo(true));
-        
-        return getResponse;
         
     }
   

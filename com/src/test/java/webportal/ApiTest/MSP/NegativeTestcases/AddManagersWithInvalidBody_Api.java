@@ -1,4 +1,4 @@
-package webportal.ApiTest.MSP.PositiveTestcases;
+package webportal.ApiTest.MSP.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
@@ -32,7 +32,7 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class Api_AddManagers extends TestCaseBaseApi{
+public class AddManagersWithInvalidBody_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
@@ -41,7 +41,7 @@ public class Api_AddManagers extends TestCaseBaseApi{
     String orgId;
     
     
-    @Feature("Api_AddManagers") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("AddManagersWithInvalidBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test adds managers to a pro account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -53,21 +53,7 @@ public class Api_AddManagers extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    {    Map<String, String> pathParamsGet = new HashMap<String, String>();
-         pathParamsGet.put("orgId",orgId);
-         pathParamsGet.put("startFrom","1");
-        
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Manager"), headers, pathParamsGet, null); 
-        getResponse.then().body("response.status", equalTo(true));        
-        managerId=getResponse.jsonPath().getString("details[0]._id");
-        System.out.println(managerId);
-        
-        Map<String, String> pathParams1 = new HashMap<String, String>(); 
-        pathParams1.put("managerId",managerId);
-       
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Manager_Sanity"), headers, pathParams1, null); 
-        getResponse1.then().body("response.status", equalTo(true));
+    {  
         
         pathParams.put("accountId",WebportalParam.accountId);
         pathParams.put("orgId",orgId);
@@ -79,13 +65,9 @@ public class Api_AddManagers extends TestCaseBaseApi{
     }
   
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     { 
         
-        Random              r           = new Random();
-        int                 num         = r.nextInt(100000);
-        String              mailname    = "apwptest" + String.valueOf(num)+"@yopmail.com";
-        System.out.print(mailname);
         
        Response response= new Api_AddOrganization().step1();
         orgId=response.jsonPath().getString("orgInfo.orgId");
@@ -98,14 +80,14 @@ public class Api_AddManagers extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
         
     
-        String requestBody="{\"accessType\":\"1\",\"applyToAll\":true,\"email\":\""+mailname+"\",\"managerOrgInfoList\":[{\"orgId\":\""+orgId+"\"}],\"managerType\":\"0\",\"username\":\"dummy\"}";           
+        String requestBody="{\"accessType\":\"1\",\"applyToAll\":true,\"email\":\"rs2@HYD@YU.COM\",\"managerOrgInfoList\":[{\"orgId\":\""+orgId+"\"}],\"managerType\":\"0\",\"username\":\"dummy\"}";           
 
         //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Manager"), requestBody, headers, null, null); 
-        getResponse.then().body("response.status", equalTo(true))
-        .body("response.message", equalTo("success"));
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Invalid/Missing Email "));
 
-        return response;
+        
       
     }
                   

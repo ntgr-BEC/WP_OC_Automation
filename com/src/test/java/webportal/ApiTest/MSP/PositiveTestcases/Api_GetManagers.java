@@ -91,7 +91,10 @@ public class Api_GetManagers extends TestCaseBaseApi{
 
         //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Manager"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("success"));
+        
+        
         managerId=getResponse.jsonPath().getString("details[0]._id");
         System.out.println(managerId);
 
