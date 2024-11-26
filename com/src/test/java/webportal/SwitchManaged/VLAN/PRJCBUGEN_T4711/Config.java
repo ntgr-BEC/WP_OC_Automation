@@ -1,4 +1,4 @@
-package webportal.Switch.VLAN.PRJCBUGEN_T4711;
+package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4711;
 
 import java.util.HashMap;
 import java.util.Map;
