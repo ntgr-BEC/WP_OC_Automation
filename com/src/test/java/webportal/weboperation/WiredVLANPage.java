@@ -89,7 +89,7 @@ public class WiredVLANPage extends WiredVLANElement {
             List<String> lsVlans = getVlanIDs();
             for (String vID : lsVlans) {
                 logger.info(String.format(": %s", vID));
-                if (!(vID.equals("1") || vID.equals("2") || vID.startsWith("408"))) {
+                if (!(vID.equals("1"))) {
                     editLine(vlanlistTable, vlanlistTableVlanIdCol, vID, vlanItemDel);
                     clickButton(2);
                 } else {

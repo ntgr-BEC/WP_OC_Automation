@@ -1530,6 +1530,13 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      //AddedbyPratik
      public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(1)']");
      public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 1 of 1 entries']");
+     public SelenideElement powerSettingsTab                 = $x("//div[@class='leftMenuItems']//a[text()='Power Settings']");
+     public SelenideElement powerSettingsDropdown            = $x("//span[text()='Power Settings']/../..//select[contains(@class,'inputTextField')]");
+     public SelenideElement saveButtonPowerSetting           = $x("//button[@id='led_Apply']");
+     public SelenideElement powerSettingWarningPopup         = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]");
+     public SelenideElement powerSettingWarningPopupCancel   = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='Cancel']");
+     public SelenideElement powerSettingWarningPopupOK       = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='OK']");
+     public SelenideElement successMsg                       = $x("//*[contains(text(),'Your configuration has been applied')]");
 }
 
 
