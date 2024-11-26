@@ -65,7 +65,7 @@ public class Api_GetSpanningTree extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);           
    
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
 
         //TO PERFORM ANY REQUEST
      

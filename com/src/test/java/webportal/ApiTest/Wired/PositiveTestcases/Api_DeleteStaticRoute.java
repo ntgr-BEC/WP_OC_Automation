@@ -55,7 +55,7 @@ public class Api_DeleteStaticRoute extends TestCaseBaseApi{
     public void step1()
     {
         
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         String deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
         
       
@@ -66,7 +66,7 @@ public class Api_DeleteStaticRoute extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
                 
         String requestBody ="{\"deleteStaticRouteInfo\":{\"addrFamily\":\"1\",\"nextHopIp\":\"196.1.1.1\",\"netAddr\":\"0.0.0.0\",\"ipMask\":\"0.0.0.0\",\"routePref\":\"1\",\"type\":\"1\",\"deviceId\":\""+deviceId+"\"}}";
         

@@ -67,7 +67,7 @@ public class Api_GetVlanMembers extends TestCaseBaseApi{
 
        
 
-       pathParams.put("networkId",WebportalParam.networkId);
+       pathParams.put("networkId",WebportalParam.networkIdSw);
        pathParams.put("vlanId","250");
        
        

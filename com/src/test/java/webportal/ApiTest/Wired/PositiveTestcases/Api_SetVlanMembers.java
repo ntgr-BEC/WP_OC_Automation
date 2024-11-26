@@ -67,7 +67,7 @@ public class Api_SetVlanMembers extends TestCaseBaseApi{
        endPointUrl = new ApiRequest().ENDPOINT_URL;
        
        Map<String, String> pathParams1 = new HashMap<String, String>();
-       pathParams1.put("networkId",WebportalParam.networkId);
+       pathParams1.put("networkId",WebportalParam.networkIdSw);
        
 
        
@@ -83,13 +83,13 @@ public class Api_SetVlanMembers extends TestCaseBaseApi{
     public void step2()
     {
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Response response1=new Api_GetDevices().step1();
+        Response response1=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         deviceId=response1.jsonPath().getString("deviceInfo[0].deviceId");
         
         String vlanId="250";
 
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         pathParams.put("vlanId",vlanId);
         
         String body="{\"vlanMembers\":{\"memberWirelessNetwork\":[],\"apPortMembers\":[],\"portMembers\":[{\"deviceId\":\""+deviceId+"\",\"taggedPorts\":[],\"untaggedPorts\":[\"15\"]}],\"lanPortMembers\":[],\"wanPortMembers\":[],\"publicMembers\":[],\"employeeMembers\":[],\"guestMembers\":[],\"lagMembers\":{\"tagged\":[],\"untagged\":[],\"portGrp\":[]}}}";

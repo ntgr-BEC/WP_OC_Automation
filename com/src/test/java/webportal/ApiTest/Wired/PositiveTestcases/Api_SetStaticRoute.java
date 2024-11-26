@@ -48,7 +48,7 @@ public class Api_SetStaticRoute extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     {
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         String deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
             
         endPointUrl = new ApiRequest().ENDPOINT_URL;
@@ -57,7 +57,7 @@ public class Api_SetStaticRoute extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         
         String requestBody = "{\"staticRouteInfo\":[{\"addrFamily\":\"1\",\"nextHopIp\":\"196.1.1.1\",\"netAddr\":\"0.0.0.0\",\"ipMask\":\"0.0.0.0\",\"routePref\":\"1\",\"type\":\"1\",\"deviceId\":\""+deviceId+"\",\"previousNextHopIp\":\"0.0.0.0\",\"previousNetAddr\":\"0.0.0.0\",\"previousIpMask\":\"0.0.0.0\"}]}";
       
