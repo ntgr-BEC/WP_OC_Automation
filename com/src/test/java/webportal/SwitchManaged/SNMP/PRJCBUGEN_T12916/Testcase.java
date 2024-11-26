@@ -54,10 +54,10 @@ public class Testcase extends TestCaseBase {
         snmpp.setSnmp(false, sIp, sPw, false);
         handle.waitCmdReady(sIp, false);
 
-        SwitchCLIUtils.setSwitchIp(false);
+        SwitchCLIUtils.setSwitchIp(false);    //sw1 config push
         tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on 1st cli for text: " + sIp);
-        SwitchCLIUtils.setSwitchIp(true);
+        SwitchCLIUtils.setSwitchIp(true);     //sw2 config push
         tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(tmpStr.contains(sIp), "check option on 2nd cli for text: " + sIp);
     }
