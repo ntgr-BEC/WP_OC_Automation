@@ -51,7 +51,7 @@ public class Api_UpdateOrganization extends TestCaseBaseApi{
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",orgId);
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
@@ -64,11 +64,11 @@ public class Api_UpdateOrganization extends TestCaseBaseApi{
             Response response = new Api_AddOrganization().step1();
             endPointUrl = new ApiRequest().ENDPOINT_URL;          
             headers.put("apikey",WebportalParam.apikey);
-            headers.put("token",WebportalParam.token);
+            headers.put("token",WebportalParam.tokenPro);
             orgId = response.jsonPath().getString("orgInfo.orgId");
                                    
             Map<String, String> pathParams = new HashMap<String, String>();
-            pathParams.put("accountId",WebportalParam.accountId);
+            pathParams.put("accountId",WebportalParam.accountIdPro);
             pathParams.put("orgId",orgId);
            
             String requestBody1="{\"orgInfo\":{\"orgName\":\""+orgupdate+"\",\"ownerName\":\"Netgear1 Devices\",\"ownerEmail\":\""+updateowner+"@yopmail.com\",\"persPhnNo\":\"\",\"busiPhnNo\":\"\",\"emailRecipient\":[\"1\",\"2\"],\"pushRecipient\":[\"1\",\"2\"],\"deviceOwnership\":\"1\",\"repRecipient\":[\"1\",\"2\"],\"isSchedule\":\"1\",\"frequency\":\"1\",\"applyToAllOrg\":\"0\"}}";       

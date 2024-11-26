@@ -45,16 +45,16 @@ public class Api_AddBulkDevices extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }  
+//    @AfterMethod(alwaysRun=true)
+//    public void teardown()
+//    { 
+//        Map<String, String> pathParams = new HashMap<String, String>();
+//        pathParams.put("orgId",OrgID);
+//        pathParams.put("accountId",WebportalParam.accountIdPro);
+//        
+//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//    }  
   
     @Step("Send get request to {url}")
     public void step1()
@@ -67,10 +67,10 @@ public class Api_AddBulkDevices extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
+        headers.put("accountId",WebportalParam.accountIdPro);        
+        headers.put("networkId",WebportalParam.networkIdPro); 
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",OrgID);
