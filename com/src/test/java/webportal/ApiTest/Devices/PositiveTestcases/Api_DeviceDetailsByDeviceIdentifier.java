@@ -48,7 +48,7 @@ public class Api_DeviceDetailsByDeviceIdentifier extends TestCaseBaseApi{
     public void step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Response add = new Api_GetDevices().step1();
+        Response add = new Api_GetDevices().step1(WebportalParam.networkId);
         String deviceID= add.jsonPath().getString("deviceInfo[0].deviceId");
         System.out.println(deviceID);
         headers.put("token",WebportalParam.token);

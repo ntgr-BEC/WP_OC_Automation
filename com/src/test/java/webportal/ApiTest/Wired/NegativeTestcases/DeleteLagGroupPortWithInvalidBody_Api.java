@@ -65,7 +65,7 @@ public class DeleteLagGroupPortWithInvalidBody_Api extends TestCaseBaseApi{
         lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         System.out.print(lagGroupId);
         
-        Response response2=new Api_GetDevices().step1();
+        Response response2=new Api_GetDevices().step1(WebportalParam.networkId);
         deviceId=response2.jsonPath().getString("deviceInfo[0].deviceId");
     }
   
