@@ -1278,8 +1278,8 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocation(String name) {
-        MyCommonAPIs.sleepi(5);
-        waitElement(checkOrganizationIsExist(name));
+        MyCommonAPIs.sleepi(15);
+        waitElement(dropdownOrganizationElement(name));
         dropdownOrganizationElement(name).click();
         MyCommonAPIs.sleepi(2);
         allocateCredits.click();

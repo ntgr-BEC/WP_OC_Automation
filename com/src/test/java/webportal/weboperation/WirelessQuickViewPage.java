@@ -89,7 +89,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void clickEditSsid(String Ssid) {
         MyCommonAPIs.sleepi(5);
-        hoverToSSID.hover();
+        hoverToSSID1(Ssid).hover();
         executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
         MyCommonAPIs.sleep(3000);
         editWifi(Ssid).hover();
@@ -11405,6 +11405,68 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 System.out.println("Power mode was correctly selected.");
                 result = true;
             }
+        }
+        return result;
+    }
+    //AddedbyPratik
+    public boolean editSSIDAndAddCustomerProfile(String Ssid, String Customerprofile) {
+        boolean result = false;
+        settingsorquickview.click();
+        if (checkSsidIsExist(Ssid)) {
+            clickEditSsid(Ssid);
+            MyCommonAPIs.sleepi(5);
+            waitElement(customerProfile);
+            MyCommonAPIs.sleepi(2);
+            waitElement(customerProfileSwitch);
+            MyCommonAPIs.sleepi(2);
+            customerProfileSwitch.click();
+            MyCommonAPIs.sleepi(5);
+            waitElement(customerProfileSelect);
+            customerProfileSelect.click();
+            MyCommonAPIs.sleepi(1);
+            customerProfileSelect.selectOption(Customerprofile);
+            MyCommonAPIs.sleepi(5);
+            String selectedOptionText = customerProfileSelect.getSelectedOption().getText();
+            System.out.println("Customer Profile Selected : "+selectedOptionText);
+            boolean isOptionSelected = selectedOptionText.equals(Customerprofile);
+            if (isOptionSelected) {
+                result = true;
+            }
+            waitElement(editSsidSaveBtn);
+            editSsidSaveBtn.click();
+            MyCommonAPIs.sleepi(5);
+            waitElement(editSsidSuccessOkayBtn);
+            editSsidSuccessOkayBtn.click();
+            MyCommonAPIs.sleepi(180);
+        }
+        return result;
+    }
+    //AddedByPratik
+    public boolean deleteSsidYesConfirm(String Ssid) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        refresh();
+        MyCommonAPIs.sleepi(15);
+        if (checkSsidIsExist(Ssid)) {
+            logger.info("Delete ssid.");
+            MyCommonAPIs.sleepi(5);
+            hoverToSSID1(Ssid).hover();
+            MyCommonAPIs.sleep(3000);
+            executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
+            MyCommonAPIs.sleep(3000);
+            editWifi(Ssid).hover();
+            MyCommonAPIs.sleep(3000);
+            deleteSsid(Ssid).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleepi(30);
+            waitElement(deletessidyes);
+            MyCommonAPIs.sleepi(1);
+            deletessidyes.click();
+            MyCommonAPIs.sleep(5 * 1000);
+            result = true;
         }
         return result;
     }
