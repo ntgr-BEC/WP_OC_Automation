@@ -108,7 +108,7 @@ public class OrganizationElement extends MyCommonAPIs {
       //div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='test16985 ']
 //                $x("//div[@id='gridView']/div[@class='locationDiv']//p[text()='" + name + "']");
 //                                         $x ("//div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='"+name+ "']");
-        SelenideElement organization = $x("(//*[text()='"+ name +"'])[1]");
+        SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
         return organization;
     }
 
@@ -250,7 +250,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement closebox                   = $x("//*[@id=\"locationDivsContainer\"]/div[5]/div/div/div[1]/button/img");
     public SelenideElement allocateCredits            = $x("//b[text()='Allocate Credits']");
     public SelenideElement deviceCredits              = $x("(//span[text()='Device Credits'])[2]");
-    public SelenideElement deviceCreditsTextbox       = $x("(//input[@type=\"text\"])[9]");
+    public SelenideElement deviceCreditsTextbox       = $x("//span[text()='Device Credits']/../..//input[@type='text']");
     public SelenideElement allocateBtn                = $x("//button[text()='Allocate']");
     public SelenideElement Homebtn                    = $x("(//img[@alt='Cloud Web Portal'])[1]");
     public SelenideElement Setting                    = $x("//a[text()='Settings']");
