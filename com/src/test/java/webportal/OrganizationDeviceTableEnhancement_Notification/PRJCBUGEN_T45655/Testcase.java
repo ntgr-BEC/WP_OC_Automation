@@ -128,7 +128,7 @@ public class Testcase extends TestCaseBase {
           devInfo.put("MAC Address", WebportalParam.ap5macaddress);
           new DevicesDashPage().addNewDevice(devInfo);
           new NotificationPage().SeeAllNotifications();
-          assertTrue(new NotificationPage().verifyHardbundleOnboardedDevicesNotification(WebportalParam.ap5serialNo),
+          assertTrue(new OrganizationPage(false).verifyHardbundleOnboardedDevicesNotification(WebportalParam.ap5serialNo),
                   "Notification not shown on notifications page after onboarding Hardbundle device");
           
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);
@@ -139,7 +139,7 @@ public class Testcase extends TestCaseBase {
           devInfo1.put("MAC Address", WebportalParam.sw1MacAddress);
           new DevicesDashPage().addNewDevice(devInfo1);
           new NotificationPage().SeeAllNotifications();
-          assertTrue(new NotificationPage().verifyHardbundleOnboardedDevicesNotification(WebportalParam.sw1serialNo),
+          assertTrue(new OrganizationPage(false).verifyHardbundleOnboardedDevicesNotification(WebportalParam.sw1serialNo),
                   "Notification not shown on notifications page after onboarding Hardbundle device");
           
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);
@@ -150,7 +150,7 @@ public class Testcase extends TestCaseBase {
           devInfo2.put("MAC Address", WebportalParam.br1deveiceMac);
           new DevicesDashPage().addNewDevice(devInfo2);
           new NotificationPage().SeeAllNotifications();
-          assertTrue(new NotificationPage().verifyHardbundleOnboardedDevicesNotification(WebportalParam.br1serialNo),
+          assertTrue(new OrganizationPage(false).verifyHardbundleOnboardedDevicesNotification(WebportalParam.br1serialNo),
                   "Notification not shown on notifications page after onboarding Hardbundle device");
           
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);
@@ -161,7 +161,7 @@ public class Testcase extends TestCaseBase {
           devInfo3.put("MAC Address", WebportalParam.ob1deveiceMac);
           new DevicesDashPage().addNewDevice(devInfo3);
           new NotificationPage().SeeAllNotifications();
-          assertTrue(new NotificationPage().verifyHardbundleOnboardedDevicesNotification(WebportalParam.br1serialNo),
+          assertTrue(new OrganizationPage(false).verifyHardbundleOnboardedDevicesNotification(WebportalParam.br1serialNo),
                   "Notification not shown on notifications page after onboarding Hardbundle device");
       }
 
