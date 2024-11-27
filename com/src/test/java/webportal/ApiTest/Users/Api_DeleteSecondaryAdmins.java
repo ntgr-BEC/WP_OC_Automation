@@ -54,9 +54,9 @@ public class Api_DeleteSecondaryAdmins extends TestCaseBaseApi{
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         Response add= new Api_GetSecondaryAdmins().step1();        //will create and get the details of sec admin created
         String secadminId = add.jsonPath().getString("details.adminsList[0]._id");
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("secadminId",secadminId);

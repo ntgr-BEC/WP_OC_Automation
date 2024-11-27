@@ -16,6 +16,8 @@ import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  * @author lavi
@@ -37,8 +39,9 @@ public class Testcase extends TestCaseBase {
     
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
     
     // Each step is a single test step from Jira Test Case
@@ -67,19 +70,11 @@ public class Testcase extends TestCaseBase {
         netsp.finishAllStep();
         
         handle.waitCmdReady(vlanId, false);
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId), "port g1 is Untagged");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is Tagged");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/3", vlanId), "port g3 is Tagged");
-        }else  if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId), "port g1 is Untagged");
-            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is Tagged");
-            assertTrue(SwitchCLIUtils.isTagPort("0/3", vlanId), "port g3 is Tagged");
-        }else {
+  
         assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is Untagged");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is Tagged");
         assertTrue(SwitchCLIUtils.isTagPort("g3", vlanId), "port g3 is Tagged");
-        }
+        
     }
     
     @Step("Test Step 4: Change port 3 as untagged")
@@ -91,14 +86,8 @@ public class Testcase extends TestCaseBase {
         netsp.finishAllStep();
         
         MyCommonAPIs.sleepsync();
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/3", vlanId), "port g3 is Untagged");
-        }else  if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isTagPort("0/3", vlanId), "port g3 is Untagged");
-        }else {
         assertFalse(SwitchCLIUtils.isTagPort("g3", vlanId), "port g3 is Untagged");
         }
-    }
     
     @Step("Test Step 5: Remove port 1 from vlan 100")
     public void step5() {
@@ -109,12 +98,8 @@ public class Testcase extends TestCaseBase {
         netsp.finishAllStep();
         
         MyCommonAPIs.sleepsync();
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId), "port g1 is removed from vlan");
-        }else  if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/1", vlanId), "port g1 is removed from vlan");
-        }else {
+      
         assertFalse(SwitchCLIUtils.isPortInVlan("g1", vlanId), "port g1 is removed from vlan");
-        }
+        
     }
 }

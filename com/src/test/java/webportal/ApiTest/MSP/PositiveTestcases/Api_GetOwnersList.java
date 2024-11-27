@@ -74,9 +74,9 @@ public class Api_GetOwnersList extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL;   
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
      
         //TO PERFORM ANY REQUEST 

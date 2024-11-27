@@ -1,4 +1,4 @@
-package webportal.ApiTest.Public;
+package webportal.ApiTest.Public.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -27,15 +27,16 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_GetInsightModels extends TestCaseBaseApi{
+public class Api_GetCountryList extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
+    String networkId;
     
-    @Feature("Api_GetInsightModels") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetCountryList") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test gets Insight model list from the particular account") // It's a testcase title from Jira Test Case.
+    @Description("This test gets country list from the particular account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -53,13 +54,11 @@ public class Api_GetInsightModels extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
       
         //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Insight_Models"), headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Country_List"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         
-        //The MODEL NAME IS PRESENT IN THE OUTPUT
+        //THE NO. OF WIRELESS REGION ARE 126
         getResponse.then().statusCode(200)
-        .body("swModelInfo[0].deviceType", equalTo("SW"))
-        .body("apModelInfo[0].deviceType", equalTo("AP"))
-        .body("orbiModelInfo[0].deviceType", equalTo("ORBI"));
+        .body("countryList", hasSize(126));
     }
 }

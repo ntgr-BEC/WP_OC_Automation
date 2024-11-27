@@ -647,31 +647,39 @@
             
         </Client_2>
         
-        <Api_Main>       
-          <baseURI>https://maint-qa-api.insight.netgear.com/</baseURI>
-          <token>eyJraWQiOiJvc2FqOVNyemR1SWgrUTFRa3NqcTZpZU9EU25PYXFyQnY5ekFVV3pkT2lNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJkNGM4OTQwOC1iMDgxLTcwMTAtNWUzMy01MDljNzE5YmY4MjgiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9KYUdVeVB1Y3MiLCJjbGllbnRfaWQiOiI3amI5MmNuZm9iMTFpOTVvdDQ4bmdqZXNlOCIsIm9yaWdpbl9qdGkiOiJhZWM3NDM4Mi1hMGViLTRkM2UtYjRjMi0yMTI4MjU2YjdmNTQiLCJldmVudF9pZCI6IjljNjM3YTRkLTNmNDktNDI5MS04OGU3LWY1NWI5NTQyNThlMiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3Mjc2OTg4OTUsImV4cCI6MTcyNzcwMDQ2NCwiaWF0IjoxNzI3NzAwMTY0LCJqdGkiOiJiOGYxZDUwYi00ZGYzLTRjN2YtYjgyZC03MDIxODE0NDFmNDciLCJ1c2VybmFtZSI6ImQ0Yzg5NDA4LWIwODEtNzAxMC01ZTMzLTUwOWM3MTliZjgyOCJ9.RJkztITaCy4kveKOEBxIclQKHnbyKTIvuPsRV2A0djbF7fkD9UiD_TjKtVS6HaHH5mHK3QNCvL7ZrOqfdMTgwa-CYyR6p1OVvPqJcfzj7O2KYeVUPTy0PuDFYTnOBnhsghQL0Uf28TBT9cVmILsgH36wkrT-R9alZEP6GFceNbiWDVkHKiY2wi-PK4WR0PFHXVn7pGJCstYCymKytad8m4US2y5Jo3lY_J3niRhU9A2OFpV7mfrXTn9qdsC8oaHZCavxH0B7F-7JYhpTf0v2E9tGCTk6MGIYC2F1A1Gfybl3n-eucu91FZ8s3GIln4DLInCh-XGQHQpzQYUOPwG2rg</token>
-          <xsrfToken>kdCRLErv5bgWxLloV6HzzSoqEbpxmeXWnUrT</xsrfToken>
+        <Api_Premium>       
+         <baseURI>https://maint-qa-api.insight.netgear.com/</baseURI>
+          <token>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NmYzYmNmZDFhZDc4ZjQ2N2I3ZmFkOGEifQ._Sv-DEsucjOu7jNt_gyAXZrQz-yitRABta1EidJt00U</token>
           <apikey>pP3dO6k6lf2N83UEWUjH480VUXhtqCNqa0g8ONeM</apikey>    
           <accountId>66f3bcfe1ad78f467b7fad8b</accountId>
-          <networkId>66fa9c5fabee9135d7b9d7d0</networkId>
-          <OrgId></OrgId>                
-        </Api_Main>
+          <networkId>672a1423431132236d730aa3</networkId>
+          <networkIdSw>672a1423431132236d730aa3</networkIdSw>                         
+        </Api_Premium>
+        
+          <Api_Pro>       
+          <tokenPro>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NmYzYmNmZDFhZDc4ZjQ2N2I3ZmFkOGEifQ._Sv-DEsucjOu7jNt_gyAXZrQz-yitRABta1EidJt00U</tokenPro>   
+          <accountIdPro>66f3bcfe1ad78f467b7fad8b</accountIdPro>
+          <networkIdPro>672a1423431132236d730aa3</networkIdPro>
+          <orgId>672a1423431132236d730aa3</orgId>                         
+        </Api_Pro>
         
         <Api_MaintQa>       
          <baseURI>https://maint-qa-api.insight.netgear.com/</baseURI>
-          <token>eyJraWQiOiJvc2FqOVNyemR1SWgrUTFRa3NqcTZpZU9EU25PYXFyQnY5ekFVV3pkT2lNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJkNGM4OTQwOC1iMDgxLTcwMTAtNWUzMy01MDljNzE5YmY4MjgiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9KYUdVeVB1Y3MiLCJjbGllbnRfaWQiOiI3amI5MmNuZm9iMTFpOTVvdDQ4bmdqZXNlOCIsIm9yaWdpbl9qdGkiOiI0Nzg1MGVjYi0zMGVhLTQxMWYtYTdkZi1iYTRhOTk3MjhkMWMiLCJldmVudF9pZCI6Ijc3MGQxNzM0LTJmZWYtNDZjNi1hOWJlLThlN2U0Y2JjZDk4OSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3Mjc2OTEyMzAsImV4cCI6MTcyNzY5MjI1NCwiaWF0IjoxNzI3NjkxOTU0LCJqdGkiOiIwZWE0ZmI3NS05NjVkLTQ4OTEtYTJiMC1iNWM4MjU1NDE0YTAiLCJ1c2VybmFtZSI6ImQ0Yzg5NDA4LWIwODEtNzAxMC01ZTMzLTUwOWM3MTliZjgyOCJ9.KLq7JC6UQb17buKIYilxSUULRkM37G9JGST39l9HMUSyVUtpfuvXVWrG7tCazWecKi1z28PyIHkDQubb1i4EiDo7Ic0ys5d9PyUO7KvpqR3OhiDYVCmAKH5ieSRFNqpupRIMkFR5pV11EB0JYPjDAFlwlN1uB0VaRqPAgMjrxaoPjNR9LpQwXSNBVT2NwdD0KHAhz3LXVhz8kEp8Jmj-bzINW9ahe23vPUbg88lh1ScrIRUhy3ZbL8RlKd3tbQRGwzkuvBSr6laL01uFEx91SXgwbK4bFr4Re7kIPD7YNni99_KIBWGED9ebU5my-JS4p7it8JJ0WM0TZfWoKY4e4g</token>
+          <token>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NmYzYmNmZDFhZDc4ZjQ2N2I3ZmFkOGEifQ._Sv-DEsucjOu7jNt_gyAXZrQz-yitRABta1EidJt00U</token>
           <xsrfToken>kdCRLErv5bgWxLloV6HzzSoqEbpxmeXWnUrT</xsrfToken>
           <apikey>pP3dO6k6lf2N83UEWUjH480VUXhtqCNqa0g8ONeM</apikey>    
           <accountId>66f3bcfe1ad78f467b7fad8b</accountId>
-          <networkId>66f68140abee9135d7b2c6f6</networkId>
+          <networkId>672a1423431132236d730aa3</networkId>    
         </Api_MaintQa>
         
         <Api_PriQa>       
-          <baseURI>https://pri-qa-api.insight.netgear.com/</baseURI>
-          <token>2_5PtQREdX5xTl6K1wPcnLWxfuawNAUVLJ4tCyt5Vlg9CuurXDs4Ckqi102y4PNYQBvtljCzD3Lkzjb39zAC8S0BpSRYWm937qzVb4w-EqJ-sRLPIelO8VGKLg7J5w-tMcaBzeT68oZ1kt75AsrEytz4Ug0-a0XMqZ96-FbUev00Tk</token>
+        <baseURI>https://maint-qa-api.insight.netgear.com/</baseURI>
+          <token>eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI2NzE5ZWY0M2NkMjY5MzQwNWFhYTllNWMifQ.y1HeGbj76d1aUhRFV-zkZVOQskxL-dWJpjonDnFP_wQ</token>
           <xsrfToken>kdCRLErv5bgWxLloV6HzzSoqEbpxmeXWnUrT</xsrfToken>
           <apikey>pP3dO6k6lf2N83UEWUjH480VUXhtqCNqa0g8ONeM</apikey>    
-          <accountId>64578dba6be50855bf7fbc64</accountId>         
+          <accountId>6719ef4ecd2693405aaa9e5f</accountId>         
+          <networkId>673ac9c5a0cd573f68bb7c8a</networkId>
+          <orgId>673ac9a7a0cd573f68bb7bef</orgId>         
         </Api_PriQa>
    
     </DUT_List>

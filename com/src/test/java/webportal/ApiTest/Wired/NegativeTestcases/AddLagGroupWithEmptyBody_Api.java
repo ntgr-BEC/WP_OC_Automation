@@ -59,7 +59,7 @@ public class AddLagGroupWithEmptyBody_Api extends TestCaseBaseApi{
         
         pathParams.put("networkId",WebportalParam.networkId);
         
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkId);
         deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
         
         String requestBody = "{}";

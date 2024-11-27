@@ -49,9 +49,9 @@ public class Api_RetrievePurchaseOrderHistory extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
     
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("timePeriod","30 Days");   //The enumerations are all, 365 Days, 90 Days, 30 Days.

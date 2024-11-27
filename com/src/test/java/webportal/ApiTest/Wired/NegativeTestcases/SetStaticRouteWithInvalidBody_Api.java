@@ -49,7 +49,7 @@ public class SetStaticRouteWithInvalidBody_Api extends TestCaseBaseApi{
     public void step1()
     {
            
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkId);
         String deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
         
         endPointUrl = new ApiRequest().ENDPOINT_URL;

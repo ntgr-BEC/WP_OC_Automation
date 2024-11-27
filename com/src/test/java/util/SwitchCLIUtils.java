@@ -847,8 +847,8 @@ public class SwitchCLIUtils {
             if (result.contains("tagged") && !result.contains("untagged"))
                 return true;
         } else if(WebportalParam.sw1Model.contains("M4350")|| WebportalParam.sw1Model.contains("M4250")){
-            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
-            if (result.contains("tagging"))
+            result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
+            if (result.contains("Tagged"))
                 return true;            
         }else {        
             result = st.sendCLICommandClear("show vlan port " + port, vlanId);
@@ -875,8 +875,10 @@ public class SwitchCLIUtils {
                 return true;
             return false;
         } else {
-            result = st.sendCLICommandClear("show vlan port " + port, vlanId);
-            if (result.contains("Tagged") || result.contains("Untagged"))
+//            result = st.sendCLICommandClear("show vlan port " + port, vlanId);
+//            if (result.contains("Tagged") || result.contains("Untagged"))
+              result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
+              if (result.contains("Include"))
                 return true;
             return false;
         }
@@ -1380,14 +1382,14 @@ public class SwitchCLIUtils {
                     isTrapEnable = true;
                 }
             } else {
-                if (res1.contains("Disable")) {
+                if (res1.contains("no snmp-server enable traps")) {
                     isTrapEnable = false;
                 } else {
                     isTrapEnable = true;
                 }
             }
             
-            if (res2.contains(" ro") || res2.contains("Read Only") || res1.contains("Read Only")) {
+            if (res2.contains("ro") || res2.contains("Read Only") || res1.contains("Read Only")) {
                 isReadyOnly = true;
             } else {
                 isReadyOnly = false;
@@ -1410,10 +1412,13 @@ public class SwitchCLIUtils {
             
             if(WebportalParam.sw1Model.contains("M4")) {
                 
-                retTem = st.sendCLICommandClear2("show running-config", null); //retTem = st.sendCLICommandClear("show running-config", null);
-                trapRes = WebportalParam.includeLines(retTem, "Authentication trap", false);
-                commRes = WebportalParam.includeLines(retTem, "snmp community", false);
+                retTem = st.sendCLICommandClear2("show running-config", "snmp"); //retTem = st.sendCLICommandClear("show running-config", null);
+                trapRes = WebportalParam.includeLines(retTem, "traps", false);
+                commRes = WebportalParam.includeLines(retTem, "snmp-server community", false);
                 commRes += WebportalParam.includeLines(retTem, "snmp host", false);
+                System.out.println("trapRes" +trapRes);
+                System.out.println("commRes" +commRes);
+                
                 
             }else {
             trapRes = st.sendCLICommandClear("show snmptrap", null);

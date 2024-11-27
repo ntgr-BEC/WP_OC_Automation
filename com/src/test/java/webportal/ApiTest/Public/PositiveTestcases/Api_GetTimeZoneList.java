@@ -1,4 +1,4 @@
-package webportal.ApiTest.Public;
+package webportal.ApiTest.Public.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;

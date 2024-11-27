@@ -63,7 +63,7 @@ public class Api_DeleteManagers extends TestCaseBaseApi{
     public void tearUp()
     {   
         Map<String, String> pathParams1 = new HashMap<String, String>();
-        pathParams1.put("accountId",WebportalParam.accountId);
+        pathParams1.put("accountId",WebportalParam.accountIdPro);
         pathParams1.put("orgId",orgId);
 
     Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams1, null); 
@@ -78,9 +78,9 @@ public class Api_DeleteManagers extends TestCaseBaseApi{
 
         endPointUrl = new ApiRequest().ENDPOINT_URL;   
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
         pathParams.put("managerId",managerId);
         

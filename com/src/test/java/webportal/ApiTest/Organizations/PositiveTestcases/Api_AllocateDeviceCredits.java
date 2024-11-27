@@ -52,7 +52,7 @@ public class Api_AllocateDeviceCredits extends TestCaseBaseApi{
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
@@ -73,9 +73,9 @@ public class Api_AllocateDeviceCredits extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         endPointUrl = new ApiRequest().ENDPOINT_URL;        
         System.out.println(OrgID);
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId", OrgID);

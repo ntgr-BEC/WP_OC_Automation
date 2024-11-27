@@ -67,9 +67,9 @@ public class Api_GetSecondaryAdmins extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         new Api_InviteSecondaryAdmins().step1();
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("startFrom","0");

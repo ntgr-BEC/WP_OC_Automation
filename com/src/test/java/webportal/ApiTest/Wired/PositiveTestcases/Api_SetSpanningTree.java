@@ -65,7 +65,7 @@ public class Api_SetSpanningTree extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         
         //Disabling the spanning tree
         String body="{\"stpRstpConfig\":{\"status\":\"0\",\"stpMode\":\"2\",\"switchInfo\":[{\"serialNo\":\""+ WebportalParam.sw1serialNo +"\",\"port\":[1,2,3,4,5,6,7,8],\"lagId\":[1]}]}}";

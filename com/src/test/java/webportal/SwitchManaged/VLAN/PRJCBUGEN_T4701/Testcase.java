@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 3: check cli")
     public void step3() {
         String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
-        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw2Model, sw1port[1]);
+        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw2Model, sw2port2[0]);
 
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
         if (!SwitchCLIUtils.isTagPort(port1, vlanId) && result1.contains("100")) {
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1, 1 cli is:" + result1);
         }
         
-        result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
+        result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, true).toLowerCase();
         if (!SwitchCLIUtils.isTagPort(port2, vlanId) && result1.contains("100")) {
             micResult = true;
         } else {
