@@ -847,8 +847,8 @@ public class SwitchCLIUtils {
             if (result.contains("tagged") && !result.contains("untagged"))
                 return true;
         } else if(WebportalParam.sw1Model.contains("M4350")|| WebportalParam.sw1Model.contains("M4250")){
-            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
-            if (result.contains("tagging"))
+            result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
+            if (result.contains("Tagged"))
                 return true;            
         }else {        
             result = st.sendCLICommandClear("show vlan port " + port, vlanId);
@@ -875,8 +875,10 @@ public class SwitchCLIUtils {
                 return true;
             return false;
         } else {
-            result = st.sendCLICommandClear("show vlan port " + port, vlanId);
-            if (result.contains("Tagged") || result.contains("Untagged"))
+//            result = st.sendCLICommandClear("show vlan port " + port, vlanId);
+//            if (result.contains("Tagged") || result.contains("Untagged"))
+              result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
+              if (result.contains("Include"))
                 return true;
             return false;
         }
