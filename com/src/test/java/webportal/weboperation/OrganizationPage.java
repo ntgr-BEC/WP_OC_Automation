@@ -6742,8 +6742,7 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(1);
         allocateBtn.click();
         MyCommonAPIs.sleepi(5);
-    }
-    
+    }   
     //AddedbyPratik
     public boolean verifyHardbundleOnboardedDevicesNotification(String serialNumber) {
         boolean result = false;
@@ -6757,7 +6756,7 @@ public class OrganizationPage extends OrganizationElement {
             logger.info("Notification shown on notifications page after onboarding Hardbundle device");
             result = true;
         }
-        return result;
+        return result;     
     }
     
 }

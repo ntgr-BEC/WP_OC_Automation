@@ -75,9 +75,6 @@ public class NotificationPage extends NotificationPageElement {
             return result;
         }
     
-
-        
-   
     }
         
   
