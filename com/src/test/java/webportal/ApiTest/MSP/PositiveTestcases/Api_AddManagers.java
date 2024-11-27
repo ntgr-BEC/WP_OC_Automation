@@ -69,7 +69,7 @@ public class Api_AddManagers extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Manager_Sanity"), headers, pathParams1, null); 
         getResponse1.then().body("response.status", equalTo(true));
         
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         pathParams.put("orgId",orgId);
        
         
