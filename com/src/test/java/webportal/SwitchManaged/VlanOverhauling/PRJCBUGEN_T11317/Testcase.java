@@ -55,25 +55,25 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Create vlan100，Create LGA1 with member ports 1,2")
     public void step2() {
-//        wlp.gotoLagPage();
-//        wlp.addLag(lagName, true, false);
-//        handle.waitCmdReady(lagName, false);
-//
-//        netsp.gotoPage();
-//        netsp.createNetwork(networkName, 0, vlanName, vlanId);
-//        handle.waitCmdReady("vlan " + vlanId, false);
+        wlp.gotoLagPage();
+        wlp.addLag(lagName, true, false);
+        handle.waitCmdReady(lagName, false);
+
+        netsp.gotoPage();
+        netsp.createNetwork(networkName, 0, vlanName, vlanId);
+        handle.waitCmdReady("vlan " + vlanId, false);
     }
 
     @Step("Test Step 3: Go to vlan 100, on the Port Members select port1 or port2, Click Access port")
     public void step3() {
-//        netsp.gotoPage();
-//        netsp.openNetwork(vlanName);
-//        netsp.gotoStep(2);
-//        netsp.clickPort(true, WebportalParam.sw1deveiceName, 4);
-//        MyCommonAPIs.sleep(5, "wait lag being selected");
-//        netsp.clickPortMode(0);
-//        netsp.finishAllStep();
-//        MyCommonAPIs.sleepsync();
+        netsp.gotoPage();
+        netsp.openNetwork(vlanName);
+        netsp.gotoStep(2);
+        netsp.clickPort(true, WebportalParam.sw1deveiceName, 4);
+        MyCommonAPIs.sleep(5, "wait lag being selected");
+        netsp.clickPortMode(0);
+        netsp.finishAllStep();
+        MyCommonAPIs.sleepsync();
     }
 
     @Step("Test Step 4: Lag1 is untaged in vlan 100")
