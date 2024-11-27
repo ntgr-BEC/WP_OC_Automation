@@ -123,6 +123,7 @@ public class Testcase extends TestCaseBase implements Config {
         page1.enablePort();
         page1.setDeplexMode("Full");
         sFrameSize = page1.modifyMaxFrameSizeRandom();
+        System.out.println("sFrameSize"+sFrameSize);
         page1.setPortSpeed("10 Mbps");
         page1.clickSave();
     }
