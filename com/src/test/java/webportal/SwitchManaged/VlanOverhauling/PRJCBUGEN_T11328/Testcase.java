@@ -54,6 +54,9 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Insight APP go to Network Level Configuration, Create VLAN via default template of Voice VLAN")
     public void step2() {
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         netsp.gotoPage();
         netsp.createNetwork(networkName, 1, vlanName, vlanId);
         handle.waitCmdReady(vlanId, false);
