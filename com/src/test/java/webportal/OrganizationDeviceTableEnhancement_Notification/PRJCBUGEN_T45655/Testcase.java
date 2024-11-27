@@ -45,7 +45,7 @@ public class Testcase extends TestCaseBase {
     int num = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num);
     String organizationName = "Netgear";
-    String locationName     = "office";
+    String locationName     = "office1";
   
 
     @Feature("OrganizationDeviceTableEnhancement_Notification") // It's a folder/component name to make test suite more readable from Jira Test Case.
