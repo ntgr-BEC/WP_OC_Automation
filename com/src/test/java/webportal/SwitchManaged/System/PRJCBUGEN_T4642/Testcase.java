@@ -90,10 +90,11 @@ public class Testcase extends TestCaseBase implements Config {
         handle.refresh();
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
-            devicesDashPage.editDeviceName(WebportalParam.sw1serialNo, WebportalParam.sw1deveiceName);
+            devicesDashPage.editDeviceName(DEVIENAME1, WebportalParam.sw1deveiceName);
             MyCommonAPIs.sleepi(30);
         } catch (Throwable e) {
             e.printStackTrace();
         }
+        
     }
 }

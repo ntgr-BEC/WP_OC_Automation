@@ -52,12 +52,12 @@ public class Api_OrgSsidMacAuthUpdateDevices extends TestCaseBaseApi{
     public void teardown()
     { 
       
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//        pathParams.put("orgId",WebportalParam.orgId);
-//        pathParams.put("wirelessOrgId",wirelessOrgId);
-//        
-//        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Ssid_Pro"),headers, pathParams, null); 
-//        getResponse.then().body("response.status", equalTo(true));
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("orgId",WebportalParam.orgId);
+        pathParams.put("wirelessOrgId",wirelessOrgId);
+        
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Ssid_Pro"),headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
 
     }
    
@@ -70,9 +70,9 @@ public class Api_OrgSsidMacAuthUpdateDevices extends TestCaseBaseApi{
         Response add1=response.get(0);
         wirelessOrgId= add1.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
         //Created SSID with macAuth :0, deviceName : Laptop1 and mac : 11:34:12:33:44:66
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);

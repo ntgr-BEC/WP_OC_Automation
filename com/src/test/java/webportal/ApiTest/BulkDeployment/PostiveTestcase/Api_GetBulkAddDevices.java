@@ -46,7 +46,7 @@ public class Api_GetBulkAddDevices extends TestCaseBaseApi{
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",orgId);
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
@@ -59,10 +59,10 @@ public class Api_GetBulkAddDevices extends TestCaseBaseApi{
         orgId=getResponse1.jsonPath().getString("orgInfo.orgId");
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);        
-        headers.put("networkId",WebportalParam.networkId); 
+        headers.put("accountId",WebportalParam.accountIdPro);        
+        headers.put("networkId",WebportalParam.networkIdPro); 
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",orgId);

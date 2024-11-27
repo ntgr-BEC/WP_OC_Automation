@@ -43,22 +43,12 @@ public class Api_GetLicensekeyInformation extends TestCaseBaseApi{
         step1();
         step2();
     }
-    
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        
-       
-    }  
-    
-    
+      
     @Step("Send get request to {url}")
     public void step1()
     {
         
         Licence = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
-//        Response response1 = new Api_AddPurchaseConfirmation().step2(Licence);
         
     }
     
@@ -68,8 +58,8 @@ public class Api_GetLicensekeyInformation extends TestCaseBaseApi{
       
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
-        headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("accountId",WebportalParam.accountIdPro);
         headers.put("apikey",WebportalParam.apikey);
         
         Map<String, String> pathParams = new HashMap<String, String>();

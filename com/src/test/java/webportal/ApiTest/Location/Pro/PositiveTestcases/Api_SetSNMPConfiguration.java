@@ -52,7 +52,7 @@ public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",  OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
@@ -70,10 +70,10 @@ public class Api_SetSNMPConfiguration extends TestCaseBaseApi{
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         pathParams.put("commandType","1");
         pathParams.put("networkId",LocID);
         pathParams.put("orgId",OrgID);

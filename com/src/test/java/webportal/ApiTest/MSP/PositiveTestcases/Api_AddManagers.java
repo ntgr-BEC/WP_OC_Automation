@@ -69,7 +69,7 @@ public class Api_AddManagers extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Manager_Sanity"), headers, pathParams1, null); 
         getResponse1.then().body("response.status", equalTo(true));
         
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         pathParams.put("orgId",orgId);
        
         
@@ -93,9 +93,9 @@ public class Api_AddManagers extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL;   
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
     
         String requestBody="{\"accessType\":\"1\",\"applyToAll\":true,\"email\":\""+mailname+"\",\"managerOrgInfoList\":[{\"orgId\":\""+orgId+"\"}],\"managerType\":\"0\",\"username\":\"dummy\"}";           

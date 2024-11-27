@@ -51,21 +51,22 @@ public class Api_DeleteLagGroupPort extends TestCaseBaseApi{
         lagGroupId=response1.jsonPath().getString("lagSettings[0].id");
         System.out.print(lagGroupId);
         
-        Response response2=new Api_GetDevices().step1();
+        Response response2=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         deviceId=response2.jsonPath().getString("deviceInfo[0].deviceId");
     }
   
     @Step("Send get request to {url}")
     public void step1()
     { 
-          
+       
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
+      
         pathParams.put("lagGroupId",lagGroupId);
         
         String requestBody="{\"lagConfig\":{\"adminMode\":1,\"lagMembers\":[{\"deviceId\":\""+deviceId+"\",\"lagId\":\"0\",\"ports\":[] }],\"name\":\"TestLAGG\",\"type\":1}}";

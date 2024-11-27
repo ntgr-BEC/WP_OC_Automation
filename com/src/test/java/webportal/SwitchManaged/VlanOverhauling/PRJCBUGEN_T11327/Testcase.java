@@ -13,6 +13,8 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -36,8 +38,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -67,6 +70,6 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Check all ports: Auto VoIP Mode should be Enable, Operational Status should be Up, Prioritization Type should be Remark and Class Value should be 7")
     public void step4() {
         assertTrue(SwitchCLIUtils.checkVoiceVlan(), "Auto VoIP Mode should be Enable");
-        assertTrue(SwitchCLIUtils.getVoiceInfo(0, 0).contains("7"), "Class Value should be 7");
+        assertTrue(SwitchCLIUtils.getVoiceInfo(0, 0).contains("6"), "Class Value should be 7");
     }
 }

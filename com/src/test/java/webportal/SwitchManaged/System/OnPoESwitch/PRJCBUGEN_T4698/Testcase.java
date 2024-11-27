@@ -29,6 +29,10 @@ public class Testcase extends TestCaseBase implements Config {
     String sPortDesc  = "test123";
     String sFrameSize = "0";
     
+    String vlanName    = "testvlan";
+    String vlanId      = "4088";
+    String networkName = "testnet" + vlanId;
+    
     @Feature("Switch.System") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4698") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("039- Deploy \"Reload\" to Switch with group port configuration") // It's a testcase title from Jira Test Case.
@@ -46,6 +50,10 @@ public class Testcase extends TestCaseBase implements Config {
         
         handle.gotoLoction();
         handle.gotoLocationWireSettings();
+        
+        netsp.gotoPage();
+        netsp.createNetwork(networkName, 1, vlanName, vlanId);
+        handle.waitCmdReady(vlanId, false);
         
         DevicesDashPageMNG ddPage = new DevicesDashPageMNG();
         ddPage.openPoEDevice();
@@ -110,10 +118,12 @@ public class Testcase extends TestCaseBase implements Config {
         DSSPage.portChoice("6").click();
         
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page1 = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
-        page1.lbVlanPVID.selectOption(1);
+//        page1.lbVlanPVID.selectOption(1);
+        page1.setPortPVID(vlanId);
         page1.enablePort();
         page1.setDeplexMode("Full");
         sFrameSize = page1.modifyMaxFrameSizeRandom();
+        System.out.println("sFrameSize"+sFrameSize);
         page1.setPortSpeed("10 Mbps");
         page1.clickSave();
     }
@@ -121,8 +131,8 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 8: Deploy \"Factory Default\" command from Web Portal to Switch")
     public void step8() {
         new DevicesDashPageMNG().enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
-        new PublicButton().reloadDevice();
-        MyCommonAPIs.waitDeviceOnlineReload();
+        new PublicButton().rebootDevice();
+//        MyCommonAPIs.waitDeviceOnlineReload();
     }
     
     @Step("Test Step 9: After switch reload, check switch info on Web Portal and device Web GUI")
@@ -145,7 +155,7 @@ public class Testcase extends TestCaseBase implements Config {
         assertTrue(SwitchCLIUtils.PortClass.sPortEgressRate.contains("50"), "check traffic-shape 50");
         
         tmpStr6 = SwitchCLIUtils.getPortInfo("g6");
-        assertTrue(tmpStr6.contains("pvid 4089"), "check vlan pvid 4089");
+        assertTrue(tmpStr6.contains("pvid 4088"), "check vlan pvid 4089");
         assertTrue(SwitchCLIUtils.PortClass.duplexMode == 1, "check speed 10");
         assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("10"), "check full-duplex");
         assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(sFrameSize), "check mtu size: " + sFrameSize);
