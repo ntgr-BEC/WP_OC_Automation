@@ -593,8 +593,7 @@ public class OrganizationElement extends MyCommonAPIs {
   public SelenideElement        ssidNameonClientList(String Ssid) {
       SelenideElement SSID = $x("//span[text()='"+ Ssid +"']");
       return SSID;
-  }
-  
+  } 
   //AddedByPratik
   public SelenideElement        dropdown = $("#existingUser");
   public SelenideElement verifyOwnerEmailonOrgPage(String ownerEmail) {
