@@ -46,7 +46,6 @@ import webportal.webelements.WirelessQuickViewElement;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.*;
 
-import org.junit.jupiter.api.Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
