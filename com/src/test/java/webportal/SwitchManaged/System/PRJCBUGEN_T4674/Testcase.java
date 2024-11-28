@@ -55,7 +55,7 @@ public class Testcase extends TestCaseBase implements Config {
 //        MailHandler mailcatchPage = new MailHandler(mailTo);
 //        mailcatchPage.enterFirstEmail();
 //        String mailBody = mailcatchPage.getHTMLBody();
-        String mailBody = new WebportalLoginPage().shareDiagnosticsEmail(WebportalParam.loginName);
+        String mailBody = new WebportalLoginPage(false).shareDiagnosticsEmail(WebportalParam.loginName);
         if (mailBody.contains("Device Name") && mailBody.contains("Network Name") 
                 && mailBody.contains("Serial Number") && mailBody.contains("Model")) {
             micResult = true;
