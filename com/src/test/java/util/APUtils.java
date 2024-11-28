@@ -1655,5 +1655,23 @@ public void Setserver(String APIP){
 
 }
 
+//AddedByPratik
+public boolean getCustomerProfileStatus(String CustomerProfileOption, String Model) {
+    MyCommonAPIs.sleepi(5);
+    boolean result = false;
+    String status = "";
+    if (Model.startsWith("WBE")) {
+        logger.info("entered WBE model");
+        status = plink.getOutput("cat /sysconfig/config | grep customerProfile", default_timeout_ssh);
+        if (status.contains(CustomerProfileOption)) {
+            System.out.println("entered WBE");
+            result=true;
+        }   
+        System.out.println("Exited WBE");
+    }
+    System.out.println("returnd");
+    return result;
+}
+
 }
 

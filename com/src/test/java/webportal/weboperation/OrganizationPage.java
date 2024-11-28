@@ -46,6 +46,9 @@ import webportal.webelements.WirelessQuickViewElement;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class OrganizationPage extends OrganizationElement {
     String date    = "";
@@ -1278,8 +1281,8 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocation(String name) {
-        MyCommonAPIs.sleepi(5);
-        waitElement(checkOrganizationIsExist(name));
+        MyCommonAPIs.sleepi(15);
+        waitElement(dropdownOrganizationElement(name));
         dropdownOrganizationElement(name).click();
         MyCommonAPIs.sleepi(2);
         allocateCredits.click();
@@ -6738,6 +6741,21 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(1);
         allocateBtn.click();
         MyCommonAPIs.sleepi(5);
+    }   
+    //AddedbyPratik
+    public boolean verifyHardbundleOnboardedDevicesNotification(String serialNumber) {
+        boolean result = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String currentDate = sdf.format(new Date());
+        System.out.println("currentDate : "+currentDate);
+        MyCommonAPIs.sleepi(15);
+        waitElement(verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate));
+        if (verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate).exists()) {
+            System.out.println((verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate)));
+            logger.info("Notification shown on notifications page after onboarding Hardbundle device");
+            result = true;
+        }
+        return result;     
     }
     
 }

@@ -513,6 +513,26 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         }
         
     }
+    
+  public String shareDiagnosticsEmail(String emailaddress) {
+        
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(5);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(emailaddress);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+        String mailBody = shareDiagnosticsMail.getText();
+        System.out.println(mailBody);
+        return mailBody;
+            
+        }
        
     }
    

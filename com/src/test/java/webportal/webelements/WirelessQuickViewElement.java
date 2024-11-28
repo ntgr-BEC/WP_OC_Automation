@@ -76,9 +76,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        inputmessage              = $x("//div[@id=\"divOnOffMsgSetCapPort\"]//input");
     public SelenideElement        savecaptive               = $("#btnSavCapPort");
     public SelenideElement        captiveok                 = $("#SuccessCapPort");
-    public SelenideElement        enterratelimit            = $x("//div/a[text()=\"Rate Limiting\"]");
-    public SelenideElement        enableratelimit           = $x("//h5[text()=\"Enable Settings\"]/..//span");
-    public SelenideElement        uploadrate                = $x("//h5[text()=\"Upload Rate Unit\"]/../select");
+    public SelenideElement        enterratelimit            = $x("//div/a[text()='Rate Limiting']");
+    public SelenideElement        enableratelimit           = $x("//h5[text()='Enable Settings']/..//span");
+    public SelenideElement        uploadrate                = $x("//h5[text()='Upload Rate Unit']/../select");
     public SelenideElement        uploadslider              = $x(
             "//h5[text()=\"Upload Rate Limit\"]/..//span[@class=\"ui-slider-handle ui-corner-all ui-state-default\"]");
     public SelenideElement        uploadrateleft            = $("#spnLeftPullrateLimit");
@@ -1537,6 +1537,15 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement powerSettingWarningPopupCancel   = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='Cancel']");
      public SelenideElement powerSettingWarningPopupOK       = $x("//p[contains(text(),'Configuring Power over Ethernet(PoE)')]/../..//button[text()='OK']");
      public SelenideElement successMsg                       = $x("//*[contains(text(),'Your configuration has been applied')]");
+     public SelenideElement customerProfile                  = $x("//h5[text()='Customer Profile']");
+     public SelenideElement customerProfileSwitch            = $x("//h5[text()='Customer Profile']/../..//span[@class='cstmSlider cstmRound']");
+     public SelenideElement customerProfileSelect            = $x("//span[text()='Customer Profile']/ancestor::div[contains(@class, 'OnOffSetting')]//select");
+     public SelenideElement editSsidSaveBtn                  = $x("//button[@id='btnSaveSsideditWirNet']");
+     public SelenideElement editSsidSuccessOkayBtn           = $x("//button[@id='SuccsEditWirNet']");
+     public SelenideElement hoverToSSID1   (String Ssid) {
+         SelenideElement hoverSsid1 = $x("//span[text()='"+ Ssid +"']");
+        return hoverSsid1;
+     }
 }
 
 
