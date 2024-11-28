@@ -69,9 +69,9 @@ public class Api_GetTrafficPoliciesPro extends TestCaseBaseApi{
         List<Response> response=new Api_SetTrafficPoliciesPro().step1();         //DHCP offer will be set to 0
         Response add = response.get(0);
         wirelessOrgId= add.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);

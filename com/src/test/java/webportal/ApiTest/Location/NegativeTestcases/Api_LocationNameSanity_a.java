@@ -40,31 +40,26 @@ public class Api_LocationNameSanity_a extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public void step1()
     {        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
         headers.put("networkId",WebportalParam.networkId); 
+        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
+        
         String requestBody="{\"networkInfo\":[{\"name\":\"Ne\",\"adminPassword\":\"Netgear1@\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(false));
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Enter a name 3-24 characters long. It can include A-Z, a-z, 0-9, spaces, and special characters: !@#$%^&()_.-*"));
        
     }
                   

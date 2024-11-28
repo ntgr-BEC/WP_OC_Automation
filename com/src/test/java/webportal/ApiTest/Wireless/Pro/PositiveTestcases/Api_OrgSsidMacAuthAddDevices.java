@@ -68,9 +68,9 @@ public class Api_OrgSsidMacAuthAddDevices extends TestCaseBaseApi{
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         Response add = new Api_AddSsidPro().step1();
         wirelessOrgId= add.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);

@@ -50,7 +50,7 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
     public void teardown()
     { 
         Map<String, String> pathParams = new HashMap<String, String>(); 
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("id",id);   
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
@@ -61,8 +61,8 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
     public void step1()
     {
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
-        headers.put("token",WebportalParam.token);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("accountId",WebportalParam.accountIdPro);
         headers.put("apikey",WebportalParam.apikey);
         
         Map<String, String> pathParams = new HashMap<String, String>(); 
@@ -88,12 +88,12 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
     {
         Map<String, String> pathParams = new HashMap<String, String>(); 
         pathParams.put("orgId",WebportalParam.orgId);
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("page","2");
         pathParams.put("serialNo",WebportalParam.ap2deveiceName);
         pathParams.put("type","0");
         pathParams.put("isConnected","1");
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
        
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Clients_Info"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));

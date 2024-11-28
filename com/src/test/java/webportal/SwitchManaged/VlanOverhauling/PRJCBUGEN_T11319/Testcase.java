@@ -17,6 +17,8 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -43,8 +45,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -91,27 +94,13 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: check cli successfully")
     public void step5() {
         
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertTrue(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId1), "port1 should be in vlan");
-            assertTrue(SwitchCLIUtils.isPortInVlan("1/0/2", vlanId1), "port2 should be in vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId1), "port1 should be untag");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId1), "port2 should be tag");
-            String tmpStr = SwitchCLIUtils.getPortInfo("1/0/1");
-        }else if (new WebportalParam().sw1Model.contains("M4250")){
-            
-            assertTrue(SwitchCLIUtils.isPortInVlan("0/1", vlanId1), "port1 should be in vlan");
-            assertTrue(SwitchCLIUtils.isPortInVlan("0/2", vlanId1), "port2 should be in vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId1), "port1 should be untag");
-            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId1), "port2 should be tag");
-            String tmpStr = SwitchCLIUtils.getPortInfo("0/1");
-            
-        }else {
+   
         assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
         assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
         assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId1), "port1 should be untag");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId1), "port2 should be tag");
         String tmpStr = SwitchCLIUtils.getPortInfo("g1");
-        }
+        
         assertTrue(SwitchCLIUtils.PortClass.sPortPvid.contains(vlanId1), "port1 pvid should be to vlan1");
     }
 
@@ -124,33 +113,13 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 7: check cli successfully")
     public void step7() {
-        
-        
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            
-            assertTrue(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId1), "port1 should be in vlan");
-            assertTrue(SwitchCLIUtils.isPortInVlan("1/0/2", vlanId1), "port2 should be in vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId1), "port1 should be untag");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId1), "port2 should be tag");
-            String tmpStr = SwitchCLIUtils.getPortInfo("1/0/1");
-            
-        }else if (new WebportalParam().sw1Model.contains("M4250")){
-            
-            assertTrue(SwitchCLIUtils.isPortInVlan("0/1", vlanId1), "port1 should be in vlan");
-            assertTrue(SwitchCLIUtils.isPortInVlan("0/2", vlanId1), "port2 should be in vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId1), "port1 should be untag");
-            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId1), "port2 should be tag");
-            String tmpStr = SwitchCLIUtils.getPortInfo("0/1");
-        
-        }else {
-        
+
             assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId1), "port1 should be in vlan");
             assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId1), "port2 should be in vlan");
             assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId1), "port1 should be untag");
             assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId1), "port2 should be tag");
             String tmpStr = SwitchCLIUtils.getPortInfo("g1");
-        
-        }
+    
         assertTrue(SwitchCLIUtils.PortClass.sPortPvid.contains(vlanId2), "port2 pvid should be to vlan2");
     }
 

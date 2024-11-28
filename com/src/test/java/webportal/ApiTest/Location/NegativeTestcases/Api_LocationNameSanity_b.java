@@ -40,16 +40,7 @@ public class Api_LocationNameSanity_b extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
-  
+
     @Step("Send get request to {url}")
     public void step1()
     {        
@@ -64,7 +55,8 @@ public class Api_LocationNameSanity_b extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(false));
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Enter a name 3-24 characters long. It can include A-Z, a-z, 0-9, spaces, and special characters: !@#$%^&()_.-*"));
        
     }
                   

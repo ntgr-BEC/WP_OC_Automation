@@ -49,7 +49,7 @@ public class Api_AddLagGroup extends TestCaseBaseApi{
     public void teardown()
     {
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         pathParams.put("lagGroupId",lagGroupId);
         String requestBody="{\"lagConfig\":{\"adminMode\":1,\"lagMembers\":[{\"deviceId\":\""+deviceId+"\",\"lagId\":\"0\",\"ports\":[] }],\"name\":\"TestLAGG\",\"type\":1}}";
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("LagGroupId_Sanity"), requestBody, headers, pathParams, null); 
@@ -67,9 +67,9 @@ public class Api_AddLagGroup extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
         
         String requestBody = "{\"lagConfig\":{\"adminMode\":1,\"type\":1,\"name\":\"Test001\",\"pvid\":1,\"lagMembers\":[{\"deviceId\":\"" + deviceId + "\",\"ports\":[1,2]}]}}";

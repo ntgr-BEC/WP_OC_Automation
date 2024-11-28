@@ -40,33 +40,31 @@ public class Api_LocationPasswordSanity extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",networkId);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
   
     @Step("Send get request to {url}")
     public void step1()
-    {        
+    {   int n=2;     
         endPointUrl = new ApiRequest().ENDPOINT_URL;
+        
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);        
         headers.put("networkId",WebportalParam.networkId); 
+        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";       
-        //TO PERFORM ANY REQUEST
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(false));
+        
+        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";  
+        
+        do {
        
-    }
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Network"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Invalid password. Password must be 8-20 characters, with at least one uppercase and one lowercase letter, and one numeral. Allowed special characters are: !@#$%^&()*"));
+        n--;
+        requestBody = requestBody.replace("\"adminPassword\":\"Net\"", "\"adminPassword\":\"nfsty53yeyhgjggggggggggggggggggggggggggfgd\"");
+        }while(n>=1);
                   
     }
+}
 

@@ -32,6 +32,8 @@ public class PublicButton extends ButtonElements {
      * suggest not use reload ,because reload=factory default
      */
     public void reloadDevice() {
+        dotsicon.click();
+        MyCommonAPIs.sleepi(15);
         reLoadIcon.click();
         waitReady();
 

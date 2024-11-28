@@ -210,11 +210,6 @@
     		<version>4.13.2</version> <!-- Make sure you use a version compatible with your setup -->
     		<scope>test</scope>
 		</dependency>
-		<dependency>
-        <groupId>io.rest-assured</groupId>
-        <artifactId>rest-assured</artifactId>
-        <version>4.5.1</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -308,7 +303,7 @@
                 <artifactId>maven-project-info-reports-plugin</artifactId>
                 <version>2.9</version>
                 <configuration>
-                    <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+                <dependencyLocationsEnabled>false</dependencyLocationsEnabled>
                 </configuration>
             </plugin>
         </plugins>

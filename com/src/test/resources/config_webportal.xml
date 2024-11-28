@@ -60,7 +60,8 @@
     <MailReceiver>jim.xie@netgear.com</MailReceiver>
     <!-- used for client vpn for windows, registe it on wp first manually -->
     <VPNClientUser>wp7217@mailforspam.com</VPNClientUser>
-    <Api_Main>Api_Main</Api_Main>
+    <Api_Premium>Api_Premium</Api_Premium>
+    <Api_Pro>Api_Premium</Api_Pro>
     <PR1>PR1</PR1>
     <SW1>SW6</SW1>
     <SW2>SW5</SW2>

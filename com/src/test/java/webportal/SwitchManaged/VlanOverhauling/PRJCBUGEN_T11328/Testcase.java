@@ -13,6 +13,8 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.SwitchCLIUtils;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -36,8 +38,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -51,6 +54,9 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Insight APP go to Network Level Configuration, Create VLAN via default template of Voice VLAN")
     public void step2() {
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         netsp.gotoPage();
         netsp.createNetwork(networkName, 1, vlanName, vlanId);
         handle.waitCmdReady(vlanId, false);

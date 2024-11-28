@@ -58,7 +58,7 @@ public class Api_GetLagGroupById extends TestCaseBaseApi{
     public void teardown()
     {
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         pathParams.put("lagGroupId",lagGroupId);
         String requestBody="{\"lagConfig\":{\"adminMode\":1,\"lagMembers\":[{\"deviceId\":\""+deviceId+"\",\"lagId\":\"0\",\"ports\":[] }],\"name\":\"TestLAGG\",\"type\":1}}";
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("LagGroupId_Sanity"), requestBody, headers, pathParams, null); 
@@ -76,7 +76,7 @@ public class Api_GetLagGroupById extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         pathParams.put("lagGroupId",lagGroupId);
         
      

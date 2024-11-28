@@ -70,10 +70,10 @@ public class Api_ModifyVlanMembers extends TestCaseBaseApi{
        
        String vlanId="250";
 
-       pathParams.put("networkId",WebportalParam.networkId);
+       pathParams.put("networkId",WebportalParam.networkIdSw);
        pathParams.put("vlanId",vlanId);
        
-       Response response1=new Api_GetDevices().step1();
+       Response response1=new Api_GetDevices().step1(WebportalParam.networkIdSw);
        deviceId=response1.jsonPath().getString("deviceInfo[0].deviceId");
        
        String requestBody = "{\"vlanMembers\":{\"memberWirelessNetwork\":[],\"apPortMembers\":[],\"portMembers\":[{\"deviceId\":\""+deviceId+"\",\"taggedPorts\":[],\"untaggedPorts\":[\"15\",\"18\"]}],\"lanPortMembers\":[],\"wanPortMembers\":[],\"publicMembers\":[],\"employeeMembers\":[],\"guestMembers\":[],\"isMdnsEnabled\":false,\"lagMembers\":{\"tagged\":[],\"untagged\":[],\"portGrp\":[]},\"oldVlanId\":\""+vlanId+"\",\"nameChanged\":\"0\",\"bandChanged\":\"0\",\"vlanChanged\":\"0\"}}";

@@ -32,6 +32,7 @@ import webportal.webelements.AccountPageElement;
 import webportal.webelements.NotificationPageElement;
 
 
+
 /**
  * @author sumanta
  */
@@ -52,8 +53,13 @@ public class NotificationPage extends NotificationPageElement {
     
     
     public void SeeAllNotifications() {
+        MyCommonAPIs.sleepi(5);
+        waitElement(Notification);
         Notification.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(Allnotifications);
         Allnotifications.click();
+        MyCommonAPIs.sleepi(5);
         logger.info("...... Click all notification button ...");
     }
     
@@ -68,9 +74,7 @@ public class NotificationPage extends NotificationPageElement {
             }
             return result;
         }
-
-        
-   
+    
     }
         
   

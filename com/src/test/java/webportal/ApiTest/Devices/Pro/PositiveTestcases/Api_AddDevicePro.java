@@ -60,11 +60,11 @@ public class Api_AddDevicePro extends TestCaseBaseApi{
     public Response step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);     
+        headers.put("accountId",WebportalParam.accountIdPro);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("orgId",WebportalParam.orgId);
         String requestBody= "{\"deviceInfo\":[{\"abDeviceMode\":\"string\",\"abGroupId\":\"string\",\"deviceName\":\"string\",\"devicePlateform\":\"string\",\"deviceType\":\"string\",\"imeiNo\":\"string\",\"macAddress\":\"string\",\"model\":\"string\",\"profileId\":\"string\",\"profileSsid\":\"string\",\"profileSsidPwd\":\"string\",\"serialNo\":\"string\"}]}";
                 

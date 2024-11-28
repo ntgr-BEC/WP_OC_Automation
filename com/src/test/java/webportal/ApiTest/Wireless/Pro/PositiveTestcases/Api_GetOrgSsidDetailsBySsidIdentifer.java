@@ -36,7 +36,7 @@ public class Api_GetOrgSsidDetailsBySsidIdentifer extends TestCaseBaseApi{
     Map<String, String> headers = new HashMap<String, String>();
     String wirelessOrgId;
     
-    @Feature("Api_AddSsidPro") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_GetOrgSsidDetailsBySsidIdentifer") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Get wireless organization SSID details by identifier [ssid identifier].") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T004") // It's a testcase id/link from Jira Test Case.
@@ -72,12 +72,10 @@ public class Api_GetOrgSsidDetailsBySsidIdentifer extends TestCaseBaseApi{
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
-        Response add = new Api_AddSsidPro().step1();
-        wirelessOrgId= add.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);

@@ -314,10 +314,14 @@ public class WebportalParam {
     public static String baseURI;
     public static String token;
     public static String apikey;
-    public static String xsrfToken;
     public static String accountId;
     public static String networkId;
     public static String orgId;
+    public static String networkIdPro;
+    public static String accountIdPro;
+    public static String tokenPro;
+    public static String networkIdSw;
+    
 
 
     public WebportalParam() {
@@ -608,14 +612,17 @@ public class WebportalParam {
         pr2Firmware = xmlManager.getValueFromWebPortAndDut("PR2", "Firmware");
         pr2Model = xmlManager.getValueFromWebPortAndDut("PR2", "Model");
         
-        baseURI = xmlManager.getValueFromWebPortAndDut("Api_Main", "baseURI");
-        apikey = xmlManager.getValueFromWebPortAndDut("Api_Main", "apikey");
-        xsrfToken = xmlManager.getValueFromWebPortAndDut("Api_Main", "xsrfToken");
-        accountId = xmlManager.getValueFromWebPortAndDut("Api_Main", "accountId"); 
-        networkId = xmlManager.getValueFromWebPortAndDut("Api_Main", "networkId"); 
-        orgId = xmlManager.getValueFromWebPortAndDut("Api_Main", "orgId"); 
-        token = xmlManager.getValueFromWebPortAndDut("Api_Main", "token");
-        
+        baseURI = xmlManager.getValueFromWebPortAndDut("Api_Premium", "baseURI");
+        apikey = xmlManager.getValueFromWebPortAndDut("Api_Premium", "apikey");      
+        accountId = xmlManager.getValueFromWebPortAndDut("Api_Premium", "accountId"); 
+        networkId = xmlManager.getValueFromWebPortAndDut("Api_Premium", "networkId"); 
+        orgId = xmlManager.getValueFromWebPortAndDut("Api_Pro", "orgId"); 
+        token = xmlManager.getValueFromWebPortAndDut("Api_Premium", "token");
+        networkIdPro = xmlManager.getValueFromWebPortAndDut("Api_Pro", "networkIdPro"); 
+        networkIdSw = xmlManager.getValueFromWebPortAndDut("Api_Premium", "networkIdSw");
+        accountIdPro = xmlManager.getValueFromWebPortAndDut("Api_Pro", "accountIdPro");
+        tokenPro = xmlManager.getValueFromWebPortAndDut("Api_Pro", "tokenPro");
+      
         // init for multiple language suports
         languageDict = excelUnit.ntgrAnalysisJsonFile();
         logger.info("init end");
