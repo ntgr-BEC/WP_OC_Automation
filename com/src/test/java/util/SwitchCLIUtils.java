@@ -878,7 +878,7 @@ public class SwitchCLIUtils {
 //            result = st.sendCLICommandClear("show vlan port " + port, vlanId);
 //            if (result.contains("Tagged") || result.contains("Untagged"))
               result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
-              if (result.contains("Include"))
+              if (result.contains("Include") || result.contains("Untagged"))
                 return true;
             return false;
         }

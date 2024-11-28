@@ -67,14 +67,14 @@ public class Testcase extends TestCaseBase {
         handle.sleepsync();
     }
 
-    @Step("Test Step 3: Assign all ports to vlan 8 as tagged")
+    @Step("Test Step 3: Assign all ports to vlan 8 as tagged and then set port 3 as untagged/access port")
     public void step3() {
         netsp.gotoPage();
         netsp.openNetwork(vlanName);
         netsp.gotoStep(2);
         netsp.setAllPorts(true, 1, false);
         netsp.gotoStep(2);
-        netsp.setNetwork2("1", 0, "", 0);
+        netsp.setNetwork2("3", 0, "", 0);
         netsp.finishAllStep();
         handle.sleepsync();
     }
@@ -86,7 +86,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
         assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
  
-        assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is tagged");
+        assertFalse(SwitchCLIUtils.isTagPort("g3", vlanId), "port g1 is tagged");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is not tagged");
         }
 
