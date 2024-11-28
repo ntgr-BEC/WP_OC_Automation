@@ -15,6 +15,8 @@ import testbase.TestCaseBase;
 import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -38,8 +40,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteNetwork(vlanName);
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -82,18 +85,11 @@ public class Testcase extends TestCaseBase {
         SwitchCLIUtils.getIGMPSnoopingInfo(vlanId);
         assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isVlanEnabled, "vlan igmp is not enabled");
         assertTrue(SwitchCLIUtils.IGMPSnoopingClass.isEnabled, "globle igmp is not enabled");
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/1", vlanId), "port g1 is tagged");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is not tagged");
-        }
-        else   if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isTagPort("0/1", vlanId), "port g1 is tagged");
-            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is not tagged");
-        } else {
+ 
         assertFalse(SwitchCLIUtils.isTagPort("g1", vlanId), "port g1 is tagged");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is not tagged");
         }
 
         // assertTrue(SwitchCLIUtils.getPortInfo("g1").contains("6"), "check traffic priority");
     }
-}
+

@@ -12,6 +12,8 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
@@ -44,6 +46,10 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
+        
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
 
     @Step("Test Step 2: There is 2 default VLANs: Management VLAN 1 and VLAN2:")

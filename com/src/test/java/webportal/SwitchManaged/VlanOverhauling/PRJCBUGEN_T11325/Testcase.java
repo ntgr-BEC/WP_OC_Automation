@@ -20,6 +20,8 @@ import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.DevicesSwitchSummaryPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  * @author lavi
@@ -44,7 +46,9 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPageMNG().openSW1().enterPortConfigSummary("1");
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page1 = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         page1.enablePort();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
     
     // Each step is a single test step from Jira Test Case
@@ -81,20 +85,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: All ports should not be join to VLAN1325, check by Insight and Web GUI;")
     public void step4() {
         handle.waitCmdReady(vlanId, false);
-        
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId), "port g1 is in vlan");
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/2", vlanId), "port g2 is in vlan");
-            
-        }else if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/1", vlanId), "port g1 is in vlan");
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/2", vlanId), "port g2 is in vlan");
-            
-        }else {
         assertFalse(SwitchCLIUtils.isPortInVlan("g1", vlanId), "port g1 is in vlan");
         assertFalse(SwitchCLIUtils.isPortInVlan("g2", vlanId), "port g2 is in vlan");
         }
-    }
+    
     
     @Step("Test Step 5: Insight go to VLAN1325 configure page and select port 1,2,3 to 'Access Port'")
     public void step5() {
@@ -110,22 +104,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 6: Check by Insight and Web GUI; Configure should not apply for disabled ports but enabled ports")
     public void step6() {
         handle.waitCmdReady(vlanId, false);
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId), "port g1 is in vlan because it was disabled");
-            assertTrue(SwitchCLIUtils.isPortInVlan("1/0/2", vlanId), "port g2 is in not vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is in tagged");
-            
-        }else   if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/1", vlanId), "port g1 is in vlan because it was disabled");
-            assertTrue(SwitchCLIUtils.isPortInVlan("0/2", vlanId), "port g2 is in not vlan");
-            assertFalse(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is in tagged");
-            
-        }else {
         assertFalse(SwitchCLIUtils.isPortInVlan("g1", vlanId), "port g1 is in vlan because it was disabled");
         assertTrue(SwitchCLIUtils.isPortInVlan("g2", vlanId), "port g2 is in not vlan");
         assertFalse(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is in tagged");
         }
-    }
     
     @Step("Test Step 7: Insight go to VLAN1325 configure page and click 'Select All', then set to 'Trunk Port', save")
     public void step7() {
@@ -140,17 +122,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 8: All enabled ports should be join to VLAN1325 with untaged mode, check by Insight and Web GUI; Configure should not apply for all disabled ports;")
     public void step8() {
         handle.waitCmdReady(vlanId, false);
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId), "port g1 is in vlan because it was disabled");
-            assertTrue(SwitchCLIUtils.isTagPort("1/0/2", vlanId), "port g2 is in untagged");
-            
-        }else  if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/1", vlanId), "port g1 is in vlan because it was disabled");
-            assertTrue(SwitchCLIUtils.isTagPort("0/2", vlanId), "port g2 is in untagged");
-        }else {
             assertFalse(SwitchCLIUtils.isPortInVlan("g1", vlanId), "port g1 is in vlan because it was disabled");
             assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "port g2 is in untagged");
-        }
     }
     
     @Step("Test Step 9: Insight go to VLAN1325 configure page and click 'Select All', then set to 'Delete', save")
@@ -166,17 +139,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 10: All enabled ports should be join to VLAN1325 with untaged mode, check by Insight and Web GUI; Configure should not apply for all disabled ports;")
     public void step10() {
         handle.waitCmdReady(vlanId, true);
-        if (new WebportalParam().sw1Model.contains("M4350")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/1", vlanId), "port g1 is in vlan");
-            assertFalse(SwitchCLIUtils.isPortInVlan("1/0/2", vlanId), "port g2 is in vlan");
-            
-        }else  if (new WebportalParam().sw1Model.contains("M4250")){
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/1", vlanId), "port g1 is in vlan");
-            assertFalse(SwitchCLIUtils.isPortInVlan("0/2", vlanId), "port g2 is in vlan");
-            
-        }else { 
+     
             assertFalse(SwitchCLIUtils.isPortInVlan("g1", vlanId), "port g1 is in vlan");
             assertFalse(SwitchCLIUtils.isPortInVlan("g2", vlanId), "port g2 is in vlan");
-        }
+        
     }
 }
