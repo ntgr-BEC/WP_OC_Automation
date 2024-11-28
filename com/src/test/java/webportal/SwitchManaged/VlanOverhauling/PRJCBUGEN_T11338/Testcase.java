@@ -57,6 +57,7 @@ public class Testcase extends TestCaseBase {
         netsp.gotoPage();
         netsp.createNetwork("Voice VLAN",1, "", "4088");
         netsp.gotoPage();
+        netsp.deleteNetwork("4089");
         netsp.createNetwork("Video VLAN",2, "", "4089");
         netsp.clickAdd();
         netsp.lbNetType.selectOption(1);
