@@ -210,6 +210,11 @@
     		<version>4.13.2</version> <!-- Make sure you use a version compatible with your setup -->
     		<scope>test</scope>
 		</dependency>
+		<dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>4.5.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
