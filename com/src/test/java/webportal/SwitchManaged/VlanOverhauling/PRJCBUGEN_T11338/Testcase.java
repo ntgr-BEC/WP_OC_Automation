@@ -55,9 +55,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: There is 2 default VLANs: Management VLAN 1 and VLAN2:")
     public void step2() {
         netsp.gotoPage();
-        netsp.createNetwork("Voice VLAN", 1, "", "");
+        netsp.createNetwork("Voice VLAN",1, "", "4088");
         netsp.gotoPage();
-        netsp.createNetwork("Video VLAN", 2, "", "");
+        netsp.createNetwork("Video VLAN",2, "", "4089");
         netsp.clickAdd();
         netsp.lbNetType.selectOption(1);
         assertTrue(handle.getPageErrorMsg().contains("already exists"), "check voice vlan");
