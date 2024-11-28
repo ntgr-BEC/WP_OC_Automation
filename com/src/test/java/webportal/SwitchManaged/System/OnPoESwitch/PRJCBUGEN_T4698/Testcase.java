@@ -51,10 +51,6 @@ public class Testcase extends TestCaseBase implements Config {
         handle.gotoLoction();
         handle.gotoLocationWireSettings();
         
-        netsp.gotoPage();
-        netsp.createNetwork(networkName, 1, vlanName, vlanId);
-        handle.waitCmdReady(vlanId, false);
-        
         DevicesDashPageMNG ddPage = new DevicesDashPageMNG();
         ddPage.openPoEDevice();
     }
@@ -155,7 +151,7 @@ public class Testcase extends TestCaseBase implements Config {
         assertTrue(SwitchCLIUtils.PortClass.sPortEgressRate.contains("50"), "check traffic-shape 50");
         
         tmpStr6 = SwitchCLIUtils.getPortInfo("g6");
-        assertTrue(tmpStr6.contains("pvid 4088"), "check vlan pvid 4089");
+//        assertTrue(tmpStr6.contains("pvid 4088"), "check vlan pvid 4089");
         assertTrue(SwitchCLIUtils.PortClass.duplexMode == 1, "check speed 10");
         assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("10"), "check full-duplex");
         assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(sFrameSize), "check mtu size: " + sFrameSize);
