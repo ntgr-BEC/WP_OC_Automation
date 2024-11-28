@@ -48,7 +48,7 @@ public class LocationRoutingPage extends LocationRoutingElement {
     public void openVlan(String vlanId) {
         openSection(0);
         $(vlanlistTable).hover();// move mouse before edit
-        editLine(vlanlistTable, 2, vlanId, editIcon);
+        editLine(vlanlistTable, 1, vlanId, editIcon);
     }
 
     public void gotoStaticRoute(boolean secSw) {

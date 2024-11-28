@@ -593,8 +593,7 @@ public class OrganizationElement extends MyCommonAPIs {
   public SelenideElement        ssidNameonClientList(String Ssid) {
       SelenideElement SSID = $x("//span[text()='"+ Ssid +"']");
       return SSID;
-  }
-  
+  } 
   //AddedByPratik
   public SelenideElement        dropdown = $("#existingUser");
   public SelenideElement verifyOwnerEmailonOrgPage(String ownerEmail) {
@@ -609,6 +608,10 @@ public class OrganizationElement extends MyCommonAPIs {
   public SelenideElement organizationElement1(String name) {
     SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
     return organization;
-}
-  
+  }
+    //AddedBypratik
+    public SelenideElement verifyOnboardedHardbundleDeviceNotification(String serialNumber, String currentDate) {
+        SelenideElement verifyNotificationsOnboardedAP = $x("//span[contains(text(), '" + serialNumber + "') and contains(text(), '" + currentDate + "') and contains(text(),'was added as Insight bundle device')]");
+        return verifyNotificationsOnboardedAP;
+    }
 }
