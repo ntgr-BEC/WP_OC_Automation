@@ -1211,7 +1211,7 @@ public class WebportalParam {
 
     public static String getDeviceMacCSV(String devName) {
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/HardBundleDevice.csv";
-        return getCSVData(csvFile, "DEVICE NAME", "MAC", devName);
+        return getCSVData(csvFile, "DEVICE NAME", "MAC Address", devName);
     }
 
     public static String getDeviceMacCSVSKU(String devName) {

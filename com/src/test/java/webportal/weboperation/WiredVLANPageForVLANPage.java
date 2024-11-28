@@ -126,8 +126,8 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
         nsp.gotoPage();
         List<String> VLAnIDS= new WiredVLANPage().getVlanIDs();  
         System.out.println(VLAnIDS);
-        System.out.println(VLAnIDS.contains("4088"));
-        if(VLAnIDS.contains("4088")) {  
+        System.out.println(VLAnIDS.contains(name));
+        if(VLAnIDS.contains(name)) {  
         nsp.createNetwork("testnet" + id, 1, name, id);
         }
         gotoPage();
