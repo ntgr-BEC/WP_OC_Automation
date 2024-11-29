@@ -528,6 +528,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
         MyCommonAPIs.sleepsync();
+        Selenide.refresh();
         String mailBody = shareDiagnosticsMail.getText();
         System.out.println(mailBody);
         return mailBody;
