@@ -48,7 +48,7 @@ public class Testcase extends TestCaseBase implements Config {
         //String mailTo = "njqa.wp" + RandomStringUtils.randomNumeric(4) + "@mailcatch.com";
       
         DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
-        DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw2serialNo);
+        DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
         PublicButton publicButton = new PublicButton();
         
         publicButton.ShareDiagnostics(WebportalParam.loginName);

@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
-            devicesDashPage.editDeviceName("abcd", WebportalParam.sw1deveiceName);
+            devicesDashPage.editDeviceName1("abcd", WebportalParam.sw1deveiceName);
             devicesDashPage.waitAllSwitchDevicesConnected();
         } catch (Throwable e) {
             e.printStackTrace();

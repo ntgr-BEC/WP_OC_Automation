@@ -107,7 +107,7 @@ public class Testcase extends TestCaseBase implements Config {
         WebportalParam.updateSwitchOneOption(false, null);
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
-            devicesDashPage.editDeviceName(devName, WebportalParam.sw1deveiceName);
+            devicesDashPage.editDeviceName1(devName, WebportalParam.sw1deveiceName);
             devicesDashPage.waitAllSwitchDevicesConnected();
         } catch (Throwable e) {
             e.printStackTrace();
