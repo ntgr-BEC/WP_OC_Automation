@@ -3,6 +3,8 @@ package webportal.ApiTest.Devices.PositiveTestcases;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -60,6 +62,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
                           .body("response.message", equalTo("\"Your configuration has been applied. It may take some time to reflect."));
 
+        MyCommonAPIs.sleepi(1000);
     }
                   
     }

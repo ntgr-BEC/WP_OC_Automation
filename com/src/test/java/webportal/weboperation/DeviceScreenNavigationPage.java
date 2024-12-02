@@ -491,6 +491,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
         // TODO Auto-generated method stub
         boolean result = false;
         WiredSettingButton.click();
+        MyCommonAPIs.sleepi(5);
         MyCommonAPIs.waitElement(VLANNetworkSetupTab);
         if (VLANNetworkSetupTab.isDisplayed())
         {
