@@ -84,7 +84,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Try to get some mib data by Mib Browser")
     public void step4() {
         tmpStr = new SnmpUtils(WebportalParam.sw1IPaddress, sPw).getSysDesc();
-        assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Smart "), "check to get sysDesc");
+        if(WebportalParam.sw1Model.contains("M4")) {
+               assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Managed Switch"), "check to get sysDesc for MANAGED SWITHES");
+        }else {
+            
+        assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Smart "), "check to get sysDesc for SMART SWITCHES");
+    }
     }
 
     @Step("Test Step 5: Change SNMP IP address by Insight")
