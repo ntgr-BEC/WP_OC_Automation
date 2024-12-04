@@ -580,7 +580,7 @@ import util.*;
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
                 put("Firmware_Upgrade","insightappcom/api/firmware/v1/firmwareUpgrade/{deviceCount}/{networkId}");
                 put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
-                put("Firmware_Upgrade_Details","insightappcom/api/network/v1/firmwareUpgrade/devices/{networkId}");
+                put("Firmware_Upgrade_Details","insightappcom/api/firmware/v1/firmwareUpgrade/devices/{networkId}");
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
                 put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
                 put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");
