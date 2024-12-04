@@ -62,7 +62,7 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
             getResponse1.then().body("response.status", equalTo(true));
         }
         
-    }  
+    }   
     
   
     @Step("Send get request to {url}")

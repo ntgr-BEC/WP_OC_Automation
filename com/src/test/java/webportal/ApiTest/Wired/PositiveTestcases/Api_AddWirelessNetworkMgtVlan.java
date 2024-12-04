@@ -42,10 +42,11 @@ public class Api_AddWirelessNetworkMgtVlan extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    
     @AfterMethod
     public void teardown()
     {
-        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"string\",\"untaggedVlanSt\":\"0\"}}";
+        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"5\",\"untaggedVlanSt\":\"0\"}}";
         
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Add_Wireless_Network"), requestBody,  headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
@@ -64,7 +65,7 @@ public class Api_AddWirelessNetworkMgtVlan extends TestCaseBaseApi{
                
         pathParams.put("networkId",WebportalParam.networkId);
         
-        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"string\",\"untaggedVlanSt\":\"1\"}}";
+        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"5\",\"untaggedVlanSt\":\"1\"}}";
         
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Add_Wireless_Network"), requestBody,  headers, pathParams, null); 
