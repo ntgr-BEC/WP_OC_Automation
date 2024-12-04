@@ -55,11 +55,11 @@ public class Api_DNSLookupResults extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-        MyCommonAPIs.sleepi(40);
+        MyCommonAPIs.sleepi(20);
          //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("DNSLookUp_Results"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
-        .body("details.domainName", equalTo("netgear.com"))
+        .body("details.domainName", equalTo("bing.com"))
         .body("details.serialNo", equalTo(WebportalParam.ap1deveiceName));
         
     }

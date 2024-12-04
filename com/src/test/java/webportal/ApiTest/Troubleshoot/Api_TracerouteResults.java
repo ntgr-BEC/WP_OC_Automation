@@ -49,16 +49,16 @@ public class Api_TracerouteResults extends TestCaseBaseApi{
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
         Response add = new Api_TracerouteTest().step1();    //perform Traceroute test and then retrive the result
-        MyCommonAPIs.sleepi(40);
+        MyCommonAPIs.sleepi(20);
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-        MyCommonAPIs.sleepi(40);
+      
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
       
          //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SpeedTest_Results"), headers, pathParams, null);
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Traceroute_results"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
         .body("details.domainName", equalTo("netgear.com"))
         .body("details.serialNo", equalTo(WebportalParam.ap1deveiceName));

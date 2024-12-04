@@ -49,7 +49,7 @@ public class Api_PingTestResults extends TestCaseBaseApi{
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
         Response add = new Api_PingTest().step1();   //perform ping test and then retrive the result
-        MyCommonAPIs.sleepi(40);
+        MyCommonAPIs.sleepi(20);
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);

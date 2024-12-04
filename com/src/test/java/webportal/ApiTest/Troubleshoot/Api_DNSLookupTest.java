@@ -55,7 +55,7 @@ public class Api_DNSLookupTest extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
     
-        String requestBody = "{\"command\":[{\"commandParam\":\"netgear.com\",\"commandType\":\"1\",\"initTtl\":\"string\",\"interval\":\"string\",\"maxTtl\":\"string\",\"packetSize\":\"string\",\"packetsPerHop\":\"string\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"string\",\"size\":\"string\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
+        String requestBody = "{\"command\":[{\"commandParam\":\"bing.com\",\"commandType\":\"1\",\"initTtl\":\"string\",\"interval\":\"string\",\"maxTtl\":\"string\",\"packetSize\":\"string\",\"packetsPerHop\":\"string\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"string\",\"size\":\"string\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
         
 
         //TO PERFORM ANY REQUEST 
