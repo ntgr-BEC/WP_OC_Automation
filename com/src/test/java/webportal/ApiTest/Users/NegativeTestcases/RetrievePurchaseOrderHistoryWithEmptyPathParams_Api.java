@@ -1,4 +1,4 @@
-package webportal.ApiTest.Users;
+package webportal.ApiTest.Users.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 
@@ -27,62 +27,41 @@ import webportal.weboperation.ApiRequest;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_GetSecondaryAdmins extends TestCaseBaseApi{
+public class RetrievePurchaseOrderHistoryWithEmptyPathParams_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
   
-    Random r        = new Random();
-    int    num      = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num) ;
-    String email = mailname + "@yopmail.com";
-    String secadminId="";
     
-    @Feature("Api_InviteSecondaryAdmins") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RetrievePurchaseOrderHistoryWithEmptyPathParams_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Get secondary admin for an pro account.") // It's a testcase title from Jira Test Case.
+    @Description("Retrive the purchase order history for an pro account with empty pathparams.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-    
-    
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("secadminId",secadminId);
-        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_SecAdmin"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-        .body("response.message", equalTo("Secondary admin deleted successfully"));
-        
-    }  
-    
-  
+
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     { 
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
-        new Api_InviteSecondaryAdmins().step1();
+        
         headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountIdPro);
-        
+    
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("startFrom","0");
+        pathParams.put("timePeriod","all");   //The enumerations are all, 365 Days, 90 Days, 30 Days.
+        pathParams.put("categoryId"," ");          //Empty pathparmas
         
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_SecAdmin"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-        .body("response.message", equalTo("Secondary admin list found."));
-        secadminId= getResponse.jsonPath().getString("details.adminsList[0]._id");  
-        
-        return getResponse;
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Retrieve_PurchaseOrderHistory"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Category not found with Id "));
+               
         }
-                
-    }
-
+}
 
 
