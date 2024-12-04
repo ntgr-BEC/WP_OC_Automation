@@ -114,6 +114,11 @@ import util.*;
             {
                 queryParams=new HashMap<>();
             }
+        
+        if(pathParams == null)
+        {
+            pathParams=new HashMap<>();
+        }
      Response response= RestAssured.given()
                     .headers(headers)
                     .pathParams(pathParams)
@@ -398,6 +403,101 @@ import util.*;
             return response;
             
         }
+        
+        public static Response sendDeleteRequest(String endpoint, String requestBody, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams , int expectedcode) {
+            
+            if(endpoint == null)
+            {
+                throw new IllegalArgumentException("Endpoint URL NOT FOUND");
+            }
+            if(queryParams == null)
+            {
+                queryParams=new HashMap<>();
+            }
+            Response response= RestAssured.given()
+                    .headers(headers)
+                    .pathParams(pathParams)
+                    .queryParams(queryParams)
+                    .log().all()
+                    .contentType("application/json")
+                    .body(requestBody)
+                    .when()
+                    .delete(endpoint)
+                    .then()
+                    .statusCode(expectedcode)
+                    .extract()
+                    .response();
+            response.prettyPrint();       
+            return response;
+            
+        }
+        
+        public boolean connectClient(Map<String, String> map) {
+            MyCommonAPIs.sleepi(30);
+
+            int sum = 0;
+            while (true) {
+                MyCommonAPIs.sleepi(10);
+                if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID " + map.get("SSID"))
+                        .indexOf("true") != -1) {
+                    break;
+                } else if (sum > 30) {
+                    assertTrue(false, "Client cannot connected.");
+                    break;
+                }
+                sum += 1;
+            }
+
+            boolean result1 = true;
+            if (map.get("Security").contains("Open")) {
+
+                System.out.println("enter open");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFopenconnect  " + map.get("SSID"))
+                        .equals("true")) {
+                    result1 = false;
+                    if (new Javasocket()
+                            .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFopenconnect  " + map.get("SSID"))
+                            .equals("true")) {
+                        result1 = true;
+                    }
+                }
+            }
+
+            else if (map.get("Security").contains("WPA3")) {
+                System.out.println("enter WPA3");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA3SAE aes").equals("true")) {
+
+                    result1 = false;
+                    if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                            "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA3SAE aes").equals("true")) {
+                        result1 = true;
+                    }
+                }
+            } else {
+                System.out.println("enter WPA2");
+                if (!new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA2PSK aes").equals("true")) {
+                    System.out.println("check this");
+                    result1 = false;
+                    if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                            "WAFconnect " + map.get("SSID") + "  " + map.get("Password") + "  WPA2PSK aes").equals("true")) {
+                        System.out.println("check this inside");
+                        result1 = true;
+                    }
+                }
+
+            }
+            return result1;
+
+        }
+        
+        public static String changeLastPartOfIp(String ipAddress, int desiredValue) {
+            String[] parts = ipAddress.split("\\.");  // Split the IP by "."
+            parts[3] = String.valueOf(desiredValue);  // Change the last part of the IP
+            return String.join(".", parts);  // Join the parts back together
+        }
+
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
              *
@@ -430,7 +530,7 @@ import util.*;
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
                 put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
-                put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
+                put("Firmware_Upgrade","insightappcom/api/firmware/v1/firmwareUpgrade/{deviceCount}/{networkId}");
                 put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
                 put("Firmware_Upgrade_Details","insightappcom/api/network/v1/firmwareUpgrade/devices/{networkId}");
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
@@ -442,7 +542,7 @@ import util.*;
                 put("List_Wireless_Networks", "insightappcom/api/wireless/v1/ssidList/{networkId}");
                 put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
-                put("Modify_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
+                put("Add_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
                 put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
                 put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
@@ -499,6 +599,40 @@ import util.*;
                 put("Set_SpanningTree","insightappcom/api/wired/v1/spanningTree/{networkId}");
                 put("Get_SpanningTree","insightappcom/api/wired/v1/spanningTreeInfo/{networkId}");
                 put("Get_VlanMembers","insightappcom/api/wired/v1/vlan/{networkId}/vlanmembers/{vlanId}");
+                put("Add_Manager","insightappcom/api/msp/v1/manager");
+                put("Manager_Sanity","insightappcom/api/msp/v1/manager/{managerId}");
+                put("Get_Manager","insightappcom/api/msp/v1/managersList/{orgId}/{startFrom}");
+                put("Get_OwnersList","insightappcom/api/msp/v1/ownerList");
+                put("Invite_SecAdmin","insightappcom/api/user/v1/secondaryAdmin");
+                put("Get_SecAdmin","insightappcom/api/user/v1/secondaryAdmins/{startFrom}");
+                put("Delete_SecAdmin","insightappcom/api/user/v1/secondaryAdmin/{secadminId}");
+                put("Retrieve_PurchaseOrderHistory","insightappcom/api/user/v1/purchaseHistory/{categoryId}/{timePeriod}");
+                put("Usage_History","insightappcom/api/mub/v1/usageBillingHistory");
+                put("Usage_Billing_Status","insightappcom/api/mub/v1/usageBillingStatus");
+                put("Configure_UsageBilling","insightappcom/api/mub/v1/configureUsageBilling");
+                put("Reboot_Device","insightappcom/api/reboot/v1/reboot");
+                put("Clients_Info","insightappcom/api/clients/v1/list/{accountId}/{orgId}/{networkId}/{serialNo}/{type}/{isConnected}/{page}");
+                put("Reboot_Device1","insightappcom/api/device/v1/deviceReboot/{serialNo}/{deviceType}");
+                put("Connected_Clients","insightappcom/api/device/v1/{networkId}/wifiClients/{serialNo}");
+                put("Add_Device_Pro","insightappcom/api/device/v1/{orgId}/{networkId}");
+                put("Add_Ssid_Pro","insightappcom/api/wireless/v1/{orgId}");
+                put("Delete_Ssid_Pro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
+                put("Add_Wireless_Network","insightappcom/api/wired/v1/vlan/wirelessnetwork/{networkId}");
+                put("Modify_VlanMembers","insightappcom/api/wired/v1/vlanMembers/{networkId}/vlan/{vlanId}");
+                put("Get_BulkDeplDetails","insightappcom/api/bulk/v1/{orgId}");
+                put("Add_BulkDevices","insightappcom/api/bulk/v1/addBulkDevices/{orgId}/{isBulkAdd}");
+                put("Get_MeshInfo","insightappcom/api/bulk/v1/getMeshInfo/{orgId}");
+                put("Move_Device","insightappcom/api/device/v1/moveDevice/{deviceId}/{networkId}/{orgId}");
+                put("OrgSsid_MacAuth","insightappcom/api/wireless/v1/macAuth/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_ByOrgIdentifier","insightappcom/api/wireless/v1/organization/ssidList/{orgId}");
+                put("Modify_SsidPro","insightappcom/api/wireless/v1/organization/{orgId}/{wirelessOrgId}");
+                put("OrgSsid_RadiusServerConfig","insightappcom/api/wireless/v1/radiusServerConfig/{orgId}/{wirelessOrgId}");
+                put("OrgSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{orgId}/{wirelessOrgId}");
+                put("LocSsidDetails_BySsidIdentifier","insightappcom/api/wireless/v1/ssid/{networkId}/{id}/{orgId}");
+                put("Set_TrafficPolicies","insightappcom/api/wireless/v1/updateTrafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Get_TrafficPolicies","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{wirelessOrgId}");
+                put("Set_TrafficPolicies_ForLocSsid","insightappcom/api/wireless/v1/trafficPolicies/{orgId}/{networkId}/{id}");
+                
             }
         };
          

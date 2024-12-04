@@ -549,6 +549,49 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
         return errText;
     }
 
+    public String editDeviceName1(String existingName, String serialNumber) {
+        String errText = "";
+        logger.info(existingName + ": change device name to new: " + serialNumber);
+
+        // make sure we have edit it correctly
+        for (int i = 0; i < 4; i++) {
+            try {
+//                if (!editDeviceName.exists()) {
+                    System.out.println("aaaaaaaaaaaaaa");
+                    editDeviceNameModule(serialNumber).hover();
+                    editDeiveNameIcon(serialNumber).click();
+//                }
+                if (!editDeviceName.getValue().equals(serialNumber)) {
+                    System.out.println("bbbbbbbbbbbbbbbbbbbbb");
+                    editDeviceName1(existingName).click();
+                    System.out.println("Clicked");
+                    editDeviceName1(existingName).clear();   
+                    System.out.println("Cleared");
+                    editDeviceName1(existingName).sendKeys(serialNumber);
+//                    editDeviceName.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+                    System.out.println("11111");
+//                    editDeviceName.setValue(newName);
+//                    editDeviceName.sendKeys(newName);
+                    System.out.println("22222");
+                    editDeviceNameConfirm(serialNumber).click();
+                    System.out.println("33333");
+                    sleep(4, "to wait value is reload");
+                    MyCommonAPIs.waitReady();
+                } else {
+                    editDeviceNameCancel(serialNumber).click();
+                }
+                break;
+            } catch (Throwable e) {
+                System.out.println(e);
+                // TODO: handle exception
+                logger.info("try again in edit");
+                refresh();
+                reloadDeviceList();
+            }
+        }
+        return "true";
+    }
+        
     public String getErrorInfo() {
         String info = "";
         if (errorInfo.isDisplayed()) {

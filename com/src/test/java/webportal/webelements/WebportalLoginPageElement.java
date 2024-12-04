@@ -54,4 +54,6 @@ public class WebportalLoginPageElement extends MyCommonAPIs {
     public SelenideElement dontTrust              = $x("//span[text()=\"Don't Trust \"]");
     public SelenideElement notificationicon       = $x("//div[contains(@data-tooltip,'Notification')]");
     
+    public SelenideElement shareDiagnosticsMail       = $("#mail > div > table > tbody > tr > td > table > tbody > tr:nth-child(2) > td > table > tbody > tr > td > table > tbody > tr > td > p:nth-child(3)");
+    
 }

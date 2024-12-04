@@ -48,7 +48,7 @@ public class LocationRoutingPage extends LocationRoutingElement {
     public void openVlan(String vlanId) {
         openSection(0);
         $(vlanlistTable).hover();// move mouse before edit
-        editLine(vlanlistTable, 2, vlanId, editIcon);
+        editLine(vlanlistTable, 1, vlanId, editIcon);
     }
 
     public void gotoStaticRoute(boolean secSw) {
@@ -150,6 +150,25 @@ public class LocationRoutingPage extends LocationRoutingElement {
             setIpAddress(WebportalParam.sw2deveiceName, ip2);
         }
         setOtherIpAddress(ip2);
+      
+        clickButton(0);
+    }
+    
+    public void addIpToVlan1(String vlanId, String mask, String ip1, String ip2) {
+        System.out.println("ip one is "+ip1);
+        if (!seMask.isDisplayed()) {
+            openSection(0);
+            openVlan(vlanId);
+        }
+        setText(seMask, mask);
+        if (!isRoutingDisabled(WebportalParam.sw1Model)) {
+            System.out.println("ip one is "+ip1);
+            setIpAddress(WebportalParam.sw1deveiceName, ip1);
+        }
+        if (WebportalParam.enaTwoSwitchMode && !isRoutingDisabled(WebportalParam.sw2Model)) {
+            setIpAddress(WebportalParam.sw2deveiceName, ip2);
+        }
+        
         clickButton(0);
     }
 

@@ -46,8 +46,7 @@ public class Api_AddSsid extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
-       
-        
+ 
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }

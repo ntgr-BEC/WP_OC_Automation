@@ -3425,6 +3425,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (proaccountContinue.exists()) {
             proaccountContinue.click();
         }
+        
 
     }
 
@@ -5277,13 +5278,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void FillPaymentMethods(Map<String, String> map) {
+        MyCommonAPIs.sleepi(30);
+        enableMUB.click();
+        MyCommonAPIs.sleepi(10);
         ManagePaymentMethods.click();
         MyCommonAPIs.sleep(3000);
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        MyCommonAPIs.sleep(6000);
+        //TermaandconditionCheckbox.click();
+        //TermaandconditionAccept.click();
+        //MyCommonAPIs.sleep(6000);
         // GoToBillingInfo.click();
-        MyCommonAPIs.sleep(3000);
+        //MyCommonAPIs.sleep(3000);
         billingfirstname.sendKeys(map.get("First Name"));
         billinglastname.sendKeys(map.get("Last Name"));
         billingstreetaddress.sendKeys(map.get("Street Address"));
@@ -5309,6 +5313,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         billingstreetaddress.click();
         billingstreetaddress.clear();    
         billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+        MyCommonAPIs.sleepi(10);
     }
 
     public boolean CheckFreeTrailmessage() {
@@ -6016,8 +6023,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-        waitReady();
-        MyCommonAPIs.sleepsync();
         return result;
     }
 
@@ -9000,6 +9005,148 @@ private int extractYear(String dateText) {
         return -1;
     }
 }
+
+//AddedByPratik
+public boolean verifyMUBTab() {
+    boolean result = false;
+    hamburgermenunew.click();
+    MyCommonAPIs.sleepi(5);
+    accountmanager.click();
+    MyCommonAPIs.sleepi(20);
+    waitElement(mubBillingTab);
+    if (mubBillingTab.exists()) {
+        logger.info("MUB option tab is avilable in account management page");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean FillPaymentMethodsAndVerify(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(30);
+    enableMUB.click();
+    MyCommonAPIs.sleepi(10);
+    ManagePaymentMethods.click();
+    MyCommonAPIs.sleepi(30);
+    if (savedbillingInfoEdit.exists() && savedPaymentinfoedit.exists()) {
+        savedbillingInfoEdit.click();
+        MyCommonAPIs.sleepi(2);
+        savedPaymentinfoedit.click();
+        MyCommonAPIs.sleepi(2);
+        billingfirstname.clear();
+        billingfirstname.sendKeys(map.get("First Name"));
+        billinglastname.clear();
+        billinglastname.sendKeys(map.get("Last Name"));
+        billingstreetaddress.clear();
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        billingcity.clear();
+        billingcity.sendKeys(map.get("City"));
+        billingzip.clear();
+        billingzip.sendKeys(map.get("Zip"));
+        billingcountry.selectOption(map.get("Country"));
+        if (billingstate1.isDisplayed()) {
+            billingstate1.selectOption(map.get("State"));
+        } else {
+            billingstate2.clear();
+            billingstate2.sendKeys(map.get("State"));
+        }
+        //GoToPaymentinfo.click();
+        MyCommonAPIs.sleepi(3);
+        paymentcardnumber.clear();
+        paymentcardnumber.setValue(map.get("Card Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentcvvnumber.clear();
+        paymentcvvnumber.setValue(map.get("CVV Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentexpirationmonth.selectOption(map.get("Expiration Month"));
+        paymentexpirationyear.selectOption(map.get("Expiration Year"));
+        MyCommonAPIs.sleepi(2);
+        billingstreetaddress.click();
+        billingstreetaddress.clear();    
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+    } else {
+        billingfirstname.sendKeys(map.get("First Name"));
+        billinglastname.sendKeys(map.get("Last Name"));
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        billingcity.sendKeys(map.get("City"));
+        billingzip.sendKeys(map.get("Zip"));
+        billingcountry.selectOption(map.get("Country"));
+        if (billingstate1.isDisplayed()) {
+            billingstate1.selectOption(map.get("State"));
+        } else {
+            billingstate2.sendKeys(map.get("State"));
+        }
+        GoToPaymentinfo.click();
+        MyCommonAPIs.sleepi(3);
+        paymentcardnumber.clear();
+        paymentcardnumber.setValue(map.get("Card Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentcvvnumber.clear();
+        paymentcvvnumber.setValue(map.get("CVV Number"));
+        MyCommonAPIs.sleepi(2);
+        paymentexpirationmonth.selectOption(map.get("Expiration Month"));
+        paymentexpirationyear.selectOption(map.get("Expiration Year"));
+        MyCommonAPIs.sleepi(2);
+        billingstreetaddress.click();
+        billingstreetaddress.clear();    
+        billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleepi(2);
+        mubPaymentsaveBtn.click();
+    }   
+    MyCommonAPIs.sleepi(20);
+    if (successmsgResult.exists()) {
+        logger.info("MUB Billing payment done successfully");
+        result = true;
+        waitElement(gotoDashboardlink);
+        gotoDashboardlink.click();
+        MyCommonAPIs.sleepi(10);
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean GooMUBUsageHistoryAndVerify() {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    hamburgermenunew.click();
+    MyCommonAPIs.sleepi(5);
+    accountmanager.click();
+    MyCommonAPIs.sleepi(20);
+    MUB.click();
+    MyCommonAPIs.sleepi(15);
+    waitElement(usageHistoryTab);
+    usageHistoryTab.click();
+    MyCommonAPIs.sleepi(10);
+    if (usageHistoryTextVerify.exists()) {
+        System.out.println(usageHistoryTextVerify.getText());
+        logger.info("Usage History of MUB Verified");
+        result = true;
+    }
+    return result;
+}
+
+//AddedByPratik
+public boolean GooMUBandVerifyDisableTextNotifications() {
+  boolean result = false;
+  MyCommonAPIs.sleepi(10);
+  hamburgermenunew.click();
+  MyCommonAPIs.sleepi(5);
+  accountmanager.click();
+  MyCommonAPIs.sleepi(20);
+  MUB.click();
+  MyCommonAPIs.sleepi(15);
+  waitElement(mubtextAboutDisableMUB);
+  if (mubtextAboutDisableMUB.exists()) {
+      System.out.println(mubtextAboutDisableMUB.getText());
+      logger.info("Disable text notification about MUB Verified");
+      result = true;
+  }
+  return result;
+}
+
 
 }
 

@@ -85,6 +85,19 @@ public class NetworkSetupElement extends MyCommonAPIs {
             sleep(1);
         }
     }
+    
+    public void selectNetType1(int index) {
+         if(index==0) {
+            lbNetType.selectOption("Data");
+            sleep(1);
+         }else if(index==1) {
+             lbNetType.selectOption("Voice");
+             sleep(1);
+         }else {
+             lbNetType.selectOption("Video");
+            sleep(1);
+        }
+    }
 
     public SelenideElement        btnSkip               = $(".cancelBtn");
     public SelenideElement        btnNextOrViewNetworks = $(".actionBtnRow button:last-child");

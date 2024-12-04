@@ -56,25 +56,21 @@ public class Api_SetDeviceIPSettings extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("deviceType","AP");
         pathParams.put("serialNo",WebportalParam.ap1deveiceName); 
+        pathParams.put("commandType","3");   
+        
 //        The command type value according to the device. The enumerations are provided below.
 //        PR : 1006.
 //        AP : 3.
 //        Switch : 5.
 //        BR : 5(WAN IP setting), 6(LAN IP setting).
 //        ORBI : 2(WAN IP setting), 10(LAN IP setting).
-        pathParams.put("commandType","3");     
+
+       
+        String modifiedIp =ApiRequest.changeLastPartOfIp(WebportalParam.ap1IPaddress,224);
+        String modifiedGateway =ApiRequest.changeLastPartOfIp(WebportalParam.ap1IPaddress,1);
+           
             
-        String requestBody = "{\r\n" + 
-                "  \"basicSettings\": {\r\n" + 
-                "    \"dhcpClientStatus\": \"0\",\r\n" + 
-                "    \"ipAddr\": \"192.212.252.119\",\r\n" + 
-                "    \"netmaskAddr\": \"255.255.255.0\",\r\n" + 
-                "    \"gatewayAddr\": \"192.168.4.1\",\r\n" + 
-                "    \"priDnsAddr\": \"192.168.4.1\",\r\n" + 
-                "    \"sndDnsAddr\": \"192.168.4.12\",\r\n" + 
-                "    \"networkIntegralityCheck\": \"0\"\r\n" + 
-                "  }\r\n" + 
-                "}";
+        String requestBody = "{\"basicSettings\":{\"dhcpClientStatus\":\"0\",\"ipAddr\":\""+modifiedIp+"\",\"netmaskAddr\":\"255.255.255.0\",\"gatewayAddr\":\""+modifiedGateway+"\",\"priDnsAddr\":\"8.8.8.8\",\"sndDnsAddr\":\"4.2.2.1\",\"networkIntegralityCheck\":\"0\"}}";
         
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("IP_Statistics"), requestBody, headers, pathParams, null); 

@@ -1460,4 +1460,19 @@ public class AccountPage extends AccountPageElement {
         radiusText.click();
         MyCommonAPIs.sleepi(1);
     }
+    
+    public AccountPage deleteOneLocationFromProAcc(String locationName) {
+        OrganizationPage OrganizationPage = new OrganizationPage();
+        OrganizationPage.openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(20);
+        if (locationName(locationName).exists()) {
+            deleteLocation(locationName);
+            MyCommonAPIs.sleepi(10);
+        } else {
+            logger.info("Cannot find location: " + locationName);
+        }
+        return new AccountPage();
+    }
+    
+    
 }

@@ -70,7 +70,7 @@ public class Testcase extends TestCaseBase {
     public void step1() {
 
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginToAdminaccount(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword);
+        webportalLoginPage.loginByUserPassword(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword);
         new OrganizationPage(false).clickonOkayGotit();
         new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new MyCommonAPIs().gotoLoction(WebportalParam.location1);

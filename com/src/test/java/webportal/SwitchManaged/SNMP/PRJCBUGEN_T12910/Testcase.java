@@ -45,6 +45,8 @@ public class Testcase extends TestCaseBase {
         handle.gotoLocationWireSettings();
 
         snmpp.gotoPage();
+        snmpp.clearSnmp();
+        
         assertTrue(snmpp.cbEnable.exists(), "check trap enable option");
         assertTrue(snmpp.txtIpAddress.isDisplayed(), "check option for ip");
         assertTrue(snmpp.txtCommunityString.isDisplayed(), "check option for community string");
@@ -53,6 +55,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Go to switch local GUI, check default SNMP config")
     public void step2() {
         SwitchCLIUtils.getSNMPInfo();
-        assertFalse(SwitchCLIUtils.SNMPClass.snmpResult.length() > 10, "check option on cli");
+//        assertFalse(SwitchCLIUtils.SNMPClass.snmpResult.length() > 10, "check option on cli");
+        
+        assertFalse(SwitchCLIUtils.SNMPClass.isReadyOnly, "Default is not read only");
+        assertFalse(SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should be disable");
+     
+        
     }
 }

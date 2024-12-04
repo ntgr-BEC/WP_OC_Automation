@@ -48,8 +48,10 @@ public class Testcase extends TestCaseBase implements Config {
     public void step2() {
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
+        
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         MyCommonAPIs.sleep(2000);
         Boolean result1 = vlanPage.checkManageVlanDelete();
         MyCommonAPIs.sleep(2000);

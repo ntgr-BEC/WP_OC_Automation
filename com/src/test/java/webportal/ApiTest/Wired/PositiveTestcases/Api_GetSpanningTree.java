@@ -45,7 +45,7 @@ public class Api_GetSpanningTree extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {  
-     //Enabling the spanninmg tree -- default configuration
+     //Enabling the spanning tree -- default configuration
      String body="{\"stpRstpConfig\":{\"status\":\"1\",\"stpMode\":\"2\",\"switchInfo\":[{\"serialNo\":\""+ WebportalParam.sw1serialNo +"\",\"port\":[1,2,3,4,5,6,7,8],\"lagId\":[1]}]}}";
         
     //TO PERFORM ANY REQUEST
@@ -65,7 +65,7 @@ public class Api_GetSpanningTree extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);           
    
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
 
         //TO PERFORM ANY REQUEST
      

@@ -48,15 +48,15 @@ public class Testcase extends TestCaseBase implements Config {
         handle.gotoLocationWireSettings();
     }
 
-    @Step("Test Step 2: create VLAN 200, and tag port1 into vlan200, untag port2 into vlan200")
+    @Step("Test Step 2: create VLAN 200, and tag port3 into vlan200, untag port4 into vlan200")
     public void step2() {
         wvp.gotoPage();
         wvp.openVlan(vlanName, vlanId, 0);
         wvp.showPortMember();
-        wvp.selectPort(1, true, 0);
-        wvp.selectPort(1, true, 1);
-        wvp.selectPort(2, false, 0);
-        wvp.selectPort(2, false, 1);
+        wvp.selectPort(3, true, 0);
+        wvp.selectPort(3, true, 1);
+        wvp.selectPort(4, false, 0);
+        wvp.selectPort(4, false, 1);
         handle.clickButton(0);
     }
 
@@ -75,15 +75,15 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 5: Deploy \"Factory Default\" command from Web Portal to Switch")
     public void step5() {
         new DevicesDashPageMNG().enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
-        new PublicButton().reloadDevice();
-        MyCommonAPIs.waitDeviceOnlineReload();
+        new PublicButton().rebootDevice();
+//        MyCommonAPIs.waitDeviceOnlineReload();
     }
 
     @Step("Test Step 6: After switch reload, check switch info on Web Portal and device Web GUI")
     public void step6() {
         String tmpStr1, tmpStr2, tmpStr3, tmpStr4, tmpStr5, tmpStr6;
-        tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false);
-        tmpStr2 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 2), false);
+        tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 3), false);
+        tmpStr2 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 4), false);
         tmpStr3 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchLag(false, false), false);
         tmpStr4 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchLag(false, true), false);
         if (WebportalParam.isRltkSW1) {
@@ -91,10 +91,10 @@ public class Testcase extends TestCaseBase implements Config {
         } else {
             tmpStr5 = MyCommonAPIs.getCmdOutput("show sysinfo", false);
         }
-        assertTrue(SwitchCLIUtils.isTagPort("g1", vlanId), "port1 is tagged");
-        assertTrue(tmpStr1.contains(vlanId), "port 1 is in vlan 200");
-        assertTrue(!SwitchCLIUtils.isTagPort("g2", vlanId), "port2 is untagged");
-        assertTrue(tmpStr2.contains(vlanId), "port 2 is in vlan 200");
+        assertTrue(SwitchCLIUtils.isTagPort("g3", vlanId), "port1 is tagged");
+        assertTrue(tmpStr1.contains(vlanId), "port 3 is in vlan 200");
+        assertTrue(!SwitchCLIUtils.isTagPort("g4", vlanId), "port2 is untagged");
+        assertTrue(tmpStr2.contains(vlanId), "port 4 is in vlan 200");
 
         assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, false)), "addpmgort lag");
         assertTrue(SwitchCLIUtils.isLagPort(WebportalParam.getSwitchLag(false, true)), "addpmgort lag");
@@ -107,7 +107,7 @@ public class Testcase extends TestCaseBase implements Config {
         WebportalParam.updateSwitchOneOption(false, null);
         try {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
-            devicesDashPage.editDeviceName(WebportalParam.sw1serialNo, WebportalParam.sw1deveiceName);
+            devicesDashPage.editDeviceName1(devName, WebportalParam.sw1deveiceName);
             devicesDashPage.waitAllSwitchDevicesConnected();
         } catch (Throwable e) {
             e.printStackTrace();

@@ -27,10 +27,7 @@ public class Testcase extends TestCaseBase implements Config {
     public boolean Result = true;
     int            length;
     String         vlanId = "200";
-    String         portNo ="";
-    String         prefixportNo ="";
-   
-    
+
     @Feature("Switch.VLAN") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4711") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("014-Add and delete all ports to a special VLAN") // It's a testcase title from Jira Test Case.
@@ -38,17 +35,6 @@ public class Testcase extends TestCaseBase implements Config {
     @Test(alwaysRun = true, groups = "p2")
     public void test() throws Exception {
         length = WebportalParam.getSwitchPortNumber() - 1;
-        if (WebportalParam.sw1Model.contains("M4250")) {
-            portNo="0/1"; //port 1
-        }else {
-           portNo="1/0/1";   //port 1
-        }
-        
-        if (WebportalParam.sw1Model.contains("M4250")) {
-            prefixportNo="0/"; //port prefix
-        }else {
-            prefixportNo="1/0/";   //port prefix
-        }
         runTest(this);
     }
 
@@ -76,18 +62,15 @@ public class Testcase extends TestCaseBase implements Config {
 
         MyCommonAPIs.sleep(10000);
         handle.waitCmdReady("vlan200", false);
-        
-       
-        
 
-        if (!SwitchCLIUtils.isTagPort(portNo, vlanId)) {
+        if (!SwitchCLIUtils.isTagPort("g1", vlanId)) {
             micResult = true;
         } else {
             micResult = false;
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1 for first port");
         }
 
-        if (!SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId)) {
+        if (!SwitchCLIUtils.isTagPort("g" + length, vlanId)) {
             micResult = true;
         } else {
             micResult = false;
@@ -107,7 +90,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false)
                 .toLowerCase();
-        if (!SwitchCLIUtils.isTagPort(portNo, vlanId) && result1.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort("g1", vlanId) && result1.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -117,7 +100,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, length), false)
                 .toLowerCase();
-        if (!SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
+        if (!SwitchCLIUtils.isTagPort("g" + length, vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -136,7 +119,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         String result1 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, 1), false).toLowerCase();
-        if (SwitchCLIUtils.isTagPort(portNo, vlanId) && result1.contains("200")) {
+        if (SwitchCLIUtils.isTagPort("g1", vlanId) && result1.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -146,7 +129,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = MyCommonAPIs
                 .getCmdOutput("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, length), false)
                 .toLowerCase();
-        if (SwitchCLIUtils.isTagPort(prefixportNo + length, vlanId) && result2.contains("200")) {
+        if (SwitchCLIUtils.isTagPort("g" + length, vlanId) && result2.contains("200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -162,7 +145,7 @@ public class Testcase extends TestCaseBase implements Config {
         vlanPage.editVlanWithPorts("vlan200", "200", "vlan200", dut1Name, sw1port3, "delete", null, null, null, null);
         MyCommonAPIs.sleep(5000);
 
-        String checkPort = portNo;
+        String checkPort = "g1";
         if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {
@@ -170,7 +153,7 @@ public class Testcase extends TestCaseBase implements Config {
             assertTrue(micResult, "----Check Point 1 Fail:show vlan 200 on dut1 for first port");
         }
 
-        checkPort = prefixportNo + length;
+        checkPort = "g" + length;
         if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {

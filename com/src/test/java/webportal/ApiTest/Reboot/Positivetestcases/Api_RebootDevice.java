@@ -3,6 +3,8 @@ package webportal.ApiTest.Reboot.Positivetestcases;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -49,24 +51,19 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("networkId",WebportalParam.networkId);
-//        pathParams.put("id",id);      
         
+        Map<String, String> pathParams = new HashMap<String, String>();
 
         String requestBody="[{\"serialNo\":\"4XT178EX0110C\",\"deviceType\":\"AP\"}]";
         requestBody = requestBody.replace("\"serialNo\":\"4XT178EX0110C\"", "\"serialNo\":\"" + WebportalParam.ap1deveiceName + "\"");
         //TO PERFORM ANY REQUEST
 
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
-                           .body("response.message", equalTo("Success in fetching reboot now information."));
+                          .body("response.message", equalTo("Success in fetching reboot now information."));
+        
+        MyCommonAPIs.sleepi(1000);
 
- 
-
-        
-        
-        
     }
                   
     }

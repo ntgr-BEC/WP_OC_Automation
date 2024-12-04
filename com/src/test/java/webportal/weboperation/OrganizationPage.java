@@ -46,6 +46,9 @@ import webportal.webelements.WirelessQuickViewElement;
 import com.codeborne.selenide.Condition;
 import static com.codeborne.selenide.Selenide.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class OrganizationPage extends OrganizationElement {
     String date    = "";
@@ -1278,18 +1281,17 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocation(String name) {
-        if (checkOrganizationIsExist(name)) {
-            dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
-            MyCommonAPIs.sleepi(5);
-            if (deviceCredits.exists()) {
-                deviceCreditsTextbox.sendKeys("4");
-                MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
-                MyCommonAPIs.sleepi(5);
-            }
-        }
+        MyCommonAPIs.sleepi(15);
+        waitElement(dropdownOrganizationElement(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
     }
 
     public void icpCreditAllocation(String name) {
@@ -6623,6 +6625,137 @@ public class OrganizationPage extends OrganizationElement {
         waitElement(orgsettingsDevicesTab);
         orgsettingsDevicesTab.click();
         MyCommonAPIs.sleepi(5);
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllManagerCountonorgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing==expectedNumber) {
+            result = true;
+            logger.info("Total managers count showing correctly on org page");
+        }
+        return result;
+    }
+    
+    // AddedByPratik
+    public boolean verifyAllManagerCountOnOrgPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyAllManagerCountonOrgSettingsPage() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(managercountOnOrgPage);
+        String extractedText = managercountOnOrgPage.text();
+        System.out.println(extractedText);
+        extractedText = extractedText.replace("Managers (", "").replace(") ?", "");
+        int totalNoofDevicesShowing = Integer.parseInt(extractedText);
+        System.out.println(totalNoofDevicesShowing);
+        int expectedNumber = 2;
+        if (totalNoofDevicesShowing == expectedNumber) {
+            logger.info("Total managers count showing correctly on org page");
+            viewAllLinkOnOrgPage.click();
+            MyCommonAPIs.sleepi(10);
+            waitElement(managersCountOnOrgSetpage);
+            String extractedText1 = managersCountOnOrgSetpage.text();
+            System.out.println(extractedText1);
+            extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+            System.out.println(extractedText1);
+            int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+            System.out.println(totalNoofDevicesShowing1);
+            if (totalNoofDevicesShowing1 == expectedNumber) {
+                logger.info("Total managers count showing correctly on org setting page");
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public void gotoManagersTabunderorgSetting(String OrgName) {
+        openOrg(OrgName);
+        MyCommonAPIs.sleepi(10);
+        Setting.click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(managersTabOrgSettings);
+        managersTabOrgSettings.click();
+        MyCommonAPIs.sleepi(5);
+    }
+    
+    //AddedByPratik
+    public boolean managersCountOnOrgSettingsPage() {
+     boolean result = false;
+     MyCommonAPIs.sleepi(10);
+     waitElement(managersCountOnOrgSetpage);
+     String extractedText1 = managersCountOnOrgSetpage.text();
+     System.out.println(extractedText1);
+     extractedText1 = extractedText1.replace("Managers(", "").replace(") ?", "");
+     System.out.println(extractedText1);
+     int totalNoofDevicesShowing1 = Integer.parseInt(extractedText1);
+     System.out.println(totalNoofDevicesShowing1);
+     int expectedNumber = 2;
+     if (totalNoofDevicesShowing1 == expectedNumber) {
+         logger.info("Total managers count showing correctly on org setting page");
+         result = true;
+     }
+     return result;
+    }
+    
+    //AddedByPratik
+    public void creditAllocation2(String name) {
+        MyCommonAPIs.sleepi(5);
+        waitElement(checkOrganizationIsExist(name));
+        organizationElement(name).click();
+        MyCommonAPIs.sleepi(1);
+        organizationElement1(name).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(dropdownOrganizationElement(name));
+        dropdownOrganizationElement(name).click();
+        MyCommonAPIs.sleepi(2);
+        allocateCredits.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("4");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
+    }   
+    //AddedbyPratik
+    public boolean verifyHardbundleOnboardedDevicesNotification(String serialNumber) {
+        boolean result = false;
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String currentDate = sdf.format(new Date());
+        System.out.println("currentDate : "+currentDate);
+        MyCommonAPIs.sleepi(15);
+        waitElement(verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate));
+        if (verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate).exists()) {
+            System.out.println((verifyOnboardedHardbundleDeviceNotification(serialNumber,currentDate)));
+            logger.info("Notification shown on notifications page after onboarding Hardbundle device");
+            result = true;
+        }
+        return result;     
     }
     
 }

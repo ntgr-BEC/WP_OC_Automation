@@ -216,22 +216,24 @@ public class AccountPageElement extends MyCommonAPIs {
         String deleteLocation2 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..", WebportalParam.getLocText("Delete"));
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
         SelenideElement deleteLocation4 = $x("//button[text()='Yes, delete location']");
+        SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
         MyCommonAPIs.sleepi(5);
         if ($x(deleteLocation1).exists()) {
             $x(deleteLocation1).click();
         } else if ($x(deleteLocation2).exists()) {
             $x(deleteLocation2).click();
-        }
-        if(deleteLocation3.exists()) {
+        } else if(deleteLocation3.exists()) {
             deleteLocation3.click();          
-        }
-        if(deleteLocation4.exists()) {
+        } else if(deleteLocation4.exists()) {
             deleteLocation4.click();          
+        } else {
+            deleteLocation5.click();
         }
         MyCommonAPIs.sleepi(5);
- //       deleteLocation3.click();
+        waitElement(deleteLocation3);
+        deleteLocation3.click();
 //        clickBoxLastButton();
-//        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(5);
         
     }
     

@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.SNMP.PRJCBUGEN_T12911;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -70,20 +71,25 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 3: Input valid IP and community string, click Save")
     public void step3() {
-        snmpp.setSnmp(false, sIp, sPw, false);
-        handle.waitDeviceOnline();
+        snmpp.setSnmp(true, sIp, sPw, false);
+//        handle.waitDeviceOnline();
         handle.waitCmdReady(sIp, false);
 
         tmpStr = SwitchCLIUtils.getSNMPInfo();
         assertTrue(SwitchCLIUtils.SNMPClass.isReadyOnly, "check option community should be ready only");
-        assertTrue(!SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should be disable");
+        assertTrue(SwitchCLIUtils.SNMPClass.isTrapEnable, "check option trap status should be disable");
         assertTrue(SwitchCLIUtils.SNMPClass.snmpResult.contains(sIp), "check option on cli ip: " + sIp);
     }
 
     @Step("Test Step 4: Try to get some mib data by Mib Browser")
     public void step4() {
         tmpStr = new SnmpUtils(WebportalParam.sw1IPaddress, sPw).getSysDesc();
-        assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Smart "), "check to get sysDesc");
+        if(WebportalParam.sw1Model.contains("M4")) {
+               assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Managed Switch"), "check to get sysDesc for MANAGED SWITHES");
+        }else {
+            
+        assertTrue(tmpStr.contains("NETGEAR ") || tmpStr.contains("Insight ") || tmpStr.contains("Smart "), "check to get sysDesc for SMART SWITCHES");
+    }
     }
 
     @Step("Test Step 5: Change SNMP IP address by Insight")

@@ -55,25 +55,9 @@ public class Api_PingTest extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
         
-        String requestBody = "{\r\n" + 
-                "  \"command\": [\r\n" + 
-                "    {\r\n" + 
-                "      \"commandParam\": \"netgear.com\",\r\n" + 
-                "        \"size\": 46,\r\n" + 
-                "        \"initTtl\": 1,\r\n" + 
-                "        \"maxTtl\": 30,\r\n" + 
-                "        \"port\": 33434,\r\n" + 
-                "        \"packetsPerHop\": 3,\r\n" + 
-                "        \"interval\": 3,\r\n" + 
-                "        \"commandType\": \"3\"\r\n" + 
-                "    }\r\n" + 
-                "],\r\n" + 
-                "\"serialNo\": [\r\n" + 
-                "    \"6AB40B2B002F8\"\r\n" + 
-                "]\r\n" + 
-                "}";
+        String requestBody = "{\"command\":[{\"commandParam\":\"netgear.com\",\"commandType\":\"3\",\"initTtl\":\"string\",\"interval\":\"string\",\"maxTtl\":\"string\",\"packetSize\":\"255\",\"packetsPerHop\":\"string\",\"pingCount\":\"9\",\"pingInterval\":\"5\",\"pingTimeout\":\"50\",\"port\":\"string\",\"size\":\"string\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
                 
-        requestBody = requestBody.replace("6AB40B2B002F8", WebportalParam.ap1deveiceName);
+
         //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("PingTest"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))

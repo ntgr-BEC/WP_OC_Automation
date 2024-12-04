@@ -19,6 +19,8 @@ import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.DevicesSwitchSummaryPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WiredQuickViewPage;
+import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  * @author lavi
@@ -42,8 +44,9 @@ public class Testcase extends TestCaseBase {
     
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        netsp.gotoPage();
-        netsp.deleteAllNetwork();
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
     }
     
     // Each step is a single test step from Jira Test Case
@@ -94,7 +97,7 @@ public class Testcase extends TestCaseBase {
         
         String tocheck1 = MyCommonAPIs.getCmdOutput("show running-config interface vlan " + vlanId, false);
         String tocheck2 = MyCommonAPIs.getCmdOutput("show running-config interface vlan " + vlanId, true);
-        assertTrue(SwitchCLIUtils.isPortInVlan("g1", vlanId), "g1 is added to vlan on switch");
+        assertTrue(SwitchCLIUtils.isTagPort("g1", vlanId), "g1 is added to switch in tag");
         assertTrue(SwitchCLIUtils.isTagPort("g2", vlanId), "g2 is added to switch in tag");
         if (!rtp.isRoutingDisabled(WebportalParam.sw1Model)) {
             assertTrue(tocheck1.contains(ip1), "switch 1 with ip1");

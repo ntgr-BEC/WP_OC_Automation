@@ -433,6 +433,107 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
        }
         return result;
     }
+    
+    //AddedBypratik
+    public void logintoProAccAfterCreatingacc(String emailAddress, String passWord) {
+        boolean isfailed = true;
+        MyCommonAPIs.sleepi(30);
+        if (loginNowButton.exists()) {
+            loginNowButton.click();
+            MyCommonAPIs.sleepi(15);
+            if (loginEmailNew.exists()) {
+                loginEmailNew.clear();
+                loginEmailNew.sendKeys(emailAddress);
+            } else if (loginEmailCognito.exists()) {
+                loginEmailCognito.clear();
+                loginEmailCognito.sendKeys(emailAddress);
+            }else {
+                loginEmailNew1.clear();
+                loginEmailNew1.sendKeys(emailAddress);
+            }
+            
+            MyCommonAPIs.sleepi(1);
+            if (loginPwdNew.exists()) {
+                loginPwdNew.clear();
+                loginPwdNew.sendKeys(passWord);
+            } else if (loginPwdCognito.exists()) {
+                loginPwdCognito.clear();
+                loginPwdCognito.sendKeys(passWord);
+            } else {
+                loginPwdNew1.clear();
+                loginPwdNew1.sendKeys(passWord);
+            }
+
+            MyCommonAPIs.sleepi(5);
+            if (loginButtonNew.exists()) {
+                loginButtonNew.click();
+            }else {
+                loginButtonCognito.click();
+           }
+            MyCommonAPIs.sleepi(10);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
+            }
+        } else {
+            MyCommonAPIs.sleepi(10);
+            if (loginEmailNew.exists()) {
+                loginEmailNew.clear();
+                loginEmailNew.sendKeys(emailAddress);
+            } else if (loginEmailCognito.exists()) {
+                loginEmailCognito.clear();
+                loginEmailCognito.sendKeys(emailAddress);
+            }else {
+                loginEmailNew1.clear();
+                loginEmailNew1.sendKeys(emailAddress);
+            }
+            
+            MyCommonAPIs.sleepi(1);
+            if (loginPwdNew.exists()) {
+                loginPwdNew.clear();
+                loginPwdNew.sendKeys(passWord);
+            } else if (loginPwdCognito.exists()) {
+                loginPwdCognito.clear();
+                loginPwdCognito.sendKeys(passWord);
+            } else {
+                loginPwdNew1.clear();
+                loginPwdNew1.sendKeys(passWord);
+            }
+
+            MyCommonAPIs.sleepi(5);
+            if (loginButtonNew.exists()) {
+                loginButtonNew.click();
+            }else {
+                loginButtonCognito.click();
+           }
+            MyCommonAPIs.sleepi(10);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
+            }
+
+        }
+        
+    }
+    
+  public String shareDiagnosticsEmail(String emailaddress) {
+        
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(5);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(emailaddress);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+        Selenide.refresh();
+        String mailBody = shareDiagnosticsMail.getText();
+        System.out.println(mailBody);
+        return mailBody;
+            
+        }
        
     }
    

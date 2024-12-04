@@ -1,6 +1,7 @@
 package webportal.SwitchManaged.System.PRJCBUGEN_T4676;
 
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -16,6 +17,7 @@ import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
+import webportal.weboperation.GlobalNotificationPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -24,7 +26,7 @@ import webportal.weboperation.WebportalLoginPage;
  *
  */
 public class Testcase extends TestCaseBase implements Config {
-    public String expectValue = "";
+   
 
     @Feature("Switch.System") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4676") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -52,8 +54,9 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: Go to Device list and click delete device, Popup warning message, and click Yes")
     public void step3() {
-        DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
+        DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG(false);
         devicesDashPage.deleteDeviceYes(WebportalParam.sw1serialNo);
+        
         MyCommonAPIs.sleep(20 * 1000);
         Selenide.refresh();
         boolean result = devicesDashPage.enterDeviceSummary(WebportalParam.sw1serialNo).isDisplayed();

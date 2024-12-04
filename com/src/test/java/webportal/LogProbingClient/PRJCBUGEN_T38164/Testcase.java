@@ -67,6 +67,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         OrganizationPage.openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
+        MyCommonAPIs.sleepi(8);
         assertTrue(new DeviceGroupPage().enableSysLogText.exists(),"Feature missing");
        
     }

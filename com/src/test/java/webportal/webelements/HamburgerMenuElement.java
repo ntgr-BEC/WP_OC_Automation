@@ -965,6 +965,17 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
   public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here to accept the invitation')]");
   public SelenideElement  signupbuttonForManagerandOwner    = $x("//button[text()='Sign Up']");
-
+  public SelenideElement  mubBillingTab                     = $x("//div[@class='leftMenuItems']//a[text()='Monthly Usage Billing']");
+  
+  //AddedByPratik
+  public SelenideElement  mubPaymentsaveBtn                 = $x("//button[@type='submit' and text()=' Save ']");
+  public SelenideElement  enableMUB                         = $x("//h5[text()='Monthly Usage Billing']/..//span[@class='cstmSlider cstmRound']");
+  public SelenideElement  successmsgResult                  = $x("//h2[text()=' Your profile updated successfully! ']");
+  public SelenideElement  gotoDashboardlink                 = $x("//a[text()='Go to dashboard']");
+  public SelenideElement  savedbillingInfoEdit              = $x("//span[@id='billingBlock-savedBilling-editIcon']");
+  public SelenideElement  savedPaymentinfoedit              = $x("//span[@id='paymentBlock-editIcon']");
+  public SelenideElement  usageHistoryTab                   = $x("//li[text()='Usage History']");
+  public SelenideElement  usageHistoryTextVerify            = $x("//p[contains(text(),'available on the first day of the next month.')]");
+  public SelenideElement  mubtextAboutDisableMUB            = $x("//div[contains(text(),'be disabled on the first day of the next month')]");
 }
 

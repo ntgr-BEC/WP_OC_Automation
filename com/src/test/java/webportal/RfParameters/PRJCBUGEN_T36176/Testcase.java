@@ -14,6 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.APUtils;
 import util.Javasocket;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
@@ -29,6 +30,7 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
+    String dtim2;
 
     @Feature("RF Paramater") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T36176") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -55,70 +57,19 @@ public class Testcase extends TestCaseBase {
         
     }
 
-
-    
  
     @Step("Test Step 2: OBSERVE DTIM INTERVAL VALUE;")
     public void step2() {
         
       new WirelessQuickViewPage().GoToWirelessSettings();
         MyCommonAPIs.sleepi(10);
+        
+        dtim2=new WirelessQuickViewPage(false).DragDensityToDtim("1","7","1");
+        MyCommonAPIs.sleepi(35);
+        assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"0").contains("255"),"Valus mismatch");
 
-//        String s=new WirelessQuickViewPage(false).DragDensityToDtim("1","3");
-//        System.out.print(s);
-//          assertTrue(s.equals("103"),"Intervals are missing 1st");
-            assertTrue((new WirelessQuickViewPage(false).DragDensityToDtim("1","3","1")).equals("99"),"Intervals are missing 1st");
-           new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();   
-           MyCommonAPIs.sleepi(10);
-           assertTrue((new WirelessQuickViewPage(false).DragDensityToDtim("2","2","2")).equals("50"),"Intervals are missing 2nd");
-          new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click();   
-          MyCommonAPIs.sleepi(10);
-           assertTrue((new WirelessQuickViewPage(false).DragDensityToDtim("3","4","3")).contains("150"),"Intervals are missing 3rd");
-    }
-        
-//        new WirelessQuickViewPage(false).DropDown5GhzLow.click();
-//        
-//        String mode = "11a";
-//        String mode1 = "11na";
-//        String mode2 = "11ac";
-//       
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode), "default value is not right");
-//        
-//        
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode1);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode1), "default value is not right");
-//        
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode2);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode2), "default value is not right");        
-        
+
 
     }
-//    
-//    @Step("Test Step 3: configured to 11a for 2 GHz WAC505/WAC510;")
-//    public void step3() {
-//        
-//        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap2serialNo);
-//        new WirelessQuickViewPage(false).RadioAndChannels.click();
-//        MyCommonAPIs.sleepi(10);
-//        new WirelessQuickViewPage(false).DropDown5GhzLow.click();
-//        
-//        
-//        String mode = "11a";
-//        String mode1 = "11na";
-//        String mode2 = "11ac";
-//       
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode), "default value is not right");
-//        
-//        
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode1);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode1), "default value is not right");
-//        
-//        new WirelessQuickViewPage(false).Radiomode5low.selectOption(mode2);
-//        assertTrue(new WirelessQuickViewPage(false).RadioMode5ghzlow(mode2), "default value is not right");        
-//        
-//
-//    }
-
-
+     
+}

@@ -48,7 +48,7 @@ public class Api_DeviceDetailsByDeviceIdentifier extends TestCaseBaseApi{
     public void step1()
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        Response add = new Api_GetDevices().step1();
+        Response add = new Api_GetDevices().step1(WebportalParam.networkId);
         String deviceID= add.jsonPath().getString("deviceInfo[0].deviceId");
         System.out.println(deviceID);
         headers.put("token",WebportalParam.token);
@@ -57,20 +57,14 @@ public class Api_DeviceDetailsByDeviceIdentifier extends TestCaseBaseApi{
 
         pathParams.put("deviceId",deviceID);
         pathParams.put("deviceType","AP");
-        pathParams.put("commandType","101");  
+        pathParams.put("commandType","about");    //AP : about, dashboard, l2l3Acl.
         
-//        The command type according to the device for performing actions on the device. The enumerations are provided below.
-//        ORBI : 21(Dashboard).
-//        MHS : 54(Dashboard).
-//        PR : 54(Dashboard), 56(Statistics).
-//        AP : 82(L2L3ACL), 101(About), 101(Dashboard).
-//        Switch : 11(Switch Port Config), 12(POE Port Config), 13(Device Port Mirroring), 20(Cabletest), 53(About), 54(Dashboard).
-//        BR : 53(About), 54(Dashboard), 55(Attached Device), 56(Statistics).
+
         
         //TO PERFORM ANY REQUEST  
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("DeviceDetails_ByDeviceIdentifier"), headers, pathParams, null);
-        getResponse.then().body("response.status", equalTo(true));
-                   
+        getResponse.then().body("response.status", equalTo(true))
+        .body("deviceInfo.serialNo", equalTo(WebportalParam.ap1deveiceName));       
     }
 
 }

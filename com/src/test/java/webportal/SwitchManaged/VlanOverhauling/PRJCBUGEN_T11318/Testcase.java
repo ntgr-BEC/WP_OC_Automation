@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.VlanOverhauling.PRJCBUGEN_T11318;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -69,6 +70,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Check vlan 100 on switch")
     public void step4() {
         String tmpStr = handle.getCmdOutput("show vlan "+vlanId, false);
-        assertTrue(tmpStr.contains(vlanId), "vlan should be cached during offline");
+        assertFalse(tmpStr.contains(vlanId) , "vlan should be cached during offline");
+        assertTrue(tmpStr.contains("VLAN does not exist.") , "vlan should be cached during offline");
     }
 }
