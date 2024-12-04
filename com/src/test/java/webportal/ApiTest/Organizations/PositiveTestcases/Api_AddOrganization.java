@@ -30,7 +30,7 @@ public class Api_AddOrganization extends TestCaseBaseApi{
     Map<String, String> headers = new HashMap<String, String>();
     String orgId;
     Random random = new Random();
-    int randomNumber = random.nextInt(10000);
+    int randomNumber = random.nextInt(1000000);
     String org    = "Org" + String.valueOf(randomNumber);
     String owner    = "owner" + String.valueOf(randomNumber);
     

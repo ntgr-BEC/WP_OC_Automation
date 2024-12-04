@@ -46,6 +46,16 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         step2(Licence);
     }
     
+    @AfterMethod
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("orgId",OrgID);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }  
 
     @Step("Send get request to {url}")
     public void step1()
