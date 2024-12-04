@@ -50,7 +50,7 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     {
-        Licence = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
+        Licence = new ApiRequest().readLicenceKeyByTxt("Write");
     }
     
     @Step("Send get request to {url}")

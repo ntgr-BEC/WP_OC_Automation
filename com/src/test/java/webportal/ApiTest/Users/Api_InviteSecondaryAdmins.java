@@ -21,6 +21,7 @@ import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
@@ -78,16 +79,21 @@ public class Api_InviteSecondaryAdmins extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Invite_SecAdmin"), requestBody, headers, pathParams, null);  
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Admin invited successfully."));
+      
                          
         }
-    
+            
     @Step("Send get request to {url}")
     public void step2() {
+    
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("startFrom","0");
         
-        Response add =  new Api_GetSecondaryAdmins().step1();
-        secadminId= add.jsonPath().getString("details.adminsList[0]._id");  
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_SecAdmin"), headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("Secondary admin list found."));
+        secadminId= getResponse.jsonPath().getString("details.adminsList[0]._id");  
     }
-                
     }
 
 

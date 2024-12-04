@@ -69,8 +69,8 @@ public class Api_GetBulkAddDevices extends TestCaseBaseApi{
 
         Response getResponse2 = ApiRequest.sendGetRequest(endPointUrl.get("Get_BulkDeplDetails"), headers, pathParams, null); 
         getResponse2.then().body("response.status", equalTo(true))
-                           .body("response.message", equalTo("success"));
-
+                           .body("response.message", equalTo("success"))
+                           .body("details.maxBulkDevice", equalTo("1000"));
         
     }
                   

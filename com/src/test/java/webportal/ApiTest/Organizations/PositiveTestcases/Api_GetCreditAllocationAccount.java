@@ -31,7 +31,7 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String OrgID; 
-    String OrgID1; 
+//    String OrgID1; 
     String Orgname;
     int DC= 3;
     int ICPC= 1;

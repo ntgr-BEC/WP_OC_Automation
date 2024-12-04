@@ -46,13 +46,13 @@ public class Api_FetchCreditsInformation extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        
-       
-    }  
+//    @AfterMethod(alwaysRun=true)
+//    public void teardown()
+//    { 
+//        
+//        
+//       
+//    }  
     
     @Step("Send get request to {url}")
     public void step1()

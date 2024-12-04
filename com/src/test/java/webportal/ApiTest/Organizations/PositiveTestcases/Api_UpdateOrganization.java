@@ -46,7 +46,7 @@ public class Api_UpdateOrganization extends TestCaseBaseApi{
         step1();
     }
     
-    
+    @AfterMethod
     public void teardown()
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
@@ -75,7 +75,7 @@ public class Api_UpdateOrganization extends TestCaseBaseApi{
             
             Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Update_Organization"), requestBody1, headers, pathParams, null); 
             getResponse.then().body("response.status", equalTo(true));
-            orgId=getResponse.jsonPath().getString("orgInfo.orgId");
+//            orgId=getResponse.jsonPath().getString("orgInfo.orgId");
             System.out.println("Org ID under response"+ orgId);
             return getResponse;
                          

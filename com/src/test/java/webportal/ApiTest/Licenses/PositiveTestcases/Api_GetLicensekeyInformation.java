@@ -48,7 +48,7 @@ public class Api_GetLicensekeyInformation extends TestCaseBaseApi{
     public void step1()
     {
         
-        Licence = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
+        Licence =  new ApiRequest().readLicenceKeyByTxt("Write");
         
     }
     

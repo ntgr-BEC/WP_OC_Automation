@@ -54,7 +54,7 @@ public class Api_RetrievePurchaseOrderHistory extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountIdPro);
     
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("timePeriod","30 Days");   //The enumerations are all, 365 Days, 90 Days, 30 Days.
+        pathParams.put("timePeriod","all");   //The enumerations are all, 365 Days, 90 Days, 30 Days.
         pathParams.put("categoryId","hbPlan");  
 //        The category identifier. The enumerations are all(Returns all the values), hbPlan(Insight Included with Hardware), 
 //        2071(Insight Pro VPN), 2070(Pro user Insight Licenses),usageBilling(Monthly Usage Billing), savant(Six Year Insight Included with Hardware), 2072(Instant Captive Portal), 2073(Content Filtering).
