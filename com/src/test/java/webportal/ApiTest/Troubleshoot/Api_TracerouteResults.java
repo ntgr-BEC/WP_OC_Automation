@@ -60,7 +60,7 @@ public class Api_TracerouteResults extends TestCaseBaseApi{
          //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Traceroute_results"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
-        .body("details.domainName", equalTo("netgear.com"))
+        .body("details.domainName", equalTo("yahoo.com"))
         .body("details.serialNo", equalTo(WebportalParam.ap1deveiceName));
         
     }
