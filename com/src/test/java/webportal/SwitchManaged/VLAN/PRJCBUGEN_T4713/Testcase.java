@@ -54,15 +54,12 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 2: Web Portal go to Wired configuration page, create VLAN via default template of Voice VLAN")
     public void step2() {
-//        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-//        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
-//        WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
-//        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
-//        MyCommonAPIs.sleep(8000);
-
+        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        vlanPage.addVoiceVlanWithPorts("Voice VLAN", "4088", null, null, null, null, null, null, null);
-        MyCommonAPIs.sleep(20000);
+        vlanPage.deleteAllVlan();
+        
+        netsp.gotoPage();
+        netsp.createNetwork("Voice VLAN", 1, "", "4088");
     }
 
     @Step("Test Step 3: Check configuration on webportal")

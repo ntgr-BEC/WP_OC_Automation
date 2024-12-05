@@ -69,6 +69,8 @@ public class Testcase extends TestCaseBase implements Config {
     public void restore() {
         wvp.gotoPage();
         wvp.deleteAllVlan();
+        wlp.gotoLagPage();
+        wlp.deleteLag();
     }
     
 }
