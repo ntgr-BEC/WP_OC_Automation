@@ -485,14 +485,21 @@ public class OrganizationPage extends OrganizationElement {
 
     public void deleteOrganizationNew(String name) {
         if (checkOrganizationIsExist(name)) {
-
+            MyCommonAPIs.sleepi(5);
+            waitElement(netgear);
             netgear.click();
             MyCommonAPIs.sleepi(8);
+            waitElement(dropdownOrganizationElement(name));
+            MyCommonAPIs.sleepi(1);
             dropdownOrganizationElement(name).click();
+            waitElement(deleteOrganizationElement(name));
+            MyCommonAPIs.sleepi(1);
             deleteOrganizationElement(name).click();
             MyCommonAPIs.sleepi(20);
+            waitElement(deletedialogbutton);
+            MyCommonAPIs.sleepi(1);
             deletedialogbutton.click();
-            // clickBoxLastButton();
+            MyCommonAPIs.sleepi(1);
             logger.info("Delete organization is successful.");
         }
     }
@@ -1288,7 +1295,7 @@ public class OrganizationPage extends OrganizationElement {
         allocateCredits.click();
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
-        deviceCreditsTextbox.sendKeys("4");
+        deviceCreditsTextbox.sendKeys("5");
         MyCommonAPIs.sleepi(1);
         allocateBtn.click();
         MyCommonAPIs.sleepi(5);
@@ -6756,6 +6763,36 @@ public class OrganizationPage extends OrganizationElement {
             result = true;
         }
         return result;     
+    }
+    
+    //AddedByPratik
+    public boolean verifyDevicesCountonLocationTab() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        waitElement(verifyDevicesPresentonLocationLogo);
+        MyCommonAPIs.sleepi(1);
+        if (verifyDevicesPresentonLocationLogo.exists() && verifyDevicesPresentonLocationLogo1.exists()) {
+            logger.info("Devices count showing correctly on location logo dashboard");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyDevicesCountonOrganizationTab() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        waitElement(gotoHomePage);
+        MyCommonAPIs.sleepi(1);
+        gotoHomePage.click();
+        MyCommonAPIs.sleepi(20);
+        waitElement(verifyDevicesPresentonOrgLogo1);
+        MyCommonAPIs.sleepi(1);
+        if (verifyDevicesPresentonOrgLogo1.exists()) {
+            logger.info("Devices count showing correctly on Organization logo dashboard");
+            result = true;
+        }
+        return result;
     }
     
 }

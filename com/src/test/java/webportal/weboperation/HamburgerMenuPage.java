@@ -9147,6 +9147,35 @@ public boolean GooMUBandVerifyDisableTextNotifications() {
   return result;
 }
 
+//AddedByPratik
+public static boolean verifyOrganizationsVisibility() {
+    
+    int totalOrganizations = 70;
+    boolean allVisible = false;
+    MyCommonAPIs.sleepi(15);
+    while (!allVisible) {
+    
+        ElementsCollection organizations = $$("span.ManagerClTxt.nameOverFlow");
+        if (organizations.size() >= totalOrganizations) {
+            allVisible = true;
+
+            for (int i = 0; i < organizations.size(); i++) {
+                SelenideElement organization = organizations.get(i);
+                if (!organization.isDisplayed()) {
+                    allVisible = false;
+                    break;
+                }
+            }
+        }
+
+        if (!allVisible) {
+            executeJavaScript("window.scrollBy(0, 1000)");
+            sleep(1000);
+        }
+    }
+
+    return allVisible;
+}
 
 }
 
