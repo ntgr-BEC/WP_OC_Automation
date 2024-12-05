@@ -1,4 +1,4 @@
-package webportal.ApiTest.BulkDeployment.PostiveTestcase;
+package webportal.ApiTest.BulkDeployment.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -14,6 +14,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
+import webportal.ApiTest.Location.Pro.PositiveTestcases.Api_AddLocationPro;
 import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
@@ -26,15 +27,18 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class Api_GetBulkAddDevices extends TestCaseBaseApi{
+public class AddBulkDevicesWithEmptyBody_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String,String>();
     Map<String, String> headers = new HashMap<String, String>();
-    String  orgId;
+    String  OrgID;
+    String  LocID;
+  
     
-    @Feature("Api_GetBulkAddDevices") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    
+    @Feature("AddBulkDevicesWithEmptyBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T002") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Retrieves all the details related to Bulk deployment") // It's a testcase title from Jira Test Case.
+    @Description("Retrieves all the details related to Bulk deployment with empty body") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T002") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -45,18 +49,22 @@ public class Api_GetBulkAddDevices extends TestCaseBaseApi{
     public void teardown()
     { 
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",orgId);
+        pathParams.put("orgId",OrgID);
         pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }  
-  
+
     @Step("Send get request to {url}")
     public void step1()
     {        
-        Response getResponse1 = new Api_AddOrganization().step1();
-        orgId=getResponse1.jsonPath().getString("orgInfo.orgId");
+        Response response = new Api_AddOrganization().step1();
+        OrgID = response.jsonPath().getString("orgInfo.orgId");
+        
+        Response response1 = new Api_AddLocationPro().step2(OrgID);
+        LocID = response1.jsonPath().getString("networkInfo[0].networkId");
+        
         endPointUrl = new ApiRequest().ENDPOINT_URL;
         
         headers.put("token",WebportalParam.tokenPro);
@@ -65,12 +73,15 @@ public class Api_GetBulkAddDevices extends TestCaseBaseApi{
         headers.put("networkId",WebportalParam.networkIdPro); 
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",orgId);
+        pathParams.put("orgId",OrgID);
+        pathParams.put("isBulkAdd","true");
+        
+        String requestBody="{}";
 
-        Response getResponse2 = ApiRequest.sendGetRequest(endPointUrl.get("Get_BulkDeplDetails"), headers, pathParams, null); 
-        getResponse2.then().body("response.status", equalTo(true))
-                           .body("response.message", equalTo("success"))
-                           .body("details.maxBulkDevice", equalTo("1000"));
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_BulkDevices"),requestBody, headers, pathParams, null,400); 
+        getResponse.then().body("response.status", equalTo(false))
+                           .body("response.message", equalTo("Exception occured in Bulk Validation API"));
+
         
     }
                   

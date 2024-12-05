@@ -1,5 +1,6 @@
-package webportal.ApiTest.Wired.PositiveTestcases;
+package webportal.ApiTest.Devices.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -26,53 +27,41 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_AddWirelessNetworkMgtVlan extends TestCaseBaseApi{
+public class DeviceDetailsByDeviceIdentifierWithEmptyPathParams_Api extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     
-    @Feature("Api_AddWirelessNetworkMgtVlan") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("DeviceDetailsByDeviceIdentifierWithEmptyPathParams_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Add wireless network under management Vlan") // It's a testcase title from Jira Test Case.
+    @Description("This test will get device details by device identifier with empty pathparam vlaue for  the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-    
-    @AfterMethod
-    public void teardown()
-    {
-        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"5\",\"untaggedVlanSt\":\"0\"}}";
-        
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Add_Wireless_Network"), requestBody,  headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-                          .body("response.message", equalTo("success"));
-    }
-  
+
     @Step("Send get request to {url}")
     public void step1()
-    {
-//        Requires AP  
+    {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
-        
+       
+       
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
-               
-        pathParams.put("networkId",WebportalParam.networkId);
-        
-        String requestBody="{\"wirelessConf\":{\"mgmtVlanId\":\"1\",\"untaggedVlanId\":\"5\",\"untaggedVlanSt\":\"1\"}}";
-        
-        //TO PERFORM ANY REQUEST
-        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Add_Wireless_Network"), requestBody,  headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-                          .body("response.message", equalTo("success"));
-        
-        
+
+        pathParams.put("deviceId"," ");            //empty deviceID pathParam
+        pathParams.put("deviceType","AP");
+        pathParams.put("commandType","about");    //AP : about, dashboard, l2l3Acl.
+
+        //TO PERFORM ANY REQUEST  
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("DeviceDetails_ByDeviceIdentifier"), headers, pathParams, null);
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("An error occured. Try again in few minutes."));       
     }
 
 }

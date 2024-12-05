@@ -8,8 +8,11 @@ import static org.testng.Assert.assertTrue;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -497,6 +500,51 @@ import util.*;
             parts[3] = String.valueOf(desiredValue);  // Change the last part of the IP
             return String.join(".", parts);  // Join the parts back together
         }
+        
+        
+        public String readLicenceKeyByTxt(String option) {
+            String useLicence = "";
+            String licence = "";
+            String pathname = System.getProperty("user.dir") + "/src/test/resources/licence.txt";
+            try (FileReader reader = new FileReader(pathname); BufferedReader br = new BufferedReader(reader)) {
+                String line;
+                int i = 0;
+                while ((line = br.readLine()) != null) {
+                    if (line.equals("")) {
+                        i += 1;
+                        continue;
+                    }
+                    if (i == 0) {
+                        useLicence = line;
+                        i += 1;
+                        continue;
+                    } else if (i == 1) {
+                        licence += line;
+                        i += 1;
+                        continue;
+                    }
+                    licence += "\n" + line;
+                    i += 1;
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (option.equals("Write")) {
+                System.out.println("Write licence:" + licence);
+                try {
+                    PrintWriter pw = new PrintWriter(pathname);
+                    pw.write(licence);
+                    pw.flush();
+                    pw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                    e.printStackTrace();
+                }
+            }
+            return useLicence;
+
+        }
 
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
@@ -532,7 +580,7 @@ import util.*;
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
                 put("Firmware_Upgrade","insightappcom/api/firmware/v1/firmwareUpgrade/{deviceCount}/{networkId}");
                 put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
-                put("Firmware_Upgrade_Details","insightappcom/api/network/v1/firmwareUpgrade/devices/{networkId}");
+                put("Firmware_Upgrade_Details","insightappcom/api/firmware/v1/firmwareUpgrade/devices/{networkId}");
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
                 put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
                 put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");

@@ -1,4 +1,4 @@
-package webportal.ApiTest.Troubleshoot;
+package webportal.ApiTest.Wireless.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import org.testng.Assert;
@@ -20,23 +20,23 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class Api_TracerouteTest extends TestCaseBaseApi{
+public class ModifyInstantWifiWithEmptyBody_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     
-    @Feature("Api_TracerouteTest") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("ModifyInstantWifiWithEmptyBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will troubleshoot the device with traceroute test from the particular account") // It's a testcase title from Jira Test Case.
+    @Description("This test modify Instat WIFI config with empty body from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -44,24 +44,36 @@ public class Api_TracerouteTest extends TestCaseBaseApi{
         step1();
     }
     
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {    
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
+
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     { 
-        endPointUrl = new ApiRequest().ENDPOINT_URL;  
+        endPointUrl = new ApiRequest().ENDPOINT_URL;
+        Response add = new Api_AddNetwork().step1();
+        networkId=add.jsonPath().getString("networkInfo[0].networkId");    
            
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-      
-        pathParams.put("networkId",WebportalParam.networkId);
+       
+        pathParams.put("networkId",networkId);
+        pathParams.put("requestType","instantWifiLogs");    //requestType can be selectchannels/autoChannel/autoPower/instantWifiLogs
+        String requestBody = "{}";
         
-        String requestBody = "{\"command\":[{\"commandParam\":\"yahoo.com\",\"commandType\":\"4\",\"initTtl\":\"1\",\"interval\":\"3\",\"maxTtl\":\"3\",\"packetSize\":\"string\",\"packetsPerHop\":\"3\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"33434\",\"size\":\"46\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
-
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Traceroute"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true))
-         .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
-         .body("info[0].serialNo", equalTo(WebportalParam.ap1deveiceName));
-        MyCommonAPIs.sleepi(80);
-        return getResponse;
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Modify_InstantWIFI"), requestBody, headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.,=message", equalTo("An error occured. Try again in few minutes."));
     }
-}
+                  
+    }
+

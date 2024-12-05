@@ -36,33 +36,33 @@ public class Api_OoklaSpeedTestResults extends TestCaseBaseApi{
     
     @Feature("Api_OoklaSpeedTestResults") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test will ookla speed test results from the particular account") // It's a testcase title from Jira Test Case.
+    @Description("This test will Ookal speed tets lookup results from the particular account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
     }
-
+    
     @Step("Send get request to {url}")
     public void step1()
     { 
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
-        Response add = new Api_OoklaSpeedTest().step1();    //perform Ookla speed test test and then retrive the result
+        Response add = new Api_OoklaSpeedTest().step1();    //perform ookla spedd test test and then retrive the result
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountId);
-        MyCommonAPIs.sleepi(40);
+      
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-      
+        MyCommonAPIs.sleepi(20);
+        
          //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SpeedTest_Results"), headers, pathParams, null);
+        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SpeedTest_results"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
-        .body("details.domainName", equalTo("netgear.com"))
-        .body("details.serialNo", equalTo(WebportalParam.ap1deveiceName));
+        .body("details.upLinkSpeed", greaterThan("0"))
+        .body("details.downLinkSpeed", greaterThan("0"))
+        .body("details.serialNumber", equalTo(WebportalParam.ap1deveiceName));
         
     }
 }
-
-  

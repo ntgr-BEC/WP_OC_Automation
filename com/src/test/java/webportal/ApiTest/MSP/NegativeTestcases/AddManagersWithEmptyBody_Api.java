@@ -1,4 +1,4 @@
-package webportal.ApiTest.MSP.PositiveTestcases;
+package webportal.ApiTest.MSP.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
@@ -32,18 +32,18 @@ import java.util.Map;
 import java.util.Random;
 
 
-public class Api_GetOwnersList extends TestCaseBaseApi{
+public class AddManagersWithEmptyBody_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
- 
+
     Map<String, String> headers = new HashMap<String, String>();
-    String networkId;
+    String managerId;
     String orgId;
     
     
-    @Feature("Api_GetOwnersList") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("AddManagersWithEmptyBody_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("This test retrieves owner list  from  a pro account") // It's a testcase title from Jira Test Case.
+    @Description("This test adds managers woith empty body to a pro account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -53,23 +53,27 @@ public class Api_GetOwnersList extends TestCaseBaseApi{
     
     @AfterMethod(alwaysRun=true)
     public void teardown()
-    { 
+    {   
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountIdPro);
         pathParams.put("orgId",orgId);
        
         
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
+        Response getResponse2 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+        getResponse2.then().body("response.status", equalTo(true));
         
     }
-  
+
     @Step("Send get request to {url}")
-    public Response step1()
+    public void step1()
     { 
         
-    
-        Response response= new Api_AddOrganization().step1();
+        Random              r           = new Random();
+        int                 num         = r.nextInt(100000);
+        String              mailname    = "apwptest" + String.valueOf(num)+"@yopmail.com";
+        System.out.print(mailname);
+        
+       Response response= new Api_AddOrganization().step1();
         orgId=response.jsonPath().getString("orgInfo.orgId");
         System.out.println(orgId);
         
@@ -78,13 +82,17 @@ public class Api_GetOwnersList extends TestCaseBaseApi{
         headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
         headers.put("accountId",WebportalParam.accountIdPro);
-        
-     
-        //TO PERFORM ANY REQUEST 
-        Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_OwnersList"),  headers, null, null); 
-        getResponse.then().body("response.status", equalTo(true));
+    
+        String requestBody="{}";
 
-        return response;
+        Map<String, String> pathParams = new HashMap<String, String>();
+        
+        //TO PERFORM ANY REQUEST 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Manager"), requestBody, headers, pathParams, null,400); 
+        getResponse.then().body("status", equalTo(false))
+        .body("meta.message", equalTo("JSON not valid, Parsing error"));
+
+      
       
     }
                   

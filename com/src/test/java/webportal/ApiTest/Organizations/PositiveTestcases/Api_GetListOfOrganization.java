@@ -47,22 +47,22 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
     }
     
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    { 
-//        
-//        System.out.println("Start to tare down");
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//        
-//        pathParams.put("accountId",WebportalParam.accountIdPro);  
-//        
-//        for(int i=0; i<OrgID.size(); i++) {
-//            pathParams.put("orgId",OrgID.get(i));
-//            Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-//            getResponse1.then().body("response.status", equalTo(true));
-//        }
-//        
-//    }  
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        
+        System.out.println("Start to tare down");
+        Map<String, String> pathParams = new HashMap<String, String>();
+        
+        pathParams.put("accountId",WebportalParam.accountIdPro);  
+        
+        for(int i=0; i<OrgID.size()-1; i++) {
+            pathParams.put("orgId",OrgID.get(i));
+            Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+            getResponse1.then().body("response.status", equalTo(true));
+        }
+        
+    }   
     
   
     @Step("Send get request to {url}")

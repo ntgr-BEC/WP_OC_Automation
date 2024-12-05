@@ -1,4 +1,4 @@
-package webportal.ApiTest.Licenses.PositiveTestcases;
+package webportal.ApiTest.Licenses.NegativeTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ import webportal.weboperation.HamburgerMenuPage;
 import static io.restassured.RestAssured.*;
 
 
-public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
+public class AddPurchaseConfirmationWithEmptyKey_Api extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
@@ -35,36 +35,18 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
     
 
     
-    @Feature("Api_AddPurchaseConfirmation") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("AddPurchaseConfirmationWithEmptyKey_Api") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Add purchase confirmation key at account and organization.") // It's a testcase title from Jira Test Case.
+    @Description("Add purchase confirmation key with empty key at account and organization.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
-        step2(Licence);
     }
     
-    @AfterMethod
-    public void teardown()
-    { 
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountIdPro);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }  
-
     @Step("Send get request to {url}")
     public void step1()
-    {
-        Licence = new ApiRequest().readLicenceKeyByTxt("Write");
-    }
-    
-    @Step("Send get request to {url}")
-    public Response step2(String Licence)
     {
       
         Response response1 = new Api_AddOrganization().step1();
@@ -76,14 +58,14 @@ public class Api_AddPurchaseConfirmation extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("OrgId",OrgID);
               
-        System.out.println("license key is"+Licence);
-        System.out.println("license key is"+Licence);
-        String requestBody1="{\"licenseInfo\":{\"licKey\":\""+Licence+"\"}}";
+      
+        String requestBody1="{}";
         
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Purchase_Confirmation"),requestBody1, headers, null, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Some error occured while adding license key"));
         
-        return getResponse;
+      
         
     }
   
