@@ -50,6 +50,7 @@ public class Testcase extends TestCaseBase implements Config {
         handle.gotoLoction();
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+        vlanPage.deleteAllVlan();
         
         netsp.gotoPage();
         netsp.createNetwork("Video VLAN", 2, "", "4089");

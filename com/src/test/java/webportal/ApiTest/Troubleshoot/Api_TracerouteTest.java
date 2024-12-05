@@ -61,7 +61,7 @@ public class Api_TracerouteTest extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
          .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
          .body("info[0].serialNo", equalTo(WebportalParam.ap1deveiceName));
-        MyCommonAPIs.sleepi(80);
+        MyCommonAPIs.sleepi(120);
         return getResponse;
     }
 }
