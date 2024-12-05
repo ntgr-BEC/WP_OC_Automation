@@ -22,6 +22,7 @@ import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 import webportal.ApiTest.Location.Pro.PositiveTestcases.Api_AddLocationPro;
 import webportal.ApiTest.Organizations.PositiveTestcases.Api_AddOrganization;
+import webportal.ApiTest.Organizations.PositiveTestcases.Api_AllocateDeviceCredits;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
@@ -74,9 +75,8 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true));
         MyCommonAPIs.sleepi(1000);
        
-        
-    }  
-  
+    }
+
     @Step("Send get request to {url}")
     public void step1()
     { 
@@ -92,9 +92,13 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         Response response1 = new Api_AddLocationPro().step2(OrgID);
         LocID = response1.jsonPath().getString("networkInfo[0].networkId");
         
+        //To create a location wihich is same as existing loaction {to match WIRELESS REGION]
         String requestBody1="{\"srcNetworkId\":\""+WebportalParam.networkId+"\",\"srcOrgId\":\""+WebportalParam.orgId+"\",\"targetOrganizations\":[{\"networkList\":[\""+LocID+"\"],\"orgId\":\""+OrgID+"\"}]}"; 
         
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Clone_Network"), requestBody1, headers, null, null);         
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Clone_Network"), requestBody1, headers, null, null);   
+        
+        //Allocate device credits for new org
+        new Api_AllocateDeviceCredits().step2(1,1,OrgID);
                
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",WebportalParam.networkIdPro);
@@ -107,7 +111,7 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         deviceId=getResponse1.jsonPath().getString("deviceInfo[0].deviceId");
         System.out.print(deviceId);
     }
-        
+       
     @Step("Send get request to {url}")
     public void step2()
     { 
@@ -127,6 +131,5 @@ public class Api_MoveDevice extends TestCaseBaseApi{
     }
               
     }
-
 
 

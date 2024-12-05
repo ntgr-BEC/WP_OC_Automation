@@ -55,7 +55,6 @@ public class Api_OoklaSpeedTestResults extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
-        MyCommonAPIs.sleepi(20);
         
          //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("SpeedTest_results"), headers, pathParams, null);
