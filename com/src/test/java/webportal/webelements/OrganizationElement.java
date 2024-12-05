@@ -614,4 +614,8 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement verifyNotificationsOnboardedAP = $x("//span[contains(text(), '" + serialNumber + "') and contains(text(), '" + currentDate + "') and contains(text(),'was added as Insight bundle device')]");
         return verifyNotificationsOnboardedAP;
     }
+    public SelenideElement verifyDevicesPresentonLocationLogo  = $x("//span[@class='location-details']//span[text()='6']");
+    public SelenideElement verifyDevicesPresentonLocationLogo1 = $x("//span[text()='Devices']//span[text()='6']");
+    public SelenideElement verifyDevicesPresentonOrgLogo1      = $x("//li[text()='Devices']/..//li[text()='6']");
+    public SelenideElement gotoHomePage                        = $x("//span[@id='logoInsightPro']//a[@href='/#/organization/dashboard']");
 }
