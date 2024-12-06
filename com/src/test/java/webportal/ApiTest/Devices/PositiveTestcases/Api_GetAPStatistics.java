@@ -46,7 +46,19 @@ public class Api_GetAPStatistics extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+        step2();
     }
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>(); 
+        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("id",id);   
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
+        getResponse.then().body("response.status", equalTo(true));
+    }
+    
     
     @Step("Send get request to {url}")
     public void step1()

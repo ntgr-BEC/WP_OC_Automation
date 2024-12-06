@@ -54,6 +54,7 @@ import com.google.common.io.Files;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
+import testbase.TestCaseBase;
 import util.APUtils;
 import util.Javasocket;
 import util.MyCommonAPIs;
@@ -62,6 +63,7 @@ import webportal.param.CommonDataType.SSIDData;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.webelements.DevicesDashPageElements;
 import webportal.webelements.WirelessQuickViewElement;
 import java.util.Random;
 import org.openqa.selenium.interactions.Actions;
@@ -543,6 +545,45 @@ import util.*;
                 }
             }
             return useLicence;
+
+        }
+        
+        public void Setserver(String APIP){  
+            
+            new TestCaseBase().startBrowser();
+            System.out.println("Setting Server");
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            String oprnURL = "http://"+APIP+":9999/insight_server";
+            String username = "admin";
+            String password = "Netgear1@";
+            
+            // Construct the URL with basic authentication
+            String url = "http://" + username + ":" + password + "@172.16.27.43:9999/insight_server";
+
+            ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+            Selenide.switchTo().window(1);
+            String currentURL = new MyCommonAPIs().getCurrentUrl();
+            System.out.println(currentURL);
+            MyCommonAPIs.sleepi(5);     
+            if(url.contains("maint-beta")) {
+                System.out.println("inside Maint-beta");
+                new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
+            }else if(url.contains("pri-qa")) {
+                System.out.println("inside Pri-qa");
+                new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
+            }
+            else {
+                System.out.println("inside Maint-qa");
+                new DevicesDashPageElements().dropdownclick.selectOption("MAINT-QA"); 
+            }
+            new DevicesDashPageElements().submit.click();
+            
+            MyCommonAPIs.sleepi(5);
+            if(new DevicesDashPageElements().sucessmessage.exists()) {
+            System.out.println(new DevicesDashPageElements().sucessmessage.getText());
+            }
+            MyCommonAPIs.sleepi(5);
+            Selenide.switchTo().window(0);   
 
         }
 
