@@ -67,7 +67,7 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(100);
         new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
         MyCommonAPIs.sleepi(980);
     }
