@@ -90,8 +90,49 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
-    @Step("Test Step 2: check buy vpn services;")
+    @Step("Test Step 2: Create new location;")
     public void step2() {
+        
+//      new HamburgerMenuPage(false).clickAddInsightIncludedDevices();
+        new HamburgerMenuPage(false).closeLockedDialog();
+        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", "OnBoardingTest");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+        new AccountPage().addNetwork(locationInfo);
+        
+    }
+    
+    
+    @Step("Test Step 3: Add dummy hardbundle device To the Network;")
+    public void step3() {
+        
+new AccountPage().enterLocation("OnBoardingTest");
+        
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        Map<String, String> firststdevInfo1 = new HashMap<String, String>();
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo1.put("Serial Number1", WebportalParam.ap6serialNo);
+        firststdevInfo1.put("MAC Address1", WebportalParam.ap6macaddress);
+        
+        System.out.println(firststdevInfo);
+        System.out.println(firststdevInfo1);
+                
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
+        
+        boolean result = true;
+        
+        assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Twodevice"), "More device exits");
+
+        
+    }
+    
+    @Step("Test Step 4: check buy vpn services;")
+    public void step4() {
         Map<String, String> paymentInfo = new HashMap<String, String>();
         paymentInfo = new CommonDataType().CARD_INFO;
         
@@ -115,23 +156,23 @@ public class Testcase extends TestCaseBase {
                 "Vpn services page display incorrect.");
     }
     
-    @Step("Test Step 3: Check start date and end date of vpn subscription and upgrade to pro;")
-    public void step3() {
+    @Step("Test Step 5: Check start date and end date of vpn subscription and upgrade to pro;")
+    public void step5() {
         
         new MyCommonAPIs().open(URLParam.hrefVPNServices, true);
         new HamburgerMenuPage(false).premiumVPNServicesStartDateEndDate();
         
     }
 
-    @Step("Test Step 4: Navigate to Account Management, check upgrade to pro option and click on it;")
-    public void step4() {
+    @Step("Test Step 6: Navigate to Account Management, check upgrade to pro option and click on it;")
+    public void step6() {
         System.out.println("starting with setup 2");
         assertTrue(new HamburgerMenuPage().insightPritoinsightPro(),"Failed navigate to Account Management");
         
     }
     
-    @Step("Test Step 5: Check upgraded to pro")
-    public void step5() {
+    @Step("Test Step 7: Check upgraded to pro")
+    public void step7() {
         
         Map<String, String> businessInfo = new HashMap<String, String>();
         businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
@@ -147,8 +188,8 @@ public class Testcase extends TestCaseBase {
         
     }
     
-    @Step("Test Step 6: create new organization and verify vpn start date and end date in pro account with premium")
-    public void step6() {
+    @Step("Test Step 8: create new organization and verify vpn start date and end date in pro account with premium")
+    public void step8() {
         
         new OrganizationPage(false).gotoDashboard();
         Map<String, String> organizationInfo = new HashMap<String, String>();
