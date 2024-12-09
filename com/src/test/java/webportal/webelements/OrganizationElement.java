@@ -101,7 +101,7 @@ public class OrganizationElement extends MyCommonAPIs {
         return deleteelement;
     }
 
-    public SelenideElement organizationElement(String name) {
+      public SelenideElement organizationElement(String name) {
         
     
 //        SelenideElement organization = $x("//div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='"+name+" "+"']");
@@ -109,7 +109,13 @@ public class OrganizationElement extends MyCommonAPIs {
 //                $x("//div[@id='gridView']/div[@class='locationDiv']//p[text()='" + name + "']");
 //                                         $x ("//div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='"+name+ "']");
         SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
-        return organization;
+        SelenideElement organization1 = $x("//*[text()='"+ name +"']");
+        if(organization.isDisplayed()) {
+            return organization;
+        }else {
+            return organization1;
+        }
+        
     }
 
     public Map<String, String> organizationOwnerInfo() {
