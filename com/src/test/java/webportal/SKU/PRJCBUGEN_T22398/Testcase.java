@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase {
         firststdevInfo.put("Serial Number1", WebportalParam.getDeviceSerialNoSKU("AP16"));
         firststdevInfo.put("MAC Address1", WebportalParam.getDeviceMacCSVSKU("AP16"));
        
-//        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         
        assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Onedevice"), "More device exits");
 
