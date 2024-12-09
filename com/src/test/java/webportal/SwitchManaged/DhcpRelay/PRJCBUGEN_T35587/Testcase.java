@@ -62,10 +62,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Enable Admin mode and check the CLI")
     public void step2() {
 
-        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection("0"), "admin Mode", null);
+        wdrp.enablePortConfigAdminModeOnPort(WiredDhcpRelayElement.txtPortSelection("1"), "admin Mode", null);
 
         handle.refresh();
-        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck("0").isEnabled());
+        assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck("1").isEnabled());
 
         handle.waitCmdReady("l2-relay", true);
         MyCommonAPIs.sleepsync();
@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     public void restore() {
 
         handle.refresh();
-        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection("0"));
+        wdrp.deletePortConfigAdminOrTrustModeOnPort(WiredDhcpRelayElement.txtPortSelection("1"));
 
     }
 
