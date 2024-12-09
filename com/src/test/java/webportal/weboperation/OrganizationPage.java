@@ -514,17 +514,23 @@ public class OrganizationPage extends OrganizationElement {
         }
     }
 
-    public boolean checkOrganizationIsExist(String name) {
+       public boolean checkOrganizationIsExist(String name) {
         boolean result = false;
         listChangeToGrid();
         // if(orgClick.exists())
         // {
         // orgClick.click();
         // }
-        if (organizationElement(name).exists()) {
+        MyCommonAPIs.sleepi(10);
+        System.out.println(organizationElement(name).exists());
+        System.out.println(organizationElement(name).isDisplayed());
+        
+        if (organizationElement(name).exists() ||  organizationElement(name).isDisplayed()) {
             result = true;
             logger.info("Organization is existed.");
+            
         }
+        System.out.println(result);
         return result;
     }
 
