@@ -49,7 +49,7 @@ public class Api_SetWiredRadiusPortConfig extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     {
-        Response response=new Api_GetDevices().step1();
+        Response response=new Api_GetDevices().step1(WebportalParam.networkIdSw);
         deviceId=response.jsonPath().getString("deviceInfo[0].deviceId");
 
         endPointUrl = new ApiRequest().ENDPOINT_URL;
@@ -58,7 +58,7 @@ public class Api_SetWiredRadiusPortConfig extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
         
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdSw);
         
         String requestBody = "{\"radiusServerConfig\":[{\"deviceId\":\""+deviceId+"\",\"name\":\""+WebportalParam.sw1deveiceName+"\",\"portModeInfo\":[{\"authMode\":\"0\",\"portId\":\"1\"}],\"radiusMode\":\"0\",\"serialNo\":\""+WebportalParam.sw1deveiceName+"\"}]}";
       

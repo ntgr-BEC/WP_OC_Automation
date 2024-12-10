@@ -4,6 +4,7 @@ import static org.hamcrest.Matchers.hasSize;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -13,11 +14,14 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import testbase.TestCaseBase;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
 import webportal.weboperation.ApiRequest;
+import webportal.weboperation.WebportalLoginPage;
 
 import static io.restassured.RestAssured.*;
 
@@ -43,7 +47,7 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
-  
+    
     @Step("Send get request to {url}")
     public void step1()
     {      
@@ -57,13 +61,15 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
        
         //will factory reset the device
-        String requestBody = "{\"device Info\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";     
+        String requestBody = "{\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";     
         
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
-        
+        MyCommonAPIs.sleepi(100);
+        new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
+        MyCommonAPIs.sleepi(980);
     }
 
 }

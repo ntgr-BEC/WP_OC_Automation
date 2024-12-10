@@ -70,9 +70,9 @@ public class Api_OrgSsidMacAuthDeleteDevices extends TestCaseBaseApi{
         Response add1=response.get(0);
         wirelessOrgId= add1.jsonPath().getString("wirelessOrgInfo.wirelessOrgId");
         //Created SSID with macAuth :0, deviceName : Laptop1 and mac : 11:34:12:33:44:66
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);    
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
        
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",WebportalParam.orgId);

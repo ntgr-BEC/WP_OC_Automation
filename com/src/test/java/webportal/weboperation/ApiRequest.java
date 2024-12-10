@@ -8,8 +8,11 @@ import static org.testng.Assert.assertTrue;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
@@ -51,6 +54,7 @@ import com.google.common.io.Files;
 import io.restassured.RestAssured;
 import io.restassured.parsing.Parser;
 import io.restassured.response.Response;
+import testbase.TestCaseBase;
 import util.APUtils;
 import util.Javasocket;
 import util.MyCommonAPIs;
@@ -59,6 +63,7 @@ import webportal.param.CommonDataType.SSIDData;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.webelements.DevicesDashPageElements;
 import webportal.webelements.WirelessQuickViewElement;
 import java.util.Random;
 import org.openqa.selenium.interactions.Actions;
@@ -497,6 +502,90 @@ import util.*;
             parts[3] = String.valueOf(desiredValue);  // Change the last part of the IP
             return String.join(".", parts);  // Join the parts back together
         }
+        
+        
+        public String readLicenceKeyByTxt(String option) {
+            String useLicence = "";
+            String licence = "";
+            String pathname = System.getProperty("user.dir") + "/src/test/resources/licence.txt";
+            try (FileReader reader = new FileReader(pathname); BufferedReader br = new BufferedReader(reader)) {
+                String line;
+                int i = 0;
+                while ((line = br.readLine()) != null) {
+                    if (line.equals("")) {
+                        i += 1;
+                        continue;
+                    }
+                    if (i == 0) {
+                        useLicence = line;
+                        i += 1;
+                        continue;
+                    } else if (i == 1) {
+                        licence += line;
+                        i += 1;
+                        continue;
+                    }
+                    licence += "\n" + line;
+                    i += 1;
+                }
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            if (option.equals("Write")) {
+                System.out.println("Write licence:" + licence);
+                try {
+                    PrintWriter pw = new PrintWriter(pathname);
+                    pw.write(licence);
+                    pw.flush();
+                    pw.close();
+                } catch (Exception e) {
+                    System.out.println(e);
+                    e.printStackTrace();
+                }
+            }
+            return useLicence;
+
+        }
+        
+        public void Setserver(String APIP){  
+            
+            new TestCaseBase().startBrowser();
+            System.out.println("Setting Server");
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            String oprnURL = "http://"+APIP+":9999/insight_server";
+            String username = "admin";
+            String password = "Netgear1@";
+            
+            // Construct the URL with basic authentication
+            String url = "http://" + username + ":" + password + "@172.16.27.43:9999/insight_server";
+
+            ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+            Selenide.switchTo().window(1);
+            String currentURL = new MyCommonAPIs().getCurrentUrl();
+            System.out.println(currentURL);
+            MyCommonAPIs.sleepi(5);     
+            if(url.contains("maint-beta")) {
+                System.out.println("inside Maint-beta");
+                new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
+            }else if(url.contains("pri-qa")) {
+                System.out.println("inside Pri-qa");
+                new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
+            }
+            else {
+                System.out.println("inside Maint-qa");
+                new DevicesDashPageElements().dropdownclick.selectOption("MAINT-QA"); 
+            }
+            new DevicesDashPageElements().submit.click();
+            
+            MyCommonAPIs.sleepi(5);
+            if(new DevicesDashPageElements().sucessmessage.exists()) {
+            System.out.println(new DevicesDashPageElements().sucessmessage.getText());
+            }
+            MyCommonAPIs.sleepi(5);
+            Selenide.switchTo().window(0);   
+
+        }
 
         public Map<String, String> ENDPOINT_URL = new HashMap<String, String>() {
             /**
@@ -530,9 +619,9 @@ import util.*;
                 put("TimeZone_List", "insightappcom/api/public/v1/timeZoneList");
                 put("Update_Location_Address", "insightappcom/api/network/v1/Address/{networkId}");
                 put("Clone_Network", "insightappcom/api/network/v1/cloneNetwork");
-                put("Firmware_Upgrade","insightappcom/api/network/v1/firmwareUpgrade/{deviceCount}/{networkId}");
+                put("Firmware_Upgrade","insightappcom/api/firmware/v1/firmwareUpgrade/{deviceCount}/{networkId}");
                 put("Update_Location_Password", "insightappcom/api/network/v1/locationPassword/{networkId}");
-                put("Firmware_Upgrade_Details","insightappcom/api/network/v1/firmwareUpgrade/devices/{networkId}");
+                put("Firmware_Upgrade_Details","insightappcom/api/firmware/v1/firmwareUpgrade/devices/{networkId}");
 				put("Add_Organization", "insightappcom/api/organization/v1/Organization/{accountId}");
                 put("Delete_Organization", "insightappcom/api/organization/v1/{accountId}/Organization/{orgId}");
                 put("Update_Organization", "insightappcom/api/organization/v1/Organization/{accountId}/{orgId}");

@@ -92,6 +92,7 @@ public class Api_ConnectedWifiClients extends TestCaseBaseApi{
       
         String clinetMac = WebportalParam.client1mac;
         clinetMac = clinetMac.replace(":","-");
+        clinetMac = clinetMac.toUpperCase();
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Connected_Clients"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
          .body("deviceInfo[0].wlan5LowConnectedClients[0].macAddress", equalTo(clinetMac))

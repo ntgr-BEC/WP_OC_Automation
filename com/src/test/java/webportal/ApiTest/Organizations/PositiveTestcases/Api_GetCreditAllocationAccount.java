@@ -31,7 +31,7 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> headers = new HashMap<String, String>();
     String OrgID; 
-    String OrgID1; 
+//    String OrgID1; 
     String Orgname;
     int DC= 3;
     int ICPC= 1;
@@ -54,7 +54,7 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
@@ -74,9 +74,9 @@ public class Api_GetCreditAllocationAccount extends TestCaseBaseApi{
         
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
-        headers.put("token",WebportalParam.token);
+        headers.put("token",WebportalParam.tokenPro);
         headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountIdPro);
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("startFrom", "0");

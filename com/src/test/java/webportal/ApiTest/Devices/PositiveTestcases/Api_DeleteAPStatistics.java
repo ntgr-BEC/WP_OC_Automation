@@ -46,6 +46,7 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+        step2();
     }
     
     @AfterMethod(alwaysRun=true)
@@ -53,7 +54,7 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
     { 
         Map<String, String> pathParams = new HashMap<String, String>(); 
         pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("id",id);   
+        pathParams.put("id","66f3bcfd1ad78f467b7fad8a");   
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
     }

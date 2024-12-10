@@ -116,8 +116,7 @@ public class Testcase extends TestCaseBase implements Config {
         String result2 = switchTelnet
                 .getCLICommand("show running-config interface " + WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]));
         System.out.println(result2);
-//        if (result2.contains("switchport mode private-vlan promiscuous") && result2.contains("switchport private-vlan mapping 1000 3098-3099")) {
-        if (result2.contains("switchport mode private-vlan host") && result2.contains("switchport private-vlan host-association 1000 3098")) {
+        if (result2.contains("switchport mode private-vlan promiscuous") && result2.contains("switchport private-vlan mapping 1000 3098-3099")) {
             micResult = true;
         } else {
             micResult = false;
@@ -150,7 +149,7 @@ public class Testcase extends TestCaseBase implements Config {
         System.out.println("start to do restore");
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        vlanPage.deleteVlan("private1000");
+        vlanPage.deleteAllVlan();
     }
 
 }

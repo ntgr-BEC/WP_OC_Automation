@@ -42,6 +42,18 @@ public class Api_GetMeshInfo extends TestCaseBaseApi{
     public void test() throws Exception {
         step1();
     }
+    
+    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {    
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("networkId",networkId);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
+  
 
   
     @Step("Send get request to {url}")

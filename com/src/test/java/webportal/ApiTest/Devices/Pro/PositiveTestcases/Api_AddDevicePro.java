@@ -51,22 +51,33 @@ public class Api_AddDevicePro extends TestCaseBaseApi{
     
     @BeforeMethod(alwaysRun=true)
     public void teardown()
-    { 
-        Response add = new Api_DeleteDevice().step1();     //delete the device first and then add the device
+    {   
+        
+        endPointUrl = new ApiRequest().ENDPOINT_URL; 
+        
+        headers.put("token",WebportalParam.tokenPro);
+        headers.put("apikey",WebportalParam.apikey);
+        headers.put("accountId",WebportalParam.accountIdPro);   
+        
+        Map<String, String> pathParamsnew = new HashMap<String, String>();
+        pathParamsnew.put("networkId",WebportalParam.networkIdPro);
+        pathParamsnew.put("serialNo",WebportalParam.ap2deveiceName);
+         
+        //TO PERFORM ANY REQUEST
+        Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Device"), headers, pathParamsnew, null); 
+        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.message", equalTo("Device deleted."));
+       
        
     }
   
     @Step("Send get request to {url}")
     public Response step1()
     {      
-        endPointUrl = new ApiRequest().ENDPOINT_URL; 
-        headers.put("token",WebportalParam.token);
-        headers.put("apikey",WebportalParam.apikey);
-        headers.put("accountId",WebportalParam.accountId);     
-        
-        pathParams.put("networkId",WebportalParam.networkId);
+
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         pathParams.put("orgId",WebportalParam.orgId);
-        String requestBody= "{\"deviceInfo\":[{\"abDeviceMode\":\"string\",\"abGroupId\":\"string\",\"deviceName\":\"string\",\"devicePlateform\":\"string\",\"deviceType\":\"string\",\"imeiNo\":\"string\",\"macAddress\":\"string\",\"model\":\"string\",\"profileId\":\"string\",\"profileSsid\":\"string\",\"profileSsidPwd\":\"string\",\"serialNo\":\"string\"}]}";
+        String requestBody= "{\"deviceInfo\":[{\"abDeviceMode\":\"string\",\"abGroupId\":\"string\",\"deviceName\":\"string\",\"devicePlateform\":\"WEB\",\"deviceType\":\"string\",\"imeiNo\":\"string\",\"macAddress\":\"string\",\"model\":\"string\",\"profileId\":\"string\",\"profileSsid\":\"string\",\"profileSsidPwd\":\"string\",\"serialNo\":\"string\"}]}";
                 
 //        String requestBody1 = "{\"deviceInfo\":{\"deviceType\":\"NA\",\"deviceName\":\"6AC2882982991\",\"serialNo\":\"6AC2882982991\",\"model\":\"\",\"macAddress\":\"87:17:87:18:37:91\",\"devicePlateform\":\"WEB\",\"abGroupId\":\"\",\"abDeviceMode\":\"1\"}}";
        
@@ -74,12 +85,13 @@ public class Api_AddDevicePro extends TestCaseBaseApi{
         requestBody = requestBody.replace("\"serialNo\":\"string\"", "\"serialNo\":\"" + WebportalParam.ap2deveiceName + "\"");
         requestBody = requestBody.replace("\"macAddress\":\"string\"", "\"macAddress\":\"" + WebportalParam.ap2macaddress + "\"");
         requestBody = requestBody.replace("\"deviceType\":\"string\"", "\"deviceType\":\"AP\"");
+        requestBody = requestBody.replace("\"model\":\"string\"", "\"model\":\" "+ WebportalParam.ap2Model + "\"");
 
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Device_Pro"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("response.message", equalTo("Device added."))
-        .body("deviceInfo.deviceName", equalTo(WebportalParam.ap2deveiceName));
+        getResponse.then().body("info[0].message", equalTo("Device added."))
+        .body("info[0].deviceName", equalTo(WebportalParam.ap2deveiceName));
         MyCommonAPIs.sleepi(1000);
         
         return getResponse;

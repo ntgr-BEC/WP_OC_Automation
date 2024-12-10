@@ -54,15 +54,15 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
         System.out.println("Start to tare down");
         Map<String, String> pathParams = new HashMap<String, String>();
         
-        pathParams.put("accountId",WebportalParam.accountId);  
+        pathParams.put("accountId",WebportalParam.accountIdPro);  
         
-        for(int i=0; i<OrgID.size(); i++) {
+        for(int i=0; i<OrgID.size()-1; i++) {
             pathParams.put("orgId",OrgID.get(i));
             Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
             getResponse1.then().body("response.status", equalTo(true));
         }
         
-    }  
+    }   
     
   
     @Step("Send get request to {url}")
@@ -75,22 +75,24 @@ public class Api_GetListOfOrganization extends TestCaseBaseApi{
             OrgID.add(response1.jsonPath().getString("orgInfo.orgId"));
             OrgID.add(response2.jsonPath().getString("orgInfo.orgId"));
             OrgID.add(response3.jsonPath().getString("orgInfo.orgId"));
+            OrgID.add(WebportalParam.orgId);
             
             endPointUrl = new ApiRequest().ENDPOINT_URL;          
-            headers.put("token",WebportalParam.token);
+            headers.put("token",WebportalParam.tokenPro);
             headers.put("apikey",WebportalParam.apikey);
-            headers.put("accountId",WebportalParam.accountId);
+            headers.put("accountId",WebportalParam.accountIdPro);
                                    
             Map<String, String> pathParams = new HashMap<String, String>();
-            pathParams.put("accountId",WebportalParam.accountId);
+            pathParams.put("accountId",WebportalParam.accountIdPro);
                        
             Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Get_Organization_List"), headers, pathParams, null); 
             getResponse.then().body("response.status", equalTo(true));
             OrgIDgetList.add(getResponse.jsonPath().getString("details[0].orgId"));
             OrgIDgetList.add(getResponse.jsonPath().getString("details[1].orgId"));
             OrgIDgetList.add(getResponse.jsonPath().getString("details[2].orgId"));
-            
-            boolean areEqual = OrgIDgetList.equals(OrgID);
+            OrgIDgetList.add(getResponse.jsonPath().getString("details[3].orgId"));
+        
+            boolean areEqual = OrgIDgetList.containsAll(OrgID);
             assertTrue(areEqual, "Get List is Not sucessfull");
 
                          

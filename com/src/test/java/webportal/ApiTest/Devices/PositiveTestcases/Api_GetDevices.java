@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class Api_GetDevices extends TestCaseBaseApi{
 
-    String networkId;
+ 
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
     Map<String, String> pathParams = new HashMap<String, String>();
@@ -41,11 +41,12 @@ public class Api_GetDevices extends TestCaseBaseApi{
     
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
-        step1();
+        String networkId= WebportalParam.networkId;
+        step1(networkId);
     }
   
     @Step("Send get request to {url}")
-    public Response step1()
+    public Response step1(String networkId)
     {      
         endPointUrl = new ApiRequest().ENDPOINT_URL;
 
@@ -53,7 +54,7 @@ public class Api_GetDevices extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         headers.put("accountId",WebportalParam.accountId);     
       
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",networkId);
         pathParams.put("page","0");
          
         //TO PERFORM ANY REQUEST

@@ -55,7 +55,7 @@ public class Api_DNSLookupTest extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
     
-        String requestBody = "{\"command\":[{\"commandParam\":\"netgear.com\",\"commandType\":\"1\",\"initTtl\":\"string\",\"interval\":\"string\",\"maxTtl\":\"string\",\"packetSize\":\"string\",\"packetsPerHop\":\"string\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"string\",\"size\":\"string\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
+        String requestBody = "{\"command\":[{\"commandParam\":\"bing.com\",\"commandType\":\"1\",\"initTtl\":\"string\",\"interval\":\"string\",\"maxTtl\":\"string\",\"packetSize\":\"string\",\"packetsPerHop\":\"string\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"string\",\"size\":\"string\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
         
 
         //TO PERFORM ANY REQUEST 
@@ -63,6 +63,8 @@ public class Api_DNSLookupTest extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
         .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
         .body("info[0].serialNo", equalTo(WebportalParam.ap1deveiceName));
+        
+        MyCommonAPIs.sleepi(50);
      
        return getResponse;
         

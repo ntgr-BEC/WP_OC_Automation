@@ -55,13 +55,13 @@ public class Api_TracerouteTest extends TestCaseBaseApi{
       
         pathParams.put("networkId",WebportalParam.networkId);
         
-        String requestBody = "{\"command\":[{\"commandParam\":\"netgear.com\",\"commandType\":\"4\",\"initTtl\":\"1\",\"interval\":\"3\",\"maxTtl\":\"30\",\"packetSize\":\"string\",\"packetsPerHop\":\"3\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"33434\",\"size\":\"46\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
+        String requestBody = "{\"command\":[{\"commandParam\":\"yahoo.com\",\"commandType\":\"4\",\"initTtl\":\"1\",\"interval\":\"3\",\"maxTtl\":\"3\",\"packetSize\":\"string\",\"packetsPerHop\":\"3\",\"pingCount\":\"string\",\"pingInterval\":\"string\",\"pingTimeout\":\"string\",\"port\":\"33434\",\"size\":\"46\"}],\"serialNo\":[\""+WebportalParam.ap1serialNo+"\"]}";
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Traceroute"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
          .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
          .body("info[0].serialNo", equalTo(WebportalParam.ap1deveiceName));
-        
+        MyCommonAPIs.sleepi(120);
         return getResponse;
     }
 }
