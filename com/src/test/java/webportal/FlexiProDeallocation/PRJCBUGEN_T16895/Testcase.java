@@ -51,8 +51,7 @@ public class Testcase extends TestCaseBase {
         new OrganizationPage().deleteOrganizationNew(organizationName);
         MyCommonAPIs.sleepi(20);        
         System.out.print(organizationInfoNew.get("Name"));
-        new OrganizationPage().deleteOrganizationNew(organizationInfoNew.get("Name"));
-        MyCommonAPIs.sleepi(200);   
+        new OrganizationPage().deleteOrganizationNew(organizationInfoNew.get("Name")); 
 
     }
 
