@@ -283,7 +283,7 @@ public class OrganizationPage extends OrganizationElement {
             clickYesNo(true);
             businessPhone.setValue(noLoc);
             devAdminPwd.setValue(WebportalParam.loginDevicePassword);
-            MyCommonAPIs.sleepi(15);
+            MyCommonAPIs.sleepi(20);
             nextButton.click();
             waitReady();
             clickButton(0);
@@ -301,7 +301,7 @@ public class OrganizationPage extends OrganizationElement {
             MyCommonAPIs.sleepi(2);
             if (map.containsKey("New Name")) {
                 NameOrg.clear();
-                MyCommonAPIs.sleepi(1);
+                MyCommonAPIs.sleepi(5);
                 NameOrg.sendKeys(map.get("New Name"));
             }
             // if (map.containsKey("Owner Name")) {
@@ -362,6 +362,7 @@ public class OrganizationPage extends OrganizationElement {
             }
             selectNotificationAndReport(map);
             if (map.containsKey("Scheduled Reports")) {
+                MyCommonAPIs.sleepi(2);
                 if (map.get("Scheduled Reports").equals("disable")) {
                     MyCommonAPIs.sleepi(10);
                     if (!scheduleweekly.has(Condition.attribute("disabled"))) {
@@ -388,6 +389,7 @@ public class OrganizationPage extends OrganizationElement {
                     break;
                 }
             }
+            MyCommonAPIs.sleepi(10);
             SaveOrg.click();
             logger.info("--------------- Organisation is Edited Succesfully ----------");
             Selenide.sleep(10000);
