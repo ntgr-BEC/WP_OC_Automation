@@ -25,20 +25,25 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public SelenideElement activationDate(String text) {
         SelenideElement activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[2]");
+        SelenideElement activationDate1 = $x("//span[contains(text(), '" + text + "')]/../../../../../td[3]/p[2]");
+        SelenideElement activationDate2 = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[1]");
         if(activationDate.isDisplayed()) {
            System.out.println("old one");
-        }else {
+        }else if(activationDate1.exists()){
              activationDate = $x("//span[contains(text(), '" + text + "')]/../../../../../td[3]/p[2]");
+         }else {
+             activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[1]");
          }
         return activationDate;
     }
 
     public SelenideElement ExpiryDate(String text) {
         SelenideElement ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p");
+        SelenideElement ExpiryDate2 = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p[2]");
         if(ExpiryDate.isDisplayed()) {
             System.out.println("old one");
          }else {
-             ExpiryDate = $x("//span[contains(text(), '" + text + "')]/../../../../../td[4]/p");
+              ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p[2]");
           }
         return ExpiryDate;
     }
@@ -977,5 +982,20 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  usageHistoryTab                   = $x("//li[text()='Usage History']");
   public SelenideElement  usageHistoryTextVerify            = $x("//p[contains(text(),'available on the first day of the next month.')]");
   public SelenideElement  mubtextAboutDisableMUB            = $x("//div[contains(text(),'be disabled on the first day of the next month')]");
+  public SelenideElement activationDatePremiumAcc(String text) {
+      SelenideElement activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[3]/p[1]");
+      if(activationDate.isDisplayed()) {
+         System.out.println("old one");
+      }
+      return activationDate;
+  }
+
+  public SelenideElement ExpiryDatePremiumAcc(String text) {
+      SelenideElement ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[2]");
+      if(ExpiryDate.isDisplayed()) {
+          System.out.println("old one");
+       }
+      return ExpiryDate;
+  }
 }
 
