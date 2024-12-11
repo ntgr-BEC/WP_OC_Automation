@@ -47,6 +47,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
 //    public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
     public static SelenideElement accountmanager             = $x("(//*[@id='notificationDrop']/../../ul//a)[1]");
+    public static SelenideElement accountmanager1            = $x("//*[text()='Account Management'])[1]");
     public SelenideElement        accountemail               = $("#hEmailsubscriptions");
     public static SelenideElement vpnservices                = $x("//div/a[text()='" + WebportalParam.getLocText("VPN Services") + "']");
     public SelenideElement        InstantVPN                 = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div[1]/div[1]/ul/li[2]");
