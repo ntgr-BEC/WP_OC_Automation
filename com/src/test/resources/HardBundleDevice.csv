@@ -1,5 +1,5 @@
 DEVICE NAME,DEVICE SERIAL,LOCATION NAME,MAC Address
-ap1,4XT7788990066,BulkOnboarding,aa:bb:cc:dd:ee:fa
+ap1,4XT7788990055,BulkOnboarding,aa:bb:cc:dd:ee:fa
 ap2,5LG7788990066,BulkOnboarding,aa:bb:cc:dd:ee:fb
 ap3,6087788990066,BulkOnboarding,aa:bb:cc:dd:ee:fc
 sw1,5147788990066,BulkOnboarding,aa:bb:cc:dd:ee:fa
