@@ -94,7 +94,7 @@ public class TestCase extends TestCaseBase {
         String filePath = DeviceBulkOnboardingPage.GetcurrentPath();
         filePath = filePath + "PRJCBUGEN_T1211234\\Bulkonbord.csv";
         System.out.println(filePath);
-        new AccountPage(false).enterLocation(locationName); 
+    
         System.out.println("check where the screen is");
         new DeviceBulkOnboardingPage().GoToSummaryPage(locationName);
         new DeviceBulkOnboardingPage().ImportCvsFilesummaryscreenBySelectingALL(filePath);

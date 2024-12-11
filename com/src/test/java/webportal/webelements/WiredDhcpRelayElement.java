@@ -63,7 +63,7 @@ public class WiredDhcpRelayElement extends MyCommonAPIs {
     }
     
     public static SelenideElement txtPortAdminModeCheck(String portNo) {
-        return $x(String.format("(//li[@id='device_0_port_%s']//span[@id='spnEtherNetPortsjuhiii9GroupPrt0'])[1]", portNo, portNo));
+        return $x(String.format("(//li[@id='device_0_port_%s']//span[@class='icon-L1 Sright'])", portNo, portNo));
     }
     
     public static SelenideElement txtPortTrustModeCheck(String portNo) {

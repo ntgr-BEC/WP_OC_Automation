@@ -25,20 +25,25 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public SelenideElement activationDate(String text) {
         SelenideElement activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[2]");
+        SelenideElement activationDate1 = $x("//span[contains(text(), '" + text + "')]/../../../../../td[3]/p[2]");
+        SelenideElement activationDate2 = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[1]");
         if(activationDate.isDisplayed()) {
            System.out.println("old one");
-        }else {
+        }else if(activationDate1.exists()){
              activationDate = $x("//span[contains(text(), '" + text + "')]/../../../../../td[3]/p[2]");
+         }else {
+             activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[1]");
          }
         return activationDate;
     }
 
     public SelenideElement ExpiryDate(String text) {
         SelenideElement ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p");
+        SelenideElement ExpiryDate2 = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p[2]");
         if(ExpiryDate.isDisplayed()) {
             System.out.println("old one");
          }else {
-             ExpiryDate = $x("//span[contains(text(), '" + text + "')]/../../../../../td[4]/p");
+              ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[5]/p[2]");
           }
         return ExpiryDate;
     }
@@ -47,6 +52,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
 //    public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
     public static SelenideElement accountmanager             = $x("(//*[@id='notificationDrop']/../../ul//a)[1]");
+    public static SelenideElement accountmanager1            = $x("//*[text()='Account Management'])[1]");
     public SelenideElement        accountemail               = $("#hEmailsubscriptions");
     public static SelenideElement vpnservices                = $x("//div/a[text()='" + WebportalParam.getLocText("VPN Services") + "']");
     public SelenideElement        InstantVPN                 = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div[1]/div[1]/ul/li[2]");
@@ -466,7 +472,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("//*[@class=\"fl\"]");
+    public SelenideElement        checkemailtitle       = $x("(//*[@id=\"email_list\"]/tr)[1]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -681,7 +687,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement mailMemoCnfm            = $x("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/text()[2]");
     public static SelenideElement openLinkClkHere         = $x("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/a");
 
-    public static SelenideElement MonthlyPaymentMethod          = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div/div/div[2]/div/div[2]/p[2]/span");
+    public static SelenideElement MonthlyPaymentMethod          = $x("//*[@class=\"monthlyUsageBillingDetail\"]//span[@class=\"cstmSlider cstmRound\"]");
     public static SelenideElement AccountType                   = $x("//*[@id=\"header\"]/div[2]/div/ul/li/div/div/div[2]/p[2]");
     public static SelenideElement closeTheWindow                = $x("//*[@id=\"mainHeader\"]/div[16]/div/div/div/span/img");
     public static SelenideElement freetrailText                 = $x(
@@ -977,5 +983,21 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  usageHistoryTab                   = $x("//li[text()='Usage History']");
   public SelenideElement  usageHistoryTextVerify            = $x("//p[contains(text(),'available on the first day of the next month.')]");
   public SelenideElement  mubtextAboutDisableMUB            = $x("//div[contains(text(),'be disabled on the first day of the next month')]");
+  public SelenideElement activationDatePremiumAcc(String text) {
+      SelenideElement activationDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[3]/p[1]");
+      if(activationDate.isDisplayed()) {
+         System.out.println("old one");
+      }
+      return activationDate;
+  }
+
+  public SelenideElement ExpiryDatePremiumAcc(String text) {
+      SelenideElement ExpiryDate = $x("//span[contains(text(), '" + text + "')]//..//..//../../../td[4]/p[2]");
+      if(ExpiryDate.isDisplayed()) {
+          System.out.println("old one");
+       }
+      return ExpiryDate;
+  }
+  public SelenideElement  verifyAdminEmailMessage           = $x("//td[contains(text(),'Please confirm your email address')]");
 }
 

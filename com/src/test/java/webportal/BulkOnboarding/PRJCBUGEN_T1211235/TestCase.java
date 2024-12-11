@@ -81,17 +81,17 @@ public class TestCase extends TestCaseBase {
         
         HamburgerMenuPage hamburgearMenuPage =  new HamburgerMenuPage();
         hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
-        new AccountPage().enterLocation(locationName); 
+     
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.openOrg(organizationName);
+        new AccountPage(false).enterLocation(locationName); 
         
         DeviceBulkOnboardingPage DeviceBulkOnboardingPage = new DeviceBulkOnboardingPage();
-        DeviceBulkOnboardingPage.GoToSummaryPage(locationName);
-        
+
         String filePath = DeviceBulkOnboardingPage.GetcurrentPath();
         filePath = filePath + "PRJCBUGEN_T1211234\\Bulkonbord.csv";
         System.out.println(filePath);
-        new AccountPage(false).enterLocation(locationName); 
+      
         System.out.println("check where the screen is");
         new DeviceBulkOnboardingPage().ImportCvsFile(filePath);
 

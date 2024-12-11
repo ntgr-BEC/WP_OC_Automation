@@ -183,6 +183,8 @@ public class OrganizationPage extends OrganizationElement {
             if (AddOrg.exists()) {
                 AddOrg.click();
                 MyCommonAPIs.sleepi(15);
+                Selenide.refresh();
+                MyCommonAPIs.sleepi(3);
                 NameOrg.sendKeys(map.get("Name"));
                 if (map.containsKey("Owner Name")) {
                     ownerName.sendKeys(map.get("Owner Name"));
@@ -281,6 +283,7 @@ public class OrganizationPage extends OrganizationElement {
             clickYesNo(true);
             businessPhone.setValue(noLoc);
             devAdminPwd.setValue(WebportalParam.loginDevicePassword);
+            MyCommonAPIs.sleepi(20);
             nextButton.click();
             waitReady();
             clickButton(0);
@@ -294,6 +297,9 @@ public class OrganizationPage extends OrganizationElement {
         if (checkOrganizationIsExist(map.get("Name"))) {
             dropdownOrganizationElement(map.get("Name")).click();
             editOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            refresh();
+            MyCommonAPIs.sleepi(15);
             waitElement(NameOrg);
             MyCommonAPIs.sleepi(2);
             if (map.containsKey("New Name")) {
@@ -383,6 +389,8 @@ public class OrganizationPage extends OrganizationElement {
                     break;
                 }
             }
+            waitElement(SaveOrg);
+            MyCommonAPIs.sleepi(1);
             SaveOrg.click();
             logger.info("--------------- Organisation is Edited Succesfully ----------");
             Selenide.sleep(10000);
@@ -493,7 +501,7 @@ public class OrganizationPage extends OrganizationElement {
             MyCommonAPIs.sleepi(1);
             dropdownOrganizationElement(name).click();
             waitElement(deleteOrganizationElement(name));
-            MyCommonAPIs.sleepi(1);
+            MyCommonAPIs.sleepi(5);
             deleteOrganizationElement(name).click();
             MyCommonAPIs.sleepi(20);
             waitElement(deletedialogbutton);
