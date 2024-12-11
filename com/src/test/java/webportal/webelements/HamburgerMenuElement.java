@@ -466,7 +466,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("//*[@class=\"fl\"]");
+    public SelenideElement        checkemailtitle       = $x("(//*[@id=\"email_list\"]/tr)[1]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -681,7 +681,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement mailMemoCnfm            = $x("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/text()[2]");
     public static SelenideElement openLinkClkHere         = $x("/html/body/table/tbody/tr/td/table/tbody/tr[3]/td/table/tbody/tr[1]/td/a");
 
-    public static SelenideElement MonthlyPaymentMethod          = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div/div/div[2]/div/div[2]/p[2]/span");
+    public static SelenideElement MonthlyPaymentMethod          = $x("//*[@class=\"monthlyUsageBillingDetail\"]//span[@class=\"cstmSlider cstmRound\"]");
     public static SelenideElement AccountType                   = $x("//*[@id=\"header\"]/div[2]/div/ul/li/div/div/div[2]/p[2]");
     public static SelenideElement closeTheWindow                = $x("//*[@id=\"mainHeader\"]/div[16]/div/div/div/span/img");
     public static SelenideElement freetrailText                 = $x(

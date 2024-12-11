@@ -183,6 +183,8 @@ public class OrganizationPage extends OrganizationElement {
             if (AddOrg.exists()) {
                 AddOrg.click();
                 MyCommonAPIs.sleepi(15);
+                Selenide.refresh();
+                MyCommonAPIs.sleepi(3);
                 NameOrg.sendKeys(map.get("Name"));
                 if (map.containsKey("Owner Name")) {
                     ownerName.sendKeys(map.get("Owner Name"));

@@ -14,6 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.OrganizationPage;
@@ -48,7 +49,10 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         System.out.println("start to do tearDown");
         new OrganizationPage().deleteOrganizationNew(organizationName);
-        new OrganizationPage().deleteOrganizationNew(organizationInfoNew.get("Name"));
+        MyCommonAPIs.sleepi(20);        
+        System.out.print(organizationInfoNew.get("Name"));
+        new OrganizationPage().deleteOrganizationNew(organizationInfoNew.get("Name")); 
+
     }
 
     // Each step is a single test step from Jira Test Case
@@ -60,27 +64,10 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Add new organization, then check devices credits page;")
     public void step2() {
-//        organizationInfo.put("Name", organizationName);
-//        organizationInfoNew.put("Name", organizationName + "new");
-//
-//       
-//        OrganizationPage.addOrganization(organizationInfo);
-//        OrganizationPage.addOrganization(organizationInfoNew);
-//
-//        new HamburgerMenuPage().configCreditAllocation(organizationInfoNew.get("Name"), devNumNew, 0, icpNumNew);
-//        new HamburgerMenuPage().configCreditAllocation(organizationName, devNum, 0, icpNum);
-//        
-//
-//        HashMap<String, String> creditsInfo = new HamburgerMenuPage().getDeallocatePageInfo();
-//        
-//        System.out.println( creditsInfo.get("Deallocate DevNum"));
-//        System.out.println( creditsInfo.get("Deallocate IcpNum"));
-//        assertTrue(
-//                creditsInfo.get("Deallocate DevNum").equals(String.valueOf(devNumNew + devNum)) && creditsInfo.get("Deallocate IcpNum").equals(String.valueOf(icpNumNew + icpNum)),
-//                "Allocate credits error.");
         organizationInfo.put("Name", organizationName);
         organizationInfoNew.put("Name", organizationName + "new");
-
+        System.out.print(organizationInfoNew.get("Name"));
+    
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.addOrganization(organizationInfo);
         OrganizationPage.addOrganization(organizationInfoNew);
@@ -104,3 +91,4 @@ public class Testcase extends TestCaseBase {
     }
 
 }
+
