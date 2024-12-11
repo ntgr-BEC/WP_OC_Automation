@@ -59,9 +59,16 @@ public class Testcase extends TestCaseBase implements Config {
     public void step2() {
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
         WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
-        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
+        if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
+        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING3);
+        }else {
+            wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
+        }
+            
+        
         expectRateLimitValue = wiredGroupPortConfigPage.rateLimitValue.replace("%", "").trim();
         expectStormControlValue = wiredGroupPortConfigPage.stromControlValue.replace("%", "").trim();
+        
         System.out.println("expectRateLimitValue = "+ expectRateLimitValue );   
         System.out.println("expectStormControlValue = "+ expectStormControlValue );   
     }
@@ -69,19 +76,40 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 3: Check configuration on webportal")
     public void step3() {
         // check sw1 on webportal
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(200);
+        
         for (int i = 0; i < SW1PORT.length; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
+            
             DevicesSwitchConnectedNeighboursPortConfiqSummaryPage devicesSwitchConnectedNeighboursPortConfiqSummaryPage = devicesSwitchSummaryPage
                     .enterPortConfigSummary(SW1PORT[i]);
             DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+           
             String egressRate = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getEgressRateValue();
             Selenide.refresh();
+            
             String stormControlRate = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getStormControlRateValue();
             String portSpeed = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortSpeed(); 
+            
             System.out.println("egressRate = "+ egressRate );   
-            System.out.println("stormControlRate = "+ stormControlRate );            
+            System.out.println("stormControlRate = "+ stormControlRate ); 
+            
+            System.out.println("portSpeed inside config = "+ BATTCHSETTING3.get("Port_Speed") ); 
+            
+            System.out.println("portSpeed = "+ portSpeed ); 
+            if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
+            if (expectRateLimitValue.contains(egressRate) && expectStormControlValue.contains(stormControlRate)
+                    && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(BATTCHSETTING3.get("Port_Speed"), portSpeed)) {
+                micResult = true;
+            } else {
+                micResult = false;
+                assertTrue(micResult,
+                        "actual egressRate is: " + egressRate + ", stormControlRate value is: " + stormControlRate + "port speed is: " + portSpeed);
+            }
+        }
+        else {
+            
             if (expectRateLimitValue.contains(egressRate) && expectStormControlValue.contains(stormControlRate)
                     && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(PORT_SPEED, portSpeed)) {
                 micResult = true;
@@ -90,6 +118,8 @@ public class Testcase extends TestCaseBase implements Config {
                 assertTrue(micResult,
                         "actual egressRate is: " + egressRate + ", stormControlRate value is: " + stormControlRate + "port speed is: " + portSpeed);
             }
+        }
+            
         }
     }
 
@@ -116,7 +146,10 @@ public class Testcase extends TestCaseBase implements Config {
         }
 
         String portSpeed = SwitchCLIUtils.getPortInfo(WebportalParam.sw1LagPort1CLI);
-        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("100")) {
+        System.out.println("port speed "+portSpeed);
+        System.out.println("cli port speed "+SwitchCLIUtils.PortClass.sPortSpeed);
+        
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("1000")) {
             micResult = true;
         } else {
             micResult = false;
