@@ -118,6 +118,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         String url = MyCommonAPIs.getCurrentUrl();
         MyCommonAPIs.sleepi(10);
         closeLockedDialog();
+        Selenide.refresh();
+        MyCommonAPIs.sleepi(15);
         if (!notificationicon.exists()) {
             WebCheck.checkHrefIcon(URLParam.hrefDevices);
             MyCommonAPIs.sleepi(10);
