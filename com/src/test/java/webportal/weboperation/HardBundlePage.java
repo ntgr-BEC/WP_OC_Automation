@@ -221,11 +221,11 @@ public class HardBundlePage extends HardbundlePageElement {
         
     }
     
- public boolean CheckAllHBadded(String serialNo1, String serialNo2, String serialNo3, String serialNo4, String serialNo5, String serialNo6, String serialNo7, String serialNo8, String serialNo9, String serialNo10, String serialNo11, String serialNo12, String serialNo13) {
+ public boolean CheckAllHBadded(String serialNo1, String serialNo3, String serialNo4, String serialNo5, String serialNo6, String serialNo7, String serialNo9, String serialNo10, String serialNo11, String serialNo12, String serialNo13) {
         
         boolean result = false;
         
-        if(deviceExit(serialNo1).exists() && deviceExit(serialNo2).exists() && deviceExit(serialNo3).exists() && deviceExit(serialNo4).exists() && deviceExit(serialNo5).exists() && deviceExit(serialNo6).exists() && deviceExit(serialNo7).exists() && deviceExit(serialNo8).exists() && deviceExit(serialNo9).exists() && deviceExit(serialNo10).exists() && deviceExit(serialNo11).exists() && deviceExit(serialNo12).exists() && deviceExit(serialNo13).exists()) {
+        if(deviceExit(serialNo1).exists() && deviceExit(serialNo3).exists() && deviceExit(serialNo4).exists() && deviceExit(serialNo5).exists() && deviceExit(serialNo6).exists() && deviceExit(serialNo7).exists() && deviceExit(serialNo9).exists() && deviceExit(serialNo10).exists() && deviceExit(serialNo11).exists() && deviceExit(serialNo12).exists() && deviceExit(serialNo13).exists()) {
             result = true;
             System.out.println("All Hardbundledevice exits");
         }
