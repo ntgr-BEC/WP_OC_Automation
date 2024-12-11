@@ -29,6 +29,7 @@ public class Testcase extends TestCaseBase {
     Random r        = new Random();
     int    num      = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num);
+    String readMan = mailname + "@yopmail.com";
 
     @Feature("InsightPro.InvitingReadManager") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T14410") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -42,7 +43,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new ManagerPage().deleteManager(mailname + "@mailcatch.com");
+        new ManagerPage().deleteManager(readMan);
         System.out.println("start to do tearDown");
     }
 
@@ -58,7 +59,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", "test14410");
-        managerInfo.put("Email Address", mailname + "@mailcatch.com");
+        managerInfo.put("Email Address", readMan);
         managerInfo.put("Organization Name", WebportalParam.Organizations);
         managerInfo.put("Access Policy", "Read");
 
@@ -67,14 +68,16 @@ public class Testcase extends TestCaseBase {
         if (new ManagerPage(false).checkSuccessDialog()) {
 
             Map<String, String> editManagerInfo = new HashMap<String, String>();
-            editManagerInfo.put("Old Email Address", mailname + "@mailcatch.com");
+            editManagerInfo.put("Old Email Address", readMan);
             editManagerInfo.put("Access Policy", "Read/Write");
             editManagerInfo.put("Organization Name", WebportalParam.Organizations);
 
             new ManagerPage(false).editManager(editManagerInfo);
 
-            assertTrue(new ManagerPage().checkEditResult(managerInfo.get("Email Address"), editManagerInfo.get("Access Policy"), "0"),
-                    "Edit manager information failed.");
+            assertTrue(
+                    new ManagerPage(false).checkSuccessDialog()
+                            && new ManagerPage(false).checkEditResult(editManagerInfo.get("Old Email Address"), managerInfo.get("Access Policy"), "1"),
+                    "Invite manager failed.");
         } else {
             assertTrue(false, "Add manager failed.");
         }

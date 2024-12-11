@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000);
-    String mailname = "abcwz" + String.valueOf(num) + "@sharklasers.com";;
+    String mailname = "abcwz" + String.valueOf(num) + "@yopmail.com";;
 
     @Feature("InsightPro.ProAccountCreation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T14341") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -51,11 +51,6 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("/dashboard")) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        }
         System.out.println("start to do tearDown");
     }
 
@@ -92,7 +87,7 @@ public class Testcase extends TestCaseBase {
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessage(mailname), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForProAdminAccount(mailname), "Not received Confirmation email.");
     }
 
 }
