@@ -9179,6 +9179,23 @@ public static boolean verifyOrganizationsVisibility() {
     return allVisible;
 }
 
+//addedbyPratik
+public String getActivationDatePremiumAcc(String SerialNo) {
+    ;
+    MyCommonAPIs.sleepi(3);
+    String activationdate = getText(activationDatePremiumAcc(SerialNo));
+    return activationdate;
+
+}
+//addedbyPratik
+public String getExpiryDatePremiumAcc(String SerialNo) {
+
+    MyCommonAPIs.sleepi(3);
+    String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
+    return getExpiryDate;
+
+}
+
 }
 
 

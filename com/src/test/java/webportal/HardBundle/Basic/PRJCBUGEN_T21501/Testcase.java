@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.codeborne.selenide.Selectors;
@@ -25,6 +26,7 @@ import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.HardBundlePage;
 import webportal.weboperation.OrganizationPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 
@@ -51,6 +53,13 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -73,6 +82,27 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
+  
+    @Step("Test Step 3: Create Location ")
+    public void step3() {
+        
+       new HardBundlePage().GoTocreateLocation();
+        
+        Map<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", locationName);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "4560");
+        locationInfo.put("Country", "Australia");
+        new AccountPage().addNetwork(locationInfo);
+        
+        new AccountPage().enterLocation(locationName);
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+        
+    }
     
     @Step("Test Step 2: Check buy  basic  subscription in Country Australia;")
     public void step2() {
@@ -95,20 +125,6 @@ public class Testcase extends TestCaseBase {
                 .checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 2)), "Amount is incorrect.");
     }
          
-    
-    @Step("Test Step 3: Create Location ")
-    public void step3() {
-        
-       new HardBundlePage().GoTocreateLocation();
-        
-        Map<String, String> locationInfo = new HashMap<String, String>();
-        locationInfo.put("Location Name", locationName);
-        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "Australia");
-        new AccountPage().addNetwork(locationInfo);
-        
-    }
     
     @Step("Test Step 4: Add HB device ")
     public void step4() {
