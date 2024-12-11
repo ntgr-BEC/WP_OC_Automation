@@ -297,11 +297,14 @@ public class OrganizationPage extends OrganizationElement {
         if (checkOrganizationIsExist(map.get("Name"))) {
             dropdownOrganizationElement(map.get("Name")).click();
             editOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            refresh();
+            MyCommonAPIs.sleepi(15);
             waitElement(NameOrg);
             MyCommonAPIs.sleepi(2);
             if (map.containsKey("New Name")) {
                 NameOrg.clear();
-                MyCommonAPIs.sleepi(5);
+                MyCommonAPIs.sleepi(1);
                 NameOrg.sendKeys(map.get("New Name"));
             }
             // if (map.containsKey("Owner Name")) {
@@ -362,11 +365,8 @@ public class OrganizationPage extends OrganizationElement {
             }
             selectNotificationAndReport(map);
             if (map.containsKey("Scheduled Reports")) {
-                MyCommonAPIs.sleepi(2);
                 if (map.get("Scheduled Reports").equals("disable")) {
-                    MyCommonAPIs.sleepi(10);
                     if (!scheduleweekly.has(Condition.attribute("disabled"))) {
-                        MyCommonAPIs.sleepi(10);
                         scheduledreport.click();
                     }
                 } else if (map.get("Scheduled Reports").equals("enable")) {
@@ -389,7 +389,8 @@ public class OrganizationPage extends OrganizationElement {
                     break;
                 }
             }
-            MyCommonAPIs.sleepi(10);
+            waitElement(SaveOrg);
+            MyCommonAPIs.sleepi(1);
             SaveOrg.click();
             logger.info("--------------- Organisation is Edited Succesfully ----------");
             Selenide.sleep(10000);
