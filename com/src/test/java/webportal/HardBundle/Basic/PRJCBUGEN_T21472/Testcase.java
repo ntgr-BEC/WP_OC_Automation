@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -20,6 +21,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.HardBundlePage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 
@@ -46,6 +48,13 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -69,6 +78,27 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
+    @Step("Test Step 3: Create Location ")
+    public void step3() {
+        
+        new HardBundlePage().GoTocreateLocation();
+        
+        Map<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", locationName);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "4560");
+        locationInfo.put("Country", "United States of America");
+        new AccountPage().addNetwork(locationInfo);
+        
+        new AccountPage().enterLocation(locationName);
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+        
+    }
+    
     @Step("Test Step 2: Buy devices number by basic plan;")
     public void step2() {
         Map<String, String> paymentInfo = new HashMap<String, String>();
@@ -87,23 +117,9 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("Expiration Year", "2030");
         new HamburgerMenuPage().buyDeviceCredits(paymentInfo);
         assertTrue(new HamburgerMenuPage(false)
-                .checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 2)), "Amount is incorrect.");
+                .checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
     }
-    
-    @Step("Test Step 3: Create Location ")
-    public void step3() {
         
-        new HardBundlePage().GoTocreateLocation();
-        
-        Map<String, String> locationInfo = new HashMap<String, String>();
-        locationInfo.put("Location Name", locationName);
-        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "United States of America");
-        new AccountPage().addNetwork(locationInfo);
-        
-    }
-    
     @Step("Test Step 4: Add HB device ")
     public void step4() {
         
@@ -112,13 +128,13 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
         
         firststdevInfo.put("Serial Number1", WebportalParam.getDeviceSerialNoCSV("ap1"));
-        firststdevInfo.put("Serial Number2", WebportalParam.getDeviceSerialNoCSV("ap2"));
+        //firststdevInfo.put("Serial Number2", WebportalParam.getDeviceSerialNoCSV("ap2"));
         firststdevInfo.put("Serial Number3", WebportalParam.getDeviceSerialNoCSV("ap2"));
         firststdevInfo.put("Serial Number4", WebportalParam.getDeviceSerialNoCSV("sw1"));
         firststdevInfo.put("Serial Number5", WebportalParam.getDeviceSerialNoCSV("sw2"));
         firststdevInfo.put("Serial Number6", WebportalParam.getDeviceSerialNoCSV("sw3"));
         firststdevInfo.put("Serial Number7", WebportalParam.getDeviceSerialNoCSV("sw4"));
-        firststdevInfo.put("Serial Number8", WebportalParam.getDeviceSerialNoCSV("sw5"));
+        //firststdevInfo.put("Serial Number8", WebportalParam.getDeviceSerialNoCSV("sw5"));
         firststdevInfo.put("Serial Number9", WebportalParam.getDeviceSerialNoCSV("sw6"));
         firststdevInfo.put("Serial Number10", WebportalParam.getDeviceSerialNoCSV("sw7"));
         firststdevInfo.put("Serial Number11", WebportalParam.getDeviceSerialNoCSV("sw8"));
@@ -128,7 +144,7 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         
-        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap2"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw5"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
+        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
         
     }
 }
