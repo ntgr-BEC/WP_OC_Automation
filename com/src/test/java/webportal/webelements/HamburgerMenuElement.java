@@ -998,5 +998,6 @@ public class HamburgerMenuElement extends MyCommonAPIs {
        }
       return ExpiryDate;
   }
+  public SelenideElement  verifyAdminEmailMessage           = $x("//td[contains(text(),'Please confirm your email address')]");
 }
 
