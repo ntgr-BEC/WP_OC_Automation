@@ -5508,8 +5508,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         System.out.println("Print the element");
 
-        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
-        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
 
         System.out.println(actOnDateText);
         System.out.println(expOnDateText);
@@ -5517,11 +5517,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         int actOnYear = extractYear(actOnDateText);
         int expOnYear = extractYear(expOnDateText);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
-            logger.info("The year difference is greater than 5 years.");
+            logger.info("The year difference is equal to 5 years.");
         } else {
-            logger.info("The year difference is not greater than 5 years.");
+            logger.info("The year difference is not equal to 5 years.");
         }
 
         return result;
