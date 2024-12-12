@@ -168,6 +168,8 @@ public class ManagerPage extends ManagerPageElement {
     public boolean checkSuccessDialog() {
         boolean result = false;
         MyCommonAPIs.sleepi(10);
+        waitElement(successdialogmsg);
+        MyCommonAPIs.sleepi(1);
         if (successdialogmsg.exists()) {
             result = true;
             logger.info("Your invitation has been sent.");
