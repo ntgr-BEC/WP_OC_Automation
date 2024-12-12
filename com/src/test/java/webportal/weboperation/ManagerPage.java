@@ -160,6 +160,11 @@ public class ManagerPage extends ManagerPageElement {
 
     public boolean checkEditResult(String email, String policy, String orgnum) {
         boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(managerlistorganizations(email));
+        MyCommonAPIs.sleepi(1);
+        waitElement(managerlistaccesspolicy(email));
+        MyCommonAPIs.sleepi(1);
         System.out.println(managerlistorganizations(email).getText() +" === "+orgnum);
         System.out.println(managerlistaccesspolicy(email).getText() +" === "+policy );
         
