@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
 
             new ManagerPage(false).editManager(editManagerInfo);
 
-            assertTrue(new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1"),
+            assertTrue(new ManagerPage(false).checkEditResult(editManagerInfo.get("Email Address"), editManagerInfo.get("Access Policy"), "1"),
                     "Invite manager failed.");
         } else {
             assertTrue(false, "Add manager failed.");
