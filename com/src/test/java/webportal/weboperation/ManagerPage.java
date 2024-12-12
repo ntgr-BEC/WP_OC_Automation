@@ -28,6 +28,9 @@ public class ManagerPage extends ManagerPageElement {
 
     public ManagerPage() {
         // TODO Auto-generated constructor stub
+        MyCommonAPIs.sleepi(5);  
+        waitElement(managerdropdown);
+        MyCommonAPIs.sleepi(1); 
         if (managerdropdown.exists()) {
             managerdropdown.click();
         }
@@ -46,6 +49,9 @@ public class ManagerPage extends ManagerPageElement {
     }
 
     public void addManager(Map<String, String> map) {
+        MyCommonAPIs.sleepi(5);  
+        waitElement(addmanager);
+        MyCommonAPIs.sleepi(1);
         if (!checkManagerIsExist(map.get("Email Address"))) {
             addmanager.click();
             waitElement(managername);

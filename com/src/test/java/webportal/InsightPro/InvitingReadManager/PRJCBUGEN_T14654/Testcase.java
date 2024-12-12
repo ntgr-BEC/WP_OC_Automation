@@ -78,6 +78,7 @@ public class Testcase extends TestCaseBase {
             editManagerInfo.put("Old Email Address", readMan);
             editManagerInfo.put("Access Policy", "Read/Write");
             editManagerInfo.put("Organization Name", WebportalParam.Organizations);
+            editManagerInfo.put("Grant Access All", "isApplyCheckBox");
 
             new ManagerPage(false).editManager(editManagerInfo);
 
