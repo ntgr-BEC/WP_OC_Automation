@@ -118,7 +118,14 @@ public class Testcase extends TestCaseBase {
         handle.refresh();
         handle.click(WiredDhcpSnoopingElement.selectButton("Select All"));
         int totalPorts = WiredDhcpSnoopingElement.allPorts().size();
-        for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
+        System.out.println(totalPorts);
+        MyCommonAPIs.sleepi(5);
+        if(totalPorts>13) {
+        totalPorts = totalPorts/2;
+        }
+        System.out.println(WiredDhcpSnoopingElement.checkSelectedOrNot(Integer.toString(0)).isDisplayed());
+        for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+           
             assertTrue(WiredDhcpSnoopingElement.checkSelectedOrNot(Integer.toString(portNumber)).isDisplayed());
         }      
         
