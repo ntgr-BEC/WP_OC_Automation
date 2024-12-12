@@ -70,8 +70,6 @@ public class Testcase extends TestCaseBase {
             Map<String, String> editManagerInfo = new HashMap<String, String>();
             editManagerInfo.put("Old Email Address", writeMan);
             editManagerInfo.put("Access Policy", "Read");
-            editManagerInfo.put("Organization Name", WebportalParam.Organizations);
-            editManagerInfo.put("Grant Access All", "isApplyCheckBox");
 
             new ManagerPage(false).editManager(editManagerInfo);
 
