@@ -65,7 +65,7 @@ public class Testcase extends TestCaseBase {
 
         new ManagerPage().addManager(managerInfo);
 
-        if (new ManagerPage(false).checkSuccessDialog()) {
+        if (new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1")) {
 
             Map<String, String> editManagerInfo = new HashMap<String, String>();
             editManagerInfo.put("Old Email Address", readMan);
