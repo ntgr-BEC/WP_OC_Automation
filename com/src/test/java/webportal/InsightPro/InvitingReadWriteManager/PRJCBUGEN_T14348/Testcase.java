@@ -65,18 +65,15 @@ public class Testcase extends TestCaseBase {
 
         new ManagerPage().addManager(managerInfo);
 
-        if (new ManagerPage(false).checkSuccessDialog()) {
+        if (new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1")) {
 
             Map<String, String> editManagerInfo = new HashMap<String, String>();
             editManagerInfo.put("Old Email Address", writeMan);
             editManagerInfo.put("Access Policy", "Read");
-            editManagerInfo.put("Organization Name", WebportalParam.Organizations);
 
             new ManagerPage(false).editManager(editManagerInfo);
 
-            assertTrue(
-                    new ManagerPage(false).checkSuccessDialog()
-                            && new ManagerPage(false).checkEditResult(editManagerInfo.get("Old Email Address"), managerInfo.get("Access Policy"), "1"),
+            assertTrue(new ManagerPage(false).checkEditResult(editManagerInfo.get("Email Address"), editManagerInfo.get("Access Policy"), "1"),
                     "Invite manager failed.");
         } else {
             assertTrue(false, "Add manager failed.");
