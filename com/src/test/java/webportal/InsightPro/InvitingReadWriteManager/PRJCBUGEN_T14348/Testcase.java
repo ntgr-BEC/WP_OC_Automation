@@ -27,7 +27,7 @@ import webportal.weboperation.WebportalLoginPage;
 public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
-    int    num      = r.nextInt(10000000);
+    int    num      = r.nextInt(100000000);
     String mailname = "apwptest" + String.valueOf(num);
     String writeMan = mailname + "@yopmail.com";
 
