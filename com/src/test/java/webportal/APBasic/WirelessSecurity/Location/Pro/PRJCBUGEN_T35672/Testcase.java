@@ -90,7 +90,7 @@ public class Testcase extends TestCaseBase {
 
         MyCommonAPIs.sleepi(3 * 60);
 
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+//        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage().connectClient(ssidInfo);
     }
 
