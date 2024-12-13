@@ -63,7 +63,9 @@ public class Testcase extends TestCaseBase {
         handle.refresh();
         wdsp.enablePortSpecificConfigOnPort(WebportalParam.sw1LagPort2, "Trust Mode", null);
         handle.refresh();
+        MyCommonAPIs.sleepi(10);
         
+
         assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(WebportalParam.sw1LagPort1).isDisplayed());
         assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(WebportalParam.sw1LagPort2).isDisplayed());
         
