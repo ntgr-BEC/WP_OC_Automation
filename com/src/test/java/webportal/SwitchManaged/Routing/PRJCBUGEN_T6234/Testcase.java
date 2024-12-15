@@ -52,9 +52,9 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 2: Add ip address 1.0.0.0 and mask to vlan 100")
     public void step2() {
-        rtp.addIpToVlan(vlanId, "255.255.0.255", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.0.255", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().contains("is not contiguous"), "0.255");
-        rtp.addIpToVlan(vlanId, "255.255.0.251", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.0.251", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().contains("is not contiguous"), "0.251");
     }
     

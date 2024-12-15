@@ -67,19 +67,19 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add invalid mask to vlan 100 and check msg")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, "300.0.0.0", "1.1.1.1", "1.1.1.1");
+        rtp.addIpToVlan(vlanName, "300.0.0.0", "1.1.1.1", "1.1.1.1");
         assertTrue(handle.getPageErrorMsg().contains("enter a valid"));
     }
 
     @Step("Test Step 3: Add invalid ip to vlan 100 and check msg")
     public void step3() {
-        rtp.addIpToVlan(vlanId, "255.255.255.0", "300.1.1.1", "1.1.1.1");
+        rtp.addIpToVlan(vlanName, "255.255.255.0", "300.1.1.1", "1.1.1.1");
         assertTrue(handle.getPageErrorMsg().contains("enter a valid"));
     }
 
     @Step("Test Step 4: Add ip address and mask to vlan 100")
     public void step4() {
-        rtp.addIpToVlan(vlanId, ipMask, ip1, ip2);
+        rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
         rtp.openVlan(vlanId);
         assertTrue(rtp.seMask.getValue().equals(ipMask), "check mask");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).equals(ip1), "check ip 1");

@@ -61,11 +61,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip addrss for the two siwtches")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, "255.255.255.0", "10.1.1.1", "10.2.1.1");
+        rtp.addIpToVlan(vlanName, "255.255.255.0", "10.1.1.1", "10.2.1.1");
         assertTrue(handle.getPageErrorMsg().length() > 0, "10.1 & 10.2");
-        rtp.addIpToVlan(vlanId, "255.255.0.255", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.0.255", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().contains("is not contiguous"), "0.255");
-        rtp.addIpToVlan(vlanId, "255.255.0.251", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.0.251", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().contains("is not contiguous"), "0.251");
     }
     

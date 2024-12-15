@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip addrss for the two siwtches")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, "", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "", ip1, ip2);
         new MyCommonAPIs().sleepi(4);     
         assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");      
         // rtp.addIpToVlan(vlanId, mask, "", "");

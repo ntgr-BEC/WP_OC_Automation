@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip address and mask to vlan 100")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, ipMask, ip1, ip2);
+        rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
     }
 
     @Step("Test Step 3: Check configuraiton from app and local web gui")

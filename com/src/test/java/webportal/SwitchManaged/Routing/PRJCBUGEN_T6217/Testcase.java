@@ -73,19 +73,19 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 2: Add IP1 to vlan 100")
     public void step2() {
-        rtp.addIpToVlan(vlanId1, ipMask, ip1, ip2);
+        rtp.addIpToVlan(vlanName1, ipMask, ip1, ip2);
     }
     
     @Step("Test Step 3: Add same IP2 to vlan 200 and check msg")
     public void step3() {
-        rtp.addIpToVlan(vlanId2, ipMask, ip3, ip2);
+        rtp.addIpToVlan(vlanName2, ipMask, ip3, ip2);
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {
             rtp.openVlan(vlanId2);
             assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw2deveiceName)).length() == 0,
                     "check ip2 should not be set " + ip2);
             handle.clickBoxFirstButton();
         }
-        rtp.addIpToVlan(vlanId2, ipMask, ip4, ip5);
+        rtp.addIpToVlan(vlanName2, ipMask, ip4, ip5);
     }
     
     @Step("Test Step 4: Apply IP2 successfully")
