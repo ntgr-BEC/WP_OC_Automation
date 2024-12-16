@@ -9196,6 +9196,32 @@ public String getExpiryDatePremiumAcc(String SerialNo) {
 
 }
 
+//AddedByPratik
+public boolean checkEmailMessageForProAdminAccount(String mailname) {
+        boolean result = false;
+        logger.info("Check email address is:" + mailname);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        MyCommonAPIs.sleepi(5);
+        Selenide.switchTo().window(1);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(mailname);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+
+        System.out.println(verifyAdminEmailMessage.getText());
+        if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
+            result = true;
+            logger.info("Received confirmation mail");
+        }
+        return result;
+
+}
+
 }
 
 

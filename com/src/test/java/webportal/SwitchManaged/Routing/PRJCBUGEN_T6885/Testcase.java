@@ -100,7 +100,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 5: Add ip address for vlan 16")
     public void step5() {
-        rtp.addIpToVlan(vlanId + (iMax + 1), mask, ip1, ip2);
+        rtp.addIpToVlan(vlanName + (iMax + 1), mask, ip1, ip2);
         String sRet = handle.getPageErrorMsg();
         assertTrue(sRet.contains("limit exceeded"));
     }
