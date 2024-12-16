@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         rtp.addIpToVlan(vlanName2, ipMask, ip3, ip2);
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {
-            rtp.openVlan(vlanId2);
+            rtp.openVlan(vlanName2);
             assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw2deveiceName)).length() == 0,
                     "check ip2 should not be set " + ip2);
             handle.clickBoxFirstButton();

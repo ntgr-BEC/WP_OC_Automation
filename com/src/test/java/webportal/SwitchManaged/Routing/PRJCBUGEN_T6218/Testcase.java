@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
         rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
-        rtp.openVlan(vlanId);
+        rtp.openVlan(vlanName);
         assertTrue(rtp.seMask.getValue().equals(ipMask), "check mask");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).equals(ip1), "check ip 1");
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {

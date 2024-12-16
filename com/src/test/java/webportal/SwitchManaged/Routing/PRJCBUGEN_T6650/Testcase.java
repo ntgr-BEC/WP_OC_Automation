@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(handle.getPageErrorMsg().contains("enter subnet"), "mask");      
         // rtp.addIpToVlan(vlanId, mask, "", "");
         // assertTrue(handle.getPageErrorMsg().contains("Enter a valid IP Address"), "no ip");
-        rtp.addIpToVlan1(vlanId, mask, "", ip2);
+        rtp.addIpToVlan1(vlanName, mask, "", ip2);
         new MyCommonAPIs().sleepi(4);
         assertTrue(handle.getPageErrorMsg().contains("enter a valid ip address"), "ip one");
 //        rtp.addIpToVlan(vlanId, "", "", ip2);
