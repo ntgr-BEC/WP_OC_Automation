@@ -90,7 +90,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 4: Apply IP2 successfully")
     public void step4() {
-        rtp.openVlan(vlanId2);
+        rtp.openVlan(vlanName2);
         assertTrue(rtp.seMask.getValue().equals(ipMask), "check mask");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).equals(ip4), "check ip " + ip4);
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {

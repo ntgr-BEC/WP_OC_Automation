@@ -84,7 +84,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Check vlan 100 on app")
     public void step4() {
-        rtp.openVlan(vlanId);
+        rtp.openVlan(vlanName);
         assertTrue(rtp.seMask.getValue().isEmpty(), "check mask after delete");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).isEmpty(), "check ip 1 after delete");
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {
