@@ -79,7 +79,7 @@ public class Testcase extends TestCaseBase {
     public void step5() {
         wstp.setSTPMode(iMode, false, true);
         MyCommonAPIs.sleepsync();
-//        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag 1"), "verify stp is enabled on lag");
+        assertTrue(SwitchCLIUtils.isPortLagSTPMode("lag 1"), "verify stp is enabled on lag");
     }
     
     @Step("Test Step 5: Change Spanning-Tree mode to Disable via Insight;")

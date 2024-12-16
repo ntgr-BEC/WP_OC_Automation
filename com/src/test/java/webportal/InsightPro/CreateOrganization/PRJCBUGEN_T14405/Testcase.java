@@ -46,18 +46,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("#/organization/dashboard") && !url.contains("insight.netgear")) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        } else if (url.endsWith("#/organization/dashboard") && url.contains("insight.netgear")) {
-            UserManage userManage = new UserManage();
-            userManage.logout();
-
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        }
-
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         new OrganizationPage().deleteOrganizationNew(organizationName);
         System.out.println("start to do tearDown");
     }
@@ -71,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Create a organization and add one owner, then create owner account;")
     public void step2() {
-        mailname         = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname         = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         organizationInfo.put("Owner Name", "test14405");
@@ -84,16 +74,16 @@ public class Testcase extends TestCaseBase {
             UserManage userManage = new UserManage();
             userManage.logout();
 
-            if (new HamburgerMenuPage(false).checkEmailMessage(mailname)) {
-                Map<String, String> ownerAccountInfo = new HashMap<String, String>();
-                ownerAccountInfo.put("Confirm Email", organizationInfo.get("Email Address"));
-                ownerAccountInfo.put("Password", WebportalParam.adminPassword);
-                ownerAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-                ownerAccountInfo.put("Country", "United States of America");
-                ownerAccountInfo.put("Phone Number", "1234567890");
-
-                new HamburgerMenuPage(false).createOwnerAccount(ownerAccountInfo);
-                assertTrue(OrganizationPage.checkOrganizationIsExist(organizationName), "Create owner account failed.");
+            if (new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(mailname)) {
+                assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
+                Map<String, String> proAccountInfo = new HashMap<String, String>();
+                proAccountInfo.put("Confirm Email", mailname);
+                proAccountInfo.put("Password", "Netgear1@");
+                proAccountInfo.put("Confirm Password", "Netgear1@");
+                proAccountInfo.put("Country", "United States of America");
+                proAccountInfo.put("Phone Number", "1234567890");
+                new HamburgerMenuPage(false).FillInvitemanagerOwnerInfoAndVerifylogin(proAccountInfo);
+                userManage.logout(); 
             } else {
                 assertTrue(false, "Not received invite owner email.");
             }

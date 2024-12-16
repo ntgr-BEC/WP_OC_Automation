@@ -42,8 +42,8 @@ public interface Config {
                                                                           put("Port_Speed", PORT_SPEED);
                                                                       }
                                                                   };
-    public static String                      PORT_SPEED          = "10 Mbps";
-    public static String                      DUPLEX_MODE         = "Half";
+    public static String                      PORT_SPEED          = "1000 Mbps";
+    public static String                      DUPLEX_MODE         = "Full";
     public static String                      PORT_SPEED_RESTORE  = "Auto";
     public static String                      DUPLEX_MODE_RESTORE = "Auto";
 

@@ -122,7 +122,7 @@ public class Testcase extends TestCaseBase {
             assertTrue(false, "Not received invite manager email.");
         }
 
-        assertTrue(!new HamburgerMenuPage().accountmanager.exists(), "Page display error.");
+        assertTrue(!new HamburgerMenuPage().accountmanager1.exists(), "Page display error.");
     }
 
 }

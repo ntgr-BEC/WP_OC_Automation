@@ -23,8 +23,8 @@ public interface Config {
                                                                         put(WebportalParam.sw1deveiceName, SW1PORT);
                                                                     }
                                                                 };
-
-    public static String                    PORT_SPEED          = "100 Mbps";
+    
+    public static String                    PORT_SPEED          = "100";    
     public static String                    PORT_SPEED_RESTORE  = "Auto";
     public static String                    DUPLEX_MODE_RESTORE = "Auto";
     public static String                    PORTSPEED_CLI       = "100 full-duplex";
@@ -34,8 +34,11 @@ public interface Config {
                                                                         put("Egress_Rate_Limit", "random");
                                                                         put("Storm_Rate_Limit", "random");
                                                                         put("Port_Speed", PORT_SPEED);
+                                                                        
                                                                     }
                                                                 };
+                                           
+                                                                
     public final static Map<String, String> BATTCHSETTING2      = new HashMap<String, String>() {
                                                                     {
                                                                         put("Enable_Port", "ON");
@@ -44,4 +47,16 @@ public interface Config {
                                                                         put("Port_Speed", PORT_SPEED_RESTORE);
                                                                     }
                                                                 };
+                                                                
+                                                                
+    public final static Map<String, String> BATTCHSETTING3      = new HashMap<String, String>() {
+                                                                    {
+                                                                        put("Enable_Port", "ON");
+                                                                        put("Egress_Rate_Limit", "random");
+                                                                        put("Storm_Rate_Limit", "random");
+                                                                        put("Port_Speed", "1000 Mbps");
+                                                                        put("Duplex_Mode", "Full");
+                                                                        
+                                                                    }
+                                                                };                     
 }

@@ -118,6 +118,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         String url = MyCommonAPIs.getCurrentUrl();
         MyCommonAPIs.sleepi(10);
         closeLockedDialog();
+        Selenide.refresh();
+        MyCommonAPIs.sleepi(15);
         if (!notificationicon.exists()) {
             WebCheck.checkHrefIcon(URLParam.hrefDevices);
             MyCommonAPIs.sleepi(10);
@@ -5516,11 +5518,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         int actOnYear = extractYear(actOnDateText);
         int expOnYear = extractYear(expOnDateText);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
-            logger.info("The year difference is greater than 5 years.");
+            logger.info("The year difference is equal to 5 years.");
         } else {
-            logger.info("The year difference is not greater than 5 years.");
+            logger.info("The year difference is not equal to 5 years.");
         }
 
         return result;
@@ -9176,6 +9178,49 @@ public static boolean verifyOrganizationsVisibility() {
     }
 
     return allVisible;
+}
+
+//addedbyPratik
+public String getActivationDatePremiumAcc(String SerialNo) {
+    ;
+    MyCommonAPIs.sleepi(3);
+    String activationdate = getText(activationDatePremiumAcc(SerialNo));
+    return activationdate;
+
+}
+//addedbyPratik
+public String getExpiryDatePremiumAcc(String SerialNo) {
+
+    MyCommonAPIs.sleepi(3);
+    String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
+    return getExpiryDate;
+
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForProAdminAccount(String mailname) {
+        boolean result = false;
+        logger.info("Check email address is:" + mailname);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        MyCommonAPIs.sleepi(5);
+        Selenide.switchTo().window(1);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(mailname);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+
+        System.out.println(verifyAdminEmailMessage.getText());
+        if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
+            result = true;
+            logger.info("Received confirmation mail");
+        }
+        return result;
+
 }
 
 }
