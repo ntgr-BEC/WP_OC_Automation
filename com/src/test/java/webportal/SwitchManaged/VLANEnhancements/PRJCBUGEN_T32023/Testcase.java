@@ -70,6 +70,7 @@ public class Testcase extends TestCaseBase implements Config {
         netsp.gotoStep(2);
         netsp.setNetwork2(WebportalParam.sw1LagPort2, 1, "", 0);
         netsp.finishAllStep();
+        MyCommonAPIs.sleepi(180);      //need 3 mins for config push
     }
 
     @Step("Test Step 2: Go-to Devices --> Double click over switches")
@@ -97,6 +98,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 5: Now configure VLAN 35 or Port 5 as Trunk port")
     public void step5() {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage switchPortConfigSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+        MyCommonAPIs.sleepi(15);
         switchPortConfigSettingsPage.setPortVlan(vlanId2, 1);
     }
     
@@ -113,6 +115,7 @@ public class Testcase extends TestCaseBase implements Config {
         if (netsp.getNetworks().contains(vlanName)) {
             netsp.deleteNetwork(vlanName);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName2)) {
             netsp.deleteNetwork(vlanName2);
         }

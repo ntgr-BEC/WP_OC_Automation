@@ -362,9 +362,11 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
             ele1.click();
             MyCommonAPIs.sleepi(1);
             if (portMode == 1) {
-                SelenideElement ele2 = $x(String.format(vlanRadioStr, s));
-                ele2.scrollIntoView(true);
-                ele2.click();
+                tag.click();
+                MyCommonAPIs.sleepi(5);
+//                SelenideElement ele2 = $x(String.format(vlanRadioStr, s));
+//                ele2.scrollIntoView(true);
+//                ele2.click();
                 MyCommonAPIs.sleepi(1);
             }
         }
