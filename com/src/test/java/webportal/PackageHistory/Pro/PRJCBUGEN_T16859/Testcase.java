@@ -25,7 +25,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that search should be applied to the filtered data for pro") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16859") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priori
     public void test() throws Exception {
         runTest(this);
     }
