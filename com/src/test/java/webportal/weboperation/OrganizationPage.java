@@ -238,7 +238,7 @@ public class OrganizationPage extends OrganizationElement {
                         break;
                     }
                 }
-                MyCommonAPIs.sleepi(1);
+                MyCommonAPIs.sleepi(10);
                 SaveOrg.click();
                 located = true;
                 logger.info("--------------- Organisation is Created Succesfully ----------");
@@ -4741,8 +4741,15 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     // added by vivek
-    public void addOrgLogo() {
+    public void addOrgLogo(Map<String, String> map) {
         MyCommonAPIs.sleepi(5);
+        waitElement(sOrganizationLocationElement1);
+        if (checkOrganizationIsExist(map.get("Name"))) {
+            dropdownOrganizationElement(map.get("Name")).click();
+            editOrganizationElement(map.get("Name")).click();
+            waitElement(NameOrg);
+        }
+        MyCommonAPIs.sleepi(15);
         orgChooseBtn
                 .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovemnets\\PRJCBUGEN_T32194\\orgImg.png");
         MyCommonAPIs.sleepi(2);

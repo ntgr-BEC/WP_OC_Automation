@@ -1451,6 +1451,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitReady();
         waitElement(subDiv);
         logger.info("Check email in subscriptions page...");
+        MyCommonAPIs.sleepi(15);
         if (accountemail.exists()) {
             if (accountemail.getText().contains(email)) {
                 logger.info("Account emmail:" + accountemail.getText());
@@ -4683,7 +4684,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void searchOrg(String name) {
         gotoCreditsAllocationPage();
         searchOrgName.click();
-        MyCommonAPIs.sleepi(1);
+        MyCommonAPIs.sleepi(8);
         inputOrgName.setValue(name);
         MyCommonAPIs.sleepi(1);
         searchBtn.click();

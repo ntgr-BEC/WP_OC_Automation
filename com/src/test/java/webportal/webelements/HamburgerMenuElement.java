@@ -84,7 +84,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement totalIcpCredits            = $x(
             "//p[text()='" + WebportalParam.getLocText("Total Instant Captive Portal Credits") + "']/../h2");
     public SelenideElement        searchOrgName              = $(".icon-search");
-    public SelenideElement        inputOrgName               = $(".SearchBox input");
+    public SelenideElement        inputOrgName               = $x("//*[@placeholder=\"Organization Name\"]");
     public static SelenideElement deallocate                 = $x("//a[text()='" + WebportalParam.getLocText("Deallocate") + "']");
     public static String          deallcateDev               = "//span[text()='" + WebportalParam.getLocText("Device Credits") + "']/../..";
     public SelenideElement        deallocateDevCredits       = $x(deallcateDev + "//div[contains(@class,'firstLast')]");
