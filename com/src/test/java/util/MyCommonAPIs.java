@@ -953,7 +953,7 @@ public class MyCommonAPIs {
         boolean bTimeout = true;
         if (!WebportalParam.isRltkSW1) {   
             for (int i = 0; i < 12; i++) {
-                if (!waitCliReady("show application status CloudAgent", "Connected", false).equals(g_sTimeout)) {
+                if (!waitCliReady("show application status appmgr", "Connected", false).equals(g_sTimeout)) {
                     bTimeout = false;
                     break;
                 }

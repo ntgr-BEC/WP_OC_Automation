@@ -163,9 +163,11 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          MyCommonAPIs.sleepsync();
          MyCommonAPIs.sleepsync();
          
+         
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
          boolean vlanSnoopingConfig = tmpStr.contains("dhcp snooping vlan 100");
          assertTrue(!vlanSnoopingConfig, "Dhcp Snooping vlan 100 should be disbled");
+         
          
          String tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config  ", false);
          boolean relayConfig = tmpStr1.contains("dhcp l2relay");

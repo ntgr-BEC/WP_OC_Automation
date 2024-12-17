@@ -15,7 +15,7 @@ import util.MyCommonAPIs;
 import util.SwitchTelnet;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DashboardLocationPage;
-import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.DevicesSwitchConnectedNeighboursPortConfiqSettingsPage;
 import webportal.weboperation.DevicesSwitchSummaryPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(120000);
         // check sw1 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
-            DevicesDashPage devicesDashPage = new DevicesDashPage();
+            DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = new DevicesSwitchSummaryPage();
             devicesSwitchSummaryPage.enterPortConfigSummary(String.valueOf(i));
@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
         // check sw2 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
-            DevicesDashPage devicesDashPage = new DevicesDashPage();
+            DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw2serialNo);
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = new DevicesSwitchSummaryPage();
             devicesSwitchSummaryPage.enterPortConfigSummary(String.valueOf(i));
@@ -141,7 +141,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(120000);
         // check sw1 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
-            DevicesDashPage devicesDashPage = new DevicesDashPage();
+            DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = new DevicesSwitchSummaryPage();
             devicesSwitchSummaryPage.enterPortConfigSummary(String.valueOf(i));
@@ -156,7 +156,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
         // check sw2 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
-            DevicesDashPage devicesDashPage = new DevicesDashPage();
+            DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
             devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw2serialNo);
             DevicesSwitchSummaryPage devicesSwitchSummaryPage = new DevicesSwitchSummaryPage();
             devicesSwitchSummaryPage.enterPortConfigSummary(String.valueOf(i));

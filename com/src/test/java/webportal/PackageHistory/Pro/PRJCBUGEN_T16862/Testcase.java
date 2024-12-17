@@ -26,9 +26,9 @@ public class Testcase extends TestCaseBase {
     @Feature("PackageHistory.Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T16862") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that the user can expand and compress categories on the purchase history button.") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T16848") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T16862") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priori
     public void test() throws Exception {
         runTest(this);
     }
@@ -44,7 +44,6 @@ public class Testcase extends TestCaseBase {
             WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
             webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         }
-
 
         @Step("Test Step 2: In the hamburger menu, click on account management, check default category filter is all;")
         public void step2() {

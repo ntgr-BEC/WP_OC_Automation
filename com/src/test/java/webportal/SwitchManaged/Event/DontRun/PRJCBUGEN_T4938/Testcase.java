@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Event.PRJCBUGEN_T4938;
+package webportal.SwitchManaged.Event.DontRun.PRJCBUGEN_T4938;
 
 import static org.testng.Assert.assertTrue;
 
