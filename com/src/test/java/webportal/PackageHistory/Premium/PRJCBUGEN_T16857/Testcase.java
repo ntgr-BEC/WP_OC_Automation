@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase {
 
         @Step("Test Step 2: In the hamburger menu, click on account management, check default category filter is all;")
         public void step2() {
-            assertTrue(new HamburgerMenuPage().CheckAllFiltersPremium());
+            assertTrue(new HamburgerMenuPage().verifypremiumacchavingAllOptionsVisible());
         }
 
     }

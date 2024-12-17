@@ -46,7 +46,6 @@ public class Testcase extends TestCaseBase {
         @Step("Test Step 2: In the hamburger menu, click on account management, check time quater filter category;")
         public void step2() {
             new HamburgerMenuPage().LastQuarterTimeFilter();
-            new HamburgerMenuPage().SearchProVpn();
         }       
 
     }
