@@ -42,8 +42,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        evtp.makeCriticalEvent(false, "Connect");
-        MyCommonAPIs.sleepi(60);
+        evtp.makeCriticalEvent(true, "Connect");
+        MyCommonAPIs.sleepi(180);
         System.out.println("start to do tearDown");
     }
 
