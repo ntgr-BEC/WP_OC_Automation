@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.addOrganization(organizationInfo);
         MyCommonAPIs.sleepi(5);
-        OrganizationPage.addOrgLogo();
+        OrganizationPage.addOrgLogo(organizationInfo);
     }
     
     
