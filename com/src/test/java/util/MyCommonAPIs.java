@@ -997,11 +997,13 @@ public class MyCommonAPIs {
             logger.info("try to reboot sw");
             st.switchReboot();
             new Pause().seconds(120, "sleep for switch reboot");
-            waitDeviceOnline();
+            MyCommonAPIs.sleepi(180);
+//            waitDeviceOnline();
         } else if (cmdIndex == 2) {
             st.switchDefault();
             new Pause().seconds(120, "sleep for switch reboot");
-            waitDeviceOnline();
+            MyCommonAPIs.sleepi(180);
+//            waitDeviceOnline();
         }
     }
     
