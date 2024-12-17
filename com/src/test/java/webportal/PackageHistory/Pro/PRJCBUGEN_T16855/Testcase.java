@@ -19,8 +19,10 @@ import util.MyCommonAPIs;
 import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -33,7 +35,7 @@ public class Testcase extends TestCaseBase {
     Random r = new Random();
     int num = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num);
-    Map<String, String> CaptivePortalPaymentInfo = new CommonDataType().PAYMENT_INFO;
+    String organizationName = "TEST16855";
     
 
     @Feature("PackageHistory.Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -42,88 +44,85 @@ public class Testcase extends TestCaseBase {
                                                                                                       // from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16855") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priori
     public void test() throws Exception {
         runTest(this);
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        new OrganizationPage().deleteOrganizationNew(organizationName);
         System.out.println("start to do tearDown");
     }
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 1: Create IM WP account for US success;")
+    @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-
+        
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T16855");
+        accountInfo.put("Last Name", "T18721");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
 
+
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
 
-    @Step("Test Step 2: Buy premium subscription;")
+    @Step("Test Step 2: Navigate to Account Management, check upgrade to pro option and click on it;")
     public void step2() {
-        Map<String, String> paymentInfo = new HashMap<String, String>();
-        Map<String, String> proAccountInfo = new HashMap<String, String>();
-        proAccountInfo.put("Confirm Email", mailname + "@mailinator.com");
-        proAccountInfo.put("Password", "Netgear#123");
-        proAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-        proAccountInfo.put("Country", "United States of America");
-        proAccountInfo.put("Phone Number", "1234567890");
-        paymentInfo.put("Subscription Time", "Yearly");
-        paymentInfo.put("Number of Device Credits", "5");
-        paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T16855");
-        paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Street 4568 James Avenue");
-        paymentInfo.put("City", "INVERNESS");
-        paymentInfo.put("Zip", "34451");
-        paymentInfo.put("Country", "US");
-        paymentInfo.put("State", "Florida");
-        paymentInfo.put("Card Number", "4112344112344113");
-        paymentInfo.put("CVV Number", "123");
-        paymentInfo.put("Expiration Month", "May");
-        paymentInfo.put("Expiration Year", "2030");
-        paymentInfo.put("YearNum", "1");
-        paymentInfo.put("BuyNum", "2");
-        CaptivePortalPaymentInfo.put("First Name", mailname);
-        CaptivePortalPaymentInfo.put("Last Name", "T17776");
-        CaptivePortalPaymentInfo.put("Email", mailname + "@mailinator.com");
-        CaptivePortalPaymentInfo.put("Quantity", "3"); // can input 1 , 3 , 10 , 40
-        CaptivePortalPaymentInfo.put("Duration", "1"); // can input 1 , 3
-        new HamburgerMenuPage(false).upgradeSubscription(paymentInfo); 
-        new InsightServicesPage().buyCaptivePortalProducts(CaptivePortalPaymentInfo);
-        new InsightServicesPage().buyVpnProducts(paymentInfo);
-        MyCommonAPIs.sleepi(10);
-        new  UserManage().logout();
-        MyCommonAPIs.sleepi(5);
-        new HamburgerMenuPage(false).checkCreateProAccountPage("checkNext:" + mailname + "@mailinator.com");
-        new HamburgerMenuPage(false).MigrateAccount(proAccountInfo);
-
+        System.out.println("starting with setup 2");
+        assertTrue(new HamburgerMenuPage().insightPritoinsightPro(),"Failed navigate to Account Management");
+        
     }
     
-//    @Step("Test Step 3: Check create pro account success.")
+    @Step("Test Step 3: Fill the tset data into the form and click on upgrade button;")
     public void step3() {
-            Map<String, String> businessInfo = new HashMap<String, String>();
-            businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
-            businessInfo.put("Business Name", "Netgear");
-            businessInfo.put("Primary Address of Business", "test 1st");
-            businessInfo.put("City", "NewYork");
-            businessInfo.put("State", "test");
-            businessInfo.put("Zip Code", "12345");
-            businessInfo.put("Country", "United States of America");
-            businessInfo.put("Business Phone Number", "1234567890");
-            new HamburgerMenuPage(false).inputLicenceAndFinishUpgrade(businessInfo);
-            new HamburgerMenuPage(false).checkLoginSuccessful();
-            assertTrue(new HamburgerMenuPage().CheckAllFiltersPro());
+        
+        Map<String, String> businessInfo = new HashMap<String, String>();
+        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
+        businessInfo.put("Business Name", "Netgear");
+        businessInfo.put("Primary Address of Business", "test 1st");
+        businessInfo.put("City", "NewYork");
+        businessInfo.put("State", "test");
+        businessInfo.put("Zip Code", "12345");
+        businessInfo.put("Country", "United States of America");
+        businessInfo.put("Business Phone Number", "1234567890");
+        new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
+
+        assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
+        
+    }
+
+    @Step("Test Step 4: Create a organization and location;")
+    public void step4() {
+        
+        new OrganizationPage(false).gotoDashboard();
+        Map<String, String> organizationInfo = new HashMap<String, String>();
+        organizationInfo.put("Name", organizationName);
+
+        OrganizationPage OrganizationPage = new OrganizationPage();
+        OrganizationPage.addOrganization(organizationInfo);
+
+        assertTrue(OrganizationPage.checkOrganizationIsExist(organizationName), "Organization not existed.");
+        
+        HashMap<String, String> locationInfo = new HashMap<String, String>();      
+        locationInfo.put("Location Name", WebportalParam.location1);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+        new AccountPage().addNetwork(locationInfo);
+        MyCommonAPIs.waitReady();
+        
+    }
+    @Step("Test step5:Validation of free trial")
+    public void step5()
+    {
+       assertTrue(new HamburgerMenuPage().checkSubscriptionsFreeTrial(),"Expected text is not present");
     }
 }
 
