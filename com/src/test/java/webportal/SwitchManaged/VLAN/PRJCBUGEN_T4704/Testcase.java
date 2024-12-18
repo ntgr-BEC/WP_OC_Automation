@@ -43,6 +43,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do restore");
 //        SwitchCLIUtils.CloudModeSet(true);
         SwitchCLIUtils.SwitchOfflineOnline("Connect");
+        MyCommonAPIs.sleepi(180);
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.deleteAllVlan();
@@ -51,7 +52,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Put DUT out of internet")
     public void step1() {
 //        SwitchCLIUtils.CloudModeSet(false);
-//        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
+          SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
 //        SwitchCLIUtils.CloudModeSet(true);
 //        handle.sleepi(5 * 60);
     }

@@ -73,6 +73,7 @@ public class Testcase extends TestCaseBase implements Config {
         netsp.gotoStep(2);
         netsp.setNetwork2("5", 1, "", 0);
         netsp.finishAllStep();
+        MyCommonAPIs.sleepi(180);                           //need 3 mins for config push
     }
 
     @Step("Test Step 3: Go-to Devices --> Double click over switches")

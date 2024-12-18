@@ -75,6 +75,7 @@ public class Testcase extends TestCaseBase implements Config {
         netsp.gotoStep(2);
         netsp.setNetwork2("5", 1, "", 0);
         netsp.finishAllStep();
+        MyCommonAPIs.sleepi(180);                           //need 3 mins for config push
     }
 
     @Step("Test Step 3: Go-to Devices --> Double click over switches")
@@ -115,7 +116,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step7() {
         netsp.gotoPage();
         netsp.deleteNetwork(vlanName);
-        handle.sleepi(60);
+        handle.sleepi(180);
     }
     
     @Step("Test Step 8: Now go-to Switch Device dashboard page and mouse hover the Port 5")
@@ -139,6 +140,7 @@ public class Testcase extends TestCaseBase implements Config {
         if (netsp.getNetworks().contains(vlanName)) {
             netsp.deleteNetwork(vlanName);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName2)) {
             netsp.deleteNetwork(vlanName2);
         }

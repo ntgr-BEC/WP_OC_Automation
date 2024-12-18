@@ -125,6 +125,7 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
     public int multiSettingAllPorts(Map<String, String> settingMap) {
         MyCommonAPIs.sleep(3000);
         int nPort = allPorts.size();
+        System.out.println(nPort);
         for (SelenideElement portsElement : allPorts) {
             portsElement.click();
             MyCommonAPIs.sleep(1 * 1000);

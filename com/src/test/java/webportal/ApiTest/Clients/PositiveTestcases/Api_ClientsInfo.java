@@ -66,7 +66,7 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
         headers.put("apikey",WebportalParam.apikey);
         
         Map<String, String> pathParams = new HashMap<String, String>(); 
-        pathParams.put("networkId",WebportalParam.networkId);
+        pathParams.put("networkId",WebportalParam.networkIdPro);
         String requestBody="{\"wirelessNetwork\":{\"mloStatus\":\"0\",\"ssid\":\"SSID_TEST\",\"vlanId\":\"1\",\"vlanType\":1,\"enable\":\"1\",\"radioBand\":\"8\",\"redirectStatus\":\"0\",\"broadcastStatus\":\"0\",\"bandSteeringSt\":\"0\",\"rrmSt\":\"0\",\"clientIsoSt\":\"0\",\"allowAccessToCIList\":\"0\",\"ciAllowedList\":[],\"securitySt\":\"0\",\"security\":{\"authentication\":\"32\",\"password\":\"Pass@123\",\"oweMode\":\"0\"},\"rateLimit\":{\"enableRateLimit\":\"0\"},\"captivePortal\":{\"enableCaptivePortal\":\"0\"},\"accessToApSt\":\"0\",\"dynamicVlanSt\":\"0\",\"fastRoamingSt\":\"0\",\"kvrStatus\":\"1\",\"arsStatus\":\"0\",\"encryption\":\"6\",\"natMode\":{\"status\":\"0\",\"networkAddress\":\"\",\"subnet\":\"255.255.252.0\",\"dns\":\"8.8.8.8\",\"leaseTime\":\"1440\"},\"iotRadiusServer\":\"0\",\"iotRadiusServerId\":\"\",\"iotRadiusPolicyId\":\"\",\"mduStatus\":\"0\",\"mpskList\":[],\"isMPSKEnabled\":\"0\",\"custProfileEnable\":\"0\",\"custProfileId\":\"\"}}";       
         //TO PERFORM ANY REQUEST
 
@@ -89,14 +89,17 @@ public class Api_ClientsInfo extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>(); 
         pathParams.put("orgId",WebportalParam.orgId);
         pathParams.put("networkId",WebportalParam.networkIdPro);
-        pathParams.put("page","2");
+        pathParams.put("page","0");
         pathParams.put("serialNo",WebportalParam.ap2deveiceName);
         pathParams.put("type","0");
         pathParams.put("isConnected","1");
         pathParams.put("accountId",WebportalParam.accountIdPro);
        
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Clients_Info"), headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(true));
+        getResponse.then().body("response.status", equalTo(true))
+        .body("response.message", equalTo("success"))
+        .body("info[0].serialNo", equalTo(WebportalParam.ap2serialNo));
+        
        
         
     }

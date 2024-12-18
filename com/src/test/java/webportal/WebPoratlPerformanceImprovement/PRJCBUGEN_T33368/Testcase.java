@@ -49,7 +49,7 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword);
-
+        new OrganizationPage(false).clickonOkayGotit();
         handle.gotoLoction();
     }
 
