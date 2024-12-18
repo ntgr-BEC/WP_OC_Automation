@@ -34,8 +34,8 @@ public class WiredGroupPortConfigPageElement extends MyCommonAPIs {
         if (speed.toLowerCase().equals("auto")) {
             portSpeedSelect.selectOption(0);
         } else {
-            String sSet = speed.split(" ")[0];
-            portSpeedSelect.selectOptionContainingText(sSet);
+//            String sSet = speed.split(" ")[0];
+            portSpeedSelect.selectOptionContainingText(speed);
         }
     }
     
@@ -60,7 +60,7 @@ public class WiredGroupPortConfigPageElement extends MyCommonAPIs {
         return sGet;
     }
     
-    public ElementsCollection allPorts              = $$x("//i[@class=\"icon icon-ethernet\"]/../span[@class='ethernet-count']");
+    public ElementsCollection allPorts              = $$x("//i[@class=\"icon icon-port-outer\"]/../../span[@class='ethernet-count']");
     public SelenideElement    stormSlider           = $("#stormSlider");
     public SelenideElement    stormControlRateValue = $x("//div[@id=\"stormSlider\"]//div/div[1]");
     public SelenideElement    egressSlider          = $("#EgressSlider");

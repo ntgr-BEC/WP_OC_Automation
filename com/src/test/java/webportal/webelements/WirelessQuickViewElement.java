@@ -657,7 +657,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
     
     public SelenideElement        UploadCPfile           = $x("//*[@id=\"fileCaptivePortal\"]");
-    public SelenideElement        ViewDashboard          = $x("//*[@id=\"_divPnlHeadrLoc\"]/p/a");
+    public SelenideElement        ViewDashboard          = $x("//*[@id=\"openCommonMenuBar\"]/ul/li[2]/a");
     public SelenideElement        Topology               = $x("//*[@id=\"divMaindevicesDash\"]/div[1]/ul/li[2]/a");
     public SelenideElement        TopologyDevicedash     = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[2]/a");
 //    public SelenideElement        checkdevicestatus      = $("#svgContainer > svg > g >g:nth-of-type(2) >circle");

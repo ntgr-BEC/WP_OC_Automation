@@ -583,13 +583,13 @@ public class SwitchTelnet {
     
     public void switchDisconnect() {
         setEnable();
-        telnet.write("application stop CloudAgent");
+        telnet.write("application stop appmgr");
         MyCommonAPIs.sleepi(120);
     }
     
     public void switchConnect() {
         setEnable();
-        telnet.write("application start CloudAgent");
+        telnet.write("application start appmgr");
         MyCommonAPIs.sleepi(120);
     }
 }

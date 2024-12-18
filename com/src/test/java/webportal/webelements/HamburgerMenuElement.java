@@ -84,7 +84,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement totalIcpCredits            = $x(
             "//p[text()='" + WebportalParam.getLocText("Total Instant Captive Portal Credits") + "']/../h2");
     public SelenideElement        searchOrgName              = $(".icon-search");
-    public SelenideElement        inputOrgName               = $(".SearchBox input");
+    public SelenideElement        inputOrgName               = $x("//*[@placeholder=\"Organization Name\"]");
     public static SelenideElement deallocate                 = $x("//a[text()='" + WebportalParam.getLocText("Deallocate") + "']");
     public static String          deallcateDev               = "//span[text()='" + WebportalParam.getLocText("Device Credits") + "']/../..";
     public SelenideElement        deallocateDevCredits       = $x(deallcateDev + "//div[contains(@class,'firstLast')]");
@@ -157,16 +157,16 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        nopurchasemessage1          = $x("//p[contains(text(),'Sorry, we could not find any relevant results.')]");
     public SelenideElement        iconsearch                  = $x("//span[@class='icon-search']");
     public SelenideElement        canceliconsearch            = $x("//i[@class='icon icon-group-2x']");
-    public SelenideElement        inputtextiniconsearch       = $x("//input[@class='inputTextField']");
+    public SelenideElement        inputtextiniconsearch       = $x("//input[@id='purchaseHistorySearch']");
     public SelenideElement        availableprovpncredits      = $x("//p[contains(text(),'Available Credits')]");
     public SelenideElement        availableinsightprocredit   = $x("//p[contains(text(),'Available Credits')]");
-    public SelenideElement        subscriptionkeytext         = $x("//*[@id=\"DataTables_Table_2\"]/tbody/tr/td[1]/div/p[2]");
+    public SelenideElement        subscriptionkeytext         = $x("(//span[text()='Instant Captive Portal']/../..//p[contains(text(),'Subscription key')])[1]");
     public SelenideElement        subscriptionkeytext1        = $x("//p[contains(text(),'Subscription key')]");
     public SelenideElement        prouserinsightlicensecount  = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[1]");
     public SelenideElement        prouservpnlicensecount      = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[1]");
     public SelenideElement        instantcaptiveportalcount   = $x("//div[@id='main']//div[3]//h3[1]//span[1]");
     public SelenideElement        defaultfilter               = $x("//option[contains(text(),'Last Year')]");
-    public SelenideElement        lastyearfilter              = $x("//option[contains(text(),'Last 30 Days')]");
+    public SelenideElement        lastyearfilter              = $x("//option[contains(text(),'Last 30')]");
     public SelenideElement        lastquarterfilter           = $x("//option[contains(text(),'Last Quarter')]");
     public SelenideElement        defaultcategoryfilter       = $x("//select[@name='prodCategory']");
     public SelenideElement        allcategoryfilter           = $x("(//option[contains(text(),'All')])[2]");
@@ -186,7 +186,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        VPNcurrency                 = $x("//span[text() ='Insight Instant VPN - 1 Yr-ZAR']");
     public SelenideElement        Multipackcurrency           = $x("//span[text() ='Insight Premium 5 pack Sub,1Yr HKD']");
     public SelenideElement        collapseinsigtdivcredits    = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[2]//i[1]");
-    public SelenideElement        expandcaptiveportal         = $x("//div[@id='smartadmin-root']//div[3]//h3[1]//span[2]//i[2]");
+    public SelenideElement        expandcaptiveportal         = $x("//span[contains(text(),'Instant Captive Portal')]/../..//i[@class='icon icon-icon-collapse']");
     public SelenideElement        expandprovpn                = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[2]//i[2]");
     public SelenideElement        expandinsigtdivcredits      = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[2]//i[2]");
     public SelenideElement        icpcollapse                 = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div/div[2]/div/div[3]/h3/span[2]/i[2]");
@@ -999,5 +999,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
       return ExpiryDate;
   }
   public SelenideElement  verifyAdminEmailMessage           = $x("//td[contains(text(),'Please confirm your email address')]");
+  public SelenideElement  verifyVPNCreditsavilable          = $x("//p[text()='Total VPN Group Credits']");
+  public SelenideElement  verifyCaptivePortalCount1         = $x("(//span[text()='Instant Captive Portal']/../..//span[text()='3'])[1]");
 }
 

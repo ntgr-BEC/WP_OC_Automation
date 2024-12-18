@@ -64,11 +64,17 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do tearDown");
         OrganizationPage page = new OrganizationPage();
         page.deleteOrganizationNew(organizationName1);
+        MyCommonAPIs.sleepi(5);
         page.deleteOrganizationNew(organizationName2);
+        MyCommonAPIs.sleepi(5);
         page.deleteOrganizationNew(organizationName3);
+        MyCommonAPIs.sleepi(5);
         page.deleteOrganizationNew(organizationName4);
+        MyCommonAPIs.sleepi(5);
         page.deleteOrganizationNew(organizationName5);
+        MyCommonAPIs.sleepi(5);
         page.deleteOrganizationNew(organizationName6);
+        MyCommonAPIs.sleepi(5);
     }
 
     // Each step is a single test step from Jira Test Case
