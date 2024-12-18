@@ -41,6 +41,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        wvp.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -51,7 +52,7 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();
-
+        wvp.deleteAllVlan();
         wvp.gotoPage();
         wvp.newVlan(vlanName, vlanId, 2);
 

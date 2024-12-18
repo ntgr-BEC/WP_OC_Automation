@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.Routing.PRJCBUGEN_T6884;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -76,10 +77,12 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Add a new static route")
     public void step4() {
-        dssrp.addStaticRoute(false, "123.12.12.0", mask, "123.12.12.1");   
-        String sRet = handle.getPageErrorMsg();
-        System.out.println(sRet);
-        assertTrue(sRet.contains("limit exceeded"));
+        dssrp.addStaticRoute(false, "123.12.12.0", mask, "123.12.12.1"); 
+        $x("//*[@id=\"staticSave\"]").click();;  
+        String txtId = "//a[@class='customeErrorClose']/..";
+        String ErrorMessge =$x("//a[@class='customeErrorClose']/..").getText();      
+        System.out.println(ErrorMessge);
+        assertTrue(ErrorMessge.contains("Limit exceeded"));
     }
 
 }

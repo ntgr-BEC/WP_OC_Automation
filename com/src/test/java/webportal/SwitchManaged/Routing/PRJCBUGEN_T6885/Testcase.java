@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.Routing.PRJCBUGEN_T6885;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -101,8 +102,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Add ip address for vlan 16")
     public void step5() {
         rtp.addIpToVlan(vlanName + (iMax + 1), mask, ip1, ip2);
-        String sRet = handle.getPageErrorMsg();
-        assertTrue(sRet.contains("limit exceeded"));
+        String txtId = "//a[@class='customeErrorClose']/..";
+        String ErrorMessge =$x("//a[@class='customeErrorClose']/..").getText();      
+        System.out.println(ErrorMessge);
+        assertTrue(ErrorMessge.contains("limit reached"));
     }
 
 }
