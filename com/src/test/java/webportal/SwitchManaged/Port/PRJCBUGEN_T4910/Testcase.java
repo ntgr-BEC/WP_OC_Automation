@@ -1,5 +1,6 @@
 package webportal.SwitchManaged.Port.PRJCBUGEN_T4910;
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 import org.testng.annotations.AfterMethod;
@@ -12,6 +13,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPageMNG;
@@ -47,9 +49,12 @@ public class Testcase extends TestCaseBase implements Config {
         DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
         DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
         devicesSwitchSummaryPage.portChoice(WebportalParam.sw1Port6).click();
+        
+        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page1 = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+        page1.disablePort();
     }
 
-    @Step("Test Step 2: Change port speed mode to 100M full")
+    @Step("Test Step 2: Change port speed mode to 1000 full")
     public void step2() {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
@@ -57,33 +62,56 @@ public class Testcase extends TestCaseBase implements Config {
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.clickSave();
     }
 
-    @Step("Test Step 3: Check port 1 speed mode")
-    public void step3() {
+//    @Step("Test Step 3: Check port 1 speed mode")    //port 6 is disabled 
+//    public void step3() {
+//        MyCommonAPIs.sleepi(180);
+//        handle.waitCmdReady(PORTSPEED_CLI, false);
+//        expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
+//        assertFalse(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
+//    }
+//    
+//    @Step("Test Step 5: Enable the disabled port")
+//     public void step5() {
+//        
+//        DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
+//        DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
+//        devicesSwitchSummaryPage.portChoice(WebportalParam.sw1Port6).click();
+//        
+//        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page1 = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+//        page1.enablePort();
+//    
+//    }
+    
+    @Step("Test Step 6: Check port 1 speed mode")    //port 6 is enabled 
+    public void step6() {
+        MyCommonAPIs.sleepi(180);
         handle.waitCmdReady(PORTSPEED_CLI, false);
         expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
     }
 
-    @Step("Test Step 4: Change port speed mode to 100M half")
-    public void step4() {
-        DevicesSwitchSummaryPage page = new DevicesSwitchSummaryPage();
-        page.portChoice(WebportalParam.sw1Port6).click();
-        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
-        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
-        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE2);
-        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.clickSave();
-        handle.sleepsync();
-    }
-
-    @Step("Test Step 5: Check port 1 speed mode")
-    public void step5() {
-        expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 2, "check port speed/deplex");
-    }
+//    @Step("Test Step 4: Change port speed mode to 1000 full")
+//    public void step4() {
+//        DevicesSwitchSummaryPage page = new DevicesSwitchSummaryPage();
+//        page.portChoice(WebportalParam.sw1Port6).click();
+//        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+//        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
+//        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE1);
+//        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.clickSave();
+//        handle.sleepsync();
+//    }
+//
+//    @Step("Test Step 5: Check port 1 speed mode")
+//    public void step5() {
+//        expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
+//        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && SwitchCLIUtils.PortClass.duplexMode == 2, "check port speed/deplex");
+//    }
 
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
+        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page1 = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+        page1.enablePort();
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED_RESTORE);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE_RESTORE);

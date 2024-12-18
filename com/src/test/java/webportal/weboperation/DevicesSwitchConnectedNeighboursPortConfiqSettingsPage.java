@@ -134,6 +134,7 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
     }
     
     public String getMaxFrameSize() {
+        MyCommonAPIs.sleepi(30);
         return getText(frameSizeValue);
     }
     

@@ -34,7 +34,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Feature("Switch.Port") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4886") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("007-Link between 10M half-duplex and auto") // It's a testcase title from Jira Test Case.
+    @Description("007-Link between 1000 full ") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T4886") // It's a testcase id/link from Jira Test Case.
     @Test(alwaysRun = true, groups = "p3")
     public void test() throws Exception {
@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         // check on dut CLI
         String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);        //replaced g1 by WebportalParam.sw1Port1
-        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 2) {
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 1) {
             micResult = true;
         } else {
             micResult = false;

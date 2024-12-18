@@ -441,13 +441,22 @@ public class SwitchTelnet {
         String rs = sendCLICommandClear("show running-config interface " + portCLI, "storm-control");
         return rs;
     }
+    
+    public boolean getPortAdminMode(String portCLI) {
+        setEnable();
+        String rs = sendCLICommandClear("show running-config interface " + portCLI, "shutdown");
+        if (rs.contains("shutdown"))
+            return false;
+        return true;
+    }
 
     /**
      * @param  portCLI
      * @return         true for port is shutdown/disable
      */
-    public boolean getPortAdminMode(String portCLI) {
+    public boolean getPortAdminMode(String portCLI, String model) {
         setEnable();
+        portCLI = WebportalParam.getSwitchPort(model, portCLI);
         String rs = sendCLICommandClear("show running-config interface " + portCLI, "shutdown");
         if (rs.contains("shutdown"))
             return false;

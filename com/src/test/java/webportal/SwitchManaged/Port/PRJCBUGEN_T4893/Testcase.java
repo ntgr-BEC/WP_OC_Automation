@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: Check ports status on both switchs，from GUI")
     public void step3() {
-        MyCommonAPIs.sleep(120000);
+          MyCommonAPIs.sleep(120000);
         // check sw1 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
@@ -101,7 +101,7 @@ public class Testcase extends TestCaseBase implements Config {
         // check on dut CLI
         SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
-            boolean portStatus = switchTelnet.getPortAdminMode("g" + i);
+            boolean portStatus = switchTelnet.getPortAdminMode("g" + i,webportalParam.sw1Model);
             if (portStatus) {
                 micResult = true;
                 System.out.println(portStatus);
@@ -113,7 +113,7 @@ public class Testcase extends TestCaseBase implements Config {
         SwitchTelnet.disconnect();
         SwitchTelnet switchTelnet2 = new SwitchTelnet(webportalParam.sw2IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
-            boolean portStatus = switchTelnet2.getPortAdminMode("g" + i);
+            boolean portStatus = switchTelnet2.getPortAdminMode("g" + i,webportalParam.sw2Model);
             if (portStatus) {
                 micResult = true;
                 System.out.println(portStatus);
@@ -176,7 +176,7 @@ public class Testcase extends TestCaseBase implements Config {
         // check on dut CLI
         SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
         for (int i = 1; i <= portNumber / 2; i++) {
-            boolean portStatus = switchTelnet.getPortAdminMode("g" + i);
+            boolean portStatus = switchTelnet.getPortAdminMode("g" + i,webportalParam.sw1Model);
             if (!portStatus) {
                 micResult = true;
                 System.out.println(portStatus);
@@ -188,7 +188,7 @@ public class Testcase extends TestCaseBase implements Config {
         SwitchTelnet.disconnect();
         SwitchTelnet switchTelnet2 = new SwitchTelnet(webportalParam.sw2IPaddress);
         for (int i = 1; i < portNumber / 2; i++) {
-            boolean portStatus = switchTelnet2.getPortAdminMode("g" + i);
+            boolean portStatus = switchTelnet2.getPortAdminMode("g" + i,webportalParam.sw2Model);
             if (!portStatus) {
                 micResult = true;
                 System.out.println(portStatus);

@@ -28,7 +28,8 @@ import webportal.weboperation.WebportalLoginPage;
 public class Testcase extends TestCaseBase implements Config {
     public String expectValue = "";
     public String portNo      = "g1";
-
+    String randomFrameSize;
+    
     @Issue("PRJCBUGEN-10030")
     @Feature("Switch.Port") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4900") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -41,7 +42,8 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 1: Put DUT out of internet")
     public void step0() {
-        SwitchCLIUtils.CloudModeSet(false);
+//        SwitchCLIUtils.CloudModeSet(false);
+        SwitchCLIUtils.SwitchOfflineOnline("Disconnect");
     }
 
     // Each step is a single test step from Jira Test Case
@@ -61,7 +63,8 @@ public class Testcase extends TestCaseBase implements Config {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyPortDescription(portDesc);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
-        devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyMaxFrameSize("max");
+        randomFrameSize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyMaxFrameSizeRandom();
+        System.out.println("randomFrameSize" + randomFrameSize);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyStormControlRate(STROM_Set);
     }
@@ -69,26 +72,26 @@ public class Testcase extends TestCaseBase implements Config {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 4: After about 5min ,connect DUT to internet")
     public void step3() {
-        // MyCommonAPIs.sleepi(4 * 60);
 
-        SwitchCLIUtils.CloudModeSet(true);
+//        SwitchCLIUtils.CloudModeSet(true);
+        SwitchCLIUtils.SwitchOfflineOnline("Connect");
     }
 
     @Step("Test Step 5: Check configuration on CLI")
     public void step4() {
+        MyCommonAPIs.sleepi(180);
         handle.waitCmdReady(portDesc, false);
-        MyCommonAPIs.sleepsync();
         String sRet = SwitchCLIUtils.getPortInfo(portNo);
         assertTrue(sRet.contains(portDesc), "check for " + portDesc);
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtils.PortClass.duplexMode == 2), "check for " + PORTSPEED_CLI);
-        assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains("9198"), "check for " + FRAMESIZE_CLI);
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check for " + PORTSPEED_CLI);
+        assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(randomFrameSize), "check for " + randomFrameSize);
         assertTrue(SwitchCLIUtils.PortClass.sPortStormControlRate.contains(STROM_Set), "check for " + STROM_Set_CLI);
     }
 
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        SwitchCLIUtils.CloudModeSet(true);
+//        SwitchCLIUtils.CloudModeSet(true);
         handle.refresh();
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyPortDescription("");
