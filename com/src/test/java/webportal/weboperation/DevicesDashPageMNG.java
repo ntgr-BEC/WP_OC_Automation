@@ -862,6 +862,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
      * Open sw1 if it's PoE, open sw2 if it's PoE while sw1 is not PoE, open any PoE if sw1 & sw2 are not PoE
      */
     public void openPoEDevice() {
+        System.out.println("inside POE");
         if (WebportalParam.sw1Model.contains("P")) {
             enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
         } else if (WebportalParam.enaTwoSwitchMode && WebportalParam.sw2Model.contains("P")) {
@@ -874,6 +875,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             boolean devFound = false;
             int devIndex = 0;
             for (SelenideElement se : $$x(sDeviceModel)) {
+                System.out.println("inside SelenideElement");
                 String sMode = se.getText();
                 logger.info(sMode);
                 if (sMode.contains("P")) {
@@ -888,6 +890,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             assertTrue(devFound, "There must be at least one PoE device");
         }
         waitReady();
+        System.out.println("Exit");
     }
 
     /**
