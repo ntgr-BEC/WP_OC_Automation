@@ -43,6 +43,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do restore");
 //        SwitchCLIUtils.CloudModeSet(true);
         SwitchCLIUtils.SwitchOfflineOnline("Connect");
+        MyCommonAPIs.sleepi(180);
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.deleteAllVlan();
