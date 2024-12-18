@@ -16,8 +16,8 @@ public interface Config {
     public static String PORT_SPEED_RESTORE  = "Auto";
     public static String DUPLEX_MODE_RESTORE = "Auto";
 
-    public static String PORTSPEED_CLI  = "1000 half";
+    public static String PORTSPEED_CLI  = "1000 full";
     public static String FRAMESIZE_CLI  = "mtu 9198";
-    public static String DUPLEXMODE_CLI = "half-duplex";
+    public static String DUPLEXMODE_CLI = "full-duplex";
     public static String STROM_Set_CLI  = "level " + STROM_Set;
 }

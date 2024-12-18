@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 3: Check ports status on both switchs，from GUI")
     public void step3() {
-          MyCommonAPIs.sleep(120000);
+        MyCommonAPIs.sleep(180000);
         // check sw1 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
@@ -138,7 +138,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 6: Check ports status on both switchs，from GUI")
     public void step6() {
         // wait 120s ,cloud need time send command to switches
-        MyCommonAPIs.sleep(120000);
+        MyCommonAPIs.sleep(180000);
         // check sw1 on webportal
         for (int i = 1; i < portNumber / 2; i++) {
             DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
