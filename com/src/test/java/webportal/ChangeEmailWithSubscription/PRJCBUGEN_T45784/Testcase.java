@@ -1,4 +1,4 @@
-package webportal.ChangeEmailWithSubscription.PRJCBUGEN_T38822;
+package webportal.ChangeEmailWithSubscription.PRJCBUGEN_T45784;
 
 import static org.testng.Assert.assertTrue;
 
@@ -42,9 +42,9 @@ public class Testcase extends TestCaseBase {
     int dc = 0;
 
     @Feature("ChangeEmailWithSubscription") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T38822") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify after purchasing the month plan then change the email address login with the change email and try to purchase the device credit for USA Country") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T38822") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T45784") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify after purchasing the month plan then change the email address login with the change email and try to purchase the device credit for Singapore Country") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T45784") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
-        accountInfo.put("Country", "United States");
+        accountInfo.put("Country", "Singapore");
 
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
@@ -88,8 +88,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "32003");
-        locationInfo.put("Country", "United States of America");
+        locationInfo.put("Zip Code", "39799");
+        locationInfo.put("Country", "Singapore");
         new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
         
@@ -116,11 +116,11 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("First Name", mailname);
         paymentInfo.put("Last Name", "T17564");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Springs Rd");
-        paymentInfo.put("City", "Red Bank");
-        paymentInfo.put("Zip", "32003");
-        paymentInfo.put("Country", "US");
-        paymentInfo.put("State", "Florida");
+        paymentInfo.put("Street Address", "Raffles Avenue");
+        paymentInfo.put("City", "Singapore");
+        paymentInfo.put("Zip", "39799");
+        paymentInfo.put("Country", "Singapore");
+        paymentInfo.put("State", "Singapore");
     
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
         assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
@@ -151,11 +151,11 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("Device Credits Pack", "5");
         paymentInfo.put("Buy Year", "1");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Springs Rd");
-        paymentInfo.put("City", "Red Bank");
-        paymentInfo.put("Zip", "32003");
-        paymentInfo.put("Country", "US");
-        paymentInfo.put("State", "Florida");
+        paymentInfo.put("Street Address", "Raffles Avenue");
+        paymentInfo.put("City", "Singapore");
+        paymentInfo.put("Zip", "39799");
+        paymentInfo.put("Country", "Singapore");
+        paymentInfo.put("State", "Singapore");
      
         new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
         
