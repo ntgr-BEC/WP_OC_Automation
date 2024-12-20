@@ -34,7 +34,7 @@ public class TestCase extends TestCaseBase {
     Random              r           = new Random();
     int                 num         = r.nextInt(10000000);
     String              mailname    = "apwptest" + String.valueOf(num);
-    @Feature("Create Multiple Locations") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Create Multiple Locations Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T50006") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Create Multiple Locations") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T50006") // It's a testcase id/link from Jira Test Case.

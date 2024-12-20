@@ -139,6 +139,8 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
         batchSetFromMap(settingMap);
         saveButton.click();
         
+        sleep(2000);
+        clickBoxLastButton();
         sleepsync();
         sleep(3 * nPort, "wait port to be configured");
         return allPorts.size() - 2;
