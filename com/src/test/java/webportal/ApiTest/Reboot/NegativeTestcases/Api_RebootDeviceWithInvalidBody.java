@@ -53,12 +53,12 @@ public class Api_RebootDeviceWithInvalidBody extends TestCaseBaseApi{
         headers.put("accountId",WebportalParam.accountId);
        
         
-        String requestBody="[{\"serialNo\":\"71402454f9010o222\",\"deviceType\":\"AP\"}]";
+        String requestBody="[{\"serialNo\":\"7140245487587f9010o222\",\"deviceType\":\"AP\"}]";
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
-        getResponse.then().body("response.status", equalTo(true))
-                           .body("response.message", equalTo("Success in fetching reboot now information."));
+        getResponse.then().body("response.status", equalTo(false))
+                           .body("response.message", equalTo("One or more serial numbers are invalid."));
         
 
         
