@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, WebportalParam.loginName);
+        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, WebportalParam.loginPassword);
     }
 
     @Step("Test Step 2: Check login account;")
@@ -58,17 +58,15 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).sleepi(3);
         new HamburgerMenuPage(false).searchbutton.click();
         new HamburgerMenuPage(false).sleepi(10);
-        
-        System.out.println("11111");
+       
         if ($x(String.format(new HamburgerMenuPage(false).supportRequestTableEmail, WebportalParam.loginName)).exists()) {  
               if (new HamburgerMenuPage(false).gotoMyAccount.exists()) {
-                  System.out.println("222222");
+             
                  new HamburgerMenuPage(false).logInAsThisUser(WebportalParam.loginName);
 
                  assertTrue(new HamburgerMenuPage().checkAccountEmail(WebportalParam.loginName), "Login account failed.");
-                 System.out.println("333333");
         }
-        }
+        }else {
      
         UserManage userManage = new UserManage();
         userManage.logout();
@@ -78,14 +76,16 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage().grantAccessToSupport();
 
         userManage.logout();
-        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, WebportalParam.loginName);
+        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, WebportalParam.loginPassword);
        
         new HamburgerMenuPage(false).logInAsThisUser(WebportalParam.loginName);
 
         assertTrue(new HamburgerMenuPage().checkAccountEmail(WebportalParam.loginName), "Login account failed.");
         
         userManage.logout();
-        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, "Netgear12");
+        }
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.l2SupportUser, WebportalParam.loginPassword);
         if ($x(String.format(new HamburgerMenuPage(false).supportRequestTableEmail, WebportalParam.loginName)).exists()) {
             new HamburgerMenuPage(false).endAccessSupportUser(WebportalParam.loginName);
     }

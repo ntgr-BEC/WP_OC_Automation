@@ -55,7 +55,6 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        handle.gotoLocationWireSettings();
 
         DevicesDashPageMNG pageNew = new DevicesDashPageMNG();
         pageNew.openPoEDevice();
@@ -125,7 +124,11 @@ public class Testcase extends TestCaseBase {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage page = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         page.goBatchPortConf();
         page.setPorts(true, true);
+        sCurrentValue = "7";
+        sExpectedtValue = String.format(" %s000", sCurrentValue);
+        page.setPOEValue("Class2");
         handle.refresh();
+        new DevicesSwitchConnectedNeighboursPortConfiqSummaryPage();
     }
 
     @Step("Test Step 9: Show deploy successfully")

@@ -66,8 +66,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip address and mask to vlan 100")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, ipMask, ip1, ip2);
-        rtp.openVlan(vlanId);
+        rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
+        rtp.openVlan(vlanName);
         assertTrue(rtp.seMask.getValue().equals(ipMask), "check mask");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).equals(ip1), "check ip 1");
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {
@@ -84,7 +84,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Check vlan 100 on app")
     public void step4() {
-        rtp.openVlan(vlanId);
+        rtp.openVlan(vlanName);
         assertTrue(rtp.seMask.getValue().isEmpty(), "check mask after delete");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).isEmpty(), "check ip 1 after delete");
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {

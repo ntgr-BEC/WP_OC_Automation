@@ -527,9 +527,9 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         $x("//button[@title='Check Inbox @yopmail.com']").click();
         SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
-        MyCommonAPIs.sleepsync();
-        Selenide.refresh();
         String mailBody = shareDiagnosticsMail.getText();
+        System.out.println(MyCommonAPIs.getCurrentUrl());
+        MyCommonAPIs.sleepi(20);      
         System.out.println(mailBody);
         return mailBody;
             

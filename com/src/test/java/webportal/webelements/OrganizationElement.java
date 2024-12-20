@@ -624,4 +624,9 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement verifyDevicesPresentonLocationLogo1 = $x("//span[text()='Devices']//span[text()='6']");
     public SelenideElement verifyDevicesPresentonOrgLogo1      = $x("//li[text()='Devices']/..//li[text()='6']");
     public SelenideElement gotoHomePage                        = $x("//span[@id='logoInsightPro']//a[@href='/#/organization/dashboard']");
+    public SelenideElement verifyManager(String managerName) {
+        SelenideElement manager = $x("//td[text()='"+managerName+"']");
+        return manager;
+    }
+
 }

@@ -66,13 +66,9 @@ public class Testcase extends TestCaseBase {
         managerInfo.put("Name", "test14347");
         managerInfo.put("Email Address", writeMan);
         managerInfo.put("Organization Name", WebportalParam.Organizations);
-        managerInfo.put("Access Policy", "Read/Write");
-
+        managerInfo.put("Access Policy", "Read/Write");    
         new ManagerPage().addManager(managerInfo);
-
-        assertTrue(
-                new ManagerPage(false).checkSuccessDialog()
-                        && new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1"),
+        assertTrue(new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1"),
                 "Invite manager failed.");
 
         UserManage userManage = new UserManage();

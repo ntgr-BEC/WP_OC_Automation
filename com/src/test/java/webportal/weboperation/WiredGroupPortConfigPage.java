@@ -125,6 +125,7 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
     public int multiSettingAllPorts(Map<String, String> settingMap) {
         MyCommonAPIs.sleep(3000);
         int nPort = allPorts.size();
+        System.out.println(nPort);
         for (SelenideElement portsElement : allPorts) {
             portsElement.click();
             MyCommonAPIs.sleep(1 * 1000);
@@ -138,6 +139,8 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
         batchSetFromMap(settingMap);
         saveButton.click();
         
+        sleep(2000);
+        clickBoxLastButton();
         sleepsync();
         sleep(3 * nPort, "wait port to be configured");
         return allPorts.size() - 2;

@@ -57,10 +57,10 @@ public class Testcase extends TestCaseBase {
  WebCheck.checkHrefIcon(URLParam.hrefDevices);
         
         Map<String, String> devInfo = new HashMap<String, String>();
-        devInfo.put("Serial Number", WebportalParam.ap1serialNo);
-        devInfo.put("Device Name", WebportalParam.ap1deveiceName);
+        devInfo.put("Serial Number1", WebportalParam.ap1serialNo);
+        devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
 
-        new DevicesDashPage(false).addNewDevice(devInfo);
+        new DevicesDashPage(false).addNewdummyDevice(devInfo);
 
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 

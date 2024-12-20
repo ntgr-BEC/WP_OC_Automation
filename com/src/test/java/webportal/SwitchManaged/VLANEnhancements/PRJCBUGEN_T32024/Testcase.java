@@ -90,6 +90,7 @@ public class Testcase extends TestCaseBase implements Config {
         if (netsp.getNetworks().contains(vlanName)) {
             netsp.deleteNetwork(vlanName);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName2)) {
             netsp.deleteNetwork(vlanName2);
         }

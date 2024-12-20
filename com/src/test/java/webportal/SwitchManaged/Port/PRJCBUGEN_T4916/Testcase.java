@@ -33,12 +33,6 @@ public class Testcase extends TestCaseBase implements Config {
     @Test(alwaysRun = true, groups = "p3")
     public void test() throws Exception {
         runTest(this);
-        
-        if((WebportalParam.sw1Model).equals("M250")) {
-            String g= "0/";
-        } else {
-                String g="1/0/";
-        }
     }
 
     // Each step is a single test step from Jira Test Case
@@ -70,7 +64,7 @@ public class Testcase extends TestCaseBase implements Config {
         assertTrue(SwitchCLIUtils.PortClass.sPortVal.contains(portDesc), "check port desc");
         assertTrue(SwitchCLIUtils.PortClass.isShutdown, "check shutdown");
         assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(expectValue), "check framesize");
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("100") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
     }
 
     @AfterMethod(alwaysRun = true)

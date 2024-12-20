@@ -7,6 +7,8 @@ import java.util.List;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Selenide;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -74,6 +76,7 @@ public class Testcase extends TestCaseBase {
         List<String> lsEvent1 = evtp.getEventDesc();
         evtp.deleteOneEvent(EventElement.sWarning);
         MyCommonAPIs.sleepi(20);
+        Selenide.refresh();
         List<String> lsEvent2 = evtp.getEventDesc();
 
         assertTrue(!lsEvent1.equals(lsEvent2), "one Warning type is removed");

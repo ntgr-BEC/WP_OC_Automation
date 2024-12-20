@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Add ip addrss for the two siwtches")
     public void step2() {
-        rtp.addIpToVlan(vlanId, "255.255.255.0", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.255.0", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().length() > 10, "there must be a msg to say cannot same ip address");
         assertTrue(handle.getPageErrorMsg().contains("devices cannot share the same ip address"), "should get a error MSg saying- Devices cannot share the same IP address. Please enter a different IP address.");
     }

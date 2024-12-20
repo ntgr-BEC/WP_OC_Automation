@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     Map<String, String>     devInfo           = new HashMap<String, String>();
 
     @Feature("Deallocation") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T30956") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T30956") // It's a testcase id/link from Jira Test Case but replace - wi_.
     @Description("Test to verify that user should able to add NHB device on new org after deleting from previous org along with deallocating all credit.") // It's
                                                                                                                                                            // a
                                                                                                                                                            // test
@@ -171,6 +171,12 @@ public class Testcase extends TestCaseBase {
         organizationInfo.put("Name", organizationName);
 
         OrganizationPage.addOrganization(organizationInfo);
+        OrganizationPage.openOrg(organizationName);
+        locationInfo.put("Location Name", WebportalParam.location1);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "12345");
+        locationInfo.put("Country", "China");
+        new AccountPage(false).addNetwork(locationInfo);
 
     }
 

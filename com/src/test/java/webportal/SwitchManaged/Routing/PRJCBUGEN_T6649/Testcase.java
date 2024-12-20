@@ -59,7 +59,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip addrss for the two siwtches and check")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, "255.255.255.0", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.255.0", ip1, ip2);
         handle.waitCmdReady("route", false);
     }
 

@@ -54,9 +54,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
 
+
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
-        
+
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
         accountInfo.put("Last Name", "T18721");
