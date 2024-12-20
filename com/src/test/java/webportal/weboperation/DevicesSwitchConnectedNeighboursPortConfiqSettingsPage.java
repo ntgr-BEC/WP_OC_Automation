@@ -298,6 +298,9 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
         } else {
             portSpeedSelect.selectOption(WebportalParam.getLocText(speed));
         }
+        clickSave();
+        sleep(2000);
+        
     }
     
     public void setDeplexMode(String mode) {
@@ -307,6 +310,8 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
         } else {
             deplexModeSelect.selectOption(WebportalParam.getLocText(mode));
         }
+        clickSave();
+        sleep(2000);
     }
     
     public boolean isPoEHasClass(String classLevel) {

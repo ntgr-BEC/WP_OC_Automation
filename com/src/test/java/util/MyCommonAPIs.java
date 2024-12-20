@@ -663,6 +663,7 @@ public class MyCommonAPIs {
     
     public void clickBoxLastButton() {
         try {
+            MyCommonAPIs.sleepi(5);
             $(sPopButtonCss).waitUntil(Condition.appear, 10 * 1000);
             $$(sPopButtonCss).last().click();
 //            $$(sPopButtonCss).filter(Condition.appear).last().click();
