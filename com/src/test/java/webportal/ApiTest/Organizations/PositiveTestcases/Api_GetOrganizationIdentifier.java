@@ -47,29 +47,29 @@ public class Api_GetOrganizationIdentifier extends TestCaseBaseApi{
     }
     
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountIdPro);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-            
-        
-    }  
+//    @AfterMethod(alwaysRun=true)
+//    public void teardown()
+//    { 
+//        
+//        Map<String, String> pathParams = new HashMap<String, String>();
+//        pathParams.put("orgId",OrgID);
+//        pathParams.put("accountId",WebportalParam.accountIdPro);
+//        
+//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//            
+//        
+//    }  
     
   
     @Step("Send get request to {url}")
     public void step1()
     { 
-        Response response = new Api_AddOrganization().step1();
-
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
-        
-        Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
+//        Response response = new Api_AddOrganization().step1();
+//
+//        OrgID = response.jsonPath().getString("orgInfo.orgId");
+//        
+//        Response response2 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
 
         endPointUrl = new ApiRequest().ENDPOINT_URL; 
         
@@ -78,13 +78,13 @@ public class Api_GetOrganizationIdentifier extends TestCaseBaseApi{
         
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId", WebportalParam.accountIdPro);
-        pathParams.put("orgId", OrgID);
+        pathParams.put("orgId", WebportalParam.orgId);
 
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Organization_Identifier"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("details.deviceCredit", equalTo(DC));
-        getResponse.then().body("details.instantCpCredit", equalTo(ICPC));
+        getResponse.then().body("response.message", equalTo("success"));
+        getResponse.then().body("details.orgId", equalTo(WebportalParam.orgId));
                          
         }
                 

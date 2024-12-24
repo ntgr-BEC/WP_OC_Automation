@@ -25,14 +25,14 @@ import java.util.List;
 import java.util.Map;
 
 
-public class Api_MacAuthSupport extends TestCaseBaseApi{
+public class Api_MacSettingSupport extends TestCaseBaseApi{
 
     String networkId;
     Map<String, String> headers = new HashMap<String, String>();
     Map<String, String> endPointUrl = new HashMap<String, String>();
 
     
-    @Feature("Api_MacAuthSupport") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_MacSettingSupport") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test creates enavles MAC Acl settings support") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -42,15 +42,18 @@ public class Api_MacAuthSupport extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    {  
-        Map<String, String> pathParams = new HashMap<String, String>();
-       pathParams.put("networkId",networkId);    
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-    }
-//  not working
+//    @AfterMethod(alwaysRun=true)
+//    public void teardown()
+//    {  
+//        Map<String, String> pathParams = new HashMap<String, String>();
+//       pathParams.put("networkId",networkId);    
+//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+//        getResponse1.then().body("response.status", equalTo(true));
+//    }
+
+    
+    //call set vlan here
+   
     @Step("Send get request to {url}")
     public Response step1()
     {
@@ -71,10 +74,10 @@ public class Api_MacAuthSupport extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
         pathParams.put("vlanId",vlanId);
         
-        String body="{\"macAuthenticationInfo\":{\"mode\":\"1\"}}";
+        String body="{\"macAuthenticationInfo\":{\"mode\":\"0\",\"action\":\"0\"}}";
 
         //TO PERFORM ANY REQUEST
-     
+       
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Enable_MacAcl"),body, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
                       

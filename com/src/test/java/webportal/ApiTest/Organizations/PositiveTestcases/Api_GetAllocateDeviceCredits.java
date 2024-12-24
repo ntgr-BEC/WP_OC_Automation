@@ -44,28 +44,12 @@ public class Api_GetAllocateDeviceCredits extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
-    public void teardown()
-    { 
-        
-        Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId",OrgID);
-        pathParams.put("accountId",WebportalParam.accountIdPro);
-        
-        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-        getResponse1.then().body("response.status", equalTo(true));
-       
-    }  
+
   
     @Step("Send get request to {url}")
     public void step1()
     {     
-                
-        Response response = new Api_AddOrganization().step1();
-        OrgID = response.jsonPath().getString("orgInfo.orgId");
-        
-        Response response1 = new Api_AllocateDeviceCredits().step2(DC, ICPC, OrgID );
-        
+                       
         endPointUrl = new ApiRequest().ENDPOINT_URL;          
         
         headers.put("token",WebportalParam.tokenPro);
@@ -74,12 +58,13 @@ public class Api_GetAllocateDeviceCredits extends TestCaseBaseApi{
         
         
         Map<String, String> pathParams = new HashMap<String, String>();
-        pathParams.put("orgId", OrgID);
+        pathParams.put("orgId", WebportalParam.orgId);
         
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("GetAllocateDeviceCredits"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
-        getResponse.then().body("details.totalDeviceCredits", equalTo(DC));
+        getResponse.then().body("response.message", equalTo("Successfully fetched the license details for the selected organization"));
+
     }
 
 

@@ -72,7 +72,8 @@ public class ModifyVlanWithInvalidBody_Api extends TestCaseBaseApi{
       
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
-        getResponse.then().body("response.status", equalTo(false));
+        getResponse.then().body("response.status", equalTo(false))
+        .body("response.message", equalTo("Please enter VLAN ID between 1 to 4093"));
        
       
     }
