@@ -84,7 +84,7 @@ public class Testcase extends TestCaseBase implements Config {
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
         vlanPage.editVlanWithPorts("vlan200", "200", "vlan200", dut1Name, sw1port3, "untag", null, null, null, null);
-
+        
         handle.waitCmdReady("vlan200", false);
         MyCommonAPIs.sleep(5000);
 
@@ -146,7 +146,8 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(5000);
 
         String checkPort = "g1";
-        if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
+//        removed Not on if condition because tagged and untagged for include and tagged and untagged is for exclude
+        if (SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {
             micResult = false;
@@ -154,7 +155,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
 
         checkPort = "g" + length;
-        if (!SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
+        if (SwitchCLIUtils.isTagPort(checkPort, vlanId) && !SwitchCLIUtils.isPortInVlan(checkPort, "200")) {
             micResult = true;
         } else {
             micResult = false;

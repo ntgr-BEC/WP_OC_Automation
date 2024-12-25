@@ -217,7 +217,7 @@ public class AccountPageElement extends MyCommonAPIs {
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
         SelenideElement deleteLocation4 = $x("//button[text()='Yes, delete location']");
         SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(15);
         if ($x(deleteLocation1).exists()) {
             $x(deleteLocation1).click();
         } else if ($x(deleteLocation2).exists()) {
@@ -229,9 +229,9 @@ public class AccountPageElement extends MyCommonAPIs {
         } else {
             deleteLocation5.click();
         }
-        MyCommonAPIs.sleepi(5);
-        waitElement(deleteLocation3);
-        deleteLocation3.click();
+        MyCommonAPIs.sleepi(15);
+        waitElement(deleteLocation4);
+        deleteLocation4.click();
 //        clickBoxLastButton();
         MyCommonAPIs.sleepi(5);
         

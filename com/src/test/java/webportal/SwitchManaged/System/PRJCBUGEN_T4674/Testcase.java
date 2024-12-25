@@ -45,19 +45,22 @@ public class Testcase extends TestCaseBase implements Config {
     
     @Step("Test Step 2: check email Info")
     public void step2() {
-        //String mailTo = "njqa.wp" + RandomStringUtils.randomNumeric(4) + "@mailcatch.com";
+        
       
         DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
         DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);
         PublicButton publicButton = new PublicButton();
         
         publicButton.ShareDiagnostics(WebportalParam.loginName);
-//        MailHandler mailcatchPage = new MailHandler(mailTo);
-//        mailcatchPage.enterFirstEmail();
-//        String mailBody = mailcatchPage.getHTMLBody();
+       
         String mailBody = new WebportalLoginPage(false).shareDiagnosticsEmail(WebportalParam.loginName);
+        
+        System.out.println(mailBody.contains("Device Name"));
+        System.out.println(mailBody.contains("Network Name"));
+        System.out.println(mailBody.contains("Serial No"));
+        System.out.println(mailBody.contains("Model"));
         if (mailBody.contains("Device Name") && mailBody.contains("Network Name") 
-                && mailBody.contains("Serial Number") && mailBody.contains("Model")) {
+                && mailBody.contains("Serial No") && mailBody.contains("Model")) {
             micResult = true;
           
     

@@ -55,15 +55,16 @@ public class Api_RetrievePurchaseOrderHistory extends TestCaseBaseApi{
     
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("timePeriod","all");   //The enumerations are all, 365 Days, 90 Days, 30 Days.
-        pathParams.put("categoryId","hbPlan");  
+        pathParams.put("categoryId","all");  
 //        The category identifier. The enumerations are all(Returns all the values), hbPlan(Insight Included with Hardware), 
 //        2071(Insight Pro VPN), 2070(Pro user Insight Licenses),usageBilling(Monthly Usage Billing), savant(Six Year Insight Included with Hardware), 2072(Instant Captive Portal), 2073(Content Filtering).
         
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Retrieve_PurchaseOrderHistory"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
-        .body("details.categoryList[0].categoryId", equalTo("hbPlan"))
-        .body("details.categoryList[1].categoryId", equalTo("usageBilling"))
-        .body("details.categoryList[2].categoryId", equalTo("savant"));
+        .body("response.message", equalTo("success"))
+        .body("details.categoryList[0].categoryId", equalTo("101"))
+        .body("details.categoryList[0].categoryName", equalTo("Insight Subscriptions"));
+        
                
         }
 }

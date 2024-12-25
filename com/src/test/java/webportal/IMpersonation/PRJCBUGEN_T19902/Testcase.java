@@ -25,6 +25,8 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
 
+  
+    
     @Feature("IMpersonation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T19902") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify the functionality of the \"Log in as this user\" button") // It's a test case title from Jira Test Case.
@@ -61,10 +63,11 @@ public class Testcase extends TestCaseBase {
         
         if ($x(String.format(new HamburgerMenuPage(false).supportRequestTableEmail, WebportalParam.loginName)).exists()) {
             new HamburgerMenuPage(false).endAccessSupportUser(WebportalParam.loginName);
-        }
+        }else {
 
         UserManage userManage = new UserManage();
         userManage.logout();
+      
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
 
@@ -80,6 +83,8 @@ public class Testcase extends TestCaseBase {
         assertTrue(new HamburgerMenuPage().checkAccountEmail(WebportalParam.loginName), "Login account failed.");
         
         userManage.logout();
+        }
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminSupportUser, WebportalParam.loginPassword);
         
         if ($x(String.format(new HamburgerMenuPage(false).supportRequestTableEmail, WebportalParam.loginName)).exists()) {

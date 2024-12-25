@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Add ip addrss for the two siwtches")
     public void step2() {
-        rtp.addIpToVlan(vlanId, "255.255.255.0", ip1, ip2);
+        rtp.addIpToVlan(vlanName, "255.255.255.0", ip1, ip2);
         assertTrue(handle.getPageErrorMsg().contains("gateway is not configured") || handle.getPageErrorMsg().contains("subnetdomain of the device must be equal to the subnetdomain of the same vlan."), "gateway should be configured first");
     }
 

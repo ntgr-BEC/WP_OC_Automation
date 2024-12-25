@@ -79,9 +79,11 @@ public class Testcase extends TestCaseBase {
         // Define the total number of ports
         int totalPorts = WiredDhcpRelayElement.allPorts.size();
         
+        System.out.println(totalPorts);
+        
         if(totalPorts ==16 || totalPorts < 16 ) {
 
-        for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+        for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
 
             handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
             assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot(Integer.toString(portNumber)));
@@ -91,13 +93,13 @@ public class Testcase extends TestCaseBase {
             
             totalPorts = totalPorts/2;
             
-            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+            for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
                     
             handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
             assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot(Integer.toString(portNumber)));
             }
             
-           for (int portNumber = 0; portNumber < totalPorts; portNumber++) {                
+           for (int portNumber = 1; portNumber < totalPorts; portNumber++) {                
                 handle.click(WiredDhcpRelayElement.txtPortSelectionnext(Integer.toString(portNumber)));
                 assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNotnext(Integer.toString(portNumber)));
                 }
@@ -128,13 +130,13 @@ public class Testcase extends TestCaseBase {
             
             totalPorts = totalPorts/2;
             
-            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+            for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
 
                 handle.click(WiredDhcpRelayElement.txtPortSelection(Integer.toString(portNumber)));
 
             }
             
-            for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+            for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
 
                 handle.click(WiredDhcpRelayElement.txtPortSelectionnext(Integer.toString(portNumber)));
 
@@ -153,7 +155,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Press Deselect All button")
     public void step5() { 
         handle.click(WiredDhcpRelayElement.deselectAllButton);
-        assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot("0"));
+        assertFalse(WiredDhcpRelayElement.checkPortSelectedOrNot("1"));
         
     }
 

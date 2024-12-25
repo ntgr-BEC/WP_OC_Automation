@@ -29,7 +29,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author dallas
+ * @author Pratik
  *
  */
 public class Testcase extends TestCaseBase {
@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase {
 
     @Feature("ChangeEmailWithSubscription") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T38822") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify after purchasing the month plan then change the email address login with the change email and try to purchase the device credit.") // It's a testcase title from Jira Test Case.
+    @Description("Test to verify after purchasing the month plan then change the email address login with the change email and try to purchase the device credit for USA Country") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T38822") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -88,8 +88,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "Australia");
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
         new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
         

@@ -23,7 +23,7 @@ public class DevicesSwitchSummaryPageElement extends MyCommonAPIs {
     };
     
     
-    public String portInfo = "//span[@class='ethernet-count' and text()='%s']/ancestor::li[@class='colorBlack']//div[@class='tooltipblock']/p[%d]";
+    public String portInfo = "//span[@class='ethernet-count' and text()='%s']/ancestor::li[@class='colorBlack']//div[@class='tooltipblock toolTipWithFlex']/p[%d]";
     public String getPortVlanId(String port) {
         portChoice(port).hover();
         SelenideElement ele = $x(String.format(String.format(portInfo, port, 5)));

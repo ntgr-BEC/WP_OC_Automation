@@ -27,7 +27,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that if no purchase for a particular category is present than that category should not be present on the purchase history screen") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16856") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priori
     public void test() throws Exception {
         runTest(this);
     }

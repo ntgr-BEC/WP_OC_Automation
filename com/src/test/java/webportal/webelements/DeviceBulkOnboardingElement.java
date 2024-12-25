@@ -15,7 +15,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           addSingleDevice    = $x("//*[@id=\"divLocBardevicesDash\"]/div[4]/ul/li[1]/a/b");
     public SelenideElement           addMultiDevice     = $x("//b[text() = 'Add Multiple Devices']");
     public SelenideElement           addMultiDevicechange     = $x("//*[@id=\"_divLocOptLocDash\"]/div[1]/ul/li[2]/a/b");
-    public SelenideElement           addSinglelocation     = $x("//*[@id=\"content\"]/div[1]/div/div[2]/ul/li[1]/a/b");
+    public SelenideElement           addSinglelocation     = $x("//a[@class=\"colorGray\"]/b[contains( text(),'Add Single Device')]");
     public SelenideElement           browseButton       =$("#uploadFile");
     public SelenideElement           sendserial       =$x("//*[@id=\"serialNo\"]");
     public SelenideElement        goDeviceBtn       = $x("//button[@class=\"btn btn-primary addDeviceBtn\"][text()=\"Go\"]");   //$(".in .addDeviceBtn");
@@ -76,7 +76,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     
     public SelenideElement           DeviceName                = $x("//*[@id=\"deviceName\"]");
     public SelenideElement           DeviceName2                = $x("(//*[@id=\"deviceName\"])[2]");
-    public SelenideElement           Locationdevice                = $x("//*[@id=\"content\"]/div[1]/div/div[2]/span");
+    public SelenideElement           Locationdevice                = $x("//*[@class=\"icon-bulkonboard-add dropdown-toggle\"]");
     public SelenideElement           selctlocation                = $x("//*[@id=\"locationdropdown\"]");
     public SelenideElement           Go                         = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement           Next                         = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");

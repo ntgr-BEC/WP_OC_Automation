@@ -859,6 +859,21 @@ public class SwitchCLIUtils {
         return false;
     }
     
+    public static String isTagPort1(String port, String vlanId) {
+        SwitchTelnet st = connectSW(false, true);
+        String result ="";
+        port = WebportalParam.getSwitchPort(WebportalParam.sw1Model, port);
+        if (st.isRltkSW) {
+            result = st.sendCLICommandClear("show running-config interface " + port, vlanId);
+            if (result.contains("tagged") && !result.contains("untagged"))
+                return result;
+        } else if(WebportalParam.sw1Model.contains("M4350")|| WebportalParam.sw1Model.contains("M4250")){
+            result = st.sendCLICommandClear(String.format("show vlan %s | include %s", vlanId, port), port);
+        }
+        return result;
+    }
+    
+    
     /**
      * @param  port
      *                g4/g5

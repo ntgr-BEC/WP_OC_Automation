@@ -55,12 +55,14 @@ public class Testcase extends TestCaseBase {
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         
+        Map<String, String> organizationInfo1 = new HashMap<String, String>();
         page.addOrganization(organizationInfo);
 
         if (page.checkOrganizationIsExist(organizationName)) {
-            organizationInfo.put("Scheduled Reports", "disable");
-            page.editOrganization(organizationInfo);
-            assertTrue(new OrganizationPage().checkOrganizationPolicy(organizationInfo), "Policy information is incorrect.");
+            organizationInfo1.put("Name", organizationName);
+            organizationInfo1.put("Scheduled Reports", "disable");
+            page.editOrganization(organizationInfo1);
+            assertTrue(new OrganizationPage().checkOrganizationPolicy(organizationInfo1), "Policy information is incorrect.");
         } else {
             assertTrue(false, "Created organization failed.");
         }

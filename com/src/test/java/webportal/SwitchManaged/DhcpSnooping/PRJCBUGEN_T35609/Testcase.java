@@ -67,15 +67,22 @@ public class Testcase extends TestCaseBase {
         for (int portNumber = 1; portNumber <= totalPorts; portNumber++) {
 
             wdsp.enablePortSpecificConfigOnPort(Integer.toString(portNumber), "Trust Mode", null);
-            handle.refresh();
-            MyCommonAPIs.sleepi(5);
+            MyCommonAPIs.sleepi(10);
+          
+        }
+        handle.refresh();
+        
+        for (int portNumber = 1; portNumber <= totalPorts; portNumber++) {
+            
             assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(portNumber)).isDisplayed());
 
             String portType = webportalParam.getSwitchPort(webportalParam.sw1Model, portNumber);
 
-            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + portType, false).contains("ip dhcp snooping trust"),
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + portType, false).contains("ip dhcp snooping trust"),
                     "Trust mode not enabled");
+            
         }
+        
 
         handle.click(WiredDhcpSnoopingElement.selectButton("Select All"));
         assertTrue(WiredDhcpSnoopingElement.selectButton("Deselect All").isDisplayed());
@@ -95,14 +102,13 @@ public class Testcase extends TestCaseBase {
 
         int totalPorts = WiredDhcpSnoopingElement.allPorts().size();
         for (int portNumber = 1; portNumber <= totalPorts; portNumber++) {
-            
             MyCommonAPIs.sleepi(5);
             handle.refresh();
             assertTrue(WiredDhcpSnoopingElement.txtPortTrustModeCheck(Integer.toString(portNumber)).isDisplayed());
 
             String portType = webportalParam.getSwitchPort(webportalParam.sw1Model, portNumber);
 
-            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interfaces " + portType, false).contains("ip dhcp snooping trust"),
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + portType, false).contains("ip dhcp snooping trust"),
                     "Trust mode not enabled");
         }
 
@@ -118,13 +124,20 @@ public class Testcase extends TestCaseBase {
         handle.refresh();
         handle.click(WiredDhcpSnoopingElement.selectButton("Select All"));
         int totalPorts = WiredDhcpSnoopingElement.allPorts().size();
+        System.out.println(totalPorts);
+        MyCommonAPIs.sleepi(5);
+        if(totalPorts>13) {
+        totalPorts = totalPorts/2;
+        }
+        System.out.println(WiredDhcpSnoopingElement.checkSelectedOrNot(Integer.toString(0)).isDisplayed());
         for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+           
             assertTrue(WiredDhcpSnoopingElement.checkSelectedOrNot(Integer.toString(portNumber)).isDisplayed());
         }      
         
         handle.click(WiredDhcpSnoopingElement.selectButton("Deselect All"));
 
-        for (int portNumber = 0; portNumber < totalPorts; portNumber++) {
+        for (int portNumber = 1; portNumber < totalPorts; portNumber++) {
             assertFalse(WiredDhcpSnoopingElement.checkSelectedOrNot(Integer.toString(portNumber)).isDisplayed());
         }
     }

@@ -95,7 +95,7 @@ public class Testcase extends TestCaseBase {
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.openOrg(organizationName);
         new AccountPage(false).enterLocation(locationName);
-        new HardBundlePage().deleteDeviceHBYes(WebportalParam.getDeviceSerialNoCSV("ap1"));
+        new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.getDeviceSerialNoCSV("ap1"));
         assertTrue(!new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful"); 
        
      

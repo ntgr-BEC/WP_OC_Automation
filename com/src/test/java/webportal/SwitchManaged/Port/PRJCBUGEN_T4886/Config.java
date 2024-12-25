@@ -28,8 +28,8 @@ public interface Config {
                                                                     }
                                                                 };
 
-    public static String                    PORT_SPEED          = "10 Mbps";
-    public static String                    DUPLEX_MODE         = "Half";
+    public static String                    PORT_SPEED          = "1000 Mbps";
+    public static String                    DUPLEX_MODE         = "Full";
     public static String                    PORT_SPEED_RESTORE  = "Auto";
     public static String                    DUPLEX_MODE_RESTORE = "Auto";
     public static String                    PORTSPEED_CLI       = "10 half";

@@ -28,6 +28,9 @@ public class ManagerPage extends ManagerPageElement {
 
     public ManagerPage() {
         // TODO Auto-generated constructor stub
+        MyCommonAPIs.sleepi(5);  
+        waitElement(managerdropdown);
+        MyCommonAPIs.sleepi(1); 
         if (managerdropdown.exists()) {
             managerdropdown.click();
         }
@@ -46,6 +49,9 @@ public class ManagerPage extends ManagerPageElement {
     }
 
     public void addManager(Map<String, String> map) {
+        MyCommonAPIs.sleepi(5);  
+        waitElement(addmanager);
+        MyCommonAPIs.sleepi(1);
         if (!checkManagerIsExist(map.get("Email Address"))) {
             addmanager.click();
             waitElement(managername);
@@ -154,6 +160,11 @@ public class ManagerPage extends ManagerPageElement {
 
     public boolean checkEditResult(String email, String policy, String orgnum) {
         boolean result = false;
+        MyCommonAPIs.sleepi(3);
+        waitElement(managerlistorganizations(email));
+        MyCommonAPIs.sleepi(1);
+        waitElement(managerlistaccesspolicy(email));
+        MyCommonAPIs.sleepi(1);
         System.out.println(managerlistorganizations(email).getText() +" === "+orgnum);
         System.out.println(managerlistaccesspolicy(email).getText() +" === "+policy );
         
@@ -168,6 +179,8 @@ public class ManagerPage extends ManagerPageElement {
     public boolean checkSuccessDialog() {
         boolean result = false;
         MyCommonAPIs.sleepi(10);
+        waitElement(successdialogmsg);
+        MyCommonAPIs.sleepi(1);
         if (successdialogmsg.exists()) {
             result = true;
             logger.info("Your invitation has been sent.");

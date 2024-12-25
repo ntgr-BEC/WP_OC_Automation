@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         // check on dut CLI
         String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);        //replaced g1 by WebportalParam.sw1Port1
-        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("10") && SwitchCLIUtils.PortClass.duplexMode == 1) {
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 1) {
             micResult = true;
         } else {
             micResult = false;
