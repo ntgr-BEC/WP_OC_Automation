@@ -224,7 +224,7 @@ public class MyCommonAPIs {
     public boolean isInLoginPage() {
         String url = getCurrentUrl();
         logger.info("checking page: " + url);
-        if (url.endsWith("#/login") || url.contains("/login?") || url.equals(WebportalParam.serverUrlLogin))
+        if (url.endsWith("#/login") || url.contains("/login?") || url.contains(WebportalParam.serverUrlLogin))
             return true;
         else
             return false;
