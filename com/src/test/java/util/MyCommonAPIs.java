@@ -222,12 +222,15 @@ public class MyCommonAPIs {
     }
     
     public boolean isInLoginPage() {
-        String url = getCurrentUrl();
-        logger.info("checking page: " + url);
-        if (url.endsWith("#/login") || url.contains("/login?") || url.contains(WebportalParam.serverUrlLogin))
+        String url = WebDriverRunner.getWebDriver().getCurrentUrl();
+        logger.info("Checking page: " + url);
+        String serverUrl = WebportalParam.serverUrlLogin;
+        System.out.println("Current url is : "+url);
+        if (url.contains("/login") && url.contains("redirectUrl") && !url.startsWith(serverUrl)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
     
     /**
