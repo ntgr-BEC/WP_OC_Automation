@@ -9438,6 +9438,88 @@ public void marketPlaceproAccBillingInfo(Map<String, String> map) {
     logger.info("Sign up success.");
 }
 
+//addedbyPratik
+public String getExpiryDatePremiumAcc(String SerialNo) {
+
+  MyCommonAPIs.sleepi(3);
+  String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
+  return getExpiryDate;
+
+}
+
+//addedbyPratik
+public String getActivationDatePremiumAcc(String SerialNo) {
+  ;
+  MyCommonAPIs.sleepi(3);
+  String activationdate = getText(activationDatePremiumAcc(SerialNo));
+  return activationdate;
+
+}
+
+//AddedByPratik
+public boolean verifypremiumacchavingAllOptionsVisible() {
+  
+  MyCommonAPIs.sleepi(5);
+  accountmanager.click();
+  MyCommonAPIs.sleepi(5);
+  if (purchaseorderhistory.exists()) {
+      purchaseorderhistory.click();
+      MyCommonAPIs.sleepi(5);
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  } else {
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  }  
+
+  return true;
+  
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForProAdminAccount(String mailname) {
+      boolean result = false;
+      logger.info("Check email address is:" + mailname);
+      WebDriver driver = WebDriverRunner.getWebDriver();
+      String url = "https://yopmail.com";
+      ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+      MyCommonAPIs.sleepi(5);
+      Selenide.switchTo().window(1);
+      String inputElement = "//input[@id='login']";
+      $x(inputElement).clear();
+      $x(inputElement).sendKeys(mailname);
+      $x("//button[@title='Check Inbox @yopmail.com']").click();
+      SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+      Selenide.switchTo().frame(frame);
+      MyCommonAPIs.sleepsync();
+
+      System.out.println(verifyAdminEmailMessage.getText());
+      if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
+          result = true;
+          logger.info("Received confirmation mail");
+      }
+      return result;
+
+}
+
 }
 
 
