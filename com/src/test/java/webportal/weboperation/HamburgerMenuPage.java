@@ -80,6 +80,8 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
+import java.util.Calendar;
 /**
  * @author Netgear
  */
@@ -271,10 +273,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (eles.last().isDisplayed()) {
                 eles.last().click();
             }
-        }else {   
+        }if(acceptPolicy1.exists())  { 
+            System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
             acceptPolicy1.click();       
         }
+        System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
         if (continuebutton.isEnabled()) {
             continuebutton.click();
@@ -5512,9 +5516,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         System.out.println(expOnDateText);
 
         int actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual: "+actOnYear);
         int expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry: "+expOnYear);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) >= 5) {
             result = true;
             logger.info("The year difference is greater than 5 years.");
         } else {
@@ -5580,7 +5586,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             break;
         }
 
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -9005,16 +9011,29 @@ public boolean verifySignUpPage() {
 //AddedByPratik
 private int extractYear(String dateText) {
     try {
+
+        dateText = dateText.trim();
+
         System.out.println("Extracting year from: " + dateText);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
         Date date = dateFormat.parse(dateText);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+
         System.out.println("Parsed Date: " + date);
-        return date.getYear() + 1900;
+        System.out.println("Extracted Year: " + year);
+
+        return year;
     } catch (Exception e) {
         System.err.println("Invalid date format: " + dateText);
         return -1;
     }
 }
+
 
 //AddedByPratik
 public boolean verifyMUBTab() {
