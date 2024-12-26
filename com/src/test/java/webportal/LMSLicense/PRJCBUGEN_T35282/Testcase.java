@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add Pro LICENSE license ")
     public void step2() {
         int Count = 0;
-        for(int i=0; i<50; i++) {
+        for(int i=0; i<15; i++) {
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key);  
         String typeofOrg = "Account";

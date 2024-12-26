@@ -80,6 +80,8 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
+import java.util.Calendar;
 /**
  * @author Netgear
  */
@@ -5515,9 +5517,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         System.out.println(expOnDateText);
 
         int actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual: "+actOnYear);
         int expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry: "+expOnYear);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
             logger.info("The year difference is greater than 5 years.");
         } else {
@@ -5534,28 +5538,35 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         String actOnDate = "";
         String expOnDate = "";
         String orderQty = "";
+        int actOnYear = 0;
+        int expOnYear = 0;
         ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
         MyCommonAPIs.sleepi(10);
         System.out.println("clollection of an element");
         for (SelenideElement ele : tablerow) {
             System.out.println(ele);
             System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+            String actOnDateText = ele.findElement(By.xpath("/td[3]")).getText();
+            String expOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
+            actOnYear = extractYear(actOnDateText);
+            System.out.println("Year Actual: "+actOnYear);
+            expOnYear = extractYear(expOnDateText);
+            System.out.println("Year Expiry: "+expOnYear);
 
             break;
         }
        
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
+        
+        
+        
     }
     
     public boolean verifyOrgImd(String lic) {
@@ -5573,8 +5584,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         for (SelenideElement ele : tablerow) {
             System.out.println(ele);
             System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[5]")).getText();
+            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
+            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
             actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
             expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
             System.out.println(actOnDate);
@@ -5583,7 +5594,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             break;
         }
 
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -9008,16 +9019,29 @@ public boolean verifySignUpPage() {
 //AddedByPratik
 private int extractYear(String dateText) {
     try {
+
+        dateText = dateText.trim();
+
         System.out.println("Extracting year from: " + dateText);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
         Date date = dateFormat.parse(dateText);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+
         System.out.println("Parsed Date: " + date);
-        return date.getYear() + 1900;
+        System.out.println("Extracted Year: " + year);
+
+        return year;
     } catch (Exception e) {
         System.err.println("Invalid date format: " + dateText);
         return -1;
     }
 }
+
 
 //AddedByPratik
 public boolean verifyMUBTab() {

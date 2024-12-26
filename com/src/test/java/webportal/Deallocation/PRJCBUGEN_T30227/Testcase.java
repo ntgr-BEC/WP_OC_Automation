@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do tearDown");
     }
 
-    // Each step is a single test step from Jira Test Case
+    // Each step is a single test step from Jira Test Cas
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
         
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key);  
-        String typeofOrg = "Account";
+        String typeofOrg = "";
         int value=0;
         new HamburgerMenuPage().AddKeyAndVerify1(Key, typeofOrg, value);
         assertTrue(new HamburgerMenuPage(true).verify(Key), "Not received verify email.");
@@ -75,7 +75,7 @@ public class Testcase extends TestCaseBase {
         
         String Key1 = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key1);        
-        String typeofOrg = "org";
+        String typeofOrg = "";
         int value=0;
         new HamburgerMenuPage().AddKeyAndVerify1(Key1, typeofOrg, value);
         assertTrue(new HamburgerMenuPage(true).verifyOrg(Key1, WebportalParam.Organizations), "Not received verify email.");
