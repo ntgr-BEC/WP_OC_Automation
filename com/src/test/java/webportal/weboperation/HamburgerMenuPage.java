@@ -277,6 +277,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if(acceptPolicy1.exists())  { 
             System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
+            new MyCommonAPIs().click(acceptPolicy1);
             acceptPolicy1.click();       
         }
         System.out.println("out of policy check box");
