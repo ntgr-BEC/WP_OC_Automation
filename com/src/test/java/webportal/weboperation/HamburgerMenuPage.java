@@ -5594,7 +5594,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     
     
     public boolean verifyICP(String lic) {
-        System.out.println(lic+ "name");
+        System.out.println(lic+ " name ");
         MyCommonAPIs.sleepi(10);
         captiveportalservices.click();
         MyCommonAPIs.sleepi(40);
