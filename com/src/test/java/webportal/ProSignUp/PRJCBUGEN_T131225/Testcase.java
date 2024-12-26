@@ -77,9 +77,11 @@ public class Testcase extends TestCaseBase {
                 businessInfo.put("Zip Code", "PL12");
                 businessInfo.put("Country", "UK");
                 businessInfo.put("Business Phone Number", "1234567890");
+                businessInfo.put("Confirm Email", mailname);
+                businessInfo.put("Password", "Netgear1@");
                 
                 assertTrue(new HamburgerMenuPage(false).addingOneYearInsightDevice(businessInfo)," Pro Account creation failed through flow Adding Pro Subscription Key ");
-                assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");      
+                assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess. ");      
                 
         }
     }

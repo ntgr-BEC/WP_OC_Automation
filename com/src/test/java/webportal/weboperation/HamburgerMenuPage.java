@@ -118,8 +118,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         String url = MyCommonAPIs.getCurrentUrl();
         MyCommonAPIs.sleepi(10);
         closeLockedDialog();
-        Selenide.refresh();
-        MyCommonAPIs.sleepi(15);
         if (!notificationicon.exists()) {
             WebCheck.checkHrefIcon(URLParam.hrefDevices);
             MyCommonAPIs.sleepi(10);
@@ -1453,7 +1451,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitReady();
         waitElement(subDiv);
         logger.info("Check email in subscriptions page...");
-		MyCommonAPIs.sleepi(15);
         if (accountemail.exists()) {
             if (accountemail.getText().contains(email)) {
                 logger.info("Account emmail:" + accountemail.getText());
@@ -1503,18 +1500,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          purchaseorderhistory.click();
          MyCommonAPIs.sleepi(5);
         waitElement(iconsearch);
-        MyCommonAPIs.sleepi(1);
-        waitElement(expandinsigtdivcredits);
-        MyCommonAPIs.sleepi(1);
+//         iconsearch.click();
+
         expandinsigtdivcredits.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(expandcaptiveportal);
-        MyCommonAPIs.sleepi(1);
         expandcaptiveportal.click();
-        MyCommonAPIs.sleepi(1);
-//        waitElement(expandprovpn);
-//        MyCommonAPIs.sleepi(1);
-//        expandprovpn.click();
+        expandprovpn.click();
         logger.info("Click on all subscriptions in purchase history.");
         MyCommonAPIs.sleepi(5);
         if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
@@ -1561,12 +1551,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          purchaseorderhistory.click();
          waitElement(iconsearch);
         iconsearch.click();
-        MyCommonAPIs.sleepi(5);
-        waitElement(inputtextiniconsearch);
         inputtextiniconsearch.click();
         inputtextiniconsearch.sendKeys("Pro VPN");
-        MyCommonAPIs.sleepi(5);
-        waitElement(canceliconsearch);
         canceliconsearch.click();
         logger.info("Cancel the search pop up.");
         if (!inputtextiniconsearch.exists()) {
@@ -1590,6 +1576,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(3);
         expandcaptiveportal.click();
         MyCommonAPIs.sleepi(3);
+        expandprovpn.click();
+        MyCommonAPIs.sleepi(3);
         logger.info("Check expand for all subscriptions in purchase history.");
         if (subscriptionkeytext.exists() || subscriptionkeytext.exists()) {
             result = true;
@@ -1608,27 +1596,34 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean SearchText() {
+        boolean result1 = false;
+        boolean result2 = false;
         boolean result = false;
 
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
-        waitElement(purchaseorderhistory);
-        MyCommonAPIs.sleepi(1);
          purchaseorderhistory.click();
         waitElement(iconsearch);
-        MyCommonAPIs.sleepi(1);
         iconsearch.click();
-        waitElement(inputtextiniconsearch);
-        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.click();
-        MyCommonAPIs.sleepi(1);
-        inputtextiniconsearch.clear();
-        MyCommonAPIs.sleepi(1);
-        inputtextiniconsearch.sendKeys("Captive Portal");
-        MyCommonAPIs.sleepi(1);
+        inputtextiniconsearch.sendKeys("Pro VPN");
         iconsearch.click();
         MyCommonAPIs.sleepi(5);
-        if (instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
+        logger.info("Check VPN subscriptions within given filters...");
+        if (prouservpnlicense.exists() && !instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
+            result1 = true;
+        }
+        iconsearch.click();
+        inputtextiniconsearch.click();
+        inputtextiniconsearch.clear();
+        inputtextiniconsearch.sendKeys("Captive Portal");
+        iconsearch.click();
+        MyCommonAPIs.sleepi(5);
+        if (!prouservpnlicense.exists() && instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
+            result2 = true;
+        }
+
+        if ((result1 == true) && (result2 == true)) {
             result = true;
         }
         return result;
@@ -1679,7 +1674,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check all Category of filters present...");
         defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(2);
         if (allcategoryfilter.exists() && insightvpnfilter.exists() && devicesupportcontracts.exists() && insightsubscription.exists()
                 && insightcaptivefilter.exists() && insightpremiumsubscription.exists()) {
             result = true;
@@ -1691,6 +1685,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result1 = false;
         boolean result2 = false;
         boolean result3 = false;
+        boolean result4 = false;
+        boolean result5 = false;
         boolean result = false;
         accountmanager.click();
          MyCommonAPIs.sleepi(5);
@@ -1699,20 +1695,27 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check all Category of filters present...");
         defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(1);
-        if (allcategoryfilter.exists()) {
+        if (provpnsubscription.exists() && devicesupportcontracts.exists()) {
             result1 = true;
+            logger.info("result1 is pass");
+        }
+        if (allcategoryfilter.exists() && insightsubscription.exists()) {
+            result2 = true;
             logger.info("result2 is pass");
         }
-        if (insightcaptivefilter.exists()) {
-            result2 = true;
+        if (insightvpnfilter.exists() && insightcaptivefilter.exists()) {
+            result3 = true;
             logger.info("result3 is pass");
         }
-        if (insightprofilter.exists()) {
-            result3 = true;
+        if (insightpremiumsubscription.exists() && instantcaptivefilter.exists()) {
+            result4 = true;
+            logger.info("result4 is pass");
+        }
+        if (insightprofilter.exists() && provpnsubscription.exists()) {
+            result5 = true;
             logger.info("result5 is pass");
         }
-        if ((result1 == true) && (result2 == true) && (result3 == true)) {
+        if ((result1 == true) && (result2 == true) && (result3 == true) && (result4 == true) && (result5 == true)) {
             result = true;
         }
         return result;
@@ -1724,9 +1727,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          MyCommonAPIs.sleepi(5);
          purchaseorderhistory.click();
          MyCommonAPIs.sleepi(5);
-        waitElement(verifyVPNCreditsavilable);
-        MyCommonAPIs.sleepi(1);
-        if (verifyVPNCreditsavilable.exists()) {
+        waitElement(defaultcategoryfilter);
+        logger.info("check available provpn credits..");
+        defaultcategoryfilter.click();
+        provpnsubscription.click();
+        collapse.click();
+        creditoption.click();
+        if (availableprovpncredits.exists()) {
             result = true;
         }
         return result;
@@ -1771,6 +1778,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean FilterBasisOnCategory() {
+        boolean result1 = false;
+        boolean result2 = false;
+        boolean result3 = false;
         boolean result = false;
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
@@ -1779,16 +1789,35 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check filters basis on category.");
         defaultcategoryfilter.click();
+        provpnsubscription.click();
+        defaultcategoryfilter.click();
+        MyCommonAPIs.sleepi(7);
+        if (prouservpnlicense.exists()) {
+            result1 = true;
+            logger.info("vpn exits");
+        }
         MyCommonAPIs.sleepi(5);
         defaultcategoryfilter.click();
         instantcaptivefilter.click();
         defaultcategoryfilter.click();
         MyCommonAPIs.sleepi(7);
         if (instantcaptiveportal.exists()) {
-            result = true;
+            result2 = true;
             logger.info("ICP exits");
         }
         MyCommonAPIs.sleepi(5);
+        defaultcategoryfilter.click();
+        provpnsubscription.click();
+        defaultcategoryfilter.click();
+        MyCommonAPIs.sleepi(7);
+        if (prouservpnlicense.exists()) {
+            result3 = true;
+            logger.info("Pro exits");
+        }
+        // && (result3 == true)
+        if ((result1 == true) && (result2 == true) && (result3 == true)) {
+            result = true;
+        }
         return result;
     }
 
@@ -1804,28 +1833,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check filters basis on time.");
         defaultfilter.click();
-        MyCommonAPIs.sleepi(2);
-        waitElement(lastquarterfilter);
         lastquarterfilter.click();
-        MyCommonAPIs.sleepi(5);
-        expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(5);
         if (activatedate.exists()) {
             result1 = true;
         }
         defaultfilter.click();
-        MyCommonAPIs.sleepi(2);
-        waitElement(lastyearfilter);
         lastyearfilter.click();
-        MyCommonAPIs.sleepi(5);
-        expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(5);
         if (activatedate.exists()) {
             result2 = true;
         }
         defaultfilter.click();
-        MyCommonAPIs.sleepi(5);
-        expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(5);
         if (activatedate.exists()) {
             result3 = true;
@@ -1838,22 +1857,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean DeviceSupportContractsCategoryFilter() {
         boolean result = false;
-        MyCommonAPIs.sleepi(5);
-        waitElement(accountmanager);
-        MyCommonAPIs.sleepi(1);
         accountmanager.click();
-        MyCommonAPIs.sleepi(5);
-        waitElement(purchaseorderhistory);
-        MyCommonAPIs.sleepi(1);
         purchaseorderhistory.click();
         MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
         logger.info("check available provpn credits..");
-        MyCommonAPIs.sleepi(1);
         defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(5);
-        waitElement(devicesupportcontracts);
-        MyCommonAPIs.sleepi(1);
         devicesupportcontracts.click();
         MyCommonAPIs.sleepi(5);
         if (nopurchasemessage1.exists()) {
@@ -1864,19 +1873,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean QuantityalongsideCategory() {
         boolean result = false;
-        MyCommonAPIs.sleepi(5);
-        waitElement(accountmanager);
-        MyCommonAPIs.sleepi(1);
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
-        waitElement(purchaseorderhistory);
-        MyCommonAPIs.sleepi(1);
         purchaseorderhistory.click();
-        MyCommonAPIs.sleepi(1);
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (prouserinsightlicensecount.exists() && prouservpnlicensecount.exists()) {
+        if (prouserinsightlicensecount.exists() && prouservpnlicensecount.exists() && instantcaptiveportalcount.exists()) {
             result = true;
         }
         return result;
@@ -1900,19 +1903,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean ReleventPurchasesList() {
         boolean result = false;
-        MyCommonAPIs.sleepi(5);
-        waitElement(accountmanager);
-        MyCommonAPIs.sleepi(1);
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
-        waitElement(purchaseorderhistory);
-        MyCommonAPIs.sleepi(1);
         purchaseorderhistory.click();
         MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (prouserinsightlicensecount.exists() && prouservpnlicensecount.exists()) {
+        if (!prouserinsightlicensecount.exists() && !prouservpnlicensecount.exists() && !instantcaptiveportal.exists()) {
             result = true;
         }
         return result;
@@ -1920,20 +1918,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean CaptiveportalSubscriptionPurchase() {
         boolean result = false;
-        MyCommonAPIs.sleepi(5);
-        waitElement(accountmanager);
-        MyCommonAPIs.sleepi(1);
         accountmanager.click();
          MyCommonAPIs.sleepi(5);
-         waitElement(purchaseorderhistory);
-         MyCommonAPIs.sleepi(1);
          purchaseorderhistory.click();
          MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
-        expandcaptiveportal.click();
+        icpcollapse.click();
         MyCommonAPIs.sleepi(10);
         logger.info("check Captive Portal Subscription present under purchase history...");
-        if (verifyCaptivePortalCount1.exists() && expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
+        if (instantcaptiveportalcount.exists() && expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
             result = true;
         }
         return result;
@@ -3512,7 +3505,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         businessphone.setValue(map.get("Business Phone Number"));
         MyCommonAPIs.sleepi(5);
         // agreeterm.click();
-        MyCommonAPIs.sleepi(3);
     }
 
     public void inputBusinessInfoDirectPurchase(Map<String, String> map) {
@@ -4690,7 +4682,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void searchOrg(String name) {
         gotoCreditsAllocationPage();
         searchOrgName.click();
-        MyCommonAPIs.sleepi(8);
+        MyCommonAPIs.sleepi(1);
         inputOrgName.setValue(name);
         MyCommonAPIs.sleepi(1);
         searchBtn.click();
@@ -5524,11 +5516,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         int actOnYear = extractYear(actOnDateText);
         int expOnYear = extractYear(expOnDateText);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
             result = true;
-            logger.info("The year difference is equal to 5 years.");
+            logger.info("The year difference is greater than 5 years.");
         } else {
-            logger.info("The year difference is not equal to 5 years.");
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
@@ -6049,8 +6041,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-        waitReady();
-        MyCommonAPIs.sleepsync();
+        MyCommonAPIs.sleepi(15);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
         return result;
     }
 
@@ -9185,86 +9188,338 @@ public static boolean verifyOrganizationsVisibility() {
 
     return allVisible;
 }
-
-//addedbyPratik
-public String getActivationDatePremiumAcc(String SerialNo) {
-    ;
-    MyCommonAPIs.sleepi(3);
-    String activationdate = getText(activationDatePremiumAcc(SerialNo));
-    return activationdate;
-
+//AddedByPratik
+public void launchInsightSubscriptionServicesPage() {
+    sleep(1000);
+    open("https://www.netgear.com/in/business/services/insight/subscription/");
+    MyCommonAPIs.sleepi(20);
+    waitReady();
+    sleep(1000);
+    waitElement(netgearBusinessPageAcceptcookies);
+    MyCommonAPIs.sleepi(1);
+    netgearBusinessPageAcceptcookies.click();
+    MyCommonAPIs.sleepi(5);
+    for (int i = 0; i < 30; i++) {
+        executeJavaScript("window.scrollBy(0, 1000)");
+        sleep(300);
+        if (netgearBusinessPagePremiumSub.shouldBe(Condition.visible).exists()) {
+            netgearBusinessPagePremiumSub.click();
+            break;
+        }
+    }
+    MyCommonAPIs.sleepi(20);
+    waitReady();
+    sleep(1000);
 }
+//AddedByPratik
+public boolean createAccount1(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    long t= System.currentTimeMillis();
+    long end = t+10;
+    System.out.println(end);
+    System.out.println("going inside while");
+    while(System.currentTimeMillis() < end) {
+        Selenide.refresh();
+        System.out.println("inside while");
+        if(loginNowButton.exists()) {
+          loginNowButton.click();
+          break;
+        }
+        MyCommonAPIs.sleepi(10);
+    }         
+    if (loginButtonLandingPage.exists()) {
+        loginButtonLandingPage.click();
+        MyCommonAPIs.sleepi(10);
+        inputAccountInfo(map);
+        MyCommonAPIs.sleepi(15);
+        
+        if(loginPwdNewcognito.isDisplayed()) {
+        loginPwdNewcognito.sendKeys(map.get("Password"));
+        SigninbuttonCognito.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(NoThankYou);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(finishPage);
+        if (finishCreate.isDisplayed()) {
+            finishCreate.click();
+        }
+        MyCommonAPIs.sleepi(3);
+        if (finishbutton.isDisplayed()) {
+            finishbutton.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(cancelSubscriptionBtn);
+        MyCommonAPIs.sleepi(3);
+        cancelSubscriptionBtn.click();
+        MyCommonAPIs.sleepi(60);
+        waitElement(closeLockedWindow);
+        MyCommonAPIs.sleepi(1);
+        closeLockedWindow.click();
+        MyCommonAPIs.sleepi(5);
+        String url = MyCommonAPIs.getCurrentUrl();
+        if (!url.contains("billing")) {
+            waitElement(notificationicon);
+            result = true;
+        }
+    } else {
+        inputAccountInfo(map);
+        MyCommonAPIs.sleepi(15);
+        
+        if(loginPwdNewcognito.isDisplayed()) {
+        loginPwdNewcognito.sendKeys(map.get("Password"));
+        SigninbuttonCognito.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(NoThankYou);
+        MyCommonAPIs.sleepi(1);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
+        MyCommonAPIs.sleepi(15);
+        if (finishCreate.isDisplayed()) {
+            finishCreate.click();
+        }
+        MyCommonAPIs.sleepi(3);
+        if (finishbutton.isDisplayed()) {
+            finishbutton.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(cancelSubscriptionBtn);
+        MyCommonAPIs.sleepi(3);
+        cancelSubscriptionBtn.click();
+        MyCommonAPIs.sleepi(60);
+        waitElement(closeLockedWindow);
+        MyCommonAPIs.sleepi(1);
+        closeLockedWindow.click();
+        MyCommonAPIs.sleepi(5);
+        String url = MyCommonAPIs.getCurrentUrl();
+        if (!url.contains("billing")) {
+            waitElement(notificationicon);
+            result = true;
+        }
+    }
+    return result;
+}
+//AddedByPratik
+public void launchInsightSubscriptionServicesPageProAcc() {
+  sleep(1000);
+  open("https://www.netgear.com/in/business/services/insight/subscription/");
+  MyCommonAPIs.sleepi(20);
+  waitReady();
+  sleep(1000);
+  waitElement(netgearBusinessPageAcceptcookies);
+  MyCommonAPIs.sleepi(1);
+  netgearBusinessPageAcceptcookies.click();
+  MyCommonAPIs.sleepi(5);
+  for (int i = 0; i < 30; i++) {
+      executeJavaScript("window.scrollBy(0, 1000)");
+      sleep(300);
+      if (netgearBusinessPageProSub.shouldBe(Condition.visible).exists()) {
+          netgearBusinessPageProSub.click();
+          break;
+      }
+  }
+  MyCommonAPIs.sleepi(20);
+  waitReady();
+  sleep(1000);
+}
+//AddedByPratik
+public boolean createAccountPro(Map<String, String> map) {
+  boolean result = false;
+  MyCommonAPIs.sleepi(10);
+  long t= System.currentTimeMillis();
+  long end = t+10;
+  System.out.println(end);
+  System.out.println("going inside while");
+  while(System.currentTimeMillis() < end) {
+      Selenide.refresh();
+      System.out.println("inside while");
+      if(loginNowButton.exists()) {
+        loginNowButton.click();
+        break;
+      }
+      MyCommonAPIs.sleepi(10);
+  }         
+  if (loginButtonLandingPage.exists()) {
+      loginButtonLandingPage.click();
+      MyCommonAPIs.sleepi(10);
+      inputAccountInfo(map);
+      MyCommonAPIs.sleepi(15);
+      
+      if(loginPwdNewcognito.isDisplayed()) {
+      loginPwdNewcognito.sendKeys(map.get("Password"));
+      SigninbuttonCognito.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(NoThankYou);
+      if (NoThankYou.isDisplayed()) {
+          NoThankYou.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(finishPage);
+      if (finishCreate.isDisplayed()) {
+          finishCreate.click();
+      }
+      MyCommonAPIs.sleepi(3);
+      if (finishbutton.isDisplayed()) {
+          finishbutton.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(cancelSubscriptionBtn);
+      MyCommonAPIs.sleepi(3);
+      cancelSubscriptionBtn.click();
+      MyCommonAPIs.sleepi(60);
+      waitElement(warningOkButtonProAcc);
+      MyCommonAPIs.sleepi(1);
+      warningOkButtonProAcc.click();
+      MyCommonAPIs.sleepi(10);
+      waitElement(warningOkButtonProAcc1);
+      MyCommonAPIs.sleepi(1);
+      String url = MyCommonAPIs.getCurrentUrl();
+      if (warningOkButtonProAcc1.exists()) {
+          warningOkButtonProAcc1.click();
+          MyCommonAPIs.sleepi(60);
+          result = true;
+      }
+  } else {
+      inputAccountInfo(map);
+      MyCommonAPIs.sleepi(15);
+      
+      if(loginPwdNewcognito.isDisplayed()) {
+      loginPwdNewcognito.sendKeys(map.get("Password"));
+      SigninbuttonCognito.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(NoThankYou);
+      MyCommonAPIs.sleepi(1);
+      if (NoThankYou.isDisplayed()) {
+          NoThankYou.click();
+      }
+      MyCommonAPIs.sleepi(15);
+      if (finishCreate.isDisplayed()) {
+          finishCreate.click();
+      }
+      MyCommonAPIs.sleepi(3);
+      if (finishbutton.isDisplayed()) {
+          finishbutton.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(cancelSubscriptionBtn);
+      MyCommonAPIs.sleepi(3);
+      cancelSubscriptionBtn.click();
+      MyCommonAPIs.sleepi(60);
+      waitElement(warningOkButtonProAcc);
+      MyCommonAPIs.sleepi(1);
+      warningOkButtonProAcc.click();
+      MyCommonAPIs.sleepi(10);
+      waitElement(warningOkButtonProAcc1);
+      MyCommonAPIs.sleepi(1);
+      String url = MyCommonAPIs.getCurrentUrl();
+      if (warningOkButtonProAcc1.exists()) {
+          warningOkButtonProAcc1.click();
+          MyCommonAPIs.sleepi(60);
+          result = true;
+      }
+  }
+  return result;
+}
+//AddedByPratik
+public void marketPlaceproAccBillingInfo(Map<String, String> map) {
+    MyCommonAPIs.sleepi(5);
+    inputBusinessInfo(map);
+    checkBox1.click();
+    MyCommonAPIs.sleepi(1);
+    checkBox2.click();
+    MyCommonAPIs.sleepi(1);
+    clickBusinessInfoPageButton();
+    logger.info("Sign up success.");
+}
+
 //addedbyPratik
 public String getExpiryDatePremiumAcc(String SerialNo) {
 
-    MyCommonAPIs.sleepi(3);
-    String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
-    return getExpiryDate;
+  MyCommonAPIs.sleepi(3);
+  String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
+  return getExpiryDate;
 
 }
 
-//AddedByPratik
-public boolean checkEmailMessageForProAdminAccount(String mailname) {
-        boolean result = false;
-        logger.info("Check email address is:" + mailname);
-        WebDriver driver = WebDriverRunner.getWebDriver();
-        String url = "https://yopmail.com";
-        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
-        MyCommonAPIs.sleepi(5);
-        Selenide.switchTo().window(1);
-        String inputElement = "//input[@id='login']";
-        $x(inputElement).clear();
-        $x(inputElement).sendKeys(mailname);
-        $x("//button[@title='Check Inbox @yopmail.com']").click();
-        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
-        Selenide.switchTo().frame(frame);
-        MyCommonAPIs.sleepsync();
-
-        System.out.println(verifyAdminEmailMessage.getText());
-        if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
-            result = true;
-            logger.info("Received confirmation mail");
-        }
-        return result;
+//addedbyPratik
+public String getActivationDatePremiumAcc(String SerialNo) {
+  ;
+  MyCommonAPIs.sleepi(3);
+  String activationdate = getText(activationDatePremiumAcc(SerialNo));
+  return activationdate;
 
 }
 
 //AddedByPratik
 public boolean verifypremiumacchavingAllOptionsVisible() {
-    
-    MyCommonAPIs.sleepi(5);
-    accountmanager.click();
-    MyCommonAPIs.sleepi(5);
-    if (purchaseorderhistory.exists()) {
-        purchaseorderhistory.click();
-        MyCommonAPIs.sleepi(5);
-        waitElement(defaultcategoryfilter);
-        logger.info("check all Category of filters present...");
-        defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(2);
-        ElementsCollection options = $("select[name='prodCategory']").$$("option");
-        for (int i = 0; i < options.size(); i++) {
-            System.out.println(options.get(i));
-            if (!options.get(i).isDisplayed()) {
-                return false;
-            }
-        }
-    } else {
-        waitElement(defaultcategoryfilter);
-        logger.info("check all Category of filters present...");
-        defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(2);
-        ElementsCollection options = $("select[name='prodCategory']").$$("option");
-        for (int i = 0; i < options.size(); i++) {
-            System.out.println(options.get(i));
-            if (!options.get(i).isDisplayed()) {
-                return false;
-            }
-        }
-    }  
+  
+  MyCommonAPIs.sleepi(5);
+  accountmanager.click();
+  MyCommonAPIs.sleepi(5);
+  if (purchaseorderhistory.exists()) {
+      purchaseorderhistory.click();
+      MyCommonAPIs.sleepi(5);
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  } else {
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  }  
 
-    return true;
-    
+  return true;
+  
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForProAdminAccount(String mailname) {
+      boolean result = false;
+      logger.info("Check email address is:" + mailname);
+      WebDriver driver = WebDriverRunner.getWebDriver();
+      String url = "https://yopmail.com";
+      ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+      MyCommonAPIs.sleepi(5);
+      Selenide.switchTo().window(1);
+      String inputElement = "//input[@id='login']";
+      $x(inputElement).clear();
+      $x(inputElement).sendKeys(mailname);
+      $x("//button[@title='Check Inbox @yopmail.com']").click();
+      SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+      Selenide.switchTo().frame(frame);
+      MyCommonAPIs.sleepsync();
+
+      System.out.println(verifyAdminEmailMessage.getText());
+      if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
+          result = true;
+          logger.info("Received confirmation mail");
+      }
+      return result;
+
 }
 
 }
