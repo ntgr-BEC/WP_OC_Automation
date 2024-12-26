@@ -5581,7 +5581,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             break;
         }
 
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
 
             result = true;
             logger.info("Order history display correct.");
