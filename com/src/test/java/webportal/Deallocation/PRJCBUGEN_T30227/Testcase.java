@@ -75,7 +75,7 @@ public class Testcase extends TestCaseBase {
         
         String Key1 = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key1);        
-        String typeofOrg = "org";
+        String typeofOrg = "";
         int value=0;
         new HamburgerMenuPage().AddKeyAndVerify1(Key1, typeofOrg, value);
         assertTrue(new HamburgerMenuPage(true).verifyOrg(Key1, WebportalParam.Organizations), "Not received verify email.");
