@@ -80,6 +80,8 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
+import java.util.Calendar;
 /**
  * @author Netgear
  */
@@ -5512,9 +5514,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         System.out.println(expOnDateText);
 
         int actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual: "+actOnYear);
         int expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry: "+expOnYear);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) >= 5) {
             result = true;
             logger.info("The year difference is greater than 5 years.");
         } else {
@@ -9005,16 +9009,29 @@ public boolean verifySignUpPage() {
 //AddedByPratik
 private int extractYear(String dateText) {
     try {
+
+        dateText = dateText.trim();
+
         System.out.println("Extracting year from: " + dateText);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
         Date date = dateFormat.parse(dateText);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+
         System.out.println("Parsed Date: " + date);
-        return date.getYear() + 1900;
+        System.out.println("Extracted Year: " + year);
+
+        return year;
     } catch (Exception e) {
         System.err.println("Invalid date format: " + dateText);
         return -1;
     }
 }
+
 
 //AddedByPratik
 public boolean verifyMUBTab() {
