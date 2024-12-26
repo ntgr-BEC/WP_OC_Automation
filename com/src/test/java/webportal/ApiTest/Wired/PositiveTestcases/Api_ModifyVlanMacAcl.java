@@ -50,7 +50,7 @@ public class Api_ModifyVlanMacAcl extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
         getResponse1.then().body("response.status", equalTo(true));
     }
-//  not working
+
     @Step("Send get request to {url}")
     public Response step1()
     {
@@ -72,14 +72,14 @@ public class Api_ModifyVlanMacAcl extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
         pathParams.put("vlanId",vlanId);
         
-        String body="{\"macAclList\":{\"mode\":\"0\",\"action\":\"0\",\"macAclRule\":{\"custom\":[{\"aclName\":\"m11221122111111271145113150\",\"sequenceNo\":3,\"srcDeviceName\":\"Test033\",\"srcMac\":\"11:22:11:22:11:11\",\"srcMacMask\":\"00-00-00-00-00-00\",\"destDeviceName\":\"Test0044\",\"destMac\":\"11:27:11:45:11:31\",\"destMacMask\":\"00-00-00-00-00-00\"}]}}}";
+        String body="{\"macAclList\":{\"mode\":\"1\",\"action\":\"0\",\"macAclRule\":{\"custom\":[{\"aclName\":\"m112211221111112711451131250\",\"sequenceNo\":1,\"srcDeviceName\":\"Test001new\",\"srcMac\":\"11:22:11:22:11:22\",\"srcMacMask\":\"00-00-00-00-00-00\",\"destDeviceName\":\"Test002111new\",\"destMac\":\"11:27:11:45:11:11\",\"destMacMask\":\"00-00-00-00-00-00\"}]}}}";
         
 
         //TO PERFORM ANY REQUEST
      
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("VlanMacAcl_Sanity"),body, headers, pathParams, null); 
-        getResponse.then().body("manualAddInfo.response.status", equalTo(true))
-                          .body("manualAddInfo.response.message", equalTo("Successfully Added in the Database"));
+        getResponse.then().body("response.status", equalTo(true))
+                          .body("response.message", equalTo("success"));
         
         return addVlan;
         

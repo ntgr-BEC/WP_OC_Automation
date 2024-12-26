@@ -35,7 +35,7 @@ import java.util.Random;
 public class Api_GetOwnersList extends TestCaseBaseApi{
 
     Map<String, String> endPointUrl = new HashMap<String, String>();
-    Map<String, String> pathParams = new HashMap<String, String>();
+ 
     Map<String, String> headers = new HashMap<String, String>();
     String networkId;
     String orgId;
@@ -54,7 +54,8 @@ public class Api_GetOwnersList extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     { 
-        pathParams.put("accountId",WebportalParam.accountId);
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         pathParams.put("orgId",orgId);
        
         

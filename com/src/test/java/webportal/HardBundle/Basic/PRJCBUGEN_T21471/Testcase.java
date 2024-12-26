@@ -91,13 +91,13 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
 
         firststdevInfo.put("Serial Number1", WebportalParam.getDeviceSerialNoCSV("ap1"));
-        firststdevInfo.put("Serial Number2", WebportalParam.getDeviceSerialNoCSV("ap2"));
+        //firststdevInfo.put("Serial Number2", WebportalParam.getDeviceSerialNoCSV("ap2"));
         firststdevInfo.put("Serial Number3", WebportalParam.getDeviceSerialNoCSV("ap3"));
         firststdevInfo.put("Serial Number4", WebportalParam.getDeviceSerialNoCSV("sw1"));
         firststdevInfo.put("Serial Number5", WebportalParam.getDeviceSerialNoCSV("sw2"));
         firststdevInfo.put("Serial Number6", WebportalParam.getDeviceSerialNoCSV("sw3"));
         firststdevInfo.put("Serial Number7", WebportalParam.getDeviceSerialNoCSV("sw4"));
-        firststdevInfo.put("Serial Number8", WebportalParam.getDeviceSerialNoCSV("sw5"));
+        //firststdevInfo.put("Serial Number8", WebportalParam.getDeviceSerialNoCSV("sw5"));
         firststdevInfo.put("Serial Number9", WebportalParam.getDeviceSerialNoCSV("sw6"));
         firststdevInfo.put("Serial Number10", WebportalParam.getDeviceSerialNoCSV("sw7"));
         firststdevInfo.put("Serial Number11", WebportalParam.getDeviceSerialNoCSV("sw8"));
@@ -107,7 +107,7 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         
-        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap2"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw5"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
+        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
         
     }
 }

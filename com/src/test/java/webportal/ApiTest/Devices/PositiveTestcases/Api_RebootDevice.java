@@ -60,7 +60,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device1"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
-                          .body("response.message", equalTo("\"Your configuration has been applied. It may take some time to reflect."));
+                          .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
 
         MyCommonAPIs.sleepi(1000);
     }

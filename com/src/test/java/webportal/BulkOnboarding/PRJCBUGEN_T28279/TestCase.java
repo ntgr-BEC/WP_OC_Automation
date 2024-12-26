@@ -63,6 +63,10 @@ public class TestCase extends TestCaseBase {
 
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.addOrganization(organizationInfo);
+        
+        HamburgerMenuPage hamburgearMenuPage =  new HamburgerMenuPage();
+        hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
+        
         OrganizationPage.openOrg(organizationName);
 
         HashMap<String, String> locationInfo = new HashMap<String, String>();
@@ -79,12 +83,7 @@ public class TestCase extends TestCaseBase {
     public void step3() {
         
         assertTrue(new AccountPage(false).GreenBanner.isDisplayed(),"green banner does not exits");
-        HamburgerMenuPage hamburgearMenuPage =  new HamburgerMenuPage();
-        hamburgearMenuPage.configCreditAllocation(organizationName, 3, 0, 0);
-        OrganizationPage OrganizationPage = new OrganizationPage();
-        OrganizationPage.openOrg(organizationName);
-        new AccountPage(false).enterLocation(locationName);
-        boolean Result = false;
+     
         DeviceBulkOnboardingPage DeviceBulkOnboardingPage = new DeviceBulkOnboardingPage();         
         
         String filePath = DeviceBulkOnboardingPage.GetcurrentPath();

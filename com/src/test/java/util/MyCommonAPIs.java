@@ -222,12 +222,15 @@ public class MyCommonAPIs {
     }
     
     public boolean isInLoginPage() {
-        String url = getCurrentUrl();
-        logger.info("checking page: " + url);
-        if (url.endsWith("#/login") || url.contains("/login?") || url.equals(WebportalParam.serverUrlLogin))
+        String url = WebDriverRunner.getWebDriver().getCurrentUrl();
+        logger.info("Checking page: " + url);
+        String serverUrl = WebportalParam.serverUrlLogin;
+        System.out.println("Current url is : "+url);
+        if (url.contains("/login") && url.contains("redirectUrl") && !url.startsWith(serverUrl)) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
     
     /**
@@ -663,6 +666,7 @@ public class MyCommonAPIs {
     
     public void clickBoxLastButton() {
         try {
+            MyCommonAPIs.sleepi(5);
             $(sPopButtonCss).waitUntil(Condition.appear, 10 * 1000);
             $$(sPopButtonCss).last().click();
 //            $$(sPopButtonCss).filter(Condition.appear).last().click();
@@ -953,7 +957,7 @@ public class MyCommonAPIs {
         boolean bTimeout = true;
         if (!WebportalParam.isRltkSW1) {   
             for (int i = 0; i < 12; i++) {
-                if (!waitCliReady("show application status CloudAgent", "Connected", false).equals(g_sTimeout)) {
+                if (!waitCliReady("show application status appmgr", "Connected", false).equals(g_sTimeout)) {
                     bTimeout = false;
                     break;
                 }
@@ -997,11 +1001,13 @@ public class MyCommonAPIs {
             logger.info("try to reboot sw");
             st.switchReboot();
             new Pause().seconds(120, "sleep for switch reboot");
-            waitDeviceOnline();
+            MyCommonAPIs.sleepi(180);
+//            waitDeviceOnline();
         } else if (cmdIndex == 2) {
             st.switchDefault();
             new Pause().seconds(120, "sleep for switch reboot");
-            waitDeviceOnline();
+            MyCommonAPIs.sleepi(180);
+//            waitDeviceOnline();
         }
     }
     

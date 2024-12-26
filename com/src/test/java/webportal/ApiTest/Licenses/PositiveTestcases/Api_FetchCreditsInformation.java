@@ -46,19 +46,22 @@ public class Api_FetchCreditsInformation extends TestCaseBaseApi{
         step1();
     }
     
-    @AfterMethod(alwaysRun=true)
+    @AfterMethod
     public void teardown()
     { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("orgId",OrgID);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
         
-        
-       
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
     }  
     
     @Step("Send get request to {url}")
     public void step1()
     {
-        new Api_AddOrganization().step1();
-      
+       Response add= new Api_AddOrganization().step1();
+       OrgID=add.jsonPath().getString("orgInfo.orgId");
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
         headers.put("token",WebportalParam.tokenPro);
         headers.put("accountId",WebportalParam.accountIdPro);

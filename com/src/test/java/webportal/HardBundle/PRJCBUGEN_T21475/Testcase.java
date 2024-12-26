@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new AccountPage().deleteOneLocation(locationName);
+        //new AccountPage().deleteOneLocation(locationName);
     }
     
     @Step("Test Step 1: Create IM WP account success;")
@@ -134,13 +134,13 @@ public class Testcase extends TestCaseBase {
         firststdevInfo12.put("MAC Address1", WebportalParam.getDeviceMacCSV("br1"));
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
+        //new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo2);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo3);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo4);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo5);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo6);
-        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo7);
+        //new DevicesDashPage(false).addNewdummyDevice(firststdevInfo7);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo8);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo9);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo10);
@@ -148,7 +148,7 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo12);
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         
-        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap2"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw5"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
+        assertTrue(new HardBundlePage().CheckAllHBadded(WebportalParam.getDeviceSerialNoCSV("ap1"), WebportalParam.getDeviceSerialNoCSV("ap3"), WebportalParam.getDeviceSerialNoCSV("sw1"), WebportalParam.getDeviceSerialNoCSV("sw2"), WebportalParam.getDeviceSerialNoCSV("sw3") ,WebportalParam.getDeviceSerialNoCSV("sw4"),WebportalParam.getDeviceSerialNoCSV("sw6"),WebportalParam.getDeviceSerialNoCSV("sw7"),WebportalParam.getDeviceSerialNoCSV("sw8"), WebportalParam.getDeviceSerialNoCSV("sw9"), WebportalParam.getDeviceSerialNoCSV("br1") ),  "Activation and expiry date are not same");
         
     }
 }

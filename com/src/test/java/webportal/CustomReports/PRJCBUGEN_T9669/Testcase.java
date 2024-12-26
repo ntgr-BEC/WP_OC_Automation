@@ -5,6 +5,8 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Selenide;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -42,7 +44,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
     }
 
-    // Each step is a single test step from Jira Test Case
+//     Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login to Insight Webportal")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
@@ -63,8 +65,11 @@ public class Testcase extends TestCaseBase {
 //        assertTrue(mh.isReportMail(), "check mail for user: " + mailRecv1);
 //        mh.initMail(mailRecv2);
 //        assertTrue(mh.isReportMail(), "check mail for user: " + mailRecv2);
+
         assertTrue(new HamburgerMenuPage(false).checkEmailMessageForCustomReports(WebportalParam.adminName), "Not received verify email.");
         MyCommonAPIs.sleepi(10);
+        Selenide.switchTo().window(0);
         assertTrue(new HamburgerMenuPage(false).checkEmailMessageForCustomReports("w2proacc@yopmail.com"), "Not received verify email.");
+        Selenide.switchTo().window(0);
     }
 }

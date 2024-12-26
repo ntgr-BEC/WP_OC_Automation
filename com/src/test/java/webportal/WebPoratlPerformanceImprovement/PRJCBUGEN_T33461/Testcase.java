@@ -59,11 +59,11 @@ public class Testcase extends TestCaseBase {
     public void step2() {
          WebCheck.checkHrefIcon(URLParam.hrefDevices);
         
-        Map<String, String> devInfo = new HashMap<String, String>();
-        devInfo.put("Serial Number", WebportalParam.ap1serialNo);
-        devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
+         Map<String, String> devInfo = new HashMap<String, String>();
+         devInfo.put("Serial Number1", WebportalParam.ap1serialNo);
+         devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
 
-        new DevicesDashPage(false).addNewDevice(devInfo);
+         new DevicesDashPage(false).addNewdummyDevice(devInfo);
         
         MyCommonAPIs.sleepi(20);
 

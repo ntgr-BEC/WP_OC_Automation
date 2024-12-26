@@ -59,7 +59,7 @@ public class Testcase extends TestCaseBase {
     
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword);
-        new HamburgerMenuPage();
+        new OrganizationPage(false).clickonOkayGotit();
     }
     
     

@@ -38,6 +38,8 @@ public interface Config {
     public final static Map<String, String>   BATTCHSETTING2    = new HashMap<String, String>() {
                                                                     {
                                                                         put("Enable_Port", "OFF");
+                                                                        put("Default_VLAN", "Management VLAN (1)");     
+                                                                        
                                                                     }
                                                                 };
 }

@@ -30,6 +30,8 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase implements Config {
 
+    String randomFrameSize;
+    
     @Feature("Switch.Port") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T4894") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("017-Change Max FrameSize") // It's a testcase title from Jira Test Case.
@@ -75,7 +77,7 @@ public class Testcase extends TestCaseBase implements Config {
         }
     }
 
-    @Step("Test Step 4: Check min frame size 1518  on CLI")
+    @Step("Test Step 4: Check min frame size 1518  on CLI")     
     public void step4() {
         // check on dut CLI
         MyCommonAPIs.sleepi(180);
@@ -89,8 +91,41 @@ public class Testcase extends TestCaseBase implements Config {
         }
     }
 
-    @Step("Test Step 5: change port frame size to 9198, and check it on webportal")
-    public void step5() {
+    @Step("Test Step 5: change port frame size to random, and check it on webportal")    
+    public void step5() { 
+        Selenide.refresh();
+        MyCommonAPIs.sleep(2000);
+        DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+        randomFrameSize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyMaxFrameSizeRandom();
+        Selenide.refresh();
+        MyCommonAPIs.sleep(2000);
+        
+        String framesize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getMaxFrameSize();
+   
+        if (framesize.equals(randomFrameSize)) {
+            micResult = true;
+        } else {
+            micResult = false;
+            assertTrue(micResult);
+        }
+    }
+
+    @Step("Test Step 6: Check random frame size  on CLI")       
+    public void step6() {
+        // check on dut CLI
+        MyCommonAPIs.sleepi(180);
+        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
+        String frameSize = switchTelnet.getMaxFrameSize(WebportalParam.sw1LagPort1CLI);
+        if (frameSize.contains(randomFrameSize)) {
+            micResult = true;
+        } else {
+            micResult = false;
+            assertTrue(micResult);
+        }
+    }
+    
+    @Step("Test Step 7: change port frame size to 9198, and check it on webportal")    //since max frame size 9198 is default value we can't check on CLI verify on webportal
+    public void step7() { 
         Selenide.refresh();
         MyCommonAPIs.sleep(2000);
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
@@ -99,20 +134,6 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(2000);
         String framesize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getMaxFrameSize();
         if (framesize.equals(FRAME_SIZE_MAX)) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult);
-        }
-    }
-
-    @Step("Test Step 6: Check max frame size 9198 on CLI")
-    public void step6() {
-        // check on dut CLI
-        MyCommonAPIs.sleepi(180);
-        SwitchTelnet switchTelnet = new SwitchTelnet(webportalParam.sw1IPaddress);
-        String frameSize = switchTelnet.getMaxFrameSize(WebportalParam.sw1LagPort1CLI);
-        if (frameSize.contains(FRAME_SIZE_MAX)) {
             micResult = true;
         } else {
             micResult = false;

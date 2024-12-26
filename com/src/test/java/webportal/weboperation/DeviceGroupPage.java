@@ -8,6 +8,8 @@ import java.util.logging.Logger;
 import org.openqa.selenium.Keys;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
@@ -28,6 +30,8 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 public class DeviceGroupPage extends DeviceGroupElement {
     Logger logger = Logger.getLogger("DeviceGroupPage");
@@ -78,19 +82,49 @@ public class DeviceGroupPage extends DeviceGroupElement {
         MyCommonAPIs.sleepi(5);
      }
     public void EnableSysLog(String IP, String Port) {
-        enbleSysLog.click();
-        MyCommonAPIs.sleepi(3);
-        SysLogIP.clear();
-        SysLogIP.sendKeys(IP);
-        MyCommonAPIs.sleepi(3);
-        SysLogPort.clear();
-        SysLogPort.sendKeys(Port);
-        MyCommonAPIs.sleepi(3);
-        Apply.click();
-        MyCommonAPIs.sleepi(3);
-        okSys.click();
-
-     }
+        MyCommonAPIs.sleepi(5);
+        SelenideElement toggleSwitchInput = $x("#toggleSyslogConfig");
+        waitElement(toggleSwitchInput);
+        boolean isSwitchOn = toggleSwitchInput.isSelected();
+        if (isSwitchOn) {
+            MyCommonAPIs.sleepi(3);
+            SysLogIP.clear();
+            MyCommonAPIs.sleepi(1);
+            SysLogIP.sendKeys(IP);
+            MyCommonAPIs.sleepi(3);
+            SysLogPort.clear();
+            MyCommonAPIs.sleepi(1);
+            SysLogPort.sendKeys(Port);
+            MyCommonAPIs.sleepi(3);
+            waitElement(Apply);
+            MyCommonAPIs.sleepi(1);
+            Apply.click();
+            MyCommonAPIs.sleepi(5);
+            waitElement(okSys);
+            MyCommonAPIs.sleepi(1);
+            okSys.click();
+            MyCommonAPIs.sleepi(1);
+        } else {
+            enbleSysLog.click();
+            MyCommonAPIs.sleepi(3);
+            SysLogIP.clear();
+            MyCommonAPIs.sleepi(1);
+            SysLogIP.sendKeys(IP);
+            MyCommonAPIs.sleepi(3);
+            SysLogPort.clear();
+            MyCommonAPIs.sleepi(1);
+            SysLogPort.sendKeys(Port);
+            MyCommonAPIs.sleepi(3);
+            waitElement(Apply);
+            MyCommonAPIs.sleepi(1);
+            Apply.click();
+            MyCommonAPIs.sleepi(5);
+            waitElement(okSys);
+            MyCommonAPIs.sleepi(1);
+            okSys.click();
+            MyCommonAPIs.sleepi(1);
+        }
+    }
     
     public void EnableSNMP(String IP, String CString) {
         MyCommonAPIs.sleepi(5);
@@ -788,5 +822,33 @@ public class DeviceGroupPage extends DeviceGroupElement {
             }
                         
             return result;
+        }
+        
+        //AddedBypratik
+        public boolean verifySyslogisEnabledorNot() {
+            boolean result = false;
+            MyCommonAPIs.sleepi(5);
+            SelenideElement toggleSwitchInput = $x("#toggleSyslogConfig");
+            waitElement(toggleSwitchInput);
+            boolean isSwitchOn = toggleSwitchInput.isSelected();
+            if (isSwitchOn) {
+                logger.info("Syslog toggle is enabled (checked)");
+                result = true;
+            } else {
+                logger.info("Syslog toggle is disabled (unchecked)");
+                result = false;
+            }
+            return result = true;
+        }
+        
+        //AddedByPratik
+        public static String getSystemIpAddress() {
+            try {
+                InetAddress inetAddress = InetAddress.getLocalHost();
+                return inetAddress.getHostAddress();
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 }

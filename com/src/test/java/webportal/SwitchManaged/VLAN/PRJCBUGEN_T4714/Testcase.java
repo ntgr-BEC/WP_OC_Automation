@@ -51,7 +51,7 @@ public class Testcase extends TestCaseBase implements Config {
 
     }
 
-    @Step("Test Step 2: use template of Data Network Configuration to create vlan 600, name data traffic vlan")
+    @Step("Test Step 2: Create a VOICE VLAN")
     public void step2() {
         WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleep(8000);
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-      
+        vlanPage.deleteAllVlan();
         vlanPage.addVoiceVlanWithPorts("Voice VLAN", "4088", null, null, null, null, null, null, null);
         MyCommonAPIs.sleep(10000);
     }

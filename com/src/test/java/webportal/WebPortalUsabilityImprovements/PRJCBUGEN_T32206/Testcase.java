@@ -37,7 +37,7 @@ import webportal.weboperation.SummaryPage;
  *
  */
 public class Testcase extends TestCaseBase {
-    String organizationName1 = "Netgear";
+    String organizationName1 = "Netgear1";
     String locationName      = "Office1";
     Random r                 = new Random();
     int    num               = r.nextInt(10000);

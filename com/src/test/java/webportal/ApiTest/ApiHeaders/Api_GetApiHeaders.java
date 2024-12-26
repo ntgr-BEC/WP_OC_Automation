@@ -21,6 +21,8 @@ import webportal.weboperation.ApiRequest;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+import static org.testng.Assert.assertTrue;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +49,7 @@ public class Api_GetApiHeaders extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step1()
     { 
+
         endPointUrl = new ApiRequest().ENDPOINT_URL;  
            
         headers.put("token",WebportalParam.token);
@@ -58,5 +61,8 @@ public class Api_GetApiHeaders extends TestCaseBaseApi{
         //THE 
         getResponse.then().statusCode(200)
         .body("response.message", equalTo("Fetched Cloud Rest API headers successfully"));
+
+
     }
 }
+

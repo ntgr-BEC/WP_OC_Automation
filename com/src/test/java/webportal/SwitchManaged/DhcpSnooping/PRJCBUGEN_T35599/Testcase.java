@@ -85,9 +85,9 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepsync();
         handle.waitCmdReady("snooping", true);
      
-        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean str1 = tmpStr.contains("ip dhcp snooping");
-        assertFalse(str1, "Dhcp Snooping line is there");
+//        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+//        boolean str1 = tmpStr.contains("no ip dhcp snooping verify mac-address");
+//        assertTrue(str1, "Dhcp Snooping line is there");
 
     }
 

@@ -69,7 +69,7 @@ public class CreateVlanWithInvalidConfigBody_Api extends TestCaseBaseApi{
      
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Vlan"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(false))
-         .body("response.message", equalTo("Invalid VLAN id"));
+         .body("response.message", equalTo("Please enter VLAN ID between 1 to 4093"));
         
         return add;
                     

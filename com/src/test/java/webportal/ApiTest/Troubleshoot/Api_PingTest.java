@@ -64,6 +64,7 @@ public class Api_PingTest extends TestCaseBaseApi{
          .body("info[0].message", equalTo("Your configuration has been applied. It may take some time to reflect"))
          .body("info[0].serialNo", equalTo(WebportalParam.ap1deveiceName));
         
+        MyCommonAPIs.sleepi(120);
         return getResponse;
     }
 }

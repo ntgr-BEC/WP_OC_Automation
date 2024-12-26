@@ -11470,6 +11470,23 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         return result;
     }
+    //AddedBypratik
+    public boolean verifyLogProbingisenabledornot() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        SelenideElement toggleSwitch = $(By.name("syslog"));
+        waitElement(toggleSwitch);
+        boolean isChecked = toggleSwitch.isSelected();
+        if (isChecked) {
+            System.out.println("Log Probing Clients to Syslog toggle is enabled (checked)");
+            result = true;
+        } else {
+            System.out.println("Log Probing Clients to Syslog toggle is disabled (unchecked)");
+            result = false;
+        }
+        return result = true;
+    }
+    
 }
 
   

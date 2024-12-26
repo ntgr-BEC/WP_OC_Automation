@@ -109,8 +109,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
             }
-
-            waitElementNot(loginButtonNew);
+            MyCommonAPIs.sleepi(10);
             if (loginButtonNew.exists())
                 return false;
             return true;
@@ -159,16 +158,19 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         boolean isfailed = true;
         long t = System.currentTimeMillis();
         long end = t + 12000;
-        System.out.println("going inside while");
-        while (System.currentTimeMillis() < end) {
-            System.out.println("inside while");
+        //System.out.println("going inside while");
+        //while (System.currentTimeMillis() < end) {
+            //System.out.println("inside while");
             Selenide.refresh();
+            MyCommonAPIs.sleepi(5);
+            waitElement(loginNowButton);
+            MyCommonAPIs.sleepi(1);
             if (loginNowButton.exists()) {
                 loginNowButton.click();
-                break;
+                //break;
             }
-            MyCommonAPIs.sleepi(2);
-        }
+            MyCommonAPIs.sleepi(5);
+        //}
         if (isInLoginPage()) {
             System.out.printf("try to login with user: %s\n", emailAddress);
             for (int i = 0; i < 5; i++) {
@@ -179,15 +181,19 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
                 }
                 takess();
                 open(wpLoginURL);
-                while (System.currentTimeMillis() < end) {
-                    System.out.println("inside while");
+                //System.out.println("going inside while");
+                //while (System.currentTimeMillis() < end) {
+                    //System.out.println("inside while");
                     Selenide.refresh();
+                    MyCommonAPIs.sleepi(5);
+                    waitElement(loginNowButton);
+                    MyCommonAPIs.sleepi(1);
                     if (loginNowButton.exists()) {
                         loginNowButton.click();
-                        break;
+                        //break;
                     }
-                    MyCommonAPIs.sleepi(10);
-                }
+                    MyCommonAPIs.sleepi(5);
+                //}
                 MyCommonAPIs.sleepi(10);
                 if ($(sMyDevicesLink).exists() || $(sCurLocationElement).exists()) {
                     isfailed = false;
@@ -527,9 +533,9 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         $x("//button[@title='Check Inbox @yopmail.com']").click();
         SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
-        MyCommonAPIs.sleepsync();
-        Selenide.refresh();
         String mailBody = shareDiagnosticsMail.getText();
+        System.out.println(MyCommonAPIs.getCurrentUrl());
+        MyCommonAPIs.sleepi(20);      
         System.out.println(mailBody);
         return mailBody;
             

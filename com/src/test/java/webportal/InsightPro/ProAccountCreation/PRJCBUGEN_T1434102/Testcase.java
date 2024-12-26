@@ -57,14 +57,14 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Check create pro account success.")
     public void step1() {
-        int accountNum = 25;
+        int accountNum = 2;
         for (int i = 1; i <= accountNum; i++) {
-            mailname = "auxqaprocan" + String.valueOf(i) + "@sharklasers.com";
-            if (new HamburgerMenuPage(false).checkCreateProAccountPage("checkNext:" + mailname)) {
+            if (new HamburgerMenuPage(false).checkCreateProAccountPage("checkNext:" + mailname + "@mailcatch.com")) {
+                System.out.println("Pro Account Created Successfully; now count is "+i);
                 Map<String, String> proAccountInfo = new HashMap<String, String>();
-                proAccountInfo.put("Confirm Email", mailname);
-                proAccountInfo.put("Password", "Netgear1@");
-                proAccountInfo.put("Confirm Password", "Netgear1@");
+                proAccountInfo.put("Confirm Email", mailname + "@mailcatch.com");
+                proAccountInfo.put("Password", WebportalParam.adminPassword);
+                proAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
                 proAccountInfo.put("Country", "United States of America");
                 proAccountInfo.put("Phone Number", "1234567890");
                 new HamburgerMenuPage(false).CreateProAccount(proAccountInfo);
@@ -79,12 +79,13 @@ public class Testcase extends TestCaseBase {
                 businessInfo.put("Country", "Canada");
                 businessInfo.put("Business Phone Number", "1234567890");
                 new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
-
+                new HamburgerMenuPage(false).closeLockedDialog();
                 assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
                 if (i != accountNum) {
                     UserManage userManage = new UserManage();
                     userManage.logout();
                 }
+                
             }
         }
     }

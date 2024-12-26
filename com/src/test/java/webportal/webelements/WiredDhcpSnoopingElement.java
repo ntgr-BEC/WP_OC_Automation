@@ -61,11 +61,11 @@ public class WiredDhcpSnoopingElement extends MyCommonAPIs {
 
 
     public static SelenideElement txtPortTrustModeCheck(String portNo) {
-        return $x(String.format("//*[text()='%s' and @id='spnEtherNetPortsGroupPrt1']/../span[2]", portNo));
+        return $x(String.format("//*[text()='%s' and  @class='ethernet-count']/../span[2]", portNo));
     }
 
     public static SelenideElement txtPortInvalidPacketsCheck(String portNo) {
-        return $x(String.format("//*[text()='%s' and @id='spnEtherNetPortsGroupPrt1']/../span[3]", portNo));
+        return $x(String.format("//*[text()='%s' and  @class='ethernet-count']/../span[3]", portNo));
     }
 
     public boolean isEnable(SelenideElement el) {

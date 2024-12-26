@@ -183,6 +183,8 @@ public class OrganizationPage extends OrganizationElement {
             if (AddOrg.exists()) {
                 AddOrg.click();
                 MyCommonAPIs.sleepi(15);
+                Selenide.refresh();
+                MyCommonAPIs.sleepi(3);
                 NameOrg.sendKeys(map.get("Name"));
                 if (map.containsKey("Owner Name")) {
                     ownerName.sendKeys(map.get("Owner Name"));
@@ -236,7 +238,7 @@ public class OrganizationPage extends OrganizationElement {
                         break;
                     }
                 }
-                MyCommonAPIs.sleepi(1);
+                MyCommonAPIs.sleepi(10);
                 SaveOrg.click();
                 located = true;
                 logger.info("--------------- Organisation is Created Succesfully ----------");
@@ -262,6 +264,7 @@ public class OrganizationPage extends OrganizationElement {
                 } else {
                     MyCommonAPIs.sleepi(15);
                     waitElement("//h4[text()='Organization Created Successfully']/../..//button[text()='No']");
+                    MyCommonAPIs.sleepi(1);
                     if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='No']").exists()) {
                         $x("//h4[text()='Organization Created Successfully']/../..//button[text()='No']").click();
                     }
@@ -281,6 +284,7 @@ public class OrganizationPage extends OrganizationElement {
             clickYesNo(true);
             businessPhone.setValue(noLoc);
             devAdminPwd.setValue(WebportalParam.loginDevicePassword);
+            MyCommonAPIs.sleepi(20);
             nextButton.click();
             waitReady();
             clickButton(0);
@@ -294,6 +298,9 @@ public class OrganizationPage extends OrganizationElement {
         if (checkOrganizationIsExist(map.get("Name"))) {
             dropdownOrganizationElement(map.get("Name")).click();
             editOrganizationElement(map.get("Name")).click();
+            MyCommonAPIs.sleepi(1);
+            refresh();
+            MyCommonAPIs.sleepi(15);
             waitElement(NameOrg);
             MyCommonAPIs.sleepi(2);
             if (map.containsKey("New Name")) {
@@ -383,6 +390,8 @@ public class OrganizationPage extends OrganizationElement {
                     break;
                 }
             }
+            waitElement(SaveOrg);
+            MyCommonAPIs.sleepi(1);
             SaveOrg.click();
             logger.info("--------------- Organisation is Edited Succesfully ----------");
             Selenide.sleep(10000);
@@ -485,14 +494,21 @@ public class OrganizationPage extends OrganizationElement {
 
     public void deleteOrganizationNew(String name) {
         if (checkOrganizationIsExist(name)) {
-
+            MyCommonAPIs.sleepi(5);
+            waitElement(netgear);
             netgear.click();
             MyCommonAPIs.sleepi(8);
+            waitElement(dropdownOrganizationElement(name));
+            MyCommonAPIs.sleepi(1);
             dropdownOrganizationElement(name).click();
+            waitElement(deleteOrganizationElement(name));
+            MyCommonAPIs.sleepi(5);
             deleteOrganizationElement(name).click();
             MyCommonAPIs.sleepi(20);
+            waitElement(deletedialogbutton);
+            MyCommonAPIs.sleepi(1);
             deletedialogbutton.click();
-            // clickBoxLastButton();
+            MyCommonAPIs.sleepi(1);
             logger.info("Delete organization is successful.");
         }
     }
@@ -507,17 +523,23 @@ public class OrganizationPage extends OrganizationElement {
         }
     }
 
-    public boolean checkOrganizationIsExist(String name) {
+       public boolean checkOrganizationIsExist(String name) {
         boolean result = false;
         listChangeToGrid();
         // if(orgClick.exists())
         // {
         // orgClick.click();
         // }
-        if (organizationElement(name).exists()) {
+        MyCommonAPIs.sleepi(10);
+        System.out.println(organizationElement(name).exists());
+        System.out.println(organizationElement(name).isDisplayed());
+        
+        if (organizationElement(name).exists() ||  organizationElement(name).isDisplayed()) {
             result = true;
             logger.info("Organization is existed.");
+            
         }
+        System.out.println(result);
         return result;
     }
 
@@ -1288,7 +1310,7 @@ public class OrganizationPage extends OrganizationElement {
         allocateCredits.click();
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
-        deviceCreditsTextbox.sendKeys("4");
+        deviceCreditsTextbox.sendKeys("5");
         MyCommonAPIs.sleepi(1);
         allocateBtn.click();
         MyCommonAPIs.sleepi(5);
@@ -4719,8 +4741,15 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     // added by vivek
-    public void addOrgLogo() {
+    public void addOrgLogo(Map<String, String> map) {
         MyCommonAPIs.sleepi(5);
+        waitElement(sOrganizationLocationElement1);
+        if (checkOrganizationIsExist(map.get("Name"))) {
+            dropdownOrganizationElement(map.get("Name")).click();
+            editOrganizationElement(map.get("Name")).click();
+            waitElement(NameOrg);
+        }
+        MyCommonAPIs.sleepi(15);
         orgChooseBtn
                 .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovemnets\\PRJCBUGEN_T32194\\orgImg.png");
         MyCommonAPIs.sleepi(2);
@@ -6756,6 +6785,88 @@ public class OrganizationPage extends OrganizationElement {
             result = true;
         }
         return result;     
+    }
+    
+    //AddedByPratik
+    public boolean verifyDevicesCountonLocationTab() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        waitElement(verifyDevicesPresentonLocationLogo);
+        MyCommonAPIs.sleepi(1);
+        if (verifyDevicesPresentonLocationLogo.exists() && verifyDevicesPresentonLocationLogo1.exists()) {
+            logger.info("Devices count showing correctly on location logo dashboard");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyDevicesCountonOrganizationTab() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        waitElement(gotoHomePage);
+        MyCommonAPIs.sleepi(1);
+        gotoHomePage.click();
+        MyCommonAPIs.sleepi(20);
+        waitElement(verifyDevicesPresentonOrgLogo1);
+        MyCommonAPIs.sleepi(1);
+        if (verifyDevicesPresentonOrgLogo1.exists()) {
+            logger.info("Devices count showing correctly on Organization logo dashboard");
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyManagersInOrg() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(verifyManager(WebportalParam.managerName));
+        waitElement(verifyManager(WebportalParam.readManagerName));
+        MyCommonAPIs.sleepi(1);
+        if (verifyManager(WebportalParam.managerName).exists() && (verifyManager(WebportalParam.readManagerName).exists())) {
+            result = true;
+            System.out.println(verifyManager(WebportalParam.managerName).getText());
+            System.out.println(verifyManager(WebportalParam.readManagerName).getText());
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean verifyOrgAndLocationOnMangerLogin() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(sOrganizationLocationElement1);
+        MyCommonAPIs.sleepi(1);
+        String org = $(sOrganizationLocationElement).getText();
+        System.out.println("Organization Name : "+org);
+        if ($(sOrganizationLocationElement).exists() && org.equals(WebportalParam.Organizations)) {
+            open(URLParam.hreforganization, true);
+            new OrganizationPage().openOrg(WebportalParam.Organizations);
+            MyCommonAPIs.sleepi(10);
+            waitElement($x("//span[@class='location-name']"));
+            MyCommonAPIs.sleepi(1);
+            String loc = $x("//span[@class='location-name']").getText();
+            System.out.println("Location Name : "+loc);
+            if (($x("//span[@class='location-name']")).exists() && loc.equals(WebportalParam.location1)) {
+                result = true;
+                logger.info("Location name verified");
+            }
+            
+        } else if ($(sOrganizationLocationElementNew).exists() && org.equals(WebportalParam.Organizations)) {
+            open(URLParam.hreforganization, true);
+            new OrganizationPage().openOrg(WebportalParam.Organizations);
+            MyCommonAPIs.sleepi(10);
+            waitElement($x("//span[@class='location-name']"));
+            MyCommonAPIs.sleepi(1);
+            String loc = $x("//span[@class='location-name']").getText();
+            System.out.println("Location Name : "+loc);
+            if (($x("//span[@class='location-name']")).exists() && loc.equals(WebportalParam.location1)) {
+                result = true;
+                logger.info("Location name verified");
+            }
+        }
+        return result;
     }
     
 }

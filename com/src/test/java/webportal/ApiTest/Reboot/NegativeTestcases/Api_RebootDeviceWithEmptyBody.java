@@ -57,8 +57,8 @@ public class Api_RebootDeviceWithEmptyBody extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
 
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Reboot_Device"), requestBody, headers, null, null); 
-        getResponse.then().body("response.status", equalTo(true))
-                           .body("response.message", equalTo("Success in fetching reboot now information."));
+        getResponse.then().body("response.status", equalTo(false))
+                           .body("response.message", equalTo("One or more serial numbers are invalid."));
         
 
         

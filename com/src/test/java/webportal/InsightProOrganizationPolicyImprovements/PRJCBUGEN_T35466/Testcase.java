@@ -18,6 +18,7 @@ import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
+import webportal.publicstep.UserManage;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DeviceScreenNavigationPage;
 import webportal.weboperation.DevicesDashPage;
@@ -33,14 +34,11 @@ import webportal.weboperation.WebportalLoginPage;
  *
  */
 public class Testcase extends TestCaseBase {
-    Random r        = new Random();
-    int    num      = r.nextInt(10000);
-    String mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
 
     @Feature("InsightProOrganizationPolicyImprovements") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T35466") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that all the organisation and locations are reflected in pro manager account") // It's a testcase title
-                                                                                                                 // from Jira Test Case.
+                                                                                                                // from Jira Test Case.
     @TmsLink("PRJCBUGEN-T35466") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
@@ -51,42 +49,37 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
- 
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login to the pro account ;")
     public void step1() {
- 
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
-            
-            new OrganizationPage(false).openOrg(WebportalParam.Organizations);
-            
+
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
+
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+
     }
 
     @Step("Test Step 2:Add manager via org settings;")
     public void step2() {
-        
-        new OrganizationPage(false).ManagerInOrg();
-     
-        Map<String, String> managerInfo = new HashMap<String, String>();
-        managerInfo.put("Name", "test35466");
-        managerInfo.put("Email Address", mailname);
-        managerInfo.put("Organization Name", WebportalParam.Organizations);
-        managerInfo.put("Access Policy", "Read");
 
-        new ManagerPage(false).addManager(managerInfo);
-        System.out.println("adding manger is done");
-        
-        assertTrue(new OrganizationPage(false).VerifyAddedManagerInOrg(mailname),"The changes are not applied to all other created organisation policy settings");
-     
+        new OrganizationPage(false).ManagerInOrg();
+        assertTrue(new OrganizationPage(false).verifyManagersInOrg(), "Managers are verified on organization settings all managers");
+
     }
-    
+
     @Step("Test Step 3: Check organization is reflected in Manager account;")
     public void step3() {
-        
-        assertTrue(new OrganizationPage(false).OrgsInmanager("test35466"),"Organization displayed in manager account is wrong"); 
+
+        UserManage userManage = new UserManage();
+        userManage.logout();
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.managerName, WebportalParam.managerPassword);
+        new OrganizationPage(false).clickonOkayGotit();
+        assertTrue(new OrganizationPage(false).verifyOrgAndLocationOnMangerLogin(), "Organization name and location name verified");
+        userManage.logout();
     }
-    
+
 }

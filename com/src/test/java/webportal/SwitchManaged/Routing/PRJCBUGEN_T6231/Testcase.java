@@ -68,12 +68,12 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add IP1 to vlan 100")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, ipMask, ip1, ip2);
+        rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
     }
     
     @Step("Test Step 3: Check configuraiton from app and local web gui")
     public void step3() {
-        rtp.openVlan(vlanId);
+        rtp.openVlan(vlanName);
         assertTrue(rtp.seMask.getValue().equals(ipMask), "check mask");
         assertTrue(MyCommonAPIs.getValue(rtp.getIpAddressXpath(WebportalParam.sw1deveiceName)).equals(ip1), "check ip 1");
         if (!rtp.isRoutingDisabled(WebportalParam.sw2Model)) {
@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase {
         rtp.deleteVlanRoute(vlanId);
         handle.waitCmdReady(ip3.substring(0, ip1.lastIndexOf(".")), true);
         
-        rtp.addIpToVlan(vlanId, ipMask, ip3, ip4);
+        rtp.addIpToVlan(vlanName, ipMask, ip3, ip4);
         handle.waitCmdReady(ip3.substring(0, ip3.lastIndexOf(".")), false);
         String tmpStr = MyCommonAPIs.getCmdOutput("show ip interface vlan " + vlanId, false);
         assertFalse(tmpStr.contains(ip1), "verify ip1 is removed");
