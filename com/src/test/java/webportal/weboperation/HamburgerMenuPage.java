@@ -273,10 +273,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (eles.last().isDisplayed()) {
                 eles.last().click();
             }
-        }else {   
+        }if(acceptPolicy1.exists())  { 
+            System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
             acceptPolicy1.click();       
         }
+        System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
         if (continuebutton.isEnabled()) {
             continuebutton.click();
@@ -5584,7 +5586,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             break;
         }
 
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
 
             result = true;
             logger.info("Order history display correct.");

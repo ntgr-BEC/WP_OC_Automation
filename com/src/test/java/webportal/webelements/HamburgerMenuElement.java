@@ -436,7 +436,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        selectcountry1      = $x("//*[@id=\"mat-input-6\"]");
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
     public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
-    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
+    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
     public static SelenideElement policyText1        = $x("//input[@name='mailProgram']/..//i[@id='_iPromoReg']");
     public static SelenideElement policyText2        = $x("//input[@name='termsAndCondition']/..//i[@id='_iPromoReg']");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
