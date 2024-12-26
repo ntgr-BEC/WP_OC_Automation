@@ -5542,9 +5542,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
         String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
         actOnYear = extractYear(actOnDateText);
-        System.out.println("Year Actual: " + actOnYear);
+        System.out.println("Year Actual : " + actOnYear);
         expOnYear = extractYear(expOnDateText);
-        System.out.println("Year Expiry: " + expOnYear);
+        System.out.println("Year Expiry : " + expOnYear);
 
         if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
