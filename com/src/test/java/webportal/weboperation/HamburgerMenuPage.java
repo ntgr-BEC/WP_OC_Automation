@@ -277,6 +277,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if(acceptPolicy1.exists())  { 
             System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
+            new MyCommonAPIs().click(acceptPolicy1);
             acceptPolicy1.click();       
         }
         System.out.println("out of policy check box");
@@ -5593,35 +5594,27 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     
     
     public boolean verifyICP(String lic) {
-        System.out.println(lic+ "name");
+        System.out.println(lic+ " name ");
         MyCommonAPIs.sleepi(10);
         captiveportalservices.click();
         MyCommonAPIs.sleepi(40);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println("clollection of an element");
-        System.out.println(lic+"name");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[2]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            System.out.println(actOnDateText);
-            System.out.println(expOnDateText);
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+        int actOnYear = 0;
+        int expOnYear = 0;
+        MyCommonAPIs.sleepi(10);
+        System.out.println("Print the element");
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[2]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual : " + actOnYear);
+        expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry : " + expOnYear);
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 1)) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 1) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
