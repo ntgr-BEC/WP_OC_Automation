@@ -70,7 +70,7 @@ public class Testcase extends TestCaseBase {
         String typeofOrg = "sumanta";
         int value=0;
         new HamburgerMenuPage().AddKeyAndVerify1(Key, typeofOrg, value);
-        assertTrue(new HamburgerMenuPage(true).verifyOrgImd(Key), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(true).verify(Key), "Not received verify email.");
         Count= Count+1;
         System.out.println("No of license= "+Count);
     }
