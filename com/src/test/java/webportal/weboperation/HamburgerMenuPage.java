@@ -5535,27 +5535,17 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean verifyLMS(String lic) {
         MyCommonAPIs.sleepi(10);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
         int actOnYear = 0;
         int expOnYear = 0;
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
         MyCommonAPIs.sleepi(10);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("/td[3]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
-            actOnYear = extractYear(actOnDateText);
-            System.out.println("Year Actual: "+actOnYear);
-            expOnYear = extractYear(expOnDateText);
-            System.out.println("Year Expiry: "+expOnYear);
+        System.out.println("Print the element");
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual : " + actOnYear);
+        expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry : " + expOnYear);
 
-            break;
-        }
-       
         if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
             logger.info("The year difference is greater than 5 years.");
@@ -5564,9 +5554,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
 
         return result;
-        
-        
-        
+
     }
     
     public boolean verifyOrgImd(String lic) {
