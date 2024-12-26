@@ -1001,5 +1001,15 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  verifyAdminEmailMessage           = $x("//td[contains(text(),'Please confirm your email address')]");
   public SelenideElement  verifyVPNCreditsavilable          = $x("//p[text()='Total VPN Group Credits']");
   public SelenideElement  verifyCaptivePortalCount1         = $x("(//span[text()='Instant Captive Portal']/../..//span[text()='3'])[1]");
+  public SelenideElement  netgearBusinessPageAcceptcookies  = $x("//button[contains(@class,'primary acceptcookies')]");
+  public SelenideElement  netgearBusinessPagePremiumSub     = $x("//h2[contains(text(),'Login and Subscribe')]/..//a[text()='NETGEAR Insight Premium']");
+  public SelenideElement  netgearBusinessPageProSub         = $x("//h2[contains(text(),'Login and Subscribe')]/..//a[text()='NETGEAR Insight Pro']");
+  public SelenideElement  cancelSubscriptionBtn             = $x("//a[@id='cancel_link']");
+  public SelenideElement  warningOkButtonProAcc             = $x("//p[contains(text(),'An error occurred while retrieving the status')]/../..//button[text()='OK' and @class='btn btn-danger']");
+  public SelenideElement  warningOkButtonProAcc1            = $x("//p[contains(text(),'Insight Pro account')]/../..//button[text()='OK']");
+  public SelenideElement  checkBox1                         = $x("//p[contains(text(),'Yes! Please keep me updated')]");
+  public SelenideElement  checkBox2                         = $x("//input[@name='termsAndCondition']/..//i");
+  public SelenideElement  proaccCreatedNotificationCognito  = $x("//p[contains(text(),'Your account has been created.')]");
+  public SelenideElement  proaccCreatedOKBtnCognito         = $x("//p[contains(text(),'Your account has been created.')]/../..//button[text()='OK']");
 }
 

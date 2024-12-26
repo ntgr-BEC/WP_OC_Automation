@@ -24,6 +24,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
@@ -80,6 +81,7 @@ public class Testcase extends TestCaseBase {
 
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
+        new OrganizationPage(false).clickonOkayGotit();
     }
     
     @Step("Test Step 2: Add device To the Network;")
