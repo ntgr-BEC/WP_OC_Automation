@@ -60,16 +60,16 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         String err = "invalid ip";
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, mask, "1.0.0.0", "1.0.0.1");
+        rtp.addIpToVlan(vlanName, mask, "1.0.0.0", "1.0.0.1");
         assertTrue(handle.getPageErrorMsg().contains(err));
         
-        rtp.addIpToVlan(vlanId, mask, "1.0.0.1", "1.0.0.2");
+        rtp.addIpToVlan(vlanName, mask, "1.0.0.1", "1.0.0.2");
         assertFalse(handle.getPageErrorMsg().contains(err));
         
-        rtp.addIpToVlan(vlanId, mask, "129.1.1.1", "129.1.1.2");
+        rtp.addIpToVlan(vlanName, mask, "129.1.1.1", "129.1.1.2");
         assertFalse(handle.getPageErrorMsg().contains(err));
         
-        rtp.addIpToVlan(vlanId, mask, "127.0.0.1", "127.0.0.2");
+        rtp.addIpToVlan(vlanName, mask, "127.0.0.1", "127.0.0.2");
         assertTrue(handle.getPageErrorMsg().contains(err));
     }
     

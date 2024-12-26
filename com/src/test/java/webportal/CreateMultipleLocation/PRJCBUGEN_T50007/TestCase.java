@@ -31,7 +31,7 @@ public class TestCase extends TestCaseBase {
     String locationName     = "office";
     String warning   = "Cannot add devices from CSV file. Use CSV template column headings, and save file in .CVS format.";
     boolean micResult = false;
-    @Feature("Create Multiple Organizations for Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Create Multiple Locations Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T50005") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Create Multiple locatOrganizationsion Pro") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T50005") // It's a testcase id/link from Jira Test Case.

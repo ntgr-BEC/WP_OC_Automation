@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     int                countFail                 =0;
 	int                countinternet             =0;
 
-    @Feature("ICP.admin") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Create Multiple Locations Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T16622") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("verify instant captive portal funcationally when user select tier type as \"social login\" with only LinkedIn in loop")                                                                                                                                                                                                                                                                                                       // Case.
     @TmsLink("PRJCBUGEN-T16622") // It's a testcase id/link from Jira Test Case.

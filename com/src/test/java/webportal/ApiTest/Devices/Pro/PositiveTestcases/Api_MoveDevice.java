@@ -98,7 +98,7 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Clone_Network"), requestBody1, headers, null, null);   
         
         //Allocate device credits for new org
-        new Api_AllocateDeviceCredits().step2(1,1,OrgID);
+//        new Api_AllocateDeviceCredits().step2(1,1,OrgID);
                
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",WebportalParam.networkIdPro);

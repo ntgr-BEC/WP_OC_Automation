@@ -54,7 +54,7 @@ public class Api_LocationPasswordSanity extends TestCaseBaseApi{
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("accountId",WebportalParam.accountId);
         
-        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"Net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";  
+        String requestBody="{\"networkInfo\":[{\"name\":\"San Jose\",\"adminPassword\":\"net\",\"timeSettings\":{\"timeZone\":\"262\"},\"street\":\"\",\"city\":\"\",\"state\":\"\",\"postCode\":\"\",\"isoCountry\":\"US\"}]}";  
         
         do {
        

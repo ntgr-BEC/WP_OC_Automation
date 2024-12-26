@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.getDeviceSerialNoCSV("ap1"));
+        new AccountPage().deleteOneLocation(locationName);
     }
     
     @Step("Test Step 1: Login IM WP success;")
@@ -130,7 +130,14 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
         
-        new AccountPage().enterLocation(WebportalParam.location1);
+        HashMap<String, String> locationInfo     = new HashMap<String, String>();
+        locationInfo.put("Location Name", locationName);
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "12345");
+        locationInfo.put("Country", "China");
+        new AccountPage(false).addNetwork(locationInfo);
+        
+        new AccountPage(false).enterLocation(locationName);
         
         Map<String, String> firststdevInfo = new HashMap<String, String>();
       
@@ -146,11 +153,11 @@ public class Testcase extends TestCaseBase {
         
          new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         
-        ActivationDatePremium = new HamburgerMenuPage().getActivationDate( WebportalParam.getDeviceSerialNoCSV("ap1"));
+        ActivationDatePremium = new HamburgerMenuPage().getActivationDatePremiumAcc( WebportalParam.getDeviceSerialNoCSV("ap1"));
         
         System.out.println(ActivationDatePremium);
      
-        ExpiryDatePremium = new HamburgerMenuPage().getExpiryDate( WebportalParam.getDeviceSerialNoCSV("ap1"));
+        ExpiryDatePremium = new HamburgerMenuPage().getExpiryDatePremiumAcc( WebportalParam.getDeviceSerialNoCSV("ap1"));
         
         System.out.println(ExpiryDatePremium);
         

@@ -1180,31 +1180,31 @@ public class WebportalParam {
     }
 
     public static String getCSVData(String csvFileName, String headerMatch, String headerReturn, String rowMatch) {
-        String toReturn = "";
-        System.out.println("111111111111111111111");
-        try {
-            Reader reader = Files.newBufferedReader(Paths.get(csvFileName));
-            System.out.println("2222222222222222");
-            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());
-            System.out.println("333333333333333333");
-            System.out.println(csvParser);
+        String result = "";
+        try (Reader reader = Files.newBufferedReader(Paths.get(csvFileName))) {
+           
+            CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT
+                    .withFirstRecordAsHeader()
+                    .withIgnoreHeaderCase()
+                    .withTrim());
+
+            System.out.println("Headers: " + csvParser.getHeaderMap().keySet());
             for (CSVRecord csvRecord : csvParser) {
-                System.out.println("4444444444444444444");
                 if (csvRecord.get(headerMatch).equalsIgnoreCase(rowMatch)) {
-                    toReturn = csvRecord.get(headerReturn);
+                    result = csvRecord.get(headerReturn); // Get the required value
                     break;
                 }
             }
-            csvParser.close();
-        } catch (Throwable e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.info(String.format("Got <%s-%s> on <%s-%s> in: %s", rowMatch, toReturn, headerMatch, headerReturn, csvFileName));
-        return toReturn;
+
+        System.out.println(String.format("Retrieved [%s]: %s for [%s] in file: %s", headerReturn, result, rowMatch, csvFileName));
+        return result;
     }
 
     public static String getDeviceSerialNoCSV(String devName) {
-        System.out.println("++++++++++++++++++++");
         String csvFile = System.getProperty("user.dir") + "/src/test/resources/HardBundleDevice.csv";
         return getCSVData(csvFile, "DEVICE NAME", "DEVICE SERIAL", devName);
     }

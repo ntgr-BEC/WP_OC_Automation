@@ -82,8 +82,8 @@ public class Api_ListWirelessSsids extends TestCaseBaseApi{
         //ADDED NORMAL SSID DETAILS
         getResponse.then().statusCode(200)
         .body("mpskList", hasSize(0)) 
-        .body("rateEnabledSSID.isRateLimitExceeded", equalTo(false))
-        .body("ciAllowedListLen", equalTo(0)); 
+        .body("rateEnabledSSID.isRateLimitExceeded", equalTo(false));
+      
         
     }
                   

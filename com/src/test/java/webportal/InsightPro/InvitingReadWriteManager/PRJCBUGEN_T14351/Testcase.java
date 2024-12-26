@@ -31,7 +31,8 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000);
-    String mailname = "";
+    String mailname = "apwptest" + String.valueOf(num);
+    String writeMan = mailname + "@yopmail.com";
 
     @Feature("InsightPro.InvitingReadWriteManager") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T14351") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -45,19 +46,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("#/organization/dashboard") && !url.contains("managers")) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        } else if (url.endsWith("#/organization/dashboard") && url.contains("insight.netgear")) {
-            UserManage userManage = new UserManage();
-            userManage.logout();
-
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        }
-
-        new ManagerPage().deleteManager(mailname);
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
+        new ManagerPage().deleteManager(writeMan);
         System.out.println("start to do tearDown");
     }
 
@@ -69,37 +60,41 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 2: Invite manager and check url in invite email can sign up;")
+    @Step("Test Step 2: Invite manager and check its success;")
     public void step2() {
-        mailname         = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
         Map<String, String> managerInfo = new HashMap<String, String>();
-        managerInfo.put("Name", "test14351");
-        managerInfo.put("Email Address", mailname);
+        managerInfo.put("Name", "test14347");
+        managerInfo.put("Email Address", writeMan);
         managerInfo.put("Organization Name", WebportalParam.Organizations);
+        managerInfo.put("Access Policy", "Read/Write");
 
         new ManagerPage().addManager(managerInfo);
 
-        if (new ManagerPage(false).checkSuccessDialog() && new ManagerPage(false).checkManagerIsExist(managerInfo.get("Email Address"))) {
-            UserManage userManage = new UserManage();
-            userManage.logout();
+        assertTrue(new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1"),
+                "Invite manager failed.");
 
-            if (new HamburgerMenuPage(false).checkEmailMessage(managerInfo.get("Email Address"))) {
-                Map<String, String> managerAccountInfo = new HashMap<String, String>();
-                managerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
-                managerAccountInfo.put("Password", WebportalParam.adminPassword);
-                managerAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-                managerAccountInfo.put("Country", "United States of America");
-                managerAccountInfo.put("Phone Number", "1234567890");
+        UserManage userManage = new UserManage();
+        userManage.logout();
 
-                new HamburgerMenuPage(false).createManagerAccount(managerAccountInfo);
-                assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create manager account failed.");
-            } else {
-                assertTrue(false, "Not received invite manager email.");
-            }
-        } else {
-            assertTrue(false, "Add manager failed.");
-        }
+    }
+    
+    @Step("Test Step 3: Invite manager and check its success;")
+    public void step3() {
 
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(writeMan), "Not received Invitation email.");
+        assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
+        Map<String, String> proAccountInfo = new HashMap<String, String>();
+        proAccountInfo.put("Confirm Email", writeMan);
+        proAccountInfo.put("Password", "Netgear1@");
+        proAccountInfo.put("Confirm Password", "Netgear1@");
+        proAccountInfo.put("Country", "United States of America");
+        proAccountInfo.put("Phone Number", "1234567890");
+        new HamburgerMenuPage(false).FillInvitemanagerOwnerInfoAndVerifylogin(proAccountInfo);
+        UserManage userManage = new UserManage();
+        userManage.logout();
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(writeMan, WebportalParam.adminPassword);
+        userManage.logout();
     }
 
 }

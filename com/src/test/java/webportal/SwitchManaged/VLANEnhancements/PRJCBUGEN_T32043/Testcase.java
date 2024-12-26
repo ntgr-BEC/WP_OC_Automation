@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Now go to Switch summary page --> Ports graph and move the mouse cursor over the ports")
     public void step4() {
         ddpmg.gotoPage();
-        MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(180);
         new NetworkSetupPage().waitReady();
         ddpmg.enterDevice(WebportalParam.sw1serialNo);
         ddpmg.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);

@@ -271,10 +271,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (eles.last().isDisplayed()) {
                 eles.last().click();
             }
-        }else {   
+        }if(acceptPolicy1.exists())  { 
+            System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
             acceptPolicy1.click();       
         }
+        System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
         if (continuebutton.isEnabled()) {
             continuebutton.click();
@@ -3503,7 +3505,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         businessphone.setValue(map.get("Business Phone Number"));
         MyCommonAPIs.sleepi(5);
         // agreeterm.click();
-        MyCommonAPIs.sleepi(3);
     }
 
     public void inputBusinessInfoDirectPurchase(Map<String, String> map) {
@@ -6040,8 +6041,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-        waitReady();
-        MyCommonAPIs.sleepsync();
+        MyCommonAPIs.sleepi(15);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
         return result;
     }
 
@@ -9175,6 +9187,339 @@ public static boolean verifyOrganizationsVisibility() {
     }
 
     return allVisible;
+}
+//AddedByPratik
+public void launchInsightSubscriptionServicesPage() {
+    sleep(1000);
+    open("https://www.netgear.com/in/business/services/insight/subscription/");
+    MyCommonAPIs.sleepi(20);
+    waitReady();
+    sleep(1000);
+    waitElement(netgearBusinessPageAcceptcookies);
+    MyCommonAPIs.sleepi(1);
+    netgearBusinessPageAcceptcookies.click();
+    MyCommonAPIs.sleepi(5);
+    for (int i = 0; i < 30; i++) {
+        executeJavaScript("window.scrollBy(0, 1000)");
+        sleep(300);
+        if (netgearBusinessPagePremiumSub.shouldBe(Condition.visible).exists()) {
+            netgearBusinessPagePremiumSub.click();
+            break;
+        }
+    }
+    MyCommonAPIs.sleepi(20);
+    waitReady();
+    sleep(1000);
+}
+//AddedByPratik
+public boolean createAccount1(Map<String, String> map) {
+    boolean result = false;
+    MyCommonAPIs.sleepi(10);
+    long t= System.currentTimeMillis();
+    long end = t+10;
+    System.out.println(end);
+    System.out.println("going inside while");
+    while(System.currentTimeMillis() < end) {
+        Selenide.refresh();
+        System.out.println("inside while");
+        if(loginNowButton.exists()) {
+          loginNowButton.click();
+          break;
+        }
+        MyCommonAPIs.sleepi(10);
+    }         
+    if (loginButtonLandingPage.exists()) {
+        loginButtonLandingPage.click();
+        MyCommonAPIs.sleepi(10);
+        inputAccountInfo(map);
+        MyCommonAPIs.sleepi(15);
+        
+        if(loginPwdNewcognito.isDisplayed()) {
+        loginPwdNewcognito.sendKeys(map.get("Password"));
+        SigninbuttonCognito.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(NoThankYou);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(finishPage);
+        if (finishCreate.isDisplayed()) {
+            finishCreate.click();
+        }
+        MyCommonAPIs.sleepi(3);
+        if (finishbutton.isDisplayed()) {
+            finishbutton.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(cancelSubscriptionBtn);
+        MyCommonAPIs.sleepi(3);
+        cancelSubscriptionBtn.click();
+        MyCommonAPIs.sleepi(60);
+        waitElement(closeLockedWindow);
+        MyCommonAPIs.sleepi(1);
+        closeLockedWindow.click();
+        MyCommonAPIs.sleepi(5);
+        String url = MyCommonAPIs.getCurrentUrl();
+        if (!url.contains("billing")) {
+            waitElement(notificationicon);
+            result = true;
+        }
+    } else {
+        inputAccountInfo(map);
+        MyCommonAPIs.sleepi(15);
+        
+        if(loginPwdNewcognito.isDisplayed()) {
+        loginPwdNewcognito.sendKeys(map.get("Password"));
+        SigninbuttonCognito.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(NoThankYou);
+        MyCommonAPIs.sleepi(1);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
+        MyCommonAPIs.sleepi(15);
+        if (finishCreate.isDisplayed()) {
+            finishCreate.click();
+        }
+        MyCommonAPIs.sleepi(3);
+        if (finishbutton.isDisplayed()) {
+            finishbutton.click();
+        }
+        MyCommonAPIs.sleepi(30);
+        waitElement(cancelSubscriptionBtn);
+        MyCommonAPIs.sleepi(3);
+        cancelSubscriptionBtn.click();
+        MyCommonAPIs.sleepi(60);
+        waitElement(closeLockedWindow);
+        MyCommonAPIs.sleepi(1);
+        closeLockedWindow.click();
+        MyCommonAPIs.sleepi(5);
+        String url = MyCommonAPIs.getCurrentUrl();
+        if (!url.contains("billing")) {
+            waitElement(notificationicon);
+            result = true;
+        }
+    }
+    return result;
+}
+//AddedByPratik
+public void launchInsightSubscriptionServicesPageProAcc() {
+  sleep(1000);
+  open("https://www.netgear.com/in/business/services/insight/subscription/");
+  MyCommonAPIs.sleepi(20);
+  waitReady();
+  sleep(1000);
+  waitElement(netgearBusinessPageAcceptcookies);
+  MyCommonAPIs.sleepi(1);
+  netgearBusinessPageAcceptcookies.click();
+  MyCommonAPIs.sleepi(5);
+  for (int i = 0; i < 30; i++) {
+      executeJavaScript("window.scrollBy(0, 1000)");
+      sleep(300);
+      if (netgearBusinessPageProSub.shouldBe(Condition.visible).exists()) {
+          netgearBusinessPageProSub.click();
+          break;
+      }
+  }
+  MyCommonAPIs.sleepi(20);
+  waitReady();
+  sleep(1000);
+}
+//AddedByPratik
+public boolean createAccountPro(Map<String, String> map) {
+  boolean result = false;
+  MyCommonAPIs.sleepi(10);
+  long t= System.currentTimeMillis();
+  long end = t+10;
+  System.out.println(end);
+  System.out.println("going inside while");
+  while(System.currentTimeMillis() < end) {
+      Selenide.refresh();
+      System.out.println("inside while");
+      if(loginNowButton.exists()) {
+        loginNowButton.click();
+        break;
+      }
+      MyCommonAPIs.sleepi(10);
+  }         
+  if (loginButtonLandingPage.exists()) {
+      loginButtonLandingPage.click();
+      MyCommonAPIs.sleepi(10);
+      inputAccountInfo(map);
+      MyCommonAPIs.sleepi(15);
+      
+      if(loginPwdNewcognito.isDisplayed()) {
+      loginPwdNewcognito.sendKeys(map.get("Password"));
+      SigninbuttonCognito.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(NoThankYou);
+      if (NoThankYou.isDisplayed()) {
+          NoThankYou.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(finishPage);
+      if (finishCreate.isDisplayed()) {
+          finishCreate.click();
+      }
+      MyCommonAPIs.sleepi(3);
+      if (finishbutton.isDisplayed()) {
+          finishbutton.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(cancelSubscriptionBtn);
+      MyCommonAPIs.sleepi(3);
+      cancelSubscriptionBtn.click();
+      MyCommonAPIs.sleepi(60);
+      waitElement(warningOkButtonProAcc);
+      MyCommonAPIs.sleepi(1);
+      warningOkButtonProAcc.click();
+      MyCommonAPIs.sleepi(10);
+      waitElement(warningOkButtonProAcc1);
+      MyCommonAPIs.sleepi(1);
+      String url = MyCommonAPIs.getCurrentUrl();
+      if (warningOkButtonProAcc1.exists()) {
+          warningOkButtonProAcc1.click();
+          MyCommonAPIs.sleepi(60);
+          result = true;
+      }
+  } else {
+      inputAccountInfo(map);
+      MyCommonAPIs.sleepi(15);
+      
+      if(loginPwdNewcognito.isDisplayed()) {
+      loginPwdNewcognito.sendKeys(map.get("Password"));
+      SigninbuttonCognito.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(NoThankYou);
+      MyCommonAPIs.sleepi(1);
+      if (NoThankYou.isDisplayed()) {
+          NoThankYou.click();
+      }
+      MyCommonAPIs.sleepi(15);
+      if (finishCreate.isDisplayed()) {
+          finishCreate.click();
+      }
+      MyCommonAPIs.sleepi(3);
+      if (finishbutton.isDisplayed()) {
+          finishbutton.click();
+      }
+      MyCommonAPIs.sleepi(30);
+      waitElement(cancelSubscriptionBtn);
+      MyCommonAPIs.sleepi(3);
+      cancelSubscriptionBtn.click();
+      MyCommonAPIs.sleepi(60);
+      waitElement(warningOkButtonProAcc);
+      MyCommonAPIs.sleepi(1);
+      warningOkButtonProAcc.click();
+      MyCommonAPIs.sleepi(10);
+      waitElement(warningOkButtonProAcc1);
+      MyCommonAPIs.sleepi(1);
+      String url = MyCommonAPIs.getCurrentUrl();
+      if (warningOkButtonProAcc1.exists()) {
+          warningOkButtonProAcc1.click();
+          MyCommonAPIs.sleepi(60);
+          result = true;
+      }
+  }
+  return result;
+}
+//AddedByPratik
+public void marketPlaceproAccBillingInfo(Map<String, String> map) {
+    MyCommonAPIs.sleepi(5);
+    inputBusinessInfo(map);
+    checkBox1.click();
+    MyCommonAPIs.sleepi(1);
+    checkBox2.click();
+    MyCommonAPIs.sleepi(1);
+    clickBusinessInfoPageButton();
+    logger.info("Sign up success.");
+}
+
+//addedbyPratik
+public String getExpiryDatePremiumAcc(String SerialNo) {
+
+  MyCommonAPIs.sleepi(3);
+  String getExpiryDate = getText(ExpiryDatePremiumAcc(SerialNo));
+  return getExpiryDate;
+
+}
+
+//addedbyPratik
+public String getActivationDatePremiumAcc(String SerialNo) {
+  ;
+  MyCommonAPIs.sleepi(3);
+  String activationdate = getText(activationDatePremiumAcc(SerialNo));
+  return activationdate;
+
+}
+
+//AddedByPratik
+public boolean verifypremiumacchavingAllOptionsVisible() {
+  
+  MyCommonAPIs.sleepi(5);
+  accountmanager.click();
+  MyCommonAPIs.sleepi(5);
+  if (purchaseorderhistory.exists()) {
+      purchaseorderhistory.click();
+      MyCommonAPIs.sleepi(5);
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  } else {
+      waitElement(defaultcategoryfilter);
+      logger.info("check all Category of filters present...");
+      defaultcategoryfilter.click();
+      MyCommonAPIs.sleepi(2);
+      ElementsCollection options = $("select[name='prodCategory']").$$("option");
+      for (int i = 0; i < options.size(); i++) {
+          System.out.println(options.get(i));
+          if (!options.get(i).isDisplayed()) {
+              return false;
+          }
+      }
+  }  
+
+  return true;
+  
+}
+
+//AddedByPratik
+public boolean checkEmailMessageForProAdminAccount(String mailname) {
+      boolean result = false;
+      logger.info("Check email address is:" + mailname);
+      WebDriver driver = WebDriverRunner.getWebDriver();
+      String url = "https://yopmail.com";
+      ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+      MyCommonAPIs.sleepi(5);
+      Selenide.switchTo().window(1);
+      String inputElement = "//input[@id='login']";
+      $x(inputElement).clear();
+      $x(inputElement).sendKeys(mailname);
+      $x("//button[@title='Check Inbox @yopmail.com']").click();
+      SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+      Selenide.switchTo().frame(frame);
+      MyCommonAPIs.sleepsync();
+
+      System.out.println(verifyAdminEmailMessage.getText());
+      if (verifyAdminEmailMessage.getText().contains("Please confirm your email address")) {
+          result = true;
+          logger.info("Received confirmation mail");
+      }
+      return result;
+
 }
 
 }

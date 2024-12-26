@@ -41,6 +41,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        wvp.deleteAllVlan();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -51,7 +52,7 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();
-
+        wvp.deleteAllVlan();
         wvp.gotoPage();
         wvp.newVlan(vlanName, vlanId, 2);
 
@@ -62,7 +63,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ip address and mask to vlan 100")
     public void step2() {
         rtp.deleteVlanRoute(vlanId);
-        rtp.addIpToVlan(vlanId, ipMask, ip1, ip2);
+        rtp.addIpToVlan(vlanName, ipMask, ip1, ip2);
     }
 
     @Step("Test Step 3: Check configuraiton from app and local web gui")

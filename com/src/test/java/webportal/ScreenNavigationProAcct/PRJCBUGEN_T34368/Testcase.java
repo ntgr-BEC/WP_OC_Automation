@@ -57,7 +57,6 @@ public class Testcase extends TestCaseBase {
      
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-
         handle.gotoLoction();
       
     }

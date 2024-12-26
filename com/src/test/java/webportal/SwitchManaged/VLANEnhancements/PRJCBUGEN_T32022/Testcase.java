@@ -85,6 +85,7 @@ public class Testcase extends TestCaseBase implements Config {
             netsp.finishAllStep();
         }*/
         // Check cli
+        MyCommonAPIs.sleepi(20);
         String tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(vlanId), "SW1 vlan should be created on switch");
         tmpStr = handle.getCmdOutputShowRunningConfig(true);
@@ -104,7 +105,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 4: Change the VLAN ID from 25 to 35 and click on save")
     public void step4() {
         wvp.editVlanNameDescID(vlanName2, null, vlanId2);
-        
+        MyCommonAPIs.sleepi(20);
         String tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(vlanId2), "SW1 vlan should be created on switch");
         tmpStr = handle.getCmdOutputShowRunningConfig(true);
@@ -118,7 +119,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step5() {
         wvp.openVlan(vlanId3);
         wvp.editVlanNameDescID(vlanName4, vlanDesc4, vlanId4);
-        
+        MyCommonAPIs.sleepi(20);
         String tmpStr = handle.getCmdOutputShowRunningConfig(false);
         assertTrue(tmpStr.contains(vlanId4), "SW1 vlan should be created on switch");
         tmpStr = handle.getCmdOutputShowRunningConfig(true);
@@ -134,12 +135,15 @@ public class Testcase extends TestCaseBase implements Config {
         if (netsp.getNetworks().contains(vlanName)) {
             netsp.deleteNetwork(vlanName);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName2)) {
             netsp.deleteNetwork(vlanName2);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName3)) {
             netsp.deleteNetwork(vlanName3);
         }
+        MyCommonAPIs.sleepi(5);
         if (netsp.getNetworks().contains(vlanName4)) {
             netsp.deleteNetwork(vlanName4);
         }

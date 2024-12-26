@@ -46,12 +46,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("#/organization/dashboard") && url.indexOf("insight.netgear") == -1) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-            webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-        }
-
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         new OrganizationPage().deleteOrganizationNew(organizationName);
         System.out.println("start to do tearDown");
     }
@@ -65,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Create a organization and add one owner, then check invite owner email;")
     public void step2() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         organizationInfo.put("Owner Name", "test14404");
@@ -78,7 +74,8 @@ public class Testcase extends TestCaseBase {
             UserManage userManage = new UserManage();
             userManage.logout();
 
-            assertTrue(new HamburgerMenuPage(false).checkEmailMessage(mailname), "Not received invite owner email.");
+            assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(mailname), "Not received Invitation email.");
+            assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
         } else {
             assertTrue(false, "Organization not created.");
         }
