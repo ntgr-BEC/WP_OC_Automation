@@ -163,7 +163,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             //System.out.println("inside while");
             Selenide.refresh();
             MyCommonAPIs.sleepi(5);
-            waitElement(loginNowButton);
+//            waitElement(loginNowButton);
             MyCommonAPIs.sleepi(1);
             if (loginNowButton.exists()) {
                 loginNowButton.click();
