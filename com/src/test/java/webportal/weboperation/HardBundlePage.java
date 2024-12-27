@@ -162,10 +162,10 @@ public class HardBundlePage extends HardbundlePageElement {
         if(PurchaseHistory.isDisplayed()) {
         PurchaseHistory.click();
         }
-        MyCommonAPIs.sleepi(3);
-        if(OneYearInsightIncludedwithHardware.isDisplayed()) {
+        MyCommonAPIs.sleepi(10);
+        if(OneYearInsightIncludedwithHardware.exists()) {
            OneYearInsightIncludedwithHardware.click();
-        }else {
+        }else if (OneYearInsightIncludedwithHardware1.exists()){
             OneYearInsightIncludedwithHardware1.click();
         }
         MyCommonAPIs.sleepi(5);

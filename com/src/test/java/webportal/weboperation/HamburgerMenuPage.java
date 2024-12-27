@@ -5665,7 +5665,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         } else {
             result = false;
         }
-        MyCommonAPIs.sleepi(15);
+        MyCommonAPIs.sleepi(20);
         waitElement(upgradeToProBtn);
         if (upgradeToProBtn.isDisplayed()) {
             System.out.println(upgradeToProBtn.getText());
