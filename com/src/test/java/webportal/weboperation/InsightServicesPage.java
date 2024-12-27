@@ -577,7 +577,9 @@ public class InsightServicesPage extends InsightServicesPageElement {
     public void openInsightIncludedwithHardwareSection() {
         logger.info(" --- Opening open Insight Included with Hardware ");
         MyCommonAPIs.sleepi(5);
+        if(openInsightIncludedwithHardware.isDisplayed()) {
         openInsightIncludedwithHardware.click();
+        }
     }
 
     // Written by Vivek
@@ -591,10 +593,22 @@ public class InsightServicesPage extends InsightServicesPageElement {
             logger.info(check);
             if (check.contains("Premium 5-year subscription")) {
                 result = true;
-        }
-        
+     
+            }
         }
 
+        return result;
+    }
+    
+    
+    public boolean verifyAfterDelete(String SerialNo) {
+        MyCommonAPIs.sleepi(6);
+        boolean result = false;
+        logger.info("----------  Getting the text --------------------");
+        if (OrbiProAXExit(SerialNo).isDisplayed()) {
+                result = true;         
+        }
+        System.out.println("result is ++"+ result);
         return result;
     }
 
