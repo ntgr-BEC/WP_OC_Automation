@@ -9250,7 +9250,7 @@ public boolean createAccount1(Map<String, String> map) {
             NoThankYou.click();
         }
         MyCommonAPIs.sleepi(30);
-        waitElement(finishPage);
+  //      waitElement(finishPage);
         if (finishCreate.isDisplayed()) {
             finishCreate.click();
         }
@@ -9367,7 +9367,7 @@ public boolean createAccountPro(Map<String, String> map) {
           NoThankYou.click();
       }
       MyCommonAPIs.sleepi(30);
-      waitElement(finishPage);
+  //    waitElement(finishPage);
       if (finishCreate.isDisplayed()) {
           finishCreate.click();
       }
