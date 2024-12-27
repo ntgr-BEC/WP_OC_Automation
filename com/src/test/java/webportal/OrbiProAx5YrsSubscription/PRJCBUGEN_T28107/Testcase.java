@@ -90,7 +90,7 @@ public class Testcase extends TestCaseBase {
     public void step6() {
         new HamburgerMenuPage().openAccountMgmt();
         new InsightServicesPage(false).openInsightIncludedwithHardwareSection();
-        assertFalse(new InsightServicesPage(false).verifyInsightPremiumFiveYearsubscription(WebportalParam.ob1serialNo),
+        assertFalse(new InsightServicesPage(false).verifyAfterDelete(WebportalParam.ob1serialNo),
                 "Not Found Insight Premium 0-year subscription with 1 device bundle credit Text after device removed");
 
     }
