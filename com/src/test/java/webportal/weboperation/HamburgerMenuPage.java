@@ -268,17 +268,17 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         logger.info("Create account:" + map.get("Email Address"));
         inputAcccountEmail(map);
         inputAccountOtherInfo(map);
-        if (policyText.exists()) {
-            ElementsCollection eles = $$(acceptPolicy);
-            if (eles.last().isDisplayed()) {
-                eles.last().click();
-            }
-        }
+//        if (policyText.exists()) {
+//            ElementsCollection eles = $$(acceptPolicy);
+//            if (eles.last().isDisplayed()) {
+//                eles.last().click();
+//            }
+//        }
         if(acceptPolicy1.exists())  { 
             System.out.println("click policy check box");
             MyCommonAPIs.sleepi(10);
             new MyCommonAPIs().click(acceptPolicy1);
-            acceptPolicy1.click();       
+//            acceptPolicy1.click();       
         }
         System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
@@ -324,7 +324,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
             }
-            waitElement(finishPage);
+//            waitElement(finishPage);
             if (finishCreate.isDisplayed()) {
                 finishCreate.click();
             }
