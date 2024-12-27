@@ -164,9 +164,9 @@ public class HardBundlePage extends HardbundlePageElement {
         }
         MyCommonAPIs.sleepi(10);
         if(OneYearInsightIncludedwithHardware.exists()) {
-           OneYearInsightIncludedwithHardware.click();
+           OneYearInsightIncludedwithHardware.shouldBe(Condition.visible).click();
         }else if (OneYearInsightIncludedwithHardware1.exists()){
-            OneYearInsightIncludedwithHardware1.click();
+            OneYearInsightIncludedwithHardware1.shouldBe(Condition.visible).click();
         }
         MyCommonAPIs.sleepi(5);
     }
