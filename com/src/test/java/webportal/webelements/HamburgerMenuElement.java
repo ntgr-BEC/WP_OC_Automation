@@ -164,7 +164,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        subscriptionkeytext1        = $x("//p[contains(text(),'Subscription key')]");
     public SelenideElement        prouserinsightlicensecount  = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[1]");
     public SelenideElement        prouservpnlicensecount      = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[1]");
-    public SelenideElement        instantcaptiveportalcount   = $x("//div[@id='main']//div[3]//h3[1]//span[1]");
+    public SelenideElement        instantcaptiveportalcount   = $x("(//span[contains(text(),'Instant Captive Portal')]/text())[4]");
     public SelenideElement        defaultfilter               = $x("//option[contains(text(),'Last Year')]");
     public SelenideElement        lastyearfilter              = $x("//option[contains(text(),'Last 30')]");
     public SelenideElement        lastquarterfilter           = $x("//option[contains(text(),'Last Quarter')]");
@@ -189,7 +189,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        expandcaptiveportal         = $x("//span[contains(text(),'Instant Captive Portal')]/../..//i[@class='icon icon-icon-collapse']");
     public SelenideElement        expandprovpn                = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[2]//i[2]");
     public SelenideElement        expandinsigtdivcredits      = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[2]//i[2]");
-    public SelenideElement        icpcollapse                 = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div/div[2]/div/div[3]/h3/span[2]/i[2]");
+    public SelenideElement        icpcollapse                 = $x("//span[contains(text(),'Instant Captive Portal')]/../..//i[2]");
     public SelenideElement        icpcurrency                 = $x("(//*[contains(@class, 'fontSemiBold colorBlack fontSize14')])[3]");
     public SelenideElement        icppurchase                 = $x("//table[@id='DataTables_Table_14']//tr[@class='odd']");
     public SelenideElement        prouservpnlicense           = $x("//p/span[text()='Insight Pro VPN']");
