@@ -167,7 +167,7 @@ public class Testcase extends TestCaseBase {
             new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
             new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
             userManage.logout();
-            System.out.printf("Status of Device onboard : ", i);
+            System.out.printf("Status of Device onboard : "+ i);
         }
 
     }
