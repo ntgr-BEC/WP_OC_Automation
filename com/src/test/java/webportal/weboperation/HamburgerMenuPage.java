@@ -1505,16 +1505,29 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          MyCommonAPIs.sleepi(5);
         waitElement(iconsearch);
 //         iconsearch.click();
-
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
         expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandcaptiveportal);
         expandcaptiveportal.click();
-        expandprovpn.click();
-        logger.info("Click on all subscriptions in purchase history.");
         MyCommonAPIs.sleepi(5);
-        if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
-            result = true;
+        if (expandprovpn.exists()) {
+            expandprovpn.click(); 
+            MyCommonAPIs.sleepi(2);
+            logger.info("Click on all subscriptions in purchase history.");
+            MyCommonAPIs.sleepi(5);
+            if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
+                result = true;
+            }
+        } else {
+            MyCommonAPIs.sleepi(2);
+            logger.info("Click on all subscriptions in purchase history.");
+            MyCommonAPIs.sleepi(5);
+            if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
+                result = true;
+            }
         }
-
         return result;
     }
 
@@ -1575,12 +1588,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          purchaseorderhistory.click();
          waitElement(iconsearch);
         iconsearch.click();
-
+        MyCommonAPIs.sleepi(3);
         expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(3);
         expandcaptiveportal.click();
-        MyCommonAPIs.sleepi(3);
-        expandprovpn.click();
+//        MyCommonAPIs.sleepi(3);
+//        expandprovpn.click();
         MyCommonAPIs.sleepi(3);
         logger.info("Check expand for all subscriptions in purchase history.");
         if (subscriptionkeytext.exists() || subscriptionkeytext.exists()) {
@@ -1608,18 +1621,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
          purchaseorderhistory.click();
         waitElement(iconsearch);
+//        iconsearch.click();
+//        inputtextiniconsearch.click();
+//        //inputtextiniconsearch.sendKeys("Pro VPN");
+//        iconsearch.click();
+//        MyCommonAPIs.sleepi(5);
+//        logger.info("Check VPN subscriptions within given filters...");
+//        if (prouservpnlicense.exists() && !instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
+//            result1 = true;
+//        }
         iconsearch.click();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.click();
-        inputtextiniconsearch.sendKeys("Pro VPN");
-        iconsearch.click();
-        MyCommonAPIs.sleepi(5);
-        logger.info("Check VPN subscriptions within given filters...");
-        if (prouservpnlicense.exists() && !instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
-            result1 = true;
-        }
-        iconsearch.click();
-        inputtextiniconsearch.click();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.clear();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.sendKeys("Captive Portal");
         iconsearch.click();
         MyCommonAPIs.sleepi(5);
@@ -1627,7 +1643,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             result2 = true;
         }
 
-        if ((result1 == true) && (result2 == true)) {
+        if (result2 == true) {
             result = true;
         }
         return result;
@@ -1767,11 +1783,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean ZeroScreenPurchaseHistory() {
         boolean result = false;
+        MyCommonAPIs.sleepi(2);
+        waitElement(accountmanager);
         accountmanager.click();
         // MyCommonAPIs.sleepi(5);
         // upgradebutton.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(purchaseorderhistory);
         purchaseorderhistory.click();
-        waitElement(defaultcategoryfilter);
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
         expandinsigtdivcredits.click();
         logger.info("check available provpn credits..");
 
@@ -1926,7 +1947,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          MyCommonAPIs.sleepi(5);
          purchaseorderhistory.click();
          MyCommonAPIs.sleepi(5);
-        waitElement(defaultcategoryfilter);
+        waitElement(icpcollapse);
         icpcollapse.click();
         MyCommonAPIs.sleepi(10);
         logger.info("check Captive Portal Subscription present under purchase history...");
@@ -9526,6 +9547,41 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
       }
       return result;
 
+}
+
+//AddedByPratik
+public boolean premiumaccPurchaseOrderHistorySubscriptionScreen() {
+    boolean result = false;
+    accountmanager.click();
+    MyCommonAPIs.sleepi(5);
+     purchaseorderhistory.click();
+     MyCommonAPIs.sleepi(5);
+    waitElement(iconsearch);
+//     iconsearch.click();
+    MyCommonAPIs.sleepi(2);
+    waitElement(expandinsigtdivcredits);
+    expandinsigtdivcredits.click();
+    MyCommonAPIs.sleepi(2);
+    waitElement(expandcaptiveportal);
+    expandcaptiveportal.click();
+    MyCommonAPIs.sleepi(5);
+    if (expandprovpn.exists()) {
+        expandprovpn.click(); 
+        MyCommonAPIs.sleepi(2);
+        logger.info("Click on all subscriptions in purchase history.");
+        MyCommonAPIs.sleepi(5);
+        if (expiredate.exists() && activatedate.exists()) {
+            result = true;
+        }
+    } else {
+        MyCommonAPIs.sleepi(2);
+        logger.info("Click on all subscriptions in purchase history.");
+        MyCommonAPIs.sleepi(5);
+        if (expiredate.exists() && activatedate.exists()) {
+            result = true;
+        }
+    }
+    return result;
 }
 
 }
