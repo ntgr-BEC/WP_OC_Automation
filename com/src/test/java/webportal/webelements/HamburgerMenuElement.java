@@ -164,7 +164,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        subscriptionkeytext1        = $x("//p[contains(text(),'Subscription key')]");
     public SelenideElement        prouserinsightlicensecount  = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[1]");
     public SelenideElement        prouservpnlicensecount      = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[1]");
-    public SelenideElement        instantcaptiveportalcount   = $x("(//span[contains(text(),'Instant Captive Portal')]/text())[4]");
+    public SelenideElement        instantcaptiveportalcount   = $x("(//span[contains(text(),'Instant Captive Portal')])[2]");
     public SelenideElement        defaultfilter               = $x("//option[contains(text(),'Last Year')]");
     public SelenideElement        lastyearfilter              = $x("//option[contains(text(),'Last 30')]");
     public SelenideElement        lastquarterfilter           = $x("//option[contains(text(),'Last Quarter')]");
