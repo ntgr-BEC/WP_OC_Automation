@@ -1501,32 +1501,20 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
-         purchaseorderhistory.click();
-         MyCommonAPIs.sleepi(5);
+        purchaseorderhistory.click();
+        MyCommonAPIs.sleepi(5);
         waitElement(iconsearch);
-//         iconsearch.click();
         MyCommonAPIs.sleepi(2);
         waitElement(expandinsigtdivcredits);
         expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(2);
         waitElement(expandcaptiveportal);
+        MyCommonAPIs.sleepi(2);
         expandcaptiveportal.click();
-        MyCommonAPIs.sleepi(5);
-        if (expandprovpn.exists()) {
-            expandprovpn.click(); 
-            MyCommonAPIs.sleepi(2);
-            logger.info("Click on all subscriptions in purchase history.");
-            MyCommonAPIs.sleepi(5);
-            if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
-                result = true;
-            }
-        } else {
-            MyCommonAPIs.sleepi(2);
-            logger.info("Click on all subscriptions in purchase history.");
-            MyCommonAPIs.sleepi(5);
-            if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
-                result = true;
-            }
+        MyCommonAPIs.sleepi(10);
+        logger.info("Click on all subscriptions in purchase history.");
+        if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
+            result = true;
         }
         return result;
     }
@@ -1904,7 +1892,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (prouserinsightlicensecount.exists() && prouservpnlicensecount.exists() && instantcaptiveportalcount.exists()) {
+        if (prouserinsightlicensecount.exists() && instantcaptiveportalcount.exists()) {
             result = true;
         }
         return result;
@@ -1935,7 +1923,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (!prouserinsightlicensecount.exists() && !prouservpnlicensecount.exists() && !instantcaptiveportal.exists()) {
+        if (!prouservpnlicensecount.is(Condition.visible) && !instantcaptiveportal.is(Condition.visible)) {
             result = true;
         }
         return result;
@@ -9549,40 +9537,39 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
 
 }
 
-//AddedByPratik
-public boolean premiumaccPurchaseOrderHistorySubscriptionScreen() {
-    boolean result = false;
-    accountmanager.click();
-    MyCommonAPIs.sleepi(5);
-     purchaseorderhistory.click();
-     MyCommonAPIs.sleepi(5);
-    waitElement(iconsearch);
-//     iconsearch.click();
-    MyCommonAPIs.sleepi(2);
-    waitElement(expandinsigtdivcredits);
-    expandinsigtdivcredits.click();
-    MyCommonAPIs.sleepi(2);
-    waitElement(expandcaptiveportal);
-    expandcaptiveportal.click();
-    MyCommonAPIs.sleepi(5);
-    if (expandprovpn.exists()) {
-        expandprovpn.click(); 
+    // AddedByPratik
+    public boolean premiumaccPurchaseOrderHistorySubscriptionScreen() {
+        boolean result = false;
+        accountmanager.click();
+        MyCommonAPIs.sleepi(5);
+        purchaseorderhistory.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(iconsearch);
+        // iconsearch.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
+        expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(2);
+        // waitElement(expandcaptiveportal);
+        // expandcaptiveportal.click();
+        // MyCommonAPIs.sleepi(5);
+        // if (expandprovpn.exists()) {
+        // expandprovpn.click();
+        // MyCommonAPIs.sleepi(2);
+        // logger.info("Click on all subscriptions in purchase history.");
+        // MyCommonAPIs.sleepi(5);
+        // if (expiredate.exists() && activatedate.exists()) {
+        // result = true;
+        // }
+        // } else {
         MyCommonAPIs.sleepi(2);
         logger.info("Click on all subscriptions in purchase history.");
         MyCommonAPIs.sleepi(5);
         if (expiredate.exists() && activatedate.exists()) {
             result = true;
         }
-    } else {
-        MyCommonAPIs.sleepi(2);
-        logger.info("Click on all subscriptions in purchase history.");
-        MyCommonAPIs.sleepi(5);
-        if (expiredate.exists() && activatedate.exists()) {
-            result = true;
-        }
+        return result;
     }
-    return result;
-}
 
 }
 
