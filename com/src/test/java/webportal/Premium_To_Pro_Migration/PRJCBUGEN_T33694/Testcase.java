@@ -139,6 +139,8 @@ public class Testcase extends TestCaseBase {
         businessInfo.put("Zip Code", "12345");
         businessInfo.put("Country", "United States of America");
         businessInfo.put("Business Phone Number", "1234567890");
+        businessInfo.put("Confirm Email", mailname + "@mailinator.com");
+        businessInfo.put("Password", "Netgear#123");
         new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
         assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
         assertTrue(new HamburgerMenuPage(false).addLocationsToOrg(organizationName), "Location is not Successfully added to new created orgnizqation");

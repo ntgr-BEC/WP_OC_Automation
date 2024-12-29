@@ -142,7 +142,6 @@ public class Testcase extends TestCaseBase {
     public void step5() {
 
         Map<String, String> businessInfo = new HashMap<String, String>();
-        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
         businessInfo.put("Business Name", "Netgear");
         businessInfo.put("Primary Address of Business", "test 1st");
         businessInfo.put("City", "NewYork");
@@ -150,6 +149,9 @@ public class Testcase extends TestCaseBase {
         businessInfo.put("Zip Code", "12345");
         businessInfo.put("Country", "United States of America");
         businessInfo.put("Business Phone Number", "1234567890");
+        businessInfo.put("Confirm Email", mailname + "@mailinator.com");
+        businessInfo.put("Password", "Netgear#123");
+        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
         new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
         assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
         assertTrue(new HamburgerMenuPage(false).addLocationsToOrg(organizationName), "Location is not Successfully added to new created orgnizqation");
