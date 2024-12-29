@@ -274,11 +274,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 //                eles.last().click();
 //            }
 //        }
+        MyCommonAPIs.sleepi(10);
+        waitElement(acceptPolicy1);
+        MyCommonAPIs.sleepi(1);
         if(acceptPolicy1.exists())  { 
             System.out.println("click policy check box");
-            MyCommonAPIs.sleepi(10);
-            new MyCommonAPIs().click(acceptPolicy1);
-//            acceptPolicy1.click();       
+ //           new MyCommonAPIs().click(acceptPolicy1);
+            acceptPolicy1.shouldBe(Condition.visible).click();    
         }
         System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
@@ -3571,6 +3573,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
+        MyCommonAPIs.sleepi(10);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
         logger.info("Sign up success.");
         waitReady();
         MyCommonAPIs.sleepsync();
