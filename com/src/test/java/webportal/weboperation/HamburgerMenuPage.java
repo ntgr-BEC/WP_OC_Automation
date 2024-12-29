@@ -276,12 +276,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 //        }
         MyCommonAPIs.sleepi(10);
         waitElement(acceptPolicy1);
-        MyCommonAPIs.sleepi(1);
-        if(acceptPolicy1.exists())  { 
+        MyCommonAPIs.sleepi(10);
             System.out.println("click policy check box");
  //           new MyCommonAPIs().click(acceptPolicy1);
-            acceptPolicy1.shouldBe(Condition.visible).click();    
-        }
+            acceptPolicy1.shouldBe(Condition.visible).click();
         System.out.println("out of policy check box");
         if(continuebutton.isDisplayed()) {    
         if (continuebutton.isEnabled()) {
