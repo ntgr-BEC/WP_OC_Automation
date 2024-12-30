@@ -74,7 +74,7 @@ public class Testcase extends TestCaseBase {
         System.out.println(Key);  
         String typeofOrg = "org";
         new HamburgerMenuPage().AddKeyAndVerify1(Key, typeofOrg, organizationName1);
-        assertTrue(new HamburgerMenuPage(true).verify(Key), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(true).verifyLMS(Key), "Not received verify email.");
     }
 
 }
