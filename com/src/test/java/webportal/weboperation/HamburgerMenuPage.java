@@ -5883,17 +5883,34 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitReady();
         subscriptions.click();
         MyCommonAPIs.sleepi(5);
+        waitElement(AddProKey);
+        MyCommonAPIs.sleepi(1);
         AddProKey.click();
         MyCommonAPIs.sleepi(20);
         if (typeofOrg.equals("Account")) {
             System.out.println("account is alredy clicked");
         } else {
             System.out.println("org is alredy clicked");
+            MyCommonAPIs.sleepi(1);
+            waitElement(orglicense);
+            MyCommonAPIs.sleepi(1);
             orglicense.click();
+            MyCommonAPIs.sleepi(1);
+            waitElement(SelectOrg);
+            MyCommonAPIs.sleepi(1);
             SelectOrg.selectOptionContainingText(orgName);
 
         }
-        AddProLicense.sendKeys(LicenceKey);
+        MyCommonAPIs.sleepi(1);
+        waitElement(AddProLicense);
+        AddProLicense.shouldBe(Condition.visible).scrollTo();
+        if (!AddProLicense.is(Condition.enabled)) {
+            executeJavaScript("arguments[0].click();", AddProLicense);
+        } else {
+            AddProLicense.click();
+        }
+
+        AddProLicense.setValue(LicenceKey);
         MyCommonAPIs.sleepi(5);
         ClickAdd.click();
         MyCommonAPIs.sleepi(5);
