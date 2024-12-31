@@ -677,7 +677,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement ExpirationOrg             = $x("(//*[@id=\"proCurrLicenseTable\"]/thead/tr/th[4])[1]");
     public static SelenideElement CreditOrg                 = $x("(//*[@id=\"proCurrLicenseTable\"]/thead/tr/th[5])[1]");
 
-    public static SelenideElement SelectOrg               = $x("//*[@id=\"smart-form-license\"]/div[1]/div/div[4]/div/select");
+    public static SelenideElement SelectOrg               = $x("//h5[text()='Select Organization']/../select");
     public static SelenideElement accountManagement1      = $x("//*[@id=\"header\"]/div[2]/div/ul/li/ul/li[1]/a");
     public static SelenideElement mailinatorSearchBoxText = $x("(//input[@placeholder='Enter Public Mailinator Inbox'])[1]");
     public static SelenideElement accountMailId           = $x("(//li/h3)[2]");
