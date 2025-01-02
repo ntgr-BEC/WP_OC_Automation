@@ -4172,6 +4172,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void gotoIcpServicesPage() {
+        MyCommonAPIs.sleepi(5);
+        waitElement(accountmanager);
         accountmanager.click();
         waitReady();
         if (captiveportalservices.exists()) {
@@ -4228,6 +4230,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean checkCaptivePortalServicesCredits() {
         boolean result = true;
         gotoIcpServicesPage();
+        refresh();
+        MyCommonAPIs.sleepi(5);
         if (captiveportalavailablecredits.exists()) {
             String check = getText(captiveportalavailablecredits);
             System.out.println(check);
@@ -9595,6 +9599,71 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         if (expiredate.exists() && activatedate.exists()) {
             result = true;
         }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean inputLicenceAndFinishSignin1(Map<String, String> map, String organizationName) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+//        waitElement(inputproaccountkey);
+        if (inputproaccountkey.isDisplayed()) {
+            inputproaccountkey.setValue(map.get("Licence Key"));
+            System.out.println(map.get("Licence Key"));
+            logger.info("Input licence:" + map.get("Licence Key"));
+            MyCommonAPIs.sleepi(5);
+            inputproaccountkeynext.click();
+        }
+        inputBusinessInfo(map);
+        clickBusinessInfoPageButton();
+        MyCommonAPIs.sleepi(20);
+        if (verifyLocafterMigration.exists() || verifyLocafterMigration1.exists()) {
+            addlocationtoNewOrgCheckbox.click();
+            MyCommonAPIs.sleepi(2);
+            btnAssigntoOrg.click();
+            MyCommonAPIs.sleepi(10);
+            inputNewOrgName.setValue(organizationName);
+            MyCommonAPIs.sleepi(2);
+            submitButton.click();
+            MyCommonAPIs.sleepi(20);
+            if (locationAddedSuccessMsg.exists()) {
+                okayButton.click();
+                System.out.println(locationAddedSuccessMsg);
+                logger.info("Location Successfully added to new created orgnizqation");
+                result = true;
+            }
+        }else if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+            MyCommonAPIs.sleepi(20);
+            if (verifyLocafterMigration.exists() || verifyLocafterMigration1.exists()) {
+                addlocationtoNewOrgCheckbox.click();
+                MyCommonAPIs.sleepi(2);
+                btnAssigntoOrg.click();
+                MyCommonAPIs.sleepi(10);
+                inputNewOrgName.setValue(organizationName);
+                MyCommonAPIs.sleepi(2);
+                submitButton.click();
+                MyCommonAPIs.sleepi(20);
+                if (locationAddedSuccessMsg.exists()) {
+                    okayButton.click();
+                    System.out.println(locationAddedSuccessMsg);
+                    logger.info("Location Successfully added to new created orgnizqation");
+                    result = true;
+                }
+            }
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
+        logger.info("Sign up success.");
+        waitReady();
+        MyCommonAPIs.sleepsync();
         return result;
     }
 
