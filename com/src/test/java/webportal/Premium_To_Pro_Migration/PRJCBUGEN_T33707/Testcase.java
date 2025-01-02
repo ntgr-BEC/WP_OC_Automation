@@ -156,6 +156,7 @@ public class Testcase extends TestCaseBase {
         new InsightServicesPage().buyCaptivePortalProducts(CaptivePortalPaymentInfo);
         MyCommonAPIs.sleepi(10);
         boolean result1 = false;
+        handle.gotoLoction();
         result1 = new HamburgerMenuPage().checkCaptivePortalServicesCredits();
         assertTrue(result1, "<2> Captive portal services credits is incorrect.");
         

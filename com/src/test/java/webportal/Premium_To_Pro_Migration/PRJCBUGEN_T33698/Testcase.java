@@ -199,9 +199,7 @@ new AccountPage().enterLocation("OnBoardingTest");
         businessInfo.put("Confirm Email", mailname + "@mailinator.com");
         businessInfo.put("Password", "Netgear#123");
         businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
-        new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
-        assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
-        assertTrue(new HamburgerMenuPage(false).addLocationsToOrg(organizationName), "Location is not Successfully added to new created orgnizqation");
+        assertTrue(new HamburgerMenuPage(false).inputLicenceAndFinishSignin1(businessInfo, organizationName), "Location is not Successfully added to new created orgnizqation");
     }
     
     @Step("Test Step 8: Check purchase hitory in pro account for cancelled device credits and device credit pack;")
