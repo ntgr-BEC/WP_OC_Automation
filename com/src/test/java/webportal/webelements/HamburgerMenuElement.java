@@ -435,9 +435,12 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        selectcountry      = $x("//label[text()='Choose Country']/..//select");
     public SelenideElement        selectcountry1      = $x("//*[@id=\"mat-input-6\"]");
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
+	public static SelenideElement policyTextcognito         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
+	 public static SelenideElement policyTextcheckboxcognito         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
 //    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
     public static SelenideElement  acceptPolicy1       = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox/div/div");
-    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
+    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
+	public static SelenideElement policyTextcheckbox         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
     public static SelenideElement policyText1        = $x("//input[@name='mailProgram']/..//i[@id='_iPromoReg']");
     public static SelenideElement policyText2        = $x("//input[@name='termsAndCondition']/..//i[@id='_iPromoReg']");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
@@ -473,7 +476,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("(//*[@id=\"email_list\"]/tr)[1]");
+     public SelenideElement        checkemailtitle       = $x("(//*[text()='donotreply-qa@message.netgear.com'])[1]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -1012,5 +1015,6 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  checkBox2                         = $x("//input[@name='termsAndCondition']/..//i");
   public SelenideElement  proaccCreatedNotificationCognito  = $x("//p[contains(text(),'Your account has been created.')]");
   public SelenideElement  proaccCreatedOKBtnCognito         = $x("//p[contains(text(),'Your account has been created.')]/../..//button[text()='OK']");
+  public SelenideElement  OKBtnCognito         = $x("(//*[text()='OK'])[3]");
 }
 

@@ -267,21 +267,23 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void inputAccountInfo(Map<String, String> map) {
         logger.info("Create account:" + map.get("Email Address"));
         inputAcccountEmail(map);
+		new MyCommonAPIs().scrollTo(false);
         inputAccountOtherInfo(map);
-//        if (policyText.exists()) {
-//            ElementsCollection eles = $$(acceptPolicy);
-//            if (eles.last().isDisplayed()) {
-//                eles.last().click();
-//            }
-//        }
-        MyCommonAPIs.sleepi(10);
-        waitElement(acceptPolicy1);
-        MyCommonAPIs.sleepi(10);
-            System.out.println("click policy check box");
- //           new MyCommonAPIs().click(acceptPolicy1);
-            acceptPolicy1.shouldBe(Condition.visible).click();
-            MyCommonAPIs.sleepi(5);
-        System.out.println("out of policy check box");
+   if (policyTextcognito.exists()) {
+            policyTextcheckboxcognito.click();           
+        }
+        else if(policyText.exists())
+        {
+            policyTextcheckbox.click();           
+        }
+//        MyCommonAPIs.sleepi(10);
+//        waitElement(acceptPolicy1);
+//        MyCommonAPIs.sleepi(10);
+//            System.out.println("click policy check box");
+//            new MyCommonAPIs().click(acceptPolicy1);
+//            acceptPolicy1.shouldBe(Condition.visible).click();
+//            MyCommonAPIs.sleepi(5);
+//        System.out.println("out of policy check box");
         if(continuebutton.is(Condition.visible) && continuebutton.is(Condition.enabled)) { 
             continuebutton.shouldBe(Condition.visible).click();
         }else if  (continuebutton1.is(Condition.visible) && continuebutton1.is(Condition.enabled)){
@@ -3383,6 +3385,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         ownersignup.click();
         logger.info("Create owner account successful.");
+	    MyCommonAPIs.sleepi(8);
+        if(OKBtnCognito.isDisplayed())
+        {
+        OKBtnCognito.click();
+        }
         waitReady();
     }
 
