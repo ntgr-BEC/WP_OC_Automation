@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Navigate to Account Management, check upgrade to pro option and click on it;")
     public void step2() {
         System.out.println("starting with setup 2");
-        assertTrue(new HamburgerMenuPage().insightPritoinsightPro(),"Failed navigate to Account Management");
+        assertTrue(new HamburgerMenuPage(false).insightPritoinsightPro(),"Failed navigate to Account Management");
         
     }
     

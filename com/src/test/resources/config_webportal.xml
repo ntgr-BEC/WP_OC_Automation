@@ -14,9 +14,9 @@
     <WebPortalVersion>6.8.4.8-GC110P</WebPortalVersion>
     <Responsible>jim</Responsible>
     <loginInfo>    
-        <loginName>API_test@yopmail.com</loginName>
-        <loginPassword>Netgear1@</loginPassword>
-		<adminName>APItejupro@yopmail.com</adminName>
+        <loginName>wp1new@yopmail.com</loginName>
+        <loginPassword>Netgear1@</loginPassword>     
+		<adminName>a2pro@yopmail.com</adminName>
 		<adminPassword>Netgear1@</adminPassword>
 		<managerName>a2write@yopmail.com</managerName>
 		<managerPassword>Netgear1@</managerPassword>
@@ -32,7 +32,7 @@
         <!-- Its password to devices which is same as location password -->
         <locationPassword>Netgear1@</locationPassword>
         <!-- aux-qa pri-qa maint-qa maint-beta beta -->
-        <serverUrl>https://pri-qa.insight.netgear.com/</serverUrl>
+        <serverUrl>https://maint-beta.insight.netgear.com/</serverUrl>
 		<Promocode1>insightfeesoff</Promocode1>
 		<Promocode2>insightfeesoff</Promocode2>
 		<Promocode3>insightfeesoff</Promocode3>
@@ -61,7 +61,7 @@
     <!-- used for client vpn for windows, registe it on wp first manually -->
     <VPNClientUser>wp7217@mailforspam.com</VPNClientUser>
     <Api_Premium>Api_Premium</Api_Premium>
-    <Api_Pro>Api_Pro</Api_Pro>
+    <Api_Pro>Api_Premium</Api_Pro>
     <PR1>PR1</PR1>
     <SW1>SW6</SW1>
     <SW2>SW5</SW2>
