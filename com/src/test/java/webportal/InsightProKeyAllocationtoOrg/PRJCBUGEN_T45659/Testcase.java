@@ -33,7 +33,7 @@ public class Testcase extends TestCaseBase {
 
     @Feature("InsightProKeyAllocationtoOrg") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T45659") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify the Deallocation of Credit.") // It's a test case title from Jira Test Case.
+    @Description("Verify the Deallocation of Credit.") // It's a test case title from Jira Test Case
     @TmsLink("PRJCBUGEN_T45659") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
