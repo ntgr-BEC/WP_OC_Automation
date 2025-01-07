@@ -1,4 +1,4 @@
-package webportal.ProAccountCreation.Prod.DirectSubscriptionCreateAndPurchaseLink.PRJCBUGEN_T45685;
+package webportal.ProAccountCreation.Prod.DirectSubscriptionCreateAndPurchaseLink.PRJCBUGEN_T45684;
 
 import static org.testng.Assert.assertTrue;
 
@@ -40,9 +40,9 @@ public class Testcase extends TestCaseBase {
 
 
     @Feature("ProAccountCreation") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T45685") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T45684") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that the Insight premium account can be created using the direct premium purchase link.") // It's a test case title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T45685") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T45684") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
 
-        new HamburgerMenuPage(false).launchInsightSubscriptionServicesPage();
+        new HamburgerMenuPage(false).launchInsightSubscriptionServicesPageProAcc();
 
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
@@ -69,7 +69,25 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
 
-        assertTrue(new HamburgerMenuPage(false).createAccount1(accountInfo),"Through marketing page not able create new premium account");
+        assertTrue(new HamburgerMenuPage(false).createAccountInsightPro(accountInfo),"Through marketing page not able create new premium account");
+    }
+    
+    @Step("Test Step 2: Fill the business info")
+    public void step2() {
+        
+        Map<String, String> businessInfo = new HashMap<String, String>();
+        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
+        businessInfo.put("Business Name", "Netgear");
+        businessInfo.put("Primary Address of Business", "Main Street");
+        businessInfo.put("City", "Montville");
+        businessInfo.put("State", "Queensland");
+        businessInfo.put("Zip Code", "4560");
+        businessInfo.put("Country", "Australia");
+        businessInfo.put("Business Phone Number", "1234567890");
+        new HamburgerMenuPage(false).inputbusinessInfoforProAccthroghServicesPageLink(businessInfo);
+
+        assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
+        
     }
 
 }
