@@ -473,4 +473,38 @@ public void verifyAndActivateFreelicenseKeys() {
     MyCommonAPIs.sleepi(3);
 }
 
+    // AddedByPratik
+    public boolean verifyAndActivateFreelicenseKeys1() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        if (hamburgermenu.exists()) {
+            hamburgermenu.click();
+            if (hamburgermenu.getAttribute("aria-expanded").equals("false")) {
+                hamburgermenu.click();
+            }
+        } else if (hamburgermenunew.exists()) {
+            hamburgermenunew.click();
+            if (hamburgermenunew.getAttribute("aria-expanded").equals("false")) {
+                hamburgermenunew.click();
+            }
+        }
+        accountmanager.click();
+        MyCommonAPIs.sleepi(3);
+        waitElement(subscriptionMenu);
+        subscriptionMenu.click();
+        MyCommonAPIs.sleepi(3);
+        waitElement(activatefreetrail);
+        MyCommonAPIs.sleepi(1);
+        if (activatefreetrail.exists()) {
+            activatefreetrail.click();
+            MyCommonAPIs.sleepi(3);
+            waitElement(activateButton);
+            MyCommonAPIs.sleepi(1);
+            activateButton.click();
+            MyCommonAPIs.sleepi(3);
+            result = true;
+        }
+        return result;
+    }
+
 }

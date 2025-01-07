@@ -9352,6 +9352,8 @@ public boolean createAccount1(Map<String, String> map) {
         MyCommonAPIs.sleepi(3);
         cancelSubscriptionBtn.click();
         MyCommonAPIs.sleepi(60);
+        refresh();
+        MyCommonAPIs.sleepi(60);
         waitElement(closeLockedWindow);
         MyCommonAPIs.sleepi(1);
         closeLockedWindow.click();
