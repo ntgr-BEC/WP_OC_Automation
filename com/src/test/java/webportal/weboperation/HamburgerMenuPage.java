@@ -3521,6 +3521,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(1);
         businessphone.setValue(map.get("Business Phone Number"));
         MyCommonAPIs.sleepi(5);
+        if (acceptpolicyBusinessInfo1.isDisplayed() && acceptpolicyBusinessInfo2.isDisplayed()) {
+            acceptpolicyBusinessInfo1.click();
+            MyCommonAPIs.sleepi(1);
+            acceptpolicyBusinessInfo2.click();
+            MyCommonAPIs.sleepi(1);
+        } else {
+            logger.info("Accept policies not present");
+        }
         // agreeterm.click();
     }
 
@@ -9680,6 +9688,120 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         waitReady();
         MyCommonAPIs.sleepsync();
         return result;
+    }
+    
+  //AddedByPratik
+    public boolean createAccountInsightPro(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        long t= System.currentTimeMillis();
+        long end = t+10;
+        System.out.println(end);
+        System.out.println("going inside while");
+        while(System.currentTimeMillis() < end) {
+            Selenide.refresh();
+            System.out.println("inside while");
+            if(loginNowButton.exists()) {
+              loginNowButton.click();
+              break;
+            }
+            MyCommonAPIs.sleepi(10);
+        }         
+        if (loginButtonLandingPage.exists()) {
+            loginButtonLandingPage.click();
+            MyCommonAPIs.sleepi(10);
+            inputAccountInfo(map);
+            MyCommonAPIs.sleepi(15);
+            
+            if(loginPwdNewcognito.isDisplayed()) {
+            loginPwdNewcognito.sendKeys(map.get("Password"));
+            SigninbuttonCognito.click();
+            }
+            MyCommonAPIs.sleepi(30);
+            waitElement(NoThankYou);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
+            }
+            MyCommonAPIs.sleepi(30);
+      //      waitElement(finishPage);
+            if (finishCreate.isDisplayed()) {
+                finishCreate.click();
+            }
+            MyCommonAPIs.sleepi(3);
+            if (finishbutton.isDisplayed()) {
+                finishbutton.click();
+            }
+            MyCommonAPIs.sleepi(30);
+            waitElement(cancelSubscriptionBtn);
+            MyCommonAPIs.sleepi(3);
+            cancelSubscriptionBtn.click();
+            MyCommonAPIs.sleepi(10);
+            waitElement(okayNotificationAlretPopupBtn);
+            if (okayNotificationAlretPopupBtn.isDisplayed()) {
+                okayNotificationAlretPopupBtn.click();
+                result = true;
+            }
+        } else {
+            inputAccountInfo(map);
+            MyCommonAPIs.sleepi(15);
+            
+            if(loginPwdNewcognito.isDisplayed()) {
+            loginPwdNewcognito.sendKeys(map.get("Password"));
+            SigninbuttonCognito.click();
+            }
+            MyCommonAPIs.sleepi(30);
+            waitElement(NoThankYou);
+            MyCommonAPIs.sleepi(1);
+            if (NoThankYou.isDisplayed()) {
+                NoThankYou.click();
+            }
+            MyCommonAPIs.sleepi(15);
+            if (finishCreate.isDisplayed()) {
+                finishCreate.click();
+            }
+            MyCommonAPIs.sleepi(3);
+            if (finishbutton.isDisplayed()) {
+                finishbutton.click();
+            }
+            MyCommonAPIs.sleepi(30);
+            waitElement(cancelSubscriptionBtn);
+            MyCommonAPIs.sleepi(3);
+            cancelSubscriptionBtn.click();
+            MyCommonAPIs.sleepi(10);
+            waitElement(okayNotificationAlretPopupBtn);
+            if (okayNotificationAlretPopupBtn.isDisplayed()) {
+                okayNotificationAlretPopupBtn.click();
+                result = true;
+            }
+        }
+        return result;
+    }
+    
+   //AddedByPratik
+    public void inputbusinessInfoforProAccthroghServicesPageLink(Map<String, String> map) {
+        MyCommonAPIs.sleepi(15);
+        inputBusinessInfo(map);
+        clickBusinessInfoPageButton();
+        MyCommonAPIs.sleepi(10);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
+        logger.info("Sign up success.");
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        waitElement(closeLockedWindow);
+        MyCommonAPIs.sleepi(1);
+        closeLockedWindow.click();
+        MyCommonAPIs.sleepsync();
     }
 
 }
