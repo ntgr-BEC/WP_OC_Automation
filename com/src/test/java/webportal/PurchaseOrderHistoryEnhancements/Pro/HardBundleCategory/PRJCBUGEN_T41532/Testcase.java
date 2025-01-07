@@ -88,8 +88,9 @@ public class Testcase extends TestCaseBase {
         System.out.println("user is logout");
         MyCommonAPIs.waitReady();
         
+        MyCommonAPIs.sleepi(10);
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword); 
+        webportalLoginPage.inputLogin(WebportalParam.SecondadminName,WebportalParam.SecondadminPassword);  
         new OrganizationPage(false).clickonOkayGotit();
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         MyCommonAPIs.sleepi(5);

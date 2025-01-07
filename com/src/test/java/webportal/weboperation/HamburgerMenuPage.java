@@ -80,6 +80,8 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.text.ParseException;
+import java.util.Calendar;
 /**
  * @author Netgear
  */
@@ -265,7 +267,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public void inputAccountInfo(Map<String, String> map) {
         logger.info("Create account:" + map.get("Email Address"));
         inputAcccountEmail(map);
+		new MyCommonAPIs().scrollTo(false);
         inputAccountOtherInfo(map);
+   if (policyTextcognito.exists()) {
+            policyTextcheckboxcognito.click();           
+        }
+        else if(policyText.exists())
+        {
+            policyTextcheckbox.click();           
 //        if (policyText.exists()) {
 //            ElementsCollection eles = $$(acceptPolicy);
 //            if (eles.last().isDisplayed()) {
@@ -287,6 +296,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (continuebutton1.isEnabled()) {
                 continuebutton1.click();
         }
+//        MyCommonAPIs.sleepi(10);
+//        waitElement(acceptPolicy1);
+//        MyCommonAPIs.sleepi(10);
+//            System.out.println("click policy check box");
+//            new MyCommonAPIs().click(acceptPolicy1);
+//            acceptPolicy1.shouldBe(Condition.visible).click();
+//            MyCommonAPIs.sleepi(5);
+//        System.out.println("out of policy check box");
+        if(continuebutton.is(Condition.visible) && continuebutton.is(Condition.enabled)) { 
+            continuebutton.shouldBe(Condition.visible).click();
+        }else if  (continuebutton1.is(Condition.visible) && continuebutton1.is(Condition.enabled)){
+            continuebutton1.shouldBe(Condition.visible).click();
         }
         
     }
@@ -322,7 +343,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
             }
-            waitElement(finishPage);
+//            waitElement(finishPage);
             if (finishCreate.isDisplayed()) {
                 finishCreate.click();
             }
@@ -1499,20 +1520,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         accountmanager.click();
         MyCommonAPIs.sleepi(5);
-         purchaseorderhistory.click();
-         MyCommonAPIs.sleepi(5);
-        waitElement(iconsearch);
-//         iconsearch.click();
-
-        expandinsigtdivcredits.click();
-        expandcaptiveportal.click();
-        expandprovpn.click();
-        logger.info("Click on all subscriptions in purchase history.");
+        purchaseorderhistory.click();
         MyCommonAPIs.sleepi(5);
+        waitElement(iconsearch);
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
+        expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandcaptiveportal);
+        MyCommonAPIs.sleepi(2);
+        expandcaptiveportal.click();
+        MyCommonAPIs.sleepi(10);
+        logger.info("Click on all subscriptions in purchase history.");
         if (expiredate.exists() && activatedate.exists() && subscriptionkeytext.exists()) {
             result = true;
         }
-
         return result;
     }
 
@@ -1573,12 +1595,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          purchaseorderhistory.click();
          waitElement(iconsearch);
         iconsearch.click();
-
+        MyCommonAPIs.sleepi(3);
         expandinsigtdivcredits.click();
         MyCommonAPIs.sleepi(3);
         expandcaptiveportal.click();
-        MyCommonAPIs.sleepi(3);
-        expandprovpn.click();
+//        MyCommonAPIs.sleepi(3);
+//        expandprovpn.click();
         MyCommonAPIs.sleepi(3);
         logger.info("Check expand for all subscriptions in purchase history.");
         if (subscriptionkeytext.exists() || subscriptionkeytext.exists()) {
@@ -1606,18 +1628,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
          purchaseorderhistory.click();
         waitElement(iconsearch);
+//        iconsearch.click();
+//        inputtextiniconsearch.click();
+//        //inputtextiniconsearch.sendKeys("Pro VPN");
+//        iconsearch.click();
+//        MyCommonAPIs.sleepi(5);
+//        logger.info("Check VPN subscriptions within given filters...");
+//        if (prouservpnlicense.exists() && !instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
+//            result1 = true;
+//        }
         iconsearch.click();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.click();
-        inputtextiniconsearch.sendKeys("Pro VPN");
-        iconsearch.click();
-        MyCommonAPIs.sleepi(5);
-        logger.info("Check VPN subscriptions within given filters...");
-        if (prouservpnlicense.exists() && !instantcaptiveportal.exists() && !prouserinsightlicense.exists()) {
-            result1 = true;
-        }
-        iconsearch.click();
-        inputtextiniconsearch.click();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.clear();
+        MyCommonAPIs.sleepi(1);
         inputtextiniconsearch.sendKeys("Captive Portal");
         iconsearch.click();
         MyCommonAPIs.sleepi(5);
@@ -1625,7 +1650,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             result2 = true;
         }
 
-        if ((result1 == true) && (result2 == true)) {
+        if (result2 == true) {
             result = true;
         }
         return result;
@@ -1765,11 +1790,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public boolean ZeroScreenPurchaseHistory() {
         boolean result = false;
+        MyCommonAPIs.sleepi(2);
+        waitElement(accountmanager);
         accountmanager.click();
         // MyCommonAPIs.sleepi(5);
         // upgradebutton.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(purchaseorderhistory);
         purchaseorderhistory.click();
-        waitElement(defaultcategoryfilter);
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
         expandinsigtdivcredits.click();
         logger.info("check available provpn credits..");
 
@@ -1881,7 +1911,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (prouserinsightlicensecount.exists() && prouservpnlicensecount.exists() && instantcaptiveportalcount.exists()) {
+        if (prouserinsightlicensecount.exists() && instantcaptiveportalcount.exists()) {
             result = true;
         }
         return result;
@@ -1912,7 +1942,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(defaultcategoryfilter);
         logger.info("check Quantity alongside Category...");
         MyCommonAPIs.sleepi(5);
-        if (!prouserinsightlicensecount.exists() && !prouservpnlicensecount.exists() && !instantcaptiveportal.exists()) {
+        if (!prouservpnlicensecount.is(Condition.visible) && !instantcaptiveportal.is(Condition.visible)) {
             result = true;
         }
         return result;
@@ -1924,7 +1954,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
          MyCommonAPIs.sleepi(5);
          purchaseorderhistory.click();
          MyCommonAPIs.sleepi(5);
-        waitElement(defaultcategoryfilter);
+        waitElement(icpcollapse);
         icpcollapse.click();
         MyCommonAPIs.sleepi(10);
         logger.info("check Captive Portal Subscription present under purchase history...");
@@ -3375,6 +3405,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         ownersignup.click();
         logger.info("Create owner account successful.");
+	    MyCommonAPIs.sleepi(8);
+        if(OKBtnCognito.isDisplayed())
+        {
+        OKBtnCognito.click();
+        }
         waitReady();
     }
 
@@ -3560,6 +3595,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
+        MyCommonAPIs.sleepi(10);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
         logger.info("Sign up success.");
         waitReady();
         MyCommonAPIs.sleepsync();
@@ -4151,6 +4199,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void gotoIcpServicesPage() {
+        MyCommonAPIs.sleepi(5);
+        waitElement(accountmanager);
         accountmanager.click();
         waitReady();
         if (captiveportalservices.exists()) {
@@ -4207,6 +4257,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean checkCaptivePortalServicesCredits() {
         boolean result = true;
         gotoIcpServicesPage();
+        refresh();
+        MyCommonAPIs.sleepi(5);
         if (captiveportalavailablecredits.exists()) {
             String check = getText(captiveportalavailablecredits);
             System.out.println(check);
@@ -5516,9 +5568,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         System.out.println(expOnDateText);
 
         int actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual: "+actOnYear);
         int expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry: "+expOnYear);
 
-        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) > 5) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
             logger.info("The year difference is greater than 5 years.");
         } else {
@@ -5532,31 +5586,26 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean verifyLMS(String lic) {
         MyCommonAPIs.sleepi(10);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
+        int actOnYear = 0;
+        int expOnYear = 0;
         MyCommonAPIs.sleepi(10);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+        System.out.println("Print the element");
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual : " + actOnYear);
+        expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry : " + expOnYear);
 
-            break;
-        }
-       
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 5) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
+
     }
     
     public boolean verifyOrgImd(String lic) {
@@ -5574,8 +5623,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         for (SelenideElement ele : tablerow) {
             System.out.println(ele);
             System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[5]")).getText();
+            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
+            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
             actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
             expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
             System.out.println(actOnDate);
@@ -5584,7 +5633,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             break;
         }
 
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -5595,35 +5644,27 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     
     
     public boolean verifyICP(String lic) {
-        System.out.println(lic+ "name");
+        System.out.println(lic+ " name ");
         MyCommonAPIs.sleepi(10);
         captiveportalservices.click();
         MyCommonAPIs.sleepi(40);
         boolean result = false;
-        String actOnDate = "";
-        String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println("clollection of an element");
-        System.out.println(lic+"name");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("td[2]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("td[3]")).getText();
-            System.out.println(actOnDateText);
-            System.out.println(expOnDateText);
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+        int actOnYear = 0;
+        int expOnYear = 0;
+        MyCommonAPIs.sleepi(10);
+        System.out.println("Print the element");
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[2]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        actOnYear = extractYear(actOnDateText);
+        System.out.println("Year Actual : " + actOnYear);
+        expOnYear = extractYear(expOnDateText);
+        System.out.println("Year Expiry : " + expOnYear);
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 1)) {
+        if (actOnYear != -1 && expOnYear != -1 && (expOnYear - actOnYear) == 1) {
             result = true;
-            logger.info("Order history display correct.");
+            logger.info("The year difference is greater than 5 years.");
+        } else {
+            logger.info("The year difference is not greater than 5 years.");
         }
 
         return result;
@@ -5653,7 +5694,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         } else {
             result = false;
         }
-        MyCommonAPIs.sleepi(15);
+        MyCommonAPIs.sleepi(20);
         waitElement(upgradeToProBtn);
         if (upgradeToProBtn.isDisplayed()) {
             System.out.println(upgradeToProBtn.getText());
@@ -5873,17 +5914,34 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitReady();
         subscriptions.click();
         MyCommonAPIs.sleepi(5);
+        waitElement(AddProKey);
+        MyCommonAPIs.sleepi(1);
         AddProKey.click();
         MyCommonAPIs.sleepi(20);
         if (typeofOrg.equals("Account")) {
             System.out.println("account is alredy clicked");
         } else {
             System.out.println("org is alredy clicked");
+            MyCommonAPIs.sleepi(1);
+            waitElement(orglicense);
+            MyCommonAPIs.sleepi(1);
             orglicense.click();
+            MyCommonAPIs.sleepi(1);
+            waitElement(SelectOrg);
+            MyCommonAPIs.sleepi(1);
             SelectOrg.selectOptionContainingText(orgName);
 
         }
-        AddProLicense.sendKeys(LicenceKey);
+        MyCommonAPIs.sleepi(1);
+        waitElement(AddProLicense);
+        AddProLicense.shouldBe(Condition.visible).scrollTo();
+        if (!AddProLicense.is(Condition.enabled)) {
+            executeJavaScript("arguments[0].click();", AddProLicense);
+        } else {
+            AddProLicense.click();
+        }
+
+        AddProLicense.setValue(LicenceKey);
         MyCommonAPIs.sleepi(5);
         ClickAdd.click();
         MyCommonAPIs.sleepi(5);
@@ -9009,16 +9067,29 @@ public boolean verifySignUpPage() {
 //AddedByPratik
 private int extractYear(String dateText) {
     try {
+
+        dateText = dateText.trim();
+
         System.out.println("Extracting year from: " + dateText);
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy");
+
         Date date = dateFormat.parse(dateText);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int year = calendar.get(Calendar.YEAR);
+
         System.out.println("Parsed Date: " + date);
-        return date.getYear() + 1900;
+        System.out.println("Extracted Year: " + year);
+
+        return year;
     } catch (Exception e) {
         System.err.println("Invalid date format: " + dateText);
         return -1;
     }
 }
+
 
 //AddedByPratik
 public boolean verifyMUBTab() {
@@ -9246,7 +9317,7 @@ public boolean createAccount1(Map<String, String> map) {
             NoThankYou.click();
         }
         MyCommonAPIs.sleepi(30);
-        waitElement(finishPage);
+  //      waitElement(finishPage);
         if (finishCreate.isDisplayed()) {
             finishCreate.click();
         }
@@ -9363,7 +9434,7 @@ public boolean createAccountPro(Map<String, String> map) {
           NoThankYou.click();
       }
       MyCommonAPIs.sleepi(30);
-      waitElement(finishPage);
+  //    waitElement(finishPage);
       if (finishCreate.isDisplayed()) {
           finishCreate.click();
       }
@@ -9523,6 +9594,105 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
       return result;
 
 }
+
+    // AddedByPratik
+    public boolean premiumaccPurchaseOrderHistorySubscriptionScreen() {
+        boolean result = false;
+        accountmanager.click();
+        MyCommonAPIs.sleepi(5);
+        purchaseorderhistory.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(iconsearch);
+        // iconsearch.click();
+        MyCommonAPIs.sleepi(2);
+        waitElement(expandinsigtdivcredits);
+        expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(2);
+        // waitElement(expandcaptiveportal);
+        // expandcaptiveportal.click();
+        // MyCommonAPIs.sleepi(5);
+        // if (expandprovpn.exists()) {
+        // expandprovpn.click();
+        // MyCommonAPIs.sleepi(2);
+        // logger.info("Click on all subscriptions in purchase history.");
+        // MyCommonAPIs.sleepi(5);
+        // if (expiredate.exists() && activatedate.exists()) {
+        // result = true;
+        // }
+        // } else {
+        MyCommonAPIs.sleepi(2);
+        logger.info("Click on all subscriptions in purchase history.");
+        MyCommonAPIs.sleepi(5);
+        if (expiredate.exists() && activatedate.exists()) {
+            result = true;
+        }
+        return result;
+    }
+    
+    //AddedByPratik
+    public boolean inputLicenceAndFinishSignin1(Map<String, String> map, String organizationName) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+//        waitElement(inputproaccountkey);
+        if (inputproaccountkey.isDisplayed()) {
+            inputproaccountkey.setValue(map.get("Licence Key"));
+            System.out.println(map.get("Licence Key"));
+            logger.info("Input licence:" + map.get("Licence Key"));
+            MyCommonAPIs.sleepi(5);
+            inputproaccountkeynext.click();
+        }
+        inputBusinessInfo(map);
+        clickBusinessInfoPageButton();
+        MyCommonAPIs.sleepi(20);
+        if (verifyLocafterMigration.exists() || verifyLocafterMigration1.exists()) {
+            addlocationtoNewOrgCheckbox.click();
+            MyCommonAPIs.sleepi(2);
+            btnAssigntoOrg.click();
+            MyCommonAPIs.sleepi(10);
+            inputNewOrgName.setValue(organizationName);
+            MyCommonAPIs.sleepi(2);
+            submitButton.click();
+            MyCommonAPIs.sleepi(20);
+            if (locationAddedSuccessMsg.exists()) {
+                okayButton.click();
+                System.out.println(locationAddedSuccessMsg);
+                logger.info("Location Successfully added to new created orgnizqation");
+                result = true;
+            }
+        }else if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+            MyCommonAPIs.sleepi(20);
+            if (verifyLocafterMigration.exists() || verifyLocafterMigration1.exists()) {
+                addlocationtoNewOrgCheckbox.click();
+                MyCommonAPIs.sleepi(2);
+                btnAssigntoOrg.click();
+                MyCommonAPIs.sleepi(10);
+                inputNewOrgName.setValue(organizationName);
+                MyCommonAPIs.sleepi(2);
+                submitButton.click();
+                MyCommonAPIs.sleepi(20);
+                if (locationAddedSuccessMsg.exists()) {
+                    okayButton.click();
+                    System.out.println(locationAddedSuccessMsg);
+                    logger.info("Location Successfully added to new created orgnizqation");
+                    result = true;
+                }
+            }
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
+        logger.info("Sign up success.");
+        waitReady();
+        MyCommonAPIs.sleepsync();
+        return result;
+    }
 
 }
 

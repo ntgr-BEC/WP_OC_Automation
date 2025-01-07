@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase {
 
         @Step("Test Step 2: In the hamburger menu, click on account management, check purchaseorderhistory tab is clicked;")
         public void step2() {
-            assertTrue(new HamburgerMenuPage().PurchaseOrderHistorySubscriptionScreen());
+            assertTrue(new HamburgerMenuPage().premiumaccPurchaseOrderHistorySubscriptionScreen());
         }
 
     }

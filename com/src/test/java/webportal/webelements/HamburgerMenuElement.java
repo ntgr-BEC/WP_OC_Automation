@@ -164,7 +164,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        subscriptionkeytext1        = $x("//p[contains(text(),'Subscription key')]");
     public SelenideElement        prouserinsightlicensecount  = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[1]");
     public SelenideElement        prouservpnlicensecount      = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[1]");
-    public SelenideElement        instantcaptiveportalcount   = $x("//div[@id='main']//div[3]//h3[1]//span[1]");
+    public SelenideElement        instantcaptiveportalcount   = $x("(//span[contains(text(),'Instant Captive Portal')])[2]");
     public SelenideElement        defaultfilter               = $x("//option[contains(text(),'Last Year')]");
     public SelenideElement        lastyearfilter              = $x("//option[contains(text(),'Last 30')]");
     public SelenideElement        lastquarterfilter           = $x("//option[contains(text(),'Last Quarter')]");
@@ -189,7 +189,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        expandcaptiveportal         = $x("//span[contains(text(),'Instant Captive Portal')]/../..//i[@class='icon icon-icon-collapse']");
     public SelenideElement        expandprovpn                = $x("//div[@class='SubsAccordianBlock']//div[2]//h3[1]//span[2]//i[2]");
     public SelenideElement        expandinsigtdivcredits      = $x("//div[@class='networksetting AddDeviceAcc']//div[1]//h3[1]//span[2]//i[2]");
-    public SelenideElement        icpcollapse                 = $x("//*[@id=\"content\"]/div[4]/div/div[2]/div/div[2]/div/div[3]/h3/span[2]/i[2]");
+    public SelenideElement        icpcollapse                 = $x("//span[contains(text(),'Instant Captive Portal')]/../..//i[2]");
     public SelenideElement        icpcurrency                 = $x("(//*[contains(@class, 'fontSemiBold colorBlack fontSize14')])[3]");
     public SelenideElement        icppurchase                 = $x("//table[@id='DataTables_Table_14']//tr[@class='odd']");
     public SelenideElement        prouservpnlicense           = $x("//p/span[text()='Insight Pro VPN']");
@@ -435,8 +435,12 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement        selectcountry      = $x("//label[text()='Choose Country']/..//select");
     public SelenideElement        selectcountry1      = $x("//*[@id=\"mat-input-6\"]");
     public String                 acceptPolicy       = ".boxOnCheckBox .md-container";
-    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
-    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept']");
+	public static SelenideElement policyTextcognito         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
+	 public static SelenideElement policyTextcheckboxcognito         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
+//    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
+    public static SelenideElement  acceptPolicy1       = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox/div/div");
+    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
+	public static SelenideElement policyTextcheckbox         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
     public static SelenideElement policyText1        = $x("//input[@name='mailProgram']/..//i[@id='_iPromoReg']");
     public static SelenideElement policyText2        = $x("//input[@name='termsAndCondition']/..//i[@id='_iPromoReg']");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
@@ -472,7 +476,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-    public SelenideElement        checkemailtitle       = $x("(//*[@id=\"email_list\"]/tr)[1]");
+     public SelenideElement        checkemailtitle       = $x("(//*[text()='donotreply-qa@message.netgear.com'])[1]");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -676,7 +680,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement ExpirationOrg             = $x("(//*[@id=\"proCurrLicenseTable\"]/thead/tr/th[4])[1]");
     public static SelenideElement CreditOrg                 = $x("(//*[@id=\"proCurrLicenseTable\"]/thead/tr/th[5])[1]");
 
-    public static SelenideElement SelectOrg               = $x("//*[@id=\"smart-form-license\"]/div[1]/div/div[4]/div/select");
+    public static SelenideElement SelectOrg               = $x("//h5[text()='Select Organization']/../select");
     public static SelenideElement accountManagement1      = $x("//*[@id=\"header\"]/div[2]/div/ul/li/ul/li[1]/a");
     public static SelenideElement mailinatorSearchBoxText = $x("(//input[@placeholder='Enter Public Mailinator Inbox'])[1]");
     public static SelenideElement accountMailId           = $x("(//li/h3)[2]");
@@ -1011,5 +1015,6 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  checkBox2                         = $x("//input[@name='termsAndCondition']/..//i");
   public SelenideElement  proaccCreatedNotificationCognito  = $x("//p[contains(text(),'Your account has been created.')]");
   public SelenideElement  proaccCreatedOKBtnCognito         = $x("//p[contains(text(),'Your account has been created.')]/../..//button[text()='OK']");
+  public SelenideElement  OKBtnCognito         = $x("(//*[text()='OK'])[3]");
 }
 

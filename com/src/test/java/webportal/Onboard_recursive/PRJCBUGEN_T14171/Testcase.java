@@ -35,13 +35,15 @@ import org.slf4j.LoggerFactory;
  *
  */
 public class Testcase extends TestCaseBase {
-    
-    private static final Logger logger = LoggerFactory.getLogger(Testcase.class);
-    int dim;
 
-    @Feature("DeviceOnBoarding from one premium account to one Premium account") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    private static final Logger logger = LoggerFactory.getLogger(Testcase.class);
+    int                         dim;
+
+    @Feature("DeviceOnBoarding from one premium account to one Premium account") // It's a folder/component name to make test suite more readable
+                                                                                 // from Jira Test Case.
     @Story("PRJCBUGEN_T14012") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Add one device to premium account and delete and onboard to one more premium account") // It's a testcase title from Jira Test Case.
+    @Description("Add one device to premium account and delete and onboard to one more premium account") // It's a testcase title from Jira Test
+                                                                                                         // Case.
     @TmsLink("PRJCBUGEN-T14012") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
@@ -51,98 +53,122 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        
+
         System.out.println("start to do tearDown");
     }
 
-    // Each step is a single test step from Jira Test Case      
-            @Step("Test Step 1: Login IM WP success;")
-            public void step1() {
-                int Iteration = 0, Fail = 0;
-//                for (int i = 0; i < 100; i++) {
-                    while(true) {
-                    WebportalLoginPage webportalLoginPage = null;
-                    try {
-                        
-                        System.out.printf("Status of Device onboard : Fail<%s>/Total<%s>\n", Fail, Iteration);   
-                        webportalLoginPage = new WebportalLoginPage(true);
-                        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
-                        dim=0;
-                        handle.gotoLoction();
-                        MyCommonAPIs.sleepi(5);
+    // Each step is a single test step from Jira Test Case
+    @Step("Test Step 1: Login IM WP success;")
+    public void step1() {
+        int Iteration = 0, Fail = 0;
+        //// for (int i = 0; i < 100; i++) {
+        // while(true) {
+        // WebportalLoginPage webportalLoginPage = null;
+        // try {
+        //
+        // System.out.printf("Status of Device onboard : Fail<%s>/Total<%s>\n", Fail, Iteration);
+        // webportalLoginPage = new WebportalLoginPage(true);
+        // webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        // dim=0;
+        // handle.gotoLoction();
+        // MyCommonAPIs.sleepi(5);
+        //
+        // logger.info("Add device in the location and Verify device status");
+        // new DevicesDashPage().AddNewDevice(WebportalParam.ap1serialNo, WebportalParam.ap1macaddress);
+        // MyCommonAPIs.sleepi(60);
+        // assertTrue(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
+        // assertTrue(new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo),"Connected Status Not visible");
+        //
+        // logger.info("Remove the device and Logout of the existing");
+        // new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
+        // MyCommonAPIs.sleepi(5);
+        // assertFalse(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
+        // UserManage userManage = new UserManage();
+        // userManage.logout();
+        //
+        // logger.info("Add device to one more premium account");
+        // webportalLoginPage.loginByUserPassword(WebportalParam.loginName1, WebportalParam.loginPassword1);
+        // dim=1;
+        // handle.gotoLoction();
+        // MyCommonAPIs.sleepi(5);
+        //
+        // logger.info("Add device in the location and Verify device status");
+        // new DevicesDashPage().AddNewDevice(WebportalParam.ap1serialNo, WebportalParam.ap1macaddress);
+        // MyCommonAPIs.sleepi(60);
+        // assertTrue(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
+        // assertTrue(new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo));
+        //
+        // logger.info("Remove the device and Logout of the existing");
+        // new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
+        // MyCommonAPIs.sleepi(5);
+        // assertFalse(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
+        //
+        // userManage.logout();
+        // Iteration++;
+        //
+        // } catch (Throwable e) {
+        // Fail++;
+        // logger.error("An error occurred during the onboarding or removal process", e);
+        //
+        // if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
+        // new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
+        // }
+        // UserManage userManage = new UserManage();
+        // userManage.logout();
+        // if(dim==0)
+        // { System.out.print("Issue in account 2");
+        // System.out.print(dim);
+        // webportalLoginPage.loginByUserPassword(WebportalParam.loginName1, WebportalParam.loginPassword1);
+        // handle.gotoLoction();
+        // if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
+        // new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
+        // }
+        // userManage.logout();
+        // }
+        // else
+        // {
+        // System.out.print("Issue in account 2");
+        // System.out.print(dim);
+        // webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        // handle.gotoLoction();
+        // if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
+        // new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
+        // }
+        // userManage.logout();
+        // }
+        //
+        //
+        // }
+        // }
+        for (int i = 1; i <= 15; i++) {
 
-                      logger.info("Add device in the location and Verify device status");
-                        new DevicesDashPage().AddNewDevice(WebportalParam.ap1serialNo, WebportalParam.ap1macaddress);
-                        MyCommonAPIs.sleepi(60);
-                        assertTrue(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
-                        assertTrue(new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo),"Connected Status Not visible");
+            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+            webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
 
-                        logger.info("Remove the device and Logout of the existing");
-                        new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
-                        MyCommonAPIs.sleepi(5);
-                        assertFalse(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
-                        UserManage userManage = new UserManage();
-                        userManage.logout();
+            new MyCommonAPIs().gotoLoction(WebportalParam.location1);
+            Map<String, String> devInfo = new HashMap<String, String>();
+            devInfo.put("Serial Number", WebportalParam.ap1serialNo);
+            devInfo.put("Device Name", WebportalParam.ap1deveiceName);
+            devInfo.put("MAC Address", WebportalParam.ap1macaddress);
+            new DevicesDashPage().addNewDevice(devInfo);
+            new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
-                        logger.info("Add device to one more premium account");
-                        webportalLoginPage.loginByUserPassword(WebportalParam.loginName1, WebportalParam.loginPassword1);
-                        dim=1;
-                        handle.gotoLoction();
-                        MyCommonAPIs.sleepi(5);
+            new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
+            UserManage userManage = new UserManage();
+            userManage.logout();
 
-                        logger.info("Add device in the location and Verify device status");
-                        new DevicesDashPage().AddNewDevice(WebportalParam.ap1serialNo, WebportalParam.ap1macaddress);
-                        MyCommonAPIs.sleepi(60);
-                        assertTrue(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
-                        assertTrue(new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo));
+            webportalLoginPage.loginByUserPassword(WebportalParam.loginName1, WebportalParam.loginPassword1);
+            new MyCommonAPIs().gotoLoction(WebportalParam.location1);
+            Map<String, String> devInfo1 = new HashMap<String, String>();
+            devInfo1.put("Serial Number", WebportalParam.ap1serialNo);
+            devInfo1.put("Device Name", WebportalParam.ap1deveiceName);
+            devInfo1.put("MAC Address", WebportalParam.ap1macaddress);
+            new DevicesDashPage().addNewDevice(devInfo1);
+            new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+            new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
+            userManage.logout();
+            System.out.printf("Status of Device onboard : "+ i);
+        }
 
-                        logger.info("Remove the device and Logout of the existing");
-                        new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
-                        MyCommonAPIs.sleepi(5);
-                        assertFalse(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo),"Device delete unsuccessful");
-
-                        userManage.logout();
-                        Iteration++;
-
-                    } catch (Throwable e) {
-                        Fail++;
-                        logger.error("An error occurred during the onboarding or removal process", e);
-                          
-                            if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
-                               new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
-                               }       
-                                UserManage userManage = new UserManage();
-                                userManage.logout();
-                                if(dim==0)
-                                {   System.out.print("Issue in account 2");
-                                     System.out.print(dim);
-                                    webportalLoginPage.loginByUserPassword(WebportalParam.loginName1, WebportalParam.loginPassword1);
-                                    handle.gotoLoction();
-                                    if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
-                                        new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
-                                    }                                    
-                                    userManage.logout();
-                                 }
-                                else
-                                {
-                                    System.out.print("Issue in account 2");
-                                    System.out.print(dim);
-                                    webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
-                                    handle.gotoLoction();
-                                    if(new WirelessQuickViewPage().checkApIsExist(WebportalParam.ap1serialNo)){
-                                        new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);
-                                    }
-                                    userManage.logout();
-                                }
-                                    
-                                
-                            } 
-                        }
-                    }
-                }
-
-            
-        
-
-
-
+    }
+}

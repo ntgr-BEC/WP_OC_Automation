@@ -47,7 +47,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        page.deleteOrganizationNew(organizationName1);
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        new OrganizationPage().deleteOrganizationNew(organizationName1);
         System.out.println("start to do tearDown");
     }
 
@@ -72,7 +73,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {  
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key);  
-        String typeofOrg = "org";
+        String typeofOrg = "";
         new HamburgerMenuPage().AddKeyAndVerify1(Key, typeofOrg, organizationName1);
         assertTrue(new HamburgerMenuPage(true).verify(Key), "Not received verify email.");
     }

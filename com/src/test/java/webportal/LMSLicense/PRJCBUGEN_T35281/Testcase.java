@@ -67,10 +67,10 @@ public class Testcase extends TestCaseBase {
         for(int i=0; i<10; i++) {
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key);  
-        String typeofOrg = "sumanta";
+        String typeofOrg = "";
         int value=1;
         new HamburgerMenuPage().AddKeyAndVerify1Sch(Key, typeofOrg, value);
-        assertTrue(new HamburgerMenuPage(true).verifyOrgImd(Key), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(true).verify(Key), "Not received verify email");
         Count= Count+1;
         System.out.println("No of license= "+Count);
     }

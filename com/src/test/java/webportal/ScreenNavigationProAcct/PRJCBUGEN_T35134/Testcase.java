@@ -54,7 +54,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         System.out.println("start to do tearDown");
         new AccountPage().enterLocation("office1");
-        new DevicesDashPage().deleteDeviceYes(WebportalParam.ap2serialNo);
+        new DevicesDashPage().deleteDeviceYes(WebportalParam.ap5serialNo);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -88,7 +88,7 @@ public class Testcase extends TestCaseBase {
         
         assertTrue(new  DeviceScreenNavigationPage().checkDevices(WebportalParam.ap1serialNo)," Device is not found");
         MyCommonAPIs.sleepi(10);
-        assertTrue(new  DeviceScreenNavigationPage().checkDevices(WebportalParam.ap2serialNo)," Device is not found");
+        assertTrue(new  DeviceScreenNavigationPage().checkDevices(WebportalParam.ap5serialNo)," Device is not found");
     }
     }
 

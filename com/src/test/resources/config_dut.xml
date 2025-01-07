@@ -66,10 +66,10 @@
         </SW4>
         <SW6>
             <Ip_Address>172.16.10.75</Ip_Address>
-            <Model>M4250-26G4XF-PoE+</Model>
-            <SerialNo>7KB1465EA0347</SerialNo>
-            <DeviceName>7KB1465EA0347</DeviceName>
-            <Mac_Address>54:07:7d:1a:f8:d8</Mac_Address>
+            <Model>GC110P</Model>
+            <SerialNo>4ws8974239857</SerialNo>
+            <DeviceName>4ws8974239857</DeviceName>
+            <Mac_Address>aa:bb:cc:dd:ee:ff</Mac_Address>
             <Firmware>GS728_752TP_TPP_V24.33.42.1.bix</Firmware>
             <Mangeport>0/8</Mangeport>
             <LagPort1>0/4</LagPort1>
@@ -121,11 +121,11 @@
             <Firmware>xxxx</Firmware>
         </AP3>
         <AP1>
-            <Ip_Address>172.16.31.130</Ip_Address>
-            <Model>WAC505</Model>
-            <SerialNo>4XT178EX0110C</SerialNo>
-			<Mac_Address>08:02:8e:41:78:6f</Mac_Address>
-            <DeviceName>4XT178EX0110C</DeviceName>
+            <Ip_Address>172.16.27.79</Ip_Address>
+            <Model>WAC510</Model>
+            <SerialNo>4XT27CE70021F</SerialNo>
+			<Mac_Address>8c:3b:ad:81:9a:4f</Mac_Address>
+            <DeviceName>4XT27CE70021F</DeviceName>
             <Firmware>xxxx</Firmware>
         </AP1>
         <AP2> 
@@ -145,26 +145,27 @@
             <Firmware>xxxx</Firmware>
         </AP4>
         <AP5>
-            <Ip_Address>127.0.0.1</Ip_Address>
-            <Model>WAC505</Model>
-            <SerialNo>4XT456765H1G3</SerialNo>
-            <DeviceName>4XT4567655433</DeviceName>
-            <Mac_Address>aa:bb:cc:dd:ee:ff</Mac_Address>
+            <Ip_Address>172.16.27.6</Ip_Address>
+            <Model>WAC510</Model>
+            <SerialNo>4XT178EU011FB</SerialNo>
+            <DeviceName>4XT178EU011FB</DeviceName>
+            <Mac_Address>08:02:8e:42:01:cf</Mac_Address>
             <Firmware>xxxx</Firmware>
         </AP5>
         <AP6>
             <Ip_Address>127.0.0.1</Ip_Address>
-            <Model>WAC505</Model>
-            <SerialNo>4XT45H76544G2</SerialNo>
-            <DeviceName>4XT4567654422</DeviceName>
+            <Model>WAC510</Model>
+            <SerialNo>4W84500099787</SerialNo>
+            <DeviceName>4W84500099787</DeviceName>
 			<Mac_Address>aa:bb:cc:dd:ee:ff</Mac_Address>
             <Firmware>xxxx</Firmware>
         </AP6>
         <AP7>
             <Ip_Address>127.0.0.1</Ip_Address>
             <Model>WAC505</Model>
-            <SerialNo>4XT4D6765K4H3</SerialNo>
-            <DeviceName>aa:bb:cc:dd:ee:ff</DeviceName>
+            <SerialNo>4XT4D670004H3</SerialNo>
+            <DeviceName>4XT4D670004H3</DeviceName>
+			<Mac_Address>aa:bb:cc:dd:ee:ff</Mac_Address>
             <Firmware>xxxx</Firmware>
         </AP7>
         <AP8>
@@ -561,9 +562,9 @@
         <OB1>
             <Ip_Address>172.16.27.155</Ip_Address>
             <Ip_Subnet>172.16.1.0/24</Ip_Subnet>
-            <SerialNo>53627B57000B3</SerialNo>
+            <SerialNo>6LN27B57000B3</SerialNo>
             <Model>SRR60</Model>
-            <DeviceName>53627B57000B3</DeviceName>
+            <DeviceName>6LN27B57000B3</DeviceName>
 			<Mac_Address>8c:3b:ad:21:b7:b4</Mac_Address>
             <VPNNetworks></VPNNetworks>
             <SSIDWAN_BSSID>1E-59-C0-50-06-9B</SSIDWAN_BSSID>
@@ -593,9 +594,9 @@
 		
            <Ip_Address>192.168.1.1</Ip_Address>
             <Ip_Subnet>192.168.1.0/24</Ip_Subnet>
-            <SerialNo>6CA10854A2269</SerialNo>
+            <SerialNo>6CA27B57000B3</SerialNo>
             <Model>SXR80</Model>
-            <DeviceName>6CA10854A2269</DeviceName>
+            <DeviceName>6CA27B57000B3</DeviceName>
 			<MAC_Address>aa:bb:cc:dd:ee:ff</MAC_Address>
             <SSIDWAN_BSSID>A2-C9-EB-17-34-0E</SSIDWAN_BSSID>
             <!-- must have version info in url -->
@@ -614,7 +615,7 @@
         <OB3>
             <Ip_Address>172.17.1.1</Ip_Address>
             <Ip_Subnet>172.17.1.0/24</Ip_Subnet>
-            <SerialNo>6CA1111111111</SerialNo>
+            <SerialNo>6CB27B57000B3</SerialNo>
             <MAC_Address>aa:bb:cc:dd:ee:ff</MAC_Address>
 			<Model>SXR80</Model>
             <DeviceName>6CA1111111111</DeviceName>

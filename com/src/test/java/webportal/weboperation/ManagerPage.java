@@ -396,6 +396,7 @@ public class ManagerPage extends ManagerPageElement {
             }
             MyCommonAPIs.sleepi(5);
             invitebutton.click();
+            
         }
     }
     

@@ -189,7 +189,6 @@ new AccountPage().enterLocation("OnBoardingTest");
     public void step7() {
         
         Map<String, String> businessInfo = new HashMap<String, String>();
-        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
         businessInfo.put("Business Name", "Netgear");
         businessInfo.put("Primary Address of Business", "test 1st");
         businessInfo.put("City", "NewYork");
@@ -197,9 +196,10 @@ new AccountPage().enterLocation("OnBoardingTest");
         businessInfo.put("Zip Code", "12345");
         businessInfo.put("Country", "United States of America");
         businessInfo.put("Business Phone Number", "1234567890");
-        new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
-        assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create pro account unsuccess.");
-        assertTrue(new HamburgerMenuPage(false).addLocationsToOrg(organizationName), "Location is not Successfully added to new created orgnizqation");
+        businessInfo.put("Confirm Email", mailname + "@mailinator.com");
+        businessInfo.put("Password", "Netgear#123");
+        businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
+        assertTrue(new HamburgerMenuPage(false).inputLicenceAndFinishSignin1(businessInfo, organizationName), "Location is not Successfully added to new created orgnizqation");
     }
     
     @Step("Test Step 8: Check purchase hitory in pro account for cancelled device credits and device credit pack;")

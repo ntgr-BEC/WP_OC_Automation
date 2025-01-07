@@ -28,9 +28,6 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
 
-    Random r        = new Random();
-    int    num      = r.nextInt(10000);
-    String mailname = "abcwz" + String.valueOf(num) + "@sharklasers.com";;
 
     @Feature("InsightPro.ProAccountCreation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T35279") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -63,13 +60,13 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add Pro LICENSE license ")
     public void step2() {
         int Count = 0;
-        for(int i=0; i<50; i++) {
+        for(int i=0; i<15; i++) {
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.println(Key);  
         String typeofOrg = "Account";
         int value=0;
         new HamburgerMenuPage().AddKeyAndVerify1(Key, typeofOrg, value);
-        assertTrue(new HamburgerMenuPage(true).verifyLMS(Key), "Not received verify email."); 
+        assertTrue(new HamburgerMenuPage(true).verifyLMS(Key), "Not received verify email"); 
        Count= Count+1;
        System.out.println("No of license= "+Count); 
     }

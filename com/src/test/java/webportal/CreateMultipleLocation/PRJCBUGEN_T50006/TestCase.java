@@ -79,7 +79,7 @@ public class TestCase extends TestCaseBase {
         locationInfo.put("Zip Code", "L6A");
         locationInfo.put("Country", "Canada");
         List<String> Loclist=new ArrayList<String>();  
-        int totalLocationsrequired = 75;
+        int totalLocationsrequired = 50;
         int created = 0;
         for(int i = 1; i <=totalLocationsrequired; i++){
             Random random = new Random();

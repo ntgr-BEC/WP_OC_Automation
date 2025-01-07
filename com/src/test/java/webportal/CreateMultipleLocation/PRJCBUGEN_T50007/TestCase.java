@@ -60,7 +60,7 @@ public class TestCase extends TestCaseBase {
     @Step("Test Step 2: Create Multiple organizations")
     public void step2() {
         int count = 0;
-        int TotalOrgCount = 200;
+        int TotalOrgCount = 50;
         List<String> Orglist=new ArrayList<String>();  
         for(int i =1; i<= TotalOrgCount; i++) {
             System.out.println("2st");

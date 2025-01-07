@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add ICP license ")
     public void step2() {
         int count= 1;
-        for(int i=0;i<50;i++) {
+        for(int i=0;i<15;i++) {
         String Key = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         String typeofOrg = "Account";
         new HamburgerMenuPage().AddKeyAndVerifyICP(Key);

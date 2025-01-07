@@ -172,7 +172,7 @@ public class InsightServicesPageElement extends MyCommonAPIs {
     }
     
     public SelenideElement OrbiProexpairy(String text) {
-        SelenideElement targetText = $x("//span[2]/span[2][contains(text(), '" + text + "')]/../../../../../td[4]/p");
+        SelenideElement targetText = $x("(//span[2]/span[2][contains(text(), '" + text + "')]/../../../../../td[4]/p)[2]");
         return targetText;
     }
     
