@@ -4588,6 +4588,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             $x(String.format(inputDeallocateCredits, name)).setValue(devNum);
             MyCommonAPIs.sleepi(3);
             allocateButton.click();
+            MyCommonAPIs.sleep(10);
+            $x("//div[contains(text(),'You have successfully deallocated')]").shouldBe(Condition.visible);
+            System.out.println($x("//div[contains(text(),'You have successfully deallocated')]").getText());
             waitReady();
         }
         if (!icpNum.equals("0")) {
@@ -4599,6 +4602,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             $x(String.format(inputDeallocateCredits, name)).setValue(icpNum);
             MyCommonAPIs.sleepi(3);
             allocateButton.click();
+            MyCommonAPIs.sleep(10);
+            $x("//div[contains(text(),'You have successfully deallocated')]").shouldBe(Condition.visible);
+            System.out.println($x("//div[contains(text(),'You have successfully deallocated')]").getText());
             waitReady();
         }
     }
