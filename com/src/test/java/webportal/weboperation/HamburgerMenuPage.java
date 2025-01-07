@@ -275,26 +275,6 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         else if(policyText.exists())
         {
             policyTextcheckbox.click();           
-//        if (policyText.exists()) {
-//            ElementsCollection eles = $$(acceptPolicy);
-//            if (eles.last().isDisplayed()) {
-//                eles.last().click();
-//            }
-//        }
-        if(acceptPolicy1.exists())  { 
-            System.out.println("click policy check box");
-            MyCommonAPIs.sleepi(10);
-            new MyCommonAPIs().click(acceptPolicy1);
-//            acceptPolicy1.click();       
-        }
-        System.out.println("out of policy check box");
-        if(continuebutton.isDisplayed()) {    
-        if (continuebutton.isEnabled()) {
-            continuebutton.click();
-        }
-        }else {
-            if (continuebutton1.isEnabled()) {
-                continuebutton1.click();
         }
 //        MyCommonAPIs.sleepi(10);
 //        waitElement(acceptPolicy1);
