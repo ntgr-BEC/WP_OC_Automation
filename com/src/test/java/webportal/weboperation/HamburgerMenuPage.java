@@ -9803,6 +9803,15 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         closeLockedWindow.click();
         MyCommonAPIs.sleepsync();
     }
+    
+  //AddedByPratik
+    public void launchdirectpurchaseQAServerLink(String url) {
+      sleep(1000);
+      open(url);
+      MyCommonAPIs.sleepi(20);
+      waitReady();
+      sleep(1000);
+    }
 
 }
 

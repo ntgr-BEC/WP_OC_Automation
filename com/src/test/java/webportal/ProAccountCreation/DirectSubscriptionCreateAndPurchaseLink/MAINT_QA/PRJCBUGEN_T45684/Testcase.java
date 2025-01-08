@@ -1,4 +1,4 @@
-package webportal.ProAccountCreation.DirectSubscriptionCreateAndPurchaseLink.Prod.PRJCBUGEN_T45684;
+package webportal.ProAccountCreation.DirectSubscriptionCreateAndPurchaseLink.MAINT_QA.PRJCBUGEN_T45684;
 
 import static org.testng.Assert.assertTrue;
 
@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     Random              r           = new Random();
     int                 num         = r.nextInt(10000000);
     String              mailname    = "apwptest" + String.valueOf(num);
-
+    String              url         = "https://accounts-qa.netgear.com/login?redirectUrl=https:%2F%2Fbilling-qa.netgear.com%2Finsight-pro&GotoDashboard=https://maint-qa.insight.netgear.com&category_id=18&clientId=5bk75uhg5v61mcj48368s2qc9f";
 
     @Feature("ProAccountCreation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T45684") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
 
-        new HamburgerMenuPage(false).launchInsightSubscriptionServicesPageProAcc();
+        new HamburgerMenuPage(false).launchdirectpurchaseQAServerLink(url);
 
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
