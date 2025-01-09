@@ -1,4 +1,4 @@
-package webportal.EditICP.PRJCBUGEN_T39746;
+package webportal.EditICP.Premium.PRJCBUGEN_T39746;
 
 import static org.testng.Assert.assertTrue;
 
