@@ -1,4 +1,4 @@
-package webportal.EEM.PRJCBUGEN_T30973;
+package webportal.EEM.Pro.PRJCBUGEN_T30973;
 
 import static org.testng.Assert.assertTrue;
 
@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         new WirelessQuickViewPage().deleteDeviceYes(WebportalParam.ap1serialNo);

@@ -1,4 +1,4 @@
-package webportal.EEM.PRJCBUGEN_T30963;
+package webportal.EEM.Pro.PRJCBUGEN_T30965;
 
 import static org.testng.Assert.assertTrue;
 
@@ -32,9 +32,9 @@ import webportal.webelements.WirelessQuickViewElement;
 public class Testcase extends TestCaseBase {
 
     @Feature("EEM") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T30963") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify, EEM can be enabled and is effective only for supported FW on WAC500 and WAX600 series") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T30963") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T30965") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify, when Antenna power save is enabled without clients connected, all but one antenna are turned off") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T30965") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -51,7 +51,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
     }
