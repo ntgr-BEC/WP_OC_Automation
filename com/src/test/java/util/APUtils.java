@@ -231,7 +231,7 @@ public class APUtils extends MyCommonAPIs {
      * TODO add more ap mode
      *
      * @param devList
-     *            all device list
+     *            all devices list
      */
     public static void deleteMessagesAll(HashMap<String, HashMap<String, String>> devList) {
         for (String sNo : devList.keySet()) {
