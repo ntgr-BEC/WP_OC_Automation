@@ -49,10 +49,10 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Log in to a premium account;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
-        
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
+        
+        handle.gotoLoction();
+        new DevicesDashPage().checkDeviceInAdminAccount();
                
     }
 

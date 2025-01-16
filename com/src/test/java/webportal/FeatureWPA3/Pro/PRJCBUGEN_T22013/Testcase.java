@@ -1,3 +1,4 @@
+package webportal.FeatureWPA3.Pro.PRJCBUGEN_T22013;
 
 import static org.testng.Assert.assertTrue;
 
