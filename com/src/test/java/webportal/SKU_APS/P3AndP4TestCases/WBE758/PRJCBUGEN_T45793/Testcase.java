@@ -1,4 +1,4 @@
-package webportal.SKU_APS.P3AndP4TestCases.WBE710.PRJCBUGEN_T45824;
+package webportal.SKU_APS.P3AndP4TestCases.WBE758.PRJCBUGEN_T45793;
 
 import static org.testng.Assert.assertTrue;
 
@@ -40,9 +40,9 @@ public class Testcase extends TestCaseBase {
     String              mailname    = "apwptest" + String.valueOf(num);
 
     @Feature("RadioLevelConfigurations") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T45824") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("verify the channel for  6ghz for WBE710 in Singapore") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T45824") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T45793") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("verify the channel for  6ghz for WBE758 in Australia") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T45793") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Email", mailname + "@yopmail.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
-        accountInfo.put("Country", "Singapore");
+        accountInfo.put("Country", "Australia");
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
@@ -83,8 +83,8 @@ public class Testcase extends TestCaseBase {
         HashMap<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "39799");
-        locationInfo.put("Country", "Singapore");
+        locationInfo.put("Zip Code", "4560");
+        locationInfo.put("Country", "Australia");
         new AccountPage().addNetwork(locationInfo);
         
     }
@@ -92,7 +92,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Add device To the Network;")
     public void step3() {
-    
+       
          new AccountPage().enterLocation("OnBoardingTest");
         
         Map<String, String> firststdevInfo = new HashMap<String, String>();
@@ -113,14 +113,14 @@ public class Testcase extends TestCaseBase {
     }
 
     
-    @Step("Test Step 4: Check 5 Ghz band channels are same as showing on tera term;")
+    @Step("Test Step 4: Check 6 Ghz band channels are same as showing on tera term;")
     public void step4() {
         
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
         MyCommonAPIs.sleepi(10);
         new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click(); 
-        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("5GHz"), "5 Ghz band channels are not same as showing on tera term");
+        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("6GHz"), "6 Ghz band channels are not same as showing on tera term");
         
     }
 

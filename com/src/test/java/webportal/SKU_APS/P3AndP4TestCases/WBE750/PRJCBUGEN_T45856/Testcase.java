@@ -93,8 +93,6 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Add device To the Network;")
     public void step3() {
         
-        new AccountPage(false).enterLocation(WebportalParam.location1);
-        
          new AccountPage().enterLocation("OnBoardingTest");
         
         Map<String, String> firststdevInfo = new HashMap<String, String>();

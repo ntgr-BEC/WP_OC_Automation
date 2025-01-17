@@ -92,9 +92,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Add device To the Network;")
     public void step3() {
-        
-        new AccountPage(false).enterLocation(WebportalParam.location1);
-        
+       
          new AccountPage().enterLocation("OnBoardingTest");
         
         Map<String, String> firststdevInfo = new HashMap<String, String>();
@@ -121,7 +119,7 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
         MyCommonAPIs.sleepi(10);
-        new WirelessQuickViewPage(false).DropDown5GhzLow.click(); 
+        new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click(); 
         assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("6GHz"), "6 Ghz band channels are not same as showing on tera term");
         
     }
