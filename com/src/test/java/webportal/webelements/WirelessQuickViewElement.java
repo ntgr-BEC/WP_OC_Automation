@@ -1546,6 +1546,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
          SelenideElement hoverSsid1 = $x("//span[text()='"+ Ssid +"']");
         return hoverSsid1;
      }
+	 public SelenideElement        VLANIDselection         = $x("//*[@id=\"vlanInput\"]");
 }
 
 
