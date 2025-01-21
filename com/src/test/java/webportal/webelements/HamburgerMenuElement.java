@@ -1019,5 +1019,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  okayNotificationAlretPopupBtn     = $x("//p[contains(text(),'More information is needed to finish setting up your Insight Pro account')]/../..//button[text()='OK']");
   public SelenideElement  acceptpolicyBusinessInfo1         = $x("//p[contains(text(),'Yes! Please keep me updated regarding my NETGEAR product')]/../i");
   public SelenideElement  acceptpolicyBusinessInfo2         = $x("//span[contains(text(),'Terms and Conditions')]/../../../i");
+   public SelenideElement  pencilEdit1         = $x("//*[@id='billingBlock-savedBilling-editIcon']");
+  public SelenideElement  pencilEdit2         = $x("//*[@id='paymentBlock-editIcon']");
+  public SelenideElement  subscriptionEmail   = $x("//*[@id='hEmailsubscriptions']");
 }
 

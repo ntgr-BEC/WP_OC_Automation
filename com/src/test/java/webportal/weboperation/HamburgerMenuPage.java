@@ -1178,7 +1178,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             Selenide.switchTo().frame(frame);
             MyCommonAPIs.sleepi(10);
             System.out.println(checkemailtitle.getText());
-            if (checkemailtitle.getText().contains("Change Your Account Email Address")) {
+            if (checkemailtitle.getText().contains("donotreply-qa@message.netgear.com")) {
                 logger.info("Received Device Online Notification email.");
                 switchTo().defaultContent();
                 SelenideElement mailFrame = $("[name='ifmail']");
@@ -2318,6 +2318,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         setDevNum(map);
         // Billingdropdown.click();
         MyCommonAPIs.sleepi(3);
+		  if(pencilEdit1.isDisplayed())
+        {
+            pencilEdit1.click();
+        }
+        if(pencilEdit2.isDisplayed())
+        {
+            pencilEdit2.click();
+        }
         billingfirstname.clear();
         billingfirstname.sendKeys(map.get("First Name"));
         billinglastname.clear();
@@ -2424,7 +2432,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void buyDeviceCredits(Map<String, String> map) {
-        waitElement(upgrade);
+      //  waitElement(upgrade);
         accountmanager.click();
         MyCommonAPIs.sleepi(10);
         String url = MyCommonAPIs.getCurrentUrl();
