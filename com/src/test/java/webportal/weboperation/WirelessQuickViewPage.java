@@ -11,14 +11,17 @@ import java.io.File;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -11486,6 +11489,110 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         return result = true;
     }
+    
+    // AddedByPratik
+    public boolean verifyAndCompareUIChannelsandTeraTermChannelsforBand(String band) {
+        boolean overallMatch = true;
+
+        MyCommonAPIs.sleepi(10);
+        waitElement($x("//span[text()='"+band+"']/../..//h5[text()='Channel']/../select"));
+
+        List<String> dropdownOptions = $x("//span[text()='"+band+"']/../..//h5[text()='Channel']/../select").$$("option").stream()
+                .map(option -> option.getText().replace("GHz", "").trim()) // Remove "GHz"
+                .collect(Collectors.toList());
+        
+        System.out.println("UI Dropdown Options : "+dropdownOptions);
+
+        List<String> dropdownFrequencies = dropdownOptions.stream()
+                .filter(option -> option.contains("/"))
+                .map(option -> option.split("/")[1].replace(".", ""))
+                .collect(Collectors.toList());
+        
+        System.out.println("UI Dropdown Options : "+dropdownFrequencies);
+
+        String teraTermOutput = new APUtils(WebportalParam.ap1IPaddress).getBandChannelsStatus(WebportalParam.ap1Model, band.split("G")[0]);
+
+        List<String> teraTermFrequencies1 = Arrays.stream(teraTermOutput.split("\n"))
+                .filter(line -> line.contains("Channel") && line.contains(":"))
+                .map(line -> {
+                    try {
+                        return line.split(":")[1].trim().split("\\s+")[0];
+                    } catch (Exception e) {
+                        System.err.println("Error parsing line: " + line);
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
+        List<String>teraTermFrequencies = teraTermFrequencies1;
+        
+        System.out.println("Tera Term command output Options : "+teraTermFrequencies);
+
+        if (band.contains("5")) {
+            teraTermFrequencies1 = teraTermFrequencies1.stream()
+                    .map(channel -> String.valueOf(Integer.parseInt(channel) / 10))
+                    .collect(Collectors.toList());
+            List<String>teraTermFrequencies2 = teraTermFrequencies1;
+            List<String> missingInTeraTerm = dropdownFrequencies.stream()
+                    .filter(channel -> !teraTermFrequencies2.contains(channel))
+                    .collect(Collectors.toList());
+
+            List<String> extraInTeraTerm = teraTermFrequencies2.stream()
+                    .filter(channel -> !dropdownFrequencies.contains(channel))
+                    .collect(Collectors.toList());
+            if (!missingInTeraTerm.isEmpty()) {
+                System.out.println("Channels missing in Tera Term: " + missingInTeraTerm);
+                overallMatch = false;
+            }
+
+            if (!extraInTeraTerm.isEmpty()) {
+                System.out.println("Extra channels found in Tera Term: " + extraInTeraTerm);
+                overallMatch = false;
+            }
+
+            if (overallMatch) {
+                System.out.println("All Dropdown channels are present in Tera Term, and there are no extra channels.");
+            } else {
+                System.out.println("Dropdown and Tera Term lists do not match.");
+            }
+
+            System.out.println("Comparison completed. Overall match: " + overallMatch);
+            
+        } else {
+            System.out.println("Tera Term Frequencies: " + teraTermFrequencies);
+
+            List<String> missingInTeraTerm = dropdownFrequencies.stream()
+                    .filter(channel -> !teraTermFrequencies.contains(channel))
+                    .collect(Collectors.toList());
+
+            List<String> extraInTeraTerm = teraTermFrequencies.stream()
+                    .filter(channel -> !dropdownFrequencies.contains(channel))
+                    .collect(Collectors.toList());
+
+            if (!missingInTeraTerm.isEmpty()) {
+                System.out.println("Channels missing in Tera Term: " + missingInTeraTerm);
+                overallMatch = false;
+            }
+
+            if (!extraInTeraTerm.isEmpty()) {
+                System.out.println("Extra channels found in Tera Term: " + extraInTeraTerm);
+                overallMatch = false;
+            }
+
+            if (overallMatch) {
+                System.out.println("All Dropdown channels are present in Tera Term, and there are no extra channels.");
+            } else {
+                System.out.println("Dropdown and Tera Term lists do not match.");
+            }
+
+            System.out.println("Comparison completed. Overall match: " + overallMatch);
+        }
+
+        return overallMatch;
+    }
+
+
     
 }
 

@@ -231,7 +231,7 @@ public class APUtils extends MyCommonAPIs {
      * TODO add more ap mode
      *
      * @param devList
-     *            all device list
+     *            all devices list
      */
     public static void deleteMessagesAll(HashMap<String, HashMap<String, String>> devList) {
         for (String sNo : devList.keySet()) {
@@ -1671,6 +1671,40 @@ public boolean getCustomerProfileStatus(String CustomerProfileOption, String Mod
     }
     System.out.println("returnd");
     return result;
+}
+
+public String getBandChannelsStatus(String Model, String band) {
+    boolean result = false;
+    String status = "";
+    if (Model.equals("WAC505") || Model.equals("WAC510") || Model.equals("WAC540") || Model.equals("WAC564") || Model.startsWith("WAC")) {
+        logger.info("entered WAC model");
+        if (band.contains("5")) {
+            status = plink.getOutput("wlanconfig wifi1vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        } else if (band.contains("6")) {
+            status = plink.getOutput("wlanconfig wifi2vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        } else {
+            status = plink.getOutput("wlanconfig wifi0vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        }
+
+    }
+
+    if (Model.equals("WAX610")  ||  Model.equals("WAX615") ||  Model.startsWith("WAX") || Model.startsWith("WBE")) {
+        logger.info("entered WAX model");
+        if (band.contains("5")) {
+            status = plink.getOutput("wlanconfig wifi1vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        } else if (band.contains("6")) {
+            status = plink.getOutput("wlanconfig wifi2vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        } else {
+            status = plink.getOutput("wlanconfig wifi0vap0 list  chan "+band, default_timeout_ssh);
+            System.out.println(status);
+        }
+    }
+    return status;
 }
 
 }
