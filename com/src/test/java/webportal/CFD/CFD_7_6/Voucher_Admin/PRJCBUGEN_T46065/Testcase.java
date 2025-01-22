@@ -1,4 +1,4 @@
-package webportal.CFD.CFD_7_6.Voucher_Admin.PRJCBUGEN_T46064;
+package webportal.CFD.CFD_7_6.Voucher_Admin.PRJCBUGEN_T46065;
 
 import static org.testng.Assert.assertTrue;
 
@@ -35,9 +35,9 @@ public class Testcase extends TestCaseBase {
     String vochMan = mailname + "@yopmail.com";
 
     @Feature("Vocher_Admin") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T14464") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify whether are we able to voucher admin or not for a premium  account") // It's a testcase                                                                                                                           // Test Case.
-    @TmsLink("PRJCBUGEN_T14464") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T14465") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify whether are we able to voucher admin or not for a pro account") // It's a testcase                                                                                                                           // Test Case.
+    @TmsLink("PRJCBUGEN_T14465") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         new ManagerPage().deleteManager(vochMan);
         System.out.println("start to do tearDown");
     }
@@ -56,21 +56,21 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
     }
 
     @Step("Test Step 2: Invite manager and check its success;")
     public void step2() {
         Map<String, String> managerInfo = new HashMap<String, String>();
-        managerInfo.put("Name", "test14464");
+        managerInfo.put("Name", "test14460");
         managerInfo.put("Email Address", vochMan);
-     
-
+        managerInfo.put("Organization Name", WebportalParam.Organizations);
+        managerInfo.put("Manager Type", "Voucher Admin");
 
         new ManagerPage().addManager(managerInfo);
 
-        assertTrue(new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), "", "Pending"),
+        assertTrue(new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), "-", "1"),
                 "Invite manager failed.");
 
         UserManage userManage = new UserManage();
@@ -92,7 +92,7 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).FillInvitemanagerOwnerInfoAndVerifylogin(proAccountInfo);
         
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(vochMan, proAccountInfo.get("Password"));
+        webportalLoginPage.loginByUserPassword("apwptest1100@yopmail.com", proAccountInfo.get("Password"));
         
         assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful());
         

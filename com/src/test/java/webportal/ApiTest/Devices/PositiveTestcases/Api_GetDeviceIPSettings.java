@@ -62,7 +62,7 @@ public class Api_GetDeviceIPSettings extends TestCaseBaseApi{
 //        Switch : 5.
 //        BR : 5(WAN IP setting), 6(LAN IP setting).
 //        ORBI : 2(WAN IP setting), 10(LAN IP setting).
-        pathParams.put("commandType","3");     
+        pathParams.put("commandType","ipSetting");     
             
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Device_IPSettings"), headers, pathParams, null);
