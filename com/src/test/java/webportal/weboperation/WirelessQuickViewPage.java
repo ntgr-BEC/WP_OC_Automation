@@ -759,6 +759,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 password.setValue(map.get("Password"));
                 waitReady();
             }
+            if (map.containsKey("VLANID")) {
+                VLANIDselection.selectOption(map.get("VLANID"));                
+            }
             takess("addSsid");
             save.click();
             waitReady();
