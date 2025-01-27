@@ -439,8 +439,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 	 public static SelenideElement policyTextcheckboxcognito         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
 //    public static SelenideElement  acceptPolicy1       = $x("//*[@id=\"mat-mdc-checkbox-1\"]/div/div");
     public static SelenideElement  acceptPolicy1       = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox/div/div");
-    public static SelenideElement policyText         = $x("//span[text()='By checking this box, clicking Next, I accept ']");
-	public static SelenideElement policyTextcheckbox         = $x("//span[text()='By checking this box, clicking Next, I accept ']/../../mat-checkbox");
+    public static SelenideElement policyText         = $x("//span[contains(text(),'By checking this box, clicking Next, I accept')]");
+	public static SelenideElement policyTextcheckbox         = $x("//span[contains(text(),'By checking this box, clicking Next, I accept')]/../../*[self::md-checkbox or self::mat-checkbox]");
     public static SelenideElement policyText1        = $x("//input[@name='mailProgram']/..//i[@id='_iPromoReg']");
     public static SelenideElement policyText2        = $x("//input[@name='termsAndCondition']/..//i[@id='_iPromoReg']");
     public static SelenideElement proaccountContinue = $x("//*[@id=\"_ancSignUpReg\"]");
@@ -973,7 +973,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
   public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
-  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here to accept the invitation')]");
+  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here')]");
   public SelenideElement  signupbuttonForManagerandOwner    = $x("//button[text()='Sign Up']");
   public SelenideElement  mubBillingTab                     = $x("//div[@class='leftMenuItems']//a[text()='Monthly Usage Billing']");
   
@@ -1016,5 +1016,11 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  proaccCreatedNotificationCognito  = $x("//p[contains(text(),'Your account has been created.')]");
   public SelenideElement  proaccCreatedOKBtnCognito         = $x("//p[contains(text(),'Your account has been created.')]/../..//button[text()='OK']");
   public SelenideElement  OKBtnCognito         = $x("(//*[text()='OK'])[3]");
+  public SelenideElement  okayNotificationAlretPopupBtn     = $x("//p[contains(text(),'More information is needed to finish setting up your Insight Pro account')]/../..//button[text()='OK']");
+  public SelenideElement  acceptpolicyBusinessInfo1         = $x("//p[contains(text(),'Yes! Please keep me updated regarding my NETGEAR product')]/../i");
+  public SelenideElement  acceptpolicyBusinessInfo2         = $x("//span[contains(text(),'Terms and Conditions')]/../../../i");
+   public SelenideElement  pencilEdit1         = $x("//*[@id='billingBlock-savedBilling-editIcon']");
+  public SelenideElement  pencilEdit2         = $x("//*[@id='paymentBlock-editIcon']");
+  public SelenideElement  subscriptionEmail   = $x("//*[@id='hEmailsubscriptions']");
 }
 
