@@ -77,11 +77,13 @@ public class AccountPage extends AccountPageElement {
                 addNetWorkPro.click();
                 addsinglelocation.click();
             }
-            MyCommonAPIs.sleepi(30);
+            MyCommonAPIs.sleepi(35);
+            waitElement(addNetLocationName);
             // timeZone.waitUntil(Condition.matchText("UTC"), 40 * 1000);
             // MyCommonAPIs.sleep(10000);
             addNetLocationName.sendKeys(map.get("Location Name"));
-            MyCommonAPIs.sleepi(4);
+            MyCommonAPIs.sleepi(5);
+            waitElement(addNetPassword);
             addNetPassword.sendKeys(map.get("Device Admin Password"));
             if (map.containsKey("Street")) {
                 addNetStreet.setValue(map.get("Street"));
