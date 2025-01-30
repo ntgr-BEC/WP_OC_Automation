@@ -17,6 +17,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
@@ -71,9 +72,11 @@ public class Testcase extends TestCaseBase {
         assertTrue(new WirelessQuickViewPage().DefaultSSIDSettings(locationInfo1));
         
         Map<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo = new CommonDataType().PROFILE_VLAN;
         locationInfo.put("SSID", SSID);
         locationInfo.put("Security", "WPA2 Personal Mixed");
         locationInfo.put("Password", "123456798");
+
         
         String Option = "Disable";
         new WirelessQuickViewPage().WPA3(locationInfo,  Option); 

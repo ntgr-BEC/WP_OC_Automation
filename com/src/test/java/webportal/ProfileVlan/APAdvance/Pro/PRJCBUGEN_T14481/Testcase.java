@@ -18,6 +18,7 @@ import testbase.TestCaseBase;
 import util.APUtils;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
@@ -74,8 +75,11 @@ public class Testcase extends TestCaseBase {
         new AccountPage().editLocation(WebportalParam.location1, locationInfo);
 
         Map<String, String> ssidInfo = new HashMap<String, String>();
+        ssidInfo = new CommonDataType().PROFILE_VLAN;
         ssidInfo.put("SSID", SSID);
         ssidInfo.put("Security", "Open");
+
+        
         new WirelessQuickViewPage().addSsid(ssidInfo);
 
         Map<String, String> devInfo = new HashMap<String, String>();

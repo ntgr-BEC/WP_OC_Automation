@@ -17,6 +17,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.APUtils;
 import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -63,10 +64,11 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         new WirelessQuickViewPage().deleteALLSSID();
         Map<String, String> ssidInfo = new HashMap<String, String>();
+        ssidInfo = new CommonDataType().PROFILE_VLAN;
         ssidInfo.put("SSID", SSID);
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
-        ssidInfo.put("VLANID", "10(10)");
+
         new WirelessQuickViewPage().addSsid1(ssidInfo);
 
         boolean result = false;

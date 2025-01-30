@@ -17,6 +17,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -67,10 +68,12 @@ public class Testcase extends TestCaseBase {
         new WiredVLANPageForVLANPage().CreateVLANToAddSSID();
         
         Map<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo = new CommonDataType().PROFILE_VLAN;
         locationInfo.put("SSID", SSID);
         locationInfo.put("Band", "Both");
         locationInfo.put("Security", "WPA2 Personal");
         locationInfo.put("Password", "123456798");
+
         
         String Option = "Optional";
         new WirelessQuickViewPage(false).WPA3VLAN(locationInfo,  Option);
