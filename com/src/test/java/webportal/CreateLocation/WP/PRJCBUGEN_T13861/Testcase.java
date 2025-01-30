@@ -113,7 +113,6 @@ public class Testcase extends TestCaseBase {
 }
     @Step("Test Step 4:Deleting locations ")
     public void step4() {  
-        AccountPage AccountPage =new AccountPage();
         // Going to delete all Locations created from this testcase       
 //       MyCommonAPIs.waitElement(sOrganizationLocationElement);
 //        ElementsCollection esc = $$(sOrganizationLocationElement);
@@ -126,7 +125,7 @@ public class Testcase extends TestCaseBase {
 //                MyCommonAPIs.sleepi(10);
 //    }
        for(int i=1;i<=2;i++) {
-        AccountPage.deleteLocation("Location_"+i);
+           new AccountPage().deleteOneLocation("Location_"+i);
         System.out.println("Location_"+i +"is deleted");    
             }
     }
