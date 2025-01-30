@@ -855,7 +855,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public static SelenideElement insightPreSubsCreditActivationDate  = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Activated On']/../../..//td[3]");
   public static SelenideElement insightPreSubsCreditExpiryDate      = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Expires On']/../../..//td[4]");
   
-  //added by Pratik for HumbergerMenu
+  //added by Pratik
   public SelenideElement  emailSwitch                           = $x("(//span[@class='cstmSlider cstmRound'])[4]");
   public SelenideElement  pushSwitch                            = $x("(//span[@class='cstmSlider cstmRound'])[5]");
   public SelenideElement  verifyLocafterMigration1              = $x("//span[text()='office1']");
