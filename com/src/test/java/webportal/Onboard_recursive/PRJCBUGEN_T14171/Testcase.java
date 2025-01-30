@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     int                         dim;
 
     @Feature("DeviceOnBoarding from one premium account to one Premium account") // It's a folder/component name to make test suite more readable
-                                                                                 // from Jira Test Case.
+                                                                                 // from Jira Test Cas
     @Story("PRJCBUGEN_T14012") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Add one device to premium account and delete and onboard to one more premium account") // It's a testcase title from Jira Test
                                                                                                          // Case.

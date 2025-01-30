@@ -973,7 +973,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
   public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
-  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here to accept the invitation')]");
+  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here')]");
   public SelenideElement  signupbuttonForManagerandOwner    = $x("//button[text()='Sign Up']");
   public SelenideElement  mubBillingTab                     = $x("//div[@class='leftMenuItems']//a[text()='Monthly Usage Billing']");
   

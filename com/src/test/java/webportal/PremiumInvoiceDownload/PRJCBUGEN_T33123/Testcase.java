@@ -84,6 +84,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
         new HamburgerMenuPage(false).createAccount(accountInfo); 
+        new OrganizationPage(false).clickonOkayGotit();
     }
 
     @Step("Test Step 2: Create new location")

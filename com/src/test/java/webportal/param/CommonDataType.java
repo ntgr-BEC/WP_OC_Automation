@@ -435,4 +435,15 @@ public class CommonDataType {
         }
     };
     
+    public Map<String, String> PROFILE_VLAN = new HashMap<String, String>() {
+        /**
+         *
+         */
+        private static final long VLAN = 1L;
+        {
+            put("VLANID", "10(10)");
+
+        }
+    };
+    
 }
