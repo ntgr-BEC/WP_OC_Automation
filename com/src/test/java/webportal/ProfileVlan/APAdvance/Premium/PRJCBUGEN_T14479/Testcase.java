@@ -17,6 +17,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -64,9 +65,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add WIFI ssid and configure rate limit;")
     public void step2() {
         Map<String, String> ssidInfo = new HashMap<String, String>();
+        ssidInfo = new CommonDataType().PROFILE_VLAN;
         ssidInfo.put("SSID", SSID);
         ssidInfo.put("Security", "WPA2 Personal");
         ssidInfo.put("Password", "12345678");
+
         new WirelessQuickViewPage().addSsid(ssidInfo);
 
         new WirelessQuickViewPage().editRateLimit(ssidInfo.get("SSID"), 20.0000, 40.0000); // need modify
