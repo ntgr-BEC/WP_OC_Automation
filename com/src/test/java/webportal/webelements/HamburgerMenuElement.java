@@ -865,13 +865,13 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  sideTrayofDeviceCredits               = $x("//div[@class='clientDetailBlock deviceCreditSideBar dataDetailShow']");
   public SelenideElement  netgearHeader                         = $x("//p[text()='Netgear']");
   public SelenideElement  sideTrayDeviceAllocatedCredits        = $x("//span[text()='Allocated Device Credits']");
-  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits    = $x("(//span[text()='2'])[2]");
+  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits    = $x("//th[text()='Allocated Credits']/../../..//td[text()='2']");
   public SelenideElement  sideTrayCloseIcon                     = $x("//div[@class='closeIconBlock']");
   public SelenideElement  deviceCreditTrayLicenseKey            = $x("//p[@class='ClientHistoryEllipses no-margin']");
   public SelenideElement  deviceCreditTrayLicenseKeyLong        = $x("//div[@class='AccountTooltip']");
   public SelenideElement  deviceCreditTrayLicenseKeyCloneText   = $x("//small[text()='Clone']");
-  public SelenideElement  deviceCreditsonTray                   = $x("(//td[text()='2'])[2]");
-  public SelenideElement  usedCreditsShwononTray                = $x("(//td[text()='0'])[2]");
+  public SelenideElement  deviceCreditsonTray                   = $x("//th[text()='Allocated Credits']/../../..//td[text()='2']");
+  public SelenideElement  usedCreditsShwononTray                = $x("//th[text()='Used Credits']/../../..//td[text()='0']");
   public SelenideElement  expriryDateShownOnTray                = $x("//tr[@class='inputTextField']/td[4]");
   public SelenideElement  copiedLicenseKeyonDeviceCreditTray    = $x("//small[text()='Copied']");
   public SelenideElement  checkboxCloneLicenseKeyTray           = $x("//img[@src='assets/img/copy-icon.png']");
