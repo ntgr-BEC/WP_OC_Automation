@@ -860,8 +860,8 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  pushSwitch                            = $x("(//span[@class='cstmSlider cstmRound'])[5]");
   public SelenideElement  verifyLocafterMigration1              = $x("//span[text()='office1']");
   public SelenideElement  csvFileDownloadButton                 = $x("//div[@data-tooltip='Download CSV']");
-  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='2']");
-  public SelenideElement  allocatedCaptiveCredits               = $x("//td[text()='2']");
+  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='Netgear']/../../..//span[text()='2']");
+  public SelenideElement  allocatedCaptiveCredits               = $x("//span[text()='Netgear']/../../..//td[text()='2']");
   public SelenideElement  sideTrayofDeviceCredits               = $x("//div[@class='clientDetailBlock deviceCreditSideBar dataDetailShow']");
   public SelenideElement  netgearHeader                         = $x("//p[text()='Netgear']");
   public SelenideElement  sideTrayDeviceAllocatedCredits        = $x("//span[text()='Allocated Device Credits']");
