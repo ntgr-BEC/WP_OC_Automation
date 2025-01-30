@@ -855,13 +855,13 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public static SelenideElement insightPreSubsCreditActivationDate  = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Activated On']/../../..//td[3]");
   public static SelenideElement insightPreSubsCreditExpiryDate      = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Expires On']/../../..//td[4]");
   
-  //added by Pratik for HumbergerMenu
+  //added by Pratik
   public SelenideElement  emailSwitch                           = $x("(//span[@class='cstmSlider cstmRound'])[4]");
   public SelenideElement  pushSwitch                            = $x("(//span[@class='cstmSlider cstmRound'])[5]");
   public SelenideElement  verifyLocafterMigration1              = $x("//span[text()='office1']");
   public SelenideElement  csvFileDownloadButton                 = $x("//div[@data-tooltip='Download CSV']");
-  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='2']");
-  public SelenideElement  allocatedCaptiveCredits               = $x("//td[text()='2']");
+  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='Netgear']/../../..//span[text()='2']");
+  public SelenideElement  allocatedCaptiveCredits               = $x("//span[text()='Netgear']/../../..//td[text()='2']");
   public SelenideElement  sideTrayofDeviceCredits               = $x("//div[@class='clientDetailBlock deviceCreditSideBar dataDetailShow']");
   public SelenideElement  netgearHeader                         = $x("//p[text()='Netgear']");
   public SelenideElement  sideTrayDeviceAllocatedCredits        = $x("//span[text()='Allocated Device Credits']");
@@ -973,7 +973,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  insightDevicesPremacc             = $x("//p[text()='Insight Devices']/..//h2");
   public SelenideElement  availableCreditsPremacc           = $x("//p[text()='Available Credits']/..//h2");
   public SelenideElement  submitBtn                         = $x("(//span[text()='Submit'])[2]");
-  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here to accept the invitation')]");
+  public SelenideElement  inviteEmailLinkAndText            = $x("//a[contains(text(),'click here')]");
   public SelenideElement  signupbuttonForManagerandOwner    = $x("//button[text()='Sign Up']");
   public SelenideElement  mubBillingTab                     = $x("//div[@class='leftMenuItems']//a[text()='Monthly Usage Billing']");
   

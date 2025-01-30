@@ -261,6 +261,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                     System.out.println("6GHZ is alredy unchecked");
                 }
             }
+            
+            if (map.containsKey("VLANID")) {
+                VLANIDselection.selectOption(map.get("VLANID"));                
+            }
             if (map.get("Security").equals("WPA2 PSK")) {
                 security.selectOption("WPA2-PSK");
             } else {
@@ -589,6 +593,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (option == "Disable") {
                 Disableclick.click();
             }
+            if (map.containsKey("VLANID")) {
+                VLANIDselection.selectOption(map.get("VLANID"));                
+            }
 
             MyCommonAPIs.sleepi(5);
             save.click();
@@ -758,6 +765,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
                 waitReady();
+            }
+            if (map.containsKey("VLANID")) {
+                VLANIDselection.selectOption(map.get("VLANID"));                
             }
             takess("addSsid");
             save.click();

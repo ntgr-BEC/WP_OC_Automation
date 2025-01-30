@@ -31,7 +31,8 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000);
-    String mailname = "";
+    String mailname = "apwptest" + String.valueOf(num);
+    String email = mailname + "@yopmail.com";
 
     @Feature("FlexiProDeallocation") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T16987") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -71,35 +72,23 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Invite manager and check url in invite email can sign up;")
     public void step2() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        new ManagerPage().deleteManager(mailname + "@yopmail.com");
         Map<String, String> managerInfo = new HashMap<String, String>();
-        managerInfo.put("Name", "test16987");
-        managerInfo.put("Email Address", mailname);
+        managerInfo.put("Name", "test14408");
+        managerInfo.put("Email Address", email);
         managerInfo.put("Organization Name", WebportalParam.Organizations);
-        managerInfo.put("Access Policy", "Read");
+        managerInfo.put("Access Policy", "Read/Write");
 
-        new ManagerPage().addManager(managerInfo);
-
-        if (new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1")) {
-            UserManage userManage = new UserManage();
-            userManage.logout();
-
-            if (new HamburgerMenuPage(false).checkEmailMessage(mailname)) {
-                Map<String, String> managerAccountInfo = new HashMap<String, String>();
-                managerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
-                managerAccountInfo.put("Password", WebportalParam.adminPassword);
-                managerAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-                managerAccountInfo.put("Country", "United States of America");
-                managerAccountInfo.put("Phone Number", "1234567890");
-
-                new HamburgerMenuPage(false).createManagerAccount(managerAccountInfo);
-                assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful(), "Create manager account failed.");
-            } else {
-                assertTrue(false, "Not received invite manager email.");
-            }
-        } else {
-            assertTrue(false, "Add manager failed.");
-        }
+        new ManagerPage().addManager1(managerInfo);
+        assertTrue(
+                new ManagerPage(false).checkSuccessDialog()
+                        && new ManagerPage(false).checkEditResult(managerInfo.get("Email Address"), managerInfo.get("Access Policy"), "1"),
+                "Invite manager failed.");
+        UserManage userManage = new UserManage();
+        userManage.logout();
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(managerInfo.get("Email Address")), "Not received Invitation email.");
+        assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
+        assertTrue(new HamburgerMenuPage(false).verifySignUpPage(), "After clicking on invite manager link not landed on sign up page");
 
     }
 

@@ -8973,10 +8973,11 @@ public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
     MyCommonAPIs.sleepsync();
    
     System.out.println(inviteEmailLinkAndText.getText());
-    if (inviteEmailLinkAndText.getText().contains("click here to accept the invitation")) {
+    if (inviteEmailLinkAndText.getText().contains("click here")) {
         result = true;
         logger.info("Received invitation mail");
     }
+
     return result;
 
 }

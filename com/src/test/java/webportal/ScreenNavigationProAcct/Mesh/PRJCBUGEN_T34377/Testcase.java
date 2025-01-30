@@ -1,4 +1,4 @@
-package webportal.ScreenNavigationProAcct.PRJCBUGEN_T34377;
+package webportal.ScreenNavigationProAcct.Mesh.PRJCBUGEN_T34377;
 
 import static org.testng.Assert.assertTrue;
 
