@@ -875,9 +875,9 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  expriryDateShownOnTray                = $x("//tr[@class='inputTextField']/td[4]");
   public SelenideElement  copiedLicenseKeyonDeviceCreditTray    = $x("//small[text()='Copied']");
   public SelenideElement  checkboxCloneLicenseKeyTray           = $x("//img[@src='assets/img/copy-icon.png']");
-  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits1   = $x("(//span[text()='1'])[4]");
-  public SelenideElement  deviceCreditsonTray1                  = $x("//td[text()='1']");
-  public SelenideElement  allocatedDeviceCreditsAfterDeallocate = $x("(//span[text()='1'])[3]");
+  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits1   = $x("//th[text()='Allocated Credits']/../../..//td[text()='1']");
+  public SelenideElement  deviceCreditsonTray1                  = $x("//th[text()='Allocated Credits']/../../..//td[text()='1']");
+  public SelenideElement  allocatedDeviceCreditsAfterDeallocate = $x("//span[text()='Netgear']/../../..//span[text()='1']");
   public SelenideElement  allocatedDeviceCredits2               = $x("//span[text()='500']");
   public SelenideElement  sideTraNoOfyDeviceAllocatedCredits2   = $x("(//span[text()='500'])[2]");
   public SelenideElement  multipleLicensekeys1                  = $x("//div[contains(@class,'myDevicesTable OrgNotifaicationBlock')]/div/div/table/tbody/tr[1]");
