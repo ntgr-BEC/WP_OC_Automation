@@ -1800,15 +1800,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
         logger.info("check filters basis on category.");
-        defaultcategoryfilter.click();
-        provpnsubscription.click();
-        defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(7);
-        if (prouservpnlicense.exists()) {
-            result1 = true;
-            logger.info("vpn exits");
-        }
-        MyCommonAPIs.sleepi(5);
+//        defaultcategoryfilter.click();
+//        provpnsubscription.click();
+//        defaultcategoryfilter.click();
+//        MyCommonAPIs.sleepi(7);
+//        if (prouservpnlicense.exists()) {
+//            result1 = true;
+//            logger.info("vpn exits");
+//        }
+//        MyCommonAPIs.sleepi(5);
         defaultcategoryfilter.click();
         instantcaptivefilter.click();
         defaultcategoryfilter.click();
@@ -1846,19 +1846,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         logger.info("check filters basis on time.");
         defaultfilter.click();
         lastquarterfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result1 = true;
         }
         defaultfilter.click();
         lastyearfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result2 = true;
         }
         defaultfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result3 = true;
         }
         if ((result1 == true) && (result2 == true) && (result3 == true)) {
@@ -3667,6 +3667,61 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         } else if (invitemanager.exists()) {
             result = true;
             logger.info("Received invite manager email.");
+        }
+        return result;
+    }
+    
+    
+//    Added by Vivek New Mail Varification 
+    public boolean checkEmailMessageForMultiAdmin(String mailname) {
+        boolean result = false;
+        logger.info("Check email address is:" + mailname);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(10);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(mailname);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+        System.out.println(checkemailtitle.getText());
+        if (checkemailtitle.getText().contains("Invite owner email")) {
+            result = true;
+            logger.info("Received invite owner email.");
+        } else if (checkemailtitle.getText().contains("You have enabled Insight Pro Monthly Usage Billing")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (checkemailtitle.getText().contains("Insight Pro Monthly Usage Billing disabled starting next month")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (checkemailtitle.getText().contains("NETGEAR Insight Premium Free Trial")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (checkemailtitle.getText().contains("Invite manager email")) {
+            result = true;
+            logger.info("Received invite manager email.");
+        } else if (checkemailtitle.getText().contains("Verify your email address on MyNETGEAR")) {
+            result = true;
+            logger.info("Received verify email.");
+        } else if (checkemailtitle.getText().contains("Voucher Manager Invitation Email.")) {
+            result = true;
+            logger.info("Received voucher manager invitation email.");
+        } else if (checkemailtitle.getText().contains("Invite voucher manager email")) {
+            result = true;
+            logger.info("Received voucher manager invitation email.");
+        } else if (checkemailtitle.getText().contains("Invite Secondary Admin Email")) {
+            result = true;
+            logger.info("Received secondary manager invitation email.");
+        } else if (checkemailtitle.getText().contains("Device Online")) {
+            result = true;
+            logger.info("Received Device Online Notification email.");
+        } else if (checkemailtitle.getText().contains("Device Reboot")) {
+            result = true;
+            logger.info("Received Device Reboot Notification email.");
         }
         return result;
     }

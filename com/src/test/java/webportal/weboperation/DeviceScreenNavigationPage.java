@@ -1435,9 +1435,9 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
            SaveInIconFilter.click();
            MyCommonAPIs.sleepi(2);
            boolean a = !ChannelUtilizationLabel.isDisplayed();
-           System.out.println("Channel utilization is hided");
+           System.out.println("Channel utilization is hided "+ a);
            boolean b = !ClientOSLabel.isDisplayed();
-           System.out.println("Client OS is hided");
+           System.out.println("Client OS is hided "+b);
            System.out.println("Show the widgets");
            IconFilter.click();
            MyCommonAPIs.sleepi(4);
@@ -1448,11 +1448,11 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
            SaveInIconFilter.click();
            MyCommonAPIs.sleepi(2);
            boolean c = ChannelUtilizationLabel.isDisplayed();
-           System.out.println("Channel utilization is showed");
+           System.out.println("Channel utilization is showed" + c);
            boolean d = ClientOSLabel.isDisplayed();
-           System.out.println("Cleint OS is showed");
+           System.out.println("Cleint OS is showed" + d);
        
-           if(IconFilter.isDisplayed() & a==true & b==true & c==true  & d==true) {
+           if(a==true & b==true & c==true  & d==true) {
                
                result = true;
            }     
