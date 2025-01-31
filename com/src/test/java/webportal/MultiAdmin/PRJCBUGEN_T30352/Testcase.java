@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num) + "@sharklasers.com";
+    String mailname = "apwptest" + String.valueOf(num) + "@yopmail.com";
     String Name     = "PRJCBUGEN_T30351";
 
     @Feature("MultiAdmin") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
     
         assertTrue(new WirelessQuickViewPage(false).Inviteadmin(Name, mailname ), "secondary admin is not sucessfull");     
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessage(mailname), "invitation not received");
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname), "invitation not received");
     }
 
   

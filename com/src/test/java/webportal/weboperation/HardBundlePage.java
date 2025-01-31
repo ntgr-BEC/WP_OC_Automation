@@ -288,7 +288,11 @@ public class HardBundlePage extends HardbundlePageElement {
          MyCommonAPIs.sleepi(5);
          ClickOnnext.click();
          MyCommonAPIs.sleepi(5);
+         if(loginPwdNew2.isDisplayed()) {
+             loginPwdNew2.sendKeys("Netgear#123");
+         }else {
          loginPwdNew.sendKeys("Netgear#123");
+         }
          loginButtonNew.click();
          MyCommonAPIs.sleepi(5);
       } 

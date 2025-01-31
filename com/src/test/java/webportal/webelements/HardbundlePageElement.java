@@ -54,9 +54,10 @@ public class HardbundlePageElement extends MyCommonAPIs{
     public SelenideElement        notificationicon  = $x("//div[contains(@data-tooltip,'Notification')]");
     public SelenideElement        AddHardBundle  = $x("//button[contains(text(), 'Add Insight Included Device')]");
     public SelenideElement        ClickOnnext  = $x(" //button[@type= 'submit'][text() = 'Next']");
-    public SelenideElement loginButtonNew = $("form[name*=loginForm] button");
+    public SelenideElement loginButtonNew = $x("//*[text()=\"NETGEAR Sign In\"]");
     public SelenideElement loginPwdNew1   = $x("//*[@id='input_1']");
     public SelenideElement loginPwdNew    = $("#searchinput");
+    public SelenideElement loginPwdNew2    = $x("//*[@id=\"mat-input-1\"]");
     public static String          loader           = "[class='loaderContainer']";
     public static int             timeout_element  = 130 * 1000;
     public static SelenideElement createpronextbutton    = $x("//button[text()='" + WebportalParam.getLocText("Next") + "']");

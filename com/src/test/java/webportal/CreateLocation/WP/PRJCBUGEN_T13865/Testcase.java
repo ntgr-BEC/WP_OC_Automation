@@ -132,7 +132,7 @@ public void step5() {
                 if(location ==0 &&locelem.getText().contains(WebportalParam.location1)) { 
                     location =1;
                     System.out.println(locelem.getText()+"is deleted");
-                    AccountPage.deleteLocation(locelem.getText());
+                    new AccountPage().deleteOneLocation(locelem.getText());
                 }
                 }
 }

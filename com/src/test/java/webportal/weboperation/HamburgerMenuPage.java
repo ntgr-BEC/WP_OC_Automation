@@ -1800,15 +1800,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
         logger.info("check filters basis on category.");
-        defaultcategoryfilter.click();
-        provpnsubscription.click();
-        defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(7);
-        if (prouservpnlicense.exists()) {
-            result1 = true;
-            logger.info("vpn exits");
-        }
-        MyCommonAPIs.sleepi(5);
+//        defaultcategoryfilter.click();
+//        provpnsubscription.click();
+//        defaultcategoryfilter.click();
+//        MyCommonAPIs.sleepi(7);
+//        if (prouservpnlicense.exists()) {
+//            result1 = true;
+//            logger.info("vpn exits");
+//        }
+//        MyCommonAPIs.sleepi(5);
         defaultcategoryfilter.click();
         instantcaptivefilter.click();
         defaultcategoryfilter.click();
@@ -1846,19 +1846,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         logger.info("check filters basis on time.");
         defaultfilter.click();
         lastquarterfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result1 = true;
         }
         defaultfilter.click();
         lastyearfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result2 = true;
         }
         defaultfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result3 = true;
         }
         if ((result1 == true) && (result2 == true) && (result3 == true)) {
@@ -3592,7 +3592,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         MyCommonAPIs.sleepi(10);
-        if (proaccCreatedNotificationCognito.exists()) {
+        if (proaccCreatedNotificationCognito.isDisplayed()) {
             proaccCreatedOKBtnCognito.click();
             MyCommonAPIs.sleepi(15);
             if (isInLoginPage()) {
@@ -3667,6 +3667,62 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         } else if (invitemanager.exists()) {
             result = true;
             logger.info("Received invite manager email.");
+        }
+        return result;
+    }
+    
+    
+//    Added by Vivek New Mail Varification 
+    public boolean checkEmailMessageForMultiAdmin(String mailname) {
+        boolean result = false;
+        logger.info("Check email address is:" + mailname);
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String url = "https://yopmail.com";
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1);
+        MyCommonAPIs.sleepi(10);
+        String inputElement = "//input[@id='login']";
+        $x(inputElement).clear();
+        $x(inputElement).sendKeys(mailname);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        Selenide.switchTo().frame(frame);
+        MyCommonAPIs.sleepsync();
+        SelenideElement title = $x("//div[@currentmail]//div[@class='lms']");
+        System.out.println(title.getText());
+        if (title.getText().contains("Invite owner email")) {
+            result = true;
+            logger.info("Received invite owner email.");
+        } else if (title.getText().contains("You have enabled Insight Pro Monthly Usage Billing")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (title.getText().contains("Insight Pro Monthly Usage Billing disabled starting next month")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (title.getText().contains("NETGEAR Insight Premium Free Trial")) {
+            result = true;
+            logger.info("Received insight premium free trial email.");
+        } else if (title.getText().contains("Invite manager email")) {
+            result = true;
+            logger.info("Received invite manager email.");
+        } else if (title.getText().contains("Verify your email address on MyNETGEAR")) {
+            result = true;
+            logger.info("Received verify email.");
+        } else if (title.getText().contains("Voucher Manager Invitation Email.")) {
+            result = true;
+            logger.info("Received voucher manager invitation email.");
+        } else if (title.getText().contains("Invite voucher manager email")) {
+            result = true;
+            logger.info("Received voucher manager invitation email.");
+        } else if (title.getText().contains("Invite Secondary Admin Email")) {
+            result = true;
+            logger.info("Received secondary manager invitation email.");
+        } else if (title.getText().contains("Device Online")) {
+            result = true;
+            logger.info("Received Device Online Notification email.");
+        } else if (title.getText().contains("Device Reboot")) {
+            result = true;
+            logger.info("Received Device Reboot Notification email.");
         }
         return result;
     }
@@ -5563,8 +5619,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         System.out.println("Print the element");
 
-        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
-        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
 
         System.out.println(actOnDateText);
         System.out.println(expOnDateText);
@@ -6696,16 +6752,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     }
 
-    // added by vivek
+    //addedbyvivek
     public void openHashRigisterUrlAndSetEmailId(String Email, String pwd) {
         new MyCommonAPIs().open(URLParam.registerPro, true);
-        MyCommonAPIs.sleepi(3);
+        MyCommonAPIs.sleepi(5);
+        waitElement(AccountSugnUpEmail);
         AccountSugnUpEmail.sendKeys(Email);
-        MyCommonAPIs.sleepi(1);
+        MyCommonAPIs.sleepi(5);
+        waitElement(ClickOnnext);
         ClickOnnext.click();
         MyCommonAPIs.sleepi(5);
+        waitElement(loginPwdNew);
         loginPwdNew.sendKeys(pwd);
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginButton);
         loginButton.click();
+        MyCommonAPIs.sleepi(5);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
     }
 
     // added by vivek
@@ -9820,6 +9885,26 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
       MyCommonAPIs.sleepi(20);
       waitReady();
       sleep(1000);
+    }
+    
+  //AddedByPratik
+    public void prologinaftercreatingnewpro(String Email, String pwd) {
+        MyCommonAPIs.sleepi(5);
+        waitElement(AccountSugnUpEmail);
+        AccountSugnUpEmail.sendKeys(Email);
+        MyCommonAPIs.sleepi(5);
+        waitElement(ClickOnnext);
+        ClickOnnext.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginPwdNew);
+        loginPwdNew.sendKeys(pwd);
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginButton);
+        loginButton.click();
+        MyCommonAPIs.sleepi(5);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
     }
 
 }

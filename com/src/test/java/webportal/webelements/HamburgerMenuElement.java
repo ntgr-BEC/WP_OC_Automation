@@ -50,7 +50,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public SelenideElement Done = $x("//span[@class = 'ng-scope'][text() = 'Done']");
 
-//    public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
+//public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
     public static SelenideElement accountmanager             = $x("(//*[@id='notificationDrop']/../../ul//a)[1]");
     public static SelenideElement accountmanager1            = $x("//*[text()='Account Management'])[1]");
     public SelenideElement        accountemail               = $("#hEmailsubscriptions");
@@ -731,7 +731,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement LicenseOkButton             = $x("//div[@class='modal-footer cstmModFooter']//button[text()='OK']");
     public static SelenideElement CreditAllocateIcon          = $x("//img[@id='AccCreditAllocate']");
     public static SelenideElement AccountSugnUpEmail          = $x("//input[@name='signupEmail']");
-    public SelenideElement        loginPwdNew                 = $("#searchinput");
+    public SelenideElement        loginPwdNew                 = $x("//mat-label[contains(text(),'Password')]");
     public SelenideElement        locationSelectCheckBox      = $x("//ul//*[@class='checkbox ipacl']");
     public SelenideElement        AssigntoOrganization        = $x("//button[text()='Assign to Organization']");
     public SelenideElement        newOrgName                  = $x("//input[@data-type='orgName' and @name='newOrgName']");
@@ -855,29 +855,29 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public static SelenideElement insightPreSubsCreditActivationDate  = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Activated On']/../../..//td[3]");
   public static SelenideElement insightPreSubsCreditExpiryDate      = $x("//span[text()='Insight Premium Subscriptions']/../..//th[text()='Expires On']/../../..//td[4]");
   
-  //added by Pratik for HumbergerMenu
+  //added by Pratik
   public SelenideElement  emailSwitch                           = $x("(//span[@class='cstmSlider cstmRound'])[4]");
   public SelenideElement  pushSwitch                            = $x("(//span[@class='cstmSlider cstmRound'])[5]");
   public SelenideElement  verifyLocafterMigration1              = $x("//span[text()='office1']");
   public SelenideElement  csvFileDownloadButton                 = $x("//div[@data-tooltip='Download CSV']");
-  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='2']");
-  public SelenideElement  allocatedCaptiveCredits               = $x("//td[text()='2']");
+  public SelenideElement  allocatedDeviceCredits                = $x("//span[text()='Netgear']/../../..//span[text()='2']");
+  public SelenideElement  allocatedCaptiveCredits               = $x("//span[text()='Netgear']/../../..//td[text()='2']");
   public SelenideElement  sideTrayofDeviceCredits               = $x("//div[@class='clientDetailBlock deviceCreditSideBar dataDetailShow']");
   public SelenideElement  netgearHeader                         = $x("//p[text()='Netgear']");
   public SelenideElement  sideTrayDeviceAllocatedCredits        = $x("//span[text()='Allocated Device Credits']");
-  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits    = $x("(//span[text()='2'])[2]");
+  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits    = $x("//th[text()='Allocated Credits']/../../..//td[text()='2']");
   public SelenideElement  sideTrayCloseIcon                     = $x("//div[@class='closeIconBlock']");
   public SelenideElement  deviceCreditTrayLicenseKey            = $x("//p[@class='ClientHistoryEllipses no-margin']");
   public SelenideElement  deviceCreditTrayLicenseKeyLong        = $x("//div[@class='AccountTooltip']");
   public SelenideElement  deviceCreditTrayLicenseKeyCloneText   = $x("//small[text()='Clone']");
-  public SelenideElement  deviceCreditsonTray                   = $x("(//td[text()='2'])[2]");
-  public SelenideElement  usedCreditsShwononTray                = $x("(//td[text()='0'])[2]");
+  public SelenideElement  deviceCreditsonTray                   = $x("//th[text()='Allocated Credits']/../../..//td[text()='2']");
+  public SelenideElement  usedCreditsShwononTray                = $x("//th[text()='Used Credits']/../../..//td[text()='0']");
   public SelenideElement  expriryDateShownOnTray                = $x("//tr[@class='inputTextField']/td[4]");
   public SelenideElement  copiedLicenseKeyonDeviceCreditTray    = $x("//small[text()='Copied']");
   public SelenideElement  checkboxCloneLicenseKeyTray           = $x("//img[@src='assets/img/copy-icon.png']");
-  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits1   = $x("(//span[text()='1'])[4]");
-  public SelenideElement  deviceCreditsonTray1                  = $x("//td[text()='1']");
-  public SelenideElement  allocatedDeviceCreditsAfterDeallocate = $x("(//span[text()='1'])[3]");
+  public SelenideElement  sideTraNoOfyDeviceAllocatedCredits1   = $x("//th[text()='Allocated Credits']/../../..//td[text()='1']");
+  public SelenideElement  deviceCreditsonTray1                  = $x("//th[text()='Allocated Credits']/../../..//td[text()='1']");
+  public SelenideElement  allocatedDeviceCreditsAfterDeallocate = $x("//span[text()='Netgear']/../../..//span[text()='1']");
   public SelenideElement  allocatedDeviceCredits2               = $x("//span[text()='500']");
   public SelenideElement  sideTraNoOfyDeviceAllocatedCredits2   = $x("(//span[text()='500'])[2]");
   public SelenideElement  multipleLicensekeys1                  = $x("//div[contains(@class,'myDevicesTable OrgNotifaicationBlock')]/div/div/table/tbody/tr[1]");

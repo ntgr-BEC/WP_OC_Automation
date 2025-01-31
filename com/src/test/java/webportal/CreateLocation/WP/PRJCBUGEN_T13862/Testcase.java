@@ -138,7 +138,7 @@ public void step5() {
 //                   MyCommonAPIs.sleepi(10);
 //       }
           for(int i=1;i<=2;i++) {
-           AccountPage.deleteLocation("Location_"+i);
+              new AccountPage().deleteOneLocation("Location_"+i);
            System.out.println("Location_"+i +"is deleted");    
                }
 }
