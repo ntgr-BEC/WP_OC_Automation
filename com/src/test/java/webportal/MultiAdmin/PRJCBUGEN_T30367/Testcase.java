@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num) + "@sharklasers.com";
+    String mailname = "apwptest" + String.valueOf(num) + "@yopmail.com";
     String Name     = "PRJCBUGEN_T30367";
 
     @Feature("MultiAdmin") // It's a folder/component name to make test suite more readable from Jira Test Case.

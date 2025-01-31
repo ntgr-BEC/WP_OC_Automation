@@ -1042,7 +1042,7 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
            boolean result = false;  
            boolean a = false;  
            a = PlusIcon.isDisplayed();
-           System.out.println(QuestionMarkIcon .isDisplayed());
+           System.out.println(QuestionMarkIcon.isDisplayed());
            System.out.println(Searchicon.isDisplayed());
            new InsightServicesPage(false).openInsightIncludedwithHardwareSection();
            MyCommonAPIs.sleepi(2);
