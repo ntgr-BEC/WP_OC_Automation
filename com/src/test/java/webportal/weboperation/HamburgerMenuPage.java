@@ -3685,7 +3685,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         $x(inputElement).clear();
         $x(inputElement).sendKeys(mailname);
         $x("//button[@title='Check Inbox @yopmail.com']").click();
-        SelenideElement frame = $x("//*[@id=\"ifmail\"]");
+        SelenideElement frame = $x("//*[@id=\"ifinbox\"]");
         Selenide.switchTo().frame(frame);
         MyCommonAPIs.sleepsync();
         SelenideElement title = $x("//div[@currentmail]//div[@class='lms']");
