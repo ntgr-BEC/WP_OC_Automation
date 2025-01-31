@@ -50,7 +50,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public SelenideElement Done = $x("//span[@class = 'ng-scope'][text() = 'Done']");
 
-//    public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
+//public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
     public static SelenideElement accountmanager             = $x("(//*[@id='notificationDrop']/../../ul//a)[1]");
     public static SelenideElement accountmanager1            = $x("//*[text()='Account Management'])[1]");
     public SelenideElement        accountemail               = $("#hEmailsubscriptions");
@@ -731,7 +731,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement LicenseOkButton             = $x("//div[@class='modal-footer cstmModFooter']//button[text()='OK']");
     public static SelenideElement CreditAllocateIcon          = $x("//img[@id='AccCreditAllocate']");
     public static SelenideElement AccountSugnUpEmail          = $x("//input[@name='signupEmail']");
-    public SelenideElement        loginPwdNew                 = $("#searchinput");
+    public SelenideElement        loginPwdNew                 = $x("//mat-label[contains(text(),'Password')]");
     public SelenideElement        locationSelectCheckBox      = $x("//ul//*[@class='checkbox ipacl']");
     public SelenideElement        AssigntoOrganization        = $x("//button[text()='Assign to Organization']");
     public SelenideElement        newOrgName                  = $x("//input[@data-type='orgName' and @name='newOrgName']");
