@@ -3688,38 +3688,39 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         SelenideElement frame = $x("//*[@id=\"ifmail\"]");
         Selenide.switchTo().frame(frame);
         MyCommonAPIs.sleepsync();
-        System.out.println(checkemailtitle.getText());
-        if (checkemailtitle.getText().contains("Invite owner email")) {
+        SelenideElement title = $x("//div[@currentmail]//div[@class='lms']");
+        System.out.println(title.getText());
+        if (title.getText().contains("Invite owner email")) {
             result = true;
             logger.info("Received invite owner email.");
-        } else if (checkemailtitle.getText().contains("You have enabled Insight Pro Monthly Usage Billing")) {
+        } else if (title.getText().contains("You have enabled Insight Pro Monthly Usage Billing")) {
             result = true;
             logger.info("Received insight premium free trial email.");
-        } else if (checkemailtitle.getText().contains("Insight Pro Monthly Usage Billing disabled starting next month")) {
+        } else if (title.getText().contains("Insight Pro Monthly Usage Billing disabled starting next month")) {
             result = true;
             logger.info("Received insight premium free trial email.");
-        } else if (checkemailtitle.getText().contains("NETGEAR Insight Premium Free Trial")) {
+        } else if (title.getText().contains("NETGEAR Insight Premium Free Trial")) {
             result = true;
             logger.info("Received insight premium free trial email.");
-        } else if (checkemailtitle.getText().contains("Invite manager email")) {
+        } else if (title.getText().contains("Invite manager email")) {
             result = true;
             logger.info("Received invite manager email.");
-        } else if (checkemailtitle.getText().contains("Verify your email address on MyNETGEAR")) {
+        } else if (title.getText().contains("Verify your email address on MyNETGEAR")) {
             result = true;
             logger.info("Received verify email.");
-        } else if (checkemailtitle.getText().contains("Voucher Manager Invitation Email.")) {
+        } else if (title.getText().contains("Voucher Manager Invitation Email.")) {
             result = true;
             logger.info("Received voucher manager invitation email.");
-        } else if (checkemailtitle.getText().contains("Invite voucher manager email")) {
+        } else if (title.getText().contains("Invite voucher manager email")) {
             result = true;
             logger.info("Received voucher manager invitation email.");
-        } else if (checkemailtitle.getText().contains("Invite Secondary Admin Email")) {
+        } else if (title.getText().contains("Invite Secondary Admin Email")) {
             result = true;
             logger.info("Received secondary manager invitation email.");
-        } else if (checkemailtitle.getText().contains("Device Online")) {
+        } else if (title.getText().contains("Device Online")) {
             result = true;
             logger.info("Received Device Online Notification email.");
-        } else if (checkemailtitle.getText().contains("Device Reboot")) {
+        } else if (title.getText().contains("Device Reboot")) {
             result = true;
             logger.info("Received Device Reboot Notification email.");
         }
