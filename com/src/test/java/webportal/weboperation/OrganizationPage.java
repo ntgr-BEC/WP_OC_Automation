@@ -173,6 +173,7 @@ public class OrganizationPage extends OrganizationElement {
     public void addOrganization(Map<String, String> map) {
         boolean located = false;
         System.out.println("5st");
+        MyCommonAPIs.sleepi(15);
         waitElement(sOrganizationLocationElement1);
         // if (checkOrganizationIsExist(map.get("Name"))) {
         // located = true;
