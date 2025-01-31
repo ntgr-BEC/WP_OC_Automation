@@ -6696,16 +6696,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     }
 
-    // added by vivek
+    //addedbyvivek
     public void openHashRigisterUrlAndSetEmailId(String Email, String pwd) {
         new MyCommonAPIs().open(URLParam.registerPro, true);
-        MyCommonAPIs.sleepi(3);
+        MyCommonAPIs.sleepi(5);
+        waitElement(AccountSugnUpEmail);
         AccountSugnUpEmail.sendKeys(Email);
-        MyCommonAPIs.sleepi(1);
+        MyCommonAPIs.sleepi(5);
+        waitElement(ClickOnnext);
         ClickOnnext.click();
         MyCommonAPIs.sleepi(5);
+        waitElement(loginPwdNew);
         loginPwdNew.sendKeys(pwd);
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginButton);
         loginButton.click();
+        MyCommonAPIs.sleepi(5);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
     }
 
     // added by vivek
@@ -9820,6 +9829,26 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
       MyCommonAPIs.sleepi(20);
       waitReady();
       sleep(1000);
+    }
+    
+  //AddedByPratik
+    public void prologinaftercreatingnewpro(String Email, String pwd) {
+        MyCommonAPIs.sleepi(5);
+        waitElement(AccountSugnUpEmail);
+        AccountSugnUpEmail.sendKeys(Email);
+        MyCommonAPIs.sleepi(5);
+        waitElement(ClickOnnext);
+        ClickOnnext.click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginPwdNew);
+        loginPwdNew.sendKeys(pwd);
+        MyCommonAPIs.sleepi(5);
+        waitElement(loginButton);
+        loginButton.click();
+        MyCommonAPIs.sleepi(5);
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
     }
 
 }
