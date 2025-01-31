@@ -3592,7 +3592,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         MyCommonAPIs.sleepi(10);
-        if (proaccCreatedNotificationCognito.exists()) {
+        if (proaccCreatedNotificationCognito.isDisplayed()) {
             proaccCreatedOKBtnCognito.click();
             MyCommonAPIs.sleepi(15);
             if (isInLoginPage()) {
