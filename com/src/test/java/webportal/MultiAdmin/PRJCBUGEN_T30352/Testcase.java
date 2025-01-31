@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
     
         assertTrue(new WirelessQuickViewPage(false).Inviteadmin(Name, mailname ), "secondary admin is not sucessfull");     
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessage(mailname), "invitation not received");
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname), "invitation not received");
     }
 
   
