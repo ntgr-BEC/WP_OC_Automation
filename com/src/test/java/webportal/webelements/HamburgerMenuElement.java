@@ -50,7 +50,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
 
     public SelenideElement Done = $x("//span[@class = 'ng-scope'][text() = 'Done']");
 
-//    public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
+//public static SelenideElement accountmanager             = $x("//*[@id='notificationDrop']/../../ul//a[text()='" + WebportalParam.getLocText("Account Management") + "']" );
     public static SelenideElement accountmanager             = $x("(//*[@id='notificationDrop']/../../ul//a)[1]");
     public static SelenideElement accountmanager1            = $x("//*[text()='Account Management'])[1]");
     public SelenideElement        accountemail               = $("#hEmailsubscriptions");
