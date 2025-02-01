@@ -1732,7 +1732,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablemacacl.click();
             MyCommonAPIs.sleepi(3);
-            if ($x("//p[text()=\"Enable ACL Policy when at least one device is added in Allow/Policy list.\"]").exists()) {
+            if ($x("//p[text()=\"Enable ACL Policy when at least one device is added in Allow Policy list.\"]").exists()) {
                 result = true;
                 macaclnodeviceconfirm.click();
             }
