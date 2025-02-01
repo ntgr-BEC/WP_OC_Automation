@@ -35,8 +35,8 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
-    String organizationName1 = "Netgear";
-    String locationName1     = "office1";
+    String organizationName1 = "NetgearT34064";
+    String locationName1     = "officeT34064";
 
     @Feature("Notification preferences for ALL organizations IM-7.0") // It's a folder/component name to make test suite more readable from Jira
                                                                       // Test Case.

@@ -83,7 +83,7 @@ public class DeviceGroupPage extends DeviceGroupElement {
      }
     public void EnableSysLog(String IP, String Port) {
         MyCommonAPIs.sleepi(5);
-        SelenideElement toggleSwitchInput = $x("#toggleSyslogConfig");
+        SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
         waitElement(toggleSwitchInput);
         boolean isSwitchOn = toggleSwitchInput.isSelected();
         if (isSwitchOn) {
@@ -828,7 +828,7 @@ public class DeviceGroupPage extends DeviceGroupElement {
         public boolean verifySyslogisEnabledorNot() {
             boolean result = false;
             MyCommonAPIs.sleepi(5);
-            SelenideElement toggleSwitchInput = $x("#toggleSyslogConfig");
+            SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
             waitElement(toggleSwitchInput);
             boolean isSwitchOn = toggleSwitchInput.isSelected();
             if (isSwitchOn) {

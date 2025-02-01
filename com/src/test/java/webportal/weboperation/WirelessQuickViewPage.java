@@ -4690,15 +4690,15 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             setSelected($x("//*[@id=\"bandSteeringSt\"]"), true);
-            MyCommonAPIs.sleep(5);
-            if (Warrning.isDisplayed()) {
+            MyCommonAPIs.sleep(10);
+            if (okFast.isDisplayed()) {
                 okFast.click();
                 result = true;
             }
-//            if (Warrning1.isDisplayed()) {
-//                okFast.click();
-//                result = true;
-//            }
+            if (okFast.isDisplayed()) {
+                okFast.click();
+                result = true;
+            }
             MyCommonAPIs.sleep(5);
             save80211.click();
             MyCommonAPIs.sleep(5);
