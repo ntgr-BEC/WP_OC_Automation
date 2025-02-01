@@ -275,9 +275,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
             }
-            if(map.containsKey("BandSteering"))
+            if(map.containsKey("Bandsteering"))
             {   MyCommonAPIs.sleepi(4);   
-                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("BandSteering"))));
+                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("Bandsteering"))));
                 MyCommonAPIs.sleep(5);
                 if (Warrning.isDisplayed()) {
                     okFast.click();                   
