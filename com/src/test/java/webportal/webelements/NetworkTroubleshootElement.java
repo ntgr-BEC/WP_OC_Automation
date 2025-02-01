@@ -147,7 +147,7 @@ public class NetworkTroubleshootElement extends MyCommonAPIs {
         //SelenideElement Device = $x("(//*[text()='" + devicseName + "']/../../../../..//span)[11]");
         //SelenideElement Device = $x("(//*[text()='" + devicseName + "']/../../../../..//span//span[2])[2]");  //use this for maint-qa
       //*[text()='6WP2285HA0624']/../../../../..//span//span[2]
-        SelenideElement Device = $x("(//*[text()='" + devicseName + "']/../../../../..//span//span[2])[2]");    //updated for priqa
+        SelenideElement Device = $x("//*[text()='" + devicseName + "']/../../../../..//span//span[2]");    //updated for priqa
         return Device;
     }
     public SelenideElement selectResulttraceRouteStatus(String devicseName) {

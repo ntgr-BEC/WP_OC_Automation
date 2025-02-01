@@ -275,9 +275,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
             }
-            if(map.containsKey("BandSteering"))
+            if(map.containsKey("Bandsteering"))
             {   MyCommonAPIs.sleepi(4);   
-                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("BandSteering"))));
+                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("Bandsteering"))));
                 MyCommonAPIs.sleep(5);
                 if (Warrning.isDisplayed()) {
                     okFast.click();                   
@@ -1732,7 +1732,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablemacacl.click();
             MyCommonAPIs.sleepi(3);
-            if ($x("//p[text()=\"Enable ACL Policy when at least one device is added in Allow/Policy list.\"]").exists()) {
+            if ($x("//p[text()=\"Enable ACL Policy when at least one device is added in Allow Policy list.\"]").exists()) {
                 result = true;
                 macaclnodeviceconfirm.click();
             }
@@ -10557,11 +10557,13 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean GotoRF() {
         boolean result=false;
         MyCommonAPIs.sleepi(10);
-        if (settingsorquickview.exists()) {
+        waitElement(settingsorquickview);
+        if (settingsorquickview.isDisplayed()) {
             settingsorquickview.click();
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
+        waitElement(ManageProfiles);
         if(ManageProfiles.isDisplayed()) {
         ManageProfiles.click();
         result=true;
@@ -10592,6 +10594,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean CheckCustomProfiles() {
         boolean result=false;
         MyCommonAPIs.sleepi(10);
+        waitElement(CustomerProfile);
         CustomerProfile.click();
         MyCommonAPIs.sleepi(10);
         if(Savant.isDisplayed()&& BandO.isDisplayed() && NICE.isDisplayed()&& BluOS.isDisplayed()) {
@@ -10604,8 +10607,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean checkCreateRFProfile() {
         boolean result=false;
         MyCommonAPIs.sleepi(10);
+        waitElement(addRFProfile);
         addRFProfile.click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(30);
         if(RFProfileName.isDisplayed()&& RFProfileDescription.isDisplayed()) {
             result=true;
             }
@@ -10617,6 +10621,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean CheckCustomProfile() {
         boolean result=false;
         MyCommonAPIs.sleepi(10);
+        waitElement(CustomerProfile);
         CustomerProfile.click();
         MyCommonAPIs.sleepi(10);
         if(!addRFProfile.exists()) {
@@ -10875,10 +10880,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
             
             boolean iscustompresent = false;
+            MyCommonAPIs.sleepi(4);
             iscustompresent = map.containsKey("custom");
             if(iscustompresent ==true) {
                 if (map.get("custom").equals("enable")) {
+                    custom.shouldBe(Condition.visible);
                     custom.click();
+                    MyCommonAPIs.sleepi(4);
+                    SelectProfile.shouldBe(Condition.visible);
                     SelectProfile.selectOption(1);                   
                 }
                 
