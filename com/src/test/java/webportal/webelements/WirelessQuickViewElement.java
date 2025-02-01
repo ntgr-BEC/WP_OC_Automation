@@ -1410,20 +1410,20 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement  oktrunk     = $x("//*[@id=\"myModal\"]/div/div/div[3]/button[2]");
      
      
-     public SelenideElement ManageProfiles                = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[10]/a");
-     public SelenideElement RFProfiles                    = $x("//*[@id=\"macIPfilter\"]/div/div[2]/div[1]/div/ul/li[1]");
-     public SelenideElement CustomerProfile               = $x("//*[@id=\"macIPfilter\"]/div/div[2]/div[1]/div/ul/li[2]");
-     public SelenideElement OpenOffice                    = $x("//*[@id=\"DataTables_Table_5\"]/tbody/tr[1]/td[1]");
-     public SelenideElement Outdoor                       = $x("//*[@id=\"DataTables_Table_5\"]/tbody/tr[2]/td[1]");
-     public SelenideElement Savant                        = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[1]/td[1]");
-     public SelenideElement BandO                         = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[2]/td[1]");
-     public SelenideElement NICE                          = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[3]/td[1]");
-     public SelenideElement BluOS                         = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[4]/td[1]");
-     public SelenideElement addRFProfile                  = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[4]/td[1]");
-     public SelenideElement RFProfileName                 = $x("//*[text()='Create RF Profile']/../../div[3]/div[2]/div/div/input");
-     public SelenideElement RFProfileDescription          = $x("//*[text()='Create RF Profile']/../../div[3]/div[2]/div/div[3]/input");
-     public SelenideElement CreateRFProfile               = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[4]/button[2]");
-     public SelenideElement CloseRFProfile                = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[1]/button");
+     public SelenideElement ManageProfiles                = $x("//a[@href='#/wireless/manageProfiles' and @class='anchoractiveLeftMenu']");
+     public SelenideElement RFProfiles                    = $x("//li[text()='RF']");
+     public SelenideElement CustomerProfile               = $x("//li[text()='Customer Profile']");
+     public SelenideElement OpenOffice                    = $x("//td[contains(text(),'Open Office')][1]");
+     public SelenideElement Outdoor                       = $x("//td[contains(text(),'Outdoor')][1]");
+     public SelenideElement Savant                        = $x("//td[text()='Savant'][1]");
+     public SelenideElement BandO                         = $x("//td[text()='B & O'][1]");
+     public SelenideElement NICE                          = $x("//td[text()='NICE'][1]");
+     public SelenideElement BluOS                         = $x("//td[text()='BluOS'][1]");
+     public SelenideElement addRFProfile                  = $x("//div[@class='addIcon']");
+     public SelenideElement RFProfileName                 = $x("//input[@name='profileName']");
+     public SelenideElement RFProfileDescription          = $x("//input[@name='description']");
+     public SelenideElement CreateRFProfile               = $x("//h4[text()='Create RF Profile']/../..//button[text()='Create']");
+     public SelenideElement CloseRFProfile                = $x("//h4[text()='Create RF Profile']/../..//button[@class='close']");
      
      
      public SelenideElement editRFProfileName             = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[1]/input");
