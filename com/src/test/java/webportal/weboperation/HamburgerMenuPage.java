@@ -4640,9 +4640,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         HashMap<String, String> deallocateInfo = new HashMap<String, String>();
         HashMap<String, String> creditsInfo = new HamburgerMenuPage().getCreditAllocationStatus(WebportalParam.Organizations);
         cancelCreditsAllcation();
+        MyCommonAPIs.sleepi(3);
         waitReady();
+        MyCommonAPIs.sleepi(3);
         deallocate.click();
+        MyCommonAPIs.sleepi(3);
         waitReady();
+        MyCommonAPIs.sleepi(3);
         deallocateInfo.put("Deallocate DevNum",
                 String.valueOf(Integer.valueOf(getText(deallocateDevCredits)) - Integer.valueOf(creditsInfo.get("Unused Devices Credits"))));
         if (deallocateIcpCredits.isDisplayed()) {
