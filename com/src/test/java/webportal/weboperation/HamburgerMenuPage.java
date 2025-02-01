@@ -3694,12 +3694,12 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // Wait for iframe to be visible and switch to it
         SelenideElement frame = $x("//*[@id=\"ifinbox\"]").shouldBe(Condition.visible);
         Selenide.switchTo().frame(frame);
-        Selenide.sleep(2); // Small wait for email to load
+        Selenide.sleep(5); // Small wait for email to load
 
         // Get the latest email title
         SelenideElement titleElement = $x("//div[@currentmail]//div[@class='lms']");
         String titleText = titleElement.shouldBe(Condition.visible).getText();
-        logger.info("Email Subject: " + titleText);
+        logger.info("Data Text = : " + titleText);
 
         // Check email subject
         List<String> validSubjects = Arrays.asList(

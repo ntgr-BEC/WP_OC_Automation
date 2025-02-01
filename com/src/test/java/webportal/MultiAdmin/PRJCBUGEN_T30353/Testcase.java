@@ -39,6 +39,7 @@ public class Testcase extends TestCaseBase {
     int    num      = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num) + "@yopmail.com";
     String Name     = "PRJCBUGEN_T30353";
+    String secAdminMail = mailname + "@yopmail.com";
 
     @Feature("MultiAdmin") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T30353") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -52,47 +53,47 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        System.out.println("start to do tearDown");
-        UserManage userManage = new UserManage();
-        userManage.logout();   
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
-        MyCommonAPIs.sleepi(20);
-        new WirelessQuickViewPage(false).deleteSecondAdminPost(mailname);
-        
-        
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
+        new ManagerPage(false).deleteSecondaryAdminEmail(secAdminMail);
+        System.out.println("start to do tearDown");
     }
 
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
-        
-        new WirelessQuickViewPage(false).deleteSecondAdminALL();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
     }
 
-
-    @Step("Test Step 2: Invite secodary admin")
+    @Step("Test Step 2: Add Manager;")
     public void step2() {
-    
-        assertTrue(new WirelessQuickViewPage(false).Inviteadmin(Name, mailname ), "secondary admin is not sucessfull");
+        Map<String, String> secAdminInfo = new HashMap<String, String>();
+        secAdminInfo.put("Name", "testsec14408");
+        secAdminInfo.put("Email Address", secAdminMail);
+        assertTrue(new ManagerPage(false).addSecondaryAdmin(secAdminInfo), "Invite secondary admin failed.");
         UserManage userManage = new UserManage();
-        userManage.logout();      
+        userManage.logout();
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(secAdminMail), "Not received Invitation email.");
+        assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
+        Map<String, String> proAccountInfo = new HashMap<String, String>();
+        proAccountInfo.put("Confirm Email", secAdminMail);
+        proAccountInfo.put("Password", "Netgear1@");
+        proAccountInfo.put("Confirm Password", "Netgear1@");
+        proAccountInfo.put("Country", "United States of America");
+        proAccountInfo.put("Phone Number", "1234567890");
+        new HamburgerMenuPage(false).FillInvitemanagerOwnerInfoAndVerifylogin(proAccountInfo);
+        userManage.logout();
         
-        if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname)) {
-            Map<String, String> managerAccountInfo = new HashMap<String, String>();
-            managerAccountInfo.put("Confirm Email", mailname);
-            managerAccountInfo.put("Password", WebportalParam.adminPassword);
-            managerAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-            managerAccountInfo.put("Country", "United States of America");
-            managerAccountInfo.put("Phone Number", "1234567890");
+    } 
+    
+    @Step("Test Step 3: Invite manager and check its success;")
+    public void step3() {
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
+        assertTrue(new ManagerPage().verifyExistingSecondaryAdmin(secAdminMail),"Invite manager failed.");    
+    }
 
-            new HamburgerMenuPage(false).createManagerAccount(managerAccountInfo);
-        
-    }
-        
-    }
 
 }

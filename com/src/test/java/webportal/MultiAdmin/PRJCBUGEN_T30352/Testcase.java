@@ -52,7 +52,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new WirelessQuickViewPage(false).deleteSecondAdmin(mailname);
+//        new WirelessQuickViewPage(false).deleteSecondAdmin(mailname);
         
     }
 
