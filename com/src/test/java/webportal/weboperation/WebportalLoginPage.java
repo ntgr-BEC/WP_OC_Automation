@@ -262,6 +262,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             sidebarCloseIcon.click();
             MyCommonAPIs.sleepi(1);
         }
+        
     }
 
     public boolean checkLoginErrorMsg(String account, String password) {

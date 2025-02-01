@@ -53,6 +53,8 @@ import webportal.publicstep.UserManage;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.HamburgerMenuElement;
 import webportal.webelements.InsightServicesPageElement;
+import webportal.webelements.WebportalLoginPageElement;
+
 import java.io.File;
 import java.time.Duration;
 import java.nio.file.*;
@@ -9900,6 +9902,7 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
     
   //AddedByPratik
     public void prologinaftercreatingnewpro(String Email, String pwd) {
+        WebportalLoginPageElement WebportalLoginPageElement = new WebportalLoginPageElement();
         MyCommonAPIs.sleepi(5);
         waitElement(AccountSugnUpEmail);
         AccountSugnUpEmail.sendKeys(Email);
@@ -9907,8 +9910,16 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         waitElement(ClickOnnext);
         ClickOnnext.click();
         MyCommonAPIs.sleepi(5);
-        waitElement(loginPwdNew);
-        loginPwdNew.sendKeys(pwd);
+        if (WebportalLoginPageElement.loginPwdNew.exists()) {
+            WebportalLoginPageElement.loginPwdNew.clear();
+            WebportalLoginPageElement.loginPwdNew.sendKeys(pwd);
+        } else if (WebportalLoginPageElement.loginPwdCognito.exists()) {
+            WebportalLoginPageElement.loginPwdCognito.clear();
+            WebportalLoginPageElement.loginPwdCognito.sendKeys(pwd);
+        } else {
+            WebportalLoginPageElement.loginPwdNew1.clear();
+            WebportalLoginPageElement.loginPwdNew1.sendKeys(pwd);
+        }
         MyCommonAPIs.sleepi(5);
         waitElement(loginButton);
         loginButton.click();
