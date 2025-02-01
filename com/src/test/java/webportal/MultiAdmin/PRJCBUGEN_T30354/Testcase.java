@@ -37,8 +37,8 @@ public class Testcase extends TestCaseBase {
 
     Random r        = new Random();
     int    num      = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num) + "@sharklasers.com";
-    String mailname1 = "apwptest1" + String.valueOf(num) + "@sharklasers.com";
+    String mailname = "apwptest" + String.valueOf(num) + "@yopmail.com";
+    String mailname1 = "apwptest1" + String.valueOf(num) + "@yopmail.com";
     String Name     = "PRJCBUGEN_T30354";
 
     @Feature("MultiAdmin") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
         UserManage userManage = new UserManage();
         userManage.logout();      
         
-        if (new HamburgerMenuPage(false).checkEmailMessage(mailname)) {
+        if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname)) {
             Map<String, String> managerAccountInfo = new HashMap<String, String>();
             managerAccountInfo.put("Confirm Email", mailname);
             managerAccountInfo.put("Password", WebportalParam.adminPassword);

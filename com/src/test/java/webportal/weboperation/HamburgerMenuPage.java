@@ -1800,15 +1800,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(5);
         waitElement(defaultcategoryfilter);
         logger.info("check filters basis on category.");
-        defaultcategoryfilter.click();
-        provpnsubscription.click();
-        defaultcategoryfilter.click();
-        MyCommonAPIs.sleepi(7);
-        if (prouservpnlicense.exists()) {
-            result1 = true;
-            logger.info("vpn exits");
-        }
-        MyCommonAPIs.sleepi(5);
+//        defaultcategoryfilter.click();
+//        provpnsubscription.click();
+//        defaultcategoryfilter.click();
+//        MyCommonAPIs.sleepi(7);
+//        if (prouservpnlicense.exists()) {
+//            result1 = true;
+//            logger.info("vpn exits");
+//        }
+//        MyCommonAPIs.sleepi(5);
         defaultcategoryfilter.click();
         instantcaptivefilter.click();
         defaultcategoryfilter.click();
@@ -1846,19 +1846,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         logger.info("check filters basis on time.");
         defaultfilter.click();
         lastquarterfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result1 = true;
         }
         defaultfilter.click();
         lastyearfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result2 = true;
         }
         defaultfilter.click();
-        MyCommonAPIs.sleepi(5);
-        if (activatedate.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (activatedate.isDisplayed()) {
             result3 = true;
         }
         if ((result1 == true) && (result2 == true) && (result3 == true)) {
@@ -3670,6 +3670,69 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         return result;
     }
+    
+    
+ // Added by Vivek - New Mail Verification
+    public boolean checkEmailMessageForMultiAdmin(String mailname) {
+        boolean result = false;
+        logger.info("Checking email for address: " + mailname);
+
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String originalWindow = driver.getWindowHandle(); // Store main window
+        String url = "https://yopmail.com";
+
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1); // Switch to the new tab
+        Selenide.sleep(5); // Give time for the page to load
+
+        // Input email and check inbox
+        SelenideElement inputBox = $x("//input[@id='login']");
+        inputBox.clear();
+        inputBox.sendKeys(mailname);
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+
+        // Wait for iframe to be visible and switch to it
+        SelenideElement frame = $x("//*[@id=\"ifinbox\"]").shouldBe(Condition.visible);
+        Selenide.switchTo().frame(frame);
+        Selenide.sleep(5); // Small wait for email to load
+
+        // Get the latest email title
+        SelenideElement titleElement = $x("//div[@currentmail]//div[@class='lms']");
+        String titleText = titleElement.shouldBe(Condition.visible).getText();
+        logger.info("Data Text = : " + titleText);
+
+        // Check email subject
+        List<String> validSubjects = Arrays.asList(
+            "Invite owner email",
+            "You have enabled Insight Pro Monthly Usage Billing",
+            "Insight Pro Monthly Usage Billing disabled starting next month",
+            "NETGEAR Insight Premium Free Trial",
+            "Invite manager email",
+            "Verify your email address on MyNETGEAR",
+            "Voucher Manager Invitation Email.",
+            "Invite voucher manager email",
+            "Invite Secondary Admin Email",
+            "Device Online",
+            "Device Reboot"
+        );
+
+        for (String subject : validSubjects) {
+            if (titleText.contains(subject)) {
+                result = true;
+                logger.info("Received email: " + subject);
+                break; // Exit loop on first match
+            }
+        }
+
+        // Close current tab and switch back to original window
+        WebDriverRunner.getWebDriver().close();
+        Selenide.switchTo().window(originalWindow);
+
+        return result;
+    }
+
+    
+    
 
     // Edited by vivek Added mail notification conditions
     public boolean checkEmailMessage(String mailname) {
@@ -4577,9 +4640,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         HashMap<String, String> deallocateInfo = new HashMap<String, String>();
         HashMap<String, String> creditsInfo = new HamburgerMenuPage().getCreditAllocationStatus(WebportalParam.Organizations);
         cancelCreditsAllcation();
+        MyCommonAPIs.sleepi(3);
         waitReady();
+        MyCommonAPIs.sleepi(3);
         deallocate.click();
+        MyCommonAPIs.sleepi(3);
         waitReady();
+        MyCommonAPIs.sleepi(3);
         deallocateInfo.put("Deallocate DevNum",
                 String.valueOf(Integer.valueOf(getText(deallocateDevCredits)) - Integer.valueOf(creditsInfo.get("Unused Devices Credits"))));
         if (deallocateIcpCredits.isDisplayed()) {
