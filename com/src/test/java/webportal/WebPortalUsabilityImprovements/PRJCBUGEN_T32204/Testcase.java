@@ -57,6 +57,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        new ManagerPage().deleteManager(mailname);
         OrganizationPage page = new OrganizationPage();
         page.deleteOrganizationNew(organizationName1);
     }
@@ -69,15 +70,15 @@ public class Testcase extends TestCaseBase {
 
     }
 
-//     @Step("Test Step 2: Create an organization")
-//     public void step2() {
-//     Map<String, String> organizationInfo = new HashMap<String, String>();
-//     organizationInfo.put("Name", organizationName1);
-//     OrganizationPage OrganizationPage = new OrganizationPage();
-//     OrganizationPage.addOrganization(organizationInfo);
-//     MyCommonAPIs.sleepi(5);
-//    
-//     }
+     @Step("Test Step 2: Create an organization")
+     public void step2() {
+     Map<String, String> organizationInfo = new HashMap<String, String>();
+     organizationInfo.put("Name", organizationName1);
+     OrganizationPage OrganizationPage = new OrganizationPage();
+     OrganizationPage.addOrganization(organizationInfo);
+     MyCommonAPIs.sleepi(5);
+    
+     }
 
     @Step("Test Step 3: Invite manager from All Manager Page")
     public void step3() {

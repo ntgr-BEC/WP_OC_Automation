@@ -268,7 +268,7 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        locAddLogo                  = $x("//div[@id='divOnOffSettingNine']//input[@name='file']");
     public SelenideElement        LocHeaderIconUrl            = $x("//img[@id='headerLocImg']");
     public SelenideElement        wirelessRegion              = $x("//*[@id=\"editWirelessRegion\"]");
-    public SelenideElement        radiusText                  = $x("//div[@class='leftMenuItems']/div/a[text()='Radius']");
+    public SelenideElement        radiusText                  = $x("//div[@class='leftMenuItems']/div/a[text()='RADIUS']");
     public SelenideElement        RadiusServerInput           = $x("//input[@id='primaryAdd']");
     public SelenideElement        radiusSwitchButton          = $x("//label[@id='_divTogOnOfSetRaLiBlColMdRowStRad']/span[@class='cstmSlider cstmRound']");
     public SelenideElement        RadiusSaveButton            = $x("//button[@id='_buSaveBtnTwo']");

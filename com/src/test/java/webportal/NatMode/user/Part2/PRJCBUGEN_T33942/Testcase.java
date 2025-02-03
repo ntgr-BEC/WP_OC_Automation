@@ -49,7 +49,7 @@ public class Testcase extends TestCaseBase {
    @AfterMethod(alwaysRun = true)
    public void tearDown() {
        new WirelessQuickViewPage().deleteALLSSID();
-//       new WirelessQuickViewPage().deleteAllMPSKKey();
+      new WirelessQuickViewPage().deleteAllMPSKKey();
        System.out.println("start to do tearDown");
    }
 
@@ -70,7 +70,7 @@ public class Testcase extends TestCaseBase {
        locationInfo.put("SSID", "apwp14008");
        locationInfo.put("Security", "WPA2 Personal Mixed");
        locationInfo.put("Password", "123456798");
-//       new WirelessQuickViewPage().addSsidNat(locationInfo);      
+       new WirelessQuickViewPage().addSsidNat(locationInfo);      
       String check= new WirelessQuickViewPage().enableMpskNat(locationInfo.get("SSID")); 
        MyCommonAPIs.sleepi(80);
        assertTrue(check.contains("Warning"), "CONFIG FOR MPSK  PUSHED");

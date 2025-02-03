@@ -54,7 +54,7 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
     { 
         Map<String, String> pathParams = new HashMap<String, String>(); 
         pathParams.put("networkId",WebportalParam.networkId);
-        pathParams.put("id","66f3bcfd1ad78f467b7fad8a");   
+        pathParams.put("id",id);   
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Ssid_Sanity"),headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
     }
