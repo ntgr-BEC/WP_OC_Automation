@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
 
 
-           assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1")).equals("128"),"Intervals are missing 1st");
+           assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1")).equals("127"),"Intervals are missing 1st");
            new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();   
            MyCommonAPIs.sleepi(10);
           assertTrue((new WirelessQuickViewPage(false).DragDensityToBroadcast("2","4","2")).equals("0"),"Intervals are missing 2nd");

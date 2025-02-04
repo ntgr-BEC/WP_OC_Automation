@@ -29,13 +29,14 @@ public class DevicesApSummaryPageElement extends MyCommonAPIs {
     public SelenideElement editno             = $("#btnSpnAPSumm");
     public SelenideElement selectChannelChart = $("#selChrtInpTrfChrt");
     public SelenideElement channelChart24GHz  = $x("(//select[@class='form-control inputTextField'])[2]");
-    public SelenideElement select5Ghz         = $x("(//*[@id=\"icon2PlusNsaAccordHeadSettng\"])[2]"); 
-    public SelenideElement select24Ghz         = $x("(//*[@id=\"hServRadiChnl\"])[1]");
+    public SelenideElement select5Ghz         = $x("//span[text()='5GHz']/..//i[@id='icon2PlusNsaAccordHeadSettng']"); 
+    public SelenideElement select24GhzClose   = $x("//span[text()='2.4GHz']/..//i[@id='iconMinNsaAccordHeadSettng']");
+    public SelenideElement select24Ghz         = $x("//span[text()='2.4GHz']/..//i[@id='icon2PlusNsaAccordHeadSettng']");
     public SelenideElement select50Ghz         = $x("(//*[@id=\"hServRadiChnl\"])[2]");
     public SelenideElement saveBtn            = $x("//*[@id=\"btnSaveUpdteRadiChnl\"]");
     public SelenideElement successMessage     = $x("//*[text()='Your configuration has been applied. It may take some time to reflect']");
     public SelenideElement channelChart5GHz   = $x("(//div[@id='divChnRadiChnl']/select)[2]");
-    public SelenideElement radioAndChannelsOp = $x("//div[contains(@class,'divactiveLeftMenu')]//a[text()='Radio and Channels']");
+    public SelenideElement radioAndChannelsOp = $x("//div[@id='openLeftMenuBar']//div/a[text()='Radio and Channels']");
     public SelenideElement maximazie24GHZBand = $x("//span[@id='spnNsaAccordHeadSettng']//i[@class='icon icon-icon-collapse']/../..//span[text()='2.4GHz']");
 
     public SelenideElement portChoice(String text) {

@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 
 import org.openqa.selenium.interactions.Actions;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import util.MyCommonAPIs;
@@ -272,9 +273,12 @@ public class DevicesApSummaryPage extends DevicesApSummaryPageElement {
         waitElement(radioAndChannelsOp);
         radioAndChannelsOp.click();
         MyCommonAPIs.sleepi(15);
-        waitElement(select5Ghz);
-        select5Ghz.click();
-        MyCommonAPIs.sleepi(1);
+//        waitElement(select5Ghz);
+//        select5Ghz.hover();
+        Selenide.executeJavaScript("arguments[0].click();", select24GhzClose);
+        MyCommonAPIs.sleepi(2);
+        Selenide.executeJavaScript("arguments[0].click();", select5Ghz);
+        MyCommonAPIs.sleepi(2);
         List<SelenideElement> options = channelChart5GHz.$$("option");   
         List<String> values = new ArrayList<>();
         for (SelenideElement option : options) {

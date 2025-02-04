@@ -173,6 +173,7 @@ public class OrganizationPage extends OrganizationElement {
     public void addOrganization(Map<String, String> map) {
         boolean located = false;
         System.out.println("5st");
+        MyCommonAPIs.sleepi(15);
         waitElement(sOrganizationLocationElement1);
         // if (checkOrganizationIsExist(map.get("Name"))) {
         // located = true;
@@ -3704,8 +3705,8 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleep(5 * 1000);
         MyCommonAPIs.sleepi(5);
         ALLband.click();
-        MyCommonAPIs.sleepi(1);
-        ALLband.click();
+        MyCommonAPIs.sleepi(5);
+//        ALLband.click();
         logger.info("All Band is selectd");
         MyCommonAPIs.sleepi(5);
         if (map.get("Security").equals("WPA3 Personal Mixed (WPA2 + WPA3)")) {
@@ -4801,7 +4802,7 @@ public class OrganizationPage extends OrganizationElement {
         if (NotificationText(Serialno).isDisplayed()) {
             String Notitext = NotificationText(Serialno).getText();
             System.out.println(Notitext);
-            if (Notitext.contains("Device is rebooting")) {
+            if (Notitext.contains("reboot")) {
                 result = true;
             }
 

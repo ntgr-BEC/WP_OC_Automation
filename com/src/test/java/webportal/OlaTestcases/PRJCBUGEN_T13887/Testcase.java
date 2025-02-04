@@ -155,6 +155,7 @@ public class Testcase extends TestCaseBase {
           new DevicesDashPage(false).addNewDevice(devInfo);
 
           new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+          MyCommonAPIs.sleepi(60);
 
       }
       

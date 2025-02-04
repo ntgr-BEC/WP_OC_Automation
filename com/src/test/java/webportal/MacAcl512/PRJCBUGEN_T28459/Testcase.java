@@ -46,7 +46,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-//        new WirelessQuickViewPage().deleteSsidYes("apwp14476");
+        new WirelessQuickViewPage().deleteSsidYes("01_ssid2");
         System.out.println("start to do tearDown");
     }
 
@@ -56,9 +56,7 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
 
-//        handle.gotoLoction();
-        MyCommonAPIs.sleepi(60);
-//        new DevicesDashPage().checkDeviceInAdminAccount();
+        handle.gotoLoction();
     }
 
     @Step("Test Step 2: Enable ACL Policy popup is shown because  no device is added;")
@@ -69,7 +67,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Password", "12345678");
         ssidInfo.put("type","Local ACL");
         ssidInfo.put("policy","Allow");
-//        new WirelessQuickViewPage().addSsid(ssidInfo);
+        new WirelessQuickViewPage().addSsid(ssidInfo);
         new WirelessQuickViewPage().editSsid(ssidInfo.get("SSID"));
         int MaxMacAclNum=32;
         Orglist = new WirelessQuickViewPage().AddMultipleMacAcl(ssidInfo.get("SSID"), MaxMacAclNum,ssidInfo.get("policy"));
@@ -77,14 +75,14 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewElement().toggleBtn.click();
     }
 
-//    @Step("Test Step 3: check whether it is applied from ssh ")
-//    public void step3() {
-//        MyCommonAPIs.sleepi(70);
-//        String msg = new APUtils(WebportalParam.ap1IPaddress).MacAcl( WebportalParam.ap1Model);
-//        for(int i=0;i<Orglist.size(); i++) {
-//            System.out.println(Orglist.get(i));
-//        assertTrue(msg.contains(Orglist.get(i)),"default  value for 2.4 Ghz is not right");
-//        }
-//    }
+    @Step("Test Step 3: check whether it is applied from ssh ")
+    public void step3() {
+        MyCommonAPIs.sleepi(70);
+        String msg = new APUtils(WebportalParam.ap1IPaddress).MacAcl( WebportalParam.ap1Model);
+        for(int i=0;i<Orglist.size(); i++) {
+            System.out.println(Orglist.get(i));
+        assertTrue(msg.contains(Orglist.get(i)),"default  value for 2.4 Ghz is not right");
+        }
+    }
 
 }

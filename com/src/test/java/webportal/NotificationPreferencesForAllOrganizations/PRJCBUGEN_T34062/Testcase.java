@@ -109,7 +109,7 @@ public class Testcase extends TestCaseBase {
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForDeviceReboot(WebportalParam.loginName), "Not received verify email.");
+        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForDeviceReboot(WebportalParam.adminName), "Not received verify email.");
     }
 
 }

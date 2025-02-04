@@ -66,8 +66,8 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage().editDeviceName(WebportalParam.sw1serialNo, name1);
         new DevicesDashPage().editDeviceName(WebportalParam.ap1serialNo, name2);
 
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.sw1serialNo);
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+//        new DevicesDashPage().waitDevicesReConnected(WebportalParam.sw1serialNo);
+//        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
         boolean result = true;
 

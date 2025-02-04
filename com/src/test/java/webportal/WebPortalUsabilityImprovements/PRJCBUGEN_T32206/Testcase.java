@@ -60,6 +60,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        new ManagerPage().deleteManager(mailname);
         OrganizationPage page = new OrganizationPage();
         page.deleteOrganizationNew(organizationName1);
     }

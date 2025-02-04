@@ -54,6 +54,8 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).sleepi(3);
         new HamburgerMenuPage(false).search.click();
         new HamburgerMenuPage(false).sleepi(3);
+        new HamburgerMenuPage(false).sendemail.clear();
+        new HamburgerMenuPage(false).sleepi(1);
         new HamburgerMenuPage(false).sendemail.sendKeys(WebportalParam.loginName);
         new HamburgerMenuPage(false).sleepi(3);
         new HamburgerMenuPage(false).searchbutton.click();

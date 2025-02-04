@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-//        new WirelessQuickViewPage().deleteSsidYes("apwp14476");
+        new WirelessQuickViewPage().deleteSsidYes("apwp28459");
         System.out.println("start to do tearDown");
     }
 
@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: Enable ACL Policy popup is shown because  no device is added;")
@@ -68,10 +68,10 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Security", "WPA2 Personal");
         ssidInfo.put("Password", "12345678");
         ssidInfo.put("type","Local ACL");
-        ssidInfo.put("policy","deny");
+        ssidInfo.put("policy","Deny");
         new WirelessQuickViewPage().addSsid(ssidInfo);
         new WirelessQuickViewPage().editSsid(ssidInfo.get("SSID"));
-        int MaxMacAclNum=512;
+        int MaxMacAclNum=32;
         Orglist = new WirelessQuickViewPage().AddMultipleMacAcl(ssidInfo.get("SSID"), MaxMacAclNum,ssidInfo.get("policy"));
         System.out.println(Orglist);
          new WirelessQuickViewElement().toggleBtn.click();

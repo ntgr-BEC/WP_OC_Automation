@@ -1,0 +1,5 @@
+Required AP1, SW1, Orbi1, BR1
+Create 2 Location office1 and office2
+Onboard SW1, AP1, BR1 in office1
+Pnboard orbi1 in office2
+Make sure AP1 should be 540 or 564 other wise it will fail case number 17464

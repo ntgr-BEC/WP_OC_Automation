@@ -70,7 +70,8 @@ public class Testcase extends TestCaseBase {
         proAccountInfo.put("Country", "United States of America");
         proAccountInfo.put("Phone Number", "0000000000");
         new HamburgerMenuPage(false).CreateProAccount(proAccountInfo);
-
+        new HamburgerMenuPage(false).prologinaftercreatingnewpro(mailid, password);
+        
     }
 
     @Step("Test Step 2: Enter the Liecnce Key and fill the business form")
@@ -85,6 +86,7 @@ public class Testcase extends TestCaseBase {
         businessInfo.put("Country", "Sweden");
         businessInfo.put("Business Phone Number", "1234567890");
         new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
+        
     }
 
     @Step("Test Step 3: Create a organization and location;")

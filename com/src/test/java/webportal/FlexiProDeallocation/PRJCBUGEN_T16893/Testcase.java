@@ -155,8 +155,8 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
         new AccountPage(false).enterLocation(locationInfo.get("Location Name"));
         Map<String, String> firststdevInfo1 = new HashMap<String, String>();
-        firststdevInfo1.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo1.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo1.put("Serial Number1", WebportalParam.ap6serialNo);
+        firststdevInfo1.put("MAC Address1", WebportalParam.ap6macaddress);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
 
         OrganizationPage.gotoPage();
@@ -191,8 +191,8 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
         new AccountPage(false).enterLocation(locationInfo.get("Location Name"));
         Map<String, String> firststdevInfo2 = new HashMap<String, String>();
-        firststdevInfo2.put("Serial Number1", WebportalParam.ap6serialNo);
-        firststdevInfo2.put("MAC Address1", WebportalParam.ap6macaddress);
+        firststdevInfo2.put("Serial Number1", WebportalParam.ap7serialNo);
+        firststdevInfo2.put("MAC Address1", WebportalParam.ap7macaddress);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo2);
 
 
