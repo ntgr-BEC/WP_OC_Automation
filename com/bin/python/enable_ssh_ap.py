@@ -6,7 +6,7 @@ import os, sys, re, time
 import requests, argparse
 
 admin_passwd = 'Netgear1@'
-ap_host = '10.10.10.50'
+ap_host = '172.16.20.46'
 parser = argparse.ArgumentParser(description='A tool to enable ssh for ap')
 parser.add_argument('-p', default=admin_passwd, help="The admin password")
 parser.add_argument('-i', default=ap_host, help="AP ip")
@@ -28,16 +28,17 @@ assert r.status_code == 200
 # do login
 postdata = {"system":{"basicSettings":{"adminName":"admin","adminPasswd":admin_passwd}}}
 r = s.post(login_host_url, json=postdata)
-print r
+print(r)
 data = r.json()
-print data
+print(data)
 if data['status'] != 0:
-    print 'plz reboot your ap and try again'
+    print('plz reboot your ap and try again')
     sys.exit(1)
-if data['system'].has_key("security_token"):
-    headers = {'security':data['system']['security_token']}
+    
+if "security_token" in data['system']:  
+    headers = {'security': data['system']['security_token']}
 else:
-    headers = {'security':r.headers['security']}
+    headers = {'security': r.headers['security']}
 
 # check ssh status
 postdata = {"system":{"monitor":{"bootloaderVersion":{"crashMagicSupport":""}},"hiddenSettings":{"revSSHStatus":""},"remoteSettings":{"sshStatus":""}}}
@@ -48,9 +49,9 @@ if data['system']['remoteSettings']['sshStatus'] == '0':
     r = s.post(login_host_url, json=postdata, headers=headers)
     data = r.json()
     assert data['status'] == 0
-    print '=='*20, 'ssh is enabled now'
+    print('=='*20, 'ssh is enabled now')
 else:
-    print '=='*20, 'ssh already enabled'
+    print('=='*20, 'ssh already enabled')
 
 # do logout
 logout_host_url = host_url_prefix + 'logout'
