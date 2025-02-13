@@ -767,7 +767,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 waitReady();
             }
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
             takess("addSsid");
             save.click();
