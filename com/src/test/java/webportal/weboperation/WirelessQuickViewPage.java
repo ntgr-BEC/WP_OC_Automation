@@ -10703,10 +10703,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
         MyCommonAPIs.sleepi(10);
-        GeneralRFDis.clear();
-        GeneralRFDis.sendKeys(map.get("RFDescriptionEdit"));
-        MyCommonAPIs.sleepi(5);
-        Saveedit.click();
+        editRFProfileDescription.clear();
+        editRFProfileDescription.sendKeys(map.get("RFDescriptionEdit"));
+        MyCommonAPIs.sleepi(2);
+        SaveEditRFProfile.click();
+        MyCommonAPIs.sleepi(2);
         
     }
     
@@ -10719,7 +10720,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
              
         
-        if(map.get("RFName").equals(GeneralRFName.getText()) & map.get("RFDescription").equals(GeneralRFDis.getText())) 
+        if(map.get("RFName").equals(editRFProfileName.getText()) & map.get("RFDescription").equals(editRFProfileDescription.getText()))  
         {
             
             result = true;
@@ -10965,15 +10966,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         RFProfileName.sendKeys(map.get("RFName"));
         RFProfileDescription.sendKeys(map.get("RFDescription"));
         MyCommonAPIs.sleepi(3);
-        CreateRFProfile.click();
-        
-        
-        result = DescriptionValidation.getText();
-        
-        return result;
-        
-        
-        
+        CreateRFProfile.click();     
+        MyCommonAPIs.sleepi(1);
+        result = DescriptionValidation.getText();      
+        return result;          
     }
     
     public boolean verifyassignedAP(Map<String, String> map) {
