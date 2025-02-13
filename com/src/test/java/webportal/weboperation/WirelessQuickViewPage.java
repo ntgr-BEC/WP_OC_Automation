@@ -263,7 +263,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
             
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
             if (map.get("Security").equals("WPA2 PSK")) {
                 security.selectOption("WPA2-PSK");
@@ -594,7 +603,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 Disableclick.click();
             }
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
 
             MyCommonAPIs.sleepi(5);
@@ -767,7 +785,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 waitReady();
             }
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
             takess("addSsid");
             save.click();
