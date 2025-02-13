@@ -139,7 +139,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         }
     }
     
-//    Added by Vivek
+//    Added Vivek
     public void clickProAddDevice() {
         if (addDeviceProAccount.exists()) {
             addDeviceProAccount.click();

@@ -1391,7 +1391,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement  selectJazeNetwork     = $x("//span[text()=\"Jaze Networks\"]");
 
      
-//Added By Pratik
+//Added Pratik
      public SelenideElement ssidName(String ssidName) {
          SelenideElement Ssid = $x("//span[text()='" + ssidName + "']");
          return Ssid;
