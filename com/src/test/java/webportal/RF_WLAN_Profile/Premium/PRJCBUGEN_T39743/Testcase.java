@@ -74,7 +74,7 @@ public class Testcase extends TestCaseBase {
     }
     
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: verify customer profile option is available while creating new ssid")
     public void step3() {
         
         new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo);

@@ -80,9 +80,9 @@ public class Testcase extends TestCaseBase {
     public void step3() {
        
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().clickEditRF(RFNameedit,RFDescriptionedit);
+        new WirelessQuickViewPage(false).clickEditRF(RFNameedit,RFDescriptionedit);
         new WirelessQuickViewPage().GotoRF();
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFNameedit),"RF Not created");
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFNameedit),"RF Not created");
        
     }
     
@@ -90,7 +90,7 @@ public class Testcase extends TestCaseBase {
     public void step4() {
        
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().deleteRF(RFNameedit);
+        new WirelessQuickViewPage(false).deleteRF(RFNameedit);
        
        
     }

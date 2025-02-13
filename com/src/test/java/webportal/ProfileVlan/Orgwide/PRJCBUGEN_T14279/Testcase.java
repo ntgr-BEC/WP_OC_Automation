@@ -57,7 +57,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         new DevicesDashPage().checkDeviceInAdminAccount();
@@ -75,7 +75,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Password", "123456798");
 
        
-        new WirelessQuickViewPage().addSsid1(ssidInfo);
+        new WirelessQuickViewPage(false).addSsid1(ssidInfo);
 
         int sum = 0;
         while (true) {

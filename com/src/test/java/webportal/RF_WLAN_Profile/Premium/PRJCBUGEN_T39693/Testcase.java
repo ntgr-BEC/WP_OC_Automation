@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Go to device dash page and verify assign RF Profile and Unassign RF Profile")
     public void step2() {
        
         new DevicesDashPage().GoToDevicesDashPage();

@@ -55,7 +55,7 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().GotoRF();
         for(int j=0; j<RFlist.size();j++) {
             
-        new WirelessQuickViewPage().deleteRF(RFdata.get(RFlist.get(j)));
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get(RFlist.get(j)));
         }
         
         System.out.println("start to do tearDown");
@@ -90,8 +90,8 @@ public class Testcase extends TestCaseBase {
             String              rfname    = "apwptest" + String.valueOf(num);
             RFdata.put("RFName", rfname);
             
-            new WirelessQuickViewPage().CreateRFProfile(RFdata);
-            assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata.get(rfname)),"RF Not created");
+            new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get(rfname)),"RF Not created");
             RFlist.add(rfname);
         }
         

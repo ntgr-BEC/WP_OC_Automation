@@ -263,7 +263,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
             
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
             if (map.get("Security").equals("WPA2 PSK")) {
                 security.selectOption("WPA2-PSK");
@@ -594,7 +603,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 Disableclick.click();
             }
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
 
             MyCommonAPIs.sleepi(5);
@@ -767,7 +785,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 waitReady();
             }
             if (map.containsKey("VLANID")) {
-                VLANIDselection.selectOption(map.get("VLANID"));                
+                String elements = VLANIDselection.getText();
+                System.out.println("number of VLAN" +elements);
+                
+                if(elements.contains(map.get("VLANID"))) {
+                VLANIDselection.selectOption(map.get("VLANID"));     
+                }else {            
+                    AddCustomVLAN.click();
+                    VLANIDOrg.sendKeys(map.get("VLANIDorg"));
+                    
+                }
             }
             takess("addSsid");
             save.click();
@@ -10676,10 +10703,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
         MyCommonAPIs.sleepi(10);
-        GeneralRFDis.clear();
-        GeneralRFDis.sendKeys(map.get("RFDescriptionEdit"));
-        MyCommonAPIs.sleepi(5);
-        Saveedit.click();
+        editRFProfileDescription.clear();
+        editRFProfileDescription.sendKeys(map.get("RFDescriptionEdit"));
+        MyCommonAPIs.sleepi(2);
+        SaveEditRFProfile.click();
+        MyCommonAPIs.sleepi(2);
         
     }
     
@@ -10692,7 +10720,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
              
         
-        if(map.get("RFName").equals(GeneralRFName.getText()) & map.get("RFDescription").equals(GeneralRFDis.getText())) 
+        if(map.get("RFName").equals(editRFProfileName.getText()) & map.get("RFDescription").equals(editRFProfileDescription.getText()))  
         {
             
             result = true;
@@ -10938,15 +10966,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         RFProfileName.sendKeys(map.get("RFName"));
         RFProfileDescription.sendKeys(map.get("RFDescription"));
         MyCommonAPIs.sleepi(3);
-        CreateRFProfile.click();
-        
-        
-        result = DescriptionValidation.getText();
-        
-        return result;
-        
-        
-        
+        CreateRFProfile.click();     
+        MyCommonAPIs.sleepi(1);
+        result = DescriptionValidation.getText();      
+        return result;          
     }
     
     public boolean verifyassignedAP(Map<String, String> map) {

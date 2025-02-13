@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: verify customer profile option is available while creating new ssid")
     public void step2() {
        
         assertTrue(new WirelessQuickViewPage().checkCustomProfileSsid(),"CustomProfile does not exit");

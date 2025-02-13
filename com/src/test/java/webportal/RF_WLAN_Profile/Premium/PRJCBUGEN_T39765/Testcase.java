@@ -75,7 +75,7 @@ public class Testcase extends TestCaseBase {
                
         
         new WirelessQuickViewPage().GotoRF();
-        String Disvalid = new WirelessQuickViewPage().verifyDecription(RFdata);
+        String Disvalid = new WirelessQuickViewPage(false).verifyDecription(RFdata);
         assertTrue(Disvalid.contains("Enter a description with up to 512 alphanumeric characters"),"discription accepting more than 512 charecter");
 
        
