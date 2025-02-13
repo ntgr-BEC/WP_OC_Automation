@@ -224,7 +224,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement confirmok               = $("#SuccsEditWirNet");
     public SelenideElement Save                    = $x("//*[@id=\"divOvrHiddnWirSett\"]/div[3]/button[2]");
     public SelenideElement saveandconfigure        = $x("//*[@id=\"ssidForm\"]/../..//button[text()=\"Save and Configure\"]");
-    public SelenideElement deletessidyes           = $x("//button[text()=\"Delete\"]");
+    public SelenideElement deletessidyes           = $x("//button[text()='Delete']");
     public SelenideElement deletescheduledwifiyes  = $x("//button[contains(text(),'Delete')]");
     public SelenideElement editscheduledwifiyesbtn = $x(
           "//*[@id=\"divMainLocBarurlFiltering\"]/div[5]/div/div/div[3]/button[2]");
@@ -1410,37 +1410,37 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement  oktrunk     = $x("//*[@id=\"myModal\"]/div/div/div[3]/button[2]");
      
      
-     public SelenideElement ManageProfiles                = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[10]/a");
-     public SelenideElement RFProfiles                    = $x("//*[@id=\"macIPfilter\"]/div/div[2]/div[1]/div/ul/li[1]");
-     public SelenideElement CustomerProfile               = $x("//*[@id=\"macIPfilter\"]/div/div[2]/div[1]/div/ul/li[2]");
-     public SelenideElement OpenOffice                    = $x("//*[@id=\"DataTables_Table_5\"]/tbody/tr[1]/td[1]");
-     public SelenideElement Outdoor                       = $x("//*[@id=\"DataTables_Table_5\"]/tbody/tr[2]/td[1]");
-     public SelenideElement Savant                        = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[1]/td[1]");
-     public SelenideElement BandO                         = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[2]/td[1]");
-     public SelenideElement NICE                          = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[3]/td[1]");
-     public SelenideElement BluOS                         = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[4]/td[1]");
-     public SelenideElement addRFProfile                  = $x("//*[@id=\"DataTables_Table_6\"]/tbody/tr[4]/td[1]");
-     public SelenideElement RFProfileName                 = $x("//*[text()='Create RF Profile']/../../div[3]/div[2]/div/div/input");
-     public SelenideElement RFProfileDescription          = $x("//*[text()='Create RF Profile']/../../div[3]/div[2]/div/div[3]/input");
-     public SelenideElement CreateRFProfile               = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[4]/button[2]");
-     public SelenideElement CloseRFProfile                = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[1]/button");
+     public SelenideElement ManageProfiles                = $x("//div[@class='leftMenuItems']//a[@href='#/wireless/manageProfiles' and text()='Manage Profiles']");
+     public SelenideElement RFProfiles                    = $x("//li[text()='RF']");
+     public SelenideElement CustomerProfile               = $x("//li[text()='Customer Profile']");
+     public SelenideElement OpenOffice                    = $x("//td[contains(text(),'Open Office')][1]");
+     public SelenideElement Outdoor                       = $x("//td[contains(text(),'Outdoor')][1]");
+     public SelenideElement Savant                        = $x("//td[text()='Savant'][1]");
+     public SelenideElement BandO                         = $x("//td[text()='B & O'][1]");
+     public SelenideElement NICE                          = $x("//td[text()='NICE'][1]");
+     public SelenideElement BluOS                         = $x("//td[text()='BluOS'][1]");
+     public SelenideElement addRFProfile                  = $x("//div[@class='addIcon']");
+     public SelenideElement RFProfileName                 = $x("//input[@name='profileName']");
+     public SelenideElement RFProfileDescription          = $x("//input[@name='description']");
+     public SelenideElement CreateRFProfile               = $x("//h4[text()='Create RF Profile']/../..//button[text()='Create']");
+     public SelenideElement CloseRFProfile                = $x("//h4[text()='Create RF Profile']/../..//button[@class='close']");
      
      
-     public SelenideElement editRFProfileName             = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[1]/input");
-     public SelenideElement editRFProfileDescription      = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[2]/input");
-     public SelenideElement SaveEditRFProfile             = $x("//*[@id=\"general_save\"]");
-     public SelenideElement custom                        = $x("//*[@id=\"ssidForm\"]/div[2]/div/label/span");
+     public SelenideElement editRFProfileName             = $x("//h5[text()='Name']/../input");
+     public SelenideElement editRFProfileDescription      = $x("//h5[text()='Description']/../input");
+     public SelenideElement SaveEditRFProfile             = $x("//*[@id='general_save']");
+     public SelenideElement custom                        = $x("//h5[text()='Customer Profile']/../..//label[@class='cmnSwitch']/span");
      public SelenideElement customEdit                    = $x("//*[@id=\"divColMdClearFixeditWirNet\"]/div[6]/div/label/span");
-     public SelenideElement SelectProfile                 = $x("//*[@id=\"ssidForm\"]/div[2]/div[2]/select");
-     public SelenideElement enablecopyProfile             = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[3]/div[2]/div/div[2]/div[1]/div/label/i");
-     public SelenideElement SelectcopyProfile             = $x("//*[@id=\"divMainApNotify\"]/div[3]/div/div/div[3]/div[2]/div/div[2]/div[2]/select");
-     public SelenideElement DescriptionValidation         = $x("//*[@id=\"showErrorMsg\"]/div");
+     public SelenideElement SelectProfile                 = $x("//span[text()='Customer Profile']/../select");
+     public SelenideElement enablecopyProfile             = $x("//p[contains(text(),'Copy Configurations')]/../i");
+     public SelenideElement SelectcopyProfile             = $x("//span[text()='Preferred RF Profile']/..//select[@name='prefferedProfile']");
+     public SelenideElement DescriptionValidation         = $x("//*[contains(text(),'Enter a description with up to 512 alphanumeric characters')]");
      public ElementsCollection preferredcolumnsnew        = $$x("//*[@id=\"DataTables_Table_2\"]/thead/tr");
      
-     public SelenideElement GeneralRF                     = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[1]/a");
-     public SelenideElement DeviceListRF                  = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[2]/a");
-     public SelenideElement RadioSettingsRF               = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[3]/a");
-     public SelenideElement InstantWiFiPreferredChannelRF = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[4]/a");
+     public SelenideElement GeneralRF                     = $x("//div[contains(@class,'leftMenuItems')]//a[contains(text(),'General')]");
+     public SelenideElement DeviceListRF                  = $x("//div[contains(@class,'leftMenuItems')]//a[contains(text(),'Device List')]");
+     public SelenideElement RadioSettingsRF               = $x("//div[contains(@class,'leftMenuItems')]//a[contains(text(),'Radio Settings')]");
+     public SelenideElement InstantWiFiPreferredChannelRF = $x("//div[contains(@class,'leftMenuItems')]//a[contains(text(),'Instant WiFi Preferred')]");
      
      public SelenideElement GeneralRFName                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[1]/input");
      public SelenideElement GeneralRFDis                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[2]/input");
@@ -1451,9 +1451,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement DevicelistModel                = $x("//*[@id=\"macIPfilter\"]/div[2]/table/thead/tr/th[3]");
      
      
-     public SelenideElement outputpower24                   = $x("//*[@id=\"divSettRadiChnl\"]/select");
-     public SelenideElement channelWidth24                  = $x("//*[@id=\"dropdown-width\"]");
-     public SelenideElement RadioMode24                     = $x("//*[@id=\"divColMdRadiChnl\"]/div/div/div/div[2]/select");
+     public SelenideElement outputpower24                   = $x("//span[text()='2.4GHz']/../..//*[@id='divSettRadiChnl']/select");
+     public SelenideElement channelWidth24                  = $x("//span[text()='2.4GHz']/../..//*[@id='dropdown-width']");
+     public SelenideElement RadioMode24                     = $x("//span[text()='2.4GHz']/../..//*[text()='Radio Mode']/../../select");
      
      public SelenideElement outputpower24Device             = $x("(//*[@id=\"divColMdRadiChnl\"]/div[2]/select)[1]");
      public SelenideElement channelWidth24Device            = $x("(//*[@id=\"divOnOdSetRadiChnl\"]/select)[1]");
@@ -1468,19 +1468,19 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      
      public SelenideElement editRF(String text) {
-         SelenideElement RF = $x("//td[text()='" + text + "']/../td[9]/p");
+         SelenideElement RF = $x("//td[text()='" + text + "']/..//p[contains(@class,'actionIcons')]");
          
          return RF;
      }
      
      public SelenideElement deleteRFprofile(String text) {
-         SelenideElement RF = $x("//td[text()='" + text + "']/../td[9]/p/i[2]");        
+         SelenideElement RF = $x("//td[text()='" + text + "']/..//p[contains(@class,'actionIcons')]/i//img[@src='assets/img/commonIcons/del.png']");        
          return RF;
      }
      
      
      public SelenideElement editRFprofile(String text) {
-         SelenideElement RF = $x("//td[text()='" + text + "']/../td[9]/p/i[1]");        
+         SelenideElement RF = $x("//td[text()='" + text + "']/..//p[contains(@class,'actionIcons')]/i//img[@src='assets/img/commonIcons/edit.png']");        
          return RF;
      }
      public SelenideElement DisRFprofile(String text) {
@@ -1489,10 +1489,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      }
      
      public boolean getCustomStatus() {
-         if(customEdit.isDisplayed()) {
-             return customEdit.is(Condition.checked);
+         if(custom.isDisplayed()) {
+             return (custom.is(Condition.checked) || SelectProfile.isDisplayed());
          }else {
-             return custom.is(Condition.checked);
+             return customEdit.is(Condition.checked);
          }
          
      }

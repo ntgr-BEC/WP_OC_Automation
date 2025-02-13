@@ -439,10 +439,10 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement searchClick   = $("#btnApplySrchOrg");  
     public SelenideElement selectLocationDropdown = $x("(//div[@class='selectedValue'])[2]");
     
-    public SelenideElement AssignRFProfile     = $x("//*[text()=\"Assign RF Profile\"]");  
-    public SelenideElement UnassignRFProfile   = $x("//*[text()=\"Unassign RF Profile\"]");  
-    public SelenideElement SelectRF           = $x("//*[text()=\"RF Profile\"]/../select");
-    public SelenideElement SaveRF             = $x("//*[text()=\"RF Profile\"]/../../../../../div[4]/button[2]");
+    public SelenideElement AssignRFProfile     = $x("//*[text()='Assign RF Profile']");  
+    public SelenideElement UnassignRFProfile   = $x("//*[text()='Unassign RF Profile']");  
+    public SelenideElement SelectRF           = $x("//*[text()='RF Profile']/../select");
+    public SelenideElement SaveRF             = $x("//*[text()='RF Profile']/../../../../..//button[text()='Save']");
     
 
 
