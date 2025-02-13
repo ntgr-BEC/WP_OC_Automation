@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Verify RF Profile under Manage Profile tab on wireless settings page")
     public void step2() {
        
         new WirelessQuickViewPage().GotoRF();

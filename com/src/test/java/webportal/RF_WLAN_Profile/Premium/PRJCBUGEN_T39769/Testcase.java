@@ -49,7 +49,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().deleteRF(RFdata.get("RFName"));
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
         System.out.println("start to do tearDown");
 
     }
@@ -72,12 +72,12 @@ public class Testcase extends TestCaseBase {
         RFdata.put("RFDescription", "BEC Automation Team");       
         
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().CreateRFProfile(RFdata);
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
         
             
-        assertTrue(!new WirelessQuickViewPage().deleteRFprofile("Open Office").isDisplayed(), "");
-        assertTrue(!new WirelessQuickViewPage().deleteRFprofile("Outdoor").isDisplayed(), "");
-        assertTrue(new WirelessQuickViewPage().deleteRFprofile(RFdata.get("RFName")).isDisplayed(), "");
+        assertTrue(!new WirelessQuickViewPage(false).deleteRFprofile("Open Office").isDisplayed(), "");
+        assertTrue(!new WirelessQuickViewPage(false).deleteRFprofile("Outdoor").isDisplayed(), "");
+        assertTrue(new WirelessQuickViewPage(false).deleteRFprofile(RFdata.get("RFName")).isDisplayed(), "");
                 
        
     }

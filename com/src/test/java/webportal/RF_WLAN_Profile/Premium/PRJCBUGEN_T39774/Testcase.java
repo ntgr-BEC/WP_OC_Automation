@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().deleteRF(RFdata.get("RFName"));
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
         System.out.println("start to do tearDown");
 
     }

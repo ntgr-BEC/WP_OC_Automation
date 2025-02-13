@@ -50,8 +50,8 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().deleteRF(RFdata.get("RFName"));
-        new WirelessQuickViewPage().deleteRF(RFdata1.get("RFName"));
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        new WirelessQuickViewPage(false).deleteRF(RFdata1.get("RFName"));
         System.out.println("start to do tearDown");
 
     }
@@ -76,16 +76,16 @@ public class Testcase extends TestCaseBase {
         
         
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().CreateRFProfile(RFdata);
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata.get("RFName")),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
         
         RFdata1.put("RFName", "Netgear1");
         RFdata1.put("RFDescription", "BEC Automation Team1");
         RFdata1.put("Copy Configurations", "Open Office");
         
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().CreateRFProfile(RFdata1);
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata1.get("RFName")),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata1);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata1.get("RFName")),"RF Not created");
         
         
        

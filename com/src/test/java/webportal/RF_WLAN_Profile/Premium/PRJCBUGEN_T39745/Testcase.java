@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: While creating ssid add customer profile and verify")
     public void step2() {
        
         
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
        
     }
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: disable customer profile and verify")
     public void step3() {
               
 

@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {   
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().deleteRF(RFdata.get("RFName"));
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
         System.out.println("start to do tearDown");
 
     }
@@ -77,8 +77,8 @@ public class Testcase extends TestCaseBase {
         
         
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage().CreateRFProfile(RFdata);
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata.get("RFName")),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
        
     }
     
@@ -96,7 +96,7 @@ public class Testcase extends TestCaseBase {
         RFdata.put("Device Name", WebportalParam.ap1serialNo);
         RFdata.put("Device SerialNo", WebportalParam.ap1serialNo);
         RFdata.put("Device Model", WebportalParam.ap1Model);
-        assertTrue(new WirelessQuickViewPage().verifyassignedAP(RFdata),"RF Not proper");
+        assertTrue(new WirelessQuickViewPage(false).verifyassignedAP(RFdata),"RF Not proper");
         
         new DevicesDashPage().GoToDevicesDashPage();
         new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
