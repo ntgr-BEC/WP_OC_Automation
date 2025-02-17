@@ -9,6 +9,8 @@ import java.util.Random;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Condition;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -113,14 +115,14 @@ public class Testcase extends TestCaseBase {
     }
 
     
-    @Step("Test Step 4: Check 5 Ghz band channels are same as showing on tera term;")
+    @Step("Test Step 4: Check 6 Ghz band channels are same as showing on tera term;")
     public void step4() {
-        
+        handle.gotoLoction();
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
         MyCommonAPIs.sleepi(10);
-        new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click(); 
-        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("5GHz"), "5 Ghz band channels are not same as showing on tera term");
+        new WirelessQuickViewPage(false).DropDown5GhzHigh.click();
+        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("6GHz"), "6 Ghz band channels are not same as showing on tera term");
         
     }
 

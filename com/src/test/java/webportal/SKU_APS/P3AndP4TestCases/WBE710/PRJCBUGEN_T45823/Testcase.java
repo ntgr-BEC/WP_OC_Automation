@@ -118,7 +118,9 @@ public class Testcase extends TestCaseBase {
         
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
-        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("2.4GHz"), "2.4 Ghz band channels are not same as showing on tera term");
+        MyCommonAPIs.sleepi(10);
+        new WirelessQuickViewPage(false).DropDown5GhzLow.click(); 
+        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("5GHz"), "5 Ghz band channels are not same as showing on tera term");
         
     }
 

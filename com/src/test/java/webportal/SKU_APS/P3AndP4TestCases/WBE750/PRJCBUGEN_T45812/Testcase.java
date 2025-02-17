@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase {
 
     @Feature("RadioLevelConfigurations") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T45812") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("verify the channel for 5 ghz for WBE750 in New Zealand") // It's a testcase title from Jira Test Case.
+    @Description("verify the channel for 6 ghz for WBE750 in New Zealand") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T45812") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -113,12 +113,14 @@ public class Testcase extends TestCaseBase {
     }
 
     
-    @Step("Test Step 4: Check 2.4 Ghz band channels are same as showing on tera term;")
+    @Step("Test Step 4: Check 6 Ghz band channels are same as showing on tera term;")
     public void step4() {
         
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
-        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("2.4GHz"), "2.4 Ghz band channels are not same as showing on tera term");
+        MyCommonAPIs.sleepi(10);
+        new WirelessQuickViewPage(false).DropDown5GhzHigh.click();
+        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("6GHz"), "6 Ghz band channels are not same as showing on tera term");
         
     }
 

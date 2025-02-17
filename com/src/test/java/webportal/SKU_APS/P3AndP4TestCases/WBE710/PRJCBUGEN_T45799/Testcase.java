@@ -113,14 +113,12 @@ public class Testcase extends TestCaseBase {
     }
 
     
-    @Step("Test Step 4: Check 5 Ghz band channels are same as showing on tera term;")
+    @Step("Test Step 4: Check 2.4 GHz band channels are same as showing on tera term;")
     public void step4() {
         
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
-        MyCommonAPIs.sleepi(10);
-        new WirelessQuickViewPage(false).DropDown5GhzLow.click(); 
-        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("5GHz"), "5 Ghz band channels are not same as showing on tera term");
+        assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("2.4GHz"), "2.4 Ghz band channels are not same as showing on tera term");
         
     }
 
