@@ -77,7 +77,7 @@ public class AccountPage extends AccountPageElement {
                 addNetWorkPro.click();
                 addsinglelocation.click();
             }
-            MyCommonAPIs.sleepi(35);
+            MyCommonAPIs.sleepi(40);
             waitElement(addNetLocationName);
             // timeZone.waitUntil(Condition.matchText("UTC"), 40 * 1000);
             // MyCommonAPIs.sleep(10000);
