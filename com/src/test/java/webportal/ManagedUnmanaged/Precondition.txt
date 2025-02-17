@@ -1,0 +1,11 @@
+Managed Unmanaged Feature preconditions:
+
+Premium test cases:
+AP5 to AP8 Non HB Dummy Devices required to onboard before starting suite
+AP9 Non HB Dummy AP need to configure no need to onboard
+AP10 HardBundle Dummy AP need to configure no need to onboard
+
+Pro Test Cases: Org Name: Netgear; office name: office1 and allocate 4 device credits to organization
+AP5 to AP8 Non HB Dummy Devices required to onboard before starting suite
+AP9 Non HB Dummy AP need to configure no need to onboard
+AP10 HardBundle Dummy AP need to configure no need to onboard
