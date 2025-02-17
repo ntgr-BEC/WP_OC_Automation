@@ -685,7 +685,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        checkband5                  = $x("//*[@id=\"band_5\"]");
     public SelenideElement        checkband6                  = $x("//*[@id=\"band_6\"]");
     
-//    locate device
+//    locatedevice
     public SelenideElement        Locatedevice                       = $x("//*[@id=\"spnStDetSumm\"]/a[2]/small");
     public SelenideElement        LocatedeviceClick                  = $x("//*[@id=\"spnStDetSumm\"]/a[2]/small/span[1]");
     public SelenideElement        Stop                               = $x("//*[@id=\"spnStDetSumm\"]/a[2]/small/span[2]");
