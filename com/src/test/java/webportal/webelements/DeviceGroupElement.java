@@ -21,7 +21,7 @@ import webportal.weboperation.WiredVLANPage;
 public class DeviceGroupElement extends MyCommonAPIs {
     Logger logger = Logger.getLogger("DeviceGroupElement");
 
-
+   
     public static SelenideElement DeviceGroup                         = $x("//*[@href=\"#/network/deviceGroups\"]");
     public static SelenideElement SysLog                              = $x("(//*[@href='#/network/SyslogConfiguration'])[1]");
     public static SelenideElement LedSettings                         = $x("//*[@href=\"#/network/LedSettings\"]");
@@ -179,13 +179,28 @@ public class DeviceGroupElement extends MyCommonAPIs {
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
         if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
             $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
-        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("$x(\"//p[@title='\" + Name + \"']/../../ul//b[text()='Edit location']/..").click();
+        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
+            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
         }
         
     }
     
     public static SelenideElement        enableSysLogText                         =$x("//*[text()=\"Enable Syslog\"]");
     public static SelenideElement okSys   = $x("//*[@id=\"SuccsEditWirNet\"]");
+    
+    
+    // Tejeshwini NASID
+    
+    
+    public static SelenideElement Radious                             = $x("//*[@href= \"#/network/Radius\" and @class ='anchor']");
+    public static SelenideElement enableRadiouscheck                  = $x("//*[@id=\"onOffAuthStatusRadius\"]");
+    public static SelenideElement enableRadious                       = $x("//*[@id=\"_divTogOnOfSetRaLiBlColMdRowStRad\"]/span");
+    public static SelenideElement NASID                               = $x("//*[@id=\"nasIdentifierValue\"]");
+    public static SelenideElement SaveRadious                         = $x("//*[@id=\"_buSaveBtnTwo\"]");
+    public static SelenideElement confirmRadious                      = $x("//*[@id=\"SuccsEditWirNet\"]");
+    public static SelenideElement confirmdisableRadious               = $x("//*[contains(text(), \"SSIDs using WPA Enterprise security will stop working\")]/../../div/button[contains(@class, 'btn-danger')]");
+    public static SelenideElement ExcMessage                          = $x("//*[@id=\"radiusMsg\"]");
+    
+    
 }
 

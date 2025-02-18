@@ -3,7 +3,7 @@ package webportal.weboperation;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-import java.util.Map;
+import java.lang.*;
 import java.util.logging.Logger;
 import org.openqa.selenium.Keys;
 import com.codeborne.selenide.Condition;
@@ -39,6 +39,19 @@ public class DeviceGroupPage extends DeviceGroupElement {
     public DeviceGroupPage() {
         logger.info("init...");
     }
+    
+    
+    public void GoToeditRadious(String locationName) {
+        MyCommonAPIs.sleepi(5);
+        open(URLParam.hrefaccount, true);
+        MyCommonAPIs.sleepi(10);
+        if (locationName(locationName).exists()) {
+            editNetwork(locationName);
+            MyCommonAPIs.sleepi(3);
+        }
+        Radious.click();
+        MyCommonAPIs.sleepi(5);
+     }
     
     
     public void GoToDeviceGroup(String locationName) {
@@ -851,4 +864,79 @@ public class DeviceGroupPage extends DeviceGroupElement {
                 return null;
             }
         }
+        
+        //added by Tejeshwini K V
+        
+        public static boolean checkRadiousEnable() {
+        
+            boolean isenabled = false;
+            boolean status;
+            status = enableRadiouscheck.isSelected();
+            java.lang.System.out.println(status);
+            if(status==true) {
+                isenabled = true;
+            }
+            java.lang.System.out.println("is radious is enabled" +isenabled);
+            return isenabled;
+            
+        }
+        
+        public  void disable() {
+            MyCommonAPIs.sleepi(5);
+            open(URLParam.hrefaccount, true);
+            MyCommonAPIs.sleepi(10);
+            GoToeditRadious(WebportalParam.location1);
+            MyCommonAPIs.sleepi(5);
+            if(checkRadiousEnable()) {
+            NASID.clear();
+            enableRadious.click();  
+            MyCommonAPIs.sleepi(2);
+            confirmdisableRadious.click();
+            SaveRadious.click();
+            MyCommonAPIs.sleepi(5);
+            confirmRadious.click();
+            }else {
+                java.lang.System.out.println("alredy disabled");
+            }
+        }
+        
+        public static void AddNASID(String NASIDname) {
+            MyCommonAPIs.sleepi(5);
+            if(checkRadiousEnable()) {
+                NASID.clear();
+                NASID.sendKeys(NASIDname);
+            }else {
+                enableRadious.click();
+                NASID.clear();
+                NASID.sendKeys(NASIDname);
+            }
+            MyCommonAPIs.sleepi(5);
+            SaveRadious.click();
+            MyCommonAPIs.sleepi(5);
+            confirmRadious.click();
+        }
+        
+        public static boolean AddNASIDexc(String NASIDname) {
+            boolean Result = false;
+            MyCommonAPIs.sleepi(5);
+            if(checkRadiousEnable()) {
+                NASID.clear();
+                NASID.sendKeys(NASIDname);
+            }else {
+                enableRadious.click();
+                NASID.clear();
+                NASID.sendKeys(NASIDname);
+            }
+            MyCommonAPIs.sleepi(5);
+            SaveRadious.click();
+            MyCommonAPIs.sleepi(5);
+            String message = ExcMessage.getText();
+            if(message.contains("between 3-253")) {
+                Result = true;
+            }
+            return Result;
+        }
+        
+        
+        
 }
