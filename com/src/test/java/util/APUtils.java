@@ -658,14 +658,14 @@ public class APUtils extends MyCommonAPIs {
         String status = "";
         if (Model.equals("WAC505") || Model.equals("WAC510") || Model.equals("WAC540") || Model.equals("WAC564")|| Model.startsWith("WAC")) {
             logger.info("entered WAC model");
-            status = plink.getOutput("cat /var/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group0", default_timeout_ssh);
+            status = plink.getOutput("cat /var/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group7", default_timeout_ssh);
             System.out.println(status);
             
         }
 
         if (Model.equals("WAX610") ||  Model.startsWith("WAX") || Model.startsWith("WBE")) {
             logger.info("entered WAX model");
-            status = plink.getOutput("cat /sysconfig/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group0", default_timeout_ssh);
+            status = plink.getOutput("cat /sysconfig/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group7", default_timeout_ssh);
             System.out.println(status);
             
         }
