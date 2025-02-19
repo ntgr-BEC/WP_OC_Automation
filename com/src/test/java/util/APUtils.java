@@ -1707,5 +1707,20 @@ public String getBandChannelsStatus(String Model, String band) {
     return status;
 }
 
+
+public String getNASID(String Model) {
+    boolean result = false;
+    String status = "";
+ 
+    if ( Model.startsWith("WAX") || Model.startsWith("WBE")) {
+        MyCommonAPIs.sleepi(30);
+        logger.info("entered WAX model");
+        status = plink.getOutput("grep -nir \"nasIdentifier\" /sysconfig/config", default_timeout_ssh);
+        System.out.println(status);
+       
+    }
+    return status;
+}
+
 }
 
