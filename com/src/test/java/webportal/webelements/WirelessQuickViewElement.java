@@ -241,7 +241,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
 
     public SelenideElement        selectinsightcaptiveportal    = $x("//input[@id='instantCpRadio']/..");
-     public SelenideElement        selectinsightECP              = $x("//input[@id='externalCP']/..");
+     public SelenideElement       selectinsightECP              = $x("//*[@name=\"cpStatus\"and @value =3]/..");
     public SelenideElement        checkIcpSelected              = $x("//input[@id='instantCpRadio']");
     public SelenideElement        icpinsufficientcredit         = $x("//div[contains(@style,'display: block;')]//button[@id='insufficientCredit']");
     public SelenideElement        icpinsufficientcreditclose    = $x("//div[contains(@style,'display: block;')]//button[@class='close']");
@@ -996,7 +996,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement orgWideSSIDedit3            = $x("//span[text()='apwp14271']");
      public SelenideElement deleteOrgSSID              = $("#imgdellanColumnWirSett0");
      public SelenideElement deleteOrgSSID1              = $("#imgdellanColumnWirSett1");
-     public SelenideElement orgwidessidCaptivePortal      = $x("(//a[text()='Captive Portal'])[1]");
+     
      public SelenideElement orgWideSSIDedit1            = $x("//td[text()='Enable']");
      public SelenideElement orgwideSSIDIPCErrrorMsgPopup            = $x("//h4[text()='Insufficient Credits.']");
      public SelenideElement btnInsufcred            = $("#insufficientCredit");
@@ -1101,7 +1101,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement        saveokECP                = $x("//*[@id=\"btnSavCapPort\"]");
      public SelenideElement        SuccsECP                 = $x("//*[@id=\"SuccsEditWirNet\"]");
      public SelenideElement        WalledGarden             = $x("//*[@id=\"validateWalledGardenUrl\"]/div/textarea");
-     public SelenideElement        AddWalledGarden          = $x("(//*[text()=\"Add\"])[2]");
+     public SelenideElement        AddWalledGarden          = $x("//*[text()=\"Add\" and @class =\"backPurple btn-default colorWhite\"]");
      public SelenideElement        SaveeditECP              = $x("//*[@id=\"btnSavCapPort\"]");
      public SelenideElement        RemioveWalledGarden      = $x("//*[text()=\"Remove\"]");
      public SelenideElement        SplashPageURL            = $x("//*[@id=\"SplashPageURL\"]/div/div/div/input");
@@ -1549,6 +1549,13 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement        VLANIDselection         = $x("//*[@id=\"vlanInput\"]");
 	 public SelenideElement        AddCustomVLAN           = $x("//*[@id=\"customVlan\"]");
 	 public SelenideElement        VLANIDOrg                  = $x("//*[@id=\"newVlanId\"]");
+	 
+//	 tejeshwini K V
+	 
+	 public SelenideElement NASID                         = $x("//*[@data-type=\"nasIdentifier\"]");
+	 public SelenideElement selectGoZone                  = $x("//*[text()=\"GoZone Wi-Fi\"]");
+	 public SelenideElement SelectUseExternal             = $x("//*[@name=\"cpStatus\"and @value =3]");
+	 public SelenideElement orgwidessidCaptivePortal      = $x("//a[text()='Captive Portal' and @class = 'anchoractiveLeftMenu']");
 }
 
 
