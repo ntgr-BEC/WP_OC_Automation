@@ -5632,8 +5632,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         System.out.println("Print the element");
 
-        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
-        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
 
         System.out.println(actOnDateText);
         System.out.println(expOnDateText);

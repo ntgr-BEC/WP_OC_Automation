@@ -92,7 +92,7 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).FillInvitemanagerOwnerInfoAndVerifylogin(proAccountInfo);
         
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword("apwptest1100@yopmail.com", proAccountInfo.get("Password"));
+        webportalLoginPage.loginByUserPassword(vochMan, proAccountInfo.get("Password"));
         
         assertTrue(new HamburgerMenuPage(false).checkLoginSuccessful());
         
