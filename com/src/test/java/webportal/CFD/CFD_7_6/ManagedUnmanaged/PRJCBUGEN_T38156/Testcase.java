@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
             
         System.out.println("start to do tearDown");
-        new OrganizationPage(false).deleteOrganization("Netgearnew");
+        new OrganizationPage(true).deleteOrganization("Netgearnew");
     }
 
     // Each step is a single test step from Jira Test Case

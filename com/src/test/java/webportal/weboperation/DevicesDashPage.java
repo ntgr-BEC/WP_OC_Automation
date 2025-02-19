@@ -3319,5 +3319,26 @@ public boolean verifySettingPageFilterAirbridge() {
                 }
             }
             
+            public String validateOnboardingError(Map<String, String> map) {
+                String text = "";
+                clickAddDevice();
+                waitElement(addDeviceBtn);
+                serialNo.sendKeys(map.get("Serial Number"));
+                MyCommonAPIs.sleepi(3);
+                addDeviceBtn.click();
+                MyCommonAPIs.sleepi(3);
+                macAddress.sendKeys(map.get("MAC Address"));
+                MyCommonAPIs.sleepi(5);
+                next.click();
+                MyCommonAPIs.sleepi(5);
+                if (addDeviceErrorMsg.exists()) {
+                    text = getText(addDeviceErrorMsg);
+                    clickBoxFirstButton();
+                }
+                return text;
+            }
+            
+            
+            
 }
     

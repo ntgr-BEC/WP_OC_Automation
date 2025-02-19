@@ -50,7 +50,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
             
         System.out.println("start to do tearDown");
-        new OrganizationPage(false).deleteOrganization("Netgearnew");
+        new OrganizationPage(true).deleteOrganization("Netgearnew");
     }
 
     // Each step is a single test step from Jira Test Case
@@ -114,8 +114,18 @@ public class Testcase extends TestCaseBase {
                 "Allocate credits error.");
     }
 
-    @Step("Test Step 4:Onboard dummy AP and Verify unused credits;")
+    @Step("Test Step 4:Enable Manage button;")
     public void step4() {
-  
+        
+        new OrganizationPage(false).openOrg("Netgearnew");
+        MyCommonAPIs.waitReady();
+        new AccountPage(false).enterLocation("officenew");
+        new DevicesDashPage(false).GoToDevicesDashPage();
+        new DevicesDashPage(false).enablemanagedUnmanagedSwitch(WebportalParam.ap5serialNo);
+        
+        HashMap<String, String> creditsInfo = new HamburgerMenuPage().getCreditAllocationStatus("Netgearnew");
+        assertTrue(
+                creditsInfo.get("Used Devices Credits").equals("1") && creditsInfo.get("Unused Devices Credits").equals("0"),
+                "Allocate credits error.");
 }
 }
