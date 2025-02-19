@@ -3305,5 +3305,19 @@ public boolean verifySettingPageFilterAirbridge() {
                 return result;
             }
             
+            public void deleteAllDevices() {
+                
+                MyCommonAPIs.sleepi(10);
+                waitReady();
+                while (deviceList.exists()) {
+                    logger.info("entered delete loop");
+                    String devicename = deviceNameExt.text();
+                    System.out.print(devicename);
+                    logger.info("no ssid to delete");
+                    deleteDeviceYes(devicename);
+                    waitReady();
+                }
+            }
+            
 }
     

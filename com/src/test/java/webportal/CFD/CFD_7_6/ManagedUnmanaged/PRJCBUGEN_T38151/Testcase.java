@@ -1,4 +1,4 @@
-package webportal.ManagedUnmanaged.Premium.PRJCBUGEN_T40262;
+package webportal.CFD.CFD_7_6.ManagedUnmanaged.PRJCBUGEN_T38151;
 
 import static org.testng.Assert.assertTrue;
 
@@ -26,28 +26,28 @@ import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author Pratik
+ * @author Ravishankar S
  *
  */
 public class Testcase extends TestCaseBase {
-    
-    int temp;
-    int temp1;
-    
+
+
     @Feature("ManagedUnmanaged") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T40262") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("[Premium] Test to verify the user can disable the managed toggle button, and then the device credit moves to the available state.") // It's a testcase title from Jira Test
-                                                                                                          // Case.
-    @TmsLink("PRJCBUGEN_T40262") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T38151") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("[premium]Test to verify the toggle button its enabled.")
+    @TmsLink("PRJCBUGEN_T38151") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
-
+    
+    
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        handle.gotoLoction();
+        new DevicesDashPage().deleteDevice1(WebportalParam.ap5serialNo);     
     }
 
     // Each step is a single test step from Jira Test Case
@@ -59,17 +59,17 @@ public class Testcase extends TestCaseBase {
     }
 
     @Step("Test Step 2:Verify Managed Unmanaged switch on device dash page is working fine;")
-    public void step2() throws InterruptedException {
-        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
-        int beforeInsightDevices = new HamburgerMenuPage().verifyDeviceCredits();
+    public void step2() {
+        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
         MyCommonAPIs.sleepi(5);
-        assertTrue(new DevicesDashPage().disablemanagedSwitch(WebportalParam.ap5serialNo));
-        MyCommonAPIs.sleepi(5);
-        int afterInsightDevices = new HamburgerMenuPage().verifyDeviceCredits();
-        int diff = beforeInsightDevices-afterInsightDevices;
-        int disabledevicec = 1;
-        assertTrue((diff==disabledevicec), "After doing unmanged device device credits was not changed accordingly");
-        new DevicesDashPage().enablemanagedUnmanagedSwitch(WebportalParam.ap5serialNo);
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        
+        System.out.println(firststdevInfo);
+                 
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        assertTrue(new DevicesDashPage().verifyManageUnmanageswiutchIsthereafternewdeviceonboard(WebportalParam.ap5serialNo),"Test case not passed successfully");
     }
-
 }

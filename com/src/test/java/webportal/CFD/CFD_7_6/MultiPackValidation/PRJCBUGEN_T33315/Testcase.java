@@ -1,4 +1,4 @@
-package webportal.Multipack10Device1Year.PRJCBUGEN_T25730;
+package webportal.CFD.CFD_7_6.MultiPackValidation.PRJCBUGEN_T33315;
 
 import static org.testng.Assert.assertTrue;
 
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -21,11 +22,12 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author Tejeshwini K V
+ * @author RaviShankar S
  *
  */
 public class Testcase extends TestCaseBase {
@@ -36,14 +38,21 @@ public class Testcase extends TestCaseBase {
     Map<String, String> paymentInfo = new HashMap<String, String>();
    
 
-    @Feature("Multipack 10Device 1Year") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T25730") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Muktipack 10Device 1Year Canada") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T25730") // It's a testcase id/link from Jira Test Case.
+    @Feature("Multipack 5Device 1Year") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T33315") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Muktipack 5Device 1Year Australia") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN-PRJCBUGEN_T33315") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
+    }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap1serialNo);
+        
     }
 
     @AfterMethod(alwaysRun = true)
@@ -64,11 +73,10 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
-        accountInfo.put("Country", "Canada");
+        accountInfo.put("Country", "Australia");
 
         new HamburgerMenuPage(false).createAccount(accountInfo);        
-        
-       
+         
     }
     
     @Step("Test Step 2: Create new location")
@@ -92,8 +100,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
        
         
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
         
         System.out.println(firststdevInfo);
  
@@ -116,14 +124,14 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("First Name", "New");
         paymentInfo.put("Last Name", "New");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Device Credits Pack", "10");
+        paymentInfo.put("Device Credits Pack", "5");
         paymentInfo.put("Buy Year", "1");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Whitehorse");
-        paymentInfo.put("City", "Ontario");
-        paymentInfo.put("Zip", "L6A");
-        paymentInfo.put("Country", "Canada");
-        paymentInfo.put("State", "Ontario");
+        paymentInfo.put("Street Address", "Main Street");
+        paymentInfo.put("City", "Montville");
+        paymentInfo.put("Zip", "4560");
+        paymentInfo.put("Country", "Australia");
+        paymentInfo.put("State", "Queensland");
        
         new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
         
@@ -137,5 +145,6 @@ public class Testcase extends TestCaseBase {
 
         assertTrue(!new HamburgerMenuPage(false).checkDeviceCredits(paymentInfo.get("Device Credits Pack")));
     }
+
 
 }

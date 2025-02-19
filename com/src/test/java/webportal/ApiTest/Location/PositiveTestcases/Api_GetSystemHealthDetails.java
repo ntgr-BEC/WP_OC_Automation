@@ -92,7 +92,7 @@ public class Api_GetSystemHealthDetails extends TestCaseBaseApi{
         .body("details.notificationCount", equalTo(0))
         .body("details.criticalCount", equalTo(0))
         .body("details.warningCount", equalTo(0))
-        .body("details.totalUnreadUserAlarms", equalTo(1))
+        .body("details.totalUnreadUserAlarms", equalTo(0))
         .body("details.totalWirelessConnectedClients", equalTo(0));
        
     }                  

@@ -439,10 +439,10 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement searchClick   = $("#btnApplySrchOrg");  
     public SelenideElement selectLocationDropdown = $x("(//div[@class='selectedValue'])[2]");
     
-    public SelenideElement AssignRFProfile     = $x("//*[text()='Assign RF Profile']");  
-    public SelenideElement UnassignRFProfile   = $x("//*[text()='Unassign RF Profile']");  
-    public SelenideElement SelectRF           = $x("//*[text()='RF Profile']/../select");
-    public SelenideElement SaveRF             = $x("//*[text()='RF Profile']/../../../../..//button[text()='Save']");
+    public SelenideElement AssignRFProfile     = $x("//*[text()=\"Assign RF Profile\"]");  
+    public SelenideElement UnassignRFProfile   = $x("//*[text()=\"Unassign RF Profile\"]");  
+    public SelenideElement SelectRF           = $x("//*[text()=\"RF Profile\"]/../select");
+    public SelenideElement SaveRF             = $x("//*[text()=\"RF Profile\"]/../../../../../div[4]/button[2]");
     
 
 
@@ -508,8 +508,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement wbeAPAFPowemodeStatus(String powerMode) {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }
-	
-	 public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
+    
+    public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
     public SelenideElement        deviceNameExt               = $x("//*[@id='pdevIddevicesDash0']");
 
 }

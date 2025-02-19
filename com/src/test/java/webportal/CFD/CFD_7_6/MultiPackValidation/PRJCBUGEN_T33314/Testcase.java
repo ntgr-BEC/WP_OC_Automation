@@ -1,4 +1,4 @@
-package webportal.Multipack10Device1Year.PRJCBUGEN_T25730;
+package webportal.CFD.CFD_7_6.MultiPackValidation.PRJCBUGEN_T33314;
 
 import static org.testng.Assert.assertTrue;
 
@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -21,11 +22,12 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author Tejeshwini K V
+ * @author RaviShankar S
  *
  */
 public class Testcase extends TestCaseBase {
@@ -36,14 +38,21 @@ public class Testcase extends TestCaseBase {
     Map<String, String> paymentInfo = new HashMap<String, String>();
    
 
-    @Feature("Multipack 10Device 1Year") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T25730") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Muktipack 10Device 1Year Canada") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T25730") // It's a testcase id/link from Jira Test Case.
+    @Feature("Multipack 5Device 1Year") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T33314") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Muktipack 5Device 1Year Australia") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN-PRJCBUGEN_T33314") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
+    }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap1serialNo);
+        
     }
 
     @AfterMethod(alwaysRun = true)
@@ -137,5 +146,6 @@ public class Testcase extends TestCaseBase {
 
         assertTrue(!new HamburgerMenuPage(false).checkDeviceCredits(paymentInfo.get("Device Credits Pack")));
     }
+
 
 }

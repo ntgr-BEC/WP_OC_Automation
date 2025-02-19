@@ -628,5 +628,10 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement manager = $x("//td[text()='"+managerName+"']");
         return manager;
     }
+    public SelenideElement deviceCount                          =$x("//*[@class='m-r-25']/../span[2]/span");
+    public SelenideElement OrgCardDeviceDataDisconnected(String Org_name) {
+        SelenideElement url = $x("//p[text()='" + Org_name + "']/..//ul[@class='list-inline list-unstyled Organization-grid-details']//li[3]");
+        return url;
+    }
 
 }
