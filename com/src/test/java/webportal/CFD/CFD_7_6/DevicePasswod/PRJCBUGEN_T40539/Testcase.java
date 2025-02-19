@@ -1,6 +1,6 @@
 package webportal.CFD.CFD_7_6.DevicePasswod.PRJCBUGEN_T40539;
 
-import static org.junit.Assert.assertFalse;
+
 import static org.testng.Assert.assertTrue;
 
 import java.util.HashMap;
@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
     @Step("Check for Device password under Owner")
     public void step2() {
         new DevicesDashPage().enterDevice(WebportalParam.ap1serialNo);
-        assertFalse(new DevicesDashPage(false).VerifyUserAbleToPwdReadOnly("Netgear1@"));
+        assertTrue(!new DevicesDashPage(false).VerifyUserAbleToPwdReadOnly("Netgear1@"));
 
     }
     

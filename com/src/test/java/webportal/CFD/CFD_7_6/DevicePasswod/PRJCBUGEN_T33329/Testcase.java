@@ -1,6 +1,6 @@
 package webportal.CFD.CFD_7_6.DevicePasswod.PRJCBUGEN_T33329;
 
-import static org.junit.Assert.assertFalse;
+
 import static org.testng.Assert.assertTrue;
 
 import java.util.HashMap;
