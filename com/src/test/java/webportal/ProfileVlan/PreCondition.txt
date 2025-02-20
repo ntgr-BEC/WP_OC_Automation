@@ -1,0 +1,39 @@
+To configure a topology consisting of a PRX60 device connected to a switch and then to an Access Point (AP)
+
+then Create VLAN with below configuration, 
+
+
+Network Settings
+
+Network Name: 10
+Description: 10
+VLAN Name: 10
+VLAN ID: 10
+
+Wired Settings
+
+Tagging for Ports:
+Tag all ports on the PRX60 device.
+Tag all ports on the switch that are connected to the PRX60 and the AP.
+Note: Skip wireless and IP configuration at this stage.
+
+DHCP Server Configuration
+
+Gateway Settings
+Gateway IP Address: 10.0.10.1
+Subnet Mask: 255.255.255.0
+Enable DHCP Server
+Start IP Address: 10.0.10.2
+End IP Address: 10.0.10.254
+
+
+
+NOTE: if you chnage VLAN ID then chnage configuration in CommonDataType.PROFILE_VLAN in code 
+
+
+
+
+
+
+
+
