@@ -7972,8 +7972,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void enableECP() {
 
         entercaptiveportal.click();
-        MyCommonAPIs.sleepi(20);
-        enablecaptiveportal.click();
+//        enablecaptiveportal.click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
@@ -8319,7 +8318,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if(map.containsKey("ECP Type")) {
                 selectDropdown.click();
                 MyCommonAPIs.sleepi(4);
+                if(map.get("ECP Type").equals("GoZone Wi-Fi")) {
+                    selectGoZone.click();
+                }else {
                 selectJaze.click();
+            }
                 MyCommonAPIs.sleepi(2);
             }
 
@@ -8331,6 +8334,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (map.containsKey("Captive Portal Authentication Type")) {
                 MyCommonAPIs.sleepi(4);
                 radius.click();
+            }
+            
+            if (map.containsKey("NASID")) {
+                NASID.sendKeys(map.get("NASID"));
             }
 
             if (map.containsKey("IPv4 Address")) {
@@ -11634,7 +11641,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return overallMatch;
     }
 
-
+    
     
 }
 
