@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that location password should be 8 characters long, include upper case, lower case") 
     @TmsLink("PRJCBUGEN_T13874") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }

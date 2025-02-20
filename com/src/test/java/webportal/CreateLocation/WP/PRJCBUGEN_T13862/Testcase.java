@@ -44,7 +44,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user is able to create multiple locations in a pro account (Manager)") 
     @TmsLink("PRJCBUGEN_T13862") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }

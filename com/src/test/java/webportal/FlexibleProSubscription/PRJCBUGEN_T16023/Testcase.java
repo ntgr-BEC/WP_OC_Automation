@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
                                                                                                                // Test Case.
     @TmsLink("PRJCBUGEN-T16023") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
