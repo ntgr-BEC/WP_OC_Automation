@@ -34,7 +34,7 @@ public class TestCase extends TestCaseBase {
     int NoofRows = 0;
     int count = 0;
     
-    @Feature("Bulk Onboarding") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("ProBulkOnboardingEnhancement") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T28278") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify, from org level by clicking '+' to add single Location> we get green acknowledge banner on successful loc creation") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T28278") // It's a testcase id/link from Jira Test Case.
