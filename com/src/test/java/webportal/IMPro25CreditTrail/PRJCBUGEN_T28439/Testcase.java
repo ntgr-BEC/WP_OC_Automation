@@ -47,7 +47,10 @@ public class Testcase extends TestCaseBase {
     @Description("Verify whether Insight Pro trial license Key get listed in Purchase Order History and Subscription page") 
     @TmsLink("PRJCBUGEN-T28439") // It's a testcase id/link from Jira Test Case.
 
-   
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
+    public void test() throws Exception {
+        runTest(this);
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
