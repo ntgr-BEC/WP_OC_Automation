@@ -5683,7 +5683,11 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(5);
         PolicyInorg.click();
         MyCommonAPIs.sleepi(5);
+        if(ApplytoAllOrgscheck.isSelected()) {
+            System.out.println("No need to check");
+        }else {
         ApplytoAllOrgsCheckbox.click();
+        }
         MyCommonAPIs.sleepi(5);
         BusinessOwnerEmailCheckbox.click();
         MyCommonAPIs.sleepi(5);

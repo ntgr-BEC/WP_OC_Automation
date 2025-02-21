@@ -545,6 +545,7 @@ public class OrganizationElement extends MyCommonAPIs {
   // Added by Anusha H
   public SelenideElement        PolicyInorg                     = $x("(//a[@href=\"#/organization/settings/policy\"])[1]");
   public SelenideElement        ApplytoAllOrgsCheckbox          = $x("//*[@id=\"radioEmailMSP1\"]/label/i");
+  public SelenideElement        ApplytoAllOrgscheck              = $x("//*[@id=\"applyToAllOrg\"]");
   public SelenideElement        ApplytoAllOrgsCheckbox1          = $x("//*[@id=\"applyToAllOrg\"]");
   public SelenideElement        OrgInProAcct                    = $x("//*[@id=\"radioEmailMSP1\"]/label/i");
   public SelenideElement        BusinessOwnerEmailCheckbox      = $x("//*[text()=\"Email Notifications\"]/../div/label[2]/i");
