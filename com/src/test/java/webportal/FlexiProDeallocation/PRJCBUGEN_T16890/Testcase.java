@@ -27,7 +27,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify user have option \"Deallocate\" for Premium Account in Webportal") // It's a test case title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16890") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }

@@ -29,7 +29,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user is able to change the organization owner") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T13879") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2", enabled = false)
+    @Test(alwaysRun = true, groups = "p1", enabled = false)
     public void test() throws Exception {
         runTest(this);
     }

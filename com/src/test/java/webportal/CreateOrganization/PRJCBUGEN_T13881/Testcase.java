@@ -28,7 +28,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user is able to Create single / Multiple locations under the organization") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T13881") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2")
+    @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
         runTest(this);
     }
