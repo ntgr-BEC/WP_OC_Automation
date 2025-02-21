@@ -1,0 +1,4 @@
+Need read manager
+Need pro account with organization
+Need Secondary admin
+Go to the Hardbundle excel sheet and check sw4 and sw5 are not added to any account
