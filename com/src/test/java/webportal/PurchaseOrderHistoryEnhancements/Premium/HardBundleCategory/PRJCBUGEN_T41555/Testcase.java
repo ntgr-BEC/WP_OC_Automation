@@ -38,6 +38,9 @@ public class Testcase extends TestCaseBase {
     
 
     String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    Random              r           = new Random();
+    int                 num         = r.nextInt(10000000);
+    String              mailname    = "apwptest" + String.valueOf(num);
     
 
     @Feature("PurchaseOrderHistoryEnhancements") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -53,21 +56,45 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         
-        new DevicesDashPage(false).deleteDevice1(AP1);         
+        new AccountPage().deleteOneLocation("OnBoardingTest");         
         System.out.println("start to do tearDown");
         
     }
     
-    @Step("Test Step 1: Login to premium account success.")
+    
+    @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
-        
-        
+    WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
 
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();  
+    Map<String, String> accountInfo = new HashMap<String, String>();
+    accountInfo.put("First Name", mailname);
+    accountInfo.put("Last Name", "T10218");
+    accountInfo.put("Email Address", mailname + "@mailinator.com");
+    accountInfo.put("Confirm Email", mailname + "@mailinator.com");
+    accountInfo.put("Password", "Netgear#123");
+    accountInfo.put("Confirm Password", "Netgear#123");
+    accountInfo.put("Country", "Switzerland");
+
+    new HamburgerMenuPage(false).createAccount(accountInfo);
+}
+
+@Step("Test Step 2: Check buy vpn services;")
+public void step2() {
+
+  new HamburgerMenuPage(false).closeLockedDialog();
+    HashMap<String, String> locationInfo = new HashMap<String, String>();
+    locationInfo.put("Location Name", "OnBoardingTest");
+    locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+    locationInfo.put("Zip Code", "8700");
+    locationInfo.put("Country", "Switzerland");
+    new AccountPage().addNetwork(locationInfo);
+    
+}
+    
+    @Step("Test Step 3: Login to premium account success.")
+    public void step3() {
                
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-             
+        new MyCommonAPIs().gotoLoction("OnBoardingTest");
         
         Map<String, String> devInfo = new HashMap<String, String>();
         devInfo.put("Serial Number", AP1);
@@ -77,8 +104,8 @@ public class Testcase extends TestCaseBase {
            
     }
     
-    @Step("Test Step 2: Verify One Year Insight Included with Hardware premium on admin account")
-    public void step2() {
+    @Step("Test Step 4: Verify One Year Insight Included with Hardware premium on admin account")
+    public void step4() {
         
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         MyCommonAPIs.sleepi(5);
