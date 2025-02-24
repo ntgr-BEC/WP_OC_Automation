@@ -142,6 +142,7 @@ public class OrganizationPage extends OrganizationElement {
             }
         }
         if (!located) {
+            System.out.println("Not-located");
             logger.info("click first location");
             $(newElement).click();
         }
@@ -5682,7 +5683,11 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(5);
         PolicyInorg.click();
         MyCommonAPIs.sleepi(5);
+        if(ApplytoAllOrgscheck.isSelected()) {
+            System.out.println("No need to check");
+        }else {
         ApplytoAllOrgsCheckbox.click();
+        }
         MyCommonAPIs.sleepi(5);
         BusinessOwnerEmailCheckbox.click();
         MyCommonAPIs.sleepi(5);
@@ -6866,6 +6871,25 @@ public class OrganizationPage extends OrganizationElement {
                 result = true;
                 logger.info("Location name verified");
             }
+        }
+        return result;
+    }
+    
+//    Added by Ravi
+    public boolean VerifyDeviceCountOnHomeScreen(String org_name,int count) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(3);
+        logger.info("verifying Total Device Counts are Showing Correct on Org Card ");
+        String data1 = OrgCardDeviceDataDisconnected(org_name).text();
+        logger.info(data1);
+        String data2 = deviceCount.text();
+        logger.info(data2);
+        String counter=Integer.toString(count);
+        System.out.print(count+"--------------"+counter);
+        
+        if (data1.contains(counter)&& data2.contains(counter)) {
+            logger.info("Device Count is Correct Under Org Card");
+            result = true;
         }
         return result;
     }

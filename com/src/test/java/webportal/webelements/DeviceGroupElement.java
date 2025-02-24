@@ -21,7 +21,7 @@ import webportal.weboperation.WiredVLANPage;
 public class DeviceGroupElement extends MyCommonAPIs {
     Logger logger = Logger.getLogger("DeviceGroupElement");
 
-
+   
     public static SelenideElement DeviceGroup                         = $x("//*[@href=\"#/network/deviceGroups\"]");
     public static SelenideElement SysLog                              = $x("(//*[@href='#/network/SyslogConfiguration'])[1]");
     public static SelenideElement LedSettings                         = $x("//*[@href=\"#/network/LedSettings\"]");
@@ -176,16 +176,36 @@ public class DeviceGroupElement extends MyCommonAPIs {
     }
     
     public void editNetwork(String Name) {
+        MyCommonAPIs.sleepi(5);
+        waitElement($x("//p[@title='" + Name + "']/../../ul/li/a"));
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
-        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("$x(\"//p[@title='\" + Name + \"']/../../ul//b[text()='Edit location']/..").click();
-        }
-        
+        MyCommonAPIs.sleepi(5);
+        waitElement($x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]"));
+        $x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]").click();
+        MyCommonAPIs.sleepi(5);
     }
     
     public static SelenideElement        enableSysLogText                         =$x("//*[text()=\"Enable Syslog\"]");
     public static SelenideElement okSys   = $x("//*[@id=\"SuccsEditWirNet\"]");
+    
+    
+    // Tejeshwini NASID
+    
+    
+    public static SelenideElement Radious                             = $x("//*[@href= \"#/network/Radius\" and @class ='anchor']");
+    public static SelenideElement enableRadiouscheck                  = $x("//*[@id=\"onOffAuthStatusRadius\"]");
+    public static SelenideElement enableRadious                       = $x("//*[@id=\"_divTogOnOfSetRaLiBlColMdRowStRad\"]/span");
+    public static SelenideElement NASID                               = $x("//*[@id=\"nasIdentifierValue\"]");
+    public static SelenideElement SaveRadious                         = $x("//*[@id=\"_buSaveBtnTwo\"]");
+    public static SelenideElement confirmRadious                      = $x("//*[@id=\"SuccsEditWirNet\"]");
+    public static SelenideElement confirmdisableRadious               = $x("//*[contains(text(), \"SSIDs using WPA Enterprise security will stop working\")]/../../div/button[contains(@class, 'btn-danger')]");
+    public static SelenideElement ExcMessage                          = $x("//*[@id=\"radiusMsg\"]");
+	
+	//Pratik SyslogConfiguration
+	public static SelenideElement errorForIp    = $x("//*[contains(text(),'Enter a valid IP Address')]");
+    public static SelenideElement successMsg    = $x("//p[contains(text(),'Syslog Settings configured successfully')]");
+    public static SelenideElement errorForPort  = $x("//*[contains(text(),'Port number should be between 1 and 65535')]");
+    
+    
 }
 

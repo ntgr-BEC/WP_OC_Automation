@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     String mailname = "apwptest" + String.valueOf(num);
   
 
-    @Feature("ProSubscriptionKey") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("AddingOneYearInsightIncludedDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T31241") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Create Pro Account using a flow Adding Pro Subscription Key - Latvia country") // It's                                                                                                                                                     // Jira
     // Test

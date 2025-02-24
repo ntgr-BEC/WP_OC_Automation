@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -3305,5 +3306,53 @@ public boolean verifySettingPageFilterAirbridge() {
                 return result;
             }
             
+            public void deleteAllDevices() {
+                
+                MyCommonAPIs.sleepi(10);
+                waitReady();
+                while (deviceList.exists()) {
+                    logger.info("entered delete loop");
+                    String devicename = deviceNameExt.text();
+                    System.out.print(devicename);
+                    logger.info("no ssid to delete");
+                    deleteDeviceYes(devicename);
+                    waitReady();
+                }
+            }
+            
+            public String validateOnboardingError(Map<String, String> map) {
+                String text = "";
+                clickAddDevice();
+                waitElement(addDeviceBtn);
+                serialNo.sendKeys(map.get("Serial Number"));
+                MyCommonAPIs.sleepi(3);
+                addDeviceBtn.click();
+                MyCommonAPIs.sleepi(3);
+                macAddress.sendKeys(map.get("MAC Address"));
+                MyCommonAPIs.sleepi(5);
+                next.click();
+                MyCommonAPIs.sleepi(5);
+                if (addDeviceErrorMsg.exists()) {
+                    text = getText(addDeviceErrorMsg);
+                    clickBoxFirstButton();
+                }
+                return text;
+            }
+            
+            
+            public String GenaraterandomSerial(String Prefix) {
+                String serial="";
+                Random random = new Random();
+           
+                long randomNumber = random.longs(1000000000L, 10000000000L).findFirst().getAsLong();
+                System.out.println("Random 10-digit number: " + randomNumber);
+                
+                serial = Prefix +randomNumber;
+                
+                System.out.println("Serial Number is " + serial);
+//                String Serial = String.valueOf(random.ints(1000000000,9999999999).findFirst().getAsInt());
+                
+                return serial;
+            }
 }
     

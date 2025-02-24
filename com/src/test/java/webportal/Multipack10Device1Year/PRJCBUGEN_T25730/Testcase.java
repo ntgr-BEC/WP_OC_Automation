@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase {
 
         new HamburgerMenuPage(false).createAccount(accountInfo);        
         
-//       
+       
     }
     
     @Step("Test Step 2: Create new location")

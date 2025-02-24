@@ -1,0 +1,25 @@
+Insight pro organization enhancement preconditions
+
+This feature divides into two parts need to run separately.
+
+Credit Allocation Side Tray:
+=> All four pro account set required. (Read man, read-write man, owner and admin)
+=> Insight pro account should have one organization named as Netgear.
+=> Netgear organization must be allocated with 2 device credits and 2 ICP Credits
+=> This insight pro account must have more than 5 device credit license keys already assigned;
+       here each key should have 100 device credits and verified these keys are listed in purchase history page.
+
+Credit Allocation CSV Download:
+=> All four pro account set required. (Read man, read-write man, owner and admin)
+=> Insight pro account should have one organization named as Netgear.
+=> Netgear organization must be allocated with 2 device credits and 2 ICP Credits
+=> This insight pro account must have minimum 1 device credit license keys already assigned.
+=>  Before running this feature please check download folder of that particular system;
+        in this if this folder contains below files please remove or delete them before starting this feature
+        1. licenseDetails.csv
+        2. licenseDetails (1).csv
+=> Also please follow below order of test cases need to run as per this order only;
+<class name="webportal.InsightProOrganizationEnhancement.CreditAllocationCSVDownload.PRJCBUGEN_T38337.Testcase"/>
+ <class name="webportal.InsightProOrganizationEnhancement.CreditAllocationCSVDownload.PRJCBUGEN_T38345.Testcase"/>
+ <class name="webportal.InsightProOrganizationEnhancement.CreditAllocationCSVDownload.PRJCBUGEN_T38346.Testcase"/>
+ <class name="webportal.InsightProOrganizationEnhancement.CreditAllocationCSVDownload.PRJCBUGEN_T38347.Testcase"/>

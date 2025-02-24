@@ -658,14 +658,14 @@ public class APUtils extends MyCommonAPIs {
         String status = "";
         if (Model.equals("WAC505") || Model.equals("WAC510") || Model.equals("WAC540") || Model.equals("WAC564")|| Model.startsWith("WAC")) {
             logger.info("entered WAC model");
-            status = plink.getOutput("cat /var/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group0", default_timeout_ssh);
+            status = plink.getOutput("cat /var/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group7", default_timeout_ssh);
             System.out.println(status);
             
         }
 
         if (Model.equals("WAX610") ||  Model.startsWith("WAX") || Model.startsWith("WBE")) {
             logger.info("entered WAX model");
-            status = plink.getOutput("cat /sysconfig/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group0", default_timeout_ssh);
+            status = plink.getOutput("cat /sysconfig/config |grep -i accessControlSettings:wlanAccessControlLocalTable:group7", default_timeout_ssh);
             System.out.println(status);
             
         }
@@ -757,14 +757,14 @@ public class APUtils extends MyCommonAPIs {
         if ( Model.startsWith("WAC")) {
             logger.info("entered WAC model");
             MyCommonAPIs.sleepi(5);
-            status = plink.getOutput("cat /var/config | grep syslog", default_timeout_ssh);
+            status = plink.getOutput("cat /var/config | grep -i syslog", default_timeout_ssh);
             System.out.println(status);
         }
 
         if (Model.startsWith("WAX") || Model.startsWith("WBE")) {
             logger.info("entered WAX model");
             MyCommonAPIs.sleepi(5);
-            status = plink.getOutput("cat /sysconfig/config | grep syslog", default_timeout_ssh);
+            status = plink.getOutput("cat /sysconfig/config | grep -i syslog", default_timeout_ssh);
             System.out.println(status);
         }
         return status;
@@ -1703,6 +1703,21 @@ public String getBandChannelsStatus(String Model, String band) {
             status = plink.getOutput("wlanconfig wifi0vap0 list  chan "+band, default_timeout_ssh);
             System.out.println(status);
         }
+    }
+    return status;
+}
+
+
+public String getNASID(String Model) {
+    boolean result = false;
+    String status = "";
+ 
+    if ( Model.startsWith("WAX") || Model.startsWith("WBE")) {
+        MyCommonAPIs.sleepi(30);
+        logger.info("entered WAX model");
+        status = plink.getOutput("grep -nir \"nasIdentifier\" /sysconfig/config", default_timeout_ssh);
+        System.out.println(status);
+       
     }
     return status;
 }

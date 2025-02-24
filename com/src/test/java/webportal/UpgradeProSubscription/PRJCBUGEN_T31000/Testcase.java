@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify the upgrade functionality of Insight Premium to Insight Pro") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T31000") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Navigate to Account Management, check upgrade to pro option and click on it;")
     public void step2() {
         System.out.println("starting with setup 2");
-        assertTrue(new HamburgerMenuPage(false).insightPritoinsightPro(),"Failed navigate to Account Management");
+        assertTrue(new HamburgerMenuPage().insightPritoinsightPro(),"Failed navigate to Account Management");
         
     }
     

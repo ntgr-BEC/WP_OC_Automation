@@ -508,5 +508,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement wbeAPAFPowemodeStatus(String powerMode) {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }
+	
+	 public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
+    public SelenideElement        deviceNameExt               = $x("//*[@id='pdevIddevicesDash0']");
 
 }

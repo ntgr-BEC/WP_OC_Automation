@@ -442,6 +442,7 @@ public class CommonDataType {
         private static final long VLAN = 1L;
         {
             put("VLANID", "10(10)");
+            put("VLANIDorg", "10");
 
         }
     };

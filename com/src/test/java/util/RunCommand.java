@@ -777,4 +777,29 @@ public class RunCommand {
             e.printStackTrace();
         }
     }
+        
+        public boolean enableSSH4APResponse() {
+            Process p = exeCmd(String.format("%s -p %s -i %s", sCmdEnableSSH, WebportalParam.loginDevicePassword, WebportalParam.ap1IPaddress), execPy);
+            try {
+                p.waitFor(30, TimeUnit.SECONDS);
+                new Pause().seconds(10);
+                int exitcode=p.exitValue();
+                if(exitcode==0)
+                {
+                    logger.info("SSH enabled successfully");
+                    return true;
+                }
+                else
+                {
+                    logger.info("SSH enabling failed with exit code: "+exitcode);
+                    return false;
+                }
+                         
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return false;
+        }
+    
 }

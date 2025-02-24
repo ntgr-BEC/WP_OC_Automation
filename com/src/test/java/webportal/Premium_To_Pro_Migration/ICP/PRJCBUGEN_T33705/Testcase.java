@@ -1,4 +1,4 @@
-package webportal.Premium_To_Pro_Migration.PRJCBUGEN_T33705;
+package webportal.Premium_To_Pro_Migration.ICP.PRJCBUGEN_T33705;
 
 import static org.testng.Assert.assertTrue;
 

@@ -608,7 +608,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement AddVPNKey                            = $x("//button[contains(text(), 'Add VPN Service Key')]");
     public static SelenideElement AddProLicense                        = $x("//*[@id=\"licenseKeyValue\"]");
     public static SelenideElement AddICPLicenseKey                     = $x("//*[@id=\"smart-form-license\"]/div/input");
-    public static SelenideElement ClickAdd                             = $x("(//*[text()= 'Add'])[2]");
+    public static SelenideElement ClickAdd                             = $x("//*[text()= 'Add']");
     public static SelenideElement ClickAddICP                          = $x("(//button[contains(text(), 'Add')])[2]");
     public static SelenideElement ClickAddok                           = $x("//*[@id=\"main\"]/div/div[2]/div[2]/div/div/div[6]/button[2]");
     public static SelenideElement addemailprohardbundle                = $x("//*[@id=\"smart-form-register1\"]/fieldset/section/label/input");

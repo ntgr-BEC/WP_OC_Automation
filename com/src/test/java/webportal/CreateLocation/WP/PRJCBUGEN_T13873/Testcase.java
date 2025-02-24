@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user can create a location with image")
     @TmsLink("PRJCBUGEN_T13873") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }
