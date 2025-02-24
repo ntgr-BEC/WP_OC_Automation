@@ -993,7 +993,7 @@ public class DeviceGroupPage extends DeviceGroupElement {
             return result;
         }
         
-        //AddedByPratik
+        //Added By Pratik
         public boolean enableSysLogAndVerifySuccessMsg(String IP, String Port) {
             boolean result = false;
             refresh();    
