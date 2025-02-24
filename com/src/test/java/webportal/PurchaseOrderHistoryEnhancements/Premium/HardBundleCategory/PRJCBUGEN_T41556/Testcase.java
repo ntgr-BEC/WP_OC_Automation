@@ -35,11 +35,13 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     
-    String                  locationName     = "OnBoardingTest";
     
-    Random r = new Random();
-    int num = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num);
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String SW1 =new DevicesDashPage(false).GenaraterandomSerial ("5V4");
+    String OB1 =new DevicesDashPage(false).GenaraterandomSerial ("536");
+    String BR1 =new DevicesDashPage(false).GenaraterandomSerial ("5JR");
+    String PR1 =new DevicesDashPage(false).GenaraterandomSerial ("79W");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     
 
     @Feature("PurchaseOrderHistoryEnhancements") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -54,7 +56,11 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        
+        new DevicesDashPage().deleteDevice1(AP1);
+        new DevicesDashPage().deleteDevice1(SW1);
+        new DevicesDashPage().deleteDevice1(BR1);
+        new DevicesDashPage().deleteDevice1(OB1);
+        new DevicesDashPage().deleteDevice1(PR1);
         System.out.println("start to do tearDown");
         
     }
@@ -64,6 +70,32 @@ public class Testcase extends TestCaseBase {
 
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();  
+        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
+        
+        
+        Map<String, String> devInfo = new HashMap<String, String>();
+        devInfo.put("Serial Number", AP1);
+        devInfo.put("Device Name", AP1);
+        devInfo.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo);
+        
+        Map<String, String> devInfo1 = new HashMap<String, String>();
+        devInfo1.put("Serial Number", SW1);
+        devInfo1.put("Device Name", SW1);
+        devInfo1.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo1);
+        
+        Map<String, String> devInfo2 = new HashMap<String, String>();
+        devInfo2.put("Serial Number", BR1);
+        devInfo2.put("Device Name", BR1);
+        devInfo2.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo2);
+        
+        Map<String, String> devInfo3 = new HashMap<String, String>();
+        devInfo3.put("Serial Number", OB1);
+        devInfo3.put("Device Name", OB1);
+        devInfo3.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo3);
            
     }
     
@@ -72,11 +104,11 @@ public class Testcase extends TestCaseBase {
         
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         MyCommonAPIs.sleepi(5);
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.ap5serialNo).exists(),"We are not getting entry for Onboarded Hardbindle AP under the Insight Included with Hardware ");
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.sw1serialNo).exists(),"We are not getting entry for Onboarded Hardbindle Switch under the Insight Included with Hardware ");
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.br1serialNo).exists(),"We are not getting entry for Onboarded Hardbindle BR under the Insight Included with Hardware ");
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.ob1serialNo).exists(),"We are not getting entry for Onboarded Hardbindle Orbi under the Insight Included with Hardware ");
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.pr1serialNo).exists(),"We are not getting entry for Onboarded Hardbindle Orbi under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(AP1).exists(),"We are not getting entry for Onboarded Hardbindle AP under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(SW1).exists(),"We are not getting entry for Onboarded Hardbindle Switch under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(BR1).exists(),"We are not getting entry for Onboarded Hardbindle BR under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(OB1).exists(),"We are not getting entry for Onboarded Hardbindle Orbi under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(PR1).exists(),"We are not getting entry for Onboarded Hardbindle Orbi under the Insight Included with Hardware ");
         
     }
     

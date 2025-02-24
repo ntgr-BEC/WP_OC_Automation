@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -3339,6 +3340,19 @@ public boolean verifySettingPageFilterAirbridge() {
             }
             
             
-            
+            public String GenaraterandomSerial(String Prefix) {
+                String serial="";
+                Random random = new Random();
+           
+                long randomNumber = random.longs(1000000000L, 10000000000L).findFirst().getAsLong();
+                System.out.println("Random 10-digit number: " + randomNumber);
+                
+                serial = Prefix +randomNumber;
+                
+                System.out.println("Serial Number is " + serial);
+//                String Serial = String.valueOf(random.ints(1000000000,9999999999).findFirst().getAsInt());
+                
+                return serial;
+            }
 }
     

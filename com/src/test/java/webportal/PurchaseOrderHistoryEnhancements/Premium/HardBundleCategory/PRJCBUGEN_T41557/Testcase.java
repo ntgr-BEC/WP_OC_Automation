@@ -35,11 +35,12 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     
-    String                  locationName     = "OnBoardingTest";
-    
-    Random r = new Random();
-    int num = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num);
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String SW1 =new DevicesDashPage(false).GenaraterandomSerial ("5V4");
+    String OB1 =new DevicesDashPage(false).GenaraterandomSerial ("536");
+    String BR1 =new DevicesDashPage(false).GenaraterandomSerial ("5JR");
+    String PR1 =new DevicesDashPage(false).GenaraterandomSerial ("79W");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     
 
     @Feature("PurchaseOrderHistoryEnhancements") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -55,37 +56,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
         
-        Map<String, String> devInfo = new HashMap<String, String>();
-        devInfo.put("Serial Number", WebportalParam.ap5serialNo);
-        devInfo.put("Device Name", WebportalParam.ap5deveiceName);
-        devInfo.put("MAC Address", WebportalParam.ap5macaddress);
-        new DevicesDashPage().addNewDevice(devInfo);
-        
-        Map<String, String> devInfo1 = new HashMap<String, String>();
-        devInfo1.put("Serial Number", WebportalParam.sw1serialNo);
-        devInfo1.put("Device Name", WebportalParam.sw1deveiceName);
-        devInfo1.put("MAC Address", WebportalParam.sw1MacAddress);
-        new DevicesDashPage().addNewDevice(devInfo1);
-        
-        Map<String, String> devInfo2 = new HashMap<String, String>();
-        devInfo2.put("Serial Number", WebportalParam.br1serialNo);
-        devInfo2.put("Device Name", WebportalParam.br1deveiceName);
-        devInfo2.put("MAC Address", WebportalParam.br1deveiceMac);
-        new DevicesDashPage().addNewDevice(devInfo2);
-        
-        Map<String, String> devInfo3 = new HashMap<String, String>();
-        devInfo3.put("Serial Number", WebportalParam.ob1serialNo);
-        devInfo3.put("Device Name", WebportalParam.ob1deveiceName);
-        devInfo3.put("MAC Address", WebportalParam.ob1deveiceMac);
-        new DevicesDashPage().addNewDevice(devInfo3);
-        
-        Map<String, String> devInfo4 = new HashMap<String, String>();
-        devInfo4.put("Serial Number", WebportalParam.pr1serialNo);
-        devInfo4.put("Device Name", WebportalParam.pr1deveiceName);
-        devInfo4.put("MAC Address", WebportalParam.pr1macaddress);
-        new DevicesDashPage().addNewDevice(devInfo4);
         System.out.println("start to do tearDown");
         
     }
@@ -96,11 +67,39 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();  
         new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-        new DevicesDashPage().deleteDevice1(WebportalParam.ap5serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.sw1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.br1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.ob1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.pr1serialNo);
+        
+        
+        Map<String, String> devInfo = new HashMap<String, String>();
+        devInfo.put("Serial Number", AP1);
+        devInfo.put("Device Name", AP1);
+        devInfo.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo);
+        
+        Map<String, String> devInfo1 = new HashMap<String, String>();
+        devInfo1.put("Serial Number", SW1);
+        devInfo1.put("Device Name", SW1);
+        devInfo1.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo1);
+        
+        Map<String, String> devInfo2 = new HashMap<String, String>();
+        devInfo2.put("Serial Number", BR1);
+        devInfo2.put("Device Name", BR1);
+        devInfo2.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo2);
+        
+        Map<String, String> devInfo3 = new HashMap<String, String>();
+        devInfo3.put("Serial Number", OB1);
+        devInfo3.put("Device Name", OB1);
+        devInfo3.put("MAC Address", MAC);
+        new DevicesDashPage().addNewDevice(devInfo3);
+              
+        
+        
+        new DevicesDashPage().deleteDevice1(AP1);
+        new DevicesDashPage().deleteDevice1(SW1);
+        new DevicesDashPage().deleteDevice1(BR1);
+        new DevicesDashPage().deleteDevice1(OB1);
+        new DevicesDashPage().deleteDevice1(PR1);
         
     }
     
