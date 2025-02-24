@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     int    num      = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num) + "@yopmail.com";
     String Name     = "PRJCBUGEN_T30353";
-    String secAdminMail = mailname + "@yopmail.com";
+    String secAdminMail = mailname;
 
     @Feature("MultiAdmin") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T30353") // It's a testcase id/link from Jira Test Case but replace - with _.
