@@ -176,13 +176,13 @@ public class DeviceGroupElement extends MyCommonAPIs {
     }
     
     public void editNetwork(String Name) {
+        MyCommonAPIs.sleepi(5);
+        waitElement($x("//p[@title='" + Name + "']/../../ul/li/a"));
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
-        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
-        }
-        
+        MyCommonAPIs.sleepi(5);
+        waitElement($x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]"));
+        $x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]").click();
+        MyCommonAPIs.sleepi(5);
     }
     
     public static SelenideElement        enableSysLogText                         =$x("//*[text()=\"Enable Syslog\"]");
@@ -200,6 +200,11 @@ public class DeviceGroupElement extends MyCommonAPIs {
     public static SelenideElement confirmRadious                      = $x("//*[@id=\"SuccsEditWirNet\"]");
     public static SelenideElement confirmdisableRadious               = $x("//*[contains(text(), \"SSIDs using WPA Enterprise security will stop working\")]/../../div/button[contains(@class, 'btn-danger')]");
     public static SelenideElement ExcMessage                          = $x("//*[@id=\"radiusMsg\"]");
+	
+	//Pratik SyslogConfiguration
+	public static SelenideElement errorForIp    = $x("//*[contains(text(),'Enter a valid IP Address')]");
+    public static SelenideElement successMsg    = $x("//p[contains(text(),'Syslog Settings configured successfully')]");
+    public static SelenideElement errorForPort  = $x("//*[contains(text(),'Port number should be between 1 and 65535')]");
     
     
 }
