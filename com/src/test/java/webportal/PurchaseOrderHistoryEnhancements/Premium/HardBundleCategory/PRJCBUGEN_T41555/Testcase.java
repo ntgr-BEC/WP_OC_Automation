@@ -53,7 +53,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         
-        new DevicesDashPage().deleteDevice1(WebportalParam.ap5serialNo);         
+        new DevicesDashPage(false).deleteDevice1(AP1);         
         System.out.println("start to do tearDown");
         
     }
