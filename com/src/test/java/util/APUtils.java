@@ -757,14 +757,14 @@ public class APUtils extends MyCommonAPIs {
         if ( Model.startsWith("WAC")) {
             logger.info("entered WAC model");
             MyCommonAPIs.sleepi(5);
-            status = plink.getOutput("cat /var/config | grep syslog", default_timeout_ssh);
+            status = plink.getOutput("cat /var/config | grep -i syslog", default_timeout_ssh);
             System.out.println(status);
         }
 
         if (Model.startsWith("WAX") || Model.startsWith("WBE")) {
             logger.info("entered WAX model");
             MyCommonAPIs.sleepi(5);
-            status = plink.getOutput("cat /sysconfig/config | grep syslog", default_timeout_ssh);
+            status = plink.getOutput("cat /sysconfig/config | grep -i syslog", default_timeout_ssh);
             System.out.println(status);
         }
         return status;

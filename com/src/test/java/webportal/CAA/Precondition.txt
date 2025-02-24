@@ -1,0 +1,14 @@
+1. AP5 real AP need to be configure
+2. Only run below test cases:
+         <class name="webportal.CAA.PRJCBUGEN_T23125.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24551.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24552.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24553.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24554.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24555.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24556.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24557.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24558.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24559.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24560.Testcase"/>
+      <class name="webportal.CAA.PRJCBUGEN_T24561.Testcase"/>   
