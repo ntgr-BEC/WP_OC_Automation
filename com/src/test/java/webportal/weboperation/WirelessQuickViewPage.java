@@ -11554,7 +11554,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
         List<String> dropdownFrequencies = dropdownOptions.stream()
                 .filter(option -> option.contains("/"))
-                .map(option -> option.split("/")[1].replace(".", "").replaceAll("\\(PSC\\)", "").trim())
+                .map(option -> option.split("/")[1].replace(".", "").replaceAll("\\(PSC\\)|\\(DFS\\)", "").trim())
                 .collect(Collectors.toList());
         
         System.out.println("UI Dropdown Options : "+dropdownFrequencies);
