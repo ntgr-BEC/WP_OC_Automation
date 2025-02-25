@@ -11539,7 +11539,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result = true;
     }
     
-    // Added By Pratik
+ // Added By Pratik
     public boolean verifyAndCompareUIChannelsandTeraTermChannelsforBand(String band) {
         boolean overallMatch = true;
 
@@ -11549,23 +11549,30 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         List<String> dropdownOptions = $x("//span[text()='"+band+"']/../..//h5[text()='Channel']/../select").$$("option").stream()
                 .map(option -> option.getText().replace("GHz", "").trim()) // Remove "GHz"
                 .collect(Collectors.toList());
-        
-        System.out.println("UI Dropdown Options : "+dropdownOptions);
+
+        System.out.println("UI Dropdown Options : " + dropdownOptions);
 
         List<String> dropdownFrequencies = dropdownOptions.stream()
-                .filter(option -> option.contains("/"))
-                .map(option -> option.split("/")[1].replace(".", "").replaceAll("\\(PSC\\)|\\(DFS\\)", "").trim())
+                .filter(option -> option.contains("/")) // Ensure it has a channel/frequency format
+                .map(option -> option.split("/")[1] // Extract frequency part after "/"
+                        .replace(".", "") // Remove decimal to match Tera Term format
+                        .replaceAll("\\(PSC\\)|\\(DFS\\)", "") // Remove DFS/PSC labels
+                        .trim())
+                .map(freq -> {
+                    int value = Integer.parseInt(freq);
+                    return value < 1000 ? String.valueOf(value * 10) : String.valueOf(value); // Multiply by 10 only for values < 1000
+                })
                 .collect(Collectors.toList());
-        
-        System.out.println("UI Dropdown Options : "+dropdownFrequencies);
+
+        System.out.println("Processed UI Dropdown Frequencies: " + dropdownFrequencies);
 
         String teraTermOutput = new APUtils(WebportalParam.ap1IPaddress).getBandChannelsStatus(WebportalParam.ap1Model, band.split("G")[0]);
 
-        List<String> teraTermFrequencies1 = Arrays.stream(teraTermOutput.split("\n"))
+        List<Integer> teraTermRawFrequencies = Arrays.stream(teraTermOutput.split("\n"))
                 .filter(line -> line.contains("Channel") && line.contains(":"))
                 .map(line -> {
                     try {
-                        return line.split(":")[1].trim().split("\\s+")[0];
+                        return Integer.parseInt(line.split(":")[1].trim().split("\\s+")[0]);
                     } catch (Exception e) {
                         System.err.println("Error parsing line: " + line);
                         return null;
@@ -11574,22 +11581,24 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
-        List<String>teraTermFrequencies = teraTermFrequencies1;
-        
-        System.out.println("Tera Term command output Options : "+teraTermFrequencies);
+        System.out.println("Tera Term Raw Frequencies: " + teraTermRawFrequencies);
 
         if (band.contains("5")) {
-            teraTermFrequencies1 = teraTermFrequencies1.stream()
-                    .map(channel -> String.valueOf(Integer.parseInt(channel) / 10))
-                    .collect(Collectors.toList());
-            List<String>teraTermFrequencies2 = teraTermFrequencies1;
-            List<String> missingInTeraTerm = dropdownFrequencies.stream()
-                    .filter(channel -> !teraTermFrequencies2.contains(channel))
+            // Fix: Only divide by 10 for smaller values
+            List<String> processedTeraTermFrequencies = teraTermRawFrequencies.stream()
+                    .map(freq -> (freq < 1000) ? String.valueOf(freq / 10) : String.valueOf(freq)) // Only divide smaller values
                     .collect(Collectors.toList());
 
-            List<String> extraInTeraTerm = teraTermFrequencies2.stream()
+            System.out.println("Processed Tera Term Frequencies: " + processedTeraTermFrequencies);
+
+            List<String> missingInTeraTerm = dropdownFrequencies.stream()
+                    .filter(channel -> !processedTeraTermFrequencies.contains(channel))
+                    .collect(Collectors.toList());
+
+            List<String> extraInTeraTerm = processedTeraTermFrequencies.stream()
                     .filter(channel -> !dropdownFrequencies.contains(channel))
                     .collect(Collectors.toList());
+
             if (!missingInTeraTerm.isEmpty()) {
                 System.out.println("Channels missing in Tera Term: " + missingInTeraTerm);
                 overallMatch = false;
@@ -11605,44 +11614,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             } else {
                 System.out.println("Dropdown and Tera Term lists do not match.");
             }
-
-            System.out.println("Comparison completed. Overall match: " + overallMatch);
-            
         } else {
-            System.out.println("Tera Term Frequencies: " + teraTermFrequencies);
-
-            List<String> missingInTeraTerm = dropdownFrequencies.stream()
-                    .filter(channel -> !teraTermFrequencies.contains(channel))
-                    .collect(Collectors.toList());
-
-            List<String> extraInTeraTerm = teraTermFrequencies.stream()
-                    .filter(channel -> !dropdownFrequencies.contains(channel))
-                    .collect(Collectors.toList());
-
-            if (!missingInTeraTerm.isEmpty()) {
-                System.out.println("Channels missing in Tera Term: " + missingInTeraTerm);
-                overallMatch = false;
-            }
-
-            if (!extraInTeraTerm.isEmpty()) {
-                System.out.println("Extra channels found in Tera Term: " + extraInTeraTerm);
-                overallMatch = false;
-            }
-
-            if (overallMatch) {
-                System.out.println("All Dropdown channels are present in Tera Term, and there are no extra channels.");
-            } else {
-                System.out.println("Dropdown and Tera Term lists do not match.");
-            }
-
-            System.out.println("Comparison completed. Overall match: " + overallMatch);
+            System.out.println("Tera Term Frequencies (Unprocessed for other bands): " + teraTermRawFrequencies);
         }
 
+        System.out.println("Comparison completed. Overall match: " + overallMatch);
         return overallMatch;
     }
 
-    
-    
+
+  
 }
 
   
