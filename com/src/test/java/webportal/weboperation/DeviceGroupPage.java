@@ -2,6 +2,7 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static org.testng.Assert.assertTrue;
 
 import java.lang.*;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ import java.util.regex.Pattern;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-import static org.junit.Assert.assertTrue;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
