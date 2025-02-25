@@ -11539,7 +11539,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return result = true;
     }
     
-    // AddedByPratik
+    // Added By Pratik
     public boolean verifyAndCompareUIChannelsandTeraTermChannelsforBand(String band) {
         boolean overallMatch = true;
 
