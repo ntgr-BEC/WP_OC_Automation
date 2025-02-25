@@ -3404,8 +3404,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void createManagerAccount(Map<String, String> map) {
-        // invitemanager.click();
-        checkemailtitle.click();
+		 WebDriver driver = WebDriverRunner.getWebDriver();
+        String originalWindow = driver.getWindowHandle(); // Store main window
+        String url = "https://yopmail.com";
+
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1); // Switch to the new tab
+        Selenide.sleep(5); // Give time for the page to load
+
+        // Input email and check inbox
+        SelenideElement inputBox = $x("//input[@id='login']");
+        inputBox.clear();
+        inputBox.sendKeys(map.get("Confirm Email"));
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+
+        // Wait for iframe to be visible and switch to it
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]").shouldBe(Condition.visible);
+        Selenide.switchTo().frame(frame);
+        Selenide.sleep(5); // Small wait for email to load
+		
         MyCommonAPIs.sleepi(3);
         if (getowneraccounturlnew.exists()) {
             open(getowneraccounturlnew.getAttribute("href"));
