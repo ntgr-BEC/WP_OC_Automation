@@ -37,17 +37,14 @@ import webportal.weboperation.SummaryPage;
 public class Testcase extends TestCaseBase {
     String organizationName1 = "organization1";
     String locationName      = "Office1";
+    String MAC = "aa:bb:cc:dd:ee:ff";
+    
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String AP2 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
 
     @Feature("IM-6.10-Web Portal Usability Improvements") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T32207") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that user should able to see total count of organization and device on the web portal screen.") // It's
-                                                                                                                                                       // a
-                                                                                                                                                       // testcase
-                                                                                                                                                       // title
-                                                                                                                                                       // from
-                                                                                                                                                       // Jira
-                                                                                                                                                       // Test
-    // Case.
     @TmsLink("PRJCBUGEN-T32207") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -91,16 +88,16 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Adding Dummy Device1")
     public void step3() {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo.put("Serial Number1", AP1);
+        firststdevInfo.put("MAC Address1", MAC);
         new DevicesDashPage().addNewdummyDeviceProAccount(firststdevInfo);
     }
 
     @Step("Test Step 4: Adding Dummy Device2")
     public void step4() {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap6serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap6macaddress);
+        firststdevInfo.put("Serial Number1", AP2);
+        firststdevInfo.put("MAC Address1", MAC);
         new DevicesDashPage().addNewdummyDeviceProAccount(firststdevInfo);
     }
 
