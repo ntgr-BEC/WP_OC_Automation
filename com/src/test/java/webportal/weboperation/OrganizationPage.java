@@ -4753,7 +4753,7 @@ public class OrganizationPage extends OrganizationElement {
         }
         MyCommonAPIs.sleepi(15);
         orgChooseBtn
-                .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovemnets\\PRJCBUGEN_T32194\\orgImg.png");
+                .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovements\\PRJCBUGEN_T32194\\orgImg.png");
         MyCommonAPIs.sleepi(2);
         SaveOrg.click();
         MyCommonAPIs.sleepi(2);

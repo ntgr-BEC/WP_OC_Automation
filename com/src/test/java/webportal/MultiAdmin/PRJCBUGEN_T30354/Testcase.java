@@ -96,7 +96,8 @@ public class Testcase extends TestCaseBase {
             new HamburgerMenuPage(false).createManagerAccount(managerAccountInfo);
         
     }
-              
+        
+
     }
     
     @Step("Test Step 3: Invite secodary admin second time")

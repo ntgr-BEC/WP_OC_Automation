@@ -161,7 +161,7 @@ public class ManagerPageElement extends MyCommonAPIs {
     
     //vivek
     public SelenideElement viewAllOrgName(String Org_Name) {
-        SelenideElement emt = $x("//td[@class='sorting_1']//span[text()='" + Org_Name + "']");
+        SelenideElement emt = $x("//td[@class='sorting_1' and text()='"+Org_Name+"']");
         return emt;
     }
     
