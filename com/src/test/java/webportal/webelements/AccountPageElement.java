@@ -216,7 +216,7 @@ public class AccountPageElement extends MyCommonAPIs {
                 WebportalParam.getLocText("Delete location"));
         String deleteLocation2 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..", WebportalParam.getLocText("Delete"));
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
-        SelenideElement deleteLocation4 = $x("//button[text()='Yes, delete location']");
+        SelenideElement deleteLocation4 = $x("//button[@class='btn btn-danger' and text()='Delete']");
         SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
         MyCommonAPIs.sleepi(35);
         if ($x(deleteLocation1).exists()) {

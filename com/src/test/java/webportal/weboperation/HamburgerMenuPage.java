@@ -3404,8 +3404,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void createManagerAccount(Map<String, String> map) {
-        // invitemanager.click();
-        checkemailtitle.click();
+		 WebDriver driver = WebDriverRunner.getWebDriver();
+        String originalWindow = driver.getWindowHandle(); // Store main window
+        String url = "https://yopmail.com";
+
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1); // Switch to the new tab
+        Selenide.sleep(5); // Give time for the page to load
+
+        // Input email and check inbox
+        SelenideElement inputBox = $x("//input[@id='login']");
+        inputBox.clear();
+        inputBox.sendKeys(map.get("Confirm Email"));
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+
+        // Wait for iframe to be visible and switch to it
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]").shouldBe(Condition.visible);
+        Selenide.switchTo().frame(frame);
+        Selenide.sleep(5); // Small wait for email to load
+		
         MyCommonAPIs.sleepi(3);
         if (getowneraccounturlnew.exists()) {
             open(getowneraccounturlnew.getAttribute("href"));
@@ -3692,17 +3709,17 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBox.clear();
         inputBox.sendKeys(mailname);
         $x("//button[@title='Check Inbox @yopmail.com']").click();
-
+        Selenide.sleep(10);
         // Wait for iframe to be visible and switch to it
         SelenideElement frame = $x("//*[@id=\"ifinbox\"]").shouldBe(Condition.visible);
         Selenide.switchTo().frame(frame);
-        Selenide.sleep(5); // Small wait for email to load
+        Selenide.sleep(10); // Small wait for email to load
 
         // Get the latest email title
         SelenideElement titleElement = $x("//div[@currentmail]//div[@class='lms']");
         String titleText = titleElement.shouldBe(Condition.visible).getText();
         logger.info("Data Text = : " + titleText);
-
+        Selenide.sleep(10);
         // Check email subject
         List<String> validSubjects = Arrays.asList(
             "Invite owner email",
@@ -3724,8 +3741,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 logger.info("Received email: " + subject);
                 break; // Exit loop on first match
             }
+            
+            Selenide.sleep(10);
         }
 
+        Selenide.sleep(10);
         // Close current tab and switch back to original window
         WebDriverRunner.getWebDriver().close();
         Selenide.switchTo().window(originalWindow);
