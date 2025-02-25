@@ -34,7 +34,7 @@ import webportal.weboperation.WirelessQuickViewPage;
  *
  */
 public class Testcase extends TestCaseBase {
-    String organizationName1 = "organization1";
+    String organizationName1 = "PRJCBUGEN_T32194";
  
 
     @Feature("IM-6.10-Web Portal Usability Improvements") // It's a folder/component name to make test suite more readable from Jira Test Case.

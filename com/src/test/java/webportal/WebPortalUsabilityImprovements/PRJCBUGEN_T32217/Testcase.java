@@ -42,6 +42,9 @@ public class Testcase extends TestCaseBase {
     String organizationName1 = "organization";
     String locationName      = "Office1";
     String pwd               = "Netgear1@";
+    
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String MAC = "aa:bb:cc:dd:ee:ff";
 
 
     @Feature("IM-6.10-Web Portal Usability Improvements") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -90,8 +93,8 @@ public class Testcase extends TestCaseBase {
      @Step("Test Step 3: Adding Dummy Device")
      public void step3() {
          Map<String, String> firststdevInfo = new HashMap<String, String>();
-         firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-         firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+         firststdevInfo.put("Serial Number1", AP1);
+         firststdevInfo.put("MAC Address1", MAC);
          new DevicesDashPage(false).openDeviceLoc();
          new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
      }
