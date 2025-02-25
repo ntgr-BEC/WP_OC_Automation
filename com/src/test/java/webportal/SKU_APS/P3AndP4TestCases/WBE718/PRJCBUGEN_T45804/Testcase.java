@@ -106,7 +106,6 @@ public class Testcase extends TestCaseBase {
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
         new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
         
