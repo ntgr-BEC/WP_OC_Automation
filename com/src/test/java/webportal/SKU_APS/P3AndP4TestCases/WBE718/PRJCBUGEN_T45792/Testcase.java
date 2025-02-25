@@ -106,7 +106,6 @@ public class Testcase extends TestCaseBase {
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
         new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
         
@@ -119,7 +118,13 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage(false).RadioAndChannels.click();
         MyCommonAPIs.sleepi(10);
-        new WirelessQuickViewPage(false).DropDown5GhzLow.click(); 
+        new WirelessQuickViewPage(false).DropDown5GhzLow.click();
+        MyCommonAPIs.sleepi(5);
+        String channelWidth = "20MHz";
+        new WirelessQuickViewPage(false).ChannelWidth5low.selectOption(channelWidth);
+        MyCommonAPIs.sleepi(5);
+        new WirelessQuickViewPage(false).SaveDevicelevel.click();
+        MyCommonAPIs.sleepi(120); 
         assertTrue(new WirelessQuickViewPage(false).verifyAndCompareUIChannelsandTeraTermChannelsforBand("5GHz"), "5 Ghz band channels are not same as showing on tera term");
         
     }
