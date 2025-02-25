@@ -2,6 +2,7 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static org.testng.Assert.assertTrue;
 
 import java.lang.*;
 import java.util.logging.Logger;
@@ -32,6 +33,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import com.codeborne.selenide.WebDriverRunner;
 
 public class DeviceGroupPage extends DeviceGroupElement {
     Logger logger = Logger.getLogger("DeviceGroupPage");
@@ -937,6 +944,409 @@ public class DeviceGroupPage extends DeviceGroupElement {
             return Result;
         }
         
+        //AddedbyPratik        
+        public boolean verifyWrongIpAddresserrorMesage(String IP, String Port) {
+            boolean result = false;
+            MyCommonAPIs.sleepi(5);
+            SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
+            waitElement(toggleSwitchInput);
+            boolean isSwitchOn = toggleSwitchInput.isSelected();
+            if (isSwitchOn) {
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                if (errorForIp.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting error for Wrong IP Address Message : "+errorForIp.getText());
+                }
+                MyCommonAPIs.sleepi(1);
+            } else {
+                enbleSysLog.click();
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                if (errorForIp.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting error for Wrong IP Address Message : "+errorForIp.getText());
+                }
+                MyCommonAPIs.sleepi(1);
+            }
+            return result;
+        }
         
+        //Added By Pratik
+        public boolean enableSysLogAndVerifySuccessMsg(String IP, String Port) {
+            boolean result = false;
+            refresh();    
+            MyCommonAPIs.sleepi(5);
+            waitElement(SysLog);
+            SysLog.click();
+            MyCommonAPIs.sleepi(5);
+            SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
+            waitElement(toggleSwitchInput);
+            boolean isSwitchOn = toggleSwitchInput.isSelected();
+            if (isSwitchOn) {
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                waitElement(okSys);
+                if (successMsg.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting Success After entering valid input data for syslog server");
+                }
+                MyCommonAPIs.sleepi(1);
+                okSys.click();
+                MyCommonAPIs.sleepi(1);
+            } else {
+                enbleSysLog.click();
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                waitElement(okSys);
+                if (successMsg.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting Success After entering valid input data for syslog server");
+                }
+                MyCommonAPIs.sleepi(1);
+                okSys.click();
+                MyCommonAPIs.sleepi(1);
+            }
+            return result;
+        }
+        
+        //AddedbyPratik        
+        public boolean verifyWrongPorterrorMesage(String IP, String Port) {
+            boolean result = false;
+            MyCommonAPIs.sleepi(5);
+            SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
+            waitElement(toggleSwitchInput);
+            boolean isSwitchOn = toggleSwitchInput.isSelected();
+            if (isSwitchOn) {
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                if (errorForPort.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting error for Wrong IP Address Message : "+errorForPort.getText());
+                }
+                MyCommonAPIs.sleepi(1);
+            } else {
+                enbleSysLog.click();
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                if (errorForPort.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting error for Wrong IP Address Message : "+errorForPort.getText());
+                }
+                MyCommonAPIs.sleepi(1);
+            }
+            return result;
+        }
+        
+        //AddedBypratik
+        public void gotoLocationDashboard() {
+            MyCommonAPIs.sleepi(1);
+            waitElement($x("(//a[@href='/#/dashboard/account'])[1]"));
+            $x("(//a[@href='/#/dashboard/account'])[1]").click();
+            MyCommonAPIs.sleepi(10);
+        }
+        
+      //AddedByPratik
+        public boolean enableSysLogwithEmergencyAndVerifySuccessMsg(String IP, String Port, String position) {
+            boolean result = false;
+            refresh();    
+            MyCommonAPIs.sleepi(5);
+            waitElement(SysLog);
+            SysLog.click();
+            MyCommonAPIs.sleepi(5);
+            SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
+            waitElement(toggleSwitchInput);
+            boolean isSwitchOn = toggleSwitchInput.isSelected();
+            if (isSwitchOn) {
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);
+                assertTrue(moveSliderToPosition(position));
+                MyCommonAPIs.sleepi(5);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                waitElement(okSys);
+                if (successMsg.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting Success After entering valid input data for syslog server");
+                }
+                MyCommonAPIs.sleepi(1);
+                okSys.click();
+                MyCommonAPIs.sleepi(1);
+            } else {
+                enbleSysLog.click();
+                MyCommonAPIs.sleepi(3);
+                SysLogIP.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogIP.sendKeys(IP);
+                MyCommonAPIs.sleepi(3);
+                SysLogPort.clear();
+                MyCommonAPIs.sleepi(1);
+                SysLogPort.sendKeys(Port);
+                MyCommonAPIs.sleepi(3);           
+                assertTrue(moveSliderToPosition(position));  
+                MyCommonAPIs.sleepi(5);
+                waitElement(Apply);
+                MyCommonAPIs.sleepi(1);
+                Apply.click();
+                MyCommonAPIs.sleepi(5);
+                waitElement(okSys);
+                if (successMsg.isDisplayed()) {
+                    result = true;
+                    logger.info("Getting Success After entering valid input data for syslog server");
+                }
+                MyCommonAPIs.sleepi(1);
+                okSys.click();
+                MyCommonAPIs.sleepi(1);
+            }
+            return result;
+        }
+        
+    //AddedbyPratik    
+    public boolean moveSliderToEmergency() {
+        boolean result = false;
+        
+        String sliderXPath = "(//span[@class='input-range__slider-container'])[1]";
+        WebElement slider = $x(sliderXPath).shouldBe(Condition.visible).toWebElement();
+
+        JavascriptExecutor js = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+        js.executeScript("arguments[0].style.left = '0%';", slider);
+
+        String emergencyLabelXPath = "//span[contains(text(),'Emergency')]";
+        if($x(emergencyLabelXPath).isDisplayed()) {
+            $x(emergencyLabelXPath).shouldBe(Condition.visible);
+            result = true;
+        }
+        
+        return result;
+    }
+    
+    //AddedbyPratik
+    private void moveSlider(JavascriptExecutor js, WebElement slider, int steps, boolean moveLeft) {
+        for (int i = 0; i < steps; i++) {
+            int newPosition = moveLeft ? 25 * (4 - i - steps) : 25 * (i + 1);
+            js.executeScript("arguments[0].style.left = '" + newPosition + "%';", slider);
+        }
+    }
+    
+    //AddedbyPratik
+  //AddedbyPratik
+    public boolean moveSliderToPosition(String targetLabel) {
+        boolean result = false;
+
+        // Locate the slider element and the active track (dark line)
+        String sliderXPath = "(//span[@class='input-range__slider-container'])[1]"; 
+        WebElement slider = $x(sliderXPath).shouldBe(Condition.visible).toWebElement();
+
+        // Get the JavaScript executor for manipulation
+        JavascriptExecutor js = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+
+        // Get the current position of the slider (left %)
+        String currentLeft = slider.getAttribute("style"); // Example: "left: 25%"
+        logger.info("Current Slider Position: " + currentLeft);
+
+        // Get the current position mapped from left % (0 = Emergency, 1 = Error, etc.)
+        int currentPosition = getSliderPosition(currentLeft);  
+        
+        // Map the target label to the corresponding position index
+        int targetPosition = getPositionByLabel(targetLabel);  // Example: "Error" -> 1
+
+        if (targetPosition == -1) {
+            logger.info("Invalid target label: " + targetLabel);
+            return false;  // Return false if label is invalid
+        }
+
+        // If the current position is different from the target position
+        if (currentPosition != targetPosition) {
+            // Calculate steps to move (in terms of percentages)
+            int steps = Math.abs(targetPosition - currentPosition);
+            boolean moveRight = targetPosition > currentPosition;
+
+            // Move the slider step-by-step
+            for (int i = 0; i < steps; i++) {
+                // Calculate the new left position (percentage)
+                int newPosition = moveRight ? (currentPosition + i + 1) * 25 : (currentPosition - i - 1) * 25;
+
+                // Set the new position using JavaScript
+                js.executeScript("arguments[0].style.left = '" + newPosition + "%';", slider);
+                
+                // Update the active track's width to match the new position
+                js.executeScript("arguments[0].style.width = '" + newPosition + "%';", slider.findElement(By.xpath("(//div[@class='input-range__track input-range__track--active'])[1]")));
+
+                // Update the text inside the slider (the label)
+                String labelText = getLabelByPosition(newPosition);
+                WebElement label = slider.findElement(By.xpath("(//span[@class='input-range__label input-range__label--value'])[1]"));
+                js.executeScript("arguments[0].innerText = '" + labelText + "';", label);
+
+                // Trigger change event to ensure backend updates
+                js.executeScript("arguments[0].dispatchEvent(new Event('change'));", slider);
+
+                // Sleep briefly to allow UI updates
+                MyCommonAPIs.sleepi(5);
+            }
+        }
+
+        // Step 1: Ensure the label inside the slider updates accordingly
+        String labelXPath = "(//span[@class='input-range__label input-range__label--value'])[1]";  // XPath to the label inside the slider
+        WebElement label = $x(labelXPath).shouldBe(Condition.visible).toWebElement();
+
+        // Set the label text manually if necessary (the label should match the target position)
+        js.executeScript("arguments[0].innerText = '" + targetLabel + "';", label);
+
+        // Step 2: Force reflow (refresh) of the DOM to ensure proper updates
+        ((JavascriptExecutor) WebDriverRunner.getWebDriver()).executeScript("arguments[0].offsetHeight;", label);
+
+        // Step 3: Trigger 'change' event to ensure the backend/UI updates
+        js.executeScript("arguments[0].dispatchEvent(new Event('change'));", slider);
+
+        // Step 4: Verify if the target label is visible in the UI
+        String targetLabelXPath = getTargetLabelXPath(targetLabel); // Dynamic XPath for different labels
+        if ($x(targetLabelXPath).isDisplayed()) {
+            logger.info("Target position label (" + targetLabel + ") is visible.");
+        } else {
+            logger.info("Target position label (" + targetLabel + ") is not visible.");
+        }
+
+        // Step 5: Recheck if the slider moved correctly to the target position
+        String updatedLeft = slider.getAttribute("style");
+        int finalPosition = getSliderPosition(updatedLeft);
+
+        if (finalPosition == targetPosition) {
+            logger.info("Slider successfully moved to position: " + targetLabel);
+            result = true;
+        } else {
+            logger.info("Slider failed to move to the desired position.");
+        }
+
+        return result;  // Return true if the slider moved successfully, false otherwise
+    }
+
+    private String getTargetLabelXPath(String targetLabel) {
+        switch (targetLabel) {
+            case "Emergency":
+                return "(//span[contains(text(),'Emergency')])[1]";
+            case "Error":
+                return "(//span[contains(text(),'Error')])[1]";
+            case "Warning":
+                return "(//span[contains(text(),'Warning')])[1]";
+            case "Info":
+                return "(//span[contains(text(),'Info')])[1]";
+            case "Debug":
+                return "(//span[contains(text(),'Debug')])[2]"; // Debug has a different index
+            default:
+                return "";
+        }
+    }
+
+
+    //AddedBypratik
+    private int getPositionByLabel(String label) {
+        switch (label) {
+            case "Emergency": return 0;
+            case "Error": return 1;
+            case "Warning": return 2;
+            case "Info": return 3;
+            case "Debug": return 4;
+            default:
+                logger.info("Unknown label: " + label);
+                return -1;
+        }
+    }
+    
+  //AddedBypratik
+    private int getSliderPosition(String style) {
+        if (style.contains("0%")) return 0;   // Emergency
+        if (style.contains("25%")) return 1;  // Error
+        if (style.contains("50%")) return 2;  // Warning
+        if (style.contains("75%")) return 3;  // Info
+        if (style.contains("100%")) return 4; // Debug
+        return -1; // Unknown position if no match
+    }
+    
+  //AddedBypratik
+    private String getLabelByPosition(int position) {
+        switch (position) {
+            case 0: return "Emergency";
+            case 1: return "Error";
+            case 2: return "Warning";
+            case 3: return "Info";
+            case 4: return "Debug";
+            default: return "Unknown";
+        }
+    }
         
 }
