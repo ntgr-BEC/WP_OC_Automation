@@ -1878,7 +1878,7 @@ public class MyCommonAPIs {
     public String     sCurLocationElement             = "#headerLocName";
     public String     sCurOrganizationElement         = "#locationDropdown .display-inline";
     public String     sOrganizationLocationElement    = "#gridView .location-name";
-    public String     sOrganizationLocationElementNew = "#OrgList .underline";
+    public String     sOrganizationLocationElementNew = "span.whiteNoWrap";
     public String     sOrganizationLocationElement1   = "#content.location-grid";
     ArrayList<String> lsLocationNetworks              = new ArrayList<String>();
     
