@@ -1,4 +1,4 @@
-package webportal.FlexiProDeallocation.PRJCBUGEN_T16958;
+package webportal.FlexiProDeallocation.ICP.PRJCBUGEN_T16958;
 
 import static org.testng.Assert.assertTrue;
 

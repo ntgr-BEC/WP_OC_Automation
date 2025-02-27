@@ -80,9 +80,10 @@ public class Testcase extends TestCaseBase {
         
         
         OrganizationPage OrganizationPage = new OrganizationPage();
-        OrganizationPage.addOrganization(organizationInfo);
+//        OrganizationPage.addOrganization(organizationInfo);
 
         if (OrganizationPage.checkOrganizationIsExist(organizationName) && OrganizationPage.checkOrganizationOwner(organizationInfo)) {
+            System.out.println("----------------------");
             UserManage userManage = new UserManage();
             userManage.logout();
 

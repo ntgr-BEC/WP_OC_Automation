@@ -132,7 +132,7 @@ public class OrganizationPage extends OrganizationElement {
         } else if ($(sOrganizationLocationElementNew).exists()) {
             newElement = sOrganizationLocationElementNew;
         }
-
+           System.out.println("----------------------");
         waitElement(newElement);
         for (SelenideElement se : $$(newElement)) {
             if (getText(se).equalsIgnoreCase(name)) {
