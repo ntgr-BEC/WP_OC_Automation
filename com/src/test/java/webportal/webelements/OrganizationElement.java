@@ -108,7 +108,6 @@ public class OrganizationElement extends MyCommonAPIs {
       //div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='test16985 ']
 //                $x("//div[@id='gridView']/div[@class='locationDiv']//p[text()='" + name + "']");
 //                                         $x ("//div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='"+name+ "']");
-          System.out.println("---orgelem----");
         SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
         SelenideElement organization1 = $x("//*[text()='"+ name +"']");
         if(organization.isDisplayed()) {

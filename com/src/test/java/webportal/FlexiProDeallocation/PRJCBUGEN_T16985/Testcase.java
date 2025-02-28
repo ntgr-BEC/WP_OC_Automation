@@ -68,7 +68,7 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         
-        new OrganizationPage().deleteOrganizationNew(organizationName);
+        
     }
 
     @Step("Test Step 2: Create a organization and add one owner, then create owner account and check credits allocate page;")
@@ -83,7 +83,6 @@ public class Testcase extends TestCaseBase {
         OrganizationPage.addOrganization(organizationInfo);
 
         if (OrganizationPage.checkOrganizationIsExist(organizationName) && OrganizationPage.checkOrganizationOwner(organizationInfo)) {
-            System.out.println("----------------------");
             UserManage userManage = new UserManage();
             userManage.logout();
 
