@@ -635,5 +635,20 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement url = $x("//p[text()='" + Org_name + "']/..//ul[@class='list-inline list-unstyled Organization-grid-details']//li[3]");
         return url;
     }
+    
+    public SelenideElement dropdownOrganizationElementNew(String name) {
+        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../..");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndex(String index) {
+        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='8']/div/span");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexDelete(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
 
 }

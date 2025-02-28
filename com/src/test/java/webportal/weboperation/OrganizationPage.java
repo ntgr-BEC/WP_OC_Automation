@@ -500,13 +500,23 @@ public class OrganizationPage extends OrganizationElement {
             waitElement(netgear);
             netgear.click();
             MyCommonAPIs.sleepi(8);
+            if(dropdownOrganizationElement(name).exists())
+            {
             waitElement(dropdownOrganizationElement(name));
             MyCommonAPIs.sleepi(1);
             dropdownOrganizationElement(name).click();
             waitElement(deleteOrganizationElement(name));
             MyCommonAPIs.sleepi(5);
             deleteOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(20);
+            }
+            else
+            {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexDelete(rowindex).click();
+              
+            }
+            MyCommonAPIs.sleepi(10);
             waitElement(deletedialogbutton);
             MyCommonAPIs.sleepi(1);
             deletedialogbutton.click();
