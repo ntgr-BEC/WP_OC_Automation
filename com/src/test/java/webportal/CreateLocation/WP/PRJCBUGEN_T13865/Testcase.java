@@ -33,8 +33,7 @@ import webportal.weboperation.WebportalLoginPage;;
  */
 
 public class Testcase extends TestCaseBase {
-    String  sOrganizationLocationElement = "#gridView .location-name"; 
-    final static Logger logger = Logger.getLogger("PRJCBUGEN_T13865");
+    OrganizationPage OrganizationPage = new OrganizationPage();
     
     @Feature("CreateLocation.WP") 
     @Story("PRJCBUGEN_T13865") 
@@ -80,6 +79,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 3:Click on Add location icon")
     public void step3() {
+        new OrganizationPage().openOrg(WebportalParam.Organizations);
         HashMap<String, String> locationInfo = new HashMap<String, String>();      
         locationInfo.put("Location Name", WebportalParam.location1);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
@@ -91,10 +91,14 @@ public class Testcase extends TestCaseBase {
     }   
     @Step("Test Step 4:location with the same name should be created")
     public void step4() {
-        
         try {                     
-            MyCommonAPIs.waitElement(sOrganizationLocationElement);
-            ElementsCollection esc = $$(sOrganizationLocationElement);
+            ElementsCollection esc = null;
+            if ($(new MyCommonAPIs().sOrganizationLocationElement).isDisplayed()) {
+                esc = $$(new MyCommonAPIs().sOrganizationLocationElement);
+           } else if ($(new MyCommonAPIs().sOrganizationLocationElementNew).isDisplayed()) {
+                esc = $$(new MyCommonAPIs().sOrganizationLocationElement);
+           }
+            
             String network;
             boolean located = false;
             for (SelenideElement locelem : esc) {  
@@ -114,7 +118,7 @@ public class Testcase extends TestCaseBase {
             
             }
         catch(Exception e) {
-            logger.info("Unable to get "+sOrganizationLocationElement);
+            logger.info("Unable to get "+new MyCommonAPIs().sOrganizationLocationElement);
         }
     
     }
@@ -123,16 +127,26 @@ public class Testcase extends TestCaseBase {
 @Step("Test Step 5:Deleting location from managers")
 public void step5() {    
             AccountPage AccountPage =new AccountPage();
-            // Going to delete all Locations created from this testcase       
-            MyCommonAPIs.waitElement(sOrganizationLocationElement);
-            ElementsCollection esc = $$(sOrganizationLocationElement);
+            ElementsCollection esc = null;
+            if ($(new MyCommonAPIs().sOrganizationLocationElement).isDisplayed()) {
+                System.out.println("inside sOrganizationLocationElement");
+                esc = $$(new MyCommonAPIs().sOrganizationLocationElement);
+           } else if ($(new MyCommonAPIs().sOrganizationLocationElementNew).isDisplayed()) {
+               System.out.println("inside sOrganizationLocationElementNew");
+                esc = $$(new MyCommonAPIs().sOrganizationLocationElement);
+           }
+            
             int location = 0;
+            System.out.println(esc);
             for (SelenideElement locelem : esc) { 
                 System.out.println(locelem.getText());
                 if(location ==0 &&locelem.getText().contains(WebportalParam.location1)) { 
                     location =1;
                     System.out.println(locelem.getText()+"is deleted");
-                    new AccountPage().deleteOneLocation(locelem.getText());
+                    String locname = locelem.getText();
+                    System.out.println("assigned element"+locname);
+                    new AccountPage(false).deleteOneLocation(locname);
+
                 }
                 }
 }
@@ -151,9 +165,15 @@ public void step6() {
 public void step7() { 
     WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
     webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-    OrganizationPage OrganizationPage = new OrganizationPage();
+
     Selenide.sleep(10000);
-    ElementsCollection esc1 = $$(sOrganizationLocationElement);
+    ElementsCollection esc1 = null;
+    if ($(new MyCommonAPIs().sOrganizationLocationElement).isDisplayed()) {
+         esc1 = $$(new MyCommonAPIs().sOrganizationLocationElement);
+    } else if ($(new MyCommonAPIs().sOrganizationLocationElementNew).isDisplayed()) {
+         esc1 = $$(new MyCommonAPIs().sOrganizationLocationElement);
+    }
+   
     for (SelenideElement locelem : esc1) { 
         System.out.println(locelem.getText());
         if(locelem.getText().contains(WebportalParam.Organizations)) { 

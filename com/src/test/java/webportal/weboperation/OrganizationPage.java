@@ -127,9 +127,11 @@ public class OrganizationPage extends OrganizationElement {
         waitElement(sOrganizationLocationElement1);
         boolean located = false;
         String newElement = "";
-        if ($(sOrganizationLocationElement).exists()) {
+        if ($(sOrganizationLocationElement).isDisplayed()) {
+            System.out.println("inside sOrganizationLocationElement");
             newElement = sOrganizationLocationElement;
-        } else if ($(sOrganizationLocationElementNew).exists()) {
+        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
+            System.out.println("inside sOrganizationLocationElementNew");
             newElement = sOrganizationLocationElementNew;
         }
            System.out.println("----------------------");

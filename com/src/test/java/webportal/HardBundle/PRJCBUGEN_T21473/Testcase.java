@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 4: Create Location ")
     public void step4() {
-        new HamburgerMenuPage();        
+        new HamburgerMenuPage(false).closeLockedDialog();     
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);

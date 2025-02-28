@@ -30,8 +30,8 @@ import webportal.weboperation.WebportalLoginPage;;
  */
 
 public class Testcase extends TestCaseBase {
-    String  sOrganizationLocationElement = "#gridView .location-name"; 
-    
+    String  sOrganizationLocationElement = "#span.whiteNoWrap"; 
+    OrganizationPage OrganizationPage = new OrganizationPage();
     final static Logger logger = Logger.getLogger("PRJCBUGEN_T13864");
     
     
@@ -75,14 +75,15 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);;
-        OrganizationPage OrganizationPage = new OrganizationPage();
+       
         OrganizationPage.addOrg(WebportalParam.Organizations); 
     
     }
 
     @Step("Test Step 2:Click on Add location icon")
     public void step2() {
-        AccountPage AccountPage =new AccountPage() ;
+//        AccountPage AccountPage =new AccountPage() ;
+        OrganizationPage.openOrg(WebportalParam.Organizations);
         HashMap<String, String> locationInfo = new HashMap<String, String>();      
         locationInfo.put("Location Name", WebportalParam.location1);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
