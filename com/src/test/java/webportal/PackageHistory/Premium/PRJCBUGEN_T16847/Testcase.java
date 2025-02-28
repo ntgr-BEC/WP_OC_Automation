@@ -42,7 +42,7 @@ public class Testcase extends TestCaseBase {
             WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
             webportalLoginPage.defaultLogin();
 
-            handle.gotoLoction();
+
         }
 
         @Step("Test Step 2: In the hamburger menu, click on account management, check default category filter is all;")
