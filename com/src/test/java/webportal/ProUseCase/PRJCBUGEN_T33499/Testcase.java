@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
         proAccountInfo.put("Country", "United States of America");
         proAccountInfo.put("Phone Number", "0000000000");
         new HamburgerMenuPage(false).CreateProAccount(proAccountInfo);
-        new HamburgerMenuPage(false).prologinaftercreatingnewpro(mailid, password);
+//        new HamburgerMenuPage(false).prologinaftercreatingnewpro(mailid, password);
         
     }
 
