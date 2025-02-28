@@ -6762,7 +6762,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         WriteLMSKey.setValue(write);
         MyCommonAPIs.sleepi(5);
         accountOpt.click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(10);
         clickonAddLMSKey.click();
         MyCommonAPIs.sleepi(5);
         LicenseOkButton.click();

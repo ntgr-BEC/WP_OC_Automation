@@ -34,7 +34,8 @@ import webportal.weboperation.InsightServicesPage;
  *
  */
 public class Testcase extends TestCaseBase {
-
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4W8");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     Random r                = new Random();
     int    num              = r.nextInt(10000);
     String mailname         = "case3" + String.valueOf(num);
@@ -145,8 +146,8 @@ public class Testcase extends TestCaseBase {
   public void step9() {
       Map<String, String> firststdevInfo = new HashMap<String, String>();
       
-      firststdevInfo.put("Serial Number1", WebportalParam.ap6serialNo);
-      firststdevInfo.put("MAC Address1", WebportalParam.ap6macaddress);   
+      firststdevInfo.put("Serial Number1", AP1);
+      firststdevInfo.put("MAC Address1", MAC);   
       new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
   }
 
