@@ -731,7 +731,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement LicenseOkButton             = $x("//div[@class='modal-footer cstmModFooter']//button[text()='OK']");
     public static SelenideElement CreditAllocateIcon          = $x("//img[@id='AccCreditAllocate']");
     public static SelenideElement AccountSugnUpEmail          = $x("//input[@name='signupEmail']");
-    public SelenideElement        loginPwdNew                 = $x("//mat-label[contains(text(),'Password')]");
+    public SelenideElement        loginPwdNew                 = $x("//*[@id=\"mat-input-1\"]");
     public SelenideElement        locationSelectCheckBox      = $x("//ul//*[@class='checkbox ipacl']");
     public SelenideElement        AssigntoOrganization        = $x("//button[text()='Assign to Organization']");
     public SelenideElement        newOrgName                  = $x("//input[@data-type='orgName' and @name='newOrgName']");
