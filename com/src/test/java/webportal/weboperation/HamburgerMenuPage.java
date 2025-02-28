@@ -9069,7 +9069,7 @@ public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
    
     System.out.println(inviteEmailLinkAndText.getText());
     if (inviteEmailLinkAndText.getText().contains("click here")) {

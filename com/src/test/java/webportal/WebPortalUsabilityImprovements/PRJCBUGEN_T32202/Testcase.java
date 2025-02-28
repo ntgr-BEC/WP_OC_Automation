@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 3: Invite manager from All Manager Page")
     public void step3() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         logger.info("manager email -----> " + mailname);
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", mgrName);
@@ -99,7 +99,7 @@ public class Testcase extends TestCaseBase {
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Email Address", mailname);
         managerInfo.put("Name", "mgrName");
-        if (new HamburgerMenuPage(false).checkEmailMessage(managerInfo.get("Email Address"))) {
+        if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(managerInfo.get("Email Address"))) {
             Map<String, String> managerAccountInfo = new HashMap<String, String>();
             managerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
             managerAccountInfo.put("Password", WebportalParam.adminPassword);
