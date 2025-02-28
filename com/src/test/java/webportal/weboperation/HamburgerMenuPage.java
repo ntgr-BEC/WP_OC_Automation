@@ -8465,13 +8465,14 @@ public boolean checkEmailMessageForCustomReports(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
-   
+//    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
     System.out.println(ReportInMail.getText());
     if (ReportInMail.getText().contains("Organization Report: Netgear")) {
         result = true;
         logger.info("Received Custom report email .");
     }
+    WebDriverRunner.getWebDriver().close();
     return result;
 
 }
