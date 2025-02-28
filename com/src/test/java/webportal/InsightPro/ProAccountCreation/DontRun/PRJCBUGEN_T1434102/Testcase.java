@@ -1,4 +1,4 @@
-package webportal.InsightPro.ProAccountCreation.PRJCBUGEN_T1434102;
+package webportal.InsightPro.ProAccountCreation.DontRun.PRJCBUGEN_T1434102;
 
 import static org.testng.Assert.assertTrue;
 
