@@ -73,7 +73,9 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
             }
-            if (addNetWorkButton.isDisplayed()) {
+            if (addNetworkButton.isDisplayed()) {
+                addNetworkButton.shouldBe(Condition.visible).click();
+            } else if (addNetWorkButton.isDisplayed()) {
                 addNetWorkButton.click();
             } else if (addNetWorkPro.exists()) {
                 addNetWorkPro.click();
