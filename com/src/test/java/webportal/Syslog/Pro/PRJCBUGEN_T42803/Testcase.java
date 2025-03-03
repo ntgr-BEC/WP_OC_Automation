@@ -8,6 +8,8 @@ import java.util.Map;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.SelenideElement;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
@@ -23,6 +25,7 @@ import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DeviceGroupPage;
+import webportal.weboperation.DevicesApSummaryPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -40,7 +43,7 @@ public class Testcase extends TestCaseBase {
 
     @Feature("Syslog") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T42803") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify that for owner able config syslog on WP.") // It's a testcase title from Jira Test Case.
+    @Description("Verify Syslog after schedule reboot") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T42803") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
@@ -52,13 +55,9 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         System.out.println("start to do tearDown");
         MyCommonAPIs.sleepi(2);
-        OrganizationPage.openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
         new DeviceGroupPage().disableSysLog();
-        MyCommonAPIs.sleepi(3);   
-        new WirelessQuickViewPage().goToNetworkSetting();
-        MyCommonAPIs.sleepi(3);   
-        new WirelessQuickViewPage(false).enableLogProbing(false);
          
     }
 
@@ -66,33 +65,29 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.ownerName, WebportalParam.ownerPassword);
-        new OrganizationPage(false).clickonOkayGotit();
-        handle.gotoLoction();
-
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword); 
     }
 
     @Step("Test Step 2: Go to Syslog and enable")
     public void step2() {
-        new OrganizationPage().openOrg(WebportalParam.Organizations);
-        OrganizationPage.openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new DeviceGroupPage().GoToSysLog(WebportalParam.location1);
-        new DeviceGroupPage().EnableSysLog("1.1.1.1", "514");
+        assertTrue(new DeviceGroupPage().enableSysLogAndVerifySuccessMsg("1.1.1.1", "514"),"Not Getting Success After entering valid input data for syslog server");
     }
     
-    @Step("Test Step 3: Enable log Probing;")
+    
+    @Step("Test Step 3: Reboot AP and enable SSH")
     public void step3() {
-        
-        new WirelessQuickViewPage().goToNetworkSetting();
-        MyCommonAPIs.sleepi(3);   
-        new WirelessQuickViewPage(false).enableLogProbing(true);
-
-       
-}
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new DevicesApSummaryPage().clickReboot();
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new RunCommand().enableSSH4APALL(WebportalParam.ap1IPaddress);
+    }
     
     @Step("Test Step4:check for config push")
     public void step4(){
         boolean status=false;
+        MyCommonAPIs.sleepi(120);
         String result = new APUtils(WebportalParam.ap1IPaddress).SysLogEnableStatus(WebportalParam.ap1Model);
         if(result.contains("logSettings:syslogStatus 1") && result.contains("logSettings:syslogSrvIp 1.1.1.1") && result.contains("logSettings:syslogSrvPort 514")) {
             status = true;
@@ -101,6 +96,5 @@ public class Testcase extends TestCaseBase {
         assertTrue(status == true , "syslog  is disabled after enabling");
         
     }
-       
 
 }
