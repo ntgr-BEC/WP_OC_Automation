@@ -293,4 +293,5 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        checkName                   = $x("//input[@value=\"OnBoardingTestNew\"]");
     public SelenideElement        radiusServerSecret          = $x("//input[@id='primarySecret']");
     public SelenideElement        editNetwork                 = $x("//img[@class='location-logo' and @id='headerLocImg']");
+    public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
 }
