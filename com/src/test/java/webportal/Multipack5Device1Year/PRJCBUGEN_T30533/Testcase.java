@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "B1000");
         locationInfo.put("Country", "Belgium");
-        new HamburgerMenuPage();
+        //new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     

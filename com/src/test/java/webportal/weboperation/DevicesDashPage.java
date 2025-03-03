@@ -1620,8 +1620,8 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String result = "No device exits or no device exits";
         new MyCommonAPIs().open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(20);
-        String DeviceCount = DeviceCountOrg.getText();
-        System.out.println(DeviceCount);
+//        String DeviceCount = DeviceCountOrg.getText();
+//        System.out.println(DeviceCount);
         if (DeviceCountOrg.exists()) {
             if (getText(DeviceCountOrg).equals("1")) {
                 result = "Onedevice";
@@ -1647,6 +1647,38 @@ public class DevicesDashPage extends DevicesDashPageElements {
 
             }
             System.out.println(result);
+        }else {
+            
+            String name = getText(OrgName);
+            System.out.println(OrgName);
+            String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+            
+            if (getText(offlineDevicecount(rowindex)).equals("1")) {
+                result = "Onedevice";
+            }
+
+            if (getText(offlineDevicecount(rowindex)).equals("2")) {
+                result = "Twodevice";
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("3")) {
+                result = "Threedevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("4")) {
+                result = "Fourdevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("5")) {
+                result = "Fivedevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("1000")) {
+                result = "OneThousand";
+
+            }
+            System.out.println(result);
+        
+            ;
         }
         return result;
 
