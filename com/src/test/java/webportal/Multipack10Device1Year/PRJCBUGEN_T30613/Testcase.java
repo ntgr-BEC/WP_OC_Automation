@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -21,6 +22,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -45,6 +47,13 @@ public class Testcase extends TestCaseBase {
     public void test() throws Exception {
         runTest(this);
     }
+    
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
+    }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -68,7 +77,7 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "Cyprus");
 
-//        new HamburgerMenuPage(false).createAccount(accountInfo);        
+        new HamburgerMenuPage(false).createAccount(accountInfo);        
         
 //       
     }
@@ -82,7 +91,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Zip Code", "8125");
         locationInfo.put("Country", "Cyprus");
 //        new HamburgerMenuPage();
-//        new AccountPage().addNetwork(locationInfo);
+       new AccountPage().addNetwork(locationInfo);
     }
     
     
