@@ -1022,7 +1022,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
    public SelenideElement  pencilEdit1         = $x("//*[@id='billingBlock-savedBilling-editIcon']");
   public SelenideElement  pencilEdit2         = $x("//*[@id='paymentBlock-editIcon']");
   public SelenideElement  subscriptionEmail   = $x("//*[@id='hEmailsubscriptions']");
-  //AddedByPratik
+  //Added By Pratik
   public SelenideElement  currentSubscriptionText           = $x("//span[text()='Current Subscription']");
   public SelenideElement  insightpremiumTrailText           = $x("//p[text()='Insight Premium Trial']");
   public SelenideElement  freetrailActivationDate           = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Activation']/../p");
