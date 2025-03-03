@@ -1022,5 +1022,16 @@ public class HamburgerMenuElement extends MyCommonAPIs {
    public SelenideElement  pencilEdit1         = $x("//*[@id='billingBlock-savedBilling-editIcon']");
   public SelenideElement  pencilEdit2         = $x("//*[@id='paymentBlock-editIcon']");
   public SelenideElement  subscriptionEmail   = $x("//*[@id='hEmailsubscriptions']");
+  //AddedByPratik
+  public SelenideElement  currentSubscriptionText           = $x("//span[text()='Current Subscription']");
+  public SelenideElement  insightpremiumTrailText           = $x("//p[text()='Insight Premium Trial']");
+  public SelenideElement  freetrailActivationDate           = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Activation']/../p");
+  public SelenideElement  freetrailexpirationDate           = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Expiration']/../p");
+  public SelenideElement  freeTrailprice                    = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Price Per Device']/../p");
+  public SelenideElement  billingFreeTrail                  = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Billing']/../p");
+  public SelenideElement  freeTrailAutoRenewal              = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Auto Renewal']/../p");
+  public SelenideElement  unlimitedDeviceCredits            = $x("//p[text()='Device Credits']/../p[text()='Unlimited']");
+  public SelenideElement  unlimitedAvailableCredits         = $x("//p[text()='Available Credits']/../p[text()='Unlimited']");
+  public SelenideElement  insightDevicesCountfreeTrail      = $x("//p[text()='Insight Devices']/../h2");
 }
 
