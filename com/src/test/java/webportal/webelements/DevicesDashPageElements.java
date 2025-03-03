@@ -509,7 +509,20 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }
 	
-	 public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
+	public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
     public SelenideElement        deviceNameExt               = $x("//*[@id='pdevIddevicesDash0']");
+    
+    
+
+    public SelenideElement OrgName = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='2']//div[@aria-colindex='1']/div/span");
+
+    public SelenideElement dropdownOrganizationElementNew(String name) {
+        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../..");
+        return dropdownelementnew;
+    }
+    public SelenideElement offlineDevicecount(String index) {
+        SelenideElement offlineDevicecount = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='4']");
+        return offlineDevicecount;
+    }
 
 }
