@@ -1348,5 +1348,20 @@ public class DeviceGroupPage extends DeviceGroupElement {
             default: return "Unknown";
         }
     }
+    
+    //AddedByPratik
+    public boolean verifyBydeafultSyslogisDiabled() {
+        boolean isDisabled = false;
+        refresh();    
+        MyCommonAPIs.sleepi(5);
+        waitElement(SysLog);
+        SysLog.click();
+        MyCommonAPIs.sleepi(5);
+        SelenideElement toggleSwitchInput = $x("//input[@id='toggleSyslogConfig']/../span");
+        waitElement(toggleSwitchInput);
+        isDisabled = toggleSwitchInput.is(Condition.disabled);
+        logger.info("Syslog Switch is by default disabled");
+        return isDisabled;
+    }
         
 }
