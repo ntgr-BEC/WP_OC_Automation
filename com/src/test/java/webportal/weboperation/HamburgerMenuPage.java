@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9948,6 +9949,101 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         if (NoThankYou.isDisplayed()) {
             NoThankYou.click();
         }
+    }
+    
+    //Added By pratik
+    public boolean verifyPremiumAccfreeTrailSubscription() throws ParseException {
+        
+        boolean result = true;
+        MyCommonAPIs.sleepi(10);
+        waitElement(currentSubscriptionText);
+        
+        if (insightpremiumTrailText.isDisplayed() && freetrailActivationDate.isDisplayed() && freetrailexpirationDate.isDisplayed() 
+                && freeTrailprice.isDisplayed() && billingFreeTrail.isDisplayed() && freeTrailAutoRenewal.isDisplayed()
+                && unlimitedDeviceCredits.isDisplayed() && unlimitedAvailableCredits.isDisplayed()) {
+            
+            String priceperDevice = freeTrailprice.getText();
+            String monthlybilling = billingFreeTrail.getText();
+            String autoRenewalOn  = freeTrailAutoRenewal.getText();
+            String insightDevices = insightDevicesCountfreeTrail.getText();
+            System.out.println("Price Per device: "+freeTrailprice);
+            System.out.println("Monthly Billing: "+freeTrailprice);
+            System.out.println("Auto Renewal is "+autoRenewalOn);
+            System.out.println("insight Devices Available in free Trail "+insightDevices);
+            
+            boolean isZero1 = priceperDevice.trim().matches("^\\D*0/Mo$"); 
+            boolean isZero2 = monthlybilling.trim().matches("^\\D*0\\.00/Mo$");
+            boolean isAutoRenewalOn = autoRenewalOn.trim().equals("On");
+            boolean isZero = insightDevices.trim().equals("0");
+            
+            System.out.println("isZero1: "+isZero1);
+            System.out.println("isZero2: "+isZero2);
+            System.out.println("isAutoRenewalOn: "+isAutoRenewalOn);
+            System.out.println("insightDevices=0: "+insightDevices);
+            
+            if (isZero && isZero1 && isZero2 && isAutoRenewalOn && verifyActivationAndExpirationDates()) {
+                    System.out.println("Newly created Premium Account free trial is activated Successfully...");
+                    result = true;
+                }
+            
+        }
+            
+        return result;
+        
+    }
+    
+    //Added By Pratik
+    public boolean verifyActivationAndExpirationDates() throws ParseException {
+        boolean result = false;
+
+        String activationDateStr = freetrailActivationDate.getText().replace("a.m.", "AM").replace("p.m.", "PM");
+        String expirationDateStr = freetrailexpirationDate.getText().replace("a.m.", "AM").replace("p.m.", "PM");
+
+        System.out.println("Activation Date: " + activationDateStr);
+        System.out.println("Expiration Date: " + expirationDateStr);
+
+        // Define the date format
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm a");
+
+        // Convert strings to Date objects
+        Date activationDate = formatter.parse(activationDateStr);
+        Date expirationDate = formatter.parse(expirationDateStr);
+
+        // Convert to Calendar objects
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(activationDate);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(expirationDate);
+
+        // Calculate difference in days
+        long diffMillis = cal2.getTimeInMillis() - cal1.getTimeInMillis();
+        long daysBetween = diffMillis / (24 * 60 * 60 * 1000);
+
+        // Extract year and month
+        int year1 = cal1.get(Calendar.YEAR);
+        int year2 = cal2.get(Calendar.YEAR);
+        int month1 = cal1.get(Calendar.MONTH) + 1; // Months are zero-based
+        int month2 = cal2.get(Calendar.MONTH) + 1;
+
+        System.out.println("Difference in days: " + daysBetween);
+        System.out.println("Activation: Year " + year1 + " Month " + month1);
+        System.out.println("Expiration: Year " + year2 + " Month " + month2);
+
+        // Validate expected difference in days
+        boolean isValidDays = (daysBetween == 27 || daysBetween == 28 || daysBetween == 30 || daysBetween == 31);
+
+        // Validate if expiration month is the next month, accounting for December → January transition
+        boolean isNextMonth = (year1 == year2 && month2 == month1 + 1) || (year2 == year1 + 1 && month1 == 12 && month2 == 1);
+
+        if (isValidDays && isNextMonth) {
+            System.out.println("Free trial period and month/year transition are correct!");
+            result = true;
+        } else {
+            System.out.println("Free trial period or month transition is incorrect!");
+        }
+
+        return result;
     }
 
 }
