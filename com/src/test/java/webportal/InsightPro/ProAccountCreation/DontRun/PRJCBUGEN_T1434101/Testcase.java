@@ -1,4 +1,4 @@
-package webportal.InsightPro.ProAccountCreation.PRJCBUGEN_T1434100;
+package webportal.InsightPro.ProAccountCreation.DontRun.PRJCBUGEN_T1434101;
 
 import static org.testng.Assert.assertTrue;
 
@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
 //    String mailname = "abcwz" + String.valueOf(num) + "@sharklasers.com";;
 
     @Feature("InsightPro.ProAccountCreation") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T1434100") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T1434101") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify when we click on the signup button then the account is created and got the account verification email on given id.") // It's
                                                                                                                                                       // a
                                                                                                                                                       // testcase
@@ -45,7 +45,7 @@ public class Testcase extends TestCaseBase {
                                                                                                                                                       // Jira
     // Test
     // Case.
-    @TmsLink("PRJCBUGEN-T1434100") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T1434101") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
             proAccountInfo.put("Confirm Email", eachemail);
             proAccountInfo.put("Password", WebportalParam.adminPassword);
             proAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
-            proAccountInfo.put("Country", "United States of America");
+            proAccountInfo.put("Country", "Canada");
             proAccountInfo.put("Phone Number", "1234567890");
             new HamburgerMenuPage(false).CreateProAccount(proAccountInfo);
 
@@ -93,10 +93,10 @@ public class Testcase extends TestCaseBase {
             businessInfo.put("Licence Key", new HamburgerMenuPage(false).readLicenceKeyByTxt("Write"));
             businessInfo.put("Business Name", "Netgear");
             businessInfo.put("Primary Address of Business", "test 1st");
-            businessInfo.put("City", "NewYork");
+            businessInfo.put("City", "Ontario");
             businessInfo.put("State", "test");
-            businessInfo.put("Zip Code", "12345");
-            businessInfo.put("Country", "United States of America");
+            businessInfo.put("Zip Code", "L6A");
+            businessInfo.put("Country", "Canada");
             businessInfo.put("Business Phone Number", "1234567890");
             new HamburgerMenuPage(false).inputLicenceAndFinishSignin(businessInfo);
 

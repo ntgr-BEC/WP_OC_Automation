@@ -6763,7 +6763,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         WriteLMSKey.setValue(write);
         MyCommonAPIs.sleepi(5);
         accountOpt.click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(10);
         clickonAddLMSKey.click();
         MyCommonAPIs.sleepi(5);
         LicenseOkButton.click();
@@ -8466,13 +8466,14 @@ public boolean checkEmailMessageForCustomReports(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
-   
+//    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
     System.out.println(ReportInMail.getText());
     if (ReportInMail.getText().contains("Organization Report: Netgear")) {
         result = true;
         logger.info("Received Custom report email .");
     }
+    WebDriverRunner.getWebDriver().close();
     return result;
 
 }
@@ -9069,7 +9070,7 @@ public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
    
     System.out.println(inviteEmailLinkAndText.getText());
     if (inviteEmailLinkAndText.getText().contains("click here")) {

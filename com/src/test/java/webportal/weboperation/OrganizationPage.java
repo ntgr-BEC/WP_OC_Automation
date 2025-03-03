@@ -698,8 +698,18 @@ public class OrganizationPage extends OrganizationElement {
 
     public void addAllocateCredits(String name, String number) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
+
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(number);
             MyCommonAPIs.sleepi(3);
@@ -714,8 +724,17 @@ public class OrganizationPage extends OrganizationElement {
     public void addAllocateCredits(String name, String devNum, String vpnNum, String icpNum) {
         open(URLParam.hreforganization, true);
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
             MyCommonAPIs.sleepi(3);
@@ -733,8 +752,17 @@ public class OrganizationPage extends OrganizationElement {
 
     public void addAllocateCreditsKeys(String name, String devNum, String vpnNum, String icpNum) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
             MyCommonAPIs.sleepi(5);
@@ -1238,8 +1266,17 @@ public class OrganizationPage extends OrganizationElement {
 
         boolean result = false;
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
 

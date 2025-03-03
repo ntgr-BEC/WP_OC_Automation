@@ -33,7 +33,8 @@ import webportal.weboperation.InsightServicesPage;
  *
  */
 public class Testcase extends TestCaseBase {
-
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4W8");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     Random r                = new Random();
     int    num              = r.nextInt(10000000);
     String mailname         = "case1" + String.valueOf(num);
@@ -123,8 +124,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 6: Onboarding a dummy device;")
     public void step6() {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo.put("Serial Number1", AP1);
+        firststdevInfo.put("MAC Address1", MAC);
         new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
     }
 

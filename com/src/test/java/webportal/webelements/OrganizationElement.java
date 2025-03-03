@@ -108,7 +108,6 @@ public class OrganizationElement extends MyCommonAPIs {
       //div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='test16985 ']
 //                $x("//div[@id='gridView']/div[@class='locationDiv']//p[text()='" + name + "']");
 //                                         $x ("//div[@id='successMessage']/..//div[@class='EditBlock']//h3[text()='"+name+ "']");
-          System.out.println("---orgelem----");
         SelenideElement organization = $x("(//*[text()='"+ name +"'])[2]");
         SelenideElement organization1 = $x("//*[text()='"+ name +"']");
         if(organization.isDisplayed()) {
@@ -648,6 +647,11 @@ public class OrganizationElement extends MyCommonAPIs {
     
     public SelenideElement ariaSetIndexDelete(String index) {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexAllocate(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Allocate']");
         return dropdownelementnew;
     }
 

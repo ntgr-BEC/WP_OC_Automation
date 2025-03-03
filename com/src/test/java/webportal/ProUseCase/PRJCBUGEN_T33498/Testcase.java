@@ -34,7 +34,9 @@ import webportal.weboperation.InsightServicesPage;
  *
  */
 public class Testcase extends TestCaseBase {
-
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String AP2 =new DevicesDashPage(false).GenaraterandomSerial ("4W8");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     Random r                = new Random();
     int    num              = r.nextInt(10000);
     String mailname         = "case3" + String.valueOf(num);
@@ -89,8 +91,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Onboarding a HBB dummy device and logout")
     public void step3() {
          Map<String, String> firststdevInfo = new HashMap<String, String>();
-         firststdevInfo.put("Serial Number1", WebportalParam.ap7serialNo);
-         firststdevInfo.put("MAC Address1", WebportalParam.ap7macaddress);
+         firststdevInfo.put("Serial Number1", AP1);
+         firststdevInfo.put("MAC Address1", MAC);
          new AccountPage(false).enterLocation(WebportalParam.location1);
          new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
 //         assertTrue(new DevicesDashPage(false).verifyDeviceIsOnboarded(WebportalParam.ap1serialNo), "Device is not Onboarded");
@@ -143,8 +145,8 @@ public class Testcase extends TestCaseBase {
   @Step("Test Step 8: Onboarding a dummy device;")
   public void step8() {
       Map<String, String> firststdevInfo = new HashMap<String, String>();
-      firststdevInfo.put("Serial Number1", WebportalParam.ap8serialNo);
-      firststdevInfo.put("MAC Address1", WebportalParam.ap8macaddress);  
+      firststdevInfo.put("Serial Number1", AP2);
+      firststdevInfo.put("MAC Address1", MAC);  
       new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
   }
 
