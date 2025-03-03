@@ -212,8 +212,7 @@ public class AccountPageElement extends MyCommonAPIs {
     public void deleteLocation(String Name) {
         MyCommonAPIs.sleepi(15);
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        String deleteLocation1 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..",
-                WebportalParam.getLocText("Delete location"));
+        String deleteLocation1 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..",WebportalParam.getLocText("Delete location"));
         String deleteLocation2 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..", WebportalParam.getLocText("Delete"));
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
         SelenideElement deleteLocation4 = $x("//button[@class='btn btn-danger' and text()='Delete']");
@@ -234,8 +233,14 @@ public class AccountPageElement extends MyCommonAPIs {
             deleteLocation6.click();
         }
         MyCommonAPIs.sleepi(35);
+        if(deleteLocation4.exists()) {
         waitElement(deleteLocation4);
         deleteLocation4.click();
+        }
+        if(deleteLocation6.exists()) {
+            waitElement(deleteLocation6);
+            deleteLocation6.click();
+            }
 //        clickBoxLastButton();
         MyCommonAPIs.sleepi(5);
         

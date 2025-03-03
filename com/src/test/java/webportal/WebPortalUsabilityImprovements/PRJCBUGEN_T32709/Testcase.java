@@ -152,6 +152,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 8: Invite manager from All Manager Page")
     public void step8() {
         mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        System.out.println("step8 email"+mailname);
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", mgrName);
         managerInfo.put("Email Address", mailname);
@@ -163,6 +164,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 9: Verify that user should be able to see the organization under the pop-up screen ")
     public void step9() {
+        System.out.println("step9 email"+mailname);
         new ManagerPage(false).hoverOverTheOrgCountOfAddedMgr(mailname);
         MyCommonAPIs.sleepi(2);
         assertTrue(new ManagerPage(false).VerifyFiveOrgisVisibleOnPopUp(mailname));
@@ -171,9 +173,10 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 10: Verify that user should be able to click View All Button and also verify org are present on that page ")
     public void step10() {
+        System.out.println("step10 email"+mailname);
         new ManagerPage(false).clickOnViewAllButton(mailname);
         MyCommonAPIs.sleepi(2);
-        assertTrue(new ManagerPage(false).VerifyOrgIsPresentOnViewAllSection(mailname));
+        assertTrue(new ManagerPage(false).VerifyOrgIsPresentOnViewAllSection(organizationName4));
 
     }
 

@@ -64,14 +64,12 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
-//        new DevicesDashPage().checkDutInNormalAccount("admin", devInfo.get("Serial Number"), devInfo.get("Device Name"), devInfo.get("MAC Address"));
-//        new DevicesDashPage().checkDutInNormalAccount("admin", devInfoNew.get("Serial Number"), devInfoNew.get("Device Name"), devInfoNew.get("MAC Address"));
+
     }
 
     @Step("Test Step 2: Add new organization and add devices, then check devices credits limit;")
     public void step2() {
-//        new DevicesDashPage().deleteDeviceYes(devInfo.get("Serial Number"));
-//        new DevicesDashPage().deleteDeviceYes(devInfoNew.get("Serial Number"));
+
 
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
@@ -91,7 +89,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(10);
         new DevicesDashPage().addNewDevice(devInfo);
         MyCommonAPIs.sleepi(10);
-//        new DevicesDashPage().waitDevicesReConnected(devInfo.get("Serial Number"));
+
 
         assertTrue(new DevicesDashPage().checkDevicesCredits(devInfoNew).contains("you need to allocate more device credits"),
                 "Credits limit error.");

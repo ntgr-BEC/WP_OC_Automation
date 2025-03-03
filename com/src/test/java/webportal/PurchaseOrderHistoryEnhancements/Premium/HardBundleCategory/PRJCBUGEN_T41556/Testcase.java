@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     new HamburgerMenuPage(false).createAccount(accountInfo);
 }
 
-@Step("Test Step 2: Check buy vpn services;")
+@Step("Test Step 2: Create Location;")
 public void step2() {
 
   new HamburgerMenuPage(false).closeLockedDialog();

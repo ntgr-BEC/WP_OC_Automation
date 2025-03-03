@@ -1,4 +1,4 @@
-package webportal.FlexibleProSubscription.PRJCBUGEN_T16031;
+package webportal.FlexibleProSubscription.ICP.PRJCBUGEN_T16032;
 
 import static org.testng.Assert.assertTrue;
 
@@ -34,16 +34,16 @@ public class Testcase extends TestCaseBase {
     HashMap<String, String> locationInfo     = new HashMap<String, String>();
     HashMap<String, String> locationInfoNew  = new HashMap<String, String>();
     Map<String, String>     ssidInfo         = new HashMap<String, String>();
-    String                  organizationName = "test16031";
-    String                  locationName     = "ntk16031";
+    String                  organizationName = "test16032";
+    String                  locationName     = "ntk16032";
     String                  devicesCredits   = "2";
     String                  icpCredits       = "2";
 
     @Feature("FlexibleProSubscription") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T16031") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify the credit allocation count while adding network location to an organization") // It's a test case title from Jira
-                                                                                                                // Test Case.
-    @TmsLink("PRJCBUGEN-T16031") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T16032") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify the credit allocation count while deleting network location from an organization") // It's a test case title from
+                                                                                                                    // Jira Test Case.
+    @TmsLink("PRJCBUGEN-T16032") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
-        //handle.gotoLoction();
+//        handle.gotoLoction();
 //        new DevicesDashPage().checkDutInNormalAccount("admin", devInfo.get("Serial Number"), devInfo.get("Device Name"), devInfo.get("MAC Address"));
 //        new DevicesDashPage().checkDutInNormalAccount("admin", devInfoNew.get("Serial Number"), devInfoNew.get("Device Name"), devInfoNew.get("MAC Address"));
     }
@@ -111,8 +111,7 @@ public class Testcase extends TestCaseBase {
         new AccountPage(false).enterLocation(locationInfo.get("Location Name"));
         new DevicesDashPage().addNewDevice(devInfo);
 //        new DevicesDashPage().waitDevicesReConnected(devInfo.get("Serial Number"));
-
-        ssidInfo.put("SSID", "apwp16031");
+        ssidInfo.put("SSID", "apwp16032");
         ssidInfo.put("Security", "WPA2 Personal");
         ssidInfo.put("Password", "12345678");
         new WirelessQuickViewPage().addSsid(ssidInfo);
@@ -133,11 +132,23 @@ public class Testcase extends TestCaseBase {
         new AccountPage(false).enterLocation(locationInfoNew.get("Location Name"));
         new DevicesDashPage().addNewDevice(devInfoNew);
 //        new DevicesDashPage().waitDevicesReConnected(devInfoNew.get("Serial Number"));
-
         HashMap<String, String> creditsInfo = new HamburgerMenuPage().getCreditAllocationStatus(organizationName);
         assertTrue(
                 creditsInfo.get("Used Devices Credits").equals(devicesCredits) && creditsInfo.get("Unused Devices Credits").equals("0")
                         && creditsInfo.get("Used ICP Credits").equals("1") && creditsInfo.get("Unused ICP Credits").equals("1"),
+                "Allocate credits error.");
+    }
+
+    @Step("Test Step 3: Delete one location, check allocate credits result;")
+    public void step3() {
+        OrganizationPage OrganizationPage = new OrganizationPage();
+        OrganizationPage.openOrg(organizationName);
+        new AccountPage(false).deleteLocation(locationInfo.get("Location Name"));
+
+        HashMap<String, String> creditsInfo = new HamburgerMenuPage().getCreditAllocationStatus(organizationName);
+        assertTrue(
+                creditsInfo.get("Used Devices Credits").equals("1") && creditsInfo.get("Unused Devices Credits").equals("1")
+                        && creditsInfo.get("Used ICP Credits").equals("0") && creditsInfo.get("Unused ICP Credits").equals(icpCredits),
                 "Allocate credits error.");
     }
 
