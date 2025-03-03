@@ -9951,7 +9951,7 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         }
     }
     
-    //AddedBypratik
+    //Added By pratik
     public boolean verifyPremiumAccfreeTrailSubscription() throws ParseException {
         
         boolean result = true;
@@ -9992,7 +9992,7 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         
     }
     
-    //AddedByPratik
+    //Added By Pratik
     public boolean verifyActivationAndExpirationDates() throws ParseException {
         boolean result = false;
 
