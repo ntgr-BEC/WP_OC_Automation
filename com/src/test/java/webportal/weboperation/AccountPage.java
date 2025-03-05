@@ -49,6 +49,8 @@ public class AccountPage extends AccountPageElement {
             WebCheck.checkUrl(URLParam.hrefaccount);
         }
         logger.info("init...");
+        MyCommonAPIs.sleepi(10);
+        System.out.println("go out");
     }
 
     public AccountPage(boolean noPage) {
@@ -71,13 +73,15 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
             }
-            if (addNetWorkButton.isDisplayed()) {
+            if (addNetworkButton.isDisplayed()) {
+                addNetworkButton.shouldBe(Condition.visible).click();
+            } else if (addNetWorkButton.isDisplayed()) {
                 addNetWorkButton.click();
             } else if (addNetWorkPro.exists()) {
                 addNetWorkPro.click();
                 addsinglelocation.click();
             }
-            MyCommonAPIs.sleepi(40);
+            MyCommonAPIs.sleepi(30);
             waitElement(addNetLocationName);
             // timeZone.waitUntil(Condition.matchText("UTC"), 40 * 1000);
             // MyCommonAPIs.sleep(10000);
@@ -979,9 +983,10 @@ public class AccountPage extends AccountPageElement {
         // if (locationlist.getAttribute("aria-expanded").equals("false")) {
         // locationlist.click();
         // }
+        System.out.println("enterd");
         MyCommonAPIs.sleepi(20);
-        new MyCommonAPIs().open(URLParam.hrefaccount, true);
-        MyCommonAPIs.sleepi(20);
+//        new MyCommonAPIs().open(URLParam.hrefaccount, true);
+//        MyCommonAPIs.sleepi(20);
         MyCommonAPIs.sleepi(3);
         if (locationName(locationName).exists()) {
             deleteLocation(locationName);

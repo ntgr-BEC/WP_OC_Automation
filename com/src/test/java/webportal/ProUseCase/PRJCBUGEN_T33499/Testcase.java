@@ -35,7 +35,8 @@ import webportal.weboperation.InsightServicesPage;
  *
  */
 public class Testcase extends TestCaseBase {
-
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4W8");
+    String MAC = "aa:bb:cc:dd:ee:ff";
     Random r                = new Random();
     int    num              = r.nextInt(10000);
     String mailname         = "case3" + String.valueOf(num);
@@ -70,7 +71,7 @@ public class Testcase extends TestCaseBase {
         proAccountInfo.put("Country", "United States of America");
         proAccountInfo.put("Phone Number", "0000000000");
         new HamburgerMenuPage(false).CreateProAccount(proAccountInfo);
-        new HamburgerMenuPage(false).prologinaftercreatingnewpro(mailid, password);
+//        new HamburgerMenuPage(false).prologinaftercreatingnewpro(mailid, password);
         
     }
 
@@ -118,8 +119,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: Onboarding a dummy device;")
     public void step5() {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo.put("Serial Number1", AP1);
+        firststdevInfo.put("MAC Address1", AP1);
         new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
     }
 

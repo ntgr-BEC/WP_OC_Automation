@@ -86,7 +86,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         
 //      new HamburgerMenuPage(false).clickAddInsightIncludedDevices();
-        new HamburgerMenuPage(false).closeLockedDialog();
+//        new HamburgerMenuPage(false).closeLockedDialog();
         HashMap<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);

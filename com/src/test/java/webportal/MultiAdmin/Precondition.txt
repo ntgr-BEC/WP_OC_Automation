@@ -1,0 +1,1 @@
+Need all 4 Pro account , and create one secondary admin in any other PRO admin account (Except the admin account  what ever we have added in our  configuration sheet )and the secondary adim details in config_webportal

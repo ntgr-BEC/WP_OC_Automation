@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -3404,8 +3405,25 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void createManagerAccount(Map<String, String> map) {
-        // invitemanager.click();
-        checkemailtitle.click();
+		 WebDriver driver = WebDriverRunner.getWebDriver();
+        String originalWindow = driver.getWindowHandle(); // Store main window
+        String url = "https://yopmail.com";
+
+        ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+        Selenide.switchTo().window(1); // Switch to the new tab
+        Selenide.sleep(5); // Give time for the page to load
+
+        // Input email and check inbox
+        SelenideElement inputBox = $x("//input[@id='login']");
+        inputBox.clear();
+        inputBox.sendKeys(map.get("Confirm Email"));
+        $x("//button[@title='Check Inbox @yopmail.com']").click();
+
+        // Wait for iframe to be visible and switch to it
+        SelenideElement frame = $x("//*[@id=\"ifmail\"]").shouldBe(Condition.visible);
+        Selenide.switchTo().frame(frame);
+        Selenide.sleep(5); // Small wait for email to load
+		
         MyCommonAPIs.sleepi(3);
         if (getowneraccounturlnew.exists()) {
             open(getowneraccounturlnew.getAttribute("href"));
@@ -3692,17 +3710,17 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBox.clear();
         inputBox.sendKeys(mailname);
         $x("//button[@title='Check Inbox @yopmail.com']").click();
-
+        Selenide.sleep(10);
         // Wait for iframe to be visible and switch to it
         SelenideElement frame = $x("//*[@id=\"ifinbox\"]").shouldBe(Condition.visible);
         Selenide.switchTo().frame(frame);
-        Selenide.sleep(5); // Small wait for email to load
+        Selenide.sleep(10); // Small wait for email to load
 
         // Get the latest email title
         SelenideElement titleElement = $x("//div[@currentmail]//div[@class='lms']");
         String titleText = titleElement.shouldBe(Condition.visible).getText();
         logger.info("Data Text = : " + titleText);
-
+        Selenide.sleep(10);
         // Check email subject
         List<String> validSubjects = Arrays.asList(
             "Invite owner email",
@@ -3724,8 +3742,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 logger.info("Received email: " + subject);
                 break; // Exit loop on first match
             }
+            
+            Selenide.sleep(10);
         }
 
+        Selenide.sleep(10);
         // Close current tab and switch back to original window
         WebDriverRunner.getWebDriver().close();
         Selenide.switchTo().window(originalWindow);
@@ -6742,7 +6763,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         WriteLMSKey.setValue(write);
         MyCommonAPIs.sleepi(5);
         accountOpt.click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(10);
         clickonAddLMSKey.click();
         MyCommonAPIs.sleepi(5);
         LicenseOkButton.click();
@@ -8445,13 +8466,14 @@ public boolean checkEmailMessageForCustomReports(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
-   
+//    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
     System.out.println(ReportInMail.getText());
     if (ReportInMail.getText().contains("Organization Report: Netgear")) {
         result = true;
         logger.info("Received Custom report email .");
     }
+    WebDriverRunner.getWebDriver().close();
     return result;
 
 }
@@ -9048,7 +9070,7 @@ public boolean checkEmailMessageForInvitemangaerOwner(String mailname) {
     $x("//button[@title='Check Inbox @yopmail.com']").click();
     SelenideElement frame = $x("//*[@id=\"ifmail\"]");
     Selenide.switchTo().frame(frame);
-    MyCommonAPIs.sleepsync();
+    MyCommonAPIs.sleepi(10);
    
     System.out.println(inviteEmailLinkAndText.getText());
     if (inviteEmailLinkAndText.getText().contains("click here")) {
@@ -9927,6 +9949,101 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         if (NoThankYou.isDisplayed()) {
             NoThankYou.click();
         }
+    }
+    
+    //Added By pratik
+    public boolean verifyPremiumAccfreeTrailSubscription() throws ParseException {
+        
+        boolean result = true;
+        MyCommonAPIs.sleepi(10);
+        waitElement(currentSubscriptionText);
+        
+        if (insightpremiumTrailText.isDisplayed() && freetrailActivationDate.isDisplayed() && freetrailexpirationDate.isDisplayed() 
+                && freeTrailprice.isDisplayed() && billingFreeTrail.isDisplayed() && freeTrailAutoRenewal.isDisplayed()
+                && unlimitedDeviceCredits.isDisplayed() && unlimitedAvailableCredits.isDisplayed()) {
+            
+            String priceperDevice = freeTrailprice.getText();
+            String monthlybilling = billingFreeTrail.getText();
+            String autoRenewalOn  = freeTrailAutoRenewal.getText();
+            String insightDevices = insightDevicesCountfreeTrail.getText();
+            System.out.println("Price Per device: "+freeTrailprice);
+            System.out.println("Monthly Billing: "+freeTrailprice);
+            System.out.println("Auto Renewal is "+autoRenewalOn);
+            System.out.println("insight Devices Available in free Trail "+insightDevices);
+            
+            boolean isZero1 = priceperDevice.trim().matches("^\\D*0/Mo$"); 
+            boolean isZero2 = monthlybilling.trim().matches("^\\D*0\\.00/Mo$");
+            boolean isAutoRenewalOn = autoRenewalOn.trim().equals("On");
+            boolean isZero = insightDevices.trim().equals("0");
+            
+            System.out.println("isZero1: "+isZero1);
+            System.out.println("isZero2: "+isZero2);
+            System.out.println("isAutoRenewalOn: "+isAutoRenewalOn);
+            System.out.println("insightDevices=0: "+insightDevices);
+            
+            if (isZero && isZero1 && isZero2 && isAutoRenewalOn && verifyActivationAndExpirationDates()) {
+                    System.out.println("Newly created Premium Account free trial is activated Successfully...");
+                    result = true;
+                }
+            
+        }
+            
+        return result;
+        
+    }
+    
+    //Added By Pratik
+    public boolean verifyActivationAndExpirationDates() throws ParseException {
+        boolean result = false;
+
+        String activationDateStr = freetrailActivationDate.getText().replace("a.m.", "AM").replace("p.m.", "PM");
+        String expirationDateStr = freetrailexpirationDate.getText().replace("a.m.", "AM").replace("p.m.", "PM");
+
+        System.out.println("Activation Date: " + activationDateStr);
+        System.out.println("Expiration Date: " + expirationDateStr);
+
+        // Define the date format
+        SimpleDateFormat formatter = new SimpleDateFormat("MMM d, yyyy hh:mm a");
+
+        // Convert strings to Date objects
+        Date activationDate = formatter.parse(activationDateStr);
+        Date expirationDate = formatter.parse(expirationDateStr);
+
+        // Convert to Calendar objects
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(activationDate);
+
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(expirationDate);
+
+        // Calculate difference in days
+        long diffMillis = cal2.getTimeInMillis() - cal1.getTimeInMillis();
+        long daysBetween = diffMillis / (24 * 60 * 60 * 1000);
+
+        // Extract year and month
+        int year1 = cal1.get(Calendar.YEAR);
+        int year2 = cal2.get(Calendar.YEAR);
+        int month1 = cal1.get(Calendar.MONTH) + 1; // Months are zero-based
+        int month2 = cal2.get(Calendar.MONTH) + 1;
+
+        System.out.println("Difference in days: " + daysBetween);
+        System.out.println("Activation: Year " + year1 + " Month " + month1);
+        System.out.println("Expiration: Year " + year2 + " Month " + month2);
+
+        // Validate expected difference in days
+        boolean isValidDays = (daysBetween == 27 || daysBetween == 28 || daysBetween == 30 || daysBetween == 31);
+
+        // Validate if expiration month is the next month, accounting for December → January transition
+        boolean isNextMonth = (year1 == year2 && month2 == month1 + 1) || (year2 == year1 + 1 && month1 == 12 && month2 == 1);
+
+        if (isValidDays && isNextMonth) {
+            System.out.println("Free trial period and month/year transition are correct!");
+            result = true;
+        } else {
+            System.out.println("Free trial period or month transition is incorrect!");
+        }
+
+        return result;
     }
 
 }

@@ -42,6 +42,9 @@ public class Testcase extends TestCaseBase {
     String organizationName1 = "organization1";
     String locationName      = "Office1";
     String pwd               = "Netgear1@";
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    String MAC = "aa:bb:cc:dd:ee:ff";
+    OrganizationPage page = new OrganizationPage();
 
     @Feature("IM-6.10-Web Portal Usability Improvements") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T32219") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -56,7 +59,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        OrganizationPage page = new OrganizationPage();
+        
         page.deleteOrganizationNew(organizationName1);
     }
 
@@ -73,6 +76,7 @@ public class Testcase extends TestCaseBase {
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName1);
         OrganizationPage OrganizationPage = new OrganizationPage();
+        page.deleteOrganizationNew(organizationName1);
         OrganizationPage.onlyAddOrganization(organizationInfo);
         MyCommonAPIs.sleepi(5);
         HashMap<String, String> locationInfo = new HashMap<String, String>();
@@ -88,8 +92,8 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Adding Dummy Device")
     public void step3() {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        firststdevInfo.put("Serial Number1", AP1);
+        firststdevInfo.put("MAC Address1", MAC);
         new DevicesDashPage(false).openDeviceLoc();
         new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
     }

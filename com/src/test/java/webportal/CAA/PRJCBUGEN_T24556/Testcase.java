@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -22,6 +23,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
+import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -49,6 +51,13 @@ public class Testcase extends TestCaseBase {
         runTest(this);
     }
 
+    @BeforeMethod(alwaysRun = true)
+    public void tearUp() {
+       
+       new PostManPage().Deregister(WebportalParam.ap5serialNo);
+        
+    }
+    
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new AccountPage().deleteOneLocation("OnBoardingTest");
@@ -82,7 +91,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "4560");
         locationInfo.put("Country", "Australia");
-        new HamburgerMenuPage();
+        //new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     

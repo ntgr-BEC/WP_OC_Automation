@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     @Description("Test to verify that credit count of the each subscription is reflected in the organization to which credits are allocated.") // It's a test case title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16019") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }

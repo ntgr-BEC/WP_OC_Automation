@@ -127,12 +127,14 @@ public class OrganizationPage extends OrganizationElement {
         waitElement(sOrganizationLocationElement1);
         boolean located = false;
         String newElement = "";
-        if ($(sOrganizationLocationElement).exists()) {
+        if ($(sOrganizationLocationElement).isDisplayed()) {
+            System.out.println("inside sOrganizationLocationElement");
             newElement = sOrganizationLocationElement;
-        } else if ($(sOrganizationLocationElementNew).exists()) {
+        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
+            System.out.println("inside sOrganizationLocationElementNew");
             newElement = sOrganizationLocationElementNew;
         }
-
+           System.out.println("----------------------");
         waitElement(newElement);
         for (SelenideElement se : $$(newElement)) {
             if (getText(se).equalsIgnoreCase(name)) {
@@ -173,7 +175,6 @@ public class OrganizationPage extends OrganizationElement {
     // add by dallas
     public void addOrganization(Map<String, String> map) {
         boolean located = false;
-        System.out.println("5st");
         MyCommonAPIs.sleepi(15);
         waitElement(sOrganizationLocationElement1);
         // if (checkOrganizationIsExist(map.get("Name"))) {
@@ -500,13 +501,23 @@ public class OrganizationPage extends OrganizationElement {
             waitElement(netgear);
             netgear.click();
             MyCommonAPIs.sleepi(8);
+            if(dropdownOrganizationElement(name).exists())
+            {
             waitElement(dropdownOrganizationElement(name));
             MyCommonAPIs.sleepi(1);
             dropdownOrganizationElement(name).click();
             waitElement(deleteOrganizationElement(name));
             MyCommonAPIs.sleepi(5);
             deleteOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(20);
+            }
+            else
+            {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexDelete(rowindex).click();
+              
+            }
+            MyCommonAPIs.sleepi(10);
             waitElement(deletedialogbutton);
             MyCommonAPIs.sleepi(1);
             deletedialogbutton.click();
@@ -686,8 +697,18 @@ public class OrganizationPage extends OrganizationElement {
 
     public void addAllocateCredits(String name, String number) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
+
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(number);
             MyCommonAPIs.sleepi(3);
@@ -702,8 +723,17 @@ public class OrganizationPage extends OrganizationElement {
     public void addAllocateCredits(String name, String devNum, String vpnNum, String icpNum) {
         open(URLParam.hreforganization, true);
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
             MyCommonAPIs.sleepi(3);
@@ -721,8 +751,17 @@ public class OrganizationPage extends OrganizationElement {
 
     public void addAllocateCreditsKeys(String name, String devNum, String vpnNum, String icpNum) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
             MyCommonAPIs.sleepi(5);
@@ -1226,8 +1265,17 @@ public class OrganizationPage extends OrganizationElement {
 
         boolean result = false;
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
             addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }
             MyCommonAPIs.sleepi(5);
             allocateDeviceCredits.setValue(devNum);
 
@@ -4753,7 +4801,7 @@ public class OrganizationPage extends OrganizationElement {
         }
         MyCommonAPIs.sleepi(15);
         orgChooseBtn
-                .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovemnets\\PRJCBUGEN_T32194\\orgImg.png");
+                .sendKeys("C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\WebPortalUsabilityImprovements\\PRJCBUGEN_T32194\\orgImg.png");
         MyCommonAPIs.sleepi(2);
         SaveOrg.click();
         MyCommonAPIs.sleepi(2);
@@ -5683,7 +5731,11 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(5);
         PolicyInorg.click();
         MyCommonAPIs.sleepi(5);
+        if(ApplytoAllOrgscheck.isSelected()) {
+            System.out.println("No need to check");
+        }else {
         ApplytoAllOrgsCheckbox.click();
+        }
         MyCommonAPIs.sleepi(5);
         BusinessOwnerEmailCheckbox.click();
         MyCommonAPIs.sleepi(5);

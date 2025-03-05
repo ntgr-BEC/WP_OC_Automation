@@ -26,6 +26,7 @@ import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.HardBundlePage;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WirelessQuickViewPage;
 
 
 /**
@@ -35,11 +36,11 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     
-    String                  locationName     = "OnBoardingTest";
-    
-    Random r = new Random();
-    int num = r.nextInt(10000000);
-    String mailname = "apwptest" + String.valueOf(num);
+
+    String AP1 =new DevicesDashPage(false).GenaraterandomSerial ("4XT");
+    Random              r           = new Random();
+    int                 num         = r.nextInt(10000000);
+    String              mailname    = "apwptest" + String.valueOf(num);
     
 
     @Feature("PurchaseOrderHistoryEnhancements") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -54,63 +55,61 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
         
-        Map<String, String> devInfo1 = new HashMap<String, String>();
-        devInfo1.put("Serial Number", WebportalParam.sw1serialNo);
-        devInfo1.put("Device Name", WebportalParam.sw1deveiceName);
-        devInfo1.put("MAC Address", WebportalParam.sw1MacAddress);
-        new DevicesDashPage().addNewDevice(devInfo1);
-        
-        Map<String, String> devInfo2 = new HashMap<String, String>();
-        devInfo2.put("Serial Number", WebportalParam.br1serialNo);
-        devInfo2.put("Device Name", WebportalParam.br1deveiceName);
-        devInfo2.put("MAC Address", WebportalParam.br1deveiceMac);
-        new DevicesDashPage().addNewDevice(devInfo2);
-        
-        Map<String, String> devInfo3 = new HashMap<String, String>();
-        devInfo3.put("Serial Number", WebportalParam.ob1serialNo);
-        devInfo3.put("Device Name", WebportalParam.ob1deveiceName);
-        devInfo3.put("MAC Address", WebportalParam.ob1deveiceMac);
-        new DevicesDashPage().addNewDevice(devInfo3);
-        
-        Map<String, String> devInfo4 = new HashMap<String, String>();
-        devInfo4.put("Serial Number", WebportalParam.pr1serialNo);
-        devInfo4.put("Device Name", WebportalParam.pr1deveiceName);
-        devInfo4.put("MAC Address", WebportalParam.pr1macaddress);
-        new DevicesDashPage().addNewDevice(devInfo4);
-        
+        new AccountPage().deleteOneLocation("OnBoardingTest");         
         System.out.println("start to do tearDown");
         
     }
     
-    @Step("Test Step 1: Login to premium account success.")
+    
+    @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
+    WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
 
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();  
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-        new DevicesDashPage().deleteDevice1(WebportalParam.ap5serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.sw1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.br1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.ob1serialNo);
-        new DevicesDashPage().deleteDevice1(WebportalParam.pr1serialNo);
+    Map<String, String> accountInfo = new HashMap<String, String>();
+    accountInfo.put("First Name", mailname);
+    accountInfo.put("Last Name", "T10218");
+    accountInfo.put("Email Address", mailname + "@mailinator.com");
+    accountInfo.put("Confirm Email", mailname + "@mailinator.com");
+    accountInfo.put("Password", "Netgear#123");
+    accountInfo.put("Confirm Password", "Netgear#123");
+    accountInfo.put("Country", "Switzerland");
+
+    new HamburgerMenuPage(false).createAccount(accountInfo);
+}
+
+@Step("Test Step 2: Check buy vpn services;")
+public void step2() {
+
+  new HamburgerMenuPage(false).closeLockedDialog();
+    HashMap<String, String> locationInfo = new HashMap<String, String>();
+    locationInfo.put("Location Name", "OnBoardingTest");
+    locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+    locationInfo.put("Zip Code", "8700");
+    locationInfo.put("Country", "Switzerland");
+    new AccountPage().addNetwork(locationInfo);
+    
+}
+    
+    @Step("Test Step 3: Login to premium account success.")
+    public void step3() {
+               
+        new MyCommonAPIs().gotoLoction("OnBoardingTest");
         
         Map<String, String> devInfo = new HashMap<String, String>();
-        devInfo.put("Serial Number", WebportalParam.ap5serialNo);
-        devInfo.put("Device Name", WebportalParam.ap5deveiceName);
-        devInfo.put("MAC Address", WebportalParam.ap5macaddress);
+        devInfo.put("Serial Number", AP1);
+        devInfo.put("Device Name", AP1);
+        devInfo.put("MAC Address", "aa:bb:cc:dd:ee:ff");
         new DevicesDashPage().addNewDevice(devInfo);
            
     }
     
-    @Step("Test Step 2: Verify One Year Insight Included with Hardware premium on admin account")
-    public void step2() {
+    @Step("Test Step 4: Verify One Year Insight Included with Hardware premium on admin account")
+    public void step4() {
         
         new  HardBundlePage().gotoOneYearInsightIncludedwithHardwarePRO();
         MyCommonAPIs.sleepi(5);
-        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(WebportalParam.ap5serialNo).exists(),"We are not getting entry for Onboarded Hardbindle AP under the Insight Included with Hardware ");
+        assertTrue(new  HardBundlePage().srNounderOneYearInsightIncludedwithHardwarePRO(AP1).exists(),"We are not getting entry for Onboarded Hardbindle AP under the Insight Included with Hardware ");
         
     }
     

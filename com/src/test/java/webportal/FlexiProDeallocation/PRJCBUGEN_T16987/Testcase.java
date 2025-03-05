@@ -20,6 +20,7 @@ import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.ManagerPage;
+import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -86,9 +87,22 @@ public class Testcase extends TestCaseBase {
                 "Invite manager failed.");
         UserManage userManage = new UserManage();
         userManage.logout();
-        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(managerInfo.get("Email Address")), "Not received Invitation email.");
-        assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
-        assertTrue(new HamburgerMenuPage(false).verifySignUpPage(), "After clicking on invite manager link not landed on sign up page");
+//        assertTrue(new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(managerInfo.get("Email Address")), "Not received Invitation email.");
+//        assertTrue(new HamburgerMenuPage(false).inviteEmailFillDateandAccept(), "Not received Invitation email.");
+//        assertTrue(new HamburgerMenuPage(false).verifySignUpPage(), "After clicking on invite manager link not landed on sign up page");
+        if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname)) {
+            Map<String, String> ownerAccountInfo = new HashMap<String, String>();
+            ownerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
+            ownerAccountInfo.put("Password", WebportalParam.adminPassword);
+            ownerAccountInfo.put("Confirm Password", WebportalParam.adminPassword);
+            ownerAccountInfo.put("Country", "United States of America");
+            ownerAccountInfo.put("Phone Number", "1234567890");
+
+            new HamburgerMenuPage(false).createManagerAccount(ownerAccountInfo);
+            assertTrue(new OrganizationPage(false).checkOrganizationIsExist("Netgear"), "Create owner account failed.");
+        } else {
+            assertTrue(false, "Not received invite owner email.");
+        }
 
     }
 

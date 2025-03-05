@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user can create a location with image")
     @TmsLink("PRJCBUGEN_T13873") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "12345");
         locationInfo.put("Country", "China");
-        locationInfo.put("image", "C:\\Users\\Public\\Downloads\\image.png");
+        locationInfo.put("image", "C:\\WebportalAutomation\\com\\src\\test\\java\\webportal\\CreateLocation\\WP\\PRJCBUGEN_T13873\\\\orgImg.png");
         new AccountPage().addNetwork(locationInfo);
         MyCommonAPIs.waitReady();
     }

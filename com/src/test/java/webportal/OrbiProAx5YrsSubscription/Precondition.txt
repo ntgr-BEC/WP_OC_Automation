@@ -1,0 +1,16 @@
+"Need 2 new premium account 
+please set this on - config_webportal file
+like this 
+<mailto:loginname>case3776590@yopmail.com</loginName>
+<mailto:loginname1>prinew12@yopmail.com</loginName1>
+need to have llocation
+and one new pro account 
+set like this - 
+<mailto:adminname>a7newpro@yopmail.com</adminName>
+
+Need 3  Orbi SXR30 SXR80 and SXR50 and add his serial number on OB1, OB2, OB3 on config_dut.xml file
+
+ SXR30  6LN,6LR
+SXR80  6CA,6CB
+SXR50 - 6U3,6RW,6YE
+"

@@ -212,12 +212,12 @@ public class AccountPageElement extends MyCommonAPIs {
     public void deleteLocation(String Name) {
         MyCommonAPIs.sleepi(15);
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        String deleteLocation1 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..",
-                WebportalParam.getLocText("Delete location"));
+        String deleteLocation1 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..",WebportalParam.getLocText("Delete location"));
         String deleteLocation2 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..", WebportalParam.getLocText("Delete"));
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
-        SelenideElement deleteLocation4 = $x("//button[text()='Yes, delete location']");
+        SelenideElement deleteLocation4 = $x("//button[@class='btn btn-danger' and text()='Delete']");
         SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
+        SelenideElement deleteLocation6 = $x("//button[@class='btn btn-danger' and text()='Yes, delete location']");
         MyCommonAPIs.sleepi(35);
         if ($x(deleteLocation1).exists()) {
             $x(deleteLocation1).click();
@@ -227,12 +227,20 @@ public class AccountPageElement extends MyCommonAPIs {
             deleteLocation3.click();          
         } else if(deleteLocation4.exists()) {
             deleteLocation4.click();          
-        } else {
+        } else if(deleteLocation5.exists()){
             deleteLocation5.click();
+        } else {
+            deleteLocation6.click();
         }
         MyCommonAPIs.sleepi(35);
+        if(deleteLocation4.exists()) {
         waitElement(deleteLocation4);
         deleteLocation4.click();
+        }
+        if(deleteLocation6.exists()) {
+            waitElement(deleteLocation6);
+            deleteLocation6.click();
+            }
 //        clickBoxLastButton();
         MyCommonAPIs.sleepi(5);
         
@@ -285,4 +293,5 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        checkName                   = $x("//input[@value=\"OnBoardingTestNew\"]");
     public SelenideElement        radiusServerSecret          = $x("//input[@id='primarySecret']");
     public SelenideElement        editNetwork                 = $x("//img[@class='location-logo' and @id='headerLocImg']");
+    public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
 }

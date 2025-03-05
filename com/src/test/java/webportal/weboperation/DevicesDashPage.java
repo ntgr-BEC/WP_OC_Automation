@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang3.RandomStringUtils;
@@ -1619,8 +1620,8 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String result = "No device exits or no device exits";
         new MyCommonAPIs().open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(20);
-        String DeviceCount = DeviceCountOrg.getText();
-        System.out.println(DeviceCount);
+//        String DeviceCount = DeviceCountOrg.getText();
+//        System.out.println(DeviceCount);
         if (DeviceCountOrg.exists()) {
             if (getText(DeviceCountOrg).equals("1")) {
                 result = "Onedevice";
@@ -1646,6 +1647,38 @@ public class DevicesDashPage extends DevicesDashPageElements {
 
             }
             System.out.println(result);
+        }else {
+            
+            String name = getText(OrgName);
+            System.out.println(OrgName);
+            String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+            
+            if (getText(offlineDevicecount(rowindex)).equals("1")) {
+                result = "Onedevice";
+            }
+
+            if (getText(offlineDevicecount(rowindex)).equals("2")) {
+                result = "Twodevice";
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("3")) {
+                result = "Threedevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("4")) {
+                result = "Fourdevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("5")) {
+                result = "Fivedevice";
+
+            }
+            if (getText(offlineDevicecount(rowindex)).equals("1000")) {
+                result = "OneThousand";
+
+            }
+            System.out.println(result);
+        
+            ;
         }
         return result;
 
@@ -3339,6 +3372,19 @@ public boolean verifySettingPageFilterAirbridge() {
             }
             
             
-            
+            public String GenaraterandomSerial(String Prefix) {
+                String serial="";
+                Random random = new Random();
+           
+                long randomNumber = random.longs(1000000000L, 10000000000L).findFirst().getAsLong();
+                System.out.println("Random 10-digit number: " + randomNumber);
+                
+                serial = Prefix +randomNumber;
+                
+                System.out.println("Serial Number is " + serial);
+//                String Serial = String.valueOf(random.ints(1000000000,9999999999).findFirst().getAsInt());
+                
+                return serial;
+            }
 }
     

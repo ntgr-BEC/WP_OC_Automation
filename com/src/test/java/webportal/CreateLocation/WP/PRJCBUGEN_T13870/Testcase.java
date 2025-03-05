@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     @Description("verify that user can change location password, country, and zip code") 
     @TmsLink("PRJCBUGEN-T13870") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }

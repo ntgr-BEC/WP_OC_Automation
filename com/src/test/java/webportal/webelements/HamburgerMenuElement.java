@@ -476,7 +476,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement finishbutton = $x(finishPage + "//button/span[text()='" + WebportalParam.getLocText("Finish") + "']");
     public SelenideElement        finishCreate = $x("//button[@ng-click='goToLogin()']");
 
-     public SelenideElement       checkemailtitle      = $x("(//div[@currentmail]//div[@class='lms'])[1]");
+     public SelenideElement       checkemailtitle      = $x("//div[@currentmail]//div[@class='lms']");
     public SelenideElement        loginPwd              = $x("//input[@id='searchinput']");
     public SelenideElement        loginButton           = $("#Login-btn");
     public SelenideElement        owneremail            = $x("//a[text()='Invite owner email']");
@@ -731,7 +731,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement LicenseOkButton             = $x("//div[@class='modal-footer cstmModFooter']//button[text()='OK']");
     public static SelenideElement CreditAllocateIcon          = $x("//img[@id='AccCreditAllocate']");
     public static SelenideElement AccountSugnUpEmail          = $x("//input[@name='signupEmail']");
-    public SelenideElement        loginPwdNew                 = $x("//mat-label[contains(text(),'Password')]");
+    public SelenideElement        loginPwdNew                 = $x("//*[@id=\"mat-input-1\"]");
     public SelenideElement        locationSelectCheckBox      = $x("//ul//*[@class='checkbox ipacl']");
     public SelenideElement        AssigntoOrganization        = $x("//button[text()='Assign to Organization']");
     public SelenideElement        newOrgName                  = $x("//input[@data-type='orgName' and @name='newOrgName']");
@@ -1022,5 +1022,16 @@ public class HamburgerMenuElement extends MyCommonAPIs {
    public SelenideElement  pencilEdit1         = $x("//*[@id='billingBlock-savedBilling-editIcon']");
   public SelenideElement  pencilEdit2         = $x("//*[@id='paymentBlock-editIcon']");
   public SelenideElement  subscriptionEmail   = $x("//*[@id='hEmailsubscriptions']");
+  //Added By Pratik
+  public SelenideElement  currentSubscriptionText           = $x("//span[text()='Current Subscription']");
+  public SelenideElement  insightpremiumTrailText           = $x("//p[text()='Insight Premium Trial']");
+  public SelenideElement  freetrailActivationDate           = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Activation']/../p");
+  public SelenideElement  freetrailexpirationDate           = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Expiration']/../p");
+  public SelenideElement  freeTrailprice                    = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Price Per Device']/../p");
+  public SelenideElement  billingFreeTrail                  = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Billing']/../p");
+  public SelenideElement  freeTrailAutoRenewal              = $x("//p[text()='Insight Premium Trial']/../..//h3[text()='Auto Renewal']/../p");
+  public SelenideElement  unlimitedDeviceCredits            = $x("//p[text()='Device Credits']/../p[text()='Unlimited']");
+  public SelenideElement  unlimitedAvailableCredits         = $x("//p[text()='Available Credits']/../p[text()='Unlimited']");
+  public SelenideElement  insightDevicesCountfreeTrail      = $x("//p[text()='Insight Devices']/../h2");
 }
 

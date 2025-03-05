@@ -545,6 +545,7 @@ public class OrganizationElement extends MyCommonAPIs {
   // Added by Anusha H
   public SelenideElement        PolicyInorg                     = $x("(//a[@href=\"#/organization/settings/policy\"])[1]");
   public SelenideElement        ApplytoAllOrgsCheckbox          = $x("//*[@id=\"radioEmailMSP1\"]/label/i");
+  public SelenideElement        ApplytoAllOrgscheck              = $x("//*[@id=\"applyToAllOrg\"]");
   public SelenideElement        ApplytoAllOrgsCheckbox1          = $x("//*[@id=\"applyToAllOrg\"]");
   public SelenideElement        OrgInProAcct                    = $x("//*[@id=\"radioEmailMSP1\"]/label/i");
   public SelenideElement        BusinessOwnerEmailCheckbox      = $x("//*[text()=\"Email Notifications\"]/../div/label[2]/i");
@@ -632,6 +633,26 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement OrgCardDeviceDataDisconnected(String Org_name) {
         SelenideElement url = $x("//p[text()='" + Org_name + "']/..//ul[@class='list-inline list-unstyled Organization-grid-details']//li[3]");
         return url;
+    }
+    
+    public SelenideElement dropdownOrganizationElementNew(String name) {
+        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../..");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndex(String index) {
+        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='8']/div/span");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexDelete(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexAllocate(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Allocate']");
+        return dropdownelementnew;
     }
 
 }

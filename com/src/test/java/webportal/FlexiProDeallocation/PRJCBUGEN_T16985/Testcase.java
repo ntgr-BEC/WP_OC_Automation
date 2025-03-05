@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify owner have option to \"Deallocate\" in account") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T16985") // It's a testcase id/link from Jira Test Case.
 
-    @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
+    @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
@@ -67,18 +67,18 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
+        
+        
     }
 
     @Step("Test Step 2: Create a organization and add one owner, then create owner account and check credits allocate page;")
     public void step2() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         organizationInfo.put("Owner Name", "test16985");
         organizationInfo.put("Email Address", mailname);
 
-        
-        
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.addOrganization(organizationInfo);
 
@@ -86,7 +86,7 @@ public class Testcase extends TestCaseBase {
             UserManage userManage = new UserManage();
             userManage.logout();
 
-            if (new HamburgerMenuPage(false).checkEmailMessage(mailname)) {
+            if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(mailname)) {
                 Map<String, String> ownerAccountInfo = new HashMap<String, String>();
                 ownerAccountInfo.put("Confirm Email", organizationInfo.get("Email Address"));
                 ownerAccountInfo.put("Password", WebportalParam.adminPassword);
@@ -94,7 +94,7 @@ public class Testcase extends TestCaseBase {
                 ownerAccountInfo.put("Country", "United States of America");
                 ownerAccountInfo.put("Phone Number", "1234567890");
 
-                new HamburgerMenuPage(false).createOwnerAccount(ownerAccountInfo);
+                new HamburgerMenuPage(false).createManagerAccount(ownerAccountInfo);
                 assertTrue(OrganizationPage.checkOrganizationIsExist(organizationName), "Create owner account failed.");
             } else {
                 assertTrue(false, "Not received invite owner email.");

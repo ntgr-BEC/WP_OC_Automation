@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase {
     @Description("Verify that the user is able to delete location") 
     @TmsLink("PRJCBUGEN_T13867") 
 
-    @Test(alwaysRun = true, groups = "p2") 
+    @Test(alwaysRun = true, groups = "p1") 
     public void test() throws Exception {
         runTest(this);
     }
