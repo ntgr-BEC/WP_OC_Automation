@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase {
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("SSID", "apwp46760");
         locationInfo.put("Security", "WPA2 Personal");
-//        locationInfo.put("Password", "123456798");
+        locationInfo.put("Password", "123456798");
         new WirelessQuickViewPage().addSsid1(locationInfo);
 
         assertTrue(new WirelessQuickViewPage().connectClient(locationInfo),"did not connect to client");
