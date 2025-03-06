@@ -828,7 +828,7 @@ public class WebportalParam {
         // return false;
         if (text.startsWith("GC728X") || text.startsWith("GC728XP") || text.startsWith("GC752X") || text.startsWith("GC752XP")
                 || text.startsWith("GC110P") || text.startsWith("GS724Tv6") || text.startsWith("GS748Tv6") 
-                 || text.startsWith("XS724TM") || text.startsWith("GS510TPP") || text.startsWith("M4350") || text.startsWith("M4250"))
+                  || text.startsWith("GS510TPP") || text.startsWith("M4350") || text.startsWith("M4250"))
             return false;
         return true;
     }
