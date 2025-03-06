@@ -245,7 +245,7 @@ public class OrganizationPage extends OrganizationElement {
                 SaveOrg.click();
                 located = true;
                 logger.info("--------------- Organisation is Created Succesfully ----------");
-                MyCommonAPIs.sleepi(30);
+                MyCommonAPIs.sleepi(20);
                 if (map.containsKey("Automatically Created")) {
                     if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='Yes']").exists()) {
                         $x("//h4[text()='Organization Created Successfully']/../..//button[text()='Yes']").click();

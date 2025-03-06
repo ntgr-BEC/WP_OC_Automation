@@ -47,7 +47,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     
     public SelenideElement           OrgSettings        = $x("//*[@id=\"settingsView\"]");
     public SelenideElement           Orgdevice          = $x("(//a[contains( text(),'Devices')])[2]");
-    public SelenideElement           OrgAddButton       = $x("//*[@id=\"content\"]/div[3]/div/div[2]/span");
+    public SelenideElement           OrgAddButton       = $x("//*[@id=\"_divAddOrgIcon\"]/span");
     public SelenideElement           OrgUpload         = $x("//*[@id=\"uploadFile\"]");
     public SelenideElement           updateDevicelist   = $x("//*[@id=\"content\"]/div[6]/div/div[2]/button[2]");
     

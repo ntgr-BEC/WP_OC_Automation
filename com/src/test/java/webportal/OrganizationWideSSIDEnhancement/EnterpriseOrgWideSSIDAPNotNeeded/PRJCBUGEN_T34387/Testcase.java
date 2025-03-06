@@ -117,7 +117,7 @@ public class Testcase extends TestCaseBase {
       
       @Step("Test Step 3:verify that organizationWide SSID with WPA2 Enterprise Security is pushed to both locaytions ")
       public void step3() {
-          new MyCommonAPIs().sleepi(300);
+//          new MyCommonAPIs().sleepi(300);
           new OrganizationPage(false).openOrg(WebportalParam.Organizations);
           new MyCommonAPIs().gotoLoction(WebportalParam.location1);
           new OrganizationPage(false).goWirelessSetting(); 
