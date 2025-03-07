@@ -42,7 +42,6 @@ public class Testcase extends TestCaseBase {
     @Story("PRJCBUGEN_T25715") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Muktipack 10Device 1Year France") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T25715") // It's a testcase id/link from Jira Test Case.
-
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
@@ -88,7 +87,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "4560");
         locationInfo.put("Country", "Australia");
-        new HamburgerMenuPage();
+        //new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     
