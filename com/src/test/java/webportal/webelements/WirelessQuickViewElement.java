@@ -1556,6 +1556,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement selectGoZone                  = $x("//*[text()=\"GoZone Wi-Fi\"]");
 	 public SelenideElement SelectUseExternal             = $x("//*[@name=\"cpStatus\"and @value =3]");
 	 public SelenideElement orgwidessidCaptivePortal      = $x("//a[text()='Captive Portal' and @class = 'anchoractiveLeftMenu']");
+	 
+	 public SelenideElement Advance2                = $x("//*[text() = 'Advanced']");
+	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");
 }
 
 
