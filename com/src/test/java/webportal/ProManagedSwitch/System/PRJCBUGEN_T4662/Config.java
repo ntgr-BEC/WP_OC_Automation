@@ -1,10 +1,10 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4662;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4662;
 
 import com.google.common.base.Strings;
 
 /**
  *
- * @author zheli
+ * @author Sumanta
  *
  */
 public interface Config {

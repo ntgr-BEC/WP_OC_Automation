@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4702;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4702;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import webportal.param.WebportalParam;
 
 /**
  * 
- * @author xuchen
+ * @author Sumanta
  *
  */
 public interface Config {

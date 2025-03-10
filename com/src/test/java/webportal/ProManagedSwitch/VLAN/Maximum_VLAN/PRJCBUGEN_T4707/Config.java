@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.Maximum_VLAN.PRJCBUGEN_T4707;
+package webportal.ProManagedSwitch.VLAN.Maximum_VLAN.PRJCBUGEN_T4707;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import webportal.param.WebportalParam;
 
 /**
  * 
- * @author xuchen
+ * @author Sumanta
  *
  */
 public interface Config {

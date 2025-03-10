@@ -1,8 +1,8 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4674;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4674;
 
 /**
  *
- * @author zheli
+ * @author sumanta
  *
  */
 public interface Config {

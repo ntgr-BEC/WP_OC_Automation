@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.SpanningTree.PRJCBUGEN_T6058;
+package webportal.ProManagedSwitch.SpanningTree.PRJCBUGEN_T6058;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -18,7 +18,7 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String tclname = getClass().getName();
@@ -48,7 +48,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open Device")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

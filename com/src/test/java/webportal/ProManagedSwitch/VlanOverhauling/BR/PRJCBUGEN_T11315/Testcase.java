@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VlanOverhauling.BR.PRJCBUGEN_T11315;
+package webportal.ProManagedSwitch.VlanOverhauling.BR.PRJCBUGEN_T11315;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -19,7 +19,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author lavi
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase {
@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open page and goto Vlan Page, Find two switch and one BR500 from app")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         ddpmg.gotoPage();

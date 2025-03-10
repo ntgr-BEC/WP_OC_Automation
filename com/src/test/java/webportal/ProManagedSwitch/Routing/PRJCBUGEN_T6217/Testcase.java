@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Routing.PRJCBUGEN_T6217;
+package webportal.ProManagedSwitch.Routing.PRJCBUGEN_T6217;
 
 import static org.testng.Assert.assertTrue;
 
@@ -17,7 +17,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String vlanName1 = "testvlan1";
@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Create a new vlan 100 and 200")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

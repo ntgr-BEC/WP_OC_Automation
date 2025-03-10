@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Event.PRJCBUGEN_T4933;
+package webportal.ProManagedSwitch.Event.PRJCBUGEN_T4933;
 
 import static org.testng.Assert.assertTrue;
 
@@ -15,6 +15,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.webelements.EventElement;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -22,7 +23,7 @@ import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
- * @author lavi
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase {
@@ -54,7 +55,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open Event")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         evtp.gotoPage();

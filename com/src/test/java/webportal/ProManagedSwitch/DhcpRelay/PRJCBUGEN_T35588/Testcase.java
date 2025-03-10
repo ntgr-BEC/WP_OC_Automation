@@ -27,7 +27,7 @@ import webportal.param.WebportalParam;
 import webportal.webelements.WiredDhcpRelayElement;
 
 /**
- * @author ravi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
 

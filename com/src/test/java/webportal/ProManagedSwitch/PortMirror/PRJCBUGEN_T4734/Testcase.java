@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.PortMirror.PRJCBUGEN_T4734;
+package webportal.ProManagedSwitch.PortMirror.PRJCBUGEN_T4734;
 
 import static org.testng.Assert.assertTrue;
 
@@ -26,7 +26,7 @@ import webportal.weboperation.WiredVLANPage;
 
 /**
  *
- * @author xuchen
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -47,7 +47,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step1() {
         // link up dut 1 port1
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         handle.gotoLoction();
     }
 
