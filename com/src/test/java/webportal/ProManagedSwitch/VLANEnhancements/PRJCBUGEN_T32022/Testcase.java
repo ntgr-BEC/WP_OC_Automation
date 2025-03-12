@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLANEnhancements.PRJCBUGEN_T32022;
+package webportal.ProManagedSwitch.VLANEnhancements.PRJCBUGEN_T32022;
 
 import static org.testng.Assert.assertTrue;
 
@@ -24,7 +24,7 @@ import webportal.weboperation.WiredVLANPageForVLANPage;
 
 
 /**
- * @author annfang
+ * @author sumanta
  */
 public class Testcase extends TestCaseBase implements Config {
     public boolean Result      = true;
@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: Login to IM-6.9 Webportal ")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         handle.gotoLoction();
     }
 

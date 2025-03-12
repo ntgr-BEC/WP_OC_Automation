@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4662;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4662;
 
 import static org.testng.Assert.assertTrue;
 
@@ -12,13 +12,14 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
+import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.NetworkEditNetworkPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author zheli
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -37,7 +38,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step1() {
         // link up dut 1 port1
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
     }
 
     @Step("Test Step 2: On Web Portal, enter nothing or less 6 chars,or 21 chars, then deploy")

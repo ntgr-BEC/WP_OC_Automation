@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VlanOverhauling.PRJCBUGEN_T11317;
+package webportal.ProManagedSwitch.VlanOverhauling.PRJCBUGEN_T11317;
 
 import static org.testng.Assert.assertTrue;
 
@@ -17,7 +17,7 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String vlanName    = "testvlan";
@@ -48,7 +48,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open page and goto Vlan Page")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
     }

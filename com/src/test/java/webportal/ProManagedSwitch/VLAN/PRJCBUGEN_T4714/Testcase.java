@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4714;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4714;
 
 import static org.testng.Assert.assertTrue;
 
@@ -16,6 +16,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredGroupPortConfigPage;
 import webportal.weboperation.WiredQuickViewPage;
@@ -24,7 +25,7 @@ import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
- * @author xuchen
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -45,7 +46,7 @@ public class Testcase extends TestCaseBase implements Config {
     public void step1() {
         // link up dut 1 port1
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
         MyCommonAPIs.sleep(10000);
         handle.gotoLoction();
 

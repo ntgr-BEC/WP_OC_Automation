@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLANEnhancements.PRJCBUGEN_T32044;
+package webportal.ProManagedSwitch.VLANEnhancements.PRJCBUGEN_T32044;
 
 import static org.testng.Assert.assertTrue;
 
@@ -28,7 +28,7 @@ import webportal.weboperation.WiredVLANPageForVLANPage;
 
 
 /**
- * @author annfang
+ * @author sumanta
  */
 public class Testcase extends TestCaseBase implements Config {
     public boolean Result      = true;
@@ -54,7 +54,7 @@ public class Testcase extends TestCaseBase implements Config {
             "")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         handle.gotoLoction();
     }
 

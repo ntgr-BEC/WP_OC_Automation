@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
     public void step2() {
-        assertTrue(new WirelessQuickViewPage().CheckHelpText(), "IGMP help test is not avilable");
+        assertTrue(new WirelessQuickViewPage().CheckHelpTextB2UC(), "IGMP help test is not avilable");
     }
 
 }

@@ -1,8 +1,8 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4910;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4910;
 
 /**
  *
- * @author zheli
+ * @author Sumanta
  *
  */
 public interface Config {

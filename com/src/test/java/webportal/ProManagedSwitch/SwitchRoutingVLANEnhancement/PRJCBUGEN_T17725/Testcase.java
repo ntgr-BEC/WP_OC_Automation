@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.SwitchRoutingVLANEnhancement.PRJCBUGEN_T17725;
+package webportal.ProManagedSwitch.SwitchRoutingVLANEnhancement.PRJCBUGEN_T17725;
 
 import static org.testng.Assert.assertTrue;
 
@@ -18,7 +18,7 @@ import webportal.weboperation.DevicesSwitchIpSettingsPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String                      net1Name                    = "test1net";
@@ -62,7 +62,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open page and goto Device Page")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         
         handle.gotoLoction();
         ddpmg.gotoPage();

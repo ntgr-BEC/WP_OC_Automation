@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VlanOverhauling.PRJCBUGEN_T11318;
+package webportal.ProManagedSwitch.VlanOverhauling.PRJCBUGEN_T11318;
 
 import static org.testng.Assert.assertTrue;
 
@@ -13,11 +13,12 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author lavi
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase {
@@ -49,7 +50,7 @@ public class Testcase extends TestCaseBase {
 //        SwitchCLIUtils.CloudModeSet(true);
      
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
     }

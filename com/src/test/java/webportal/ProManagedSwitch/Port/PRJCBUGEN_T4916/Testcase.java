@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4916;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4916;
 
 import static org.testng.Assert.assertTrue;
 
@@ -20,7 +20,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author lavi
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -45,7 +45,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: Go to port lag 4")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
         handle.gotoLoction();
         DevicesDashPageMNG devicesDashPage = new DevicesDashPageMNG();
         DevicesSwitchSummaryPage devicesSwitchSummaryPage = devicesDashPage.enterDevicesSwitchSummary(WebportalParam.sw1serialNo);

@@ -29,9 +29,9 @@ import webportal.webelements.WiredDhcpRelayElement;
 public class Testcase extends TestCaseBase {
 
     @Feature("Switch.DhcpRelay") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T35578") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T42225") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that DHCP Relay is available in the switch device configuration") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T35578") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T42225") // It's a testcase id/link from Jira Test Case.
     @Test(alwaysRun = true, groups = "p2")
     public void test() throws Exception {
         runTest(this);

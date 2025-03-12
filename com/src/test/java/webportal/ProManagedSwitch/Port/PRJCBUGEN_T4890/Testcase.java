@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4890;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4890;
 
 import static org.testng.Assert.assertTrue;
 
@@ -25,7 +25,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author zheli
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: From app Networks/Devices Configuration change port1 ,port 2 description to a string large than 64")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
         AccountPage accountPage = new AccountPage();
         accountPage.enterLocation(LOCATION_INFO.get("Location Name"));
         DashboardLocationPage dashboardLocationPage = new DashboardLocationPage();

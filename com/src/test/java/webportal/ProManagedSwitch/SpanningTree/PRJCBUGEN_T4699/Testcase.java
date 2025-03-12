@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.SpanningTree.PRJCBUGEN_T4699;
+package webportal.ProManagedSwitch.SpanningTree.PRJCBUGEN_T4699;
 
 import static org.testng.Assert.assertTrue;
 
@@ -13,10 +13,11 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String tclname = getClass().getName();
@@ -46,7 +47,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Open Device")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

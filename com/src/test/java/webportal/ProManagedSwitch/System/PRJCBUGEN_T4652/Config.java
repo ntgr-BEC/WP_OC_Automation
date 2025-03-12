@@ -1,11 +1,11 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4652;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4652;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 
- * @author zheli
+ * @author Sumanta
  *
  */
 public interface Config {

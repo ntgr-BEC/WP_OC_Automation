@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4665;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4665;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -19,7 +19,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author zheli
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: enter setting page")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4730;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4730;
 
 import static org.testng.Assert.assertTrue;
 
@@ -17,7 +17,7 @@ import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author xuchen
+ * @author sumanta
  */
 public class Testcase extends TestCaseBase implements Config {
     public boolean Result   = true;
@@ -41,7 +41,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: Create a lag and a private vlan 100 from APP.")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         wlp.gotoLagPage();
