@@ -3616,7 +3616,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         setSelected($x("(//input[@id='enableBlackList'])[1]"), false);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(5);
-        // ConformSaveIGMP.click();
+        waitElement(ConformSaveIGMP);
+        ConformSaveIGMP.shouldBe(Condition.visible).click();
 
     }
 
@@ -3710,12 +3711,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
