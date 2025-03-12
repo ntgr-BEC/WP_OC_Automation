@@ -1,4 +1,4 @@
-package webportal.NatMode.user.Part2.PRJCBUGEN_T33930;
+package webportal.NatMode.user.Part2.prouser.PRJCBUGEN_T33930;
 
 import static org.testng.Assert.assertTrue;
 
