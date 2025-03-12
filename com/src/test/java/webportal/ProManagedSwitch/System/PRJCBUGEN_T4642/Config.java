@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4642;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4642;
 
 /**
  *

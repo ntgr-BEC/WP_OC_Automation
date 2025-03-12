@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.System.PRJCBUGEN_T4665;
+package webportal.ProManagedSwitch.System.PRJCBUGEN_T4665;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import webportal.param.WebportalParam;
 
 /**
  * 
- * @author zheli
+ * @author Sumanta
  *
  */
 public interface Config {

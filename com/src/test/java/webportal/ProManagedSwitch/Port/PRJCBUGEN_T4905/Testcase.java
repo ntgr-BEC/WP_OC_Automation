@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4905;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4905;
 
 import static org.testng.Assert.assertTrue;
 
@@ -18,7 +18,7 @@ import webportal.weboperation.WebportalLoginPage;
 
 /**
  *
- * @author zheli
+ * @author Sumanta
  *
  */
 public class Testcase extends TestCaseBase implements Config {
@@ -39,7 +39,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: Open wired vlan")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         wvp.gotoPage();

@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Routing.PRJCBUGEN_T6885;
+package webportal.ProManagedSwitch.Routing.PRJCBUGEN_T6885;
 
 import static org.testng.Assert.assertTrue;
 
@@ -18,7 +18,7 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String vlanName = "testvlan";
@@ -57,7 +57,7 @@ public class Testcase extends TestCaseBase {
 //        if (!WebportalParam.skipIssueCheck)
 //            throw new RuntimeException("PRJCBUGEN-11348");
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

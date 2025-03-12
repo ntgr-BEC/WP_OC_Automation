@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4704;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4704;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -14,13 +14,14 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import util.SwitchCLIUtils;
+import webportal.param.WebportalParam;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WiredQuickViewPage;
 import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
  *
- * @author xuchen
+ * @author sumanta
  *
  */
 public class Testcase extends TestCaseBase {
@@ -60,7 +61,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: ADD vlan 100 and not apply")
     public void step2() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
 
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

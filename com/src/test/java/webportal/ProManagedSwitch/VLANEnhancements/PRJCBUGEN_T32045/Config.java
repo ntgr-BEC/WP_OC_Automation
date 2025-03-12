@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLANEnhancements.PRJCBUGEN_T32045;
+package webportal.ProManagedSwitch.VLANEnhancements.PRJCBUGEN_T32045;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import webportal.param.WebportalParam;
 
 /**
  * 
- * @author xuchen
+ * @author sumanta
  *
  */
 public interface Config {

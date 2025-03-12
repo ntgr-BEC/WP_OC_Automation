@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Routing.PRJCBUGEN_T6233;
+package webportal.ProManagedSwitch.Routing.PRJCBUGEN_T6233;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -13,11 +13,12 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
- * @author lavi
+ * @author Sumanta
  */
 public class Testcase extends TestCaseBase {
     String vlanName = "testvlan";
@@ -45,7 +46,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Create a new vlan 100")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

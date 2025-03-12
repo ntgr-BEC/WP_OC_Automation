@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4703;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4703;
 
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
@@ -21,7 +21,7 @@ import webportal.weboperation.WiredVLANPage;
 import webportal.weboperation.WiredVLANPageForVLANPage;
 
 /**
- * @author xuchen
+ * @author sumanta
  */
 public class Testcase extends TestCaseBase implements Config {
     String tclname = getClass().getName();
@@ -63,7 +63,7 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 1: DUT1 port 1 conenct to DUT2 port 1")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.defaultLogin();
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
         
         handle.gotoLoction();
         handle.gotoLocationWireSettings();

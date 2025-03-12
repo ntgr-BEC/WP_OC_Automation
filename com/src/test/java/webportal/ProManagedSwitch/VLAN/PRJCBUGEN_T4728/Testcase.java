@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.VLAN.PRJCBUGEN_T4728;
+package webportal.ProManagedSwitch.VLAN.PRJCBUGEN_T4728;
 
 import static org.testng.Assert.assertTrue;
 

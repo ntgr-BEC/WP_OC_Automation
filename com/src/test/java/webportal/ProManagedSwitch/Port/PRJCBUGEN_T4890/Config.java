@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4890;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4890;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +8,7 @@ import webportal.param.WebportalParam;
 
 /**
  *
- * @author zheli
+ * @author Sumanta
  *
  */
 public interface Config {
