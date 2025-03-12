@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.SNMP.PRJCBUGEN_T12919;
+package webportal.ProManagedSwitch.SNMP.PRJCBUGEN_T12919;
 
 import static org.testng.Assert.assertTrue;
 

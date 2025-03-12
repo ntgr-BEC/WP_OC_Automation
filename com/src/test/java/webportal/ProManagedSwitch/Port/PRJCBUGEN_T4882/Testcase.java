@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4882;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4882;
 
 import static org.testng.Assert.assertTrue;
 
