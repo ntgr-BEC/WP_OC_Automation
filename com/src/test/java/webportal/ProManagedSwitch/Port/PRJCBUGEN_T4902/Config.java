@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.Port.PRJCBUGEN_T4902;
+package webportal.ProManagedSwitch.Port.PRJCBUGEN_T4902;
 
 /**
  *

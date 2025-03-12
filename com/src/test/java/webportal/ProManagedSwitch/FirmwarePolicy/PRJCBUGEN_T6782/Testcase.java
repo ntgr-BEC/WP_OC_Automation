@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.FirmwarePolicy.PRJCBUGEN_T6782;
+package webportal.ProManagedSwitch.FirmwarePolicy.PRJCBUGEN_T6782;
 
 import static org.testng.Assert.assertTrue;
 
