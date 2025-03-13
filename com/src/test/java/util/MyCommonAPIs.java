@@ -1897,9 +1897,8 @@ public class MyCommonAPIs {
         waitReady();
         logger.info("wait for: " + local);
         try {
-            // Wait until at least one element is visible
             ElementsCollection elements = $$x(sOrganizationLocationElement);
-            elements.get(0).waitUntil(Condition.visible, 10000); // Wait up to 10s for the first element
+            elements.get(0).waitUntil(Condition.visible, 10000);
         } catch (NoSuchElementException | IndexOutOfBoundsException e) {
             logger.info("Try refresh again");
             takess();
