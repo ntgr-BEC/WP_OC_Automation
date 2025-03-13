@@ -817,7 +817,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
  
    //Elements added by Patik for MPSK
     
-    public SelenideElement        office1LocationBtn                          = $x("//*[@id=\"_divlocDiv0\"]");
+    public SelenideElement        office1LocationBtn                          = $x("//*[@col-id='locations']/..//*[@class='linkUnderlin']");
     public SelenideElement        wirelessTab                                 = $x("//*[@id=\"openCommonMenuBar\"]/ul/li[4]/a[1]");
     public SelenideElement        settingBtn                                  = $x("//*[@id=\"divLocBarwirquickView\"]/div[2]/a");
     public SelenideElement        advanceSettingsBtn                          = $x("(//*[text() = 'Advanced'])[2]");
