@@ -5814,7 +5814,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
@@ -5979,7 +5979,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
