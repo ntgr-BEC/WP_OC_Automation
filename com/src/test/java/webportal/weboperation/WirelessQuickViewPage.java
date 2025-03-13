@@ -5791,7 +5791,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         // MyCommonAPIs.sleepi(1);
         // mpskSettingOpt.click();
         // MyCommonAPIs.sleepi(1);
-        // if (verifyMPSKSetting.getText()=="Multi PSK Settings") {
+        // if (verifyMPSKSetting.getText()=="Multi PSK Settings"){
         // result = true;
         // }
         // System.out.println(verifyMPSKSetting.getText());
@@ -5814,7 +5814,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
@@ -5979,7 +5979,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
