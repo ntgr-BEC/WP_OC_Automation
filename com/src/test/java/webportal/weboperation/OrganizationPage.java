@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import org.apache.log4j.chainsaw.Main;
@@ -122,33 +123,49 @@ public class OrganizationPage extends OrganizationElement {
         waitReady();
     }
 
+//    public void openOrg(String name) {
+//        open(URLParam.hreforganization, true);
+//        waitElement(sOrganizationLocationElement1);
+//        boolean located = false;
+//        String newElement = "";
+//        if ($(sOrganizationLocationElement).isDisplayed()) {
+//            System.out.println("inside sOrganizationLocationElement");
+//            newElement = sOrganizationLocationElement;
+//        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
+//            System.out.println("inside sOrganizationLocationElementNew");
+//            newElement = sOrganizationLocationElementNew;
+//        }
+//           System.out.println("----------------------");
+//        waitElement(newElement);
+//        for (SelenideElement se : $$(newElement)) {
+//            if (getText(se).equalsIgnoreCase(name)) {
+//                located = true;
+//                se.click();
+//                break;
+//            }
+//        }
+//        if (!located) {
+//            System.out.println("Not-located");
+//            logger.info("click first location");
+//            $(newElement).click();
+//        }
+//        waitReady();
+//    }
+    
     public void openOrg(String name) {
         open(URLParam.hreforganization, true);
-        waitElement(sOrganizationLocationElement1);
-        boolean located = false;
-        String newElement = "";
-        if ($(sOrganizationLocationElement).isDisplayed()) {
-            System.out.println("inside sOrganizationLocationElement");
-            newElement = sOrganizationLocationElement;
-        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
-            System.out.println("inside sOrganizationLocationElementNew");
-            newElement = sOrganizationLocationElementNew;
+        waitElement("//*[@col-id='orgName']/..//*[text()='" + name + "']"); // Wait for the organization name to be visible
+
+        SelenideElement orgElement = $x("//*[@col-id='orgName']/..//*[text()='" + name + "']");
+        if (orgElement.exists() && orgElement.isDisplayed()) {
+            orgElement.click();
+            logger.info("Clicked on organization: " + name);
+        } else {
+            logger.info("Organization not found: " + name);
+            throw new NoSuchElementException("Organization " + name + " not found on the page.");
         }
-           System.out.println("----------------------");
-        waitElement(newElement);
-        for (SelenideElement se : $$(newElement)) {
-            if (getText(se).equalsIgnoreCase(name)) {
-                located = true;
-                se.click();
-                break;
-            }
-        }
-        if (!located) {
-            System.out.println("Not-located");
-            logger.info("click first location");
-            $(newElement).click();
-        }
-        waitReady();
+        
+        waitReady(); // Ensure the page is ready after clicking
     }
 
     public void GotoSettings() {
