@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.$x;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
@@ -152,17 +153,29 @@ public class AccountPageElement extends MyCommonAPIs {
 
     public void editLocation() {
         waitReady();
-        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/a").click();
-        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/ul/li[1]").click();
+//        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/a").click();
+//        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/ul/li[1]").click();
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(WebportalParam.location1).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
     }
 
     public void editNetwork(String Name) {
-        $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
-        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
-        }
+//        $x("//p[@title='" + Name + "']/../../ul/li/a").click();
+//        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
+//            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
+//        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
+//            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
+//        }
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(Name).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
 
     }
 
@@ -248,8 +261,10 @@ public class AccountPageElement extends MyCommonAPIs {
         else
         {
             String rowindex=dropdownLocationElementNew(Name).getAttribute("aria-rowindex");
-            ariaSetIndex(rowindex).click();
-            ariaSetIndexDelete(rowindex).click();
+            MyCommonAPIs.sleepi(2);
+            ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(2);
+            ariaSetIndexDelete(rowindex).shouldBe(Condition.visible).click();
         }
         MyCommonAPIs.sleepi(5);
         if(deleteLocation3.isDisplayed()) {
@@ -319,6 +334,11 @@ public class AccountPageElement extends MyCommonAPIs {
     
     public SelenideElement ariaSetIndexDelete(String index) {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexEdit(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
 }
