@@ -3616,7 +3616,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         setSelected($x("(//input[@id='enableBlackList'])[1]"), false);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(5);
-        // ConformSaveIGMP.click();
+        waitElement(ConformSaveIGMP);
+        ConformSaveIGMP.shouldBe(Condition.visible).click();
 
     }
 
@@ -3678,12 +3679,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
@@ -3703,12 +3711,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
@@ -5805,13 +5820,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(5);
         settingsorquickview.click();
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         String mpskKeyName = verifyMPSKKeyisAdded.getText();
@@ -5826,8 +5857,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void deleteMPSKKey() {
         MyCommonAPIs.sleepi(1);
-        settingBtn.click();
-        MyCommonAPIs.sleepi(3);
+        MyCommonAPIs.sleepi(5);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleepi(5);
         if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
@@ -5951,13 +5985,28 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(5);
         settingBtn.click();
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         String mpskKey1 = verifyMPSKKeyisAdded.getText();
@@ -6204,14 +6253,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (settingBtn.exists()) {
             settingBtn.click();
         }
-        MyCommonAPIs.sleepi(3);
-        if (Advance1.exists()) {
+        MyCommonAPIs.sleepi(5);
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
 
         MyCommonAPIs.sleepi(5);
@@ -6588,12 +6652,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
@@ -6657,9 +6728,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(5);
         settingBtn.click();
         MyCommonAPIs.sleepi(5);
-        advanceSettingsBtn.click();
+        if (advanceSettingsBtn.exists() && Advance2.exists()) {
+            advanceSettingsBtn.click();
+        } else if(Advance2.exists()) {
+            Advance2.click();
+        }      
         MyCommonAPIs.sleepi(1);
-        mpskSettingOpt.click();
+        if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+            mpskSettingOpt.click();
+        } else if (mpskSettingOpt1.exists()) {
+            mpskSettingOpt1.click();
+        }
         MyCommonAPIs.sleepi(3);
         if (mpskKeyName.equals("MPSKSSIDTest01")) {
             result = true;
@@ -6997,13 +7076,33 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean addMPSKKey1DG() {
         boolean result = false;
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleepi(5);
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         clkAddMPSK.click();

@@ -1,4 +1,4 @@
-package webportal.SwitchManaged.DhcpRelay.PRJCBUGEN_T35588;
+package webportal.ProManagedSwitch.DhcpRelay.PRJCBUGEN_T35588;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.Assert.*;
