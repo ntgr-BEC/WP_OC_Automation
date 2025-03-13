@@ -815,7 +815,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement       saveedit                                 = $x("(//button[text()='Save'])[2]");  
     public SelenideElement       saveedfinal                              = $x("//*[@id=\"SuccsEditWirNet\"]");  
  
-   //Elements added by Patik for MPSK
+   //Elements added by Patik forMPSK
     
     public SelenideElement        office1LocationBtn                          = $x("//*[@col-id='locations']/..//*[@class='linkUnderlin']");
     public SelenideElement        wirelessTab                                 = $x("//*[@id=\"openCommonMenuBar\"]/ul/li[4]/a[1]");
