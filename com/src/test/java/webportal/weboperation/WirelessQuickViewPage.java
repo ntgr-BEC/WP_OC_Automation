@@ -5791,7 +5791,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         // MyCommonAPIs.sleepi(1);
         // mpskSettingOpt.click();
         // MyCommonAPIs.sleepi(1);
-        // if (verifyMPSKSetting.getText()=="Multi PSK Settings") {
+        // if (verifyMPSKSetting.getText()=="Multi PSK Settings"){
         // result = true;
         // }
         // System.out.println(verifyMPSKSetting.getText());
