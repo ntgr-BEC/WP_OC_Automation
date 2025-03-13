@@ -1700,7 +1700,7 @@ public class MyCommonAPIs {
     public void setSelected(SelenideElement el, boolean checked) {
         boolean sta = el.is(Condition.checked);
         if (checked != sta) {
-            click(el, true);
+            el.shouldBe(Condition.visible).click();
         }
     }
     
