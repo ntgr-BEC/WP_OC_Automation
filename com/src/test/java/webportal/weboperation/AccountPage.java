@@ -79,15 +79,18 @@ public class AccountPage extends AccountPageElement {
                 addNetWorkButton.click();
             } else if (addNetWorkPro.exists()) {
                 addNetWorkPro.click();
-                addsinglelocation.click();
+                MyCommonAPIs.sleepi(5);
+                addsinglelocation.shouldBe(Condition.visible).click();
             }
             MyCommonAPIs.sleepi(30);
             waitElement(addNetLocationName);
+            addNetLocationName.shouldBe(Condition.visible);
             // timeZone.waitUntil(Condition.matchText("UTC"), 40 * 1000);
             // MyCommonAPIs.sleep(10000);
             addNetLocationName.sendKeys(map.get("Location Name"));
             MyCommonAPIs.sleepi(5);
             waitElement(addNetPassword);
+            addNetPassword.shouldBe(Condition.visible);
             addNetPassword.sendKeys(map.get("Device Admin Password"));
             if (map.containsKey("Street")) {
                 addNetStreet.setValue(map.get("Street"));
@@ -119,7 +122,7 @@ public class AccountPage extends AccountPageElement {
             }
             // ButtonElements.SAVEBUTTON.click();
             MyCommonAPIs.sleepi(10);
-            savebutton.click();
+            savebutton.shouldBe(Condition.visible).click();
 
             MyCommonAPIs.sleepi(10);
             // if (locationlist.getAttribute("aria-expanded").equals("false")) {
@@ -309,10 +312,11 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
             }
-            addNetWorkButton1.click();
+            MyCommonAPIs.sleepi(10);
+            addNetWorkButton1.shouldBe(Condition.visible).click();
 
             MyCommonAPIs.sleep(1000);
-            addMultiplelocations.click();
+            addMultiplelocations.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(10000);
             numberMultipleloc.sendKeys(map.get("Number of Locations"));
             MyCommonAPIs.sleep(1000);

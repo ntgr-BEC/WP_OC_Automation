@@ -61,6 +61,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
         logger.info("init...");
+        refresh();
         reloadDeviceList();
     }
     
