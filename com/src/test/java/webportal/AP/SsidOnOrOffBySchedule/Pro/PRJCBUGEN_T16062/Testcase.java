@@ -1,4 +1,4 @@
-package webportal.AP.SsidOnOrOffBySchedule.PRJCBUGEN_T16062;
+package webportal.AP.SsidOnOrOffBySchedule.Pro.PRJCBUGEN_T16062;
 
 import static com.codeborne.selenide.Selenide.$x;
 
