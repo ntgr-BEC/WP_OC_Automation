@@ -321,7 +321,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
     public SelenideElement AdvanceWirelessSetting = $x("//a[text()='Advanced Network Settings']");
     public SelenideElement Advance                = $x("//*[text() = 'Advanced']");
-    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])[2]");
+    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])");
     public SelenideElement NetworkSettings        = $x("(//*[text() = 'Network Settings'])[1]");
     public SelenideElement WirelessSetting        = $x("(//*[text() = 'Wireless Settings'])[2]");
     public SelenideElement MeshSetting            = $x("//*[text() = 'Mesh Settings']");
