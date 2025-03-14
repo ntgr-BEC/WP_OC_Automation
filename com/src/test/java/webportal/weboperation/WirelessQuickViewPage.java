@@ -2420,8 +2420,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             entercaptiveportal.click();
-            MyCommonAPIs.sleepi(3);
-            enablecaptiveportal.click();
+            MyCommonAPIs.sleepi(5);
+            bcpRadiobutton.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(3);
             enableredirecturl.click();
             MyCommonAPIs.sleepi(3);
