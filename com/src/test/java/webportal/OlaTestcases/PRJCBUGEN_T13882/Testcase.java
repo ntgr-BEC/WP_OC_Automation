@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase {
         new OrganizationPage(false).OrgSsidEnableEcp(WebportalParam.Organizations);
         new OrganizationPage(false).OrgCreateECP(locationInfo.get("SSID"), ECPInfo);
         
-        MyCommonAPIs.sleepi(3000);
+        MyCommonAPIs.sleepi(300);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
