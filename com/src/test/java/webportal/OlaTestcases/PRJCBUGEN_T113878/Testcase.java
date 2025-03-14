@@ -52,8 +52,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Verify that the user is able to create an organization without an owner")
     public void step2() {
-        new OrganizationPage(false).openOrg(organizationName);
-        new OrganizationPage(false).goToOrgSsid(organizationName);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
         
         locationInfo.put("SSID", "PRJCBUGEN_T113878");
         locationInfo.put("Security", "WPA2 Personal");

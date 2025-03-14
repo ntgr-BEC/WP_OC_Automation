@@ -1,6 +1,7 @@
 package webportal.OlaTestcases.PRJCBUGEN_T113875;
 
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$$x;
 import static org.testng.Assert.assertTrue;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.logging.Logger;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -33,7 +35,7 @@ public class Testcase extends TestCaseBase {
     
     final static Logger logger = Logger.getLogger("PRJCBUGEN_T113875");  
     ArrayList<String> lsLocationNetworks = new ArrayList<String>();
-    String  sOrganizationLocationElement = "#gridView .location-name";
+    String  sOrganizationLocationElement = "//*[@col-id='locations']/..//*[@class='linkUnderlin']";
     
     String organizationName = "PRJCBUGEN_T113875";
     
@@ -75,19 +77,19 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3:  Go to an organization and then Click on Add location icon. Adding Multiple locations")
     public void step3() {
+        new OrganizationPage(false).openOrg(organizationName);
         HashMap<String, String> locationInfo = new HashMap<String, String>();        
         locationInfo.put("Number of Locations","2");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "12345");
         locationInfo.put("Country", "United States of America");      
-        new AccountPage().addMultipleNetwork(locationInfo);
+        new AccountPage(false).addMultipleNetwork(locationInfo);
      }   
     @Step("Test Step 4:locations with the same name should be created")
     public void step4() {       
         try {                     
-            AccountPage AccountPage =new AccountPage() ;
-            MyCommonAPIs.waitElement(sOrganizationLocationElement);
-            ElementsCollection esc = $$(sOrganizationLocationElement);
+            ElementsCollection esc = $$x(sOrganizationLocationElement);
+            esc.get(0).waitUntil(Condition.visible, 10000);
             String network;
             int located = 0;
             for (SelenideElement locelem : esc) {  

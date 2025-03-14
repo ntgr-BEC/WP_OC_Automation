@@ -59,8 +59,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Verify that the user is able to create an organization without an owner")
     public void step2() {
-        new OrganizationPage(false).openOrg(organizationName);
-        new OrganizationPage(false).goToOrgSsid(organizationName);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
         
         locationInfo.put("SSID", "PRJCBUGEN_T13881");
         locationInfo.put("Security", "WPA2 Personal");
@@ -77,7 +77,7 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Key", "GCDKNGYD2XETKBZ9");
         
 
-        new OrganizationPage(false).OrgSsidEnableEcp(organizationName);
+        new OrganizationPage(false).OrgSsidEnableEcp(WebportalParam.Organizations);
         new OrganizationPage(false).OrgCreateECP(locationInfo.get("SSID"), ECPInfo);
         
         MyCommonAPIs.sleepi(120);
