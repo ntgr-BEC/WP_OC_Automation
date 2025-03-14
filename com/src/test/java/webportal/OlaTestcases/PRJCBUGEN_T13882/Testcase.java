@@ -42,6 +42,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
         new WirelessQuickViewPage(false).deleteOrgSsidYes(locationInfo.get("SSID"));
     }
@@ -76,7 +77,7 @@ public class Testcase extends TestCaseBase {
         new OrganizationPage(false).OrgSsidEnableEcp(WebportalParam.Organizations);
         new OrganizationPage(false).OrgCreateECP(locationInfo.get("SSID"), ECPInfo);
         
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(3000);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

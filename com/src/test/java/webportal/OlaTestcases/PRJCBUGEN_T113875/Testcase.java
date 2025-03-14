@@ -84,6 +84,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Zip Code", "12345");
         locationInfo.put("Country", "United States of America");      
         new AccountPage(false).addMultipleNetwork(locationInfo);
+        new OrganizationPage(false).openOrg(organizationName);
      }   
     @Step("Test Step 4:locations with the same name should be created")
     public void step4() {       
