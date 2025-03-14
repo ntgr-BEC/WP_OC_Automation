@@ -298,7 +298,7 @@ public class AccountPage extends AccountPageElement {
     public void addMultipleNetwork(Map<String, String> map) {
         boolean exit = false;
 
-        // if (locationlist.getAttribute("aria-expanded").equals("false")) {
+        // if (locationlist.getAttribute("aria-expanded").equals("false")){
         // locationlist.click();
         // }
 
