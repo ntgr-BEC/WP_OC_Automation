@@ -34,6 +34,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.strobel.decompiler.languages.java.ast.Keys;
 
+import groovy.time.Duration;
 import util.APUtils;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
@@ -154,9 +155,10 @@ public class OrganizationPage extends OrganizationElement {
     
     public void openOrg(String name) {
         open(URLParam.hreforganization, true);
-        waitElement("//*[@col-id='orgName']/..//*[text()='" + name + "']"); // Wait for the organization name to be visible
-
+        MyCommonAPIs.sleepi(2);
         SelenideElement orgElement = $x("//*[@col-id='orgName']/..//*[text()='" + name + "']");
+        waitElement(orgElement);
+        orgElement.shouldBe(Condition.visible);
         if (orgElement.exists() && orgElement.isDisplayed()) {
             orgElement.click();
             logger.info("Clicked on organization: " + name);
@@ -2727,7 +2729,7 @@ public class OrganizationPage extends OrganizationElement {
 
         openOrg(OrgName);
         MyCommonAPIs.sleepi(10);
-        Setting.click();
+        Setting.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         waitElement(organizationWideSSID);
         organizationWideSSID.click();
@@ -2753,7 +2755,7 @@ public class OrganizationPage extends OrganizationElement {
 
         new WirelessQuickViewElement().entercaptiveportal.click();
         MyCommonAPIs.sleepi(20);
-        new WirelessQuickViewElement().enablecaptiveportal.click();
+        new WirelessQuickViewElement().ecpRadiobutton.shouldBe(Condition.visible).click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
