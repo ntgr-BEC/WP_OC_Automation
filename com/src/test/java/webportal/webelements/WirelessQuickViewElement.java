@@ -1559,6 +1559,12 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 
 	 public SelenideElement Advance2                = $x("//*[text() = 'Advanced']");
 	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");
+	 
+	 //Pratik
+	 public SelenideElement bcpRadiobutton = $x("//p[text()='Use Internal (free)']/ancestor::label");
+	 public SelenideElement ecpRadiobutton = $x("//p[text()='Use External']/ancestor::label");
+	 public SelenideElement icpRadiobutton = $x("//p[text()='Instant Captive Portal']/ancestor::label");
+
 }
 
 
