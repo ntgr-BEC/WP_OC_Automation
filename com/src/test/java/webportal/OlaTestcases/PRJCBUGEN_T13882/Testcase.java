@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
     Map<String, String> locationInfo = new HashMap<String, String>();
 
 
-    @Feature("OlaTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("OlaTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T13882") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that the user is able to create an ORG wide SSID WPA2 Personal mixed  with ECP for existing Organization") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T13882") // It's a testcase id/link from Jira Test Case.
