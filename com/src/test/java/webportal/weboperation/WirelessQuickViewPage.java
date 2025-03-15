@@ -10900,14 +10900,27 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     
     public boolean VerifyGenaralRF(Map<String, String> map) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
-        MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+        System.out.println(map.get("RFName"));
         MyCommonAPIs.sleepi(10);
-             
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+        MyCommonAPIs.sleepi(10);
+        String editRFProfileNamestr = editRFProfileName.shouldBe(Condition.visible).getValue();
+        String editRFProfileDescriptionstr = editRFProfileDescription.shouldBe(Condition.visible).getValue();
+        System.out.println(editRFProfileNamestr);    
+        System.out.println(editRFProfileDescriptionstr);
         
-        if(map.get("RFName").equals(editRFProfileName.getText()) & map.get("RFDescription").equals(editRFProfileDescription.getText()))  
+        if(map.get("RFName").equals(editRFProfileNamestr) & map.get("RFDescription").equals(editRFProfileDescriptionstr))  
         {
             
             result = true;
@@ -10939,9 +10952,22 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitReady();
         if (checkRFExist(Pname)) {
             logger.info("Delete RF Profile.");
-            executeJavaScript("arguments[0].removeAttribute('class')", editRF(Pname));
+            
+            System.out.println(Pname);
+            MyCommonAPIs.sleepi(10);
+            waitReady();
+            String sElement = String.format("//td[text()='%s']", Pname);
+            logger.info("on element:" + sElement);
+            
+            $x(sElement).hover();
             MyCommonAPIs.sleep(3000);
-            deleteRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
+            
+            editRF(Pname).hover();
+            MyCommonAPIs.sleep(3000);
+
+            deleteRFprofile(Pname).shouldBe(Condition.visible, Condition.enabled).click();
+            MyCommonAPIs.sleep(8000);
+            
             MyCommonAPIs.sleepi(30);
             deletessidyes.click();
             MyCommonAPIs.sleep(5 * 1000);
@@ -11161,29 +11187,37 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     
     public boolean verifyassignedAP(Map<String, String> map) {
         boolean result = false;
-        String [] profileNames = new String [20];
-                              
-                for (SelenideElement RFprofile : preferredcolumnsnew) {
-                    System.out.println(RFprofile);
+        String[] profileNames = new String[20];
 
-                }
-        
-        
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        for (SelenideElement RFprofile : preferredcolumnsnew) {
+            System.out.println(RFprofile);
+
+        }
+
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
-        MyCommonAPIs.sleepi(10);        
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+
+        MyCommonAPIs.sleepi(30);
         DeviceListRF.click();
         MyCommonAPIs.sleepi(5);
-        if(Devicelist(map.get("Device Name"), 1).isDisplayed() & Devicelist(map.get("Device SerialNo"), 2).isDisplayed() & Devicelist(map.get("Device Model"), 3).isDisplayed()) {
+        if (Devicelist(map.get("Device Name"), 1).isDisplayed() & Devicelist(map.get("Device SerialNo"), 2).isDisplayed()
+                & Devicelist(map.get("Device Model"), 3).isDisplayed()) {
             result = true;
         }
-       
+
         return result;
-        
-        
-        
 
     }
 
