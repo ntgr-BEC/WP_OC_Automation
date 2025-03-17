@@ -1700,7 +1700,7 @@ public class MyCommonAPIs {
     public void setSelected(SelenideElement el, boolean checked) {
         boolean sta = el.is(Condition.checked);
         if (checked != sta) {
-            el.shouldBe(Condition.visible).click();
+            el.click();
         }
     }
     
@@ -2448,5 +2448,14 @@ public class MyCommonAPIs {
             waitDeviceOnline();
         }
         logger.info("try to disconnect the switch via command");
+    }
+    
+    public void setSelected1(SelenideElement switchSpan, boolean checked) {
+        SelenideElement checkBox = switchSpan.parent().find("input[type='checkbox']");
+        boolean isChecked = checkBox.is(Condition.checked);
+
+        if (checked != isChecked) {
+            switchSpan.click();
+        }
     }
 }
