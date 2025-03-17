@@ -1,4 +1,4 @@
-package webportal.APBasic.WirelessSecurity.Location.Premium.PRJCBUGEN_T35739;
+package webportal.APBasic.WirelessSecurity.Location.Premium.ICP.PRJCBUGEN_T35739;
 
 import static org.testng.Assert.assertTrue;
 
