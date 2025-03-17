@@ -633,9 +633,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        save80211                  = $x("//*[@id=\"btnSaveSsideditWirNet\"]");
     public SelenideElement        ok80211                  = $x("//*[@id=\"SuccsEditWirNet\"]");
     public SelenideElement        check80211                  = $x("//*[@id=\"divClearFixeditWirNet\"]/div[4]/div/div/div[2]/label/span");
-    public SelenideElement        Warrning                  = $x("(//*[text()='Warning'])[4]");
+    public SelenideElement        Warrning                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
     public SelenideElement        Warrning1                  = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[3]");
-    public SelenideElement        okFast                  = $x("(//div[@class=\"modal-dialog custompoup\"]//h4[text()='Warning']/../../..//button[text()='OK'])[1]");
+    public SelenideElement        okFast                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
     
     public SelenideElement        SDM                  = $x("//*[@id=\"divSideBarSecEditVlan\"]/div/div[10]/a");
     public SelenideElement        enableSDM            = $x("//*[@id=\"inpCheckBoxDiagMod\"]");

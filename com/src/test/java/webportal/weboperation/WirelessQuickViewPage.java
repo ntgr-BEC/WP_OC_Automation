@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
+import static com.codeborne.selenide.Selenide.$$x;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -248,7 +249,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.println("add ssid click");
             waitElement(ssid);
 
-            MyCommonAPIs.sleepi(30);
+            MyCommonAPIs.sleepi(10);
 
             ssid.setValue(map.get("SSID"));
             if (checkband6.isDisplayed()) {
@@ -280,26 +281,42 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 security.selectOption(map.get("Security"));
             }
             System.out.println("before password");
-            MyCommonAPIs.sleepi(15);
+            MyCommonAPIs.sleepi(10);
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
             }
             if(map.containsKey("Bandsteering"))
-            {   MyCommonAPIs.sleepi(4);   
-                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("Bandsteering"))));
-                MyCommonAPIs.sleep(5);
-                if (Warrning.isDisplayed()) {
-                    okFast.click();                   
+            {   System.out.print("entered Bandsteering ");
+                MyCommonAPIs.sleepi(4);               
+                setSelected($x("//*[@id=\"bandSteeringSt\"]/../span"), Boolean.parseBoolean((map.get("Bandsteering"))));
+                MyCommonAPIs.sleep(10);
+                if (Warrning.isDisplayed()) {                                      
+                    System.out.println("inside warrning band");
+                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+                    for (SelenideElement button : buttons) {
+                        if (button.is(Condition.visible)) {
+                            button.click();
+                            break;  // Click the first visible button and stop
+                        }
+                    }
+                              
                 }
             }
             if(map.containsKey("Fastroaming"))
             {   System.out.print("entered fast roami");
                 MyCommonAPIs.sleepi(4); 
-                setSelected($x("//*[@id=\"fastRoamingSt\"]"),Boolean.parseBoolean((map.get("Fastroaming"))));
-                MyCommonAPIs.sleep(5);              
-                if (Warrning.isDisplayed()) {
-                    okFast.click();    
-                    System.out.print("went im");
+                setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"),Boolean.parseBoolean((map.get("Fastroaming"))));
+                MyCommonAPIs.sleep(10);              
+                if (Warrning.isDisplayed()) {                                      
+                    System.out.println("inside warrning Fastroaming");
+                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+                    for (SelenideElement button : buttons) {
+                        if (button.is(Condition.visible)) {
+                            button.click();
+                            break;  // Click the first visible button and stop
+                        }
+                    }
+                              
                 }
             }
             if(map.containsKey("802.11kv"))
@@ -6678,9 +6695,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void EnableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), true);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(5);;
+        if(!$x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy enabled");
+        }
+//        setSelected1($x("//input[@id='enableEEM']"), true);
+       
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6689,9 +6713,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void disableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), false);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(10);     
+        if($x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy disabled");
+        }
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6721,7 +6750,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(sta);
 
         if (sta == "true") {
-            logger.info("it is anabled");
+            logger.info("it is enabled");
             result = true;
 
         }

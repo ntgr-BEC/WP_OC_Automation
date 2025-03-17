@@ -22,6 +22,7 @@ import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.webelements.AccountPageElement;
 import webportal.webelements.MDNSElement;
 
 /**
@@ -38,7 +39,8 @@ public class MDNSPage extends MDNSElement {
             new OrganizationPage().openOrg(WebportalParam.Organizations);
             gotoLoction(WebportalParam.location1);
         }
-        editNetwork.click();
+        new AccountPageElement().editNetwork(WebportalParam.location1);
+
     }
     
     public MDNSPage(boolean noPage) {
@@ -85,7 +87,9 @@ public class MDNSPage extends MDNSElement {
     
     public void disableMDNS() {          
         MyCommonAPIs.sleepi(5);
-        setSelected($x("//*[@id=\"enableBlackList\"]"), false);
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), false);
+
+        
     }
     
     public boolean DiscoveredServicesCheck() {     
@@ -273,17 +277,20 @@ public class MDNSPage extends MDNSElement {
         if(Policyexits.isDisplayed()) {
             System.out.println("Policy exits");
             
-//            executeJavaScript("arguments[0].removeAttribute('class')", editMdNS(MDNSName));
-//            MyCommonAPIs.sleep(3000);
-//            deleteMDNS(MDNSName).waitUntil(Condition.visible, 60 * 1000).click();
+          WebDriver driver = WebDriverRunner.getWebDriver();
+          Actions a = new Actions(driver);
+          a.moveToElement(Policyexits).perform();
+            
+            
+            executeJavaScript("arguments[0].removeAttribute('class')", editMdNS(MDNSName));
+            MyCommonAPIs.sleep(3000);
+            deleteMDNS(MDNSName).waitUntil(Condition.visible, 60 * 1000).click();
 
             
-            WebDriver driver = WebDriverRunner.getWebDriver();
-            Actions a = new Actions(driver);
-            JavascriptExecutor js = (JavascriptExecutor)driver;
-            js.executeScript("window.scrollBy(0, 250)", "");
-            a.moveToElement(Policyexits).perform();
-            a.moveToElement(deleteMDNS(MDNSName)).click().perform();
+//            WebDriver driver = WebDriverRunner.getWebDriver();
+//            Actions a = new Actions(driver);
+//            a.moveToElement(Policyexits).perform();
+//            a.moveToElement(deleteMDNS(MDNSName)).click().perform();
             
             MyCommonAPIs.sleep(6000);
             deletessidyes.click();
@@ -321,9 +328,8 @@ public class MDNSPage extends MDNSElement {
         selectGateway.selectOption("AP");
         MyCommonAPIs.sleepi(5);     
         setSelected($x("//*[@id=\"enableBlackList\"]"), true);
-        MyCommonAPIs.sleepi(5);
-        waitElement(OkGotIt);
-        if(OkGotIt.exists()) {
+        MyCommonAPIs.sleepi(8);
+        if(OkGotIt.isDisplayed()) {
         OkGotIt.click();
         }
         MyCommonAPIs.sleepi(4);

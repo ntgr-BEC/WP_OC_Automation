@@ -51,8 +51,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        MyCommonAPIs.sleepi(10);
-        new MDNSPage().deletePolicy("MDNS");
+       
         MyCommonAPIs.sleepi(5);
         new MDNSPage(false).disableMDNS();
     }
@@ -64,7 +63,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: check MDNS")
