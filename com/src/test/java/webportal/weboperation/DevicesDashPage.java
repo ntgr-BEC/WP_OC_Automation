@@ -2320,7 +2320,10 @@ public void checkDeviceInAdminAccount3() {
     //added by Pratik
     public boolean moveDeviceAndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
         MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleepi(10);
@@ -2426,7 +2429,10 @@ public void checkDeviceInAdminAccount3() {
     }
     public boolean moveDevicewithinSameOrgAndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
         MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(10);
@@ -2470,8 +2476,11 @@ public void checkDeviceInAdminAccount3() {
     }
     public boolean moveDevicetoOrg1orloc1AndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
+        MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleepi(10);
         waitElement(yesButton);
