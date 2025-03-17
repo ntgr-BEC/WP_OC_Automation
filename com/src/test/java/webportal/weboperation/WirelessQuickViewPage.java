@@ -6678,9 +6678,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void EnableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), true);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(5);;
+        if(!$x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy enabled");
+        }
+//        setSelected1($x("//input[@id='enableEEM']"), true);
+       
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6689,9 +6696,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void disableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), false);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(10);     
+        if($x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy disabled");
+        }
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6721,7 +6733,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(sta);
 
         if (sta == "true") {
-            logger.info("it is anabled");
+            logger.info("it is enabled");
             result = true;
 
         }
