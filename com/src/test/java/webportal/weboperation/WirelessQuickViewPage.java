@@ -8038,7 +8038,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 saveandconfigure.click();
                 MyCommonAPIs.sleepi(20);
                 enableECP();
-                MyCommonAPIs.sleepi(20);
+//                MyCommonAPIs.sleepi(20);
             }
 
             if (ECPRadio.isDisplayed()) {
@@ -8047,11 +8047,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
             waitReady();
             MyCommonAPIs.sleepi(4);
-            okECP.click();
+//            okECP.click();
+            if (okECP.exists()) {
+                okECP.click();
+//                MyCommonAPIs.sleepi(20);
+//                selectinsightECP.click();
+            }
             logger.info("Add ssid successful.");
         } else {
             logger.warning("checkSsidIsExist error");
         }
+        System.out.println("Result = " + result);
         return result;
     }
 
@@ -8151,13 +8157,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void enableECP() {
 
-        entercaptiveportal.click();
+//        entercaptiveportal.click();
+        if (entercaptiveportal.exists()) {
+            entercaptiveportal.click();
+            MyCommonAPIs.sleepi(20);
+            selectinsightECP.click();
+        }
 //        enablecaptiveportal.click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
-        MyCommonAPIs.sleepi(20);
-        selectinsightECP.click();
+           
+        
 
     }
 
