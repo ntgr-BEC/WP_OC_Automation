@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new OrganizationPage(false).openOrg(organizationName);
-        new DevicesDashPage(false).openLocationFromotherOrg();
+        new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
         assertTrue(new DevicesDashPage().moveDevicetoOrg1orloc1AndVerify(WebportalParam.ap1serialNo),"Move device functionality is failed.");
         System.out.println("start to do tearDown");
     }

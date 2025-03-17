@@ -3542,10 +3542,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
-        setSelected($x("(//input[@id='enableBlackList'])[2]"), true);
+        setSelected1($x("//h5[text()='IGMP Snooping']/../..//input[@id='enableBlackList']/following-sibling::span"), true);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(10);
-        if (ConformSaveIGMP.exists()) {
+        if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
 
         }
@@ -3575,10 +3575,13 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
-        setSelected($x("(//input[@id='enableBlackList'])[1]"), true);
+        setSelected1($x("//h5[text()='Broadcast-to-Unicast']/../..//input[@id='enableBlackList']/following-sibling::span"), true);
         SaveIGMP.click();
-        MyCommonAPIs.sleepi(5);
-        ConformSaveIGMP.click();
+        MyCommonAPIs.sleepi(10);
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+        }
+        
 
     }
 
@@ -3601,11 +3604,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("(//input[@id='enableBlackList'])[2]"), false);
+        MyCommonAPIs.sleepi(3);
+        setSelected1($x("//h5[text()='IGMP Snooping']/../..//input[@id='enableBlackList']/following-sibling::span"), false);
         SaveIGMP.click();
-        MyCommonAPIs.sleepi(5);
-        ConformSaveIGMP.click();
+        MyCommonAPIs.sleepi(10);
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+
+        }
 
     }
 
@@ -3630,11 +3636,12 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         MyCommonAPIs.sleepi(3);
         MyCommonAPIs.sleepi(5);
-        setSelected($x("(//input[@id='enableBlackList'])[1]"), false);
+        setSelected1($x("//h5[text()='Broadcast-to-Unicast']/../..//input[@id='enableBlackList']/following-sibling::span"), false);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(5);
-        waitElement(ConformSaveIGMP);
-        ConformSaveIGMP.shouldBe(Condition.visible).click();
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+        }
 
     }
 
