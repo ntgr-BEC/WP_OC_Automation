@@ -290,7 +290,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(4);               
                 setSelected($x("//*[@id=\"bandSteeringSt\"]/../span"), Boolean.parseBoolean((map.get("Bandsteering"))));
                 MyCommonAPIs.sleep(10);
-                if (Warrning.isDisplayed()) {                                      
+                if (Warrning.exists()) {                                      
                     System.out.println("inside warrning band");
                     List<SelenideElement> buttons = $$x("//*[text()='OK']");
                     for (SelenideElement button : buttons) {
@@ -307,7 +307,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(4); 
                 setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"),Boolean.parseBoolean((map.get("Fastroaming"))));
                 MyCommonAPIs.sleep(10);              
-                if (Warrning.isDisplayed()) {                                      
+                if (Warrning.exists()) {                                      
                     System.out.println("inside warrning Fastroaming");
                     List<SelenideElement> buttons = $$x("//*[text()='OK']");
                     for (SelenideElement button : buttons) {
