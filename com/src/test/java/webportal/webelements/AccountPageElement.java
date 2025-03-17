@@ -22,10 +22,10 @@ public class AccountPageElement extends MyCommonAPIs {
 
     // locationBarIcons
     public SelenideElement        addInsightIncludedDev = $x("//div[contains(@class,'insightIncluded ')]/button");
-    public static SelenideElement addNetWorkButton1     = $(".icon-add-2.dropdown-toggle");
+    public static SelenideElement addNetWorkButton1     = $(".icon-add.dropdown-toggle");
     public static SelenideElement Locationgrid          = $("//*[@id=\"addLocationIcon\"]/span");
-    public SelenideElement        addMultiplelocations  = $(Selectors.byXpath("//*[@id=\"addLocationIcon\"]/ul/li[2]/a"));
-    public SelenideElement        addMultiplelocations0 = $(Selectors.byXpath("//*[@id=\"addLocationIcon\"]/ul/li[1]/a"));
+    public SelenideElement        addMultiplelocations  = $(Selectors.byXpath("//*[@data-tooltip=\"Add Location\"]/ul/li[2]/a"));
+    public SelenideElement        addMultiplelocations0 = $(Selectors.byXpath("//*[@data-tooltip=\"Add Location\"]/ul/li[1]/a"));
     public SelenideElement        MessageAlert          = $x("//*[@id=\"addNetwork\"]/div");
     public SelenideElement        ImageIcon             = $x("//*[@id=\"file\"]");
     ElementsCollection            Image_elems           = $$("//*[@class='location-pic']/a/img");
@@ -144,10 +144,10 @@ public class AccountPageElement extends MyCommonAPIs {
 
     public SelenideElement locationName(String text) {
         waitReady();
-        if (!$("#_divColNoNetWork").exists() & !$x("//p[text()='Networks not available']").exists()) {
-            waitElement("//div[@class='locationDiv']");
+        if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
+            waitElement("//span[@class='linkUnderlin']");
         }
-        SelenideElement location = $x("//div[@class='locationDiv']//span[text()='" + text + "']");
+        SelenideElement location = $x("//span[@class='linkUnderlin' and text()='"+text+"']");
         return location;
     }
 

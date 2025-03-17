@@ -61,6 +61,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
         logger.info("init...");
+        refresh();
         reloadDeviceList();
     }
     
@@ -3111,12 +3112,15 @@ public boolean verifySettingPageFilterAirbridge() {
             }
             
             public void UNAssignRF(String SLNo) {
-                
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLNo));
                 SelectDevice(SLNo).click();
                 MyCommonAPIs.sleepi(2);
+                waitElement(UnassignRFProfile);
                 UnassignRFProfile.click();
                 MyCommonAPIs.sleepi(10);
-                SaveRF.click();
+                waitElement(yesButtonUnassignRFProfile);
+                yesButtonUnassignRFProfile.click();
                 MyCommonAPIs.sleepi(10);
                 
             }

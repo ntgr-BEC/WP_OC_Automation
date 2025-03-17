@@ -524,5 +524,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         SelenideElement offlineDevicecount = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='4']");
         return offlineDevicecount;
     }
+    
+    public SelenideElement yesButtonUnassignRFProfile = $x("//p[contains(text(),'unassign profile?')]/../../..//button[text()='Yes']");
 
 }

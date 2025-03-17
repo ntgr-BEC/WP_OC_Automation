@@ -30,7 +30,7 @@ public class Testcase extends TestCaseBase {
     Map<String, String> locationInfo = new HashMap<String, String>();
 
 
-    @Feature("OlaTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("OlaTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T13882") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that the user is able to create an ORG wide SSID WPA2 Personal mixed  with ECP for existing Organization") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T13882") // It's a testcase id/link from Jira Test Case.
@@ -42,6 +42,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
         new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
         new WirelessQuickViewPage(false).deleteOrgSsidYes(locationInfo.get("SSID"));
     }
@@ -55,8 +56,8 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Verify that the user is able to create an organization without an owner")
     public void step2() {
-        new OrganizationPage(false).openOrg(organizationName);
-        new OrganizationPage(false).goToOrgSsid(organizationName);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
         
         locationInfo.put("SSID", "PRJCBUGEN_T13882");
         locationInfo.put("Security", "WPA2 Personal Mixed");
@@ -73,10 +74,10 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Key", "GCDKNGYD2XETKBZ9");
         
 
-        new OrganizationPage(false).OrgSsidEnableEcp(organizationName);
+        new OrganizationPage(false).OrgSsidEnableEcp(WebportalParam.Organizations);
         new OrganizationPage(false).OrgCreateECP(locationInfo.get("SSID"), ECPInfo);
         
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(300);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

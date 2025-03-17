@@ -73,8 +73,8 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        enableredirecturl         = $x("//h5[@id='hRedUrlCapPort']/..//span");
     public SelenideElement        inputredirecturl          = $x("//div[@id=\"divREdUrCapPort\"]//input");
     public SelenideElement        inputtitle                = $x("//div[@id=\"divOnOffTitCapPort\"]//input");
-    public SelenideElement        inputmessage              = $x("//div[@id=\"divOnOffMsgSetCapPort\"]//input");
-    public SelenideElement        savecaptive               = $("#btnSavCapPort");
+    public SelenideElement        inputmessage              = $x("//input[@id='welcomeMsg']"); 
+    public SelenideElement        savecaptive               = $x("//button[text()='Next' and @class='btn saveBtn ']");
     public SelenideElement        captiveok                 = $("#SuccessCapPort");
     public SelenideElement        enterratelimit            = $x("//div/a[text()='Rate Limiting']");
     public SelenideElement        enableratelimit           = $x("//h5[text()='Enable Settings']/..//span");
@@ -321,9 +321,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
     public SelenideElement AdvanceWirelessSetting = $x("//a[text()='Advanced Network Settings']");
     public SelenideElement Advance                = $x("//*[text() = 'Advanced']");
-    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])[2]");
+    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])");
     public SelenideElement NetworkSettings        = $x("(//*[text() = 'Network Settings'])[1]");
-    public SelenideElement WirelessSetting        = $x("(//*[text() = 'Wireless Settings'])[2]");
+    public SelenideElement WirelessSetting        = $x("//ul[@class='leftMenuSecondLevel']//a[text()='Wireless Settings']");
     public SelenideElement MeshSetting            = $x("//*[text() = 'Mesh Settings']");
     public SelenideElement staIGMP                = $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[1]/div/div/div/div[2]/label/span");
     public SelenideElement staIGMP1               = $x("//input[@id='enableBlackList'])[2]");
@@ -1559,6 +1559,12 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 
 	 public SelenideElement Advance2                = $x("//*[text() = 'Advanced']");
 	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");
+	 
+	 //Pratik
+	 public SelenideElement bcpRadiobutton = $x("//p[text()='Use Internal (free)']/ancestor::label");
+	 public SelenideElement ecpRadiobutton = $x("//p[text()='Use External']/ancestor::label");
+	 public SelenideElement icpRadiobutton = $x("//p[text()='Instant Captive Portal']/ancestor::label");
+
 }
 
 

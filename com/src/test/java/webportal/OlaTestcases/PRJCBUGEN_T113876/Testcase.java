@@ -1,6 +1,7 @@
 package webportal.OlaTestcases.PRJCBUGEN_T113876;
 
 import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.$$x;
 import static org.testng.Assert.assertTrue;
 
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -28,7 +30,7 @@ import webportal.weboperation.WebportalLoginPage;
  */
 public class Testcase extends TestCaseBase {
     String LocName = "PRJCBUGEN_T113876";
-    String  sOrganizationLocationElement = "#gridView .location-name"; 
+    String  sOrganizationLocationElement = "//*[@col-id='locations']/..//*[@class='linkUnderlin']";
     
     @Feature("OlaTestcases") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T113876") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -42,7 +44,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        OrganizationPage page = new OrganizationPage();
         AccountPage AccountPage =new AccountPage();
+        page.openOrg(WebportalParam.Organizations);
         AccountPage.deleteLocation(LocName);
     }
 
@@ -77,8 +81,8 @@ public class Testcase extends TestCaseBase {
     public void step4() {
         
         try {                     
-            MyCommonAPIs.waitElement(sOrganizationLocationElement);
-            ElementsCollection esc = $$(sOrganizationLocationElement);
+            ElementsCollection esc = $$x(sOrganizationLocationElement);
+            esc.get(0).waitUntil(Condition.visible, 10000);
             String network;
             boolean located = false;
             for (SelenideElement locelem : esc) {  
