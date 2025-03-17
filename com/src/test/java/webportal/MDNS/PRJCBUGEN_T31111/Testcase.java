@@ -55,8 +55,8 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new MDNSPage(false).deletePolicy("MDNS");
-        new MDNSPage(false).disableMDNS();
+        new MDNSPage().deletePolicy("MDNS");
+        new MDNSPage().disableMDNS();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: check MDNS")

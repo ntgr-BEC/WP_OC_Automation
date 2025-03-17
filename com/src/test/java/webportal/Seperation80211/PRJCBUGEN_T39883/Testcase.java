@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
         ssidInfo.put("Fastroaming", "true");
-        ssidInfo.put("BandSteering", "true"); 
+        ssidInfo.put("Bandsteering", "true"); 
         new WirelessQuickViewPage().addSsid(ssidInfo);      
     }
     
