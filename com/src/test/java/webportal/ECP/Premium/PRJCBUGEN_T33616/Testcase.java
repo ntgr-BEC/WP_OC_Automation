@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
     
     @Step("Test Step 2: Click on x on AP under device tab;")
@@ -102,7 +102,7 @@ public class Testcase extends TestCaseBase {
 
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(300);
         new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

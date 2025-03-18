@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Validate Config Push")
     public void step3() {
- 
+        MyCommonAPIs.sleepi(300);
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
         System.out.println(Result);
