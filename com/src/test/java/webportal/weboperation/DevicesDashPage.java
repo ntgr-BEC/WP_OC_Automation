@@ -3106,16 +3106,16 @@ public boolean verifySettingPageFilterAirbridge() {
             public void AssignRF(String SLNo, String RFName) {
                 MyCommonAPIs.sleepi(5); 
                 waitElement(SelectDevice(SLNo));
-                SelectDevice(SLNo).click();
+                SelectDevice(SLNo).shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(2);
                 waitElement(AssignRFProfile);
-                AssignRFProfile.click();
+                AssignRFProfile.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(2);
                 waitElement(SelectRF);
-                SelectRF.selectOption(RFName);
+                SelectRF.shouldBe(Condition.visible).selectOption(RFName);
                 MyCommonAPIs.sleepi(2);
                 waitElement(SaveRF);
-                SaveRF.click();
+                SaveRF.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(10);
                 
             }
@@ -3123,13 +3123,13 @@ public boolean verifySettingPageFilterAirbridge() {
             public void UNAssignRF(String SLNo) {
                 MyCommonAPIs.sleepi(5); 
                 waitElement(SelectDevice(SLNo));
-                SelectDevice(SLNo).click();
+                SelectDevice(SLNo).shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(2);
                 waitElement(UnassignRFProfile);
-                UnassignRFProfile.click();
+                UnassignRFProfile.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(10);
                 waitElement(yesButtonUnassignRFProfile);
-                yesButtonUnassignRFProfile.click();
+                yesButtonUnassignRFProfile.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(10);
                 
             }

@@ -10965,10 +10965,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
     public void VerifyDis(Map<String, String> map) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
         MyCommonAPIs.sleepi(10);
         editRFProfileDescription.clear();
         editRFProfileDescription.sendKeys(map.get("RFDescriptionEdit"));
@@ -10999,12 +11009,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         String editRFProfileDescriptionstr = editRFProfileDescription.shouldBe(Condition.visible).getValue();
         System.out.println(editRFProfileNamestr);    
         System.out.println(editRFProfileDescriptionstr);
+        MyCommonAPIs.sleepi(1);
         
         if(map.get("RFName").equals(editRFProfileNamestr) & map.get("RFDescription").equals(editRFProfileDescriptionstr))  
         {
             
             result = true;
         }
+        
+        MyCommonAPIs.sleepi(3);
+        $x("//button[@id='generalCan']").shouldBe(Condition.visible).click();
         
         
         return result;
