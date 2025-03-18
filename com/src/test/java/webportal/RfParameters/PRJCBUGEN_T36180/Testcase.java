@@ -58,8 +58,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
+        webportalLoginPage.defaultLogin();
+
         handle.gotoLoction();
+        
+        
         new DevicesDashPage(true).gotoPage();
         new DevicesDashPage().deleteDeviceNo(WebportalParam.ap1serialNo);
         
