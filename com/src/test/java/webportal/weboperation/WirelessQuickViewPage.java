@@ -11086,7 +11086,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
         
         editRFProfileName.clear();
-        editRFProfileName.sendKeys(Pname);
+        editRFProfileName.sendKeys("Insight");
         editRFProfileDescription.clear();
         editRFProfileDescription.sendKeys(PDescription);
         SaveEditRFProfile.click();
