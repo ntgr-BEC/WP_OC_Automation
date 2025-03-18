@@ -3127,7 +3127,7 @@ public boolean verifySettingPageFilterAirbridge() {
                 MyCommonAPIs.sleepi(2);
                 waitElement(UnassignRFProfile);
                 UnassignRFProfile.shouldBe(Condition.visible).click();
-                MyCommonAPIs.sleepi(10);
+                MyCommonAPIs.sleepi(30);
                 waitElement(yesButtonUnassignRFProfile);
                 yesButtonUnassignRFProfile.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(10);
