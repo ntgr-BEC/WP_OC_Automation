@@ -60,13 +60,13 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
 
     
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Assign/Unassign RF Profile and verify")
     public void step2() {
         
         new WirelessQuickViewPage();

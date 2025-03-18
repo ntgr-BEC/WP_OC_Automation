@@ -69,11 +69,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Create Multiple RF Profiles and verify")
     public void step2() {
         
         

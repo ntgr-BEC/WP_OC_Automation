@@ -59,11 +59,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Assign RF Profile and verify")
     public void step2() {
         new DevicesDashPage().GoToDevicesDashPage();
         String RFName = "Open Office";
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(RF1.contains(RFName1),"RF is not set properly");
     }  
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: Unassign RF Profile and verify")
     public void step3() {
         new DevicesDashPage().GoToDevicesDashPage();
         new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);             

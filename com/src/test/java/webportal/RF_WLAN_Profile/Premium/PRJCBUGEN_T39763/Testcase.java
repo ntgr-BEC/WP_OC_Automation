@@ -59,11 +59,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Create RF Profile")
     public void step2() {
        
         new WirelessQuickViewPage().GotoRF();
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
     }
     
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: Verify RF Profile")
     public void step3() {
        
         new WirelessQuickViewPage().GotoRF();
@@ -86,7 +86,7 @@ public class Testcase extends TestCaseBase {
        
     }
     
-    @Step("Test Step 4: Delete device and enable IGMP")
+    @Step("Test Step 4: Delete RF Profile")
     public void step4() {
        
         new WirelessQuickViewPage().GotoRF();

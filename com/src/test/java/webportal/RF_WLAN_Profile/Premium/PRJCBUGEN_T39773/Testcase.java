@@ -51,6 +51,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).deleteRF(RFdata1.get("RFName"));
         System.out.println("start to do tearDown");
 
@@ -63,11 +64,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Create two RF Profiles and Verify")
     public void step2() {
         
         RFdata.put("RFName", "Netgear");
@@ -92,7 +93,7 @@ public class Testcase extends TestCaseBase {
     }
     
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: Assign RF Profiles and verify")
     public void step3() {
         
         new DevicesDashPage().GoToDevicesDashPage();
@@ -103,6 +104,9 @@ public class Testcase extends TestCaseBase {
         String RF1 = new DevicesDashPage().devicesRF(WebportalParam.ap2serialNo).getText();
         assertTrue(RF.contains(RFName),"RF is not set properly");
         assertTrue(RF1.contains(RFName),"RF is not set properly");
+        new DevicesDashPage().GoToDevicesDashPage();
+        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);             
+        new DevicesDashPage().UNAssignRF(WebportalParam.ap2serialNo);
         
     }
     

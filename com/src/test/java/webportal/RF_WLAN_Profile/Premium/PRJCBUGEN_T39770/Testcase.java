@@ -59,11 +59,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+       // new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Check assign RF profile button is vailable for AP")
     public void step2() {
         new DevicesDashPage().GoToDevicesDashPage();
        

@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
@@ -81,7 +81,7 @@ public class Testcase extends TestCaseBase {
               
 
         ssidInfo.put("custom", "disable");
-        new WirelessQuickViewPage().addSsidcustom(ssidInfo);
+        new WirelessQuickViewPage().disableCustomerProfile(ssidInfo);
         
         assertTrue(new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is enabled");
        

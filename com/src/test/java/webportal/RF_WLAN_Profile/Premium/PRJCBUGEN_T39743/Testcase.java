@@ -47,6 +47,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        new WirelessQuickViewPage().deleteSsidYes("apwp14270");
         System.out.println("start to do tearDown");
 
     }
@@ -58,7 +59,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
