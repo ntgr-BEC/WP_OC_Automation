@@ -1444,7 +1444,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      public SelenideElement GeneralRFName                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[1]/input");
      public SelenideElement GeneralRFDis                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[2]/input");
-     public SelenideElement Saveedit                     = $x("//*[@id=\"general_save\"]");
+     public SelenideElement Saveedit                     = $x("//*[@id=\"instant_save\"]");
      
      public SelenideElement DevicelistName                 = $x("//*[@id=\"macIPfilter\"]/div[2]/table/thead/tr/th[1]");
      public SelenideElement DevicelistSerialNumber         = $x("//*[@id=\"macIPfilter\"]/div[2]/table/thead/tr/th[2]");
@@ -1564,6 +1564,8 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement bcpRadiobutton = $x("//p[text()='Use Internal (free)']/ancestor::label");
 	 public SelenideElement ecpRadiobutton = $x("//p[text()='Use External']/ancestor::label");
 	 public SelenideElement icpRadiobutton = $x("//p[text()='Instant Captive Portal']/ancestor::label");
+	 public SelenideElement SaveeditRFRadioChannels                     = $x("//*[@id=\"btnSaveUpdteRadiChnl\"]");
+	 public SelenideElement okaybtneditRFRadioChannels                  = $x("//p[contains(text(),'RF Profile Radio Settings have been saved')]/../..//button[text()='OK']");
 
 }
 
