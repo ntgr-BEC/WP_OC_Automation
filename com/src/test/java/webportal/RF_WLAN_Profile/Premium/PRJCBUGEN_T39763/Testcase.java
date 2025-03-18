@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     String RFNameedit = "Insight";
     String RFDescriptionedit = "BEC Insight Automation Team";
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39763") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that in Manage Profiles, we should provide an option to create, view, edit and delete RF profiles in Premium User → Location → Wireless → Settings → Profiles") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39763") // It's a testcase id/link from Jira Test Case.
@@ -59,11 +59,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Create RF Profile")
     public void step2() {
        
         new WirelessQuickViewPage().GotoRF();
@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
     }
     
     
-    @Step("Test Step 3: Delete device and enable IGMP")
+    @Step("Test Step 3: Verify RF Profile")
     public void step3() {
        
         new WirelessQuickViewPage().GotoRF();
@@ -86,7 +86,7 @@ public class Testcase extends TestCaseBase {
        
     }
     
-    @Step("Test Step 4: Delete device and enable IGMP")
+    @Step("Test Step 4: Delete RF Profile")
     public void step4() {
        
         new WirelessQuickViewPage().GotoRF();

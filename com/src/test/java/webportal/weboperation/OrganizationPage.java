@@ -887,6 +887,7 @@ public class OrganizationPage extends OrganizationElement {
         OrgSettings.click();
         MyCommonAPIs.sleepi(5);
         DeviceReboot.click();
+        System.out.println("Device Reboot Button Section Button Clicked");
         MyCommonAPIs.sleepi(5);
     }
 
@@ -963,6 +964,7 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public boolean CheckBlueBannerHyperLink(String SerialNo) {
+        System.out.println("Going to click BlueBanner Link");
         boolean result = false;
         ExpandDevices.click();
         MyCommonAPIs.sleepi(5);
@@ -1077,6 +1079,8 @@ public class OrganizationPage extends OrganizationElement {
         EndTime.click();
         MyCommonAPIs.sleepi(3);
         increaseHr.click();
+        MyCommonAPIs.sleepi(1);
+        increaseHr.click();
         MyCommonAPIs.sleepi(3);
         SelectTime.click();
         MyCommonAPIs.sleepi(3);
@@ -1094,6 +1098,7 @@ public class OrganizationPage extends OrganizationElement {
             System.out.println("All elements are displayed");
             result = true;
         }
+        MyCommonAPIs.sleepi(20);
         return result;
     }
 

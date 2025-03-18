@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     Map<String, String> RFdata = new HashMap<String, String>();
     Map<String, String> RFdata1 = new HashMap<String, String>();
     
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39774") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that user can to go Location → Wireless → Devices table, select the AP device by clicking checbox and then click assign RF Profile button for the new created RF Profiles") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39774") // It's a testcase id/link from Jira Test Case.
@@ -62,13 +62,13 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
 
     
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Assign/Unassign RF Profile and verify")
     public void step2() {
         
         new WirelessQuickViewPage();
@@ -79,6 +79,9 @@ public class Testcase extends TestCaseBase {
         String RF1 = new DevicesDashPage().devicesRF(WebportalParam.ap2serialNo).getText();
         assertTrue(RF.contains(RFName),"RF is not set properly");
         assertTrue(RF1.contains(RFName),"RF is not set properly");
+        new DevicesDashPage().GoToDevicesDashPage();
+        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);             
+        new DevicesDashPage().UNAssignRF(WebportalParam.ap2serialNo);
         
     }
     

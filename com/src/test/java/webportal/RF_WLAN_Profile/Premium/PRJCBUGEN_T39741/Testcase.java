@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     
 
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39741") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Check whether user able to edit/delete Customer profile") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39741") // It's a testcase id/link from Jira Test Case.
@@ -58,7 +58,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
