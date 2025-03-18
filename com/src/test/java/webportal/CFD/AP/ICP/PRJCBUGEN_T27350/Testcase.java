@@ -1,4 +1,4 @@
-package webportal.CFD.AP.PRJCBUGEN_T27350;
+package webportal.CFD.AP.ICP.PRJCBUGEN_T27350;
 
 import static org.testng.Assert.assertTrue;
 
