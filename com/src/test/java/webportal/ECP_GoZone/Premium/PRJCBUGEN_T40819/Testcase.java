@@ -126,7 +126,7 @@ public class Testcase extends TestCaseBase {
         System.out.println(Result2);
         assertTrue( Result2.contains(ECPInfo.get("Primary Address"))  && Result2.contains("1812"), "Primary Address not pushed");
         
-        String CMD3 = "wlan0:vap7 | grep -i exCpSecRadAuthServer" ;
+        String CMD3 = "wlan0:vap7 | grep -i exCpSecRadAcntServer" ;
         String Result3 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);
         System.out.println(Result3);
         assertTrue( Result3.contains(ECPInfo.get("Secondary Address"))  && Result3.contains("1813"), "Secondary Address not pushed");

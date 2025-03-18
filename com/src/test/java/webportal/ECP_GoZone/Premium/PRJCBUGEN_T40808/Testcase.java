@@ -99,7 +99,7 @@ public class Testcase extends TestCaseBase {
         String CMD3 = "wlan0:vap7 | grep -i exCpSecRadAcntServer" ;
         String Result3 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);
         System.out.println(Result3);
-        assertTrue( Result2.contains(ECPInfo.get("Secondary Address"))  && Result2.contains("1813"), "Secondary Address not pushed");
+        assertTrue( Result3.contains(ECPInfo.get("Secondary Address"))  && Result3.contains("1813"), "Secondary Address not pushed");
         
         String CMD4 = "exCpFailSafe" ;
         String Result4 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);

@@ -1093,7 +1093,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
 //     ECP by tejeshwini K V
    
-     public SelenideElement        ECPRadio                 = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[6]");
+     public SelenideElement        ECPRadio                 = $x("//*[text()=\"Warning\"]");
      public SelenideElement        editECPRadio             = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[5]");
      public SelenideElement        ECPProceed               = $x("//*[@id=\"walledGarden\"]");
      public SelenideElement        okECP                    = $x("//*[@id=\"enterpriseSecurityECPWarning\"]");
