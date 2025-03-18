@@ -88,7 +88,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         new WirelessQuickViewPage(false).VerifyDis(RFdata);     
         new WirelessQuickViewPage().GotoRF();       
-        assertTrue(new WirelessQuickViewPage(false).DisRFprofile(RFdata.get("RFDescriptionEdit")).isDisplayed(),"sdsjdfjs");
+        assertTrue(new WirelessQuickViewPage(false).DisRFprofile(RFdata.get("RFDescriptionEdit")).isDisplayed(),"Netgear");
   
     }
 

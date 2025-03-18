@@ -87,7 +87,7 @@ public class Testcase extends TestCaseBase {
             RFdata.put("RFName", rfname);
             
             new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
-            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get(rfname)),"RF Not created");
+            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
             RFlist.add(rfname);
             System.out.println(rfname);
         }

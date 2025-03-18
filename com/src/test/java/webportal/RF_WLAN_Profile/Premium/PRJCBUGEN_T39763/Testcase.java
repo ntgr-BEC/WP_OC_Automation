@@ -70,8 +70,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> RFdata = new HashMap<String, String>();
         RFdata.put("RFName", "Netgear");
         RFdata.put("RFDescription", "BEC Automation Team");
-        new WirelessQuickViewPage().CreateRFProfile(RFdata);
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata.get("RFName")),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
        
     }
     
