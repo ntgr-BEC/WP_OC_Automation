@@ -1561,9 +1561,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");
 	 
 	 //Pratik
-	 public SelenideElement bcpRadiobutton = $x("//p[text()='Use Internal (free)']/ancestor::label");
-	 public SelenideElement ecpRadiobutton = $x("//p[text()='Use External']/ancestor::label");
-	 public SelenideElement icpRadiobutton = $x("//p[text()='Instant Captive Portal']/ancestor::label");
+	 public SelenideElement bcpRadiobutton 								= $x("//p[text()='Use Internal (free)']/ancestor::label");
+	 public SelenideElement ecpRadiobutton 								= $x("//p[text()='Use External']/ancestor::label");
+	 public SelenideElement icpRadiobutton 								= $x("//p[text()='Instant Captive Portal']/ancestor::label");
 	 public SelenideElement SaveeditRFRadioChannels                     = $x("//*[@id=\"btnSaveUpdteRadiChnl\"]");
 	 public SelenideElement okaybtneditRFRadioChannels                  = $x("//p[contains(text(),'RF Profile Radio Settings have been saved')]/../..//button[text()='OK']");
 
