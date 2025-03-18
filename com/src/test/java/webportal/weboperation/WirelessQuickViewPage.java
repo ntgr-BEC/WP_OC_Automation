@@ -2,8 +2,10 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
+import static com.codeborne.selenide.Selenide.$$x;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -248,7 +250,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.println("add ssid click");
             waitElement(ssid);
 
-            MyCommonAPIs.sleepi(30);
+            MyCommonAPIs.sleepi(10);
 
             ssid.setValue(map.get("SSID"));
             if (checkband6.isDisplayed()) {
@@ -280,26 +282,42 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 security.selectOption(map.get("Security"));
             }
             System.out.println("before password");
-            MyCommonAPIs.sleepi(15);
+            MyCommonAPIs.sleepi(10);
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
             }
             if(map.containsKey("Bandsteering"))
-            {   MyCommonAPIs.sleepi(4);   
-                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("Bandsteering"))));
-                MyCommonAPIs.sleep(5);
-                if (Warrning.isDisplayed()) {
-                    okFast.click();                   
+            {   System.out.print("entered Bandsteering ");
+                MyCommonAPIs.sleepi(4);               
+                setSelected($x("//*[@id=\"bandSteeringSt\"]/../span"), Boolean.parseBoolean((map.get("Bandsteering"))));
+                MyCommonAPIs.sleep(10);
+                if (Warrning.exists()) {                                      
+                    System.out.println("inside warrning band");
+                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+                    for (SelenideElement button : buttons) {
+                        if (button.is(Condition.visible)) {
+                            button.click();
+                            break;  // Click the first visible button and stop
+                        }
+                    }
+                              
                 }
             }
             if(map.containsKey("Fastroaming"))
             {   System.out.print("entered fast roami");
                 MyCommonAPIs.sleepi(4); 
-                setSelected($x("//*[@id=\"fastRoamingSt\"]"),Boolean.parseBoolean((map.get("Fastroaming"))));
-                MyCommonAPIs.sleep(5);              
-                if (Warrning.isDisplayed()) {
-                    okFast.click();    
-                    System.out.print("went im");
+                setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"),Boolean.parseBoolean((map.get("Fastroaming"))));
+                MyCommonAPIs.sleep(10);              
+                if (Warrning.exists()) {                                      
+                    System.out.println("inside warrning Fastroaming");
+                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+                    for (SelenideElement button : buttons) {
+                        if (button.is(Condition.visible)) {
+                            button.click();
+                            break;  // Click the first visible button and stop
+                        }
+                    }
+                              
                 }
             }
             if(map.containsKey("802.11kv"))
@@ -6678,9 +6696,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void EnableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), true);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(5);;
+        if(!$x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy enabled");
+        }
+//        setSelected1($x("//input[@id='enableEEM']"), true);
+       
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6689,9 +6714,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void disableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), false);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(10);     
+        if($x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy disabled");
+        }
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6721,7 +6751,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(sta);
 
         if (sta == "true") {
-            logger.info("it is anabled");
+            logger.info("it is enabled");
             result = true;
 
         }
@@ -8038,7 +8068,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 saveandconfigure.click();
                 MyCommonAPIs.sleepi(20);
                 enableECP();
-                MyCommonAPIs.sleepi(20);
+//                MyCommonAPIs.sleepi(20);
             }
 
             if (ECPRadio.isDisplayed()) {
@@ -8047,11 +8077,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
             waitReady();
             MyCommonAPIs.sleepi(4);
-            okECP.click();
+//            okECP.click();
+            if (okECP.exists()) {
+                okECP.click();
+//                MyCommonAPIs.sleepi(20);
+//                selectinsightECP.click();
+            }
             logger.info("Add ssid successful.");
         } else {
             logger.warning("checkSsidIsExist error");
         }
+        System.out.println("Result = " + result);
         return result;
     }
 
@@ -8151,13 +8187,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void enableECP() {
 
-        entercaptiveportal.click();
+//        entercaptiveportal.click();
+        if (entercaptiveportal.exists()) {
+            entercaptiveportal.click();
+            MyCommonAPIs.sleepi(20);
+            selectinsightECP.click();
+        }
 //        enablecaptiveportal.click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
-        MyCommonAPIs.sleepi(20);
-        selectinsightECP.click();
+           
+        
 
     }
 
@@ -10386,7 +10427,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.print("entered dtim");
         savead.click();
         MyCommonAPIs.sleepi(15);
-        okw.click();
+        if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
         }
         String res = sliderdtm(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10438,7 +10489,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         savead.click();
         System.out.print("entered broad");
         MyCommonAPIs.sleepi(15);
-        okw.click();
+//        okw.click();
+         if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
+        
         }
         String res = sliderbroadcast(level).getAttribute("aria-valuenow");
         System.out.println(res);
