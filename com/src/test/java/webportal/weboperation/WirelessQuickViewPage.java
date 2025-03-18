@@ -10928,20 +10928,21 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void CreateRFProfile(Map<String, String> map) {
        
         MyCommonAPIs.sleepi(10);
-        addRFProfile.click();
-        MyCommonAPIs.sleepi(10);
-        RFProfileName.sendKeys(map.get("RFName"));
-        RFProfileDescription.sendKeys(map.get("RFDescription"));
+        addRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(15);
+        RFProfileName.shouldBe(Condition.visible).sendKeys(map.get("RFName"));
+        MyCommonAPIs.sleepi(2);
+        RFProfileDescription.shouldBe(Condition.visible).sendKeys(map.get("RFDescription"));
         
         boolean isCopyConfigurations = map.containsKey("Copy Configurations");
-        
+        MyCommonAPIs.sleepi(2);
         if(isCopyConfigurations== true) {
             enablecopyProfile.click();
             MyCommonAPIs.sleepi(3);
-            SelectcopyProfile.selectOption(map.get("Copy Configurations"));
+            SelectcopyProfile.shouldBe(Condition.visible).selectOption(map.get("Copy Configurations"));
         }
         MyCommonAPIs.sleepi(3);
-        CreateRFProfile.click();
+        CreateRFProfile.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
 
     }
