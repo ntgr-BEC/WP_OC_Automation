@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     Map<String, String> RFdata = new HashMap<String, String>();
     Map<String, String> RFdata1 = new HashMap<String, String>();
     
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39776") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("After devices are onboarded, user can assign default RF profile(Open ofiice, Outdoor) to the APs or user can create new RF profile and assign it to APs. So that RF profile properties will be pushed to group of APs in a network.") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39776") // It's a testcase id/link from Jira Test Case.

@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
     String RFNameedit = "Insight";
     String RFDescriptionedit = "BEC Insight Automation Team";
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39763") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that in Manage Profiles, we should provide an option to create, view, edit and delete RF profiles in Premium User → Location → Wireless → Settings → Profiles") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39763") // It's a testcase id/link from Jira Test Case.

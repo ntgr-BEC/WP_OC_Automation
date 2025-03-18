@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     
     Map<String, String> ssidInfo = new HashMap<String, String>();
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39750") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Check status of existing AP when user assigns an RF profile to the device") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39750") // It's a testcase id/link from Jira Test Case.

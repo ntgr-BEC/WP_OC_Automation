@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     
 
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39697") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test Create new RF Profile") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39697") // It's a testcase id/link from Jira Test Case.
