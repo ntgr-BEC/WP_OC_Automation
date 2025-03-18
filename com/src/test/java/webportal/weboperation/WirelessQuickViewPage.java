@@ -4759,7 +4759,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), true);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), true);
             MyCommonAPIs.sleep(5);
             if (Warrning.isDisplayed()) {
                 okFast.click();
@@ -4807,7 +4807,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), false);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), false);
             MyCommonAPIs.sleep(5);
             save80211.click();
             MyCommonAPIs.sleep(5);

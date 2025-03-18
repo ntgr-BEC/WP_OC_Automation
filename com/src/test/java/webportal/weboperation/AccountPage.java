@@ -230,7 +230,7 @@ public class AccountPage extends AccountPageElement {
                     addNetWorkPro.click();
                     addsinglelocation.click();
                 }
-                timeZone.waitUntil(Condition.matchText("UTC"), 20 * 1000);
+//                timeZone.waitUntil(Condition.matchText("UTC"), 20 * 1000);
                 // MyCommonAPIs.sleep(10000);
                 addNetLocationName.sendKeys(map.get("Location Name"));
                 MyCommonAPIs.sleep(1000);
