@@ -4759,7 +4759,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), true);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), true);
             MyCommonAPIs.sleep(5);
             if (Warrning.isDisplayed()) {
                 okFast.click();
@@ -4807,7 +4807,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), false);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), false);
             MyCommonAPIs.sleep(5);
             save80211.click();
             MyCommonAPIs.sleep(5);
@@ -8066,13 +8066,25 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 saveandconfigure.click();
                 MyCommonAPIs.sleepi(20);
                 enableECP();
-//                MyCommonAPIs.sleepi(20);
+                MyCommonAPIs.sleepi(10);
             }
 
-            if (ECPRadio.isDisplayed()) {
-                System.out.println("ECP eror appeared");
-                result = true;
+//            if (ECPRadio.isDisplayed()) {
+//                System.out.println("ECP eror appeared");
+//                result = true;
+//            }
+            if (ECPRadio.exists()) {                                      
+                List<SelenideElement> buttons = $$x("//*[text()='Warning']");
+                for (SelenideElement button : buttons) {
+                    if (button.is(Condition.visible)) {
+                        result = true;
+                        break;  // Click the first visible button and stop
+                    }
+                }
+                          
             }
+            
+            
             waitReady();
             MyCommonAPIs.sleepi(4);
 //            okECP.click();

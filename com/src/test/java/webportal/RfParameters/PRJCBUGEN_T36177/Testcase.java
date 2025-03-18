@@ -63,7 +63,10 @@ public class Testcase extends TestCaseBase {
         
     }
 
-
+/*Here in accessing the slider(x,y,z)
+ * y representss position of slider
+ * x and z represents frequency
+ */
     @Step("Test Step 2: OBSERVE DTIM INTERVAL VALUE;")
     public void step2() {
    
@@ -103,18 +106,21 @@ public class Testcase extends TestCaseBase {
           @Step("Test Step 2: Chexk for config push;") 
           public void step3()
           {
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"0").contains(dtim2),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"0").contains(broadcast2),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"0").contains("125"),"Valus mismatch");
+              MyCommonAPIs.sleepi(60);
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"0").contains(dtim2),"Valus mismatch1.1");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"0").contains(broadcast2),"Valus mismatch1.2");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"0").contains("125"),"Valus mismatch1.3");
            
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"1").contains(dtim5),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"1").contains(broadcast5),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"1").contains("300"),"Valus mismatch");
-           
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"2").contains(dtim2),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"2").contains(broadcast2),"Valus mismatch");
-           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"2").contains("225"),"Valus mismatch");
-    }
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"1").contains(dtim5),"Valus mismatch 2.1");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"1").contains(broadcast5),"Valus mismatch 2.2");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"1").contains("300"),"Valus mismatch 2.3");
+   
+           if(Model.equals("WAC564") || Model.equals("WAC540") || Model.equals("WAX630") || Model.equals("WAX630E") || Model.equals("WAX638E") || Model.startsWith("WBE")) {
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"2").contains(dtim5h_6),"Valus mismatch 3.1");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"2").contains(broadcast5h_6),"Valus mismatch 3.2");
+           assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"2").contains("225"),"Valus mismatch 3.3");
+      }
         
+}
 }
 

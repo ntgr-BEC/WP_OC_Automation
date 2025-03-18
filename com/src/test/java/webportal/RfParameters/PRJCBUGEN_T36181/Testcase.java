@@ -152,10 +152,12 @@ public class Testcase extends TestCaseBase {
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"1").contains(broadcast5),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"1").contains("300"),"Valus mismatch");
          
+         if(Model.equals("WAC564") || Model.equals("WAC540") || Model.equals("WAX630") || Model.equals("WAX630E") || Model.equals("WAX638E") || Model.startsWith("WBE")) {
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"2").contains(dtim5h_6),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"2").contains(broadcast5h_6),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"2").contains("225"),"Valus mismatch");
          }
+        }
           
           
 

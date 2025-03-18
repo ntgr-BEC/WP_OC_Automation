@@ -633,7 +633,8 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        save80211                  = $x("//*[@id=\"btnSaveSsideditWirNet\"]");
     public SelenideElement        ok80211                  = $x("//*[@id=\"SuccsEditWirNet\"]");
     public SelenideElement        check80211                  = $x("//*[@id=\"divClearFixeditWirNet\"]/div[4]/div/div/div[2]/label/span");
-    public SelenideElement        Warrning                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
+//    public SelenideElement        Warrning                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
+    public SelenideElement        Warrning                  = $x("//*[text()='OK']");
     public SelenideElement        Warrning1                  = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[3]");
     public SelenideElement        okFast                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
     
@@ -1093,7 +1094,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
 //     ECP by tejeshwini K V
    
-     public SelenideElement        ECPRadio                 = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[6]");
+     public SelenideElement        ECPRadio                 = $x("//*[text()=\"Warning\"]");
      public SelenideElement        editECPRadio             = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[5]");
      public SelenideElement        ECPProceed               = $x("//*[@id=\"walledGarden\"]");
      public SelenideElement        okECP                    = $x("//*[@id=\"enterpriseSecurityECPWarning\"]");

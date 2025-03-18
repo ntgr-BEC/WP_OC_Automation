@@ -66,7 +66,6 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
         new WirelessQuickViewPage().addSsid1(ssidInfo); 
-        Map<String, String> ECPInfo = new HashMap<String, String>();
         ECPInfo.put("Walled Garden", "*.jazenetworks.com");
         ECPInfo.put("Splash Page URL", "http://portal.jazenetworks.com/netgear/");
         ECPInfo.put("Captive Portal Authentication Type", "Radius");
