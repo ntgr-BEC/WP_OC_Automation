@@ -2,6 +2,7 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
 
@@ -10386,7 +10387,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.print("entered dtim");
         savead.click();
         MyCommonAPIs.sleepi(15);
-        okw.click();
+        if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
         }
         String res = sliderdtm(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10438,7 +10449,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         savead.click();
         System.out.print("entered broad");
         MyCommonAPIs.sleepi(15);
-        okw.click();
+//        okw.click();
+         if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
+        
         }
         String res = sliderbroadcast(level).getAttribute("aria-valuenow");
         System.out.println(res);
