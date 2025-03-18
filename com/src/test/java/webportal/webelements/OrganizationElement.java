@@ -151,7 +151,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement closePopUp                = $x("//*[@id=\"rebootModal\"]/div/div/div[1]/button/img");
     public SelenideElement Bluebanner                = $x("//*[@id=\"pWarnIconsubscriptions\"]");
     public SelenideElement Bluebannerlink            = $x("//*[@id=\"pWarnIconsubscriptions\"]/span");
-    public SelenideElement DevicesTab                = $x("//th[contains(text(), 'Reboot Status')]");
+    public SelenideElement DevicesTab                = $x("//*[contains(text(), 'Reboot Status')]");
     public SelenideElement ContinueButton            = $x("//*[@id=\"rebootModal\"]/div/div/div[3]/button[2]");
     public SelenideElement ChecktheStatus            = $x("//*[@id=\"DataTables_Table_1\"]/tbody/tr/td[6]/div/p/text()");
     public SelenideElement goDeviceTab               = $x("//*[@id=\"divSideBarSecEditVlan\"]/div/div[2]/a");
@@ -225,7 +225,7 @@ public class OrganizationElement extends MyCommonAPIs {
 //    }
     
     public SelenideElement Status(String name) {
-        SelenideElement Status = $x("//td[text() = '" + name + "']//../td[8]/div/p");
+        SelenideElement Status = $x("//div[text() = '" + name + "']//../div[8]");
         return Status;
     }
     
