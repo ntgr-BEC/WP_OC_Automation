@@ -78,21 +78,18 @@ public class Testcase extends TestCaseBase {
         
         
         RFdata.put("RFDescription", "BEC Automation Team");
-        RFdata.put("Copy Configurations", "Open Office");
-        
-        
+        RFdata.put("Copy Configurations", "Open Office");    
         new WirelessQuickViewPage().GotoRF();
         
         for(int i=0;i<10; i++) {
             
-            Random              r           = new Random();
-            int                 num         = r.nextInt(10000000);
-            String              rfname    = "apwptest" + String.valueOf(num);
+            String              rfname    = "Netgear" + String.valueOf(i+1);
             RFdata.put("RFName", rfname);
             
             new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
             assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get(rfname)),"RF Not created");
             RFlist.add(rfname);
+            System.out.println(rfname);
         }
         
                

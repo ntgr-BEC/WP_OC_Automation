@@ -87,8 +87,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Edit RF profile")
     public void step3() {
         new WirelessQuickViewPage(false).VerifyDis(RFdata);     
-        new WirelessQuickViewPage().GotoRF();
-        
+        new WirelessQuickViewPage().GotoRF();       
         assertTrue(new WirelessQuickViewPage(false).DisRFprofile(RFdata.get("RFDescriptionEdit")).isDisplayed(),"sdsjdfjs");
   
     }

@@ -73,17 +73,14 @@ public class Testcase extends TestCaseBase {
         
         RFdata.put("RFName", "Netgear");
         RFdata.put("RFDescription", "BEC Automation Team");
-        RFdata.put("Copy Configurations", "Open Office");
-        
-        
+        RFdata.put("Copy Configurations", "Open Office");       
         new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
         assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
         
         RFdata1.put("RFName", "Netgear1");
         RFdata1.put("RFDescription", "BEC Automation Team1");
-        RFdata1.put("Copy Configurations", "Open Office");
-        
+        RFdata1.put("Copy Configurations", "Open Office");        
         new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).CreateRFProfile(RFdata1);
         assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata1.get("RFName")),"RF Not created");
