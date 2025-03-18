@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
        
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage(false).clickEditRF(RFNameedit,RFDescriptionedit);
+        new WirelessQuickViewPage(false).clickEditRF("Netgear",RFDescriptionedit);
         new WirelessQuickViewPage().GotoRF();
         assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFNameedit),"RF Not created");
        
