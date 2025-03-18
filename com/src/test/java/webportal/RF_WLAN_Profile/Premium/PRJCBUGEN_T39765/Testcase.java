@@ -35,7 +35,7 @@ public class Testcase extends TestCaseBase {
     
 
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39765") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that RF Profiles Decription field should contain only 1-512 Characters") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39765") // It's a testcase id/link from Jira Test Case.
@@ -47,6 +47,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        new WirelessQuickViewPage().GotoRF();
+        new WirelessQuickViewPage(false).deleteRF("Netgear");
         System.out.println("start to do tearDown");
 
     }
@@ -58,11 +60,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: CreateRFProfile")
     public void step2() {
         
         

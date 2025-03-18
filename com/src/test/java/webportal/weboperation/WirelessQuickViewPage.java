@@ -2,6 +2,7 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
 import static com.codeborne.selenide.Selenide.$$x;
@@ -2792,9 +2793,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             logger.info("Delete ssid.");
             MyCommonAPIs.sleepi(5);
-            hoverToSSID.hover();
-            MyCommonAPIs.sleep(3000);
-            executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
+            $x("//span[text()='" +Ssid+ "']").hover();
             MyCommonAPIs.sleep(3000);
             editWifi(Ssid).hover();
             MyCommonAPIs.sleep(3000);
@@ -10426,7 +10425,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.print("entered dtim");
         savead.click();
         MyCommonAPIs.sleepi(15);
-        okw.click();
+        if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
         }
         String res = sliderdtm(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10478,7 +10487,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         savead.click();
         System.out.print("entered broad");
         MyCommonAPIs.sleepi(15);
-        okw.click();
+//        okw.click();
+         if (okw.exists()) {                                      
+            System.out.println("inside warrning band");
+            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    button.click();
+                    break;  // Click the first visible button and stop
+                }
+            }
+                      
+        }
+        
         }
         String res = sliderbroadcast(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -11021,8 +11042,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
     }
     
-    public void clickEditRF(String Pname, String PDescription) {
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(Pname));
+	public void clickEditRF(String Pname, String PDescription) {
+        System.out.println(Pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", Pname);
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(Pname).hover();
         MyCommonAPIs.sleep(3000);
         editRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
@@ -11064,20 +11094,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
         if (checkSsidIsExist(map.get("SSID"))) {
             logger.info("Edit ssid.");
-            executeJavaScript("arguments[0].removeAttribute('class')", editWifi(map.get("SSID")));
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
             MyCommonAPIs.sleep(3000);
             editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
             MyCommonAPIs.sleep(8 * 1000);
-                    
-                       
-        } 
-        
-        
+
+        }
+
         System.out.println(getCustomStatus());
         if (!getCustomStatus()) {
             logger.info("RF disabled");
             result = true;
-        }       
+        }
         return result;
     }
     
@@ -11269,9 +11299,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     
-    public void assignedRadioSetting(Map<String, String> map) {
+	public void assignedRadioSetting(Map<String, String> map) {
              
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(map.get("RFName")).hover();
         MyCommonAPIs.sleep(3000);
         editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
@@ -11294,28 +11333,39 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
              RadioMode24.selectOption(map.get("2.4GHz Radio Mode"));
      
        }
-         
-         Saveedit.click();
-    }
-    
+         MyCommonAPIs.sleepi(2);
+         SaveeditRFRadioChannels.shouldBe(Condition.visible).click();
+         MyCommonAPIs.sleepi(5);
+         okaybtneditRFRadioChannels.shouldBe(Condition.visible).click();
+    }    
 
     
     
     public void assignedinstantWiFI(Map<String, String> map) {
 
         
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+        
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+        
         MyCommonAPIs.sleepi(10);        
         InstantWiFiPreferredChannelRF.click();
         MyCommonAPIs.sleepi(5);
         channel4.click();
         MyCommonAPIs.sleepi(3);
         channel56.click();
-       
-         
+        MyCommonAPIs.sleepi(3);    
          Saveedit.click();
     }
     
@@ -11883,7 +11933,43 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return overallMatch;
     }
 
+//AddedByPratik
+    public void disableCustomerProfile(Map<String, String> map) {
 
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        waitElement(addssid);
+
+        if (checkSsidIsExist(map.get("SSID"))) {
+            logger.info("Edit ssid.");
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
+            MyCommonAPIs.sleep(3000);
+            editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleep(8 * 1000);
+
+        }
+        MyCommonAPIs.sleepi(5);
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
+        actions.moveToElement(custom).click().perform();
+        Selenide.sleep(500);
+        if (custom.getAttribute("class").contains("active")) {
+            custom.click();
+        }
+        logger.info("Customer Profile disabled");
+        MyCommonAPIs.sleepi(5);
+        saveedit.click();
+        MyCommonAPIs.sleepi(5);
+        confirmok.click();
+        MyCommonAPIs.sleepi(3);
+        logger.info("Edit ssid successful.");
+        System.out.println("SSID successfully edited");
+
+    }
   
 }
 
