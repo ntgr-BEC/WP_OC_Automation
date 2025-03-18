@@ -3134,13 +3134,21 @@ public boolean verifySettingPageFilterAirbridge() {
                 
             }
             
-            public void AssignRFMulti(String SLNo, String SLno2,String RFName) {
-                
+	public void AssignRFMulti(String SLNo, String SLno2,String RFName) {
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLNo));
                 SelectDevice(SLNo).click();
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLno2));
                 SelectDevice(SLno2).click();
                 MyCommonAPIs.sleepi(2);
+                waitElement(AssignRFProfile);
                 AssignRFProfile.click();
+                MyCommonAPIs.sleepi(2);
+                waitElement(SelectRF);
                 SelectRF.selectOption(RFName);
+                MyCommonAPIs.sleepi(2);
+                waitElement(SaveRF);
                 SaveRF.click();
                 MyCommonAPIs.sleepi(10);
                 
