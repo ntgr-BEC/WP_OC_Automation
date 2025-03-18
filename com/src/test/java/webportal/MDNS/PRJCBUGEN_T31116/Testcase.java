@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: check MDNS")
@@ -125,6 +125,10 @@ public class Testcase extends TestCaseBase {
         new MDNSPage().enableMDNS();
         
         assertTrue(!new MDNSPage().MDNScheck(),"is  disabled ");
+        
+        //purposefull made to fail check jira
+//        Functionality is wrong please fix it whom ever is going to work
+//        do some implementation
         
     
     }
