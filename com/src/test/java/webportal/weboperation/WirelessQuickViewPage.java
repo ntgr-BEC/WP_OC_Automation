@@ -11085,11 +11085,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleep(8 * 1000);
         MyCommonAPIs.sleepi(10);
         
-        editRFProfileName.clear();
-        editRFProfileName.sendKeys("Insight");
-        editRFProfileDescription.clear();
-        editRFProfileDescription.sendKeys(PDescription);
-        SaveEditRFProfile.click();
+        editRFProfileName.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileName.shouldBe(Condition.visible).sendKeys("Insight");
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
         
     }
     
@@ -11996,6 +12001,30 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         logger.info("Edit ssid successful.");
         System.out.println("SSID successfully edited");
 
+    }
+    
+    public void clickEditRFOnlyDescription(String Pname, String PDescription) {
+        System.out.println(Pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", Pname);
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(Pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        
     }
   
 }
