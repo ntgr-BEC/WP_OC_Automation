@@ -70,7 +70,7 @@ public class Testcase extends TestCaseBase {
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         OrganizationPage OrganizationPage = new OrganizationPage();
-//        OrganizationPage.addOrganization(organizationInfo);
+        OrganizationPage.addOrganization(organizationInfo);
         OrganizationPage.creditAllocation(organizationName);
         OrganizationPage.openOrg(organizationName);
         
