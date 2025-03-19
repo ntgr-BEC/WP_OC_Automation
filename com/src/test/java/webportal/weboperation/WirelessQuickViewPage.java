@@ -9347,7 +9347,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     // written by Vivek
     public void Select3Channelfrom5GHZHigh() {
         for (int i = 100; i < 166; i++) {
-            if (i == 100 || i == 104 || i == 165) {
+            if (i == 100 || i == 104 || i == 136) {
                 waitElement($x("//label/p[text()='" + i + "']"));
                 $x("//label/p[text()='" + i + "']").click();
                 logger.info("Clicked on" + i + "Channel");

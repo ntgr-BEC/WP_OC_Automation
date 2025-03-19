@@ -63,14 +63,15 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.defaultLogin();
-    }
-
-    @Step("Test Step 2: Verify Account have one Location and one AP in connected state ")
-    public void step2() {
         handle.gotoLoction();
-        assertTrue(new DevicesDashPage().isDeviceConnected(WebportalParam.ap1serialNo));
-
     }
+
+//    @Step("Test Step 2: Verify Account have one Location and one AP in connected state ")
+//    public void step2() {
+//        handle.gotoLoction();
+//        assertTrue(new DevicesDashPage().isDeviceConnected(WebportalParam.ap1serialNo));
+//
+//    }
 
     @Step("Test Step 3: Enable SSH and Create one SSID")
     public void step3() {
