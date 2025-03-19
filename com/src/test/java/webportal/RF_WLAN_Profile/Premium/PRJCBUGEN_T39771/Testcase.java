@@ -52,10 +52,15 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().GotoRF();
-        for(int j=0; j<RFlist.size();j++) {
-            
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get(RFlist.get(j)));
+        WirelessQuickViewPage wirelessPage = new WirelessQuickViewPage();
+        String[] networks = {
+            "Netgear1", "Netgear2", "Netgear3", "Netgear4", "Netgear5",
+            "Netgear6", "Netgear7", "Netgear8", "Netgear9", "Netgear10"
+        };
+
+        for (String network : networks) {
+            wirelessPage.GotoRF();
+            new WirelessQuickViewPage(false).deleteRF(network);
         }
         
         System.out.println("start to do tearDown");
