@@ -73,7 +73,7 @@ public class Testcase extends TestCaseBase {
         assertTrue(RF1.contains("N/A"),"RF is not set properly");
         new DevicesDashPage().GoToDevicesDashPage();
         new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);             
-        new DevicesDashPage().UNAssignRF(WebportalParam.ap2serialNo);
+        //new DevicesDashPage().UNAssignRF(WebportalParam.ap2serialNo);
     }  
        
 }

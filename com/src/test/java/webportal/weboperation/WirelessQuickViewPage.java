@@ -10928,20 +10928,21 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void CreateRFProfile(Map<String, String> map) {
        
         MyCommonAPIs.sleepi(10);
-        addRFProfile.click();
-        MyCommonAPIs.sleepi(10);
-        RFProfileName.sendKeys(map.get("RFName"));
-        RFProfileDescription.sendKeys(map.get("RFDescription"));
+        addRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(15);
+        RFProfileName.shouldBe(Condition.visible).sendKeys(map.get("RFName"));
+        MyCommonAPIs.sleepi(2);
+        RFProfileDescription.shouldBe(Condition.visible).sendKeys(map.get("RFDescription"));
         
         boolean isCopyConfigurations = map.containsKey("Copy Configurations");
-        
+        MyCommonAPIs.sleepi(2);
         if(isCopyConfigurations== true) {
             enablecopyProfile.click();
             MyCommonAPIs.sleepi(3);
-            SelectcopyProfile.selectOption(map.get("Copy Configurations"));
+            SelectcopyProfile.shouldBe(Condition.visible).selectOption(map.get("Copy Configurations"));
         }
         MyCommonAPIs.sleepi(3);
-        CreateRFProfile.click();
+        CreateRFProfile.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
 
     }
@@ -10965,10 +10966,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
     public void VerifyDis(Map<String, String> map) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
         MyCommonAPIs.sleepi(10);
         editRFProfileDescription.clear();
         editRFProfileDescription.sendKeys(map.get("RFDescriptionEdit"));
@@ -10999,12 +11010,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         String editRFProfileDescriptionstr = editRFProfileDescription.shouldBe(Condition.visible).getValue();
         System.out.println(editRFProfileNamestr);    
         System.out.println(editRFProfileDescriptionstr);
+        MyCommonAPIs.sleepi(1);
         
         if(map.get("RFName").equals(editRFProfileNamestr) & map.get("RFDescription").equals(editRFProfileDescriptionstr))  
         {
             
             result = true;
         }
+        
+        MyCommonAPIs.sleepi(3);
+        $x("//button[@id='generalCan']").shouldBe(Condition.visible).click();
         
         
         return result;
@@ -11070,11 +11085,16 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleep(8 * 1000);
         MyCommonAPIs.sleepi(10);
         
-        editRFProfileName.clear();
-        editRFProfileName.sendKeys(Pname);
-        editRFProfileDescription.clear();
-        editRFProfileDescription.sendKeys(PDescription);
-        SaveEditRFProfile.click();
+        editRFProfileName.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileName.shouldBe(Condition.visible).sendKeys("Insight");
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
         
     }
     
@@ -11981,6 +12001,30 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         logger.info("Edit ssid successful.");
         System.out.println("SSID successfully edited");
 
+    }
+    
+    public void clickEditRFOnlyDescription(String Pname, String PDescription) {
+        System.out.println(Pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", Pname);
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(Pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        
     }
   
 }

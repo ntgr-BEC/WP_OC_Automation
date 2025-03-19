@@ -52,10 +52,15 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().GotoRF();
-        for(int j=0; j<RFlist.size();j++) {
-            
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get(RFlist.get(j)));
+        WirelessQuickViewPage wirelessPage = new WirelessQuickViewPage();
+        String[] networks = {
+            "Netgear1", "Netgear2", "Netgear3", "Netgear4", "Netgear5",
+            "Netgear6", "Netgear7", "Netgear8", "Netgear9", "Netgear10"
+        };
+
+        for (String network : networks) {
+            wirelessPage.GotoRF();
+            new WirelessQuickViewPage(false).deleteRF(network);
         }
         
         System.out.println("start to do tearDown");
@@ -78,21 +83,18 @@ public class Testcase extends TestCaseBase {
         
         
         RFdata.put("RFDescription", "BEC Automation Team");
-        RFdata.put("Copy Configurations", "Open Office");
-        
-        
+        RFdata.put("Copy Configurations", "Open Office");    
         new WirelessQuickViewPage().GotoRF();
         
         for(int i=0;i<10; i++) {
             
-            Random              r           = new Random();
-            int                 num         = r.nextInt(10000000);
-            String              rfname    = "apwptest" + String.valueOf(num);
+            String              rfname    = "Netgear" + String.valueOf(i+1);
             RFdata.put("RFName", rfname);
             
             new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
-            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get(rfname)),"RF Not created");
+            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
             RFlist.add(rfname);
+            System.out.println(rfname);
         }
         
                

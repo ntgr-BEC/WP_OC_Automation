@@ -70,8 +70,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> RFdata = new HashMap<String, String>();
         RFdata.put("RFName", "Netgear");
         RFdata.put("RFDescription", "BEC Automation Team");
-        new WirelessQuickViewPage().CreateRFProfile(RFdata);
-        assertTrue(new WirelessQuickViewPage().checkRFExist(RFdata.get("RFName")),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
        
     }
     
@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     public void step3() {
        
         new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage(false).clickEditRF(RFNameedit,RFDescriptionedit);
+        new WirelessQuickViewPage(false).clickEditRF("Netgear",RFDescriptionedit);
         new WirelessQuickViewPage().GotoRF();
         assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFNameedit),"RF Not created");
        
