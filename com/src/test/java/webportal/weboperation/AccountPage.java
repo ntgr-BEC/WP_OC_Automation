@@ -984,13 +984,13 @@ public class AccountPage extends AccountPageElement {
     }
 
     public AccountPage deleteOneLocation(String locationName) {
-        // if (locationlist.getAttribute("aria-expanded").equals("false")) {
+        // if (locationlist.getAttribute("aria-expanded").equals("false")){
         // locationlist.click();
         // }
         System.out.println("enterd");
         MyCommonAPIs.sleepi(20);
-            deleteLocation(locationName);
-            MyCommonAPIs.sleepi(10);
+        deleteLocation(locationName);
+        MyCommonAPIs.sleepi(10);
         return new AccountPage();
     }
 
