@@ -91,7 +91,7 @@ public class Testcase extends TestCaseBase {
           
             new WirelessQuickViewPage().GoToWirelessSettings();
               MyCommonAPIs.sleepi(10);
-              
+              System.out.print(new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow"));
               assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow")).equals(dtim2),"Intervals1  are missing");
               assertTrue((new WirelessQuickViewPage(false).sliderdtm("1").getAttribute("aria-valuenow")).equals(broadcast2),"Intervals2 are missing");
               (new WirelessQuickViewPage(false).beacon("1").getText()).equals(beacon2);
