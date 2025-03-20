@@ -246,14 +246,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             refresh();
             waitElement(addssid);
-            addssid.click();
+            addssid.shouldBe(Condition.visible).click();
             System.out.println("add ssid click");
             waitElement(ssid);
 
             MyCommonAPIs.sleepi(10);
 
-            ssid.setValue(map.get("SSID"));
-            if (checkband6.isDisplayed()) {
+            ssid.shouldBe(Condition.visible).setValue(map.get("SSID"));
+            if (checkband6.shouldBe(Condition.visible).isDisplayed()) {
                 if (checkband6.isSelected()) {
                     if (band6.isDisplayed()) {
                         band6.click();
@@ -320,9 +320,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                               
                 }
             }
+            MyCommonAPIs.sleep(1);
             if(map.containsKey("802.11kv"))
             {                 
-                setSelected($x("//*[@id=\"kvrStatus\"]"),Boolean.parseBoolean((map.get("802.11kv"))));
+                setSelected1($x("//*[@id=\"kvrStatus\"]/../span").shouldBe(Condition.visible),Boolean.parseBoolean((map.get("802.11kv"))));
                 MyCommonAPIs.sleep(5);              
                 
             }
@@ -851,7 +852,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (!checkSsidIsExist(map.get("SSID"))) {
             logger.info("Add ssid.");
             addssid.click();
+            MyCommonAPIs.sleepi(5);
             waitElement(ssid);
+            ssid.shouldBe(Condition.visible);
             ssid.setValue(map.get("SSID"));
             waitReady();
             isKeyPresent = map.containsKey("Band");
