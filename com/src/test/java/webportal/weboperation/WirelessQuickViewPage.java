@@ -253,6 +253,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
 
             ssid.shouldBe(Condition.visible).setValue(map.get("SSID"));
+            MyCommonAPIs.sleepi(1);
             if (checkband6.shouldBe(Condition.visible).isDisplayed()) {
                 if (checkband6.isSelected()) {
                     if (band6.isDisplayed()) {
@@ -263,7 +264,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                     System.out.println("6GHZ is alredy unchecked");
                 }
             }
-            
+            MyCommonAPIs.sleepi(1);
             if (map.containsKey("VLANID")) {
                 String elements = VLANIDselection.getText();
                 System.out.println("number of VLAN" +elements);
