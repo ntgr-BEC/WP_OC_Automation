@@ -989,15 +989,8 @@ public class AccountPage extends AccountPageElement {
         // }
         System.out.println("enterd");
         MyCommonAPIs.sleepi(20);
-//        new MyCommonAPIs().open(URLParam.hrefaccount, true);
-//        MyCommonAPIs.sleepi(20);
-        MyCommonAPIs.sleepi(3);
-        if (locationName(locationName).exists()) {
             deleteLocation(locationName);
             MyCommonAPIs.sleepi(10);
-        } else {
-            logger.info("Cannot find location: " + locationName);
-        }
         return new AccountPage();
     }
 
