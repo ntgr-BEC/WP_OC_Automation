@@ -123,17 +123,17 @@ public class MDNSPage extends MDNSElement {
         boolean result = false;
         String warningMessage = "";
         MyCommonAPIs.sleepi(5);
-        MDNSGateway.click();
+        MDNSGateway.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        selectGateway.selectOption("AP");
+        selectGateway.shouldBe(Condition.visible).selectOption("AP");
         MyCommonAPIs.sleepi(5);     
-        if(OkGotIt.isDisplayed()) {
+        if(OkGotIt.shouldBe(Condition.visible).isDisplayed()) {
             OkGotIt.click();
         }
         MyCommonAPIs.sleepi(4);     
         setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
-        
-        if (Warrning.exists()) {
+        MyCommonAPIs.sleepi(5);          
+        if (Warrning.shouldBe(Condition.visible).exists()) {
             warningMessage = Warrning.getText();
         } else {
             warningMessage = Warrning1.getText();
