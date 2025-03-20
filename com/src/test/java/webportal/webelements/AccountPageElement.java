@@ -266,9 +266,9 @@ public class AccountPageElement extends MyCommonAPIs {
             MyCommonAPIs.sleepi(2);
             ariaSetIndexDelete(rowindex).shouldBe(Condition.visible).click();
         }
-        MyCommonAPIs.sleepi(5);
-        if(deleteLocation3.isDisplayed()) {
-            deleteLocation3.click();
+        MyCommonAPIs.sleepi(10);
+        if(deleteLocation3.shouldBe(Condition.visible).isDisplayed()) {
+            deleteLocation3.shouldBe(Condition.visible).click();
         
     }
     }
@@ -323,7 +323,7 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
     
     public SelenideElement dropdownLocationElementNew(String name) {
-        SelenideElement dropdownelementnew = $x("//span[text()='office1' and @class=\"linkUnderlin\"]/../../..");
+        SelenideElement dropdownelementnew = $x("//span[text()='"+name+"' and @class=\"linkUnderlin\"]/../../..");
         return dropdownelementnew;
     }
     
