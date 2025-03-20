@@ -9252,18 +9252,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     // written by Vivek
     public void clickOnOptimizeButton() {
+        MyCommonAPIs.sleepi(10);
         waitElement(optimizenowbutton);
-        optimizenowbutton.click();
+        optimizenowbutton.shouldBe(Condition.visible).click();
         waitReady();
+        MyCommonAPIs.sleepi(5);
         waitElement(instantwifisuccessmeg);
-        String message = getText(instantwifisuccessmeg);
+        String message = instantwifisuccessmeg.shouldBe(Condition.visible).getText();
         if (message.contains("Your configuration has been applied. It may take a few moments to display")) {
             System.out.println(message);
             logger.info("clicked on OnOptimize Button");
         } else {
             logger.warning("instantwifisuccessmeg error");
             logger.info("Waiting 18 min for next itteration");
-            MyCommonAPIs.sleepi(1080);
+            MyCommonAPIs.sleepi(1000);
             waitElement(optimizenowbutton);
             optimizenowbutton.click();
             waitElement(instantwifisuccessmeg);
