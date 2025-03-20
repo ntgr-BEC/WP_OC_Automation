@@ -1361,13 +1361,17 @@ public class AccountPage extends AccountPageElement {
     // added by Vivek
     public void enterTheServerIP() {
         MyCommonAPIs.sleepi(5);
-        radiusServerInput.clear();
+        setSelected1($x("//input[@id='onOffAuthStatusRadius']/../span"), true);
+        MyCommonAPIs.sleepi(5);
+        nasIdentifier.shouldBe(Condition.visible).sendKeys("office1");
+        MyCommonAPIs.sleepi(5);
+        radiusServerInput.shouldBe(Condition.visible).clear();
         MyCommonAPIs.sleepi(2);
-        radiusServerInput.sendKeys("172.16.27.12");
+        radiusServerInput.shouldBe(Condition.visible).sendKeys("172.16.27.12");
         MyCommonAPIs.sleepi(2);
-        radiusServerSecret.sendKeys("Netgear1@");
+        radiusServerSecret.shouldBe(Condition.visible).sendKeys("Netgear1@");
         MyCommonAPIs.sleepi(2);
-        radiusSaveButton.click();
+        radiusSaveButton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(1);
 
     }
@@ -1476,6 +1480,14 @@ public class AccountPage extends AccountPageElement {
             logger.info("Cannot find location: " + locationName);
         }
         return new AccountPage();
+    }
+    
+    public void gotoradiusServerPage(String loc) {
+        MyCommonAPIs.sleepi(5);
+        editNetwork(loc);
+        MyCommonAPIs.sleepi(5);
+        radiusText.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
     }
     
     

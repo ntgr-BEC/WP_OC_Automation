@@ -156,7 +156,9 @@ public class Testcase extends TestCaseBase {
 
           new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
           MyCommonAPIs.sleepi(60);
-
+          new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+          new AccountPage(false).gotoradiusServerPage("office3");
+          new AccountPage(false).enterTheServerIP();
       }
       
       

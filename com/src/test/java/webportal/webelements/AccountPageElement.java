@@ -341,4 +341,6 @@ public class AccountPageElement extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+    
+    public SelenideElement        nasIdentifier            = $x("//input[@id='nasIdentifierValue']");
 }

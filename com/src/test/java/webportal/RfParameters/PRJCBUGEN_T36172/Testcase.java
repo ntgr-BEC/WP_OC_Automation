@@ -53,8 +53,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword("apwptest1325073@mailinator.com","Netgear#123");
-        handle.gotoLoction();       
+        webportalLoginPage.defaultLogin();
+
+        handle.gotoLoction();
     }
     
     @Step("Test Step 2: OBSERVE Broadcast INTERVAL VALUE;")

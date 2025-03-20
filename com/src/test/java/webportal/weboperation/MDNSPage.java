@@ -71,8 +71,11 @@ public class MDNSPage extends MDNSElement {
         MyCommonAPIs.sleepi(4);
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
-        selectGateway.selectOption("AP");
+        selectGateway.selectOption("AP");        
         MyCommonAPIs.sleepi(4);      
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+        }
         setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
         MyCommonAPIs.sleepi(4);
         if(OkGotIt.isDisplayed()) {
@@ -102,7 +105,10 @@ public class MDNSPage extends MDNSElement {
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
         selectGateway.selectOption("AP");
-        MyCommonAPIs.sleepi(4);     
+        MyCommonAPIs.sleepi(4); 
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+        }
         setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
         MyCommonAPIs.sleepi(4);
         if(OkGotIt.isDisplayed()) {
