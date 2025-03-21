@@ -62,7 +62,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         logger = Logger.getLogger(pageName);
         logger.info("init...");
         refresh();
-       // reloadDeviceList();
+        reloadDeviceList();
     }
     
     public void GoToDevicesDashPage() {
