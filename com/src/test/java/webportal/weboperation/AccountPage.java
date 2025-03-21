@@ -72,8 +72,10 @@ public class AccountPage extends AccountPageElement {
             logger.info("Create location.");
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
-            }
-            if (addNetworkButton.isDisplayed()) {
+                MyCommonAPIs.sleepi(5);
+            } if (createNewLocationButton.shouldBe(Condition.visible).isDisplayed()) {
+                createNewLocationButton.shouldBe(Condition.visible).click();
+            } else if (addNetworkButton.isDisplayed()) {
                 addNetworkButton.shouldBe(Condition.visible).click();
             } else if (addNetWorkButton.isDisplayed()) {
                 addNetWorkButton.click();
