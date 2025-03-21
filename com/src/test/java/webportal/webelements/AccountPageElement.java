@@ -145,9 +145,9 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement locationName(String text) {
         waitReady();
         if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
-            waitElement("//span[@class='linkUnderlin']");
+            waitElement("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
         }
-        SelenideElement location = $x("//span[@class='linkUnderlin' and text()='"+text+"']");
+        SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
         return location;
     }
 
@@ -323,7 +323,7 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
     
     public SelenideElement dropdownLocationElementNew(String name) {
-        SelenideElement dropdownelementnew = $x("//span[text()='"+name+"' and @class=\"linkUnderlin\"]/../../..");
+        SelenideElement dropdownelementnew = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]//p[text()='"+name+"']/../../..");
         return dropdownelementnew;
     }
     

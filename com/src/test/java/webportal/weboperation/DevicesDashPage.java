@@ -62,7 +62,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         logger = Logger.getLogger(pageName);
         logger.info("init...");
         refresh();
-        reloadDeviceList();
+       // reloadDeviceList();
     }
     
     public void GoToDevicesDashPage() {
@@ -995,6 +995,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
         MyCommonAPIs.sleepi(120);
         MyCommonAPIs.timerStart(30 * 30);
         boolean timeout = true;
+        open(URLParam.hrefDevices, true);
+        refresh();
+        MyCommonAPIs.sleepi(10);
         while (MyCommonAPIs.timerRunning()) {
             try {
                 refresh();
