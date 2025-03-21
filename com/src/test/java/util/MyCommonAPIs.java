@@ -1880,7 +1880,7 @@ public class MyCommonAPIs {
     public String     sOrganizationFlag               = "#orgLocationDropdown";
     public String     sCurLocationElement             = "#headerLocName";
     public String     sCurOrganizationElement         = "#locationDropdown .display-inline";
-    public String     sOrganizationLocationElement    = "//*[@col-id='locations']";
+    public String     sOrganizationLocationElement    = "//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]";
     public String     sOrganizationLocationElementNew = "span.whiteNoWrap:not(.mr-auto)";
     public String     sOrganizationLocationElement1   = "#content.location-grid";
     ArrayList<String> lsLocationNetworks              = new ArrayList<String>();
