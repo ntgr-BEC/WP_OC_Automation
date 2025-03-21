@@ -812,6 +812,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         MyCommonAPIs.sleep(3000);
         deleteConfirm.click();
         waitReady();
+        refresh();
         MyCommonAPIs.sleep(5 * 1000);
     }
 
