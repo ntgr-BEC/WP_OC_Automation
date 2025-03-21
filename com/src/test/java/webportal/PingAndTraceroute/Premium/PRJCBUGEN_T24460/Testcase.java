@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
         troubleshoot.TraceRoutedomainName.setValue(domain);
         MyCommonAPIs.sleepi(5);
         troubleshoot.RunTest.click();  
-        MyCommonAPIs.sleepi(15);
+        MyCommonAPIs.sleepi(1);
         String result = troubleshoot.getText(troubleshoot.selectResulttraceRouteStatus(WebportalParam.ap1serialNo));
         System.out.println(result);
         assertTrue(result.contains("In Progress"), "ping lookup result is not Success.");
