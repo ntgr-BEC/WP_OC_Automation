@@ -91,8 +91,10 @@ public class DevicesDashPage extends DevicesDashPageElements {
             WebCheck.checkHrefIcon(URLParam.hrefDevices);
         }
         MyCommonAPIs.waitReady();
+        System.out.println("size"+$$x(sDeviceName).size());
         try {
             for (int ic = 1; ic <= $$x(sDeviceName).size(); ic++) {
+                System.out.println("size1"+$$x(sDeviceName).size());
                 String sDevName = getText($x(String.format("(%s)[%s]", sDeviceName, ic)));
                 String sDevStatus = getText($x(String.format("(%s)[%s]", sDeviceStatus, ic)));
                 String sDevModel = getText($x(String.format("(%s)[%s]", sDeviceModel, ic)));
@@ -685,7 +687,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
      */
     public String getDeviceName(String serialNumber) {
         try {
-            return getText(devicesName(serialNumber));
+//            return getText(devicesName(serialNumber));
+            String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+            return getText(devicesName(row));
         } catch (Throwable e) {
             takess();
             e.printStackTrace();
@@ -702,12 +706,13 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public String getDeviceStatus(String serialNumber) {
-        if ((devicesStatus(serialNumber)).exists() && (devicesStatus1(serialNumber)).exists()){
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else if (devicesStatus(serialNumber).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        if ((devicesStatus(row)).exists()) {
+            return WebportalParam.getNLocText(getText(devicesStatus(row)));
+        } else if (devicesStatus(row).exists()) {
+            return WebportalParam.getNLocText(getText(devicesStatus(row)));
         } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
+            return WebportalParam.getNLocText(getText(devicesStatus1(row)));
         }
     }
 
@@ -746,19 +751,20 @@ public class DevicesDashPage extends DevicesDashPageElements {
         return getText(devicesIP(serialNumber));
     }
 
-    public String getDeviceIP2(String serialNumber) {
+    public String getDeviceP2(String serialNumber) {
         return $x(String.format(sDeviceIpViaSN, serialNumber)).getText();
     }
 
     public String getDeviceUptime(String serialNumber, boolean getInt) {
         String sDate = "";
-        if ((devicesUptime(serialNumber)).exists() && (devicesUptime1(serialNumber)).exists()){
+        if ((devicesUptime(serialNumber)).exists()){
             sDate = getText(devicesUptime(serialNumber));
-        } else if (devicesStatus(serialNumber).exists()) {
-            sDate = getText(devicesUptime(serialNumber));
-        } else {
-            sDate = getText(devicesUptime1(serialNumber));
         }
+//        } else if (devicesStatus(serialNumber).exists()) {
+//            sDate = getText(devicesUptime(serialNumber));
+//        } else {
+//            sDate = getText(devicesUptime1(serialNumber));
+//        }
         if (getInt) {
             char[] charfield = sDate.toCharArray();
             String clean = "";
@@ -774,9 +780,11 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public void deleteDeviceNo(String serialNumber) {
-        hoverDevice(serialNumber).hover();
-        MyCommonAPIs.sleep(3000);
-        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexDelete(row).click();
+
         MyCommonAPIs.sleepi(5);
         deleteConfirm.click();
         MyCommonAPIs.sleepi(5);
@@ -791,10 +799,16 @@ public class DevicesDashPage extends DevicesDashPageElements {
         // addDevice1.hover();
         MyCommonAPIs.sleep(3000);
         logger.info("after add device");
-        hoverDevice(serialNumber).hover();
-        logger.info("after hover device");
-        MyCommonAPIs.sleep(3000);
-        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+//        hoverDevice(serialNumber).hover();
+//        logger.info("after hover device");
+//        MyCommonAPIs.sleep(3000);
+//        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+        
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexDelete(row).click();
+        
         MyCommonAPIs.sleep(3000);
         deleteConfirm.click();
         waitReady();
@@ -890,25 +904,16 @@ public class DevicesDashPage extends DevicesDashPageElements {
         for (SelenideElement se : $$x(sDeviceSerialNo)) {
             String sSerialNo = getText(se);
             if (getText(se).equalsIgnoreCase(sNo)) {
-                if (addDevice1.exists()) {
-                    addDevice1.hover();
-                }
-                se.hover();
                 sleepi(1);
-                for (SelenideElement se1 : $$(".rebootDeviceIcon")) {
-                    if (se1.isDisplayed()) {
-                        logger.info(sNo);
-                        se1.click();
-                        sleepi(4);
-                        rebootconfirm.click();
-                        clickBoxLastButton();
-                        MyCommonAPIs.sleepi(60);
-                        break;
-                    }
-                }
                 break;
             }
         }
+        
+         String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+                      ariaSetIndex(row).click();
+                      MyCommonAPIs.sleepi(3);
+                      ariaSetIndexReboot(row).click();
+        
     }
 
     public void NorebootDevice(String sNo) {
