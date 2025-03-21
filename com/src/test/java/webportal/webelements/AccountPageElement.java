@@ -323,12 +323,12 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
     
     public SelenideElement dropdownLocationElementNew(String name) {
-        SelenideElement dropdownelementnew = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]//p[text()='"+name+"']/../../..");
+        SelenideElement dropdownelementnew = $x("//p[text()='"+name+"']/../../..");
         return dropdownelementnew;
     }
     
     public SelenideElement ariaSetIndex(String index) {
-        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='7']/div/span");
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//div[@aria-colindex='7']/div/span");
         return dropdownelementnew;
     }
     
