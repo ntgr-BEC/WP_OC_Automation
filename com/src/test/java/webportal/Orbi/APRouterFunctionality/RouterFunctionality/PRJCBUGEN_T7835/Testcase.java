@@ -72,7 +72,7 @@ public class Testcase extends TestCaseBase {
             String sGet = ddp.getDeviceMacInfo2(WebportalParam.ob1serialNo);
             System.out.println(sGet);
             assertTrue(sGet.contains(":") || sGet.contains("-"), "device has mac address");
-            sGet = ddp.getDeviceIP2(WebportalParam.ob1serialNo);
+            sGet = ddp.getDeviceIP(WebportalParam.ob1serialNo);
             System.out.println(sGet);
             assertTrue(sGet.contains("."), "device has ip address");
         }
