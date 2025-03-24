@@ -12066,6 +12066,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(1);
         
     }
+    
+    public void clickOnOkayICPButton () {
+        MyCommonAPIs.sleepi(3);
+        GenericMethods.clickVisibleElements(captiveok);
+    }
   
 }
 
