@@ -7470,7 +7470,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
         orgwidessidCaptivePortal.click();
         MyCommonAPIs.sleepi(3);
-        enablecaptiveportal.click();
+        //enablecaptiveportal.click();
+        MyCommonAPIs.sleepi(10);
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        while (true) {
+//            MyCommonAPIs.sleepi(20);
+//            if ($("[class='loaderContainer']").shouldBe(Condition.visible).isDisplayed()) {
+//                refresh();
+//                //enablecaptiveportal.shouldBe(Condition.visible).click();
+//                MyCommonAPIs.sleepi(1);
+//                selectinsightcaptiveportal.click();
+//            } else {
+//                break;
+//            }
+//        }
         MyCommonAPIs.sleepi(10);
         GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         while (true) {
@@ -7485,7 +7498,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             }
         }
         if (!enabledailylogins.exists()) {
-            enableschedulereports.click();
+            enableschedulereports.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(3);
         }
         enabledailylogins.click();
@@ -7571,9 +7584,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         Selenide.switchTo().defaultContent();
         MyCommonAPIs.sleepi(3);
-        savecaptive.click();
+        saveokECP.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
-        captiveok.click();
+        captiveok.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         logger.info("Enable instant captive portal success.");
     }
@@ -7585,11 +7598,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
         orgwidessidCaptivePortal.click();
         MyCommonAPIs.sleepi(3);
-        enablecaptiveportal.click();
+        //enablecaptiveportal.click();
         MyCommonAPIs.sleepi(10);
         GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         MyCommonAPIs.sleepi(10);
-        if (orgwideSSIDIPCErrrorMsgPopup.exists()) {
+        if (orgwideSSIDIPCErrrorMsgPopup.shouldBe(Condition.visible).exists()) {
             MyCommonAPIs.sleepi(10);
             result = true;
         }

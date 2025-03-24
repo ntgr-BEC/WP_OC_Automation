@@ -2218,11 +2218,11 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(20);
         if (enablecaptiveportalText.exists()) {
             MyCommonAPIs.sleepi(10);
-            onoffcaptiveSwitch.click();
+//            onoffcaptiveSwitch.click();
             MyCommonAPIs.sleepi(10);
             if (basiccaptiveText.exists()) {
                 MyCommonAPIs.sleepi(5);
-                basiccaptiveText.click();
+                basiccaptiveText.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
                 saveButton.click();
                 MyCommonAPIs.sleepi(15);
