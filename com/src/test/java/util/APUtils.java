@@ -1299,14 +1299,14 @@ public class APUtils extends MyCommonAPIs {
   public String getDtimStatus(String Model,String hz) {
      
       String status = "";
-      if (Model.equals("WAC505") || Model.equals("WAC510") || Model.equals("WAC540") || Model.equals("WAC564") || Model.startsWith("WAC")) {
+      if ( Model.startsWith("WAC")) {
           logger.info("entered WAC model");
           status = plink.getOutput("cat /var/config| grep -i dtimInterval |grep wlan"+hz+"", default_timeout_ssh);
           System.out.println(status);
           
       }
 
-      if (Model.equals("WAX610")  ||  Model.equals("WAX615") ||  Model.startsWith("WAX") || Model.startsWith("WBE")) {
+      if (Model.startsWith("WAX") || Model.startsWith("WBE")) {
           logger.info("entered WAX model");
           status = plink.getOutput("cat /sysconfig/config| grep -i dtimInterval |grep wlan"+hz+"", default_timeout_ssh);
           System.out.println(status);

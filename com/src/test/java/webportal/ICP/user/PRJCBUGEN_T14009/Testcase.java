@@ -18,6 +18,7 @@ import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
+import webportal.weboperation.GenericMethods;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -85,7 +86,7 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(3);
         new WirelessQuickViewPage(false).enablecaptiveportal.click();
         MyCommonAPIs.sleepi(3);
-        new WirelessQuickViewPage(false).selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(new WirelessQuickViewPage(false).selectinsightcaptiveportal);
         MyCommonAPIs.sleepi(3);
         assertTrue(new WirelessQuickViewPage(false).checkIcpSelected.isSelected(), "Captive portal page display error.");
     }
