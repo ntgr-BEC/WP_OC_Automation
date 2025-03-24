@@ -75,7 +75,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        inputtitle                = $x("//div[@id=\"divOnOffTitCapPort\"]//input");
     public SelenideElement        inputmessage              = $x("//input[@id='welcomeMsg']"); 
     public SelenideElement        savecaptive               = $x("//button[text()='Next' and @class='btn saveBtn ']");
-    public SelenideElement        captiveok                 = $("#SuccessCapPort");
+    public SelenideElement        captiveok                 = $x("//h4[text()='Success']/../..//button[@id='SuccessCapPort']");
     public SelenideElement        enterratelimit            = $x("//div/a[text()='Rate Limiting']");
     public SelenideElement        enableratelimit           = $x("//h5[text()='Enable Settings']/..//span");
     public SelenideElement        uploadrate                = $x("//h5[text()='Upload Rate Unit']/../select");
@@ -240,7 +240,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
     
 
-    public SelenideElement        selectinsightcaptiveportal    = $x("//input[@id='instantCpRadio']/..");
+    public SelenideElement        selectinsightcaptiveportal    = $x("//p[text()='Instant Captive Portal']");
      public SelenideElement       selectinsightECP              = $x("//*[@name=\"cpStatus\"and @value =3]/..");
     public SelenideElement        checkIcpSelected              = $x("//input[@id='instantCpRadio']");
     public SelenideElement        icpinsufficientcredit         = $x("//div[contains(@style,'display: block;')]//button[@id='insufficientCredit']");
@@ -1001,7 +1001,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement orgWideSSIDedit1            = $x("//td[text()='Enable']");
      public SelenideElement orgwideSSIDIPCErrrorMsgPopup            = $x("//h4[text()='Insufficient Credits.']");
      public SelenideElement btnInsufcred            = $("#insufficientCredit");
-     public SelenideElement cancelorgSSIDBtn            = $("#btnCanCapPOrt");
+     public SelenideElement cancelorgSSIDBtn            = $x("//a[text()='Cancel']");
      public SelenideElement orgwidessidedit2            = $x("(//td[text()='Enable'])[2]");
      
      
@@ -1556,7 +1556,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement NASID                         = $x("//*[@data-type=\"nasIdentifier\"]");
 	 public SelenideElement selectGoZone                  = $x("//*[text()=\"GoZone Wi-Fi\"]");
 	 public SelenideElement SelectUseExternal             = $x("//*[@name=\"cpStatus\"and @value =3]");
-	 public SelenideElement orgwidessidCaptivePortal      = $x("//a[text()='Captive Portal' and @class = 'anchoractiveLeftMenu']");
+	 public SelenideElement orgwidessidCaptivePortal      = $x("//div[@id='divSideBarSecEditVlan']//a[text()='Captive Portal' and @href = '#/organization/captivePortalOrgWide']");
 	 
 	 public SelenideElement Advance2                = $x("//*[text() = 'Advanced']");
 	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");

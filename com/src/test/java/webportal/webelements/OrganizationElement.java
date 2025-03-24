@@ -342,10 +342,10 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement radiusType                    = $x("//select[@id='radius']");
     public SelenideElement policy                        = $x("//select[@id='policy']");
     public SelenideElement orgwidessidCaptivePortal      = $x("(//a[text()='Captive Portal'])[1]");
-    public SelenideElement enablecaptiveportalText       = $x("//h5[text()='Enable Captive Portal']");
+    public SelenideElement enablecaptiveportalText       = $x("//p[text()='Captive Portal']");
     public SelenideElement onoffcaptiveSwitch            = $x("//span[@id='spnEnableMsgCaptivePortal']");
     public SelenideElement basiccaptiveButton            = $x("//input[@id='cpRadio']");
-    public SelenideElement basiccaptiveText              = $x("(//p[text()='Basic Captive Portal'])[1]");
+    public SelenideElement basiccaptiveText              = $x("//p[text()='Use Internal (free)']/..//input[@name='cpStatus']");
     public SelenideElement saveButton                    = $x("//button[@id='btnSavCapPort']");
     public SelenideElement okaysuccessbtn                = $x("//button[@id='SuccessCapPort']");
     public SelenideElement errorMsg1                     = $x("//li[text()='SSID maximum number exceeded.']"); //("(//li/text())[3]"); //("((//div[@class='modal-body'])[13]/div/div/ul/li/text())[1]");
