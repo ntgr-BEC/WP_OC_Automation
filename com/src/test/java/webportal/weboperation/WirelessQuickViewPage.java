@@ -2145,23 +2145,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void enableIcpStep() {
 
         entercaptiveportal.click();
-        MyCommonAPIs.sleepi(60);
-        enablecaptiveportal.click();
-        refresh();
         MyCommonAPIs.sleepi(30);
-        enablecaptiveportal.click();
-        selectinsightcaptiveportal.click();
-        while (true) {
-            MyCommonAPIs.sleepi(10);
-            if ($("[class='loaderContainer']").isDisplayed()) {
-                refresh();
-                enablecaptiveportal.click();
-                MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
-            } else {
-                break;
-            }
-        }
+//        enablecaptiveportal.click();
+//        refresh();
+//        MyCommonAPIs.sleepi(30);
+//        enablecaptiveportal.click();        
+//          if (selectinsightcaptiveportal.exists()) {                                      
+//              System.out.println("inside ICP");
+//              List<SelenideElement> buttons = $$x("//p[text()=\"Instant Captive Portal\"]");
+//              for (SelenideElement button : buttons) {
+//                  if (button.is(Condition.visible)) {
+//                      button.click();
+//                      break;  // Click the first visible button and stop
+//                  }
+//              }
+//                        
+//          }
+          
+          GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        while (true) {
+//            MyCommonAPIs.sleepi(10);
+//            if ($("[class='loaderContainer']").isDisplayed()) {
+//                refresh();
+//                enablecaptiveportal.click();
+//                MyCommonAPIs.sleepi(1);
+//                selectinsightcaptiveportal.click();
+//            } else {
+//                break;
+//            }
+//        }
     }
 
     public void configAuthenticationMethod(Map<String, String> map) {
@@ -2353,14 +2365,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         enablecaptiveportal.click();
         MyCommonAPIs.sleepi(1);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         while (true) {
             MyCommonAPIs.sleepi(20);
             if ($("[class='loaderContainer']").isDisplayed()) {
                 refresh();
                 enablecaptiveportal.click();
                 MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
+                GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             } else {
                 break;
             }
@@ -2384,14 +2396,15 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablecaptiveportal.click();
             MyCommonAPIs.sleepi(1);
-            selectinsightcaptiveportal.click();
+//            selectinsightcaptiveportal.click();
+            GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             while (true) {
                 MyCommonAPIs.sleepi(20);
                 if ($("[class='loaderContainer']").isDisplayed()) {
                     refresh();
                     enablecaptiveportal.click();
                     MyCommonAPIs.sleepi(1);
-                    selectinsightcaptiveportal.click();
+                    GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
                 } else {
                     break;
                 }
@@ -7458,14 +7471,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         enablecaptiveportal.click();
         MyCommonAPIs.sleepi(10);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         while (true) {
             MyCommonAPIs.sleepi(20);
             if ($("[class='loaderContainer']").isDisplayed()) {
                 refresh();
                 enablecaptiveportal.click();
                 MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
+                GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             } else {
                 break;
             }
@@ -7573,7 +7586,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         enablecaptiveportal.click();
         MyCommonAPIs.sleepi(10);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         MyCommonAPIs.sleepi(10);
         if (orgwideSSIDIPCErrrorMsgPopup.exists()) {
             MyCommonAPIs.sleepi(10);
@@ -9122,7 +9135,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(20);
         enablecaptiveportalLoc.click();
         MyCommonAPIs.sleepi(5);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        selectinsightcaptiveportal.click();
     }
 
     public void configAuthenticationMethodLoc(Map<String, String> map) {

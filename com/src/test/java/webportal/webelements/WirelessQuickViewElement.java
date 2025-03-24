@@ -240,7 +240,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
     
 
-    public SelenideElement        selectinsightcaptiveportal    = $x("//input[@id='instantCpRadio']/..");
+//    public SelenideElement        selectinsightcaptiveportal    = $x("//input[@type='radio' and @name='cpStatus' and @value='2']");
+     public ElementsCollection        selectinsightcaptiveportal    = $$x("//p[text()=\"Instant Captive Portal\"]");
+//     public ElementsCollection        selectinsightcaptiveportals    = $$x("//p[text()=\"Instant Captive Portal\"]");
+     
      public SelenideElement       selectinsightECP              = $x("//*[@name=\"cpStatus\"and @value =3]/..");
     public SelenideElement        checkIcpSelected              = $x("//input[@id='instantCpRadio']");
     public SelenideElement        icpinsufficientcredit         = $x("//div[contains(@style,'display: block;')]//button[@id='insufficientCredit']");

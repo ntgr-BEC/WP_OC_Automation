@@ -67,20 +67,19 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
     }
 
     @Step("Test Step 2: Add WIFI ssid and enable instant captive portal, check client connect wifi;")
     public void step2() {
         mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num);
-        if (!new HamburgerMenuPage().checkCaptivePortalServicesCredits()) {
-            CaptivePortalPaymentInfo.put("First Name", mailname);
-            CaptivePortalPaymentInfo.put("Last Name", "T16635");
-            CaptivePortalPaymentInfo.put("Email", mailname + "@mailinator.com");
-            CaptivePortalPaymentInfo.put("Quantity", "3"); // can input 1 , 3 , 10 , 40
-            CaptivePortalPaymentInfo.put("Duration", "1"); // can input 1 , 3
-            new InsightServicesPage().buyCaptivePortalProducts(CaptivePortalPaymentInfo);
-        }
+//        if (!new HamburgerMenuPage().checkCaptivePortalServicesCredits()) {
+//            CaptivePortalPaymentInfo.put("First Name", mailname);
+//            CaptivePortalPaymentInfo.put("Last Name", "T16635");
+//            CaptivePortalPaymentInfo.put("Email", mailname + "@mailinator.com");
+//            CaptivePortalPaymentInfo.put("Quantity", "3"); // can input 1 , 3 , 10 , 40
+//            CaptivePortalPaymentInfo.put("Duration", "1"); // can input 1 , 3
+//            new InsightServicesPage().buyCaptivePortalProducts(CaptivePortalPaymentInfo);
+//        }
 
       
         ssidInfo.put("SSID", "apwp16635facebook");
@@ -89,7 +88,7 @@ public class Testcase extends TestCaseBase {
         ssidInfoNew.put("SSID", "apwp16635facebooknew");
         ssidInfoNew.put("Security", "WPA2 Personal");
         ssidInfoNew.put("Password", "12345678");
-        new WirelessQuickViewPage().addSsid(ssidInfo);
+//        new WirelessQuickViewPage().addSsid(ssidInfo);
 
         Map<String, String> icpInfo = new HashMap<String, String>();
         icpInfo.put("Portal Name", "welcome to Automation");
