@@ -1945,7 +1945,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(5);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
                 MyCommonAPIs.sleepi(5);
                 clickEditSsid(Ssid);
@@ -1999,7 +1999,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(5);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
                 MyCommonAPIs.sleepi(5);
                 clickEditSsid(Ssid);
@@ -2117,7 +2117,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         Selenide.switchTo().defaultContent();
         savecaptive.click();
         MyCommonAPIs.sleepi(10);
-        captiveok.click();
+        GenericMethods.clickVisibleElements(captiveok);
         MyCommonAPIs.sleepi(5);
     }
 
@@ -2337,7 +2337,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -2429,7 +2429,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(3);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
             }
         }
     }
@@ -2445,7 +2445,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablecaptiveportal.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
         }
     }
@@ -2469,7 +2469,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
         }
     }
 
@@ -7117,7 +7117,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -7388,7 +7388,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(5);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
             MyCommonAPIs.sleepi(5);
             clickEditSsid(Ssid);
@@ -7442,7 +7442,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(5);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
             MyCommonAPIs.sleepi(5);
             clickEditSsid(Ssid);
@@ -7585,7 +7585,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         saveokECP.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
-        captiveok.shouldBe(Condition.visible).click();
+        GenericMethods.clickVisibleElements(captiveok);
         MyCommonAPIs.sleepi(5);
         logger.info("Enable instant captive portal success.");
     }
@@ -7833,7 +7833,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
         }
     }
 
@@ -9131,7 +9131,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -9598,7 +9598,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -10649,7 +10649,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {

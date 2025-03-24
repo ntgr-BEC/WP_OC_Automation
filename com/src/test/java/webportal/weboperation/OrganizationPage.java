@@ -2927,26 +2927,28 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocationICP(String name) {
-        if (checkOrganizationIsExist(name)) {
-            if(dropdownOrganizationElement(name).exists()) 
-            {
-            dropdownOrganizationElement(name).click();
-            addCreditsOrganizationElement(name).click();
-            }
-            else
-            {
+//        if (checkOrganizationIsExist(name)) {
+//            if(dropdownOrganizationElement(name).exists()) 
+//            {
+//            dropdownOrganizationElement(name).click();
+//            addCreditsOrganizationElement(name).click();
+//            }
+//        }
+//            else
+//            {
                   String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  MyCommonAPIs.sleepi(2);
                   ariaSetIndex(rowindex).click();
+                  MyCommonAPIs.sleepi(2);
                   ariaSetIndexAllocate(rowindex).click();                             
-            }        
+            //}        
             MyCommonAPIs.sleepi(5);
-            if (icpCreditsOrg.exists()) {
-                icpCreditAllocation.sendKeys("2");
+            if (icpCreditsOrg.shouldBe(Condition.visible).exists()) {
+                icpCreditAllocation.shouldBe(Condition.visible).sendKeys("2");
                 MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
+                allocateBtn.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
             }
-        }
     }
 
     public void CreateOrgSSId1(Map<String, String> map) {
