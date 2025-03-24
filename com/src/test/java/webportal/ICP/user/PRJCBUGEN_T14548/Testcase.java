@@ -108,7 +108,7 @@ public class Testcase extends TestCaseBase {
             MyCommonAPIs.sleepi(3);
             new WirelessQuickViewPage(false).savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            new WirelessQuickViewPage(false).captiveok.click();
+            new WirelessQuickViewPage(false).clickOnOkayICPButton();
             MyCommonAPIs.sleepi(5);
 
             new WirelessQuickViewPage(false).clickEditSsid(ssidInfo.get("SSID"));
