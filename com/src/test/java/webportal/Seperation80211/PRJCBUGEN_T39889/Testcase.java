@@ -77,7 +77,33 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Check client connectivity with this config")
     public void step3() {
-        assertTrue(new WirelessQuickViewPage().connectClient1(ssidInfo),"Ssid did not get connected");       
+        int sum = 0;
+        while (true) {
+            MyCommonAPIs.sleepi(10);
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp39889")
+                    .indexOf("true") != -1) {
+                break;
+            } else if (sum > 30) {
+                assertTrue(false, "Client cannot connected.");
+                break;
+            }
+            sum += 1;
+        }
+
+        boolean result1 = true;
+        if (!new Javasocket()
+                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp39889 123456798 WPA2PSK aes")
+                .equals("true")) {
+            result1 = false;
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp39889 123456798 WPA2PSK aes")
+                    .equals("true")) {
+                result1 = true;
+            }
+        }
+
+        assertTrue(result1, "Client cannot connected.");      
      }
 
     }

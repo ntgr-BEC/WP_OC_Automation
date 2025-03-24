@@ -2,8 +2,10 @@ package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
+import static com.codeborne.selenide.Selenide.$$x;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -244,14 +246,15 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             refresh();
             waitElement(addssid);
-            addssid.click();
+            addssid.shouldBe(Condition.visible).click();
             System.out.println("add ssid click");
             waitElement(ssid);
 
-            MyCommonAPIs.sleepi(30);
+            MyCommonAPIs.sleepi(10);
 
-            ssid.setValue(map.get("SSID"));
-            if (checkband6.isDisplayed()) {
+            ssid.shouldBe(Condition.visible).setValue(map.get("SSID"));
+            MyCommonAPIs.sleepi(1);
+            if (checkband6.shouldBe(Condition.visible).isDisplayed()) {
                 if (checkband6.isSelected()) {
                     if (band6.isDisplayed()) {
                         band6.click();
@@ -261,7 +264,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                     System.out.println("6GHZ is alredy unchecked");
                 }
             }
-            
+            MyCommonAPIs.sleepi(1);
             if (map.containsKey("VLANID")) {
                 String elements = VLANIDselection.getText();
                 System.out.println("number of VLAN" +elements);
@@ -280,31 +283,49 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 security.selectOption(map.get("Security"));
             }
             System.out.println("before password");
-            MyCommonAPIs.sleepi(15);
+            MyCommonAPIs.sleepi(10);
             if (map.containsKey("Password")) {
                 password.setValue(map.get("Password"));
             }
             if(map.containsKey("Bandsteering"))
-            {   MyCommonAPIs.sleepi(4);   
-                setSelected($x("//*[@id=\"bandSteeringSt\"]"), Boolean.parseBoolean((map.get("Bandsteering"))));
-                MyCommonAPIs.sleep(5);
-                if (Warrning.isDisplayed()) {
-                    okFast.click();                   
-                }
+            {   System.out.print("entered Bandsteering ");
+                MyCommonAPIs.sleepi(4);               
+                setSelected($x("//*[@id=\"bandSteeringSt\"]/../span"), Boolean.parseBoolean((map.get("Bandsteering"))));
+                MyCommonAPIs.sleep(10);
+                GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
+//                if (Warrning.exists()) {                                      
+//                    System.out.println("inside warrning band");
+//                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//                    for (SelenideElement button : buttons) {
+//                        if (button.is(Condition.visible)) {
+//                            button.click();
+//                            break;  // Click the first visible button and stop
+//                        }
+//                    }
+//                              
+//                }
             }
             if(map.containsKey("Fastroaming"))
             {   System.out.print("entered fast roami");
                 MyCommonAPIs.sleepi(4); 
-                setSelected($x("//*[@id=\"fastRoamingSt\"]"),Boolean.parseBoolean((map.get("Fastroaming"))));
-                MyCommonAPIs.sleep(5);              
-                if (Warrning.isDisplayed()) {
-                    okFast.click();    
-                    System.out.print("went im");
+                setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"),Boolean.parseBoolean((map.get("Fastroaming"))));
+                MyCommonAPIs.sleep(10);              
+                if (Warrning.exists()) {                                      
+                    System.out.println("inside warrning Fastroaming");
+                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+                    for (SelenideElement button : buttons) {
+                        if (button.is(Condition.visible)) {
+                            button.click();
+                            break;  // Click the first visible button and stop
+                        }
+                    }
+                              
                 }
             }
+            MyCommonAPIs.sleep(1);
             if(map.containsKey("802.11kv"))
             {                 
-                setSelected($x("//*[@id=\"kvrStatus\"]"),Boolean.parseBoolean((map.get("802.11kv"))));
+                setSelected1($x("//*[@id=\"kvrStatus\"]/../span").shouldBe(Condition.visible),Boolean.parseBoolean((map.get("802.11kv"))));
                 MyCommonAPIs.sleep(5);              
                 
             }
@@ -833,7 +854,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (!checkSsidIsExist(map.get("SSID"))) {
             logger.info("Add ssid.");
             addssid.click();
+            MyCommonAPIs.sleepi(5);
             waitElement(ssid);
+            ssid.shouldBe(Condition.visible);
             ssid.setValue(map.get("SSID"));
             waitReady();
             isKeyPresent = map.containsKey("Band");
@@ -1923,7 +1946,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(5);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
                 MyCommonAPIs.sleepi(5);
                 clickEditSsid(Ssid);
@@ -1977,7 +2000,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(5);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
                 MyCommonAPIs.sleepi(5);
                 clickEditSsid(Ssid);
@@ -2095,7 +2118,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         Selenide.switchTo().defaultContent();
         savecaptive.click();
         MyCommonAPIs.sleepi(10);
-        captiveok.click();
+        GenericMethods.clickVisibleElements(captiveok);
         MyCommonAPIs.sleepi(5);
     }
 
@@ -2123,23 +2146,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void enableIcpStep() {
 
         entercaptiveportal.click();
-        MyCommonAPIs.sleepi(60);
-        enablecaptiveportal.click();
-        refresh();
         MyCommonAPIs.sleepi(30);
-        enablecaptiveportal.click();
-        selectinsightcaptiveportal.click();
-        while (true) {
-            MyCommonAPIs.sleepi(10);
-            if ($("[class='loaderContainer']").isDisplayed()) {
-                refresh();
-                enablecaptiveportal.click();
-                MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
-            } else {
-                break;
-            }
-        }
+//        enablecaptiveportal.click();
+//        refresh();
+//        MyCommonAPIs.sleepi(30);
+//        enablecaptiveportal.click();        
+//          if (selectinsightcaptiveportal.exists()) {                                      
+//              System.out.println("inside ICP");
+//              List<SelenideElement> buttons = $$x("//p[text()=\"Instant Captive Portal\"]");
+//              for (SelenideElement button : buttons) {
+//                  if (button.is(Condition.visible)) {
+//                      button.click();
+//                      break;  // Click the first visible button and stop
+//                  }
+//              }
+//                        
+//          }
+          
+          GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        while (true) {
+//            MyCommonAPIs.sleepi(10);
+//            if ($("[class='loaderContainer']").isDisplayed()) {
+//                refresh();
+//                enablecaptiveportal.click();
+//                MyCommonAPIs.sleepi(1);
+//                selectinsightcaptiveportal.click();
+//            } else {
+//                break;
+//            }
+//        }
     }
 
     public void configAuthenticationMethod(Map<String, String> map) {
@@ -2303,7 +2338,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -2331,14 +2366,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         enablecaptiveportal.click();
         MyCommonAPIs.sleepi(1);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         while (true) {
             MyCommonAPIs.sleepi(20);
             if ($("[class='loaderContainer']").isDisplayed()) {
                 refresh();
                 enablecaptiveportal.click();
                 MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
+                GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             } else {
                 break;
             }
@@ -2362,14 +2397,15 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablecaptiveportal.click();
             MyCommonAPIs.sleepi(1);
-            selectinsightcaptiveportal.click();
+//            selectinsightcaptiveportal.click();
+            GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             while (true) {
                 MyCommonAPIs.sleepi(20);
                 if ($("[class='loaderContainer']").isDisplayed()) {
                     refresh();
                     enablecaptiveportal.click();
                     MyCommonAPIs.sleepi(1);
-                    selectinsightcaptiveportal.click();
+                    GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
                 } else {
                     break;
                 }
@@ -2394,7 +2430,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(3);
                 savecaptive.click();
                 MyCommonAPIs.sleepi(3);
-                captiveok.click();
+                GenericMethods.clickVisibleElements(captiveok);
             }
         }
     }
@@ -2410,7 +2446,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             enablecaptiveportal.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
         }
     }
@@ -2420,8 +2456,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
             entercaptiveportal.click();
-            MyCommonAPIs.sleepi(3);
-            enablecaptiveportal.click();
+            MyCommonAPIs.sleepi(5);
+            bcpRadiobutton.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(3);
             enableredirecturl.click();
             MyCommonAPIs.sleepi(3);
@@ -2434,7 +2470,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
         }
     }
 
@@ -2542,10 +2578,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
         for (int i = 0; i < 2; i++) {
             if (checkApIsExist(serialNumber)) {
+                MyCommonAPIs.sleepi(5);
+                $x("//span[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
                 logger.info("Enter device.");
-                executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+                //executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
                 MyCommonAPIs.sleep(3000);
-                enterDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+                editModule(serialNumber).shouldBe(Condition.visible).hover();
+                MyCommonAPIs.sleep(3000);
+                enterDevice(serialNumber).shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleep(5 * 1000);
                 break;
             }
@@ -2775,9 +2815,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (checkSsidIsExist(Ssid)) {
             logger.info("Delete ssid.");
             MyCommonAPIs.sleepi(5);
-            hoverToSSID.hover();
-            MyCommonAPIs.sleep(3000);
-            executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
+            $x("//span[text()='" +Ssid+ "']").hover();
             MyCommonAPIs.sleep(3000);
             editWifi(Ssid).hover();
             MyCommonAPIs.sleep(3000);
@@ -3509,19 +3547,26 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
             a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
-        setSelected($x("(//input[@id='enableBlackList'])[2]"), true);
+        setSelected1($x("//h5[text()='IGMP Snooping']/../..//input[@id='enableBlackList']/following-sibling::span"), true);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(10);
-        if (ConformSaveIGMP.exists()) {
+        if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
 
         }
@@ -3535,19 +3580,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
             a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
-        setSelected($x("(//input[@id='enableBlackList'])[1]"), true);
+        setSelected1($x("//h5[text()='Broadcast-to-Unicast']/../..//input[@id='enableBlackList']/following-sibling::span"), true);
         SaveIGMP.click();
-        MyCommonAPIs.sleepi(5);
-        ConformSaveIGMP.click();
+        MyCommonAPIs.sleepi(10);
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+        }
+        
 
     }
 
@@ -3555,19 +3610,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
             a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            a.moveToElement(NetworkSettings).click().perform();
         }
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("(//input[@id='enableBlackList'])[2]"), false);
+        MyCommonAPIs.sleepi(3);
+        setSelected1($x("//h5[text()='IGMP Snooping']/../..//input[@id='enableBlackList']/following-sibling::span"), false);
         SaveIGMP.click();
-        MyCommonAPIs.sleepi(5);
-        ConformSaveIGMP.click();
+        MyCommonAPIs.sleepi(10);
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+
+        }
 
     }
 
@@ -3575,20 +3640,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
             a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
         MyCommonAPIs.sleepi(5);
-        setSelected($x("(//input[@id='enableBlackList'])[1]"), false);
+        setSelected1($x("//h5[text()='Broadcast-to-Unicast']/../..//input[@id='enableBlackList']/following-sibling::span"), false);
         SaveIGMP.click();
         MyCommonAPIs.sleepi(5);
-        // ConformSaveIGMP.click();
+        if (ConformSaveIGMP.isDisplayed()) {
+            ConformSaveIGMP.click();
+        }
 
     }
 
@@ -3650,12 +3724,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
@@ -3675,12 +3756,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitElement(settingsorquickview);
         settingsorquickview.click();
         waitReady();
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
@@ -4693,7 +4781,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), true);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), true);
             MyCommonAPIs.sleep(5);
             if (Warrning.isDisplayed()) {
                 okFast.click();
@@ -4741,7 +4829,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]"), false);
+            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), false);
             MyCommonAPIs.sleep(5);
             save80211.click();
             MyCommonAPIs.sleep(5);
@@ -5720,19 +5808,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             settingsorquickview.click();
         }
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         // advanceSettingsBtn.click();
         // MyCommonAPIs.sleepi(1);
         // mpskSettingOpt.click();
         // MyCommonAPIs.sleepi(1);
-        // if (verifyMPSKSetting.getText()=="Multi PSK Settings") {
+        // if (verifyMPSKSetting.getText()=="Multi PSK Settings"){
         // result = true;
         // }
         // System.out.println(verifyMPSKSetting.getText());
@@ -5755,19 +5859,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
         settingsorquickview.click();
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         String mpskKeyName = verifyMPSKKeyisAdded.getText();
@@ -5782,15 +5902,33 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void deleteMPSKKey() {
         MyCommonAPIs.sleepi(1);
-        settingBtn.click();
-        MyCommonAPIs.sleepi(3);
-        if (Advance1.exists()) {
+        MyCommonAPIs.sleepi(5);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleepi(5);
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(1);
         System.out.println(verifyMPSKSetting.getText());
@@ -5809,13 +5947,28 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             settingBtn.click();
         }
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(1);
     }
@@ -5871,19 +6024,34 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         gotoHomePage.click();
         MyCommonAPIs.sleepi(5);
-        office1LocationBtn.click();
+        office1LocationBtn.doubleClick();
         MyCommonAPIs.sleepi(5);
         wirelessTab.click();
         MyCommonAPIs.sleepi(5);
         settingBtn.click();
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         String mpskKey1 = verifyMPSKKeyisAdded.getText();
@@ -6130,14 +6298,29 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (settingBtn.exists()) {
             settingBtn.click();
         }
-        MyCommonAPIs.sleepi(3);
-        if (Advance1.exists()) {
+        MyCommonAPIs.sleepi(5);
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
 
         MyCommonAPIs.sleepi(5);
@@ -6514,21 +6697,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
             a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            a.moveToElement(NetworkSettings).click().perform();
         }
         MyCommonAPIs.sleepi(3);
     }
 
     public void EnableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), true);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(5);;
+        if(!$x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy enabled");
+        }
+//        setSelected1($x("//input[@id='enableEEM']"), true);
+       
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6537,9 +6734,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void disableEEM() {
-        MyCommonAPIs.sleepi(5);
-        setSelected($x("//input[@id='enableEEM']"), false);
-        SaveIGMP.click();
+        MyCommonAPIs.sleepi(10);     
+        if($x("//input[@id='enableEEM']").isSelected()) {
+            $x("//input[@id='enableEEM']/../span").click();
+            MyCommonAPIs.sleepi(3);
+            SaveIGMP.click();
+        }else {
+            System.out.println("alredy disabled");
+        }
         MyCommonAPIs.sleepi(5);
         if (ConformSaveIGMP.isDisplayed()) {
             ConformSaveIGMP.click();
@@ -6569,7 +6771,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(sta);
 
         if (sta == "true") {
-            logger.info("it is anabled");
+            logger.info("it is enabled");
             result = true;
 
         }
@@ -6583,9 +6785,17 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(5);
         settingBtn.click();
         MyCommonAPIs.sleepi(5);
-        advanceSettingsBtn.click();
+        if (advanceSettingsBtn.exists() && Advance2.exists()) {
+            advanceSettingsBtn.click();
+        } else if(Advance2.exists()) {
+            Advance2.click();
+        }      
         MyCommonAPIs.sleepi(1);
-        mpskSettingOpt.click();
+        if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+            mpskSettingOpt.click();
+        } else if (mpskSettingOpt1.exists()) {
+            mpskSettingOpt1.click();
+        }
         MyCommonAPIs.sleepi(3);
         if (mpskKeyName.equals("MPSKSSIDTest01")) {
             result = true;
@@ -6912,7 +7122,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -6923,13 +7133,33 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean addMPSKKey1DG() {
         boolean result = false;
         MyCommonAPIs.sleepi(5);
-        if (Advance1.exists()) {
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        MyCommonAPIs.sleepi(5);
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
-            a.moveToElement(mpskSettingOpt).click().perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
+
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
+            if (mpskSettingOpt.exists() && mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt).click().perform();
+            } else if (mpskSettingOpt1.exists()) {
+                a.moveToElement(mpskSettingOpt1).click().perform();
+            }
         }
         MyCommonAPIs.sleepi(3);
         clkAddMPSK.click();
@@ -7163,7 +7393,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(5);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
             MyCommonAPIs.sleepi(5);
             clickEditSsid(Ssid);
@@ -7217,7 +7447,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(5);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
             MyCommonAPIs.sleepi(5);
             clickEditSsid(Ssid);
@@ -7244,22 +7474,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
         orgwidessidCaptivePortal.click();
         MyCommonAPIs.sleepi(3);
-        enablecaptiveportal.click();
+        //enablecaptiveportal.click();
         MyCommonAPIs.sleepi(10);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        while (true) {
+//            MyCommonAPIs.sleepi(20);
+//            if ($("[class='loaderContainer']").shouldBe(Condition.visible).isDisplayed()) {
+//                refresh();
+//                //enablecaptiveportal.shouldBe(Condition.visible).click();
+//                MyCommonAPIs.sleepi(1);
+//                selectinsightcaptiveportal.click();
+//            } else {
+//                break;
+//            }
+//        }
+        MyCommonAPIs.sleepi(10);
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         while (true) {
             MyCommonAPIs.sleepi(20);
             if ($("[class='loaderContainer']").isDisplayed()) {
                 refresh();
                 enablecaptiveportal.click();
                 MyCommonAPIs.sleepi(1);
-                selectinsightcaptiveportal.click();
+                GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
             } else {
                 break;
             }
         }
         if (!enabledailylogins.exists()) {
-            enableschedulereports.click();
+            enableschedulereports.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(3);
         }
         enabledailylogins.click();
@@ -7345,9 +7588,9 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         Selenide.switchTo().defaultContent();
         MyCommonAPIs.sleepi(3);
-        savecaptive.click();
+        saveokECP.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
-        captiveok.click();
+        GenericMethods.clickVisibleElements(captiveok);
         MyCommonAPIs.sleepi(5);
         logger.info("Enable instant captive portal success.");
     }
@@ -7359,11 +7602,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);
         orgwidessidCaptivePortal.click();
         MyCommonAPIs.sleepi(3);
-        enablecaptiveportal.click();
+        //enablecaptiveportal.click();
         MyCommonAPIs.sleepi(10);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
         MyCommonAPIs.sleepi(10);
-        if (orgwideSSIDIPCErrrorMsgPopup.exists()) {
+        if (orgwideSSIDIPCErrrorMsgPopup.shouldBe(Condition.visible).exists()) {
             MyCommonAPIs.sleepi(10);
             result = true;
         }
@@ -7595,7 +7838,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(3);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
         }
     }
 
@@ -7858,20 +8101,38 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 saveandconfigure.click();
                 MyCommonAPIs.sleepi(20);
                 enableECP();
-                MyCommonAPIs.sleepi(20);
+                MyCommonAPIs.sleepi(10);
             }
 
-            if (ECPRadio.isDisplayed()) {
-                System.out.println("ECP eror appeared");
-                result = true;
+//            if (ECPRadio.isDisplayed()) {
+//                System.out.println("ECP eror appeared");
+//                result = true;
+//            }
+            if (ECPRadio.exists()) {                                      
+                List<SelenideElement> buttons = $$x("//*[text()='Warning']");
+                for (SelenideElement button : buttons) {
+                    if (button.is(Condition.visible)) {
+                        result = true;
+                        break;  // Click the first visible button and stop
+                    }
+                }
+                          
             }
+            
+            
             waitReady();
             MyCommonAPIs.sleepi(4);
-            okECP.click();
+//            okECP.click();
+            if (okECP.exists()) {
+                okECP.click();
+//                MyCommonAPIs.sleepi(20);
+//                selectinsightECP.click();
+            }
             logger.info("Add ssid successful.");
         } else {
             logger.warning("checkSsidIsExist error");
         }
+        System.out.println("Result = " + result);
         return result;
     }
 
@@ -7971,13 +8232,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void enableECP() {
 
-        entercaptiveportal.click();
+//        entercaptiveportal.click();
+        if (entercaptiveportal.exists()) {
+            entercaptiveportal.click();
+            MyCommonAPIs.sleepi(20);
+            selectinsightECP.click();
+        }
 //        enablecaptiveportal.click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
-        MyCommonAPIs.sleepi(20);
-        selectinsightECP.click();
+           
+        
 
     }
 
@@ -8870,7 +9136,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -8887,7 +9153,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(20);
         enablecaptiveportalLoc.click();
         MyCommonAPIs.sleepi(5);
-        selectinsightcaptiveportal.click();
+        GenericMethods.clickVisibleElements(selectinsightcaptiveportal);
+//        selectinsightcaptiveportal.click();
     }
 
     public void configAuthenticationMethodLoc(Map<String, String> map) {
@@ -9017,18 +9284,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     // written by Vivek
     public void clickOnOptimizeButton() {
+        MyCommonAPIs.sleepi(10);
         waitElement(optimizenowbutton);
-        optimizenowbutton.click();
+        optimizenowbutton.shouldBe(Condition.visible).click();
         waitReady();
+        MyCommonAPIs.sleepi(5);
         waitElement(instantwifisuccessmeg);
-        String message = getText(instantwifisuccessmeg);
+        String message = instantwifisuccessmeg.shouldBe(Condition.visible).getText();
         if (message.contains("Your configuration has been applied. It may take a few moments to display")) {
             System.out.println(message);
             logger.info("clicked on OnOptimize Button");
         } else {
             logger.warning("instantwifisuccessmeg error");
             logger.info("Waiting 18 min for next itteration");
-            MyCommonAPIs.sleepi(1080);
+            MyCommonAPIs.sleepi(1000);
             waitElement(optimizenowbutton);
             optimizenowbutton.click();
             waitElement(instantwifisuccessmeg);
@@ -9116,7 +9385,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     // written by Vivek
     public void Select3Channelfrom5GHZHigh() {
         for (int i = 100; i < 166; i++) {
-            if (i == 100 || i == 104 || i == 165) {
+            if (i == 100 || i == 104 || i == 136) {
                 waitElement($x("//label/p[text()='" + i + "']"));
                 $x("//label/p[text()='" + i + "']").click();
                 logger.info("Clicked on" + i + "Channel");
@@ -9334,7 +9603,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -10206,7 +10475,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.print("entered dtim");
         savead.click();
         MyCommonAPIs.sleepi(15);
-        okw.click();
+        GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
+//        if (okw.exists()) {                                      
+//            System.out.println("inside warrning band");
+//            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//            for (SelenideElement button : buttons) {
+//                if (button.is(Condition.visible)) {
+//                    button.click();
+//                    break;  // Click the first visible button and stop
+//                }
+//            }
+//                      
+//        }
         }
         String res = sliderdtm(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10258,7 +10538,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         savead.click();
         System.out.print("entered broad");
         MyCommonAPIs.sleepi(15);
-        okw.click();
+        GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
+//        okw.click();
+//         if (okw.exists()) {                                      
+//            System.out.println("inside warrning band");
+//            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//            for (SelenideElement button : buttons) {
+//                if (button.is(Condition.visible)) {
+//                    button.click();
+//                    break;  // Click the first visible button and stop
+//                }
+//            }
+//                      
+//        }
+        
         }
         String res = sliderbroadcast(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10363,7 +10656,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(10);
             savecaptive.click();
             MyCommonAPIs.sleepi(10);
-            captiveok.click();
+            GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
             logger.info("Enable instant captive portal success.");
         } else {
@@ -10378,12 +10671,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        if (Advance1.exists() && Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
             a.moveToElement(Advance1).perform();
+            a.moveToElement(NetworkSettings).click().perform();
+        } else if (Advance2.exists()) {
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            Actions a = new Actions(driver);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("window.scrollBy(0, 250)", "");
+            a.moveToElement(Advance2).perform();
             a.moveToElement(NetworkSettings).click().perform();
         }
     }
@@ -10668,20 +10968,21 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public void CreateRFProfile(Map<String, String> map) {
        
         MyCommonAPIs.sleepi(10);
-        addRFProfile.click();
-        MyCommonAPIs.sleepi(10);
-        RFProfileName.sendKeys(map.get("RFName"));
-        RFProfileDescription.sendKeys(map.get("RFDescription"));
+        addRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(15);
+        RFProfileName.shouldBe(Condition.visible).sendKeys(map.get("RFName"));
+        MyCommonAPIs.sleepi(2);
+        RFProfileDescription.shouldBe(Condition.visible).sendKeys(map.get("RFDescription"));
         
         boolean isCopyConfigurations = map.containsKey("Copy Configurations");
-        
+        MyCommonAPIs.sleepi(2);
         if(isCopyConfigurations== true) {
             enablecopyProfile.click();
             MyCommonAPIs.sleepi(3);
-            SelectcopyProfile.selectOption(map.get("Copy Configurations"));
+            SelectcopyProfile.shouldBe(Condition.visible).selectOption(map.get("Copy Configurations"));
         }
         MyCommonAPIs.sleepi(3);
-        CreateRFProfile.click();
+        CreateRFProfile.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
 
     }
@@ -10705,10 +11006,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
     public void VerifyDis(Map<String, String> map) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
         MyCommonAPIs.sleepi(10);
         editRFProfileDescription.clear();
         editRFProfileDescription.sendKeys(map.get("RFDescriptionEdit"));
@@ -10720,18 +11031,35 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     
     public boolean VerifyGenaralRF(Map<String, String> map) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
-        MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+        System.out.println(map.get("RFName"));
         MyCommonAPIs.sleepi(10);
-             
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+        MyCommonAPIs.sleepi(10);
+        String editRFProfileNamestr = editRFProfileName.shouldBe(Condition.visible).getValue();
+        String editRFProfileDescriptionstr = editRFProfileDescription.shouldBe(Condition.visible).getValue();
+        System.out.println(editRFProfileNamestr);    
+        System.out.println(editRFProfileDescriptionstr);
+        MyCommonAPIs.sleepi(1);
         
-        if(map.get("RFName").equals(editRFProfileName.getText()) & map.get("RFDescription").equals(editRFProfileDescription.getText()))  
+        if(map.get("RFName").equals(editRFProfileNamestr) & map.get("RFDescription").equals(editRFProfileDescriptionstr))  
         {
             
             result = true;
         }
+        
+        MyCommonAPIs.sleepi(3);
+        $x("//button[@id='generalCan']").shouldBe(Condition.visible).click();
         
         
         return result;
@@ -10759,27 +11087,54 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         waitReady();
         if (checkRFExist(Pname)) {
             logger.info("Delete RF Profile.");
-            executeJavaScript("arguments[0].removeAttribute('class')", editRF(Pname));
+            
+            System.out.println(Pname);
+            MyCommonAPIs.sleepi(10);
+            waitReady();
+            String sElement = String.format("//td[text()='%s']", Pname);
+            logger.info("on element:" + sElement);
+            
+            $x(sElement).hover();
             MyCommonAPIs.sleep(3000);
-            deleteRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
+            
+            editRF(Pname).hover();
+            MyCommonAPIs.sleep(3000);
+
+            deleteRFprofile(Pname).shouldBe(Condition.visible, Condition.enabled).click();
+            MyCommonAPIs.sleep(8000);
+            
             MyCommonAPIs.sleepi(30);
             deletessidyes.click();
             MyCommonAPIs.sleep(5 * 1000);
         }
     }
     
-    public void clickEditRF(String Pname, String PDescription) {
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(Pname));
+	public void clickEditRF(String Pname, String PDescription) {
+        System.out.println(Pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", Pname);
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(Pname).hover();
         MyCommonAPIs.sleep(3000);
         editRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
         MyCommonAPIs.sleepi(10);
         
-        editRFProfileName.clear();
-        editRFProfileName.sendKeys(Pname);
-        editRFProfileDescription.clear();
-        editRFProfileDescription.sendKeys(PDescription);
-        SaveEditRFProfile.click();
+        editRFProfileName.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileName.shouldBe(Condition.visible).sendKeys("Insight");
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
         
     }
     
@@ -10811,20 +11166,20 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
         if (checkSsidIsExist(map.get("SSID"))) {
             logger.info("Edit ssid.");
-            executeJavaScript("arguments[0].removeAttribute('class')", editWifi(map.get("SSID")));
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
             MyCommonAPIs.sleep(3000);
             editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
             MyCommonAPIs.sleep(8 * 1000);
-                    
-                       
-        } 
-        
-        
+
+        }
+
         System.out.println(getCustomStatus());
         if (!getCustomStatus()) {
             logger.info("RF disabled");
             result = true;
-        }       
+        }
         return result;
     }
     
@@ -10981,36 +11336,53 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     
     public boolean verifyassignedAP(Map<String, String> map) {
         boolean result = false;
-        String [] profileNames = new String [20];
-                              
-                for (SelenideElement RFprofile : preferredcolumnsnew) {
-                    System.out.println(RFprofile);
+        String[] profileNames = new String[20];
 
-                }
-        
-        
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        for (SelenideElement RFprofile : preferredcolumnsnew) {
+            System.out.println(RFprofile);
+
+        }
+
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
-        MyCommonAPIs.sleepi(10);        
+
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+
+        MyCommonAPIs.sleepi(30);
         DeviceListRF.click();
         MyCommonAPIs.sleepi(5);
-        if(Devicelist(map.get("Device Name"), 1).isDisplayed() & Devicelist(map.get("Device SerialNo"), 2).isDisplayed() & Devicelist(map.get("Device Model"), 3).isDisplayed()) {
+        if (Devicelist(map.get("Device Name"), 1).isDisplayed() & Devicelist(map.get("Device SerialNo"), 2).isDisplayed()
+                & Devicelist(map.get("Device Model"), 3).isDisplayed()) {
             result = true;
         }
-       
+
         return result;
-        
-        
-        
 
     }
 
     
-    public void assignedRadioSetting(Map<String, String> map) {
+	public void assignedRadioSetting(Map<String, String> map) {
              
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(map.get("RFName")).hover();
         MyCommonAPIs.sleep(3000);
         editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(8 * 1000);
@@ -11033,28 +11405,39 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
              RadioMode24.selectOption(map.get("2.4GHz Radio Mode"));
      
        }
-         
-         Saveedit.click();
-    }
-    
+         MyCommonAPIs.sleepi(2);
+         SaveeditRFRadioChannels.shouldBe(Condition.visible).click();
+         MyCommonAPIs.sleepi(5);
+         okaybtneditRFRadioChannels.shouldBe(Condition.visible).click();
+    }    
 
     
     
     public void assignedinstantWiFI(Map<String, String> map) {
 
         
-        executeJavaScript("arguments[0].removeAttribute('class')", editRF(map.get("RFName")));
+        System.out.println(map.get("RFName"));
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", map.get("RFName"));
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
         MyCommonAPIs.sleep(3000);
-        editRFprofile(map.get("RFName")).waitUntil(Condition.visible, 60 * 1000).click();
-        MyCommonAPIs.sleep(8 * 1000);
+        
+        editRF(map.get("RFName")).hover();
+        MyCommonAPIs.sleep(3000);
+
+        editRFprofile(map.get("RFName")).shouldBe(Condition.visible, Condition.enabled).click();
+        MyCommonAPIs.sleep(8000);
+        
         MyCommonAPIs.sleepi(10);        
         InstantWiFiPreferredChannelRF.click();
         MyCommonAPIs.sleepi(5);
         channel4.click();
         MyCommonAPIs.sleepi(3);
         channel56.click();
-       
-         
+        MyCommonAPIs.sleepi(3);    
          Saveedit.click();
     }
     
@@ -11622,7 +12005,67 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return overallMatch;
     }
 
+//AddedByPratik
+    public void disableCustomerProfile(Map<String, String> map) {
 
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        waitElement(addssid);
+
+        if (checkSsidIsExist(map.get("SSID"))) {
+            logger.info("Edit ssid.");
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
+            MyCommonAPIs.sleep(3000);
+            editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleep(8 * 1000);
+
+        }
+        MyCommonAPIs.sleepi(5);
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
+        actions.moveToElement(custom).click().perform();
+        Selenide.sleep(500);
+        if (custom.getAttribute("class").contains("active")) {
+            custom.click();
+        }
+        logger.info("Customer Profile disabled");
+        MyCommonAPIs.sleepi(5);
+        saveedit.click();
+        MyCommonAPIs.sleepi(5);
+        confirmok.click();
+        MyCommonAPIs.sleepi(3);
+        logger.info("Edit ssid successful.");
+        System.out.println("SSID successfully edited");
+
+    }
+    
+    public void clickEditRFOnlyDescription(String Pname, String PDescription) {
+        System.out.println(Pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", Pname);
+        logger.info("on element:" + sElement);
+        
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        
+        editRF(Pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(Pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        editRFProfileDescription.shouldBe(Condition.visible).clear();
+        MyCommonAPIs.sleepi(1);
+        editRFProfileDescription.shouldBe(Condition.visible).sendKeys(PDescription);
+        MyCommonAPIs.sleepi(1);
+        SaveEditRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        
+    }
   
 }
 

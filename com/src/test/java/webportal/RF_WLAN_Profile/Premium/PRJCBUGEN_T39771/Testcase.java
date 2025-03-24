@@ -40,7 +40,7 @@ public class Testcase extends TestCaseBase {
     List<String> RFlist = new ArrayList<String>();
     
 
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T3977") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that User can create new \"N\" number of RF profiles. There is no restriction") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39771") // It's a testcase id/link from Jira Test Case.
@@ -52,10 +52,15 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().GotoRF();
-        for(int j=0; j<RFlist.size();j++) {
-            
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get(RFlist.get(j)));
+        WirelessQuickViewPage wirelessPage = new WirelessQuickViewPage();
+        String[] networks = {
+            "Netgear1", "Netgear2", "Netgear3", "Netgear4", "Netgear5",
+            "Netgear6", "Netgear7", "Netgear8", "Netgear9", "Netgear10"
+        };
+
+        for (String network : networks) {
+            wirelessPage.GotoRF();
+            new WirelessQuickViewPage(false).deleteRF(network);
         }
         
         System.out.println("start to do tearDown");
@@ -69,30 +74,27 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: Create Multiple RF Profiles and verify")
     public void step2() {
         
         
         RFdata.put("RFDescription", "BEC Automation Team");
-        RFdata.put("Copy Configurations", "Open Office");
-        
-        
+        RFdata.put("Copy Configurations", "Open Office");    
         new WirelessQuickViewPage().GotoRF();
         
         for(int i=0;i<10; i++) {
             
-            Random              r           = new Random();
-            int                 num         = r.nextInt(10000000);
-            String              rfname    = "apwptest" + String.valueOf(num);
+            String              rfname    = "Netgear" + String.valueOf(i+1);
             RFdata.put("RFName", rfname);
             
             new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
-            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get(rfname)),"RF Not created");
+            assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
             RFlist.add(rfname);
+            System.out.println(rfname);
         }
         
                

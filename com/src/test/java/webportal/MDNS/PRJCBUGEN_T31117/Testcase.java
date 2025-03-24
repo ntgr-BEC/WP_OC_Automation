@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         System.out.println("start to do tearDown");
         MyCommonAPIs.sleepi(10);
-        new MDNSPage(false).deletePolicy("MDNS");
+        new MDNSPage(false).deletePolicy("NewMDNS");
         MyCommonAPIs.sleepi(5);
         new MDNSPage(false).disableMDNS();
     }

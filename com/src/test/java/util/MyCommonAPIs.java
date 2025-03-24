@@ -572,9 +572,12 @@ public class MyCommonAPIs {
     public void click(Object el, boolean isJS) {
         logger.info(String.format("<%s>", el.toString()));
         if (isJS) {
-            ((JavascriptExecutor) WebportalParam.curWebDriver).executeScript("return arguments[0].click();", getSE(el));
+            ((JavascriptExecutor) WebportalParam.curWebDriver).executeScript(
+                    "var evt = document.createEvent('MouseEvents');" +
+                    "evt.initEvent('dblclick', true, true);" +
+                    "arguments[0].dispatchEvent(evt);", getSE(el));
         } else {
-            getSE(el).click();
+            getSE(el).shouldBe(Condition.visible).doubleClick();
         }
         waitReady();
     }
@@ -1697,7 +1700,7 @@ public class MyCommonAPIs {
     public void setSelected(SelenideElement el, boolean checked) {
         boolean sta = el.is(Condition.checked);
         if (checked != sta) {
-            click(el, true);
+            el.click();
         }
     }
     
@@ -1877,7 +1880,7 @@ public class MyCommonAPIs {
     public String     sOrganizationFlag               = "#orgLocationDropdown";
     public String     sCurLocationElement             = "#headerLocName";
     public String     sCurOrganizationElement         = "#locationDropdown .display-inline";
-    public String     sOrganizationLocationElement    = "#gridView .location-name";
+    public String     sOrganizationLocationElement    = "//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]";
     public String     sOrganizationLocationElementNew = "span.whiteNoWrap:not(.mr-auto)";
     public String     sOrganizationLocationElement1   = "#content.location-grid";
     ArrayList<String> lsLocationNetworks              = new ArrayList<String>();
@@ -1894,17 +1897,19 @@ public class MyCommonAPIs {
         waitReady();
         logger.info("wait for: " + local);
         try {
-            waitElement(sOrganizationLocationElement);
-        } catch (NoSuchElementException e) {
-            logger.info("try refresh again");
+            ElementsCollection elements = $$x(sOrganizationLocationElement);
+            elements.get(0).waitUntil(Condition.visible, 10000);
+        } catch (NoSuchElementException | IndexOutOfBoundsException e) {
+            logger.info("Try refresh again");
             takess();
             refresh();
-            waitElement(sOrganizationLocationElement);
+            ElementsCollection elements = $$x(sOrganizationLocationElement);
+            elements.get(0).waitUntil(Condition.visible, 10000);
         }
         
         // location page now has refresh func
         for (int tryi = 0; tryi < 2; tryi++) {
-            ElementsCollection esc = $$(sOrganizationLocationElement);
+            ElementsCollection esc = $$x(sOrganizationLocationElement);
             for (SelenideElement i : esc) {
                 network = getText(i);
                 if (network.equals("")) {
@@ -1928,7 +1933,7 @@ public class MyCommonAPIs {
         
         if (tc == null) {
             logger.info("return first network");
-            tc = $$(sOrganizationLocationElement).first();
+            tc = $$x(sOrganizationLocationElement).first();
         }
         return tc;
     }
@@ -2443,5 +2448,14 @@ public class MyCommonAPIs {
             waitDeviceOnline();
         }
         logger.info("try to disconnect the switch via command");
+    }
+    
+    public void setSelected1(SelenideElement switchSpan, boolean checked) {
+        SelenideElement checkBox = switchSpan.parent().find("input[type='checkbox']");
+        boolean isChecked = checkBox.is(Condition.checked);
+
+        if (checked != isChecked) {
+            switchSpan.click();
+        }
     }
 }

@@ -60,10 +60,10 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         new OrganizationPage(false).openOrg(organizationName);
-        new DevicesDashPage(false).openLocationFromotherOrg();
+        new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
         assertTrue(new DevicesDashPage().moveDevicetoOrg1orloc1AndVerify(WebportalParam.ap1serialNo),"Move device functionality is failed.");
         new OrganizationPage(false).openOrg(organizationName);
-        new DevicesDashPage(false).openLocationFromotherOrg();
+        new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
         new WirelessQuickViewPage().deleteSsidYes("apwp35184_org2");
         MyCommonAPIs.sleepi(10);
         new OrganizationPage(false).openOrg(WebportalParam.Organizations);
@@ -101,7 +101,7 @@ public class Testcase extends TestCaseBase {
           
           assertTrue(new DevicesDashPage().moveDeviceAndVerify(WebportalParam.ap1serialNo),"Move device functionality is failed.");
           new OrganizationPage(false).openOrg(organizationName);
-          new DevicesDashPage(false).openLocationFromotherOrg();
+          new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
           assertTrue(new DevicesDashPage().isDeviceRebooting(WebportalParam.ap1serialNo), "Device rebooting Status is not received");
           new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
           
@@ -110,7 +110,7 @@ public class Testcase extends TestCaseBase {
           locationInfo.put("Security", "WPA2 Personal Mixed");
           locationInfo.put("Password", "123456798");
           new OrganizationPage(false).openOrg(organizationName);
-          new DevicesDashPage(false).openLocationFromotherOrg();
+          new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
           new WirelessQuickViewPage().addSsid(locationInfo);
           
           new RunCommand().enableSSH4APALL(WebportalParam.ap1IPaddress);

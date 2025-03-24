@@ -34,8 +34,16 @@ public class DevicesApRadioAndChannelsPage extends DevicesApRadioAndChannelsPage
 
     public void checkFiveGHzHighTireDisplay() {
         if (!fiveGHzHighChannel.isDisplayed()) {
-            openFiveGHzHighTier.click();
+            if(openFiveGHzHighTier1.exists())
+            {
+            openFiveGHzHighTier1.click();
             MyCommonAPIs.sleepi(3);
+            }
+            else
+            {
+                openFiveGHzHighTier2.click();
+                MyCommonAPIs.sleepi(3);
+            }
         }
     }
 
@@ -67,7 +75,7 @@ public class DevicesApRadioAndChannelsPage extends DevicesApRadioAndChannelsPage
             fiveGHzOutputPower.selectOption(map.get("5GHz output power"));
             MyCommonAPIs.sleepi(1);
         }
-        if (openFiveGHzHighTier.exists()) {
+        if (openFiveGHzHighTier1.exists() || openFiveGHzHighTier2.exists()) {
             if (map.containsKey("5GHz high channel")) {
                 checkFiveGHzHighTireDisplay();
                 fiveGHzHighChannel.selectOption(map.get("5GHz high channel"));

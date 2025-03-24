@@ -72,22 +72,27 @@ public class AccountPage extends AccountPageElement {
             logger.info("Create location.");
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
-            }
-            if (addNetworkButton.isDisplayed()) {
+                MyCommonAPIs.sleepi(5);
+            } if (createNewLocationButton.shouldBe(Condition.visible).isDisplayed()) {
+                createNewLocationButton.shouldBe(Condition.visible).click();
+            } else if (addNetworkButton.isDisplayed()) {
                 addNetworkButton.shouldBe(Condition.visible).click();
             } else if (addNetWorkButton.isDisplayed()) {
                 addNetWorkButton.click();
             } else if (addNetWorkPro.exists()) {
                 addNetWorkPro.click();
-                addsinglelocation.click();
+                MyCommonAPIs.sleepi(5);
+                addsinglelocation.shouldBe(Condition.visible).click();
             }
             MyCommonAPIs.sleepi(30);
             waitElement(addNetLocationName);
+            addNetLocationName.shouldBe(Condition.visible);
             // timeZone.waitUntil(Condition.matchText("UTC"), 40 * 1000);
             // MyCommonAPIs.sleep(10000);
             addNetLocationName.sendKeys(map.get("Location Name"));
             MyCommonAPIs.sleepi(5);
             waitElement(addNetPassword);
+            addNetPassword.shouldBe(Condition.visible);
             addNetPassword.sendKeys(map.get("Device Admin Password"));
             if (map.containsKey("Street")) {
                 addNetStreet.setValue(map.get("Street"));
@@ -119,7 +124,7 @@ public class AccountPage extends AccountPageElement {
             }
             // ButtonElements.SAVEBUTTON.click();
             MyCommonAPIs.sleepi(10);
-            savebutton.click();
+            savebutton.shouldBe(Condition.visible).click();
 
             MyCommonAPIs.sleepi(10);
             // if (locationlist.getAttribute("aria-expanded").equals("false")) {
@@ -295,7 +300,7 @@ public class AccountPage extends AccountPageElement {
     public void addMultipleNetwork(Map<String, String> map) {
         boolean exit = false;
 
-        // if (locationlist.getAttribute("aria-expanded").equals("false")) {
+        // if (locationlist.getAttribute("aria-expanded").equals("false")){
         // locationlist.click();
         // }
 
@@ -309,10 +314,11 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
             }
-            addNetWorkButton1.click();
+            MyCommonAPIs.sleepi(10);
+            addNetWorkButton1.shouldBe(Condition.visible).click();
 
             MyCommonAPIs.sleep(1000);
-            addMultiplelocations.click();
+            addMultiplelocations.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(10000);
             numberMultipleloc.sendKeys(map.get("Number of Locations"));
             MyCommonAPIs.sleep(1000);
@@ -980,20 +986,13 @@ public class AccountPage extends AccountPageElement {
     }
 
     public AccountPage deleteOneLocation(String locationName) {
-        // if (locationlist.getAttribute("aria-expanded").equals("false")) {
+        // if (locationlist.getAttribute("aria-expanded").equals("false")){
         // locationlist.click();
         // }
         System.out.println("enterd");
         MyCommonAPIs.sleepi(20);
-//        new MyCommonAPIs().open(URLParam.hrefaccount, true);
-//        MyCommonAPIs.sleepi(20);
-        MyCommonAPIs.sleepi(3);
-        if (locationName(locationName).exists()) {
-            deleteLocation(locationName);
-            MyCommonAPIs.sleepi(10);
-        } else {
-            logger.info("Cannot find location: " + locationName);
-        }
+        deleteLocation(locationName);
+        MyCommonAPIs.sleepi(10);
         return new AccountPage();
     }
 
@@ -1364,13 +1363,17 @@ public class AccountPage extends AccountPageElement {
     // added by Vivek
     public void enterTheServerIP() {
         MyCommonAPIs.sleepi(5);
-        radiusServerInput.clear();
+        setSelected1($x("//input[@id='onOffAuthStatusRadius']/../span"), true);
+        MyCommonAPIs.sleepi(5);
+        nasIdentifier.shouldBe(Condition.visible).sendKeys("office1");
+        MyCommonAPIs.sleepi(5);
+        radiusServerInput.shouldBe(Condition.visible).clear();
         MyCommonAPIs.sleepi(2);
-        radiusServerInput.sendKeys("172.16.27.12");
+        radiusServerInput.shouldBe(Condition.visible).sendKeys("172.16.27.12");
         MyCommonAPIs.sleepi(2);
-        radiusServerSecret.sendKeys("Netgear1@");
+        radiusServerSecret.shouldBe(Condition.visible).sendKeys("Netgear1@");
         MyCommonAPIs.sleepi(2);
-        radiusSaveButton.click();
+        radiusSaveButton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(1);
 
     }
@@ -1479,6 +1482,14 @@ public class AccountPage extends AccountPageElement {
             logger.info("Cannot find location: " + locationName);
         }
         return new AccountPage();
+    }
+    
+    public void gotoradiusServerPage(String loc) {
+        MyCommonAPIs.sleepi(5);
+        editNetwork(loc);
+        MyCommonAPIs.sleepi(5);
+        radiusText.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
     }
     
     

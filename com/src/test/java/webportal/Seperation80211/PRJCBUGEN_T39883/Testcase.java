@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
         ssidInfo.put("Fastroaming", "true");
-        ssidInfo.put("BandSteering", "true"); 
+        ssidInfo.put("Bandsteering", "true"); 
         new WirelessQuickViewPage().addSsid(ssidInfo);      
     }
     
@@ -79,7 +79,34 @@ public class Testcase extends TestCaseBase {
         MyCommonAPIs.sleepi(30);
         assertTrue(new APUtils(WebportalParam.ap1IPaddress).get11REnableStatusnew(WebportalParam.ap1Model),"Fastroaming not enabled");
         assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBandSteeringStatus(WebportalParam.ap1Model),"BandSteering  not enabled");
-        assertTrue(new WirelessQuickViewPage().connectClient1(ssidInfo),"Ssid did not get connected");
+        //assertTrue(new WirelessQuickViewPage().connectClient1(ssidInfo),"Ssid did not get connected");
+        int sum = 0;
+        while (true) {
+            MyCommonAPIs.sleepi(10);
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp39883")
+                    .indexOf("true") != -1) {
+                break;
+            } else if (sum > 30) {
+                assertTrue(false, "Client cannot connected.");
+                break;
+            }
+            sum += 1;
+        }
+
+        boolean result1 = true;
+        if (!new Javasocket()
+                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp39883 123456798 WPA2PSK aes")
+                .equals("true")) {
+            result1 = false;
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp39883 123456798 WPA2PSK aes")
+                    .equals("true")) {
+                result1 = true;
+            }
+        }
+
+        assertTrue(result1, "Client cannot connected.");
        
     }
     

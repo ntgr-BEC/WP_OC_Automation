@@ -66,7 +66,6 @@ public class Testcase extends TestCaseBase {
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
         new WirelessQuickViewPage().addSsid1(ssidInfo); 
-        Map<String, String> ECPInfo = new HashMap<String, String>();
         ECPInfo.put("Walled Garden", "*.jazenetworks.com");
         ECPInfo.put("Splash Page URL", "http://portal.jazenetworks.com/netgear/");
         ECPInfo.put("Captive Portal Authentication Type", "Radius");
@@ -81,6 +80,7 @@ public class Testcase extends TestCaseBase {
         
         @Step("Test Step 3: Check config ppush;")
         public void step3() {
+            MyCommonAPIs.sleepi(300);
             String CMD = "WalledGarden" ;
             String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
             System.out.println(Result);
@@ -116,7 +116,7 @@ public class Testcase extends TestCaseBase {
          
     @Step("Test Step 5: add ECP;")
     public void step5() {
-        Map<String, String> ECPInfo = new HashMap<String, String>();
+
 
         new WirelessQuickViewPage().editmodeECP(ssidInfo.get("SSID"), ECPInfo);
         MyCommonAPIs.sleepi(60);
@@ -124,8 +124,8 @@ public class Testcase extends TestCaseBase {
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
         System.out.println(Result);
-        assertTrue(Result.contains(ECPInfo.get("Walled Garden")), "ECP walled Garden is not applied");
-        assertTrue(Result.contains(ECPInfo.get("Walled Garden1")), "ECP walled1 Garden is not applied");
+        assertTrue(Result.contains(ECPInfoGoZone.get("Walled Garden")), "ECP walled Garden is not applied");
+        assertTrue(Result.contains(ECPInfoGoZone.get("Walled Garden1")), "ECP walled1 Garden is not applied");
         
         
         String CMD1 = "SplashPageURL" ;
@@ -136,12 +136,12 @@ public class Testcase extends TestCaseBase {
         String CMD2 = "wlan0:vap7 | grep -i exCpPriRadAuthServer" ;
         String Result2 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD2);
         System.out.println(Result2);
-        assertTrue( Result2.contains(ECPInfo.get("Primary Address"))  && Result2.contains("1812"), "Primary Address not pushed");
+        assertTrue( Result2.contains(ECPInfoGoZone.get("Primary Address"))  && Result2.contains("1812"), "Primary Address not pushed");
         
         String CMD3 = "wlan0:vap7 | grep -i exCpSecRadAcntServer" ;
         String Result3 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);
         System.out.println(Result3);
-        assertTrue( Result3.contains(ECPInfo.get("Secondary Address"))  && Result3.contains("1813"), "Secondary Address not pushed");
+        assertTrue( Result3.contains(ECPInfoGoZone.get("Secondary Address"))  && Result3.contains("1813"), "Secondary Address not pushed");
         
         
     }

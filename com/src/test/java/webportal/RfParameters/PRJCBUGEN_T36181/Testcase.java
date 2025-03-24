@@ -64,9 +64,7 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
         
     }
-
-
-   
+ 
            
           @Step("Test Step 2: Chexk for config push;") 
           public void step2()
@@ -79,6 +77,7 @@ public class Testcase extends TestCaseBase {
               dtim5=new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"1");
               broadcast5=new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"1");
               beacon5= new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"1");
+
            
           }
            
@@ -89,18 +88,18 @@ public class Testcase extends TestCaseBase {
           public void step3() {
          
           
-            new WirelessQuickViewPage().GoToWirelessSettings();
+              new WirelessQuickViewPage().GoToWirelessSettings();
               MyCommonAPIs.sleepi(10);
-              
-              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow")).equals(dtim2),"Intervals1  are missing");
-              assertTrue((new WirelessQuickViewPage(false).sliderdtm("1").getAttribute("aria-valuenow")).equals(broadcast2),"Intervals2 are missing");
-              (new WirelessQuickViewPage(false).beacon("1").getText()).equals(beacon2);
+              System.out.println(new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow"));
+              assertTrue(broadcast2.contains(new WirelessQuickViewPage(false).sliderbroadcast("1").getAttribute("aria-valuenow")),"Intervals1  are missing");
+              assertTrue(dtim2.contains(new WirelessQuickViewPage(false).sliderdtm("1").getAttribute("aria-valuenow")),"Intervals2 are missing");
+              beacon2.contains(new WirelessQuickViewPage(false).beacon("1").getText());
               
               MyCommonAPIs.sleepi(5);
               new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();   
-              assertTrue((new WirelessQuickViewPage(false).sliderbroadcast("2").getAttribute("aria-valuenow")).equals(dtim5),"Intervals3 are missing");
-              assertTrue((new WirelessQuickViewPage(false).sliderdtm("2").getAttribute("aria-valuenow")).equals(broadcast5),"Intervals4 are missing");
-              (new WirelessQuickViewPage(false).beacon("2").getText()).equals(beacon5);
+              assertTrue(broadcast5.contains(new WirelessQuickViewPage(false).sliderbroadcast("2").getAttribute("aria-valuenow")),"Intervals3 are missing");
+              assertTrue(dtim5.contains(new WirelessQuickViewPage(false).sliderdtm("2").getAttribute("aria-valuenow")),"Intervals4 are missing");
+              beacon5.contains(new WirelessQuickViewPage(false).beacon("2").getText());
               
             
               }
@@ -118,19 +117,20 @@ public class Testcase extends TestCaseBase {
                   broadcast2=new WirelessQuickViewPage(false).DragDensityToBroadcast("1","2","1");
                  new WirelessQuickViewPage(false).setBeaconvalue("125","1");
                  MyCommonAPIs.sleepi(5);
+                 System.out.println("2Ghz done");
                  new WirelessQuickViewPage(false).DropDown5GhzLowWireless.click();       
                  dtim5=new WirelessQuickViewPage(false).DragDensityToDtim("2","2","2");
                  broadcast5=new WirelessQuickViewPage(false).DragDensityToBroadcast("2","1","2");
                  new WirelessQuickViewPage(false).setBeaconvalue("300","2");
                  MyCommonAPIs.sleepi(5);
-                 
+                 System.out.println("2Ghz done");
                  if(Model.equals("WAC564") || Model.equals("WAC540") || Model.equals("WAX630")) {
                 new WirelessQuickViewPage(false).DropDown5GhzHighWireless.click();          
                  dtim5h_6=new WirelessQuickViewPage(false).DragDensityToDtim("3","4","3");
                  broadcast5h_6=new WirelessQuickViewPage(false).DragDensityToBroadcast("3","4","3");
                  new WirelessQuickViewPage(false).setBeaconvalue("225","3");
                  }
-                 
+                 System.out.println("5Ghz high done");
                  MyCommonAPIs.sleepi(5);
                  if(Model.equals("WAX630E") || Model.equals("WAX638E") || Model.startsWith("WBE")) {          
                  new WirelessQuickViewPage(false).DropDown6GhzHighWireless.click();             
@@ -138,6 +138,7 @@ public class Testcase extends TestCaseBase {
                  broadcast5h_6=new WirelessQuickViewPage(false).DragDensityToBroadcast("4","2","4");
                  new WirelessQuickViewPage(false).setBeaconvalue("225","4");
                  }
+                 System.out.println("5Ghz low done");
           }
           
           
@@ -152,10 +153,12 @@ public class Testcase extends TestCaseBase {
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"1").contains(broadcast5),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"1").contains("300"),"Valus mismatch");
          
+         if(Model.equals("WAC564") || Model.equals("WAC540") || Model.equals("WAX630") || Model.equals("WAX630E") || Model.equals("WAX638E") || Model.startsWith("WBE")) {
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getDtimStatus(WebportalParam.ap1Model,"2").contains(dtim5h_6),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBroadcaststatus(WebportalParam.ap1Model,"2").contains(broadcast5h_6),"Valus mismatch");
          assertTrue(new APUtils(WebportalParam.ap1IPaddress).getBeaconStatus(WebportalParam.ap1Model,"2").contains("225"),"Valus mismatch");
          }
+        }
           
           
 

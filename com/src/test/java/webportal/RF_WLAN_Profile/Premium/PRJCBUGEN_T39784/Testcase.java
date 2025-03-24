@@ -36,8 +36,9 @@ public class Testcase extends TestCaseBase {
 
     Map<String, String> RFdata = new HashMap<String, String>();
     Map<String, String> RFdata1 = new HashMap<String, String>();
+    String RFDescriptionedit = "BEC Insight Automation Team";
     
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39784") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that General tab only the description parameters - description of the profile, it can modified") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39784") // It's a testcase id/link from Jira Test Case.
@@ -49,8 +50,6 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {   
-        new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
         System.out.println("start to do tearDown");
 
     }
@@ -62,35 +61,42 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
 
     
-    @Step("Test Step 2: Create RF profile")
+    @Step("Test Step 2: Create RF Profile")
     public void step2() {
-        
+       
+        new WirelessQuickViewPage().GotoRF();
+        Map<String, String> RFdata = new HashMap<String, String>();
         RFdata.put("RFName", "Netgear");
         RFdata.put("RFDescription", "BEC Automation Team");
-        RFdata.put("RFDescriptionEdit", "BEC Automation Team, Check edit");
-        RFdata.put("Copy Configurations", "Open Office");
-        
-        
-        new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
         assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
        
     }
     
     
-    @Step("Test Step 3: Edit RF profile")
+    @Step("Test Step 3: Verify RF Profile")
     public void step3() {
-        new WirelessQuickViewPage(false).VerifyDis(RFdata);     
+       
         new WirelessQuickViewPage().GotoRF();
-        
-        assertTrue(new WirelessQuickViewPage(false).DisRFprofile(RFdata.get("RFDescriptionEdit")).isDisplayed(),"sdsjdfjs");
-  
+        new WirelessQuickViewPage(false).clickEditRFOnlyDescription("Netgear",RFDescriptionedit);
+        new WirelessQuickViewPage().GotoRF();
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist("Netgear"),"RF Not created");
+       
+    }
+    
+    @Step("Test Step 4: Delete RF Profile")
+    public void step4() {
+       
+        new WirelessQuickViewPage().GotoRF();
+        new WirelessQuickViewPage(false).deleteRF("Netgear");
+       
+       
     }
 
 }

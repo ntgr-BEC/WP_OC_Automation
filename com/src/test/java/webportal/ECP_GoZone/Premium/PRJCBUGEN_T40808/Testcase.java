@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Validate the Configuration;")
     public void step3() {
-
+        MyCommonAPIs.sleepi(300);
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
         System.out.println(Result);
@@ -99,10 +99,10 @@ public class Testcase extends TestCaseBase {
         String CMD3 = "wlan0:vap7 | grep -i exCpSecRadAcntServer" ;
         String Result3 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);
         System.out.println(Result3);
-        assertTrue( Result2.contains(ECPInfo.get("Secondary Address"))  && Result2.contains("1813"), "Secondary Address not pushed");
+        assertTrue( Result3.contains(ECPInfo.get("Secondary Address"))  && Result3.contains("1813"), "Secondary Address not pushed");
         
         String CMD4 = "exCpFailSafe" ;
-        String Result4 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD3);
+        String Result4 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD4);
         System.out.println(Result4);
         assertTrue( Result4.contains("exCpFailSafe 1"), "ECP FailSafe is not enabled");
         

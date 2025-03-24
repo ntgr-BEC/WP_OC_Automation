@@ -151,7 +151,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement closePopUp                = $x("//*[@id=\"rebootModal\"]/div/div/div[1]/button/img");
     public SelenideElement Bluebanner                = $x("//*[@id=\"pWarnIconsubscriptions\"]");
     public SelenideElement Bluebannerlink            = $x("//*[@id=\"pWarnIconsubscriptions\"]/span");
-    public SelenideElement DevicesTab                = $x("//th[contains(text(), 'Reboot Status')]");
+    public SelenideElement DevicesTab                = $x("//*[contains(text(), 'Reboot Status')]");
     public SelenideElement ContinueButton            = $x("//*[@id=\"rebootModal\"]/div/div/div[3]/button[2]");
     public SelenideElement ChecktheStatus            = $x("//*[@id=\"DataTables_Table_1\"]/tbody/tr/td[6]/div/p/text()");
     public SelenideElement goDeviceTab               = $x("//*[@id=\"divSideBarSecEditVlan\"]/div/div[2]/a");
@@ -225,7 +225,7 @@ public class OrganizationElement extends MyCommonAPIs {
 //    }
     
     public SelenideElement Status(String name) {
-        SelenideElement Status = $x("//td[text() = '" + name + "']//../td[8]/div/p");
+        SelenideElement Status = $x("//div[text() = '" + name + "']//../div[8]");
         return Status;
     }
     
@@ -342,10 +342,10 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement radiusType                    = $x("//select[@id='radius']");
     public SelenideElement policy                        = $x("//select[@id='policy']");
     public SelenideElement orgwidessidCaptivePortal      = $x("(//a[text()='Captive Portal'])[1]");
-    public SelenideElement enablecaptiveportalText       = $x("//h5[text()='Enable Captive Portal']");
+    public SelenideElement enablecaptiveportalText       = $x("//p[text()='Captive Portal']");
     public SelenideElement onoffcaptiveSwitch            = $x("//span[@id='spnEnableMsgCaptivePortal']");
     public SelenideElement basiccaptiveButton            = $x("//input[@id='cpRadio']");
-    public SelenideElement basiccaptiveText              = $x("(//p[text()='Basic Captive Portal'])[1]");
+    public SelenideElement basiccaptiveText              = $x("//p[text()='Use Internal (free)']/..//input[@name='cpStatus']");
     public SelenideElement saveButton                    = $x("//button[@id='btnSavCapPort']");
     public SelenideElement okaysuccessbtn                = $x("//button[@id='SuccessCapPort']");
     public SelenideElement errorMsg1                     = $x("//li[text()='SSID maximum number exceeded.']"); //("(//li/text())[3]"); //("((//div[@class='modal-body'])[13]/div/div/ul/li/text())[1]");
@@ -404,7 +404,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement        rateLimittabSSID      = $x("//th[text()='Rate Limiting']");
     public SelenideElement        rateLimitOnStatus     = $x("//td[text()='On']");
     public SelenideElement        icpCreditsOrg     = $x("//td//span[text()='Instant Captive Portal Credits']");
-    public SelenideElement        icpCreditAllocation     = $x("(//input[@type=\"text\"])[11]");
+    public SelenideElement        icpCreditAllocation     = $x("//span[text()='Instant Captive Portal Credits']/../..//input[@type='text']");
     public SelenideElement        orgSSIDSaveAndConfigBtn  = $x("//button[text()='Save and Configure']");
     public SelenideElement        addVLANLink                      = $x("//span[@class='addVLANLink']");
     public SelenideElement        customDVLAN                      = $x("//input[@value='Custom SSID VLAN']");
@@ -636,7 +636,7 @@ public class OrganizationElement extends MyCommonAPIs {
     }
     
     public SelenideElement dropdownOrganizationElementNew(String name) {
-        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../..");
+        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../../../..");
         return dropdownelementnew;
     }
     

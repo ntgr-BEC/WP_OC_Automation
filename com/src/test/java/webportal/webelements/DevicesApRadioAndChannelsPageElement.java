@@ -19,7 +19,8 @@ public class DevicesApRadioAndChannelsPageElement extends MyCommonAPIs {
     public SelenideElement fiveGHzChannel              = $x("(//div[@id='divChnRadiChnl'])[2]//select");
     public SelenideElement fiveGHzChannelWidth         = $x("(//div[@id='divOnOdSetRadiChnl'])[2]//select");
     public SelenideElement fiveGHzOutputPower          = $x("(//div[@id='divSettRadiChnl'])[2]//select");
-    public SelenideElement openFiveGHzHighTier         = $x("(//h3[@id='hServRadiChnl'])[3]");
+    public SelenideElement openFiveGHzHighTier1         = $x("(//h3[@id='hServRadiChnl'])[3]");
+    public SelenideElement openFiveGHzHighTier2         = $x("(//h3[@id='hServRadiChnl'])[2]");
     public SelenideElement fiveGHzHighChannel          = $x("(//div[@id='divChnRadiChnl'])[3]//select");
     public SelenideElement fiveGHzHighChannelWidth     = $x("(//div[@id='divOnOdSetRadiChnl'])[3]//select");
     public SelenideElement fiveGHzHighOutputPower      = $x("(//div[@id='divSettRadiChnl'])[3]//select");

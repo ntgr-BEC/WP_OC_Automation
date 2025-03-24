@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         new OrganizationPage(false).openOrg(organizationName);
         MyCommonAPIs.sleepi(10);
-        new DevicesDashPage(false).openLocationFromotherOrg();
+        new DevicesDashPage(false).getLocationCurrentLocation(WebportalParam.location1);
         MyCommonAPIs.sleepi(10);
         new DevicesDashPage().deleteDevice1(WebportalParam.ap2serialNo);
         System.out.println("start to do tearDown");

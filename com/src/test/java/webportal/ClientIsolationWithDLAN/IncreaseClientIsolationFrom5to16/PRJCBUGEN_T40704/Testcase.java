@@ -52,6 +52,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do tearDown");
         handle.gotoLoction();
         new WirelessQuickViewPage().deleteSsidYes("apwp40704");
+        new WirelessQuickViewPage().gotoAddMPSKKey();
         new WirelessQuickViewPage().deleteMPSKKey();
 
     }
@@ -69,6 +70,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add MPSK Key.")
     public void step2() {
         
+        new WirelessQuickViewPage().gotoAddMPSKKey();
         assertTrue(new WirelessQuickViewPage().addMPSKKey1(), "MPSK key is not added successfully");
         
     }

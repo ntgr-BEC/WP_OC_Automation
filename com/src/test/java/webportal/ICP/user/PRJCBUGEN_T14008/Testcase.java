@@ -16,6 +16,7 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
+import webportal.weboperation.GenericMethods;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
@@ -69,7 +70,7 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage(false).enablecaptiveportal.click();
         MyCommonAPIs.sleepi(3);
         assertTrue(new WirelessQuickViewPage(false).selectfacebookwifi.exists() && new WirelessQuickViewPage(false).selectbasiccaptive.exists()
-                && new WirelessQuickViewPage(false).selectinsightcaptiveportal.exists(), "Captive portal page display error.");
+                && GenericMethods.checkVisibleElements(new WirelessQuickViewPage(false).selectinsightcaptiveportal), "Captive portal page display error.");
     }
 
 }

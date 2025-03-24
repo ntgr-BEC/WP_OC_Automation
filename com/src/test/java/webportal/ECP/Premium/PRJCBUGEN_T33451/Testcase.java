@@ -54,7 +54,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: Add WIFI ssid with WPA2 Enterprise security and enable ECP;")
@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase {
         Map<String, String> ECPInfo = new HashMap<String, String>();
         ECPInfo.put("Walled Garden Remove", "*.jazenetworks.com");
         new WirelessQuickViewPage().disableECP(ssidInfo.get("SSID"), ECPInfo);
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(300);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

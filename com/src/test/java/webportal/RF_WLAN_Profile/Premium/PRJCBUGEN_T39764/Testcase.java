@@ -36,7 +36,7 @@ public class Testcase extends TestCaseBase {
 
     Map<String, String> RFdata = new HashMap<String, String>();
     
-    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
     @Story("PRJCBUGEN_T39764") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to create an RF Profiles with following parameters the name of the profile ,Copy Configurations of a RF profile with preferred settings,Preferred RF Profile Description") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN-T39764") // It's a testcase id/link from Jira Test Case.
@@ -61,11 +61,11 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: Delete device and enable IGMP")
+    @Step("Test Step 2: CreateRFProfile")
     public void step2() {
         
         RFdata.put("RFName", "Netgear");

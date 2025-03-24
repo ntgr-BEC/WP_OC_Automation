@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.$x;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
@@ -21,10 +22,10 @@ public class AccountPageElement extends MyCommonAPIs {
 
     // locationBarIcons
     public SelenideElement        addInsightIncludedDev = $x("//div[contains(@class,'insightIncluded ')]/button");
-    public static SelenideElement addNetWorkButton1     = $(".icon-add-2.dropdown-toggle");
+    public static SelenideElement addNetWorkButton1     = $(".icon-add.dropdown-toggle");
     public static SelenideElement Locationgrid          = $("//*[@id=\"addLocationIcon\"]/span");
-    public SelenideElement        addMultiplelocations  = $(Selectors.byXpath("//*[@id=\"addLocationIcon\"]/ul/li[2]/a"));
-    public SelenideElement        addMultiplelocations0 = $(Selectors.byXpath("//*[@id=\"addLocationIcon\"]/ul/li[1]/a"));
+    public SelenideElement        addMultiplelocations  = $(Selectors.byXpath("//*[@data-tooltip=\"Add Location\"]/ul/li[2]/a"));
+    public SelenideElement        addMultiplelocations0 = $(Selectors.byXpath("//*[@data-tooltip=\"Add Location\"]/ul/li[1]/a"));
     public SelenideElement        MessageAlert          = $x("//*[@id=\"addNetwork\"]/div");
     public SelenideElement        ImageIcon             = $x("//*[@id=\"file\"]");
     ElementsCollection            Image_elems           = $$("//*[@class='location-pic']/a/img");
@@ -143,26 +144,38 @@ public class AccountPageElement extends MyCommonAPIs {
 
     public SelenideElement locationName(String text) {
         waitReady();
-        if (!$("#_divColNoNetWork").exists() & !$x("//p[text()='Networks not available']").exists()) {
-            waitElement("//div[@class='locationDiv']");
+        if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
+            waitElement("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
         }
-        SelenideElement location = $x("//div[@class='locationDiv']//span[text()='" + text + "']");
+        SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
         return location;
     }
 
     public void editLocation() {
         waitReady();
-        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/a").click();
-        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/ul/li[1]").click();
+//        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/a").click();
+//        $x("//span[text()='" + WebportalParam.location1 + "']/../../../ul/li/ul/li[1]").click();
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(WebportalParam.location1).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
     }
 
     public void editNetwork(String Name) {
-        $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
-        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
-            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
-        }
+//        $x("//p[@title='" + Name + "']/../../ul/li/a").click();
+//        if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").exists()) {
+//            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit location']/..").click();
+//        } else if ($x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").exists()) {
+//            $x("//p[@title='" + Name + "']/../../ul//b[text()='Edit']/..").click();
+//        }
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(Name).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
 
     }
 
@@ -211,10 +224,13 @@ public class AccountPageElement extends MyCommonAPIs {
 
     public void deleteLocation(String Name) {
         MyCommonAPIs.sleepi(15);
+        SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
+        if( $x("//p[@title='" + Name + "']/../../ul/li/a").exists())
+        {
         $x("//p[@title='" + Name + "']/../../ul/li/a").click();
         String deleteLocation1 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..",WebportalParam.getLocText("Delete location"));
         String deleteLocation2 = String.format("//p[@title='" + Name + "']/../../ul//b[text()='%s']/..", WebportalParam.getLocText("Delete"));
-        SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
+        
         SelenideElement deleteLocation4 = $x("//button[@class='btn btn-danger' and text()='Delete']");
         SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
         SelenideElement deleteLocation6 = $x("//button[@class='btn btn-danger' and text()='Yes, delete location']");
@@ -241,9 +257,20 @@ public class AccountPageElement extends MyCommonAPIs {
             waitElement(deleteLocation6);
             deleteLocation6.click();
             }
-//        clickBoxLastButton();
-        MyCommonAPIs.sleepi(5);
+        }
+        else
+        {
+            String rowindex=dropdownLocationElementNew(Name).getAttribute("aria-rowindex");
+            MyCommonAPIs.sleepi(2);
+            ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(2);
+            ariaSetIndexDelete(rowindex).shouldBe(Condition.visible).click();
+        }
+        MyCommonAPIs.sleepi(10);
+        if(deleteLocation3.shouldBe(Condition.visible).isDisplayed()) {
+            deleteLocation3.shouldBe(Condition.visible).click();
         
+    }
     }
     
     public SelenideElement        checkPassword               = $x("//input[@value=\"Netgear2@\"]");
@@ -294,4 +321,27 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement        radiusServerSecret          = $x("//input[@id='primarySecret']");
     public SelenideElement        editNetwork                 = $x("//img[@class='location-logo' and @id='headerLocImg']");
     public SelenideElement        addNetworkButton            = $x("//div[@id='_divAddIconAccnt']");
+    
+    public SelenideElement dropdownLocationElementNew(String name) {
+        SelenideElement dropdownelementnew = $x("//p[text()='"+name+"']/../../..");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndex(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//div[@aria-colindex='7']/div/span");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexDelete(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexEdit(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement        nasIdentifier            = $x("//input[@id='nasIdentifierValue']");
+    public SelenideElement        createNewLocationButton  = $x("//button[contains(text(),'new location')]");
 }

@@ -22,6 +22,7 @@ import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.webelements.AccountPageElement;
 import webportal.webelements.MDNSElement;
 
 /**
@@ -38,7 +39,8 @@ public class MDNSPage extends MDNSElement {
             new OrganizationPage().openOrg(WebportalParam.Organizations);
             gotoLoction(WebportalParam.location1);
         }
-        editNetwork.click();
+        new AccountPage().editNetwork(WebportalParam.location1);
+
     }
     
     public MDNSPage(boolean noPage) {
@@ -51,10 +53,14 @@ public class MDNSPage extends MDNSElement {
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
         selectGateway.selectOption("AP");
+
         MyCommonAPIs.sleepi(4);     
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+            }
         boolean sta = ($x("//*[@id=\"enableBlackList\"]").isSelected());
         System.out.println(sta);
-        if(sta==false) {
+        if(sta==true) {
             result = true;
         }
         return result;    
@@ -65,9 +71,12 @@ public class MDNSPage extends MDNSElement {
         MyCommonAPIs.sleepi(4);
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
-        selectGateway.selectOption("AP");
+        selectGateway.selectOption("AP");        
         MyCommonAPIs.sleepi(4);      
-        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+        }
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
         MyCommonAPIs.sleepi(4);
         if(OkGotIt.isDisplayed()) {
             OkGotIt.click();
@@ -85,7 +94,9 @@ public class MDNSPage extends MDNSElement {
     
     public void disableMDNS() {          
         MyCommonAPIs.sleepi(5);
-        setSelected($x("//*[@id=\"enableBlackList\"]"), false);
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), false);
+
+        
     }
     
     public boolean DiscoveredServicesCheck() {     
@@ -94,8 +105,11 @@ public class MDNSPage extends MDNSElement {
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
         selectGateway.selectOption("AP");
-        MyCommonAPIs.sleepi(4);     
-        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
+        MyCommonAPIs.sleepi(4); 
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+        }
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
         MyCommonAPIs.sleepi(4);
         if(OkGotIt.isDisplayed()) {
             OkGotIt.click();
@@ -115,16 +129,17 @@ public class MDNSPage extends MDNSElement {
         boolean result = false;
         String warningMessage = "";
         MyCommonAPIs.sleepi(5);
-        MDNSGateway.click();
+        MDNSGateway.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        selectGateway.selectOption("AP");
-        MyCommonAPIs.sleepi(8);     
-        $x("(//button[text()='OK. Got it'])[2]").click();
-        MyCommonAPIs.sleepi(4);
+        selectGateway.shouldBe(Condition.visible).selectOption("AP");
+        MyCommonAPIs.sleepi(5);     
+        if(OkGotIt.shouldBe(Condition.visible).isDisplayed()) {
+            OkGotIt.click();
+        }
         MyCommonAPIs.sleepi(4);     
-        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
-        
-        if (Warrning.exists()) {
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
+        MyCommonAPIs.sleepi(5);          
+        if (Warrning.shouldBe(Condition.visible).exists()) {
             warningMessage = Warrning.getText();
         } else {
             warningMessage = Warrning1.getText();
@@ -194,7 +209,10 @@ public class MDNSPage extends MDNSElement {
         MyCommonAPIs.sleepi(5);
         selectGateway.selectOption("AP");
         MyCommonAPIs.sleepi(4);     
-        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+            }
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
         MyCommonAPIs.sleepi(4);
         if(OkGotIt.isDisplayed()) {
         OkGotIt.click();
@@ -273,17 +291,20 @@ public class MDNSPage extends MDNSElement {
         if(Policyexits.isDisplayed()) {
             System.out.println("Policy exits");
             
-//            executeJavaScript("arguments[0].removeAttribute('class')", editMdNS(MDNSName));
-//            MyCommonAPIs.sleep(3000);
-//            deleteMDNS(MDNSName).waitUntil(Condition.visible, 60 * 1000).click();
+          WebDriver driver = WebDriverRunner.getWebDriver();
+          Actions a = new Actions(driver);
+          a.moveToElement(Policyexits).perform();
+            
+            
+            executeJavaScript("arguments[0].removeAttribute('class')", editMdNS(MDNSName));
+            MyCommonAPIs.sleep(3000);
+            deleteMDNS(MDNSName).waitUntil(Condition.visible, 60 * 1000).click();
 
             
-            WebDriver driver = WebDriverRunner.getWebDriver();
-            Actions a = new Actions(driver);
-            JavascriptExecutor js = (JavascriptExecutor)driver;
-            js.executeScript("window.scrollBy(0, 250)", "");
-            a.moveToElement(Policyexits).perform();
-            a.moveToElement(deleteMDNS(MDNSName)).click().perform();
+//            WebDriver driver = WebDriverRunner.getWebDriver();
+//            Actions a = new Actions(driver);
+//            a.moveToElement(Policyexits).perform();
+//            a.moveToElement(deleteMDNS(MDNSName)).click().perform();
             
             MyCommonAPIs.sleep(6000);
             deletessidyes.click();
@@ -318,12 +339,15 @@ public class MDNSPage extends MDNSElement {
         MyCommonAPIs.sleepi(5);
         MDNSGateway.click();
         MyCommonAPIs.sleepi(5);
-        selectGateway.selectOption("AP");
+        selectGateway.selectOption("AP");        
         MyCommonAPIs.sleepi(5);     
-        setSelected($x("//*[@id=\"enableBlackList\"]"), true);
-        MyCommonAPIs.sleepi(5);
-        waitElement(OkGotIt);
-        if(OkGotIt.exists()) {
+        if(OkGotIt.isDisplayed()) {
+            OkGotIt.click();
+            }
+        setSelected1($x("//h5[text()='mDNS Gateway']/../..//span[@class=\"cstmSlider cstmRound\"]"), true);
+
+        MyCommonAPIs.sleepi(8);
+        if(OkGotIt.isDisplayed()) {
         OkGotIt.click();
         }
         MyCommonAPIs.sleepi(4);

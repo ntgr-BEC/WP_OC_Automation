@@ -73,9 +73,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        enableredirecturl         = $x("//h5[@id='hRedUrlCapPort']/..//span");
     public SelenideElement        inputredirecturl          = $x("//div[@id=\"divREdUrCapPort\"]//input");
     public SelenideElement        inputtitle                = $x("//div[@id=\"divOnOffTitCapPort\"]//input");
-    public SelenideElement        inputmessage              = $x("//div[@id=\"divOnOffMsgSetCapPort\"]//input");
-    public SelenideElement        savecaptive               = $("#btnSavCapPort");
-    public SelenideElement        captiveok                 = $("#SuccessCapPort");
+    public SelenideElement        inputmessage              = $x("//input[@id='welcomeMsg']"); 
+    public SelenideElement        savecaptive               = $x("//button[text()='Next' and @class='btn saveBtn ']");
+    public ElementsCollection        captiveok                 = $$x("//button[text()='OK']");
     public SelenideElement        enterratelimit            = $x("//div/a[text()='Rate Limiting']");
     public SelenideElement        enableratelimit           = $x("//h5[text()='Enable Settings']/..//span");
     public SelenideElement        uploadrate                = $x("//h5[text()='Upload Rate Unit']/../select");
@@ -238,9 +238,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement CancelEXSSID            = $x("//*[@id=\"divMainWirSett\"]/div[3]/div[1]/div/div/div[5]/button[1]");
   
     
-    
-
-    public SelenideElement        selectinsightcaptiveportal    = $x("//input[@id='instantCpRadio']/..");
+//    public SelenideElement        selectinsightcaptiveportal    = $x("//input[@type='radio' and @name='cpStatus' and @value='2']");
+     public ElementsCollection        selectinsightcaptiveportal    = $$x("//p[text()=\"Instant Captive Portal\"]");
+//     public ElementsCollection        selectinsightcaptiveportals    = $$x("//p[text()=\"Instant Captive Portal\"]");
      public SelenideElement       selectinsightECP              = $x("//*[@name=\"cpStatus\"and @value =3]/..");
     public SelenideElement        checkIcpSelected              = $x("//input[@id='instantCpRadio']");
     public SelenideElement        icpinsufficientcredit         = $x("//div[contains(@style,'display: block;')]//button[@id='insufficientCredit']");
@@ -321,9 +321,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
     public SelenideElement AdvanceWirelessSetting = $x("//a[text()='Advanced Network Settings']");
     public SelenideElement Advance                = $x("//*[text() = 'Advanced']");
-    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])[2]");
+    public SelenideElement Advance1                = $x("(//*[text() = 'Advanced'])");
     public SelenideElement NetworkSettings        = $x("(//*[text() = 'Network Settings'])[1]");
-    public SelenideElement WirelessSetting        = $x("(//*[text() = 'Wireless Settings'])[2]");
+    public SelenideElement WirelessSetting        = $x("//ul[@class='leftMenuSecondLevel']//a[text()='Wireless Settings']");
     public SelenideElement MeshSetting            = $x("//*[text() = 'Mesh Settings']");
     public SelenideElement staIGMP                = $x("//*[@id=\"divConSecCOlMdWirSett\"]/div[1]/div/div/div/div[2]/label/span");
     public SelenideElement staIGMP1               = $x("//input[@id='enableBlackList'])[2]");
@@ -633,9 +633,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        save80211                  = $x("//*[@id=\"btnSaveSsideditWirNet\"]");
     public SelenideElement        ok80211                  = $x("//*[@id=\"SuccsEditWirNet\"]");
     public SelenideElement        check80211                  = $x("//*[@id=\"divClearFixeditWirNet\"]/div[4]/div/div/div[2]/label/span");
-    public SelenideElement        Warrning                  = $x("(//*[text()='Warning'])[4]");
+//    public SelenideElement        Warrning                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
+    public SelenideElement        Warrning                  = $x("//*[text()='OK']");
     public SelenideElement        Warrning1                  = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[3]");
-    public SelenideElement        okFast                  = $x("(//div[@class=\"modal-dialog custompoup\"]//h4[text()='Warning']/../../..//button[text()='OK'])[1]");
+    public SelenideElement        okFast                  = $x("//*[contains(text(), 'performance')]/../div[3]/button");
     
     public SelenideElement        SDM                  = $x("//*[@id=\"divSideBarSecEditVlan\"]/div/div[10]/a");
     public SelenideElement        enableSDM            = $x("//*[@id=\"inpCheckBoxDiagMod\"]");
@@ -681,9 +682,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        band24                 = $x("//input[@type=\"checkbox\"][@id=\"band_2\"]//../i");
     public SelenideElement        band5                  = $x("//input[@type=\"checkbox\"][@id=\"band_5\"]//../i");
     public SelenideElement        band6                  = $x("//input[@type=\"checkbox\"][@id=\"band_6\"]//../i");
-    public SelenideElement        checkband24                 = $x("//*[@id=\"band_2\"]");
-    public SelenideElement        checkband5                  = $x("//*[@id=\"band_5\"]");
-    public SelenideElement        checkband6                  = $x("//*[@id=\"band_6\"]");
+    public SelenideElement        checkband24                 = $x("//*[@id=\"band_2\"]/../i");
+    public SelenideElement        checkband5                  = $x("//*[@id=\"band_5\"]/../i");
+    public SelenideElement        checkband6                  = $x("//*[@id=\"band_6\"]/../i");
     
 //    locatedevice
     public SelenideElement        Locatedevice                       = $x("//*[@id=\"spnStDetSumm\"]/a[2]/small");
@@ -815,9 +816,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement       saveedit                                 = $x("(//button[text()='Save'])[2]");  
     public SelenideElement       saveedfinal                              = $x("//*[@id=\"SuccsEditWirNet\"]");  
  
-   //Elements added by Patik for MPSK
+   //Elements added by Patik forMPSK
     
-    public SelenideElement        office1LocationBtn                          = $x("//*[@id=\"_divlocDiv0\"]");
+    public SelenideElement        office1LocationBtn                          = $x("//*[@col-id='locations']/..//*[@class='linkUnderlin']");
     public SelenideElement        wirelessTab                                 = $x("//*[@id=\"openCommonMenuBar\"]/ul/li[4]/a[1]");
     public SelenideElement        settingBtn                                  = $x("//*[@id=\"divLocBarwirquickView\"]/div[2]/a");
     public SelenideElement        advanceSettingsBtn                          = $x("(//*[text() = 'Advanced'])[2]");
@@ -1000,7 +1001,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement orgWideSSIDedit1            = $x("//td[text()='Enable']");
      public SelenideElement orgwideSSIDIPCErrrorMsgPopup            = $x("//h4[text()='Insufficient Credits.']");
      public SelenideElement btnInsufcred            = $("#insufficientCredit");
-     public SelenideElement cancelorgSSIDBtn            = $("#btnCanCapPOrt");
+     public SelenideElement cancelorgSSIDBtn            = $x("//a[text()='Cancel']");
      public SelenideElement orgwidessidedit2            = $x("(//td[text()='Enable'])[2]");
      
      
@@ -1093,7 +1094,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
 //     ECP by tejeshwini K V
    
-     public SelenideElement        ECPRadio                 = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[6]");
+     public SelenideElement        ECPRadio                 = $x("//*[text()=\"Warning\"]");
      public SelenideElement        editECPRadio             = $x("(//*[@id=\"myModal\"]/div/div/div[2]/p)[5]");
      public SelenideElement        ECPProceed               = $x("//*[@id=\"walledGarden\"]");
      public SelenideElement        okECP                    = $x("//*[@id=\"enterpriseSecurityECPWarning\"]");
@@ -1444,7 +1445,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      public SelenideElement GeneralRFName                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[1]/input");
      public SelenideElement GeneralRFDis                 = $x("//*[@id=\"macIPfilter\"]/div[2]/div/div/div/div[2]/input");
-     public SelenideElement Saveedit                     = $x("//*[@id=\"general_save\"]");
+     public SelenideElement Saveedit                     = $x("//*[@id=\"instant_save\"]");
      
      public SelenideElement DevicelistName                 = $x("//*[@id=\"macIPfilter\"]/div[2]/table/thead/tr/th[1]");
      public SelenideElement DevicelistSerialNumber         = $x("//*[@id=\"macIPfilter\"]/div[2]/table/thead/tr/th[2]");
@@ -1555,7 +1556,18 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement NASID                         = $x("//*[@data-type=\"nasIdentifier\"]");
 	 public SelenideElement selectGoZone                  = $x("//*[text()=\"GoZone Wi-Fi\"]");
 	 public SelenideElement SelectUseExternal             = $x("//*[@name=\"cpStatus\"and @value =3]");
-	 public SelenideElement orgwidessidCaptivePortal      = $x("//a[text()='Captive Portal' and @class = 'anchoractiveLeftMenu']");
+	 public SelenideElement orgwidessidCaptivePortal      = $x("//div[@id='divSideBarSecEditVlan']//a[text()='Captive Portal' and @href = '#/organization/captivePortalOrgWide']");
+	 
+	 public SelenideElement Advance2                = $x("//*[text() = 'Advanced']");
+	 public SelenideElement mpskSettingOpt1         = $x("//*[text() = 'Multi PSK Settings']");
+	 
+	 //Pratik
+	 public SelenideElement bcpRadiobutton 								= $x("//p[text()='Use Internal (free)']/ancestor::label");
+	 public SelenideElement ecpRadiobutton 								= $x("//p[text()='Use External']/ancestor::label");
+	 public SelenideElement icpRadiobutton 								= $x("//p[text()='Instant Captive Portal']/ancestor::label");
+	 public SelenideElement SaveeditRFRadioChannels                     = $x("//*[@id=\"btnSaveUpdteRadiChnl\"]");
+	 public SelenideElement okaybtneditRFRadioChannels                  = $x("//p[contains(text(),'RF Profile Radio Settings have been saved')]/../..//button[text()='OK']");
+
 }
 
 

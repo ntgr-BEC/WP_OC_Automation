@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 import org.apache.log4j.chainsaw.Main;
@@ -33,6 +34,7 @@ import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.strobel.decompiler.languages.java.ast.Keys;
 
+import groovy.time.Duration;
 import util.APUtils;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
@@ -122,33 +124,50 @@ public class OrganizationPage extends OrganizationElement {
         waitReady();
     }
 
+//    public void openOrg(String name) {
+//        open(URLParam.hreforganization, true);
+//        waitElement(sOrganizationLocationElement1);
+//        boolean located = false;
+//        String newElement = "";
+//        if ($(sOrganizationLocationElement).isDisplayed()) {
+//            System.out.println("inside sOrganizationLocationElement");
+//            newElement = sOrganizationLocationElement;
+//        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
+//            System.out.println("inside sOrganizationLocationElementNew");
+//            newElement = sOrganizationLocationElementNew;
+//        }
+//           System.out.println("----------------------");
+//        waitElement(newElement);
+//        for (SelenideElement se : $$(newElement)) {
+//            if (getText(se).equalsIgnoreCase(name)) {
+//                located = true;
+//                se.click();
+//                break;
+//            }
+//        }
+//        if (!located) {
+//            System.out.println("Not-located");
+//            logger.info("click first location");
+//            $(newElement).click();
+//        }
+//        waitReady();
+//    }
+    
     public void openOrg(String name) {
         open(URLParam.hreforganization, true);
-        waitElement(sOrganizationLocationElement1);
-        boolean located = false;
-        String newElement = "";
-        if ($(sOrganizationLocationElement).isDisplayed()) {
-            System.out.println("inside sOrganizationLocationElement");
-            newElement = sOrganizationLocationElement;
-        } else if ($(sOrganizationLocationElementNew).isDisplayed()) {
-            System.out.println("inside sOrganizationLocationElementNew");
-            newElement = sOrganizationLocationElementNew;
+        MyCommonAPIs.sleepi(2);
+        SelenideElement orgElement = $x("//*[@col-id='orgName']/..//*[text()='" + name + "']");
+        waitElement(orgElement);
+        orgElement.shouldBe(Condition.visible);
+        if (orgElement.exists() && orgElement.isDisplayed()) {
+            orgElement.click();
+            logger.info("Clicked on organization: " + name);
+        } else {
+            logger.info("Organization not found: " + name);
+            throw new NoSuchElementException("Organization " + name + " not found on the page.");
         }
-           System.out.println("----------------------");
-        waitElement(newElement);
-        for (SelenideElement se : $$(newElement)) {
-            if (getText(se).equalsIgnoreCase(name)) {
-                located = true;
-                se.click();
-                break;
-            }
-        }
-        if (!located) {
-            System.out.println("Not-located");
-            logger.info("click first location");
-            $(newElement).click();
-        }
-        waitReady();
+        
+        waitReady(); // Ensure the page is ready after clicking
     }
 
     public void GotoSettings() {
@@ -868,6 +887,7 @@ public class OrganizationPage extends OrganizationElement {
         OrgSettings.click();
         MyCommonAPIs.sleepi(5);
         DeviceReboot.click();
+        System.out.println("Device Reboot Button Section Button Clicked");
         MyCommonAPIs.sleepi(5);
     }
 
@@ -944,6 +964,7 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public boolean CheckBlueBannerHyperLink(String SerialNo) {
+        System.out.println("Going to click BlueBanner Link");
         boolean result = false;
         ExpandDevices.click();
         MyCommonAPIs.sleepi(5);
@@ -1058,6 +1079,8 @@ public class OrganizationPage extends OrganizationElement {
         EndTime.click();
         MyCommonAPIs.sleepi(3);
         increaseHr.click();
+        MyCommonAPIs.sleepi(1);
+        increaseHr.click();
         MyCommonAPIs.sleepi(3);
         SelectTime.click();
         MyCommonAPIs.sleepi(3);
@@ -1075,6 +1098,7 @@ public class OrganizationPage extends OrganizationElement {
             System.out.println("All elements are displayed");
             result = true;
         }
+        MyCommonAPIs.sleepi(20);
         return result;
     }
 
@@ -1354,10 +1378,23 @@ public class OrganizationPage extends OrganizationElement {
 
     public void creditAllocation(String name) {
         MyCommonAPIs.sleepi(15);
-        waitElement(dropdownOrganizationElement(name));
+        
+        if(dropdownOrganizationElement(name).exists()) 
+        {
         dropdownOrganizationElement(name).click();
-        MyCommonAPIs.sleepi(2);
-        allocateCredits.click();
+        addCreditsOrganizationElement(name).click();
+        }
+        else
+        {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexAllocate(rowindex).click();                             
+        }        
+        
+//        waitElement(dropdownOrganizationElement(name));
+//        dropdownOrganizationElement(name).click();
+//        MyCommonAPIs.sleepi(2);
+//        allocateCredits.click();
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
         deviceCreditsTextbox.sendKeys("5");
@@ -1371,9 +1408,17 @@ public class OrganizationPage extends OrganizationElement {
         homePage.click();
         MyCommonAPIs.sleepi(20);
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
+            addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }        
             MyCommonAPIs.sleepi(5);
             if (deviceCredits.exists()) {
                 icpCreditsInput.sendKeys("4");
@@ -2173,11 +2218,11 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(20);
         if (enablecaptiveportalText.exists()) {
             MyCommonAPIs.sleepi(10);
-            onoffcaptiveSwitch.click();
+//            onoffcaptiveSwitch.click();
             MyCommonAPIs.sleepi(10);
             if (basiccaptiveText.exists()) {
                 MyCommonAPIs.sleepi(5);
-                basiccaptiveText.click();
+                basiccaptiveText.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
                 saveButton.click();
                 MyCommonAPIs.sleepi(15);
@@ -2710,7 +2755,7 @@ public class OrganizationPage extends OrganizationElement {
 
         openOrg(OrgName);
         MyCommonAPIs.sleepi(10);
-        Setting.click();
+        Setting.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         waitElement(organizationWideSSID);
         organizationWideSSID.click();
@@ -2736,7 +2781,7 @@ public class OrganizationPage extends OrganizationElement {
 
         new WirelessQuickViewElement().entercaptiveportal.click();
         MyCommonAPIs.sleepi(20);
-        new WirelessQuickViewElement().enablecaptiveportal.click();
+        new WirelessQuickViewElement().ecpRadiobutton.shouldBe(Condition.visible).click();
         // refresh();
         // MyCommonAPIs.sleepi(15);
         // enablecaptiveportal.click();
@@ -2882,18 +2927,28 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void creditAllocationICP(String name) {
-        if (checkOrganizationIsExist(name)) {
-            dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
+//        if (checkOrganizationIsExist(name)) {
+//            if(dropdownOrganizationElement(name).exists()) 
+//            {
+//            dropdownOrganizationElement(name).click();
+//            addCreditsOrganizationElement(name).click();
+//            }
+//        }
+//            else
+//            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  MyCommonAPIs.sleepi(2);
+                  ariaSetIndex(rowindex).click();
+                  MyCommonAPIs.sleepi(2);
+                  ariaSetIndexAllocate(rowindex).click();                             
+            //}        
             MyCommonAPIs.sleepi(5);
-            if (icpCreditsOrg.exists()) {
-                icpCreditAllocation.sendKeys("2");
+            if (icpCreditsOrg.shouldBe(Condition.visible).exists()) {
+                icpCreditAllocation.shouldBe(Condition.visible).sendKeys("2");
                 MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
+                allocateBtn.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
             }
-        }
     }
 
     public void CreateOrgSSId1(Map<String, String> map) {
@@ -3066,9 +3121,17 @@ public class OrganizationPage extends OrganizationElement {
 
     public void creditAllocation1(String name) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
+            addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }        
             MyCommonAPIs.sleepi(5);
             if (deviceCredits.exists()) {
                 deviceCreditsTextbox.sendKeys("12");
@@ -6618,9 +6681,17 @@ public class OrganizationPage extends OrganizationElement {
     //AddedByPratik
     public void creditAllocation11(String name) {
         if (checkOrganizationIsExist(name)) {
+            if(dropdownOrganizationElement(name).exists()) 
+            {
             dropdownOrganizationElement(name).click();
-            MyCommonAPIs.sleepi(2);
-            allocateCredits.click();
+            addCreditsOrganizationElement(name).click();
+            }
+            else
+            {
+                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+                  ariaSetIndex(rowindex).click();
+                  ariaSetIndexAllocate(rowindex).click();                             
+            }        
             MyCommonAPIs.sleepi(5);
             if (deviceCredits.exists()) {
                 deviceCreditsTextbox.sendKeys("1");
@@ -6814,10 +6885,17 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(1);
         organizationElement1(name).click();
         MyCommonAPIs.sleepi(10);
-        waitElement(dropdownOrganizationElement(name));
+        if(dropdownOrganizationElement(name).exists()) 
+        {
         dropdownOrganizationElement(name).click();
-        MyCommonAPIs.sleepi(2);
-        allocateCredits.click();
+        addCreditsOrganizationElement(name).click();
+        }
+        else
+        {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexAllocate(rowindex).click();                             
+        }        
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
         deviceCreditsTextbox.sendKeys("4");

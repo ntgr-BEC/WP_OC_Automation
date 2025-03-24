@@ -64,7 +64,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
     public SelenideElement close = $x("//*[@id=\"addDeviceModal\"]/div/div/div[1]/button/img");
     
-    public String          deviceTable            = "#deviceTable_wrapper tbody";
+    public String          deviceTable            = "div[aria-rowindex='2']";
     public SelenideElement lnLearnMore            = $(".colorPurple.ManagerClTxt");
     public String          txtHowMeshAP           = "#main > div > div:nth-child(3) > div.modal.fade.connectViaMesh.in > div > div > div.modal-header > h4 > div";
     public SelenideElement btnHowMeshAPLeftArrow  = $(".connectViaMesh.in .icon-icon-arrow-previous");
@@ -208,7 +208,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     }
     
     public SelenideElement devicesName(String serialNumber) {
-        return $x("//img[@data-deviceserial='" + serialNumber + "']/ancestor::tr//p[1]/span");
+//        return $x("//img[@data-deviceserial='" + serialNumber + "']/ancestor::tr//p[1]/span");
+        return $x("//div[@aria-rowindex='"+serialNumber+"']//div[@col-id=\"name\"]");
     }
     
     public static int deviceserialNumberIndex = 99;
@@ -231,22 +232,22 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public int getFieldPos(int columnIndex) {
         logger.info("to: " + columnIndex);
         if (99 == deviceserialNumberIndex) {
-            if ($$("#deviceTable tr:first-child td").size() == 1) {
+            if ($$("div[aria-rowindex='2'] > div").size() == 1) {
                 logger.info("No device is found, init next time");
                 return 0;
             }
             deviceserialNumberIndex = 3;
             deviceStatusIndex = 2;
-            if ($$("#deviceTable tr:first-child td").get(9).getAttribute("id").contains("tdUpTimedevicesDash")) {
-                logger.info("it's old device table");
-                deviceIpIndex = 8;
-                deviceModelIndex = 5;
-                deviceUptimeIndex = 10;
-            } else {
-                deviceIpIndex = 10;
-                deviceModelIndex = 5;
-                deviceUptimeIndex = 11;
-            }
+//            if ($$("#deviceTable tr:first-child td").get(9).getAttribute("id").contains("tdUpTimedevicesDash")) {
+//                logger.info("it's old device table");
+//                deviceIpIndex = 8;
+//                deviceModelIndex = 5;
+//                deviceUptimeIndex = 10;
+//            } else {
+//                deviceIpIndex = 10;
+//                deviceModelIndex = 5;
+//                deviceUptimeIndex = 11;
+//            }
         }
         
         if (columnIndex == 0)
@@ -263,11 +264,17 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     }
     
     public SelenideElement devicesModel(String serialNumber) {
-        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceModelIndex));
+        
+//        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceModelIndex));
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+     return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"model\"]");
+
+       
     }
     
-    public SelenideElement devicesStatus(String serialNumber) {
-        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceStatusIndex));
+    public SelenideElement devicesStatus(String row) {
+//        return $x("//img[@data-deviceserial='" + row + String.format("']/ancestor::tr/td[%s]", deviceStatusIndex));
+        return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"status\"]");
     }
     
     public SelenideElement devicesStatusUnmanaged(String serialNumber) {
@@ -276,23 +283,24 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     }
     
     public SelenideElement devicesIP(String serialNumber) {
-        System.out.println("<----------check device ip index--------------->");
-        System.out.println(deviceIpIndex);
-        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceIpIndex));
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"ipAddr\"]");
     }
     
     public SelenideElement devicesUptime(String serialNumber) {
+
 //        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceUptimeIndex2));
-        return $x("//img[@data-deviceserial='" + serialNumber + "']/ancestor::tr/td[contains(@id, 'tdUpTimedevicesDash')]");
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+        return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"upTime\"]");
     }
     
-    public String sDeviceName     = "//span[contains(@id, 'pspnddevicesDash')]";
-    public String sDeviceStatus   = "//td[contains(@id, 'tdDevStatusdevicesDash')]/span";
-    public String sDeviceSerialNo = "//td[contains(@id, 'tdDevSerialIddevicesDash')]";
-    public String sDeviceModel    = "//td[contains(@id, 'tdDevModlIddevicesDash')]";
-    public String sDeviceFW       = "//td[contains(@id, 'tdFirmWreDevIddevicesDash')]";
-    public String sDeviceIp       = "//td[contains(@id, 'tdNASDevIddevicesDash')]";
-    public String sDeviceUptime   = "//td[contains(@id, 'tdUpTimedevicesDash')]";
+    public String sDeviceName     = "//div[@col-id=\"name\" and not(ancestor::div[@aria-rowindex=\"1\"])]/..";
+    public String sDeviceStatus   = "//div[@col-id=\"status\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceSerialNo = "//div[@col-id=\"serialNo\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceModel    = "//div[@col-id=\"model\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceFW       = "//div[@col-id=\"firmware\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceIp       = "//div[@col-id=\"ipAddr\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceUptime   = "//div[@col-id=\"upTime\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     
     public SelenideElement filtericon        = $("#spanFilterIcondevicesDash");
     public SelenideElement filternasicon     = $("#lblNasdevicesDash");
@@ -509,8 +517,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }
 	
-	public SelenideElement        deviceList               = $("#trtbdydevicesDash1");
-    public SelenideElement        deviceNameExt               = $x("//*[@id='pdevIddevicesDash0']");
+	public SelenideElement        deviceList               = $x("//div[@col-id=\"name\" and not(ancestor::div[@aria-rowindex=\"1\"])]/..");
+    public SelenideElement        deviceNameExt               = $x("//div[@aria-rowindex='2']");
     
     
 
@@ -524,5 +532,29 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         SelenideElement offlineDevicecount = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='4']");
         return offlineDevicecount;
     }
+    
+    public SelenideElement yesButtonUnassignRFProfile = $x("//p[contains(text(),'unassign profile?')]/../../..//button[text()='Yes']");
 
+    public SelenideElement getDeviceAriaIndex(String name) {
+        SelenideElement dropdownelementnew = $x("//span[text()='"+name+"']/ancestor::span/../../..");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndex(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//div[@col-id=\"actions\"]");
+        return dropdownelementnew;
+        
+    }
+  
+    public SelenideElement ariaSetIndexReboot(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Restart']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndexDelete(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    
 }

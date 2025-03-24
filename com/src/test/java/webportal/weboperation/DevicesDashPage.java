@@ -61,6 +61,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String pageName = this.getClass().getSimpleName();
         logger = Logger.getLogger(pageName);
         logger.info("init...");
+        refresh();
         reloadDeviceList();
     }
     
@@ -90,8 +91,10 @@ public class DevicesDashPage extends DevicesDashPageElements {
             WebCheck.checkHrefIcon(URLParam.hrefDevices);
         }
         MyCommonAPIs.waitReady();
+        System.out.println("size"+$$x(sDeviceName).size());
         try {
             for (int ic = 1; ic <= $$x(sDeviceName).size(); ic++) {
+                System.out.println("size1"+$$x(sDeviceName).size());
                 String sDevName = getText($x(String.format("(%s)[%s]", sDeviceName, ic)));
                 String sDevStatus = getText($x(String.format("(%s)[%s]", sDeviceStatus, ic)));
                 String sDevModel = getText($x(String.format("(%s)[%s]", sDeviceModel, ic)));
@@ -684,7 +687,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
      */
     public String getDeviceName(String serialNumber) {
         try {
-            return getText(devicesName(serialNumber));
+//            return getText(devicesName(serialNumber));
+            String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+            return getText(devicesName(row));
         } catch (Throwable e) {
             takess();
             e.printStackTrace();
@@ -701,12 +706,13 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public String getDeviceStatus(String serialNumber) {
-        if ((devicesStatus(serialNumber)).exists() && (devicesStatus1(serialNumber)).exists()){
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else if (devicesStatus(serialNumber).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        if ((devicesStatus(row)).exists()) {
+            return WebportalParam.getNLocText(getText(devicesStatus(row)));
+        } else if (devicesStatus(row).exists()) {
+            return WebportalParam.getNLocText(getText(devicesStatus(row)));
         } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
+            return WebportalParam.getNLocText(getText(devicesStatus1(row)));
         }
     }
 
@@ -745,19 +751,20 @@ public class DevicesDashPage extends DevicesDashPageElements {
         return getText(devicesIP(serialNumber));
     }
 
-    public String getDeviceIP2(String serialNumber) {
+    public String getDeviceP2(String serialNumber) {
         return $x(String.format(sDeviceIpViaSN, serialNumber)).getText();
     }
 
     public String getDeviceUptime(String serialNumber, boolean getInt) {
         String sDate = "";
-        if ((devicesUptime(serialNumber)).exists() && (devicesUptime1(serialNumber)).exists()){
+        if ((devicesUptime(serialNumber)).exists()){
             sDate = getText(devicesUptime(serialNumber));
-        } else if (devicesStatus(serialNumber).exists()) {
-            sDate = getText(devicesUptime(serialNumber));
-        } else {
-            sDate = getText(devicesUptime1(serialNumber));
         }
+//        } else if (devicesStatus(serialNumber).exists()) {
+//            sDate = getText(devicesUptime(serialNumber));
+//        } else {
+//            sDate = getText(devicesUptime1(serialNumber));
+//        }
         if (getInt) {
             char[] charfield = sDate.toCharArray();
             String clean = "";
@@ -773,9 +780,11 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public void deleteDeviceNo(String serialNumber) {
-        hoverDevice(serialNumber).hover();
-        MyCommonAPIs.sleep(3000);
-        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexDelete(row).click();
+
         MyCommonAPIs.sleepi(5);
         deleteConfirm.click();
         MyCommonAPIs.sleepi(5);
@@ -790,13 +799,20 @@ public class DevicesDashPage extends DevicesDashPageElements {
         // addDevice1.hover();
         MyCommonAPIs.sleep(3000);
         logger.info("after add device");
-        hoverDevice(serialNumber).hover();
-        logger.info("after hover device");
-        MyCommonAPIs.sleep(3000);
-        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+//        hoverDevice(serialNumber).hover();
+//        logger.info("after hover device");
+//        MyCommonAPIs.sleep(3000);
+//        deleteDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+        
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexDelete(row).click();
+        
         MyCommonAPIs.sleep(3000);
         deleteConfirm.click();
         waitReady();
+        refresh();
         MyCommonAPIs.sleep(5 * 1000);
     }
 
@@ -889,25 +905,16 @@ public class DevicesDashPage extends DevicesDashPageElements {
         for (SelenideElement se : $$x(sDeviceSerialNo)) {
             String sSerialNo = getText(se);
             if (getText(se).equalsIgnoreCase(sNo)) {
-                if (addDevice1.exists()) {
-                    addDevice1.hover();
-                }
-                se.hover();
                 sleepi(1);
-                for (SelenideElement se1 : $$(".rebootDeviceIcon")) {
-                    if (se1.isDisplayed()) {
-                        logger.info(sNo);
-                        se1.click();
-                        sleepi(4);
-                        rebootconfirm.click();
-                        clickBoxLastButton();
-                        MyCommonAPIs.sleepi(60);
-                        break;
-                    }
-                }
                 break;
             }
         }
+        
+         String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+                      ariaSetIndex(row).click();
+                      MyCommonAPIs.sleepi(3);
+                      ariaSetIndexReboot(row).click();
+        
     }
 
     public void NorebootDevice(String sNo) {
@@ -989,6 +996,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
         MyCommonAPIs.sleepi(120);
         MyCommonAPIs.timerStart(30 * 30);
         boolean timeout = true;
+        open(URLParam.hrefDevices, true);
+        refresh();
+        MyCommonAPIs.sleepi(10);
         while (MyCommonAPIs.timerRunning()) {
             try {
                 refresh();
@@ -2319,7 +2329,10 @@ public void checkDeviceInAdminAccount3() {
     //added by Pratik
     public boolean moveDeviceAndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
         MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleepi(10);
@@ -2425,7 +2438,10 @@ public void checkDeviceInAdminAccount3() {
     }
     public boolean moveDevicewithinSameOrgAndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
         MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleep(10);
@@ -2469,8 +2485,11 @@ public void checkDeviceInAdminAccount3() {
     }
     public boolean moveDevicetoOrg1orloc1AndVerify(String serialNumber) {
         boolean result = false;
-        executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleep(3000);
+        $x("//td[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(3000);
+        editModule(serialNumber).hover();
+        MyCommonAPIs.sleep(3000);
         moveMultipleDevicesfromOneLocation(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
         MyCommonAPIs.sleepi(10);
         waitElement(yesButton);
@@ -3096,7 +3115,41 @@ public boolean verifySettingPageFilterAirbridge() {
             public void AssignRF(String SLNo, String RFName) {
                 MyCommonAPIs.sleepi(5); 
                 waitElement(SelectDevice(SLNo));
+                SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(2);
+                waitElement(AssignRFProfile);
+                AssignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(2);
+                waitElement(SelectRF);
+                SelectRF.shouldBe(Condition.visible).selectOption(RFName);
+                MyCommonAPIs.sleepi(2);
+                waitElement(SaveRF);
+                SaveRF.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(10);
+                
+            }
+            
+            public void UNAssignRF(String SLNo) {
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLNo));
+                SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(2);
+                waitElement(UnassignRFProfile);
+                UnassignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(30);
+                waitElement(yesButtonUnassignRFProfile);
+                yesButtonUnassignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(10);
+                
+            }
+            
+	public void AssignRFMulti(String SLNo, String SLno2,String RFName) {
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLNo));
                 SelectDevice(SLNo).click();
+                MyCommonAPIs.sleepi(5); 
+                waitElement(SelectDevice(SLno2));
+                SelectDevice(SLno2).click();
                 MyCommonAPIs.sleepi(2);
                 waitElement(AssignRFProfile);
                 AssignRFProfile.click();
@@ -3105,29 +3158,6 @@ public boolean verifySettingPageFilterAirbridge() {
                 SelectRF.selectOption(RFName);
                 MyCommonAPIs.sleepi(2);
                 waitElement(SaveRF);
-                SaveRF.click();
-                MyCommonAPIs.sleepi(10);
-                
-            }
-            
-            public void UNAssignRF(String SLNo) {
-                
-                SelectDevice(SLNo).click();
-                MyCommonAPIs.sleepi(2);
-                UnassignRFProfile.click();
-                MyCommonAPIs.sleepi(10);
-                SaveRF.click();
-                MyCommonAPIs.sleepi(10);
-                
-            }
-            
-            public void AssignRFMulti(String SLNo, String SLno2,String RFName) {
-                
-                SelectDevice(SLNo).click();
-                SelectDevice(SLno2).click();
-                MyCommonAPIs.sleepi(2);
-                AssignRFProfile.click();
-                SelectRF.selectOption(RFName);
                 SaveRF.click();
                 MyCommonAPIs.sleepi(10);
                 
