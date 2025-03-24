@@ -274,7 +274,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
     public SelenideElement devicesStatus(String row) {
 //        return $x("//img[@data-deviceserial='" + row + String.format("']/ancestor::tr/td[%s]", deviceStatusIndex));
-        return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"status\"]");
+        return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"deviceStatus\"]");
     }
     
     public SelenideElement devicesStatusUnmanaged(String serialNumber) {
@@ -295,7 +295,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     }
     
     public String sDeviceName     = "//div[@col-id=\"name\" and not(ancestor::div[@aria-rowindex=\"1\"])]/..";
-    public String sDeviceStatus   = "//div[@col-id=\"status\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceStatus   = "//div[@col-id=\"deviceStatus\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceSerialNo = "//div[@col-id=\"serialNo\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceModel    = "//div[@col-id=\"model\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceFW       = "//div[@col-id=\"firmware\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
