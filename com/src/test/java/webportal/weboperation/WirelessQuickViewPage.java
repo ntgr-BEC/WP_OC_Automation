@@ -2578,10 +2578,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
         for (int i = 0; i < 2; i++) {
             if (checkApIsExist(serialNumber)) {
+                MyCommonAPIs.sleepi(5);
+                $x("//span[text()='"+serialNumber+"']").shouldBe(Condition.visible).hover();
                 logger.info("Enter device.");
-                executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
+                //executeJavaScript("arguments[0].removeAttribute('class')", editModule(serialNumber));
                 MyCommonAPIs.sleep(3000);
-                enterDevice(serialNumber).waitUntil(Condition.visible, 60 * 1000).click();
+                editModule(serialNumber).shouldBe(Condition.visible).hover();
+                MyCommonAPIs.sleep(3000);
+                enterDevice(serialNumber).shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleep(5 * 1000);
                 break;
             }
