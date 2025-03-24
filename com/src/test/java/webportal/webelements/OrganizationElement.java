@@ -404,7 +404,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement        rateLimittabSSID      = $x("//th[text()='Rate Limiting']");
     public SelenideElement        rateLimitOnStatus     = $x("//td[text()='On']");
     public SelenideElement        icpCreditsOrg     = $x("//td//span[text()='Instant Captive Portal Credits']");
-    public SelenideElement        icpCreditAllocation     = $x("(//input[@type=\"text\"])[11]");
+    public SelenideElement        icpCreditAllocation     = $x("//span[text()='Instant Captive Portal Credits']/../..//input[@type='text']");
     public SelenideElement        orgSSIDSaveAndConfigBtn  = $x("//button[text()='Save and Configure']");
     public SelenideElement        addVLANLink                      = $x("//span[@class='addVLANLink']");
     public SelenideElement        customDVLAN                      = $x("//input[@value='Custom SSID VLAN']");
@@ -636,7 +636,7 @@ public class OrganizationElement extends MyCommonAPIs {
     }
     
     public SelenideElement dropdownOrganizationElementNew(String name) {
-        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../..");
+        SelenideElement dropdownelementnew = $x("//div[@col-id='orgName']//span[text()='" + name + "']/../../../../..");
         return dropdownelementnew;
     }
     
