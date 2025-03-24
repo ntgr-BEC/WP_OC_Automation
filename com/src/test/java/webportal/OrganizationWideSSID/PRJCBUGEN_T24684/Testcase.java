@@ -97,7 +97,7 @@ public class Testcase extends TestCaseBase {
           icpInfo.put("Step Type", "Authentication Method");
           icpInfo.put("Login Modes", "Facebook.");
           assertTrue(new WirelessQuickViewPage(false).verifyErrorMsgforICPSub(),"insufficient credits pop up not shown");
-          MyCommonAPIs.sleepi(180);
+
       }
       
 }
