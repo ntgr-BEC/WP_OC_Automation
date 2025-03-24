@@ -292,17 +292,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(4);               
                 setSelected($x("//*[@id=\"bandSteeringSt\"]/../span"), Boolean.parseBoolean((map.get("Bandsteering"))));
                 MyCommonAPIs.sleep(10);
-                if (Warrning.exists()) {                                      
-                    System.out.println("inside warrning band");
-                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
-                    for (SelenideElement button : buttons) {
-                        if (button.is(Condition.visible)) {
-                            button.click();
-                            break;  // Click the first visible button and stop
-                        }
-                    }
-                              
-                }
+                GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
+//                if (Warrning.exists()) {                                      
+//                    System.out.println("inside warrning band");
+//                    List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//                    for (SelenideElement button : buttons) {
+//                        if (button.is(Condition.visible)) {
+//                            button.click();
+//                            break;  // Click the first visible button and stop
+//                        }
+//                    }
+//                              
+//                }
             }
             if(map.containsKey("Fastroaming"))
             {   System.out.print("entered fast roami");
@@ -10457,17 +10458,18 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.print("entered dtim");
         savead.click();
         MyCommonAPIs.sleepi(15);
-        if (okw.exists()) {                                      
-            System.out.println("inside warrning band");
-            List<SelenideElement> buttons = $$x("//*[text()='OK']");
-            for (SelenideElement button : buttons) {
-                if (button.is(Condition.visible)) {
-                    button.click();
-                    break;  // Click the first visible button and stop
-                }
-            }
-                      
-        }
+        GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
+//        if (okw.exists()) {                                      
+//            System.out.println("inside warrning band");
+//            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//            for (SelenideElement button : buttons) {
+//                if (button.is(Condition.visible)) {
+//                    button.click();
+//                    break;  // Click the first visible button and stop
+//                }
+//            }
+//                      
+//        }
         }
         String res = sliderdtm(level).getAttribute("aria-valuenow");
         System.out.println(res);
@@ -10519,18 +10521,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         savead.click();
         System.out.print("entered broad");
         MyCommonAPIs.sleepi(15);
+        GenericMethods.clickVisibleElements($$x("//*[text()='OK']"));
 //        okw.click();
-         if (okw.exists()) {                                      
-            System.out.println("inside warrning band");
-            List<SelenideElement> buttons = $$x("//*[text()='OK']");
-            for (SelenideElement button : buttons) {
-                if (button.is(Condition.visible)) {
-                    button.click();
-                    break;  // Click the first visible button and stop
-                }
-            }
-                      
-        }
+//         if (okw.exists()) {                                      
+//            System.out.println("inside warrning band");
+//            List<SelenideElement> buttons = $$x("//*[text()='OK']");
+//            for (SelenideElement button : buttons) {
+//                if (button.is(Condition.visible)) {
+//                    button.click();
+//                    break;  // Click the first visible button and stop
+//                }
+//            }
+//                      
+//        }
         
         }
         String res = sliderbroadcast(level).getAttribute("aria-valuenow");
