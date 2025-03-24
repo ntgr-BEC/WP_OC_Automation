@@ -75,6 +75,7 @@ import util.*;
         
         public static void clickVisibleElements(ElementsCollection element)
         {                                 
+            System.out.println("inside ICP");
             List<SelenideElement> buttons = element;
             for (SelenideElement button : buttons) {
                 if (button.is(Condition.visible)) {
@@ -82,6 +83,23 @@ import util.*;
                     break;  // Click the first visible button and stop
                 }
             }
+                      
+        }
+        
+        
+        public static boolean checkVisibleElements(ElementsCollection element)
+        {                          
+            boolean result = false;
+            System.out.println("inside ICP");
+            List<SelenideElement> buttons = element;
+            for (SelenideElement button : buttons) {
+                if (button.is(Condition.visible)) {
+                    result=true;
+                    break;  // Click the first visible button and stop
+                }
+            }
+            
+            return result;
                       
         }
         
