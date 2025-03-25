@@ -2336,7 +2336,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(10);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements($$x("//button[text()='Save']"));
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
