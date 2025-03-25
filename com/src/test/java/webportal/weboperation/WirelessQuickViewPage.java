@@ -2336,7 +2336,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(10);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements($$x("//button[text()='Save']"));
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
@@ -12065,6 +12066,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         SaveEditRFProfile.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(1);
         
+    }
+    
+    public void clickOnOkayICPButton () {
+        MyCommonAPIs.sleepi(3);
+        GenericMethods.clickVisibleElements(captiveok);
     }
   
 }

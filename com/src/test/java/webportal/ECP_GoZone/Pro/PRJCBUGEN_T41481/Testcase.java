@@ -75,12 +75,13 @@ public class Testcase extends TestCaseBase {
 
 
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
-        MyCommonAPIs.sleepi(60);
+       
     }
         
         
         @Step("Test Step 3: Check config ppush;")
         public void step3() {
+            MyCommonAPIs.sleepi(300);
             String CMD = "WalledGarden" ;
             String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
             System.out.println(Result);

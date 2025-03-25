@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Key", "GCDKNGYD2XETKBZ9");
         ECPInfo.put("ECP Type", "Jaze");
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
-        MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(300);
         new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

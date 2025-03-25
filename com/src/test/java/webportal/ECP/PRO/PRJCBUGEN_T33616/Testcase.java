@@ -103,7 +103,7 @@ public class Testcase extends TestCaseBase {
 
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(300);
         new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
