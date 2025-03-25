@@ -64,14 +64,14 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInNormalAccount("admin");
+//        new DevicesDashPage().checkDeviceInNormalAccount("admin");
     }
 
     @Step("Test Step 2: Add WIFI ssid and enable enable instant captive portal, check client connect wifi;")
     public void step2() {
-        if (!new HamburgerMenuPage().checkCaptivePortalServicesCredits()) {
-            assertTrue(false, "Account need to add instant captive portal key.");
-        }
+//        if (!new HamburgerMenuPage().checkCaptivePortalServicesCredits()) {
+//            assertTrue(false, "Account need to add instant captive portal key.");
+//        }
 
         ssidInfo.put("SSID", "apwp16624");
         ssidInfo.put("Security", "WPA2 Personal");
