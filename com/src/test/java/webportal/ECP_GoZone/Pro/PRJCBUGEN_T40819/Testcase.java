@@ -78,7 +78,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Check config ppush;")
     public void step3() {
-        
+        MyCommonAPIs.sleepi(300);
         String CMD1 = "SplashPageURL" ;
         String Result1 = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD1);
         System.out.println(Result1);

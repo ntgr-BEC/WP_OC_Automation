@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase {
     public void step4() {
         ECPInfo.put("Walled Garden Remove", "*.jazenetworks.com");
         new WirelessQuickViewPage().disableECP(ssidInfo.get("SSID"), ECPInfo);
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(300);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);

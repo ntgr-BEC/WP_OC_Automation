@@ -76,7 +76,7 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Secret", "rMVCMqW+UMwXZQn+KYfe8GeXm3E6w9y9");
         ECPInfo.put("Key", "GCDKNGYD2XETKBZ9");
         new WirelessQuickViewPage().enableECP(ssidInfo.get("SSID"), ECPInfo);
-        MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(300);
         
         String CMD = "WalledGarden" ;
         String Result = new APUtils(WebportalParam.ap1IPaddress).getECPWalledGarden(WebportalParam.ap1Model,  CMD);
