@@ -44,7 +44,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("apwp40806");
+        new WirelessQuickViewPage().deleteALLSSID();
         System.out.println("start to do tearDown");
     }
 
