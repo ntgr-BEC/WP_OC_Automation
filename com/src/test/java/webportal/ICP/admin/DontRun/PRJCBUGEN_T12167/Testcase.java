@@ -1,4 +1,4 @@
-package webportal.ICP.admin.PRJCBUGEN_T12167;
+package webportal.ICP.admin.DontRun.PRJCBUGEN_T12167;
 
 import static org.testng.Assert.assertTrue;
 
