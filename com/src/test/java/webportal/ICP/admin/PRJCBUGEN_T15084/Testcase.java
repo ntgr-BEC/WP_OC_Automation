@@ -21,6 +21,7 @@ import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.ManagerPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
@@ -59,6 +60,7 @@ public class Testcase extends TestCaseBase {
         }
 
         new ManagerPage().deleteManager(mailname);
+        new WirelessQuickViewPage().deleteALLSSIDCG();
     }
 
     // Each step is a single test step from Jira Test Case

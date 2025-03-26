@@ -66,7 +66,7 @@ public class Testcase extends TestCaseBase {
 
         new ManagerPage().deleteManager(managerEmail);
         handle.gotoLoction();
-        new WirelessQuickViewPage().deleteSsidYes(ssidInfo.get("SSID"));
+        new WirelessQuickViewPage().deleteALLSSIDCG();
         System.out.println("start to do tearDown");
     }
 
@@ -93,7 +93,7 @@ public class Testcase extends TestCaseBase {
 
         Map<String, String> icpInfo = new HashMap<String, String>();
         icpInfo.put("Portal Name", "showad");
-        icpInfo.put("Welcome Headline", "dhfjsdfjasdfhjsdhfshdfhsdjhfsdfjsdgfsk;fgjsdgsdfjsfdgsgfd");
+        icpInfo.put("Welcome Headline", "Welcome To Bec");
         icpInfo.put("Captive Portal Logo", "DEFAULT_LOGO");
         icpInfo.put("Desktop Background Image", "DEFAULT_BG");
         icpInfo.put("Landing Page URL", "https://www.rediff.com");

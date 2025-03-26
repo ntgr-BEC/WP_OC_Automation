@@ -7372,16 +7372,31 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(15);
         logger.info("Delete ssid.");
         // executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
-        if (orgWideSSIDedit(Ssid).exists()) {
-            orgWideSSIDedit(Ssid).click();
-            logger.info("Edit ssid.");
-            MyCommonAPIs.sleepi(10);
-            if (deleteOrgSSID.exists()) {
-                deleteOrgSSID.click();
-            } else {
-                deleteOrgSSID1.click();
-            }
-            MyCommonAPIs.sleepi(40);
+//        if (orgWideSSIDedit(Ssid).exists()) {
+//            orgWideSSIDedit(Ssid).click();
+//            logger.info("Edit ssid.");
+//            MyCommonAPIs.sleepi(10);
+//            if (deleteOrgSSID.exists()) {
+//                deleteOrgSSID.click();
+//            } else {
+//                deleteOrgSSID1.click();
+//            }
+//            MyCommonAPIs.sleepi(40);
+//            deletessidyes.click();
+//            MyCommonAPIs.sleep(5 * 1000);
+//        }
+        //
+//        Never change this method pratik
+        
+        if (checkSsidIsExist(Ssid)) {
+            logger.info("Delete ssid.");
+            MyCommonAPIs.sleepi(5);
+            $x("//span[text()='" +Ssid+ "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(Ssid).hover();
+            MyCommonAPIs.sleep(3000);
+            deleteSsid(Ssid).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleepi(30);
             deletessidyes.click();
             MyCommonAPIs.sleep(5 * 1000);
         }

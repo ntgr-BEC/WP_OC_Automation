@@ -544,9 +544,10 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
         SelenideElement Ssid = $x("//p[@title='" + text +"']/../../../td[11]//i[2]/img/ancestor::p");
         System.out.println(Ssid);
         if (!Ssid.exists()) {
-            Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[2]/img/ancestor::p");
-            System.out.println(Ssid);
+             MyCommonAPIs.sleepi(3);
+            Ssid = $x("//p[@title='" + text + "']/../../../td[10]//i[2]/img/ancestor::p");           
         }
+        MyCommonAPIs.sleepi(2);
         return Ssid;   
     }
 
