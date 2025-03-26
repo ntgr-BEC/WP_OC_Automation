@@ -14,6 +14,7 @@ import testbase.TestCaseBase;
 import webportal.param.WebportalParam;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
@@ -35,6 +36,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
+        new WirelessQuickViewPage().deleteALLSSIDCG();
     }
 
     // Each step is a single test step from Jira Test Case

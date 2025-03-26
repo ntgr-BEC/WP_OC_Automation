@@ -21,6 +21,7 @@ import webportal.publicstep.UserManage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.ManagerPage;
 import webportal.weboperation.WebportalLoginPage;
+import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
@@ -59,6 +60,7 @@ public class Testcase extends TestCaseBase {
         }
 
         new ManagerPage().deleteManager(mailname);
+        new WirelessQuickViewPage().deleteALLSSIDCG();
     }
 
     // Each step is a single test step from Jira Test Case
@@ -71,7 +73,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Invite manager and check url in invite email can sign up;")
     public void step2() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", "test15084");
         managerInfo.put("Email Address", mailname);

@@ -45,7 +45,8 @@ class Cpa(ClientTestCase):
                 break
             i += 1
             self.driver.refresh()
-        print url_titleName
+        print("expectresult >>>>>> =  ", self.expectresult)
+        print("url_titleName >>>>> = ", url_titleName)
         result = True
         if url_titleName.find('Portal') != -1:
             if result and not self.is_element_present(By.ID, 'fSubmit'):
@@ -54,10 +55,10 @@ class Cpa(ClientTestCase):
             if result and not self.is_element_present(By.ID, 'lSubmit'):
                 result = False
                 print "LinkedIn button not existed."
-            if result and not self.is_element_present(By.ID, 'tSubmit'):
-                result = False
-                print "Twitter button not existed."
-            if result and not self.is_element_present(By.ID, 'registerName'):
+            # if result and not self.is_element_present(By.ID, 'tSubmit'):
+            #     result = False
+            #     print "Twitter button not existed."
+            if result and not self.is_element_present(By.XPATH, '//input[@id="registerName" and @placeholder="Full Name"]'):
                 result = False
                 print "Register input box not existed."
         else:

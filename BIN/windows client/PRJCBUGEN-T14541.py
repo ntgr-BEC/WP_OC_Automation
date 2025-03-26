@@ -33,6 +33,7 @@ class Cpa(ClientTestCase):
     checkNode = DOMTree.getElementsByTagName("userpassword")[0]
     checkpoint = getText(checkNode.childNodes)
 
+
     def test_cpa(self):
         test_result = 1
 
@@ -44,18 +45,20 @@ class Cpa(ClientTestCase):
             test_result = 0
             print "finalresult:", test_result
             return
-        url_titleName = ''
+        url_titleName = None
         self.wait_page_ready()
         i = 0
+        print("expectresult =====>>>", self.expectresult)
         while i <= 5:
             time.sleep(60)
             url_titleName = self.driver.title
             if url_titleName.find('Portal') != -1 or url_titleName.find(self.checkpoint) != -1:
                 break
             i += 1
-        print url_titleName
+        print("url_titleName ====>>>", url_titleName)
         if self.is_element_present(By.CLASS_NAME, 'copy'):
             title = self.driver.find_element_by_class_name('copy').text
+            print("title>>>> = ",title )
             if title.find(self.expectresult) == -1:
                 test_result = 0
         else:
