@@ -993,7 +993,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
      */
     public boolean waitDevicesReConnected(String sNo) {
         String sCur = null;
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(60);
         MyCommonAPIs.timerStart(30 * 30);
         boolean timeout = true;
         open(URLParam.hrefDevices, true);
