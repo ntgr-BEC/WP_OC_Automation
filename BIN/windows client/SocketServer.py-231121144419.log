@@ -1,0 +1,348 @@
+231121-14:44:19 Server is ready...
+231121-14:44:19 Connected by: ('172.16.27.3', 50577)
+231121-14:44:20 Received data is: WAFfindSSID apwp14479
+231121-14:44:20 wifiOff: adapter_name: Wireless Network Connection
+231121-14:44:20 run app: netsh interface set interface name="Wireless Network Connection" disable
+231121-14:44:20 app output: No more data is available.
+
+
+
+
+
+231121-14:44:25 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:44:26 checkwifiModuleState -> state: dummy result
+231121-14:44:26 wifiOn: adapter_name: Wireless Network Connection
+231121-14:44:26 run app: netsh interface set interface name="Wireless Network Connection" enable
+231121-14:44:26 app output: No more data is available.
+
+
+
+
+
+231121-14:44:31 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:44:31 checkwifiModuleState -> state: dummy result
+231121-14:44:31 run app: scannet.exe
+231121-14:44:32 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 ORBI80
+
+  Association Attributes for this connection
+
+    SSID:		 ORBI80
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 38-94-ED-17-A4-12
+
+    PHY network type:	 Unknown = 8
+
+    PHY index:		 2
+
+    Signal Quality:	 99
+
+    Receiving Rate:	 866700
+
+    Transmission Rate:	 866700
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+231121-14:44:32 run app: netsh wlan show network | findstr apwp14479
+231121-14:44:32 app output: SSID 114 : apwp14479
+
+231121-14:44:32 sending result: true
+231121-14:44:32 waiting for client request...
+231121-14:44:32 Server is ready...
+231121-14:44:54 Connected by: ('172.16.27.3', 50608)
+231121-14:44:55 Received data is: WAFconnect apwp14479 12345678 WPA2PSK aes
+231121-14:44:55 wifiConnect
+231121-14:44:55 filename name is: apwp14479.xml
+231121-14:44:55 run app: netsh wlan delete profile name =*
+231121-14:44:55 app output: Profile "ORBI80" is deleted from interface "Wi-Fi".
+
+Profile "@@ravi" is deleted from interface "Wi-Fi".
+
+Profile "@@@Anu" is deleted from interface "Wi-Fi".
+
+Profile "@85756Net" is deleted from interface "Wi-Fi".
+
+Profile "123Nis@MDNS" is deleted from interface "Wi-Fi".
+
+Profile "@@NeedB" is deleted from interface "Wi-Fi".
+
+Profile "@09867" is deleted from interface "Wi-Fi".
+
+Profile "@456Basic" is deleted from interface "Wi-Fi".
+
+Profile "@0987Basic" is deleted from interface "Wi-Fi".
+
+Profile "1AutoBEC" is deleted from interface "Wi-Fi".
+
+Profile "@123Basic" is deleted from interface "Wi-Fi".
+
+Profile "@567Basic" is deleted from interface "Wi-Fi".
+
+Profile "1234sumanta" is deleted from interface "Wi-Fi".
+
+Profile "1234New" is deleted from interface "Wi-Fi".
+
+Profile "123ravi" is deleted from interface "Wi-Fi".
+
+Profile "123Anusha" is deleted from interface "Wi-Fi".
+
+Profile "123Simplessid" is deleted from interface "Wi-Fi".
+
+Profile "1234ICP" is deleted from interface "Wi-Fi".
+
+Profile "apwp14279" is deleted from interface "Wi-Fi".
+
+231121-14:44:55 wifiOff: adapter_name: Wireless Network Connection
+231121-14:44:55 run app: netsh interface set interface name="Wireless Network Connection" disable
+231121-14:44:55 app output: No more data is available.
+
+
+
+
+
+231121-14:45:00 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:45:00 checkwifiModuleState -> state: dummy result
+231121-14:45:00 wifiOn: adapter_name: Wireless Network Connection
+231121-14:45:00 run app: netsh interface set interface name="Wireless Network Connection" enable
+231121-14:45:00 app output: No more data is available.
+
+
+
+
+
+231121-14:45:05 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:45:05 checkwifiModuleState -> state: dummy result
+231121-14:45:05 run app: scannet.exe
+231121-14:45:05 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231121-14:45:05 run app: netsh wlan show network | findstr apwp14479
+231121-14:45:06 app output: SSID 114 : apwp14479
+
+231121-14:45:06 run app: netsh wlan add profile filename="apwp14479.xml"
+231121-14:45:06 app output: Profile apwp14479 is added on interface Wi-Fi.
+
+231121-14:45:06 run app: netsh wlan set profileparameter name="apwp14479" connectionmode=auto
+231121-14:45:06 app output: 
+
+Profile "apwp14479" on interface "Wi-Fi" updated successfully.
+
+
+
+231121-14:45:16 wifiOff: adapter_name: Wireless Network Connection
+231121-14:45:16 run app: netsh interface set interface name="Wireless Network Connection" disable
+231121-14:45:16 app output: No more data is available.
+
+
+
+
+
+231121-14:45:21 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:45:21 checkwifiModuleState -> state: dummy result
+231121-14:45:21 wifiOn: adapter_name: Wireless Network Connection
+231121-14:45:21 run app: netsh interface set interface name="Wireless Network Connection" enable
+231121-14:45:21 app output: No more data is available.
+
+
+
+
+
+231121-14:45:26 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231121-14:45:26 checkwifiModuleState -> state: dummy result
+231121-14:45:26 Trying connection in loop...The count is: 1
+231121-14:45:26 run app: netsh wlan connect name ="apwp14479" ssid="apwp14479"
+231121-14:45:26 app output: Connection request was completed successfully.
+
+231121-14:45:26 run app: netsh wlan show interface | findstr State
+231121-14:45:27 app output:     State                  : disconnecting
+
+231121-14:45:27 checkwifiConnState: wireless card connection check failed.
+231121-14:45:31 run app: netsh wlan show interface | findstr State
+231121-14:45:31 app output:     State                  : connected
+
+231121-14:45:36 run app: route print -4
+231121-14:45:36 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 10...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+  2...a2 59 50 d0 78 3e ......Microsoft Wi-Fi Direct Virtual Adapter #4
+
+ 19...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 12...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1    172.16.27.201   1256
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.34     50
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.34    306
+
+     172.16.27.34  255.255.255.255         On-link      172.16.27.34    306
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.34    306
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.34    306
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.34    306
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1  Default 
+
+===========================================================================
+
+231121-14:45:36 sending result: true
+231121-14:45:36 waiting for client request...
+231121-14:45:36 Server is ready...
+231121-14:45:38 Connected by: ('172.16.27.3', 50639)
+231121-14:45:39 Received data is: WAFruncaptive PRJCBUGEN-T14479.py www.speedtest.net test test
+231121-14:45:39 run app: python "PRJCBUGEN-T14479.py"
+231121-14:48:03 app output: ETue Nov 21 14:45:40 2023 openurl: http://www.speedtest.net
+
+Tue Nov 21 14:46:50 2023 is_element_present: xpath - //h2[text()='Latency Test Error']
+
+Tue Nov 21 14:48:00 2023 is_element_present: xpath - //span[@class='result-data-large number result-data-value download-speed']
+
+download-speed: 33.66
+
+upload-speed: 
+
+======================================================================
+
+ERROR: test_cpa (__main__.Cpa)
+
+----------------------------------------------------------------------
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T14479.py", line 31, in test_cpa
+
+    print "upload-speed:", upload_speed
+
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u2014' in position 0: ordinal not in range(128)
+
+
+
+----------------------------------------------------------------------
+
+Ran 1 test in 140.641s
+
+
+
+FAILED (errors=1)
+
+231121-14:48:03 sending result: ETue Nov 21 14:45:40 2023 openurl: http://www.speedtest.net
+Tue Nov 21 14:46:50 2023 is_element_present: xpath - //h2[text()='Latency Test Error']
+Tue Nov 21 14:48:00 2023 is_element_present: xpath - //span[@class='result-data-large number result-data-value download-speed']
+download-speed: 33.66
+upload-speed: 
+======================================================================
+ERROR: test_cpa (__main__.Cpa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "PRJCBUGEN-T14479.py", line 31, in test_cpa
+    print "upload-speed:", upload_speed
+UnicodeEncodeError: 'ascii' codec can't encode character u'\u2014' in position 0: ordinal not in range(128)
+
+----------------------------------------------------------------------
+Ran 1 test in 140.641s
+
+FAILED (errors=1)
+
+231121-14:48:03 [Errno 10054] An existing connection was forcibly closed by the remote host
+231121-14:48:03 waiting for client request...
+231121-14:48:03 Server is ready...

@@ -1,0 +1,413 @@
+231017-11:37:27 Server is ready...
+231017-11:40:14 Connected by: ('172.16.27.3', 60556)
+231017-11:40:15 Received data is: WAFfindSSID apwp14270
+231017-11:40:15 wifiOff: adapter_name: Wireless Network Connection
+231017-11:40:15 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-11:40:15 app output: No more data is available.
+
+
+
+
+
+231017-11:40:20 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:40:20 checkwifiModuleState -> state: dummy result
+231017-11:40:20 wifiOn: adapter_name: Wireless Network Connection
+231017-11:40:20 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-11:40:20 app output: No more data is available.
+
+
+
+
+
+231017-11:40:25 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:40:26 checkwifiModuleState -> state: dummy result
+231017-11:40:26 run app: scannet.exe
+231017-11:40:26 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-11:40:26 run app: netsh wlan show network | findstr apwp14270
+231017-11:40:26 app output: SSID 194 : apwp14270
+
+231017-11:40:26 sending result: true
+231017-11:40:26 waiting for client request...
+231017-11:40:26 Server is ready...
+231017-11:40:28 Connected by: ('172.16.27.3', 60565)
+231017-11:40:29 Received data is: WAFradiusconnect apwp14270 teju teju WPA2PSK aes
+231017-11:40:29 wifiConnectRadius
+231017-11:40:29 run app: taskkill /f /im clickpop.exe
+231017-11:40:29 app output: SUCCESS: The process "clickpop.exe" with PID 9132 has been terminated.
+
+231017-11:40:29 run app: clickpop.exe teju teju
+231017-11:40:29 no wait result request, return in 4s
+231017-11:40:33 filename name is: apwp14270.xml
+231017-11:40:33 run app: netsh wlan delete profile name =*
+231017-11:40:33 app output: Profile "*" is not found on any interface.
+
+231017-11:40:33 wifiOff: adapter_name: Wireless Network Connection
+231017-11:40:33 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-11:40:33 app output: No more data is available.
+
+
+
+
+
+231017-11:40:38 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:40:38 checkwifiModuleState -> state: dummy result
+231017-11:40:38 wifiOn: adapter_name: Wireless Network Connection
+231017-11:40:38 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-11:40:38 app output: No more data is available.
+
+
+
+
+
+231017-11:40:43 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:40:43 checkwifiModuleState -> state: dummy result
+231017-11:40:43 run app: scannet.exe
+231017-11:40:43 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-11:40:43 run app: netsh wlan show network | findstr apwp14270
+231017-11:40:44 app output: SSID 199 : apwp14270
+
+231017-11:40:44 run app: netsh wlan add profile filename="apwp14270.xml"
+231017-11:40:44 app output: Failed to add the profile on interface "Wi-Fi". Error 0x4000B: 802.1x enabled when it's required to be disabled 
+
+
+
+231017-11:40:44 run app: netsh wlan set profileparameter name="apwp14270" connectionmode=auto
+231017-11:40:44 app output: Profile "apwp14270" is not found on any interface.
+
+231017-11:40:54 wifiOff: adapter_name: Wireless Network Connection
+231017-11:40:54 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-11:40:54 app output: No more data is available.
+
+
+
+
+
+231017-11:40:59 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:40:59 checkwifiModuleState -> state: dummy result
+231017-11:40:59 wifiOn: adapter_name: Wireless Network Connection
+231017-11:40:59 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-11:40:59 app output: No more data is available.
+
+
+
+
+
+231017-11:41:04 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-11:41:04 checkwifiModuleState -> state: dummy result
+231017-11:41:04 Trying connection in loop...The count is: 1
+231017-11:41:04 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+231017-11:41:04 app output: There is no profile "apwp14270" assigned to the specified interface.
+
+231017-11:41:04 run app: netsh wlan show interface | findstr State
+231017-11:41:04 app output:     State                  : disconnected
+
+231017-11:41:04 checkwifiConnState: wireless card connection check failed.
+231017-11:41:08 run app: netsh wlan show interface | findstr State
+231017-11:41:09 app output:     State                  : disconnected
+
+231017-11:41:09 checkwifiConnState: wireless card connection check failed.
+231017-11:41:13 run app: netsh wlan show interface | findstr State
+231017-11:41:13 app output:     State                  : disconnected
+
+231017-11:41:13 checkwifiConnState: wireless card connection check failed.
+231017-11:41:17 run app: netsh wlan show interface | findstr State
+231017-11:41:17 app output:     State                  : disconnected
+
+231017-11:41:17 checkwifiConnState: wireless card connection check failed.
+231017-11:41:21 run app: netsh wlan show interface | findstr State
+231017-11:41:21 app output:     State                  : disconnected
+
+231017-11:41:21 checkwifiConnState: wireless card connection check failed.
+231017-11:41:25 run app: netsh wlan show interface | findstr State
+231017-11:41:25 app output:     State                  : disconnected
+
+231017-11:41:25 checkwifiConnState: wireless card connection check failed.
+231017-11:41:29 run app: netsh wlan show interface | findstr State
+231017-11:41:29 app output:     State                  : disconnected
+
+231017-11:41:29 checkwifiConnState: wireless card connection check failed.
+231017-11:41:33 run app: netsh wlan show interface | findstr State
+231017-11:41:33 app output:     State                  : discovering
+
+231017-11:41:33 checkwifiConnState: wireless card connection check failed.
+231017-11:41:37 run app: netsh wlan show interface | findstr State
+231017-11:41:37 app output:     State                  : discovering
+
+231017-11:41:37 checkwifiConnState: wireless card connection check failed.
+231017-11:41:41 run app: netsh wlan show interface | findstr State
+231017-11:41:41 app output:     State                  : connected
+
+231017-11:41:46 run app: route print -4
+231017-11:41:46 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 27...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+ 38...a2 59 50 d0 78 3e ......Microsoft Wi-Fi Direct Virtual Adapter #4
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1    172.16.27.201   1256
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.34     35
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.34    291
+
+     172.16.27.34  255.255.255.255         On-link      172.16.27.34    291
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.34    291
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.34    291
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.34    291
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1  Default 
+
+===========================================================================
+
+231017-11:41:46 run app: taskkill /f /im clickpop.exe
+231017-11:41:46 app output: SUCCESS: The process "clickpop.exe" with PID 5936 has been terminated.
+
+231017-11:41:46 sending result: true
+231017-11:41:46 waiting for client request...
+231017-11:41:46 Server is ready...
+231017-12:22:04 Connected by: ('172.16.27.3', 61936)
+231017-12:22:05 Received data is: WAFfindSSID apwp14270
+231017-12:22:05 wifiOff: adapter_name: Wireless Network Connection
+231017-12:22:05 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:22:05 app output: No more data is available.
+
+
+
+
+
+231017-12:22:10 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:10 checkwifiModuleState -> state: dummy result
+231017-12:22:10 wifiOn: adapter_name: Wireless Network Connection
+231017-12:22:10 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-12:22:10 app output: No more data is available.
+
+
+
+
+
+231017-12:22:15 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:15 checkwifiModuleState -> state: dummy result
+231017-12:22:15 run app: scannet.exe
+231017-12:22:15 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-12:22:15 run app: netsh wlan show network | findstr apwp14270
+231017-12:22:15 app output: SSID 188 : apwp14270
+
+231017-12:22:15 sending result: true
+231017-12:22:15 waiting for client request...
+231017-12:22:15 Server is ready...
+231017-12:22:17 Connected by: ('172.16.27.3', 61944)
+231017-12:22:18 Received data is: WAFradiusconnect apwp14270 teju teju WPA2PSK aes
+231017-12:22:18 wifiConnectRadius
+231017-12:22:18 run app: taskkill /f /im clickpop.exe
+231017-12:22:18 app output: ERROR: The process "clickpop.exe" not found.
+
+231017-12:22:18 run app: clickpop.exe teju teju
+231017-12:22:18 no wait result request, return in 4s
+231017-12:22:22 filename name is: apwp14270.xml
+231017-12:22:22 run app: netsh wlan delete profile name =*
+231017-12:22:22 app output: Profile "1AutoBEC" is deleted from interface "Wi-Fi".
+
+231017-12:22:22 wifiOff: adapter_name: Wireless Network Connection
+231017-12:22:22 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:22:22 app output: No more data is available.
+
+
+
+
+
+231017-12:22:27 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:28 checkwifiModuleState -> state: dummy result
+231017-12:22:28 wifiOn: adapter_name: Wireless Network Connection
+231017-12:22:28 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-12:22:28 app output: No more data is available.
+
+
+
+
+
+231017-12:22:33 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:33 checkwifiModuleState -> state: dummy result
+231017-12:22:33 run app: scannet.exe
+231017-12:22:33 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-12:22:33 run app: netsh wlan show network | findstr apwp14270
+231017-12:22:33 app output: SSID 67 : apwp14270
+
+231017-12:22:33 run app: netsh wlan add profile filename="apwp14270.xml"
+231017-12:22:33 app output: Failed to add the profile on interface "Wi-Fi". Error 0x4000B: 802.1x enabled when it's required to be disabled 
+
+
+
+231017-12:22:33 run app: netsh wlan set profileparameter name="apwp14270" connectionmode=auto
+231017-12:22:33 app output: Profile "apwp14270" is not found on any interface.
+
+231017-12:22:43 wifiOff: adapter_name: Wireless Network Connection
+231017-12:22:43 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:22:43 app output: No more data is available.
+
+
+
+
+
+231017-12:22:48 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:48 checkwifiModuleState -> state: dummy result
+231017-12:22:48 wifiOn: adapter_name: Wireless Network Connection
+231017-12:22:48 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-12:22:48 app output: No more data is available.
+
+
+
+
+
+231017-12:22:54 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:22:54 checkwifiModuleState -> state: dummy result
+231017-12:22:54 Trying connection in loop...The count is: 1
+231017-12:22:54 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+231017-12:22:54 app output: There is no profile "apwp14270" assigned to the specified interface.
+
+231017-12:22:54 run app: netsh wlan show interface | findstr State
+231017-12:22:54 app output:     State                  : disconnected
+
+231017-12:22:54 checkwifiConnState: wireless card connection check failed.
+231017-12:22:58 run app: netsh wlan show interface | findstr State
+231017-12:22:58 app output:     State                  : disconnected
+
+231017-12:22:58 checkwifiConnState: wireless card connection check failed.
+231017-12:23:02 run app: netsh wlan show interface | findstr State
+231017-12:23:02 app output:     State                  : disconnected
+
+231017-12:23:02 checkwifiConnState: wireless card connection check failed.
+231017-12:23:06 run app: netsh wlan show interface | findstr State
+231017-12:23:06 app output:     State                  : disconnected
+
+231017-12:23:06 checkwifiConnState: wireless card connection check failed.
+231017-12:23:10 run app: netsh wlan show interface | findstr State
+231017-12:23:10 app output:     State                  : disconnected
+
+231017-12:23:10 checkwifiConnState: wireless card connection check failed.
+231017-12:23:14 run app: netsh wlan show interface | findstr State
+231017-12:23:14 app output:     State                  : disconnected
+
+231017-12:23:14 checkwifiConnState: wireless card connection check failed.
+231017-12:23:18 run app: netsh wlan show interface | findstr State
+231017-12:23:19 app output:     State                  : disconnected
+
+231017-12:23:19 checkwifiConnState: wireless card connection check failed.

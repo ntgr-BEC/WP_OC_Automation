@@ -1,0 +1,32 @@
+231017-15:53:54 Server is ready...
+231017-15:53:55 Connected by: ('172.16.27.3', 54785)
+231017-15:53:56 Received data is: WAFradiusconnect apwp14270 teju teju WPA2 PEAP
+231017-15:53:56 WAFradiusconnect apwp14270 teju teju WPA2 PEAP
+231017-15:53:56 wifiConnectRadius
+231017-15:53:56 run app: taskkill /f /im clickpop.exe
+231017-15:53:56 app output: SUCCESS: The process "clickpop.exe" with PID 5076 has been terminated.
+
+231017-15:53:56 run app: clickpop.exe teju teju
+231017-15:53:56 no wait result request, return in 4s
+231017-15:54:00 filename name is: apwp14270.xml
+231017-15:54:00 run app: netsh wlan delete profile name =*
+231017-15:54:00 app output: Profile "*" is not found on any interface.
+
+231017-15:54:00 wifiOff: adapter_name: Wireless Network Connection
+231017-15:54:00 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-15:54:00 app output: No more data is available.
+
+
+
+
+
+231017-15:54:05 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-15:54:05 checkwifiModuleState -> state: dummy result
+231017-15:54:05 wifiOn: adapter_name: Wireless Network Connection
+231017-15:54:05 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-15:54:05 app output: No more data is available.
+
+
+
+
+

@@ -1,0 +1,667 @@
+231103-17:10:29 Server is ready...
+231109-16:37:04 Connected by: ('172.16.27.3', 53220)
+231109-16:37:05 Received data is: WAFfindSSID apwp14480
+231109-16:37:05 wifiOff: adapter_name: Wireless Network Connection
+231109-16:37:05 run app: netsh interface set interface name="Wireless Network Connection" disable
+231109-16:37:05 app output: No more data is available.
+
+
+
+
+
+231109-16:37:10 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231109-16:37:10 checkwifiModuleState -> state: dummy result
+231109-16:37:10 wifiOn: adapter_name: Wireless Network Connection
+231109-16:37:10 run app: netsh interface set interface name="Wireless Network Connection" enable
+231109-16:37:10 app output: No more data is available.
+
+
+
+
+
+231109-16:37:15 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231109-16:37:15 checkwifiModuleState -> state: dummy result
+231109-16:37:15 run app: scannet.exe
+231109-16:37:16 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 A profile is used to make the connection
+
+  Profile name used:	 1234ICP
+
+  Association Attributes for this connection
+
+    SSID:		 1234ICP
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 94-A6-7E-6B-83-C8
+
+    PHY network type:	 Extended rate PHY type
+
+    PHY index:		 0
+
+    Signal Quality:	 99
+
+    Receiving Rate:	 574000
+
+    Transmission Rate:	 138000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+231109-16:37:16 run app: netsh wlan show network | findstr apwp14480
+231109-16:37:20 run app: scannet.exe
+231109-16:37:20 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231109-16:37:20 run app: netsh wlan show network | findstr apwp14480
+231109-16:37:24 run app: scannet.exe
+231109-16:37:24 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231109-16:37:24 run app: netsh wlan show network | findstr apwp14480
+231109-16:37:28 run app: scannet.exe
+231109-16:37:28 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231109-16:37:28 run app: netsh wlan show network | findstr apwp14480
+231109-16:37:32 run app: scannet.exe
+231109-16:37:32 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231109-16:37:32 run app: netsh wlan show network | findstr apwp14480
+231109-16:37:36 findSSID -> not able to scan the ssid: apwp14480
+231109-16:37:36 run app: netsh wlan show network | findstr SSID
+231109-16:37:36 app output: SSID 1 : newSSID
+
+SSID 2 : Insi-Open
+
+SSID 3 : ##777open
+
+SSID 4 : 0000000000
+
+SSID 5 : 333333333333333333
+
+SSID 6 : orgssid
+
+SSID 7 : newggg
+
+SSID 8 : fdj
+
+SSID 9 : im511ssid
+
+SSID 10 : rem
+
+SSID 11 : insi_505
+
+SSID 12 : 00_11r_pollachi_vlan9
+
+SSID 13 : 
+
+SSID 14 : 3-MB-Op-ECP
+
+SSID 15 : 2-MB-WP2-PSK
+
+SSID 16 : 5th-Sun-2023
+
+SSID 17 : newnat
+
+SSID 18 : apwp21945
+
+SSID 19 : 
+
+SSID 20 : nfw
+
+SSID 21 : 2sssid
+
+SSID 22 : 00_11r_pollachi
+
+SSID 23 : @@@bcpppp
+
+SSID 24 : ssid2001
+
+SSID 25 : apwp9624
+
+SSID 26 : Airpod Pro
+
+SSID 27 : @new_interop
+
+SSID 28 : A_Surendra-5G
+
+SSID 29 : ssid4854
+
+SSID 30 : mac
+
+SSID 31 : PRJCBUGEN_T33734
+
+SSID 32 : PRJCBUGEN_T33735
+
+SSID 33 : fbwifi
+
+SSID 34 : will1
+
+SSID 35 : 12New654ola
+
+SSID 36 : 11r-pl-roam
+
+SSID 37 : 123ECP
+
+SSID 38 : apwp12345
+
+SSID 39 : ALSIMWIFI
+
+SSID 40 : ssid
+
+SSID 41 : apwp16621
+
+SSID 42 : ssid1
+
+SSID 43 : ngguest
+
+SSID 44 : NtgrCorp
+
+SSID 45 : NtgLite-ecp
+
+SSID 46 : Airpod Lite
+
+SSID 47 : Airpod Zip
+
+SSID 48 : GP-AIRPLAY-ZAP
+
+SSID 49 : Netgear-8CDB7F
+
+SSID 50 : @@@ 999999
+
+SSID 51 : Bangalore
+
+SSID 52 : @@@PR60X1
+
+SSID 53 : wax615-ecp-0
+
+SSID 54 : ##55Rate
+
+SSID 55 : apwp14008
+
+SSID 56 : apnormalorg
+
+SSID 57 : apwp21540
+
+SSID 58 : 1AutoBEC
+
+SSID 59 : 00_WPA2Enterprise_test
+
+SSID 60 : 00-WPA3Enterprise_Test
+
+SSID 61 : SK Testing
+
+SSID 62 : 00_11r_test_ch
+
+SSID 63 : 000. ###
+
+SSID 64 : ssid22568
+
+SSID 65 : GP-AIRCLAP-SH
+
+SSID 66 : DIRECT-42-HP DeskJet 2700 series
+
+SSID 67 : 000 YYYYY  555
+
+SSID 68 : org-ecp
+
+SSID 69 : Netgear6B761F
+
+SSID 70 : 0 *** ICP
+
+SSID 71 : 55clientedited
+
+SSID 72 : 22222  GIG
+
+SSID 73 : 66ssidopenedited
+
+SSID 74 : NETGEARD3BC7F-SETUP
+
+SSID 75 : ssid5434
+
+SSID 76 : -------------------------M1-OP
+
+SSID 77 : wax625-ecp
+
+SSID 78 : icp630
+
+SSID 79 : 610orgssid6
+
+SSID 80 : ALSIMWEB
+
+SSID 81 : Netgear3BDE1F
+
+SSID 82 : PRJCBUGEN_T33723
+
+SSID 83 : ~~~~~~~~~~~~~~~MIX------------1
+
+SSID 84 : enterprice
+
+SSID 85 : Pre-Shared-Key
+
+SSID 86 : Open-SSID-16
+
+SSID 87 : Enterprise-18
+
+SSID 88 : OLA-EC-store
+
+SSID 89 : new511
+
+SSID 90 : RK-ORG-SSID-1
+
+SSID 91 : A_Syeda-5G
+
+SSID 92 : 60icp
+
+SSID 93 : BCP-SSID
+
+SSID 94 : orgwidedd
+
+SSID 95 : TestSSID
+
+SSID 96 : PRodNis
+
+SSID 97 : we11
+
+SSID 98 : vl88
+
+SSID 99 : rrr
+
+SSID 100 : create
+
+SSID 101 : NetgearEAEBEF
+
+SSID 102 : Automation_138
+
+SSID 103 : Automation_137
+
+SSID 104 : No-MLO-Org-Wide
+
+SSID 105 : @@ORBI96
+
+SSID 106 : Automation_139
+
+SSID 107 : ORBI29
+
+SSID 108 : Netgear1377AF-setup
+
+SSID 109 : @@@630-ci-vvp2
+
+SSID 110 : @@@630-ci-vvp3
+
+SSID 111 : @@@630-ci-vvp4
+
+SSID 112 : @@@630-ci-vvp5
+
+SSID 113 : @@@630-nm-vvp
+
+SSID 114 : @@@630-ci-vvp6
+
+SSID 115 : ORBI76
+
+SSID 116 : BEC-AUTO-OPEN
+
+SSID 117 : ORBI44
+
+SSID 118 : BEC-AUTO-ENT
+
+SSID 119 : ORBI23
+
+SSID 120 : ad hoc
+
+SSID 121 : EnterPrise-638AP
+
+SSID 122 : Netgear3C421F
+
+SSID 123 : grtest
+
+SSID 124 : ORBI80
+
+SSID 125 : 1234ICP
+
+SSID 126 : 01_ssid
+
+SSID 127 : rover
+
+SSID 128 : 0org-open
+
+SSID 129 : 123Simplessid
+
+SSID 130 : 123@@ECPorgwide
+
+SSID 131 : 564n
+
+SSID 132 : 0org-wpa2
+
+SSID 133 : 505bopcx
+
+SSID 134 : vla5
+
+SSID 135 : insi
+
+SSID 136 : test55
+
+SSID 137 : test4
+
+SSID 138 : Dream
+
+SSID 139 : ##2edited
+
+SSID 140 : Netgear804C5F
+
+SSID 141 : PRJCBUGEN_T33724
+
+SSID 142 : (ssid-wax630e)
+
+SSID 143 : CHOLA-D3
+
+SSID 144 : mbicp
+
+SSID 145 : Netgear2A81BF
+
+SSID 146 : @@@PRODfacebook
+
+SSID 147 : 123
+
+SSID 148 : homeconn30
+
+SSID 149 : 01_ssid2
+
+SSID 150 : airpod
+
+SSID 151 : pri-qa-ssid-1
+
+SSID 152 : SSICKCreateCheck
+
+SSID 153 : %%%%%%ssid+open
+
+SSID 154 : AllssidCheck3
+
+SSID 155 : newicp1
+
+SSID 156 : Airpod-lite
+
+SSID 157 : AllssidCheck2
+
+SSID 158 : airpod-zip
+
+SSID 159 : WPA2-SSID
+
+SSID 160 : ap@33862
+
+SSID 161 : !@0aporgssid610
+
+SSID 162 : org-ICP
+
+SSID 163 : 111111111111.
+
+SSID 164 : OrgwideSSID
+
+SSID 165 : ##33
+
+SSID 166 : ##45rate160
+
+SSID 167 : goodssid
+
+SSID 168 : 0winrad
+
+SSID 169 : ORBI75-IOT
+
+SSID 170 : ORBI75-Family
+
+SSID 171 : ORBI75-Guest
+
+SSID 172 : BEC_Router
+
+SSID 173 : netgear
+
+SSID 174 : @@rate###
+
+SSID 175 : @@@check@1234
+
+SSID 176 : @@ProdICPtweeter
+
+SSID 177 : @@@PRODECP
+
+SSID 178 : AllssidCheck
+
+SSID 179 : @@2040rate
+
+SSID 180 : EEEE CCCCC PPPP
+
+SSID 181 : SSidCheck
+
+SSID 182 : @@@NETGEARAP1
+
+SSID 183 : @@@NETGEARAP2
+
+SSID 184 : @@@NETGEARAP3
+
+SSID 185 : @@@NETGEARAP4
+
+SSID 186 : @@@NETGEARAP5
+
+SSID 187 : @@@NETGEARAP7
+
+SSID 188 : 615SSIDtest
+
+SSID 189 : @@@NETGEARAP8
+
+SSID 190 : @prossidus@
+
+SSID 191 : !!!@@@
+
+SSID 192 : ExistingICP
+
+SSID 193 : ExistingECP
+
+SSID 194 : ExistingBCP
+
+SSID 195 : Try-SSID
+
+SSID 196 : ECPLOC1234
+
+SSID 197 : Local=BCP
+
+SSID 198 : Non BCP=
+
+SSID 199 : ECPSpace
+
+SSID 200 : apwp22011
+
+SSID 201 : fdsg
+
+SSID 202 : 11ssidbcp
+
+SSID 203 : ssid2
+
+SSID 204 : @#OlaTest123
+
+SSID 205 : ssid812
+
+SSID 206 : ssid9459
+
+SSID 207 : ssid3515
+
+SSID 208 : ssid9547
+
+SSID 209 : ssid5954
+
+SSID 210 : WPA2-Personal
+
+SSID 211 : ssid3683
+
+SSID 212 : Abc=Alpha
+
+SSID 213 : 4th-SSID-OLA
+
+SSID 214 : 1234
+
+SSID 215 : 3rd eorld
+
+SSID 216 : ICPDemo
+
+SSID 217 : apwp9636
+
+SSID 218 : ols620downserver
+
+SSID 219 : ssid6376
+
+SSID 220 : ssid3981
+
+SSID 221 : AllssidCheck1
+
+SSID 222 : org-bsp
+
+SSID 223 : ssid4369
+
+SSID 224 : NETGEAR2A1FBF-SETUP
+
+SSID 225 : ssid22618
+
+SSID 226 : ssid6420
+
+SSID 227 : EnGeniusCCDD11_1
+
+SSID 228 : NETGEARAAE59F-SETUP
+
+SSID 229 : jhdjshd
+
+SSID 230 : @CAN-ssid@
+
+SSID 231 : PRJCBUGEN_T33721
+
+SSID 232 : ##66ars
+
+SSID 233 : @newcanssid@
+
+SSID 234 : A_Sunil-5G
+
+SSID 235 : ##88mac
+
+SSID 236 : ORBI46
+
+SSID 237 : PRJCBUGEN_T33727
+
+SSID 238 : Enterprise
+
+SSID 239 : PRJCBUGEN_T33718
+
+SSID 240 : NETGEARAAE51F-SETUP
+
+SSID 241 : 777ssid
+
+SSID 242 : new
+
+SSID 243 : ssid4
+
+SSID 244 : ssid9343
+
+SSID 245 : 44pws
+
+SSID 246 : NETGEARA4211F-SETUP
+
+SSID 247 : PIDdsfdf
+
+SSID 248 : ssidopen
+
+SSID 249 : ssstest123
+
+231109-16:37:36 sending result: false
+231109-16:37:36 [Errno 10054] An existing connection was forcibly closed by the remote host
+231109-16:37:36 waiting for client request...
+231109-16:37:36 Server is ready...

@@ -1,0 +1,122 @@
+231017-12:56:04 Server is ready...
+231017-12:56:07 Connected by: ('172.16.27.3', 63533)
+231017-12:56:08 Received data is: WAFfindSSID apwp14270
+231017-12:56:08 wifiOff: adapter_name: Wireless Network Connection
+231017-12:56:08 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:56:08 app output: No more data is available.
+
+
+
+
+
+231017-12:56:13 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:56:13 checkwifiModuleState -> state: dummy result
+231017-12:56:13 wifiOn: adapter_name: Wireless Network Connection
+231017-12:56:13 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-12:56:14 app output: No more data is available.
+
+
+
+
+
+231017-12:56:19 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:56:19 checkwifiModuleState -> state: dummy result
+231017-12:56:19 run app: scannet.exe
+231017-12:56:19 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-12:56:19 run app: netsh wlan show network | findstr apwp14270
+231017-12:56:19 app output: SSID 114 : apwp14270
+
+231017-12:56:19 sending result: true
+231017-12:56:19 waiting for client request...
+231017-12:56:19 Server is ready...
+231017-12:56:21 Connected by: ('172.16.27.3', 63542)
+231017-12:56:22 Received data is: WAFradiusconnect apwp14270 teju teju WPA2EAP aes
+231017-12:56:22 wifiConnectRadius
+231017-12:56:22 run app: taskkill /f /im clickpop.exe
+231017-12:56:22 app output: SUCCESS: The process "clickpop.exe" with PID 10604 has been terminated.
+
+231017-12:56:22 run app: clickpop.exe teju teju
+231017-12:56:22 no wait result request, return in 4s
+231017-12:56:26 filename name is: apwp14270.xml
+231017-12:56:26 run app: netsh wlan delete profile name =*
+231017-12:56:26 app output: Profile "*" is not found on any interface.
+
+231017-12:56:26 wifiOff: adapter_name: Wireless Network Connection
+231017-12:56:26 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:56:26 app output: No more data is available.
+
+
+
+
+
+231017-12:56:31 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:56:31 checkwifiModuleState -> state: dummy result
+231017-12:56:31 wifiOn: adapter_name: Wireless Network Connection
+231017-12:56:31 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-12:56:31 app output: No more data is available.
+
+
+
+
+
+231017-12:56:36 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-12:56:36 checkwifiModuleState -> state: dummy result
+231017-12:56:36 run app: scannet.exe
+231017-12:56:37 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231017-12:56:37 run app: netsh wlan show network | findstr apwp14270
+231017-12:56:37 app output: SSID 123 : apwp14270
+
+231017-12:56:37 run app: netsh wlan add profile filename="apwp14270.xml"
+231017-12:56:37 app output: Profile format error 0x80001: The profile is invalid according to the schema. 
+
+The network connection profile is corrupted.
+
+
+
+
+
+231017-12:56:37 run app: netsh wlan set profileparameter name="apwp14270" connectionmode=auto
+231017-12:56:37 app output: Profile "apwp14270" is not found on any interface.
+
+231017-12:56:47 wifiOff: adapter_name: Wireless Network Connection
+231017-12:56:53 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-12:56:53 app output: No more data is available.
+
+
+
+
+

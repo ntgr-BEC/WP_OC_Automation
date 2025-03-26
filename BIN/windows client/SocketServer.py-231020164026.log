@@ -1,0 +1,280 @@
+231020-16:40:26 Server is ready...
+231020-16:45:20 Connected by: ('172.16.27.3', 65013)
+231020-16:45:21 Received data is: WAFfindSSID apwp16635facebook
+231020-16:45:21 wifiOff: adapter_name: Wireless Network Connection
+231020-16:45:21 run app: netsh interface set interface name="Wireless Network Connection" disable
+231020-16:45:21 app output: No more data is available.
+
+
+
+
+
+231020-16:45:26 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:45:26 checkwifiModuleState -> state: dummy result
+231020-16:45:26 wifiOn: adapter_name: Wireless Network Connection
+231020-16:45:26 run app: netsh interface set interface name="Wireless Network Connection" enable
+231020-16:45:26 app output: No more data is available.
+
+
+
+
+
+231020-16:45:31 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:45:31 checkwifiModuleState -> state: dummy result
+231020-16:45:31 run app: scannet.exe
+231020-16:45:31 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231020-16:45:31 run app: netsh wlan show network | findstr apwp16635facebook
+231020-16:45:31 app output: SSID 6 : apwp16635facebook
+
+231020-16:45:31 sending result: true
+231020-16:45:31 waiting for client request...
+231020-16:45:31 Server is ready...
+231020-16:45:33 Connected by: ('172.16.27.3', 65036)
+231020-16:45:34 Received data is: WAFconnect apwp16635facebook 12345678 WPA2PSK aes
+231020-16:45:34 wifiConnect
+231020-16:45:35 filename name is: apwp16635facebook.xml
+231020-16:45:35 run app: netsh wlan delete profile name =*
+231020-16:45:35 app output: Profile "apwp14270" is deleted from interface "Wi-Fi".
+
+231020-16:45:35 wifiOff: adapter_name: Wireless Network Connection
+231020-16:45:35 run app: netsh interface set interface name="Wireless Network Connection" disable
+231020-16:45:35 app output: No more data is available.
+
+
+
+
+
+231020-16:45:40 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:45:40 checkwifiModuleState -> state: dummy result
+231020-16:45:40 wifiOn: adapter_name: Wireless Network Connection
+231020-16:45:40 run app: netsh interface set interface name="Wireless Network Connection" enable
+231020-16:45:40 app output: No more data is available.
+
+
+
+
+
+231020-16:45:45 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:45:45 checkwifiModuleState -> state: dummy result
+231020-16:45:45 run app: scannet.exe
+231020-16:45:45 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+231020-16:45:45 run app: netsh wlan show network | findstr apwp16635facebook
+231020-16:45:45 app output: SSID 7 : apwp16635facebook
+
+231020-16:45:45 run app: netsh wlan add profile filename="apwp16635facebook.xml"
+231020-16:45:45 app output: Profile apwp16635facebook is added on interface Wi-Fi.
+
+231020-16:45:45 run app: netsh wlan set profileparameter name="apwp16635facebook" connectionmode=auto
+231020-16:45:45 app output: 
+
+Profile "apwp16635facebook" on interface "Wi-Fi" updated successfully.
+
+
+
+231020-16:45:55 wifiOff: adapter_name: Wireless Network Connection
+231020-16:45:55 run app: netsh interface set interface name="Wireless Network Connection" disable
+231020-16:45:56 app output: No more data is available.
+
+
+
+
+
+231020-16:46:01 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:46:01 checkwifiModuleState -> state: dummy result
+231020-16:46:01 wifiOn: adapter_name: Wireless Network Connection
+231020-16:46:01 run app: netsh interface set interface name="Wireless Network Connection" enable
+231020-16:46:01 app output: No more data is available.
+
+
+
+
+
+231020-16:46:06 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231020-16:46:06 checkwifiModuleState -> state: dummy result
+231020-16:46:06 Trying connection in loop...The count is: 1
+231020-16:46:06 run app: netsh wlan connect name ="apwp16635facebook" ssid="apwp16635facebook"
+231020-16:46:06 app output: Connection request was completed successfully.
+
+231020-16:46:06 run app: netsh wlan show interface | findstr State
+231020-16:46:07 app output:     State                  : disconnecting
+
+231020-16:46:07 checkwifiConnState: wireless card connection check failed.
+231020-16:46:11 run app: netsh wlan show interface | findstr State
+231020-16:46:11 app output:     State                  : connected
+
+231020-16:46:16 run app: route print -4
+231020-16:46:16 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 10...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+  2...a2 59 50 d0 78 3e ......Microsoft Wi-Fi Direct Virtual Adapter #4
+
+ 19...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 12...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1    172.16.27.201   1256
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.34     45
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.34    301
+
+     172.16.27.34  255.255.255.255         On-link      172.16.27.34    301
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.34    301
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.34    301
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.34    301
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1  Default 
+
+===========================================================================
+
+231020-16:46:16 sending result: true
+231020-16:46:16 waiting for client request...
+231020-16:46:16 Server is ready...
+231020-16:49:23 Connected by: ('172.16.27.3', 65454)
+231020-16:49:24 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+231020-16:49:24 run app: python "PRJCBUGEN-T16635.py"
+231020-16:50:08 app output: .Fri Oct 20 16:49:25 2023 openurl: http://www.rediff.com
+
+Fri Oct 20 16:49:31 2023 navigate to: http://www.rediff.com
+
+Fri Oct 20 16:49:47 2023 wait_page_ready
+
+. Fri Oct 20 16:49:51 2023 done
+
+Fri Oct 20 16:49:51 2023 wait_page_ready
+
+. Fri Oct 20 16:49:55 2023 done
+
+Fri Oct 20 16:49:55 2023 capture screen for : 231020-164955.png
+
+Fri Oct 20 16:50:01 2023 capture screen for : 231020-165001.png
+
+Fri Oct 20 16:50:01 2023 wait_element: id - fSubmit - 30
+
+. Fri Oct 20 16:50:05 2023 is_element_present: id - fSubmit
+
+Fri Oct 20 16:50:05 2023 is_element_present: id - fSubmit
+
+finalresult: 1
+
+
+
+----------------------------------------------------------------------
+
+Ran 1 test in 36.399s
+
+
+
+OK
+
+231020-16:50:08 sending result: .Fri Oct 20 16:49:25 2023 openurl: http://www.rediff.com
+Fri Oct 20 16:49:31 2023 navigate to: http://www.rediff.com
+Fri Oct 20 16:49:47 2023 wait_page_ready
+. Fri Oct 20 16:49:51 2023 done
+Fri Oct 20 16:49:51 2023 wait_page_ready
+. Fri Oct 20 16:49:55 2023 done
+Fri Oct 20 16:49:55 2023 capture screen for : 231020-164955.png
+Fri Oct 20 16:50:01 2023 capture screen for : 231020-165001.png
+Fri Oct 20 16:50:01 2023 wait_element: id - fSubmit - 30
+. Fri Oct 20 16:50:05 2023 is_element_present: id - fSubmit
+Fri Oct 20 16:50:05 2023 is_element_present: id - fSubmit
+finalresult: 1
+
+----------------------------------------------------------------------
+Ran 1 test in 36.399s
+
+OK
+
+231020-16:50:08 waiting for client request...
+231020-16:50:08 Server is ready...
+231020-16:50:10 Connected by: ('172.16.27.3', 65508)
+231020-16:50:11 Received data is: netsh wlan disconnect
+231020-16:50:11 run app: netsh wlan disconnect
+231020-16:50:11 app output: Disconnection request was completed successfully for interface "Wi-Fi".
+
+231020-16:50:11 sending result: Disconnection request was completed successfully for interface "Wi-Fi".
+
+231020-16:50:11 waiting for client request...
+231020-16:50:11 Server is ready...

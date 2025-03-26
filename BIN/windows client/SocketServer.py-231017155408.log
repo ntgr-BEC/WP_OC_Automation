@@ -1,0 +1,21 @@
+231017-15:54:08 Server is ready...
+231017-15:56:38 Connected by: ('172.16.27.3', 54989)
+231017-15:56:39 Received data is: WAFfindSSID apwp14270
+231017-15:56:39 wifiOff: adapter_name: Wireless Network Connection
+231017-15:56:39 run app: netsh interface set interface name="Wireless Network Connection" disable
+231017-15:56:39 app output: No more data is available.
+
+
+
+
+
+231017-15:56:44 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+231017-15:56:45 checkwifiModuleState -> state: dummy result
+231017-15:56:45 wifiOn: adapter_name: Wireless Network Connection
+231017-15:56:45 run app: netsh interface set interface name="Wireless Network Connection" enable
+231017-15:56:45 app output: No more data is available.
+
+
+
+
+

@@ -1,0 +1,3928 @@
+230718-09:34:38 Server is ready...
+230718-09:55:53 Connected by: ('10.208.116.66', 56676)
+230718-09:55:54 Received data is: WAFfindSSID New88
+230718-09:55:54 wifiOff: adapter_name: Wireless Network Connection
+230718-09:55:54 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-09:55:54 app output: 
+
+230718-09:55:59 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:55:59 app output:    Administrative state: Disabled             
+
+230718-09:55:59 wifiOn: adapter_name: Wireless Network Connection
+230718-09:55:59 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-09:56:00 app output: 
+
+230718-09:56:05 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:56:05 app output:    Administrative state: Enabled             
+
+230718-09:56:05 run app: scannet.exe
+230718-09:56:05 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:05 run app: netsh wlan show network | findstr New88
+230718-09:56:09 run app: scannet.exe
+230718-09:56:09 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:09 run app: netsh wlan show network | findstr New88
+230718-09:56:13 run app: scannet.exe
+230718-09:56:13 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:13 run app: netsh wlan show network | findstr New88
+230718-09:56:17 run app: scannet.exe
+230718-09:56:17 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:17 run app: netsh wlan show network | findstr New88
+230718-09:56:22 run app: scannet.exe
+230718-09:56:22 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:22 run app: netsh wlan show network | findstr New88
+230718-09:56:26 findSSID -> not able to scan the ssid: New88
+230718-09:56:26 run app: netsh wlan show network | findstr SSID
+230718-09:56:26 app output: SSID 1 : 222-vlan
+
+SSID 2 : gpprod
+
+SSID 3 : 
+
+SSID 4 : 00-WPA2Mixed_test!@#
+
+SSID 5 : 00-WPA3Enterprise_Test
+
+SSID 6 : BCP
+
+SSID 7 : 00_11r_test_ch
+
+SSID 8 : 00-open-Test
+
+SSID 9 : 00_11r_pollachi
+
+SSID 10 : Family-Remote-IOT
+
+SSID 11 : 00_WPA2Enterprise_test
+
+SSID 12 : 11r-pl-roam
+
+SSID 13 : test
+
+SSID 14 : 
+
+SSID 15 : apwp14270
+
+SSID 16 : fgvsdfsd
+
+SSID 17 : icppay
+
+SSID 18 : 1AutoBEC
+
+SSID 19 : autoBEC
+
+SSID 20 : UP1
+
+SSID 21 : gp_OfficeSt
+
+SSID 22 : Netgear137A1F
+
+SSID 23 : cg1
+
+SSID 24 : 11rRoaming_Test
+
+SSID 25 : 00_11r_pollachi_vlan9
+
+SSID 26 : ORBI-Employer-SSID
+
+SSID 27 : 1CAFEVPN-GP
+
+SSID 28 : 1apwp27006
+
+SSID 29 : Orbideft-123
+
+SSID 30 : 2usa
+
+SSID 31 : Netgear4201CF
+
+SSID 32 : ssid24
+
+SSID 33 : org123
+
+SSID 34 : Sol-Complex
+
+SSID 35 : Sol-Dual-Rate
+
+SSID 36 : Sol-5Ghz-LCP
+
+SSID 37 : Sol-Multi-Schedule
+
+SSID 38 : check123
+
+SSID 39 : ssid23537
+
+SSID 40 : new
+
+SSID 41 : SAFEX-41
+
+SSID 42 : SAFE-3
+
+SSID 43 : 1GP-WA610Y
+
+SSID 44 : PBS-610Y
+
+SSID 45 : ssstest123
+
+SSID 46 : create
+
+SSID 47 : new34345
+
+SSID 48 : new511
+
+SSID 49 : apwp21516
+
+SSID 50 : neww1
+
+SSID 51 : 60icp
+
+SSID 52 : neww
+
+SSID 53 : 1apwp27004
+
+SSID 54 : rrr
+
+SSID 55 : 01_ssid3
+
+SSID 56 : A_Syeda-5G
+
+SSID 57 : PRJCBUGEN_T33715
+
+SSID 58 : ssid
+
+SSID 59 : secondaryradius
+
+SSID 60 : india
+
+SSID 61 : NewSSID
+
+SSID 62 : ecpwideweb
+
+SSID 63 : 608adminweb
+
+SSID 64 : 608adminradius
+
+SSID 65 : rwweb
+
+SSID 66 : IcP
+
+SSID 67 : rwradius
+
+SSID 68 : secondaryweb
+
+SSID 69 : Automation_138
+
+SSID 70 : Automation_137
+
+SSID 71 : Automation_139
+
+SSID 72 : @@ORBI96
+
+SSID 73 : 1ola
+
+SSID 74 : 2ola
+
+SSID 75 : ola3
+
+SSID 76 : 3ola
+
+SSID 77 : 2sssid
+
+SSID 78 : 610radius
+
+SSID 79 : newggg
+
+SSID 80 : anewadhoc
+
+SSID 81 : todyssid
+
+SSID 82 : goodone
+
+SSID 83 : bcp
+
+SSID 84 : icplvoc
+
+SSID 85 : 2.4hricp
+
+SSID 86 : im511ssid
+
+SSID 87 : badopen
+
+SSID 88 : 505bopcx
+
+SSID 89 : firstwifi
+
+SSID 90 : 44pws
+
+SSID 91 : ad hoc
+
+SSID 92 : ORBI35
+
+SSID 93 : 00_open_CI2
+
+SSID 94 : 00-11r-CH_WPA2Ent
+
+SSID 95 : 00_wpa3_mixed_11r
+
+SSID 96 : 01_guest
+
+SSID 97 : PIDdsfdf
+
+SSID 98 : 11111111111111
+
+SSID 99 : RafaA.
+
+SSID 100 : OrgwideSSID
+
+SSID 101 : ssid564
+
+SSID 102 : ench1
+
+SSID 103 : ola1
+
+SSID 104 : gpdeer
+
+SSID 105 : DoodleOnNoodle
+
+SSID 106 : ola2
+
+SSID 107 : gdeer
+
+SSID 108 : 3radio
+
+SSID 109 : ORBI23
+
+SSID 110 : ORBI80
+
+SSID 111 : ORBI76
+
+SSID 112 : ench11
+
+SSID 113 : ORBI44
+
+SSID 114 : GroupSweden
+
+SSID 115 : SAFE-2
+
+SSID 116 : we11
+
+SSID 117 : vl88
+
+SSID 118 : SSICKCreateCheck
+
+SSID 119 : AllssidCheck3
+
+SSID 120 : 56ios
+
+SSID 121 : ssidall
+
+SSID 122 : ssid5
+
+SSID 123 : ssidboth
+
+SSID 124 : testi
+
+SSID 125 : ssidnoissue
+
+SSID 126 : ssidnot212
+
+SSID 127 : NETGEAR_IOT
+
+SSID 128 : AllssidCheck2
+
+SSID 129 : ORBI28
+
+SSID 130 : aRS
+
+SSID 131 : AllssidCheck
+
+SSID 132 : AllssidCheck1
+
+SSID 133 : sriORBI
+
+SSID 134 : goodssid
+
+SSID 135 : will1
+
+SSID 136 : s2
+
+SSID 137 : openssid
+
+SSID 138 : NtgrCorp
+
+SSID 139 : prod prod
+
+SSID 140 : ngguest
+
+SSID 141 : apwp215345
+
+SSID 142 : NETGEAR1AEEFF-SETUP
+
+SSID 143 : sssid454544
+
+SSID 144 : FirmwareUpgradeSetup
+
+SSID 145 : usa2ndssid
+
+SSID 146 : NETGEAR3A05CF-SETUP
+
+SSID 147 : 4thssid
+
+SSID 148 : usaafterFWupgd
+
+SSID 149 : Load
+
+SSID 150 : 0510-Beta-ICP
+
+SSID 151 : ssid22623
+
+SSID 152 : 000Google-survey
+
+SSID 153 : NETGEAR2B9D3F-SETUP
+
+SSID 154 : NETGEAR-1
+
+SSID 155 : Netgear444DAF
+
+SSID 156 : FBCP
+
+SSID 157 : NETGEARB4B0EF-SETUP
+
+SSID 158 : Ashish-SSID1
+
+SSID 159 : NETGEAR08F08F-SETUP
+
+SSID 160 : 00@@instantwifi
+
+SSID 161 : NETGEAR6B857F-SETUP
+
+SSID 162 : oicp
+
+SSID 163 : adcadc
+
+230718-09:56:26 sending result: false
+230718-09:56:26 waiting for client request...
+230718-09:56:26 Server is ready...
+230718-09:56:38 Connected by: ('10.208.116.66', 56702)
+230718-09:56:39 Received data is: WAFfindSSID New88
+230718-09:56:39 wifiOff: adapter_name: Wireless Network Connection
+230718-09:56:39 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-09:56:39 app output: 
+
+230718-09:56:44 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:56:44 app output:    Administrative state: Disabled             
+
+230718-09:56:44 wifiOn: adapter_name: Wireless Network Connection
+230718-09:56:44 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-09:56:45 app output: 
+
+230718-09:56:50 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:56:50 app output:    Administrative state: Enabled             
+
+230718-09:56:50 run app: scannet.exe
+230718-09:56:50 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:56:50 run app: netsh wlan show network | findstr New88
+230718-09:56:50 app output: SSID 44 : New88
+
+230718-09:56:50 sending result: true
+230718-09:56:50 waiting for client request...
+230718-09:56:50 Server is ready...
+230718-09:56:52 Connected by: ('10.208.116.66', 56719)
+230718-09:56:53 Received data is: WAFconnect New88 12345678 WPA2PSK aes
+230718-09:56:53 wifiConnect
+230718-09:56:53 filename name is: New88.xml
+230718-09:56:53 run app: netsh wlan delete profile name =*
+230718-09:56:53 app output: Profile "apwp14477" is deleted from interface "Wireless Network Connection".
+
+230718-09:56:53 wifiOff: adapter_name: Wireless Network Connection
+230718-09:56:53 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-09:56:53 app output: 
+
+230718-09:56:58 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:56:58 app output:    Administrative state: Disabled             
+
+230718-09:56:58 wifiOn: adapter_name: Wireless Network Connection
+230718-09:56:58 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-09:56:59 app output: 
+
+230718-09:57:04 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:57:04 app output:    Administrative state: Enabled             
+
+230718-09:57:04 run app: scannet.exe
+230718-09:57:04 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-09:57:04 run app: netsh wlan show network | findstr New88
+230718-09:57:04 app output: SSID 48 : New88
+
+230718-09:57:04 run app: netsh wlan add profile filename="New88.xml"
+230718-09:57:05 app output: Profile New88 is added on interface Wireless Network Connection.
+
+230718-09:57:05 run app: netsh wlan set profileparameter name="New88" connectionmode=auto
+230718-09:57:05 app output: 
+
+Profile "New88" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-09:57:15 wifiOff: adapter_name: Wireless Network Connection
+230718-09:57:15 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-09:57:15 app output: 
+
+230718-09:57:20 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:57:20 app output:    Administrative state: Disabled             
+
+230718-09:57:20 wifiOn: adapter_name: Wireless Network Connection
+230718-09:57:20 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-09:57:21 app output: 
+
+230718-09:57:26 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-09:57:26 app output:    Administrative state: Enabled             
+
+230718-09:57:26 Trying connection in loop...The count is: 1
+230718-09:57:26 run app: netsh wlan connect name ="New88" ssid="New88"
+230718-09:57:26 app output: Connection request was completed successfully.
+
+230718-09:57:26 run app: netsh wlan show interface | findstr State
+230718-09:57:26 app output:     State                  : disconnecting
+
+230718-09:57:26 checkwifiConnState: wireless card connection check failed.
+230718-09:57:30 run app: netsh wlan show interface | findstr State
+230718-09:57:31 app output:     State                  : connected
+
+230718-09:57:36 run app: route print -4
+230718-09:57:36 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-09:57:36 sending result: true
+230718-09:57:36 waiting for client request...
+230718-09:57:36 Server is ready...
+230718-09:58:38 Connected by: ('10.208.116.66', 56777)
+230718-09:58:39 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-09:58:39 run app: python "PRJCBUGEN-T16635.py"
+230718-09:58:42 app output: Tue Jul 18 09:58:39 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-09:58:42 sending result: Tue Jul 18 09:58:39 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-09:58:42 waiting for client request...
+230718-09:58:42 Server is ready...
+230718-10:11:03 Connected by: ('10.208.116.66', 56917)
+230718-10:11:04 Received data is: WAFfindSSID apwp29378
+230718-10:11:04 wifiOff: adapter_name: Wireless Network Connection
+230718-10:11:04 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:11:05 app output: 
+
+230718-10:11:10 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:10 app output:    Administrative state: Disabled             
+
+230718-10:11:10 wifiOn: adapter_name: Wireless Network Connection
+230718-10:11:10 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:11:11 app output: 
+
+230718-10:11:16 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:16 app output:    Administrative state: Enabled             
+
+230718-10:11:16 run app: scannet.exe
+230718-10:11:16 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:11:16 run app: netsh wlan show network | findstr apwp29378
+230718-10:11:16 app output: SSID 45 : apwp29378
+
+230718-10:11:16 sending result: true
+230718-10:11:16 waiting for client request...
+230718-10:11:16 Server is ready...
+230718-10:11:18 Connected by: ('10.208.116.66', 56939)
+230718-10:11:19 Received data is: WAFconnect apwp29378 12345678 WPA2PSK aes
+230718-10:11:19 wifiConnect
+230718-10:11:19 filename name is: apwp29378.xml
+230718-10:11:19 run app: netsh wlan delete profile name =*
+230718-10:11:19 app output: Profile "New88" is deleted from interface "Wireless Network Connection".
+
+230718-10:11:19 wifiOff: adapter_name: Wireless Network Connection
+230718-10:11:19 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:11:19 app output: 
+
+230718-10:11:24 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:24 app output:    Administrative state: Disabled             
+
+230718-10:11:24 wifiOn: adapter_name: Wireless Network Connection
+230718-10:11:24 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:11:25 app output: 
+
+230718-10:11:30 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:30 app output:    Administrative state: Enabled             
+
+230718-10:11:30 run app: scannet.exe
+230718-10:11:30 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:11:30 run app: netsh wlan show network | findstr apwp29378
+230718-10:11:30 app output: SSID 162 : apwp29378
+
+230718-10:11:30 run app: netsh wlan add profile filename="apwp29378.xml"
+230718-10:11:30 app output: Profile apwp29378 is added on interface Wireless Network Connection.
+
+230718-10:11:30 run app: netsh wlan set profileparameter name="apwp29378" connectionmode=auto
+230718-10:11:30 app output: 
+
+Profile "apwp29378" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-10:11:40 wifiOff: adapter_name: Wireless Network Connection
+230718-10:11:40 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:11:41 app output: 
+
+230718-10:11:46 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:46 app output:    Administrative state: Disabled             
+
+230718-10:11:46 wifiOn: adapter_name: Wireless Network Connection
+230718-10:11:46 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:11:47 app output: 
+
+230718-10:11:52 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:11:52 app output:    Administrative state: Enabled             
+
+230718-10:11:52 Trying connection in loop...The count is: 1
+230718-10:11:52 run app: netsh wlan connect name ="apwp29378" ssid="apwp29378"
+230718-10:11:52 app output: Connection request was completed successfully.
+
+230718-10:11:52 run app: netsh wlan show interface | findstr State
+230718-10:11:53 app output:     State                  : disconnecting
+
+230718-10:11:53 checkwifiConnState: wireless card connection check failed.
+230718-10:11:57 run app: netsh wlan show interface | findstr State
+230718-10:11:57 app output:     State                  : connected
+
+230718-10:12:02 run app: route print -4
+230718-10:12:02 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-10:12:02 sending result: true
+230718-10:12:02 waiting for client request...
+230718-10:12:02 Server is ready...
+230718-10:32:03 Connected by: ('10.208.116.66', 57327)
+230718-10:32:04 Received data is: WAFfindSSID New88
+230718-10:32:04 wifiOff: adapter_name: Wireless Network Connection
+230718-10:32:04 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:32:04 app output: 
+
+230718-10:32:09 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:32:09 app output:    Administrative state: Disabled             
+
+230718-10:32:09 wifiOn: adapter_name: Wireless Network Connection
+230718-10:32:09 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:32:10 app output: 
+
+230718-10:32:15 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:32:15 app output:    Administrative state: Enabled             
+
+230718-10:32:15 run app: scannet.exe
+230718-10:32:15 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 1AutoBEC
+
+  Association Attributes for this connection
+
+    SSID:		 1AutoBEC
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 08-36-C9-1D-79-91
+
+    PHY network type:	 Unknown = 8
+
+    PHY index:		 4
+
+    Signal Quality:	 99
+
+    Receiving Rate:	 360000
+
+    Transmission Rate:	 108000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:32:15 run app: netsh wlan show network | findstr New88
+230718-10:32:20 run app: scannet.exe
+230718-10:32:20 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:32:20 run app: netsh wlan show network | findstr New88
+230718-10:32:24 run app: scannet.exe
+230718-10:32:24 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:32:24 run app: netsh wlan show network | findstr New88
+230718-10:32:28 run app: scannet.exe
+230718-10:32:28 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:32:28 run app: netsh wlan show network | findstr New88
+230718-10:32:32 run app: scannet.exe
+230718-10:32:32 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:32:32 run app: netsh wlan show network | findstr New88
+230718-10:32:36 findSSID -> not able to scan the ssid: New88
+230718-10:32:36 run app: netsh wlan show network | findstr SSID
+230718-10:32:36 app output: SSID 1 : SAFE-3
+
+SSID 2 : 
+
+SSID 3 : 00-WPA2Mixed_test!@#
+
+SSID 4 : 00_11r_pollachi
+
+SSID 5 : 00_WPA2Enterprise_test
+
+SSID 6 : 00-WPA3Enterprise_Test
+
+SSID 7 : 00_11r_pollachi_vlan9
+
+SSID 8 : 11r-pl-roam
+
+SSID 9 : 00-open-Test
+
+SSID 10 : 00_11r_test_ch
+
+SSID 11 : gdeer
+
+SSID 12 : adcadc
+
+SSID 13 : ORBI76
+
+SSID 14 : AutomationTest
+
+SSID 15 : 1suren564R1
+
+SSID 16 : NtgrCorp
+
+SSID 17 : 1CAFEVPN-GP
+
+SSID 18 : ssid
+
+SSID 19 : Family-Remote-IOT
+
+SSID 20 : NETGEAR_11ng
+
+SSID 21 : 000Google-survey
+
+SSID 22 : org123
+
+SSID 23 : gpprod
+
+SSID 24 : Orbideft-123
+
+SSID 25 : PIDdsfdf
+
+SSID 26 : test
+
+SSID 27 : 
+
+SSID 28 : aRS
+
+SSID 29 : PRJCBUGEN_T33715
+
+SSID 30 : icppay
+
+SSID 31 : 1AutoBEC
+
+SSID 32 : autoBEC
+
+SSID 33 : usa2ndssid
+
+SSID 34 : 11rRoaming_Test
+
+SSID 35 : cg1
+
+SSID 36 : ORBI-Employer-SSID
+
+SSID 37 : 1apwp27006
+
+SSID 38 : Load
+
+SSID 39 : apwp21534
+
+SSID 40 : 222-vlan
+
+SSID 41 : apwp14270
+
+SSID 42 : Sol-5Ghz-LCP
+
+SSID 43 : dgssid
+
+SSID 44 : FirmwareUpgradeSetup
+
+SSID 45 : Sol-Multi-Schedule
+
+SSID 46 : Sol-Dual-Rate
+
+SSID 47 : SAFE-2
+
+SSID 48 : apwp14279
+
+SSID 49 : ZXCVBNM
+
+SSID 50 : SK-Production-CP
+
+SSID 51 : SK-Production-RL-CI
+
+SSID 52 : sk-production-11r
+
+SSID 53 : 1GP-WA610Y
+
+SSID 54 : PBS-610Y
+
+SSID 55 : ssstest123
+
+SSID 56 : 1surenVAP-AP1
+
+SSID 57 : 1surenVAP-AP3
+
+SSID 58 : 1surenVAP-AP6
+
+SSID 59 : 1surenVAP-AP7
+
+SSID 60 : new34345
+
+SSID 61 : neww1
+
+SSID 62 : new511
+
+SSID 63 : create
+
+SSID 64 : neww
+
+SSID 65 : 1apwp27003
+
+SSID 66 : 60icp
+
+SSID 67 : apwp21587
+
+SSID 68 : vl88
+
+SSID 69 : rrr
+
+SSID 70 : 01_ssid5
+
+SSID 71 : india
+
+SSID 72 : ecpwideweb
+
+SSID 73 : secondaryradius
+
+SSID 74 : NewSSID
+
+SSID 75 : 608adminweb
+
+SSID 76 : 608adminradius
+
+SSID 77 : rwweb
+
+SSID 78 : IcP
+
+SSID 79 : rwradius
+
+SSID 80 : secondaryweb
+
+SSID 81 : @@ORBI96
+
+SSID 82 : Automation_138
+
+SSID 83 : icplvoc
+
+SSID 84 : new555
+
+SSID 85 : bcp
+
+SSID 86 : 2.4hricp
+
+SSID 87 : im511ssid
+
+SSID 88 : 2sssid
+
+SSID 89 : newggg
+
+SSID 90 : todyssid
+
+SSID 91 : goodone
+
+SSID 92 : WAC564_6081995M00055_EEM_05
+
+SSID 93 : badopen
+
+SSID 94 : firstwifi
+
+SSID 95 : 44pws
+
+SSID 96 : 00_open_CI2
+
+SSID 97 : 00-11r-CH_WPA2Ent
+
+SSID 98 : 00_wpa3_mixed_11r
+
+SSID 99 : 11111111111111
+
+SSID 100 : 01_guest
+
+SSID 101 : RafaA.
+
+SSID 102 : ssid564
+
+SSID 103 : OrgwideSSID
+
+SSID 104 : ORBI44
+
+SSID 105 : ench1
+
+SSID 106 : ola1
+
+SSID 107 : DoodleOnNoodle
+
+SSID 108 : ola2
+
+SSID 109 : 3radio
+
+SSID 110 : GroupSweden
+
+SSID 111 : gpdeer
+
+SSID 112 : ench11
+
+SSID 113 : ORBI23
+
+SSID 114 : ORBI80
+
+SSID 115 : SAFEX-41
+
+SSID 116 : ssidall
+
+SSID 117 : we11
+
+SSID 118 : SSICKCreateCheck
+
+SSID 119 : AllssidCheck1
+
+SSID 120 : AllssidCheck3
+
+SSID 121 : ssid5
+
+SSID 122 : AllssidCheck2
+
+SSID 123 : NETGEAR_IOT
+
+SSID 124 : ORBI28
+
+SSID 125 : 56ios
+
+SSID 126 : ssidboth
+
+SSID 127 : testi
+
+SSID 128 : ssidnoissue
+
+SSID 129 : ssidnot212
+
+SSID 130 : AllssidCheck
+
+SSID 131 : sriORBI
+
+SSID 132 : NetgearB9BC5F
+
+SSID 133 : goodssid
+
+SSID 134 : will1
+
+SSID 135 : ngguest
+
+SSID 136 : prod prod
+
+SSID 137 : openssid
+
+SSID 138 : apwp215345
+
+SSID 139 : seecondaryradius
+
+SSID 140 : adminweb
+
+SSID 141 : adminradius
+
+SSID 142 : newadmin
+
+SSID 143 : NETGEAR1AEEFF-SETUP
+
+SSID 144 : betassid
+
+SSID 145 : Netgear137A1F
+
+SSID 146 : sssid454544
+
+SSID 147 : usaafterFWupgd
+
+SSID 148 : dsasadfdsgfdgfdhgh
+
+SSID 149 : usassid
+
+SSID 150 : NETGEAR3A05CF-SETUP
+
+SSID 151 : ssid22623
+
+SSID 152 : 200 Scaled
+
+SSID 153 : Netgear444DAF
+
+SSID 154 : FBCP
+
+SSID 155 : BCP
+
+SSID 156 : NETGEARB4B0EF-SETUP
+
+SSID 157 : Ashish-SSID1
+
+SSID 158 : SSidCheck
+
+SSID 159 : Automation_137
+
+SSID 160 : NETGEAR6B857F-SETUP
+
+SSID 161 : oicp
+
+SSID 162 : ssid23537
+
+SSID 163 : new
+
+SSID 164 : Third-Enterprise-SSID
+
+230718-10:32:36 sending result: false
+230718-10:32:36 waiting for client request...
+230718-10:32:36 Server is ready...
+230718-10:32:48 Connected by: ('10.208.116.66', 57376)
+230718-10:32:49 Received data is: WAFfindSSID New88
+230718-10:32:49 wifiOff: adapter_name: Wireless Network Connection
+230718-10:32:49 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:32:50 app output: 
+
+230718-10:32:55 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:32:55 app output:    Administrative state: Disabled             
+
+230718-10:32:55 wifiOn: adapter_name: Wireless Network Connection
+230718-10:32:55 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:32:55 app output: 
+
+230718-10:33:00 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:33:00 app output:    Administrative state: Enabled             
+
+230718-10:33:00 run app: scannet.exe
+230718-10:33:01 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 1AutoBEC
+
+  Association Attributes for this connection
+
+    SSID:		 1AutoBEC
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 08-36-C9-1D-79-91
+
+    PHY network type:	 Unknown = 8
+
+    PHY index:		 4
+
+    Signal Quality:	 93
+
+    Receiving Rate:	 400000
+
+    Transmission Rate:	 108000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:33:01 run app: netsh wlan show network | findstr New88
+230718-10:33:01 app output: SSID 36 : New88
+
+230718-10:33:01 sending result: true
+230718-10:33:01 waiting for client request...
+230718-10:33:01 Server is ready...
+230718-10:33:03 Connected by: ('10.208.116.66', 57415)
+230718-10:33:04 Received data is: WAFconnect New88 12345678 WPA2PSK aes
+230718-10:33:04 wifiConnect
+230718-10:33:04 filename name is: New88.xml
+230718-10:33:04 run app: netsh wlan delete profile name =*
+230718-10:33:04 app output: Profile "1AutoBEC" is deleted from interface "Wireless Network Connection".
+
+Profile "apwp29378" is deleted from interface "Wireless Network Connection".
+
+230718-10:33:04 wifiOff: adapter_name: Wireless Network Connection
+230718-10:33:04 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:33:04 app output: 
+
+230718-10:33:09 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:33:09 app output:    Administrative state: Disabled             
+
+230718-10:33:09 wifiOn: adapter_name: Wireless Network Connection
+230718-10:33:09 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:33:10 app output: 
+
+230718-10:33:15 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:33:15 app output:    Administrative state: Enabled             
+
+230718-10:33:15 run app: scannet.exe
+230718-10:33:15 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:33:15 run app: netsh wlan show network | findstr New88
+230718-10:33:15 app output: SSID 49 : New88
+
+230718-10:33:15 run app: netsh wlan add profile filename="New88.xml"
+230718-10:33:15 app output: Profile New88 is added on interface Wireless Network Connection.
+
+230718-10:33:15 run app: netsh wlan set profileparameter name="New88" connectionmode=auto
+230718-10:33:16 app output: 
+
+Profile "New88" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-10:33:26 wifiOff: adapter_name: Wireless Network Connection
+230718-10:33:26 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:33:26 app output: 
+
+230718-10:33:31 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:33:31 app output:    Administrative state: Disabled             
+
+230718-10:33:31 wifiOn: adapter_name: Wireless Network Connection
+230718-10:33:31 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:33:32 app output: 
+
+230718-10:33:37 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:33:37 app output:    Administrative state: Enabled             
+
+230718-10:33:37 Trying connection in loop...The count is: 1
+230718-10:33:37 run app: netsh wlan connect name ="New88" ssid="New88"
+230718-10:33:37 app output: Connection request was completed successfully.
+
+230718-10:33:37 run app: netsh wlan show interface | findstr State
+230718-10:33:37 app output:     State                  : disconnecting
+
+230718-10:33:37 checkwifiConnState: wireless card connection check failed.
+230718-10:33:41 run app: netsh wlan show interface | findstr State
+230718-10:33:41 app output:     State                  : connected
+
+230718-10:33:46 run app: route print -4
+230718-10:33:46 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-10:33:46 sending result: true
+230718-10:33:46 waiting for client request...
+230718-10:33:46 Server is ready...
+230718-10:34:48 Connected by: ('10.208.116.66', 57493)
+230718-10:34:49 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-10:34:49 run app: python "PRJCBUGEN-T16635.py"
+230718-10:34:53 app output: Tue Jul 18 10:34:50 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-10:34:53 sending result: Tue Jul 18 10:34:50 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-10:34:53 waiting for client request...
+230718-10:34:53 Server is ready...
+230718-10:47:21 Connected by: ('10.208.116.66', 57725)
+230718-10:47:22 Received data is: WAFfindSSID apwp29378
+230718-10:47:22 wifiOff: adapter_name: Wireless Network Connection
+230718-10:47:22 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:47:22 app output: 
+
+230718-10:47:27 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:47:27 app output:    Administrative state: Disabled             
+
+230718-10:47:27 wifiOn: adapter_name: Wireless Network Connection
+230718-10:47:27 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:47:28 app output: 
+
+230718-10:47:33 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:47:33 app output:    Administrative state: Enabled             
+
+230718-10:47:33 run app: scannet.exe
+230718-10:47:33 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:47:33 run app: netsh wlan show network | findstr apwp29378
+230718-10:47:33 app output: SSID 58 : apwp29378
+
+230718-10:47:33 sending result: true
+230718-10:47:33 waiting for client request...
+230718-10:47:33 Server is ready...
+230718-10:47:35 Connected by: ('10.208.116.66', 57749)
+230718-10:47:36 Received data is: WAFconnect apwp29378 12345678 WPA2PSK aes
+230718-10:47:36 wifiConnect
+230718-10:47:36 filename name is: apwp29378.xml
+230718-10:47:36 run app: netsh wlan delete profile name =*
+230718-10:47:36 app output: Profile "New88" is deleted from interface "Wireless Network Connection".
+
+230718-10:47:36 wifiOff: adapter_name: Wireless Network Connection
+230718-10:47:36 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:47:36 app output: 
+
+230718-10:47:41 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:47:41 app output:    Administrative state: Disabled             
+
+230718-10:47:41 wifiOn: adapter_name: Wireless Network Connection
+230718-10:47:41 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:47:42 app output: 
+
+230718-10:47:47 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:47:47 app output:    Administrative state: Enabled             
+
+230718-10:47:47 run app: scannet.exe
+230718-10:47:47 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-10:47:47 run app: netsh wlan show network | findstr apwp29378
+230718-10:47:47 app output: SSID 1 : apwp29378
+
+230718-10:47:47 run app: netsh wlan add profile filename="apwp29378.xml"
+230718-10:47:47 app output: Profile apwp29378 is added on interface Wireless Network Connection.
+
+230718-10:47:47 run app: netsh wlan set profileparameter name="apwp29378" connectionmode=auto
+230718-10:47:47 app output: 
+
+Profile "apwp29378" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-10:47:57 wifiOff: adapter_name: Wireless Network Connection
+230718-10:47:57 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-10:47:58 app output: 
+
+230718-10:48:03 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:48:03 app output:    Administrative state: Disabled             
+
+230718-10:48:03 wifiOn: adapter_name: Wireless Network Connection
+230718-10:48:03 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-10:48:03 app output: 
+
+230718-10:48:08 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-10:48:08 app output:    Administrative state: Enabled             
+
+230718-10:48:08 Trying connection in loop...The count is: 1
+230718-10:48:08 run app: netsh wlan connect name ="apwp29378" ssid="apwp29378"
+230718-10:48:08 app output: Connection request was completed successfully.
+
+230718-10:48:08 run app: netsh wlan show interface | findstr State
+230718-10:48:09 app output:     State                  : disconnecting
+
+230718-10:48:09 checkwifiConnState: wireless card connection check failed.
+230718-10:48:13 run app: netsh wlan show interface | findstr State
+230718-10:48:13 app output:     State                  : connected
+
+230718-10:48:18 run app: route print -4
+230718-10:48:18 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-10:48:18 sending result: true
+230718-10:48:18 waiting for client request...
+230718-10:48:18 Server is ready...
+230718-10:49:20 Connected by: ('10.208.116.66', 57818)
+230718-10:49:21 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-10:49:21 run app: python "PRJCBUGEN-T16635.py"
+230718-10:49:24 app output: Tue Jul 18 10:49:21 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-10:49:24 sending result: Tue Jul 18 10:49:21 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-10:49:24 waiting for client request...
+230718-10:49:24 Server is ready...
+230718-11:01:45 Connected by: ('10.208.116.66', 57960)
+230718-11:01:46 Received data is: WAFfindSSID New88
+230718-11:01:46 wifiOff: adapter_name: Wireless Network Connection
+230718-11:01:46 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:01:46 app output: 
+
+230718-11:01:51 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:01:51 app output:    Administrative state: Disabled             
+
+230718-11:01:51 wifiOn: adapter_name: Wireless Network Connection
+230718-11:01:51 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:01:52 app output: 
+
+230718-11:01:57 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:01:57 app output:    Administrative state: Enabled             
+
+230718-11:01:57 run app: scannet.exe
+230718-11:01:57 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:01:57 run app: netsh wlan show network | findstr New88
+230718-11:01:57 app output: SSID 39 : New88
+
+230718-11:01:57 sending result: true
+230718-11:01:57 waiting for client request...
+230718-11:01:57 Server is ready...
+230718-11:01:59 Connected by: ('10.208.116.66', 57978)
+230718-11:02:00 Received data is: WAFconnect New88 12345678 WPA2PSK aes
+230718-11:02:00 wifiConnect
+230718-11:02:00 filename name is: New88.xml
+230718-11:02:00 run app: netsh wlan delete profile name =*
+230718-11:02:00 app output: Profile "apwp29378" is deleted from interface "Wireless Network Connection".
+
+230718-11:02:00 wifiOff: adapter_name: Wireless Network Connection
+230718-11:02:00 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:02:01 app output: 
+
+230718-11:02:06 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:02:06 app output:    Administrative state: Disabled             
+
+230718-11:02:06 wifiOn: adapter_name: Wireless Network Connection
+230718-11:02:06 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:02:06 app output: 
+
+230718-11:02:11 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:02:11 app output:    Administrative state: Enabled             
+
+230718-11:02:11 run app: scannet.exe
+230718-11:02:11 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:02:11 run app: netsh wlan show network | findstr New88
+230718-11:02:11 app output: SSID 42 : New88
+
+230718-11:02:11 run app: netsh wlan add profile filename="New88.xml"
+230718-11:02:11 app output: Profile New88 is added on interface Wireless Network Connection.
+
+230718-11:02:11 run app: netsh wlan set profileparameter name="New88" connectionmode=auto
+230718-11:02:12 app output: 
+
+Profile "New88" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-11:02:22 wifiOff: adapter_name: Wireless Network Connection
+230718-11:02:22 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:02:22 app output: 
+
+230718-11:02:27 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:02:27 app output:    Administrative state: Disabled             
+
+230718-11:02:27 wifiOn: adapter_name: Wireless Network Connection
+230718-11:02:27 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:02:28 app output: 
+
+230718-11:02:33 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:02:33 app output:    Administrative state: Enabled             
+
+230718-11:02:33 Trying connection in loop...The count is: 1
+230718-11:02:33 run app: netsh wlan connect name ="New88" ssid="New88"
+230718-11:02:33 app output: Connection request was completed successfully.
+
+230718-11:02:33 run app: netsh wlan show interface | findstr State
+230718-11:02:33 app output:     State                  : disconnecting
+
+230718-11:02:33 checkwifiConnState: wireless card connection check failed.
+230718-11:02:37 run app: netsh wlan show interface | findstr State
+230718-11:02:37 app output:     State                  : connected
+
+230718-11:02:42 run app: route print -4
+230718-11:02:42 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-11:02:42 sending result: true
+230718-11:02:42 waiting for client request...
+230718-11:02:42 Server is ready...
+230718-11:03:44 Connected by: ('10.208.116.66', 58049)
+230718-11:03:45 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-11:03:45 run app: python "PRJCBUGEN-T16635.py"
+230718-11:03:49 app output: Tue Jul 18 11:03:46 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-11:03:49 sending result: Tue Jul 18 11:03:46 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-11:03:49 waiting for client request...
+230718-11:03:49 Server is ready...
+230718-11:38:47 Connected by: ('10.208.116.66', 58397)
+230718-11:38:48 Received data is: WAFfindSSID 1apwp27003
+230718-11:38:48 wifiOff: adapter_name: Wireless Network Connection
+230718-11:38:48 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:38:49 app output: 
+
+230718-11:38:54 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:38:54 app output:    Administrative state: Disabled             
+
+230718-11:38:54 wifiOn: adapter_name: Wireless Network Connection
+230718-11:38:54 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:38:55 app output: 
+
+230718-11:39:00 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:39:00 app output:    Administrative state: Enabled             
+
+230718-11:39:00 run app: scannet.exe
+230718-11:39:00 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 New88
+
+  Association Attributes for this connection
+
+    SSID:		 New88
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 80-CC-9C-A4-3D-88
+
+    PHY network type:	 Unknown = 10
+
+    PHY index:		 5
+
+    Signal Quality:	 85
+
+    Receiving Rate:	 138000
+
+    Transmission Rate:	 138000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:00 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:05 run app: scannet.exe
+230718-11:39:05 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:05 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:09 run app: scannet.exe
+230718-11:39:09 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:09 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:13 run app: scannet.exe
+230718-11:39:13 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:13 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:17 run app: scannet.exe
+230718-11:39:17 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:17 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:21 findSSID -> not able to scan the ssid: 1apwp27003
+230718-11:39:21 run app: netsh wlan show network | findstr SSID
+230718-11:39:21 app output: SSID 1 : 1AutoBEC
+
+SSID 2 : icppay
+
+SSID 3 : autoBEC
+
+SSID 4 : 00_11r_test_ch
+
+SSID 5 : 
+
+SSID 6 : 00-open-Test
+
+SSID 7 : 00_11r_pollachi_vlan9
+
+SSID 8 : 
+
+SSID 9 : 4thssid
+
+SSID 10 : 00-WPA2Mixed_test!@#
+
+SSID 11 : delssid3
+
+SSID 12 : 11r-pl-roam
+
+SSID 13 : usa2ndssid
+
+SSID 14 : usaafterFWupgd
+
+SSID 15 : ssid
+
+SSID 16 : gp_OfficeSt
+
+SSID 17 : delssid2
+
+SSID 18 : PBS-SANT
+
+SSID 19 : 11rRoaming_Test
+
+SSID 20 : 00_WPA2Enterprise_test
+
+SSID 21 : cg1
+
+SSID 22 : usassid
+
+SSID 23 : 00_11r_pollachi
+
+SSID 24 : apwp14270
+
+SSID 25 : 00-WPA3Enterprise_Test
+
+SSID 26 : Family-Remote-IOT
+
+SSID 27 : ORBI-Employer-SSID
+
+SSID 28 : Load
+
+SSID 29 : Orbideft-123
+
+SSID 30 : 1CAFEVPN-GP
+
+SSID 31 : run
+
+SSID 32 : @123tweet540
+
+SSID 33 : NETGEAR6B857F-SETUP
+
+SSID 34 : 222-vlan
+
+SSID 35 : gpprod
+
+SSID 36 : ssid4468
+
+SSID 37 : Sol-VLAN3
+
+SSID 38 : sssid6
+
+SSID 39 : dgssid
+
+SSID 40 : Sol-Multi-Schedule
+
+SSID 41 : ZXCVBNM
+
+SSID 42 : SK-Production-CP
+
+SSID 43 : SK-Production-RL-CI
+
+SSID 44 : sk-production-11r
+
+SSID 45 : SAFEX-41
+
+SSID 46 : SAFE-3
+
+SSID 47 : SAFE-2
+
+SSID 48 : New88
+
+SSID 49 : 1GP-WA610Y
+
+SSID 50 : PBS-610Y
+
+SSID 51 : ssstest123
+
+SSID 52 : 01_ssid5
+
+SSID 53 : new511
+
+SSID 54 : create
+
+SSID 55 : 60icp
+
+SSID 56 : vl88
+
+SSID 57 : rrr
+
+SSID 58 : 1surenVAP-AP1
+
+SSID 59 : 1surenVAP-AP3
+
+SSID 60 : 1surenVAP-AP6
+
+SSID 61 : 1surenVAP-AP7
+
+SSID 62 : 1surenVAP-AP8
+
+SSID 63 : 01_ssid4
+
+SSID 64 : new34345
+
+SSID 65 : neww1
+
+SSID 66 : rwweb
+
+SSID 67 : india
+
+SSID 68 : IcP
+
+SSID 69 : rwradius
+
+SSID 70 : secondaryradius
+
+SSID 71 : ssid
+
+SSID 72 : PRJCBUGEN_T33715
+
+SSID 73 : secondaryweb
+
+SSID 74 : NewSSID
+
+SSID 75 : ecpwideweb
+
+SSID 76 : 608adminweb
+
+SSID 77 : 608adminradius
+
+SSID 78 : Automation_138
+
+SSID 79 : Automation_137
+
+SSID 80 : Automation_139
+
+SSID 81 : @@ORBI96
+
+SSID 82 : 1ola
+
+SSID 83 : 2ola
+
+SSID 84 : ola3
+
+SSID 85 : firstwifi
+
+SSID 86 : anewadhoc
+
+SSID 87 : ad hoc
+
+SSID 88 : 3ola
+
+SSID 89 : 610radius
+
+SSID 90 : 2sssid
+
+SSID 91 : newggg
+
+SSID 92 : bcp
+
+SSID 93 : todyssid
+
+SSID 94 : icplvoc
+
+SSID 95 : goodone
+
+SSID 96 : 2.4hricp
+
+SSID 97 : badopen
+
+SSID 98 : 505bopcx
+
+SSID 99 : 44pws
+
+SSID 100 : PIDdsfdf
+
+SSID 101 : 11111111111111
+
+SSID 102 : RafaA.
+
+SSID 103 : OrgwideSSID
+
+SSID 104 : ssid564
+
+SSID 105 : gdeer
+
+SSID 106 : DoodleOnNoodle
+
+SSID 107 : ORBI44
+
+SSID 108 : GroupSweden
+
+SSID 109 : ssidboth
+
+SSID 110 : testi
+
+SSID 111 : ssidnoissue
+
+SSID 112 : ssidnot212
+
+SSID 113 : aRS
+
+SSID 114 : test
+
+SSID 115 : we11
+
+SSID 116 : AllssidCheck3
+
+SSID 117 : AllssidCheck2
+
+SSID 118 : AllssidCheck1
+
+SSID 119 : NETGEAR_IOT
+
+SSID 120 : SSICKCreateCheck
+
+SSID 121 : sriORBI
+
+SSID 122 : 56ios
+
+SSID 123 : AllssidCheck
+
+SSID 124 : ORBI23
+
+SSID 125 : ORBI76
+
+SSID 126 : ORBI28
+
+SSID 127 : goodssid
+
+SSID 128 : will1
+
+SSID 129 : apwp215345
+
+SSID 130 : openssid
+
+SSID 131 : ngguest
+
+SSID 132 : seecondaryradius
+
+SSID 133 : adminweb
+
+SSID 134 : adminradius
+
+SSID 135 : newadmin
+
+SSID 136 : betassid
+
+SSID 137 : ssid22623
+
+SSID 138 : NETGEAR3A05CF-SETUP
+
+SSID 139 : dsasadfdsgfdgfdhgh
+
+SSID 140 : Netgear3A0DEF
+
+SSID 141 : 000Google-survey
+
+SSID 142 : FirmwareUpgradeSetup
+
+SSID 143 : 000-Auth_method
+
+SSID 144 : sssid454544
+
+SSID 145 : 0510-Beta-ICP
+
+SSID 146 : NETGEAR2B9D3F-SETUP
+
+SSID 147 : @123Facebook540
+
+SSID 148 : ORBI80
+
+SSID 149 : NETGEAR5A32FF-SETUP
+
+SSID 150 : dvlan-reboot
+
+SSID 151 : NETGEARB4B0EF-SETUP
+
+SSID 152 : apwp21945
+
+SSID 153 : ssid8338
+
+SSID 154 : ssid3616
+
+SSID 155 : ssid2686
+
+SSID 156 : apwp14274
+
+SSID 157 : ssid9347
+
+SSID 158 : NETGEAR08F08F-SETUP
+
+SSID 159 : ssid368
+
+SSID 160 : ssid8582
+
+SSID 161 : FBCP
+
+SSID 162 : qweqe
+
+SSID 163 : Netgear444DAF
+
+SSID 164 : Password
+
+SSID 165 : Ashish-SSID1
+
+SSID 166 : NETGEARA4211F-SETUP
+
+SSID 167 : adcadc
+
+SSID 168 : fgvsdfsd
+
+230718-11:39:21 sending result: false
+230718-11:39:21 waiting for client request...
+230718-11:39:21 Server is ready...
+230718-11:39:33 Connected by: ('10.208.116.66', 58426)
+230718-11:39:34 Received data is: WAFfindSSID 1apwp27003
+230718-11:39:34 wifiOff: adapter_name: Wireless Network Connection
+230718-11:39:34 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:39:35 app output: 
+
+230718-11:39:40 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:39:40 app output:    Administrative state: Disabled             
+
+230718-11:39:40 wifiOn: adapter_name: Wireless Network Connection
+230718-11:39:40 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:39:40 app output: 
+
+230718-11:39:45 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:39:46 app output:    Administrative state: Enabled             
+
+230718-11:39:46 run app: scannet.exe
+230718-11:39:46 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 New88
+
+  Association Attributes for this connection
+
+    SSID:		 New88
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 80-CC-9C-A4-3D-88
+
+    PHY network type:	 Unknown = 10
+
+    PHY index:		 5
+
+    Signal Quality:	 84
+
+    Receiving Rate:	 138000
+
+    Transmission Rate:	 138000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:39:46 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:39:47 app output: SSID 42 : 1apwp27003
+
+230718-11:39:47 sending result: true
+230718-11:39:47 waiting for client request...
+230718-11:39:47 Server is ready...
+230718-11:39:49 Connected by: ('10.208.116.66', 58459)
+230718-11:39:50 Received data is: WAFconnect 1apwp27003 12345678 WPA2PSK aes
+230718-11:39:50 wifiConnect
+230718-11:39:50 filename name is: 1apwp27003.xml
+230718-11:39:50 run app: netsh wlan delete profile name =*
+230718-11:39:50 app output: Profile "New88" is deleted from interface "Wireless Network Connection".
+
+230718-11:39:50 wifiOff: adapter_name: Wireless Network Connection
+230718-11:39:50 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:39:50 app output: 
+
+230718-11:39:55 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:39:55 app output:    Administrative state: Disabled             
+
+230718-11:39:55 wifiOn: adapter_name: Wireless Network Connection
+230718-11:39:55 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:39:56 app output: 
+
+230718-11:40:01 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:40:01 app output:    Administrative state: Enabled             
+
+230718-11:40:01 run app: scannet.exe
+230718-11:40:01 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:40:01 run app: netsh wlan show network | findstr 1apwp27003
+230718-11:40:01 app output: SSID 50 : 1apwp27003
+
+230718-11:40:01 run app: netsh wlan add profile filename="1apwp27003.xml"
+230718-11:40:01 app output: Profile 1apwp27003 is added on interface Wireless Network Connection.
+
+230718-11:40:01 run app: netsh wlan set profileparameter name="1apwp27003" connectionmode=auto
+230718-11:40:01 app output: 
+
+Profile "1apwp27003" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-11:40:11 wifiOff: adapter_name: Wireless Network Connection
+230718-11:40:11 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:40:11 app output: 
+
+230718-11:40:16 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:40:16 app output:    Administrative state: Disabled             
+
+230718-11:40:16 wifiOn: adapter_name: Wireless Network Connection
+230718-11:40:16 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:40:17 app output: 
+
+230718-11:40:22 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:40:22 app output:    Administrative state: Enabled             
+
+230718-11:40:22 Trying connection in loop...The count is: 1
+230718-11:40:22 run app: netsh wlan connect name ="1apwp27003" ssid="1apwp27003"
+230718-11:40:22 app output: Connection request was completed successfully.
+
+230718-11:40:22 run app: netsh wlan show interface | findstr State
+230718-11:40:23 app output:     State                  : disconnecting
+
+230718-11:40:23 checkwifiConnState: wireless card connection check failed.
+230718-11:40:27 run app: netsh wlan show interface | findstr State
+230718-11:40:27 app output:     State                  : connected
+
+230718-11:40:32 run app: route print -4
+230718-11:40:32 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-11:40:32 sending result: true
+230718-11:40:32 waiting for client request...
+230718-11:40:32 Server is ready...
+230718-11:41:54 Connected by: ('10.208.116.66', 58523)
+230718-11:41:55 Received data is: WAFruncaptive PRJCBUGEN-T14477.py www.rediff.com test test
+230718-11:41:55 run app: python "PRJCBUGEN-T14477.py"
+230718-11:41:58 app output: Tue Jul 18 11:41:55 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T14477.py", line 46, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-11:41:58 sending result: Tue Jul 18 11:41:55 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T14477.py", line 46, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-11:41:58 waiting for client request...
+230718-11:41:58 Server is ready...
+230718-11:53:32 Connected by: ('10.208.116.66', 58644)
+230718-11:53:33 Received data is: WAFfindSSID apwp29378
+230718-11:53:33 wifiOff: adapter_name: Wireless Network Connection
+230718-11:53:33 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:53:34 app output: 
+
+230718-11:53:39 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:53:39 app output:    Administrative state: Disabled             
+
+230718-11:53:39 wifiOn: adapter_name: Wireless Network Connection
+230718-11:53:39 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:53:39 app output: 
+
+230718-11:53:44 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:53:45 app output:    Administrative state: Enabled             
+
+230718-11:53:45 run app: scannet.exe
+230718-11:53:45 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:53:45 run app: netsh wlan show network | findstr apwp29378
+230718-11:53:45 app output: SSID 163 : apwp29378
+
+230718-11:53:45 sending result: true
+230718-11:53:45 waiting for client request...
+230718-11:53:45 Server is ready...
+230718-11:53:47 Connected by: ('10.208.116.66', 58665)
+230718-11:53:48 Received data is: WAFconnect apwp29378 12345678 WPA2PSK aes
+230718-11:53:48 wifiConnect
+230718-11:53:48 filename name is: apwp29378.xml
+230718-11:53:48 run app: netsh wlan delete profile name =*
+230718-11:53:48 app output: Profile "1apwp27003" is deleted from interface "Wireless Network Connection".
+
+230718-11:53:48 wifiOff: adapter_name: Wireless Network Connection
+230718-11:53:48 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:53:48 app output: 
+
+230718-11:53:53 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:53:53 app output:    Administrative state: Disabled             
+
+230718-11:53:53 wifiOn: adapter_name: Wireless Network Connection
+230718-11:53:53 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:53:54 app output: 
+
+230718-11:53:59 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:53:59 app output:    Administrative state: Enabled             
+
+230718-11:53:59 run app: scannet.exe
+230718-11:53:59 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:53:59 run app: netsh wlan show network | findstr apwp29378
+230718-11:54:03 run app: scannet.exe
+230718-11:54:03 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:54:03 run app: netsh wlan show network | findstr apwp29378
+230718-11:54:07 run app: scannet.exe
+230718-11:54:07 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:54:07 run app: netsh wlan show network | findstr apwp29378
+230718-11:54:11 run app: scannet.exe
+230718-11:54:11 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:54:11 run app: netsh wlan show network | findstr apwp29378
+230718-11:54:15 run app: scannet.exe
+230718-11:54:15 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-11:54:15 run app: netsh wlan show network | findstr apwp29378
+230718-11:54:19 findSSID -> not able to scan the ssid: apwp29378
+230718-11:54:19 run app: netsh wlan show network | findstr SSID
+230718-11:54:19 app output: SSID 1 : 00-open-Test
+
+SSID 2 : 
+
+SSID 3 : 00_WPA2Enterprise_test
+
+SSID 4 : 
+
+SSID 5 : NtgrCorp
+
+SSID 6 : ngguest
+
+SSID 7 : AutomationTest
+
+SSID 8 : 00_11r_test_ch
+
+SSID 9 : gpprod
+
+SSID 10 : NETGEARB4B0EF-SETUP
+
+SSID 11 : 00_11r_pollachi_vlan9
+
+SSID 12 : usaafterFWupgd
+
+SSID 13 : org123
+
+SSID 14 : 00_11r_pollachi
+
+SSID 15 : 11r-pl-roam
+
+SSID 16 : 00-WPA2Mixed_test!@#
+
+SSID 17 : usassid
+
+SSID 18 : test
+
+SSID 19 : 222-vlan
+
+SSID 20 : adcadc
+
+SSID 21 : ssid368
+
+SSID 22 : SAFE-1
+
+SSID 23 : ssstest123
+
+SSID 24 : ssid2686
+
+SSID 25 : 1AutoBEC
+
+SSID 26 : icppay
+
+SSID 27 : autoBEC
+
+SSID 28 : delssid2
+
+SSID 29 : cg1
+
+SSID 30 : 11rRoaming_Test
+
+SSID 31 : usa2ndssid
+
+SSID 32 : ORBI-Employer-SSID
+
+SSID 33 : Load
+
+SSID 34 : ssid3616
+
+SSID 35 : Orbideft-123
+
+SSID 36 : 00-WPA3Enterprise_Test
+
+SSID 37 : 2usa
+
+SSID 38 : ssid8338
+
+SSID 39 : Family-Remote-IOT
+
+SSID 40 : 1CAFEVPN-GP
+
+SSID 41 : apwp21945
+
+SSID 42 : apwp21534
+
+SSID 43 : FirmwareUpgradeSetup
+
+SSID 44 : Sol-VLAN4
+
+SSID 45 : PRJCBUGEN_T33715
+
+SSID 46 : Sol-5Ghz-LCP
+
+SSID 47 : Sol-Dual-Rate
+
+SSID 48 : Sol-VLAN3
+
+SSID 49 : dgssid
+
+SSID 50 : 00@@instantwifi
+
+SSID 51 : SK-Production-RL-CI
+
+SSID 52 : sk-production-11r
+
+SSID 53 : apwp215345
+
+SSID 54 : apwp14270
+
+SSID 55 : 1GP-WA610Y
+
+SSID 56 : PBS-610Y
+
+SSID 57 : neww1
+
+SSID 58 : new34345
+
+SSID 59 : new511
+
+SSID 60 : create
+
+SSID 61 : neww
+
+SSID 62 : 60icp
+
+SSID 63 : vl88
+
+SSID 64 : rrr
+
+SSID 65 : 01_ssid5
+
+SSID 66 : Netgear1377AF-setup
+
+SSID 67 : india
+
+SSID 68 : ecpwideweb
+
+SSID 69 : 608adminweb
+
+SSID 70 : 608adminradius
+
+SSID 71 : rwweb
+
+SSID 72 : IcP
+
+SSID 73 : rwradius
+
+SSID 74 : secondaryradius
+
+SSID 75 : secondaryweb
+
+SSID 76 : ssid
+
+SSID 77 : NewSSID
+
+SSID 78 : @@ORBI96
+
+SSID 79 : 1ola
+
+SSID 80 : 2ola
+
+SSID 81 : ola3
+
+SSID 82 : 3ola
+
+SSID 83 : 610radius
+
+SSID 84 : 2sssid
+
+SSID 85 : todyssid
+
+SSID 86 : goodone
+
+SSID 87 : anewadhoc
+
+SSID 88 : ad hoc
+
+SSID 89 : new555
+
+SSID 90 : bcp
+
+SSID 91 : icplvoc
+
+SSID 92 : im511ssid
+
+SSID 93 : badopen
+
+SSID 94 : 2.4hricp
+
+SSID 95 : 44pws
+
+SSID 96 : 505bopcx
+
+SSID 97 : firstwifi
+
+SSID 98 : newggg
+
+SSID 99 : 00_open_CI2
+
+SSID 100 : 00-11r-CH_WPA2Ent
+
+SSID 101 : 00_wpa3_mixed_11r
+
+SSID 102 : 01_guest
+
+SSID 103 : PIDdsfdf
+
+SSID 104 : 11111111111111
+
+SSID 105 : RafaA.
+
+SSID 106 : ssid564
+
+SSID 107 : OrgwideSSID
+
+SSID 108 : ench1
+
+SSID 109 : ola1
+
+SSID 110 : ola2
+
+SSID 111 : 3radio
+
+SSID 112 : ench11
+
+SSID 113 : GroupSweden
+
+SSID 114 : SAFE-3
+
+SSID 115 : sriORBI
+
+SSID 116 : ORBI28
+
+SSID 117 : ssidall
+
+SSID 118 : ssid5
+
+SSID 119 : ssidboth
+
+SSID 120 : testi
+
+SSID 121 : ssidnoissue
+
+SSID 122 : we11
+
+SSID 123 : SSICKCreateCheck
+
+SSID 124 : ssidnot212
+
+SSID 125 : AllssidCheck3
+
+SSID 126 : AllssidCheck2
+
+SSID 127 : AllssidCheck1
+
+SSID 128 : AllssidCheck
+
+SSID 129 : NETGEAR_IOT
+
+SSID 130 : goodssid
+
+SSID 131 : will1
+
+SSID 132 : 610org11
+
+SSID 133 : openssid
+
+SSID 134 : prod prod
+
+SSID 135 : seecondaryradius
+
+SSID 136 : adminweb
+
+SSID 137 : 4thssid
+
+SSID 138 : 0510-Beta-ICP
+
+SSID 139 : Netgear3A0DEF
+
+SSID 140 : NETGEAR3A05CF-SETUP
+
+SSID 141 : dsasadfdsgfdgfdhgh
+
+SSID 142 : fgvsdfsd
+
+SSID 143 : sssid454544
+
+SSID 144 : ssid22623
+
+SSID 145 : 200 Scaled
+
+SSID 146 : NETGEAR5A32FF-SETUP
+
+SSID 147 : ORBI80
+
+SSID 148 : NETGEAR2B9D3F-SETUP
+
+SSID 149 : FBCP
+
+SSID 150 : ssid4468
+
+SSID 151 : Netgear444DAF
+
+SSID 152 : ssid8582
+
+SSID 153 : NETGEARA4211F-SETUP
+
+SSID 154 : BCP
+
+SSID 155 : Ashish-SSID1
+
+SSID 156 : SSidCheck
+
+SSID 157 : SAFEX-41
+
+SSID 158 : SAFE-2
+
+SSID 159 : ORBI76
+
+SSID 160 : run
+
+SSID 161 : ssid9347
+
+SSID 162 : ORBI23
+
+SSID 163 : NETGEAR08F08F-SETUP
+
+230718-11:54:19 run app: netsh wlan add profile filename="apwp29378.xml"
+230718-11:54:20 app output: Profile apwp29378 is added on interface Wireless Network Connection.
+
+230718-11:54:20 run app: netsh wlan set profileparameter name="apwp29378" connectionmode=auto
+230718-11:54:20 app output: 
+
+Profile "apwp29378" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-11:54:30 wifiOff: adapter_name: Wireless Network Connection
+230718-11:54:30 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-11:54:30 app output: 
+
+230718-11:54:35 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:54:35 app output:    Administrative state: Disabled             
+
+230718-11:54:35 wifiOn: adapter_name: Wireless Network Connection
+230718-11:54:35 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-11:54:36 app output: 
+
+230718-11:54:41 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-11:54:41 app output:    Administrative state: Enabled             
+
+230718-11:54:41 Trying connection in loop...The count is: 1
+230718-11:54:41 run app: netsh wlan connect name ="apwp29378" ssid="apwp29378"
+230718-11:54:41 app output: Connection request was completed successfully.
+
+230718-11:54:41 run app: netsh wlan show interface | findstr State
+230718-11:54:41 app output:     State                  : disconnecting
+
+230718-11:54:41 checkwifiConnState: wireless card connection check failed.
+230718-11:54:45 run app: netsh wlan show interface | findstr State
+230718-11:54:45 app output:     State                  : connected
+
+230718-11:54:50 run app: route print -4
+230718-11:54:50 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-11:54:50 sending result: true
+230718-11:54:50 waiting for client request...
+230718-11:54:50 Server is ready...
+230718-11:55:52 Connected by: ('10.208.116.66', 58729)
+230718-11:55:53 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-11:55:53 run app: python "PRJCBUGEN-T16635.py"
+230718-11:55:57 app output: Tue Jul 18 11:55:54 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-11:55:57 sending result: Tue Jul 18 11:55:54 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-11:55:57 waiting for client request...
+230718-11:55:57 Server is ready...
+230718-12:11:15 Connected by: ('10.208.116.66', 58925)
+230718-12:11:16 Received data is: WAFfindSSID 1apwp27004
+230718-12:11:16 wifiOff: adapter_name: Wireless Network Connection
+230718-12:11:16 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-12:11:16 app output: 
+
+230718-12:11:21 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:11:21 app output:    Administrative state: Disabled             
+
+230718-12:11:21 wifiOn: adapter_name: Wireless Network Connection
+230718-12:11:21 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-12:11:22 app output: 
+
+230718-12:11:27 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:11:27 app output:    Administrative state: Enabled             
+
+230718-12:11:27 run app: scannet.exe
+230718-12:11:27 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-12:11:27 run app: netsh wlan show network | findstr 1apwp27004
+230718-12:11:27 app output: SSID 49 : 1apwp27004
+
+230718-12:11:27 sending result: true
+230718-12:11:27 waiting for client request...
+230718-12:11:27 Server is ready...
+230718-12:11:29 Connected by: ('10.208.116.66', 58946)
+230718-12:11:30 Received data is: WAFconnect 1apwp27004 12345678 WPA2PSK aes
+230718-12:11:30 wifiConnect
+230718-12:11:30 filename name is: 1apwp27004.xml
+230718-12:11:30 run app: netsh wlan delete profile name =*
+230718-12:11:30 app output: Profile "apwp29378" is deleted from interface "Wireless Network Connection".
+
+230718-12:11:30 wifiOff: adapter_name: Wireless Network Connection
+230718-12:11:30 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-12:11:30 app output: 
+
+230718-12:11:35 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:11:35 app output:    Administrative state: Disabled             
+
+230718-12:11:35 wifiOn: adapter_name: Wireless Network Connection
+230718-12:11:35 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-12:11:36 app output: 
+
+230718-12:11:41 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:11:41 app output:    Administrative state: Enabled             
+
+230718-12:11:41 run app: scannet.exe
+230718-12:11:41 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {0FBFCC73-76AE-4F12-8CA5-8CDE07BF1DF3}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+230718-12:11:41 run app: netsh wlan show network | findstr 1apwp27004
+230718-12:11:41 app output: SSID 58 : 1apwp27004
+
+230718-12:11:41 run app: netsh wlan add profile filename="1apwp27004.xml"
+230718-12:11:41 app output: Profile 1apwp27004 is added on interface Wireless Network Connection.
+
+230718-12:11:41 run app: netsh wlan set profileparameter name="1apwp27004" connectionmode=auto
+230718-12:11:41 app output: 
+
+Profile "1apwp27004" on interface "Wireless Network Connection" updated successfully.
+
+
+
+230718-12:11:51 wifiOff: adapter_name: Wireless Network Connection
+230718-12:11:51 run app: netsh interface set interface name="Wireless Network Connection" disable
+230718-12:11:51 app output: 
+
+230718-12:11:56 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:11:57 app output:    Administrative state: Disabled             
+
+230718-12:11:57 wifiOn: adapter_name: Wireless Network Connection
+230718-12:11:57 run app: netsh interface set interface name="Wireless Network Connection" enable
+230718-12:11:57 app output: 
+
+230718-12:12:02 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+230718-12:12:02 app output:    Administrative state: Enabled             
+
+230718-12:12:02 Trying connection in loop...The count is: 1
+230718-12:12:02 run app: netsh wlan connect name ="1apwp27004" ssid="1apwp27004"
+230718-12:12:02 app output: Connection request was completed successfully.
+
+230718-12:12:02 run app: netsh wlan show interface | findstr State
+230718-12:12:03 app output:     State                  : disconnecting
+
+230718-12:12:03 checkwifiConnState: wireless card connection check failed.
+230718-12:12:07 run app: netsh wlan show interface | findstr State
+230718-12:12:07 app output:     State                  : connected
+
+230718-12:12:12 run app: route print -4
+230718-12:12:12 app output: ===========================================================================
+
+Interface List
+
+  3...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+ 15...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.207   1256
+
+          0.0.0.0          0.0.0.0     10.208.116.1   10.208.116.124      2
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.207   1256
+
+     10.208.116.0    255.255.255.0         On-link    10.208.116.124    257
+
+   10.208.116.124  255.255.255.255         On-link    10.208.116.124    257
+
+   10.208.116.207  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.207   1256
+
+   10.208.116.255  255.255.255.255         On-link    10.208.116.124    257
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.207   1256
+
+        224.0.0.0        240.0.0.0         On-link    10.208.116.124    257
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.207   1256
+
+  255.255.255.255  255.255.255.255         On-link    10.208.116.124    257
+
+===========================================================================
+
+Persistent Routes:
+
+  Network Address          Netmask  Gateway Address  Metric
+
+          0.0.0.0          0.0.0.0     10.208.116.1  Default 
+
+===========================================================================
+
+230718-12:12:12 sending result: true
+230718-12:12:12 waiting for client request...
+230718-12:12:12 Server is ready...
+230718-12:13:14 Connected by: ('10.208.116.66', 59011)
+230718-12:13:16 Received data is: WAFruncaptive PRJCBUGEN-T16635.py www.rediff.com test test
+230718-12:13:16 run app: python "PRJCBUGEN-T16635.py"
+230718-12:13:19 app output: Tue Jul 18 12:13:16 2023 openurl: http://www.rediff.com
+
+Traceback (most recent call last):
+
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+
+    self.driver = webdriver.Firefox()
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+
+    keep_alive=True)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+
+    self.start_session(capabilities, browser_profile)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+
+    response = self.execute(Command.NEW_SESSION, parameters)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+
+    self.error_handler.check_response(response)
+
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+
+    raise exception_class(message, screen, stacktrace)
+
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+
+230718-12:13:19 sending result: Tue Jul 18 12:13:16 2023 openurl: http://www.rediff.com
+Traceback (most recent call last):
+  File "PRJCBUGEN-T16635.py", line 60, in <module>
+    suite = unittest.TestLoader().loadTestsFromTestCase(Cpa)
+  File "C:\Python27\lib\unittest\loader.py", line 56, in loadTestsFromTestCase
+    loaded_suite = self.suiteClass(map(testCaseClass, testCaseNames))
+  File "C:\windows client\seleniumlib.py", line 22, in __init__
+    self.driver = webdriver.Firefox()
+  File "C:\Python27\lib\site-packages\selenium\webdriver\firefox\webdriver.py", line 174, in __init__
+    keep_alive=True)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 157, in __init__
+    self.start_session(capabilities, browser_profile)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 252, in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\webdriver.py", line 321, in execute
+    self.error_handler.check_response(response)
+  File "C:\Python27\lib\site-packages\selenium\webdriver\remote\errorhandler.py", line 242, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.SessionNotCreatedException: Message: Unable to find a matching set of capabilities
+
+
+230718-12:13:19 waiting for client request...
+230718-12:13:19 Server is ready...
