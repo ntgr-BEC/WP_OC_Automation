@@ -74,7 +74,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        inputredirecturl          = $x("//div[@id=\"divREdUrCapPort\"]//input");
     public SelenideElement        inputtitle                = $x("//div[@id=\"divOnOffTitCapPort\"]//input");
     public SelenideElement        inputmessage              = $x("//input[@id='welcomeMsg']"); 
-    public SelenideElement        savecaptive               = $x("//button[text()='Next' and @class='btn saveBtn ']");
+    public ElementsCollection        savecaptive               = $$x("//button[text()='Save']");
     public ElementsCollection        captiveok                 = $$x("//button[text()='OK']");
     public SelenideElement        enterratelimit            = $x("//div/a[text()='Rate Limiting']");
     public SelenideElement        enableratelimit           = $x("//h5[text()='Enable Settings']/..//span");

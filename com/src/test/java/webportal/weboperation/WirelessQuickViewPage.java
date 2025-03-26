@@ -1944,7 +1944,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (modifyfbwifi.exists()) {
                 modifyfbwifi.click();
                 MyCommonAPIs.sleepi(5);
-                savecaptive.click();
+//                savecaptive.click();
+                GenericMethods.clickVisibleElements( savecaptive);
                 MyCommonAPIs.sleepi(3);
                 GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
@@ -1998,7 +1999,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 MyCommonAPIs.sleepi(3);
                 savefbwifi.click();
                 MyCommonAPIs.sleepi(5);
-                savecaptive.click();
+//                savecaptive.click();
+                GenericMethods.clickVisibleElements( savecaptive);
                 MyCommonAPIs.sleepi(3);
                 GenericMethods.clickVisibleElements(captiveok);
                 logger.info("Enable facebook wifi success.");
@@ -2116,7 +2118,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         deleteImgOkBtn.click();
         MyCommonAPIs.sleepi(3);
         Selenide.switchTo().defaultContent();
-        savecaptive.click();
+//        savecaptive.click();
+        GenericMethods.clickVisibleElements( savecaptive);
         MyCommonAPIs.sleepi(10);
         GenericMethods.clickVisibleElements(captiveok);
         MyCommonAPIs.sleepi(5);
@@ -2429,7 +2432,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             if (checkenablecaptiveportal.exists()) {
                 selectbasiccaptive.click();
                 MyCommonAPIs.sleepi(3);
-                savecaptive.click();
+//                savecaptive.click();
+                GenericMethods.clickVisibleElements( savecaptive);
                 MyCommonAPIs.sleepi(3);
                 GenericMethods.clickVisibleElements(captiveok);
             }
@@ -2469,7 +2473,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             inputmessage.clear();
             inputmessage.sendKeys(message);
             MyCommonAPIs.sleepi(3);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(3);
             GenericMethods.clickVisibleElements(captiveok);
         }
@@ -7121,7 +7126,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(3);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
@@ -7392,7 +7398,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         if (modifyfbwifi.exists()) {
             modifyfbwifi.click();
             MyCommonAPIs.sleepi(5);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(3);
             GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
@@ -7446,7 +7453,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             savefbwifi.click();
             MyCommonAPIs.sleepi(5);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(3);
             GenericMethods.clickVisibleElements(captiveok);
             logger.info("Enable facebook wifi success.");
@@ -7837,7 +7845,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             inputredirecturl.clear();
             inputredirecturl.sendKeys(url);
             MyCommonAPIs.sleepi(3);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(3);
             GenericMethods.clickVisibleElements(captiveok);
         }
@@ -9135,7 +9144,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(3);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
@@ -9602,7 +9612,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(3);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements( savecaptive);
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
@@ -10655,7 +10666,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(10);
-            savecaptive.click();
+//            savecaptive.click();
+            GenericMethods.clickVisibleElements(savecaptive);
             MyCommonAPIs.sleepi(10);
             GenericMethods.clickVisibleElements(captiveok);
             MyCommonAPIs.sleepi(5);
