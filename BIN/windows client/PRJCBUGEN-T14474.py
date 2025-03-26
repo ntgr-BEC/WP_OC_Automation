@@ -23,7 +23,7 @@ class Cpa(ClientTestCase):
     checkNode = DOMTree.getElementsByTagName("userpassword")[0]
     checkpoint = getText(checkNode.childNodes)
 
-    checkpoint = "CricketStadium Wi-Fi"
+    checkpoint = "Facebook"
 
     def test_cpa(self):
         test_result = 1

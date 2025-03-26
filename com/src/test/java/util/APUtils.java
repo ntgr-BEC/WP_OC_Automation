@@ -1630,7 +1630,7 @@ public void Setserver(String APIP){
     String password = "Netgear1@";
     
     // Construct the URL with basic authentication
-    String url = "http://" + username + ":" + password + "@172.16.19.41:9999/insight_server";
+    String url = "http://" + username + ":" + password + "@"+APIP+":9999/insight_server";
 
     ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
     Selenide.switchTo().window(1);

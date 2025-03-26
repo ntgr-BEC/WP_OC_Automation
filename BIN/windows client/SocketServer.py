@@ -14,7 +14,7 @@ log_filename = os.path.basename(sys.argv[0])+'-%s.log'%time.strftime("%y%m%d%H%M
 # for download file in background
 ftpdownload = 'ftpdownload.py'
 ftpdownloadres = 'ftpdownloadres.txt'
-print 'WP current revision: 102'
+print 'WP current revision: 101'
 
 def logmsg (msg):
     msg = "%s %s\n" % (time.strftime("%y%m%d-%H:%M:%S"), msg)
@@ -76,6 +76,8 @@ def wifiOff(adapter_name):
 
 def findSSID (ssid):
     # not to very big number to avoid a hidden ssid
+    wifiOff("Wi-Fi")
+    wifiOn("Wi-Fi")
     ntry = 5
     while ntry>0:
         ntry -= 1
@@ -108,6 +110,8 @@ def connectProfile(ssid, filename):
     runproc ("netsh wlan add profile filename=\""+filename+"\"")
     runproc ("netsh wlan set profileparameter name=\""+profile+"\" connectionmode=auto")
     time.sleep(10)
+    wifiOff("Wireless Network Connection")
+    wifiOn("Wireless Network Connection")
     count = 1
     status = "false"
     while (count < 10):
@@ -198,8 +202,10 @@ def wifiConnectRadius(ssid,username,password,authvar,encrypvar):
     f.close()
     
     runproc ("taskkill /f /im %s" % clickpop)
-    runproc ("%s %s %s" % (clickpop, username, password), 0)
+    runproc ("%s %s %s" % (clickpop, "teju", "teju"), 0)
     res = connectProfile (ssid, filename)
+    logmsg (username)
+    logmsg (password)
     runproc ("taskkill /f /im %s" % clickpop)
     return res
 
@@ -354,6 +360,16 @@ while True:
         if not data:break
         logmsg("Received data is: %s" % data)
         msgSend = ''
+        if 'WAFwifiOn' in data:
+            if len(data.split()) != 2:
+                msgSend = "WAFwifiOn: Wrong arguments!"
+            else:
+                msgSend = wifiOn(data.split(None, 1)[1])
+        if 'WAFwifiOff' in data:
+            if len(data.split()) != 2:
+                msgSend = "WAFwifiOff: Wrong arguments!"
+            else:
+                msgSend = wifiOff(data.split(None, 1)[1])
         if 'WAFSetIpStatic' in data:
             if len(data.split()) < 5:
                 msgSend = "WAFSetIpStatic: Wrong arguments!"
@@ -409,6 +425,7 @@ while True:
             if len(data.split()) != 6:
                 msgSend = "WAFradiusconnect: Wrong arguments!"
             else:
+                logmsg (data)
                 msgSend = wifiConnectRadius(data.split()[1],data.split()[2],data.split()[3],data.split()[4],data.split()[5])
         if 'WAFconnect' in data:
             if len(data.split()) != 5:
@@ -450,6 +467,15 @@ while True:
                 msgSend = "WAFping: Wrong arguments!"
             else:
                 str1  = runproc ("ping %s -S %s" % (data.split()[1], data.split()[2]))
+                msgSend = "".join(str1)
+        if 'WAFping2' in data:
+            if len(data.split()) != 2:
+                msgSend = "WAFping2: Wrong arguments!"
+            else:
+                hostname = socket.gethostname()
+                ip_address = socket.gethostbyname(hostname)
+                str1 = runproc("ping %s -S %s" % (ip_address , data.split()[1]))
+                time.sleep(10)
                 msgSend = "".join(str1)
         if 'WAFlongping' in data:
             if len(data.split()) != 4:

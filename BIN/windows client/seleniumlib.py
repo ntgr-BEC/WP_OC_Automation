@@ -19,7 +19,8 @@ class ClientTestCase(unittest.TestCase):
         openurl = self.testurl[0].childNodes[0].data
         openurl = "http://" + openurl
         printst ("openurl: %s" % openurl)
-        self.driver = webdriver.Firefox()
+        # self.driver = webdriver.Firefox()
+        self.driver = webdriver.Chrome()
         self.driver.implicitly_wait(10)
         self.base_url = openurl
         self.verificationErrors = []

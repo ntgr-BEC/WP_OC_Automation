@@ -4,7 +4,7 @@
     <SSIDConfig>
         <SSID>
             <hex>4E4554474541522D414341</hex>
-            <name>NETGEAR-ACA</name>
+            <name>apwp14270</name>
         </SSID>
         <nonBroadcast>true</nonBroadcast>
     </SSIDConfig>
@@ -15,7 +15,7 @@
         <security>
             <authEncryption>
                 <authentication>WPA2</authentication>
-                <encryption>TKIP</encryption>
+                <encryption>AES</encryption>
                 <useOneX>true</useOneX>
             </authEncryption>
             <PMKCacheMode>enabled</PMKCacheMode>
