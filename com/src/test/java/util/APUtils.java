@@ -1244,13 +1244,11 @@ public class APUtils extends MyCommonAPIs {
         boolean result1 = false;
         if (Model.equals("WAC505") || Model.equals("WAC510") || Model.equals("WAC540") || Model.equals("WAC564") || Model.startsWith("WAC")) {
             logger.info("entered WAC model");
-            MyCommonAPIs.sleepi(300);
             result = plink.getOutput("cat /var/config | grep -i "+cmd+"", default_timeout_ssh);          
         }
 
         if (Model.equals("WAX610")  ||  Model.equals("WAX615") ||  Model.startsWith("WAX") || Model.startsWith("WBE")) {
             logger.info("entered WAX model");
-			 MyCommonAPIs.sleepi(300);
             result = plink.getOutput("cat /sysconfig/config | grep -i "+cmd+"", default_timeout_ssh);
         
         }
