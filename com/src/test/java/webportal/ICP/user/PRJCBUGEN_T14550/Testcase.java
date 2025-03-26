@@ -21,6 +21,7 @@ import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
+import webportal.weboperation.GenericMethods;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -119,7 +120,8 @@ public class Testcase extends TestCaseBase {
         new WirelessQuickViewPage(false).addmobliebackgroundimage.selectOption(icpInfo.get("Mobile Background Image"));
         Selenide.switchTo().defaultContent();
         MyCommonAPIs.sleepi(3);
-        new WirelessQuickViewPage(false).savecaptive.click();
+//        new WirelessQuickViewPage(false).savecaptive.click();
+        GenericMethods.clickVisibleElements(new WirelessQuickViewPage(false).savecaptive);
         MyCommonAPIs.sleepi(10);
         new WirelessQuickViewPage(false).clickOnOkayICPButton();
         MyCommonAPIs.sleepi(5);
@@ -133,7 +135,8 @@ public class Testcase extends TestCaseBase {
             MyCommonAPIs.sleepi(3);
             Selenide.switchTo().defaultContent();
             MyCommonAPIs.sleepi(3);
-            new WirelessQuickViewPage(false).savecaptive.click();
+//            new WirelessQuickViewPage(false).savecaptive.click();
+            GenericMethods.clickVisibleElements(new WirelessQuickViewPage(false).savecaptive);
             MyCommonAPIs.sleepi(10);
             new WirelessQuickViewPage(false).clickOnOkayICPButton();
             MyCommonAPIs.sleepi(5);
