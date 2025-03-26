@@ -1,0 +1,723 @@
+240511-09:01:32 Server is ready...
+240511-09:41:59 Connected by: ('172.16.27.3', 59274)
+240511-09:42:00 Received data is: WAFfindSSID apwp14270
+240511-09:42:00 wifiOff: adapter_name: Wi-Fi
+240511-09:42:00 run app: netsh interface set interface name="Wi-Fi" disable
+240511-09:42:02 app output: 
+
+240511-09:42:07 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240511-09:42:07 app output:    Administrative state: Disabled             
+
+240511-09:42:07 wifiOn: adapter_name: Wi-Fi
+240511-09:42:07 run app: netsh interface set interface name="Wi-Fi" enable
+240511-09:42:08 app output: 
+
+240511-09:42:13 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240511-09:42:13 app output:    Administrative state: Enabled             
+
+240511-09:42:13 run app: scannet.exe
+240511-09:42:13 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240511-09:42:13 run app: netsh wlan show network | findstr apwp14270
+240511-09:42:13 app output: SSID 272 : apwp14270
+
+240511-09:42:13 sending result: true
+240511-09:42:13 waiting for client request...
+240511-09:42:13 Server is ready...
+240511-09:42:15 Connected by: ('172.16.27.3', 59281)
+240511-09:42:16 Received data is: WAFconnect apwp14270 123456798 WPA2PSK aes
+240511-09:42:16 wifiConnect
+240511-09:42:16 filename name is: apwp14270.xml
+240511-09:42:16 run app: netsh wlan delete profile name =*
+240511-09:42:16 app output: Profile "ORBI76" is deleted from interface "Wi-Fi".
+
+Profile "333ECP" is deleted from interface "Wi-Fi".
+
+Profile "444ICP" is deleted from interface "Wi-Fi".
+
+Profile "!510regicp" is deleted from interface "Wi-Fi".
+
+Profile "!!!!$&@620regicp" is deleted from interface "Wi-Fi".
+
+Profile "apwp31958" is deleted from interface "Wi-Fi".
+
+240511-09:42:16 wifiOff: adapter_name: Wi-Fi
+240511-09:42:16 run app: netsh interface set interface name="Wi-Fi" disable
+240511-09:42:17 app output: 
+
+240511-09:42:22 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240511-09:42:22 app output:    Administrative state: Disabled             
+
+240511-09:42:22 wifiOn: adapter_name: Wi-Fi
+240511-09:42:22 run app: netsh interface set interface name="Wi-Fi" enable
+240511-09:42:22 app output: 
+
+240511-09:42:27 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240511-09:42:27 app output:    Administrative state: Enabled             
+
+240511-09:42:27 run app: scannet.exe
+240511-09:42:27 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240511-09:42:27 run app: netsh wlan show network | findstr apwp14270
+240511-09:42:28 app output: SSID 264 : apwp14270
+
+240511-09:42:28 run app: netsh wlan add profile filename="apwp14270.xml"
+240511-09:42:28 app output: Profile apwp14270 is added on interface Wi-Fi.
+
+240511-09:42:28 run app: netsh wlan set profileparameter name="apwp14270" connectionmode=auto
+240511-09:42:28 app output: 
+
+Profile "apwp14270" on interface "Wi-Fi" updated successfully.
+
+
+
+240511-09:42:38 wifiOff: adapter_name: Wireless Network Connection
+240511-09:42:38 run app: netsh interface set interface name="Wireless Network Connection" disable
+240511-09:42:38 app output: No more data is available.
+
+
+
+
+
+240511-09:42:43 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240511-09:42:43 checkwifiModuleState -> state: dummy result
+240511-09:42:43 wifiOn: adapter_name: Wireless Network Connection
+240511-09:42:43 run app: netsh interface set interface name="Wireless Network Connection" enable
+240511-09:42:43 app output: No more data is available.
+
+
+
+
+
+240511-09:42:48 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240511-09:42:48 checkwifiModuleState -> state: dummy result
+240511-09:42:48 Trying connection in loop...The count is: 1
+240511-09:42:48 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240511-09:42:48 app output: Connection request was completed successfully.
+
+240511-09:42:48 run app: netsh wlan show interface | findstr State
+240511-09:42:48 app output:     State                  : associating
+
+240511-09:42:48 checkwifiConnState: wireless card connection check failed.
+240511-09:42:52 run app: netsh wlan show interface | findstr State
+240511-09:42:52 app output:     State                  : associating
+
+240511-09:42:52 checkwifiConnState: wireless card connection check failed.
+240511-09:42:56 run app: netsh wlan show interface | findstr State
+240511-09:42:56 app output:     State                  : associating
+
+240511-09:42:56 checkwifiConnState: wireless card connection check failed.
+240511-09:43:00 run app: netsh wlan show interface | findstr State
+240511-09:43:00 app output:     State                  : associating
+
+240511-09:43:00 checkwifiConnState: wireless card connection check failed.
+240511-09:43:05 run app: netsh wlan show interface | findstr State
+240511-09:43:05 app output:     State                  : associating
+
+240511-09:43:05 checkwifiConnState: wireless card connection check failed.
+240511-09:43:09 run app: netsh wlan show interface | findstr State
+240511-09:43:09 app output:     State                  : associating
+
+240511-09:43:09 checkwifiConnState: wireless card connection check failed.
+240511-09:43:13 run app: netsh wlan show interface | findstr State
+240511-09:43:13 app output:     State                  : associating
+
+240511-09:43:13 checkwifiConnState: wireless card connection check failed.
+240511-09:43:17 run app: netsh wlan show interface | findstr State
+240511-09:43:19 app output:     State                  : associating
+
+240511-09:43:19 checkwifiConnState: wireless card connection check failed.
+240511-09:43:23 run app: netsh wlan show interface | findstr State
+240511-09:43:23 app output:     State                  : associating
+
+240511-09:43:23 checkwifiConnState: wireless card connection check failed.
+240511-09:43:27 run app: netsh wlan show interface | findstr State
+240511-09:43:27 app output:     State                  : associating
+
+240511-09:43:27 checkwifiConnState: wireless card connection check failed.
+240511-09:43:31 run app: netsh wlan show interface | findstr State
+240511-09:43:31 app output:     State                  : disconnected
+
+240511-09:43:31 checkwifiConnState: wireless card connection check failed.
+240511-09:43:35 run app: netsh wlan show interface | findstr State
+240511-09:43:35 app output:     State                  : disconnected
+
+240511-09:43:35 checkwifiConnState: wireless card connection check failed.
+240511-09:43:39 run app: netsh wlan show interface | findstr State
+240511-09:43:39 app output:     State                  : disconnected
+
+240511-09:43:39 checkwifiConnState: wireless card connection check failed.
+240511-09:43:43 run app: netsh wlan show interface | findstr State
+240511-09:43:44 app output:     State                  : disconnected
+
+240511-09:43:44 checkwifiConnState: wireless card connection check failed.
+240511-09:43:48 run app: netsh wlan show interface | findstr State
+240511-09:43:48 app output:     State                  : disconnected
+
+240511-09:43:48 checkwifiConnState: wireless card connection check failed.
+240511-09:43:52 run app: netsh wlan show interface | findstr State
+240511-09:43:52 app output:     State                  : disconnected
+
+240511-09:43:52 checkwifiConnState: wireless card connection check failed.
+240511-09:43:56 run app: netsh wlan show interface | findstr State
+240511-09:43:56 app output:     State                  : disconnected
+
+240511-09:43:56 checkwifiConnState: wireless card connection check failed.
+240511-09:44:00 run app: netsh wlan show interface | findstr State
+240511-09:44:00 app output:     State                  : disconnected
+
+240511-09:44:00 checkwifiConnState: wireless card connection check failed.
+240511-09:44:04 run app: netsh wlan show interface | findstr State
+240511-09:44:04 app output:     State                  : disconnected
+
+240511-09:44:04 checkwifiConnState: wireless card connection check failed.
+240511-09:44:08 run app: netsh wlan show interface | findstr State
+240511-09:44:08 app output:     State                  : disconnected
+
+240511-09:44:08 checkwifiConnState: wireless card connection check failed.
+240511-09:44:12 run app: netsh wlan show interface | findstr State
+240511-09:44:12 app output:     State                  : disconnected
+
+240511-09:44:12 checkwifiConnState: wireless card connection check failed.
+240511-09:44:16 run app: netsh wlan show interface | findstr State
+240511-09:44:16 app output:     State                  : disconnected
+
+240511-09:44:16 checkwifiConnState: wireless card connection check failed.
+240511-09:44:20 run app: netsh wlan show interface | findstr State
+240511-09:44:20 app output:     State                  : disconnected
+
+240511-09:44:20 checkwifiConnState: wireless card connection check failed.
+240511-09:44:24 run app: netsh wlan show interface | findstr State
+240511-09:44:24 app output:     State                  : disconnected
+
+240511-09:44:24 checkwifiConnState: wireless card connection check failed.
+240511-09:44:28 run app: netsh wlan show interface | findstr State
+240511-09:44:28 app output:     State                  : disconnected
+
+240511-09:44:28 checkwifiConnState: wireless card connection check failed.
+240511-09:44:32 run app: netsh wlan show interface | findstr State
+240511-09:44:32 app output:     State                  : associating
+
+240511-09:44:32 checkwifiConnState: wireless card connection check failed.
+240511-09:44:36 run app: netsh wlan show interface | findstr State
+240511-09:44:36 app output:     State                  : associating
+
+240511-09:44:36 checkwifiConnState: wireless card connection check failed.
+240511-09:44:40 run app: netsh wlan show interface | findstr State
+240511-09:44:41 app output:     State                  : disconnected
+
+240511-09:44:41 checkwifiConnState: wireless card connection check failed.
+240511-09:44:45 run app: netsh wlan show interface | findstr State
+240511-09:44:45 app output:     State                  : disconnected
+
+240511-09:44:45 checkwifiConnState: wireless card connection check failed.
+240511-09:44:49 waitConnected -> timeout on connect
+240511-09:44:49 Trying connection in loop...The count is: 2
+240511-09:44:49 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240511-09:44:49 app output: Connection request was completed successfully.
+
+240511-09:44:49 run app: netsh wlan show interface | findstr State
+240511-09:44:49 app output:     State                  : associating
+
+240511-09:44:49 checkwifiConnState: wireless card connection check failed.
+240511-09:44:53 run app: netsh wlan show interface | findstr State
+240511-09:44:53 app output:     State                  : associating
+
+240511-09:44:53 checkwifiConnState: wireless card connection check failed.
+240511-09:44:57 run app: netsh wlan show interface | findstr State
+240511-09:44:57 app output:     State                  : associating
+
+240511-09:44:57 checkwifiConnState: wireless card connection check failed.
+240511-09:45:01 run app: netsh wlan show interface | findstr State
+240511-09:45:01 app output:     State                  : associating
+
+240511-09:45:01 checkwifiConnState: wireless card connection check failed.
+240511-09:45:05 run app: netsh wlan show interface | findstr State
+240511-09:45:05 app output:     State                  : associating
+
+240511-09:45:05 checkwifiConnState: wireless card connection check failed.
+240511-09:45:09 run app: netsh wlan show interface | findstr State
+240511-09:45:09 app output:     State                  : disconnected
+
+240511-09:45:09 checkwifiConnState: wireless card connection check failed.
+240511-09:45:13 run app: netsh wlan show interface | findstr State
+240511-09:45:13 app output:     State                  : disconnected
+
+240511-09:45:13 checkwifiConnState: wireless card connection check failed.
+240511-09:45:17 run app: netsh wlan show interface | findstr State
+240511-09:45:17 app output:     State                  : disconnected
+
+240511-09:45:17 checkwifiConnState: wireless card connection check failed.
+240511-09:45:21 run app: netsh wlan show interface | findstr State
+240511-09:45:21 app output:     State                  : associating
+
+240511-09:45:21 checkwifiConnState: wireless card connection check failed.
+240511-09:45:25 run app: netsh wlan show interface | findstr State
+240511-09:45:25 app output:     State                  : associating
+
+240511-09:45:25 checkwifiConnState: wireless card connection check failed.
+240511-09:45:29 run app: netsh wlan show interface | findstr State
+240511-09:45:29 app output:     State                  : disconnected
+
+240511-09:45:29 checkwifiConnState: wireless card connection check failed.
+240511-09:45:33 run app: netsh wlan show interface | findstr State
+240511-09:45:34 app output:     State                  : disconnected
+
+240511-09:45:34 checkwifiConnState: wireless card connection check failed.
+240511-09:45:38 run app: netsh wlan show interface | findstr State
+240511-09:45:38 app output:     State                  : disconnected
+
+240511-09:45:38 checkwifiConnState: wireless card connection check failed.
+240511-09:45:42 run app: netsh wlan show interface | findstr State
+240511-09:45:42 app output:     State                  : disconnected
+
+240511-09:45:42 checkwifiConnState: wireless card connection check failed.
+240511-09:45:46 run app: netsh wlan show interface | findstr State
+240511-09:45:46 app output:     State                  : disconnected
+
+240511-09:45:46 checkwifiConnState: wireless card connection check failed.
+240511-09:45:50 run app: netsh wlan show interface | findstr State
+240511-09:45:50 app output:     State                  : disconnected
+
+240511-09:45:50 checkwifiConnState: wireless card connection check failed.
+240511-09:45:54 run app: netsh wlan show interface | findstr State
+240511-09:45:54 app output:     State                  : disconnected
+
+240511-09:45:54 checkwifiConnState: wireless card connection check failed.
+240511-09:45:58 run app: netsh wlan show interface | findstr State
+240511-09:45:58 app output:     State                  : disconnected
+
+240511-09:45:58 checkwifiConnState: wireless card connection check failed.
+240511-09:46:02 run app: netsh wlan show interface | findstr State
+240511-09:46:02 app output:     State                  : disconnected
+
+240511-09:46:02 checkwifiConnState: wireless card connection check failed.
+240511-09:46:06 run app: netsh wlan show interface | findstr State
+240511-09:46:06 app output:     State                  : disconnected
+
+240511-09:46:06 checkwifiConnState: wireless card connection check failed.
+240511-09:46:10 run app: netsh wlan show interface | findstr State
+240511-09:46:10 app output:     State                  : disconnected
+
+240511-09:46:10 checkwifiConnState: wireless card connection check failed.
+240511-09:46:14 run app: netsh wlan show interface | findstr State
+240511-09:46:14 app output:     State                  : disconnected
+
+240511-09:46:14 checkwifiConnState: wireless card connection check failed.
+240511-09:46:18 run app: netsh wlan show interface | findstr State
+240511-09:46:18 app output:     State                  : disconnected
+
+240511-09:46:18 checkwifiConnState: wireless card connection check failed.
+240511-09:46:22 run app: netsh wlan show interface | findstr State
+240511-09:46:22 app output:     State                  : disconnected
+
+240511-09:46:22 checkwifiConnState: wireless card connection check failed.
+240511-09:46:26 run app: netsh wlan show interface | findstr State
+240511-09:46:26 app output:     State                  : disconnected
+
+240511-09:46:27 checkwifiConnState: wireless card connection check failed.
+240511-09:46:31 run app: netsh wlan show interface | findstr State
+240511-09:46:31 app output:     State                  : associating
+
+240511-09:46:31 checkwifiConnState: wireless card connection check failed.
+240511-09:46:35 run app: netsh wlan show interface | findstr State
+240511-09:46:35 app output:     State                  : associating
+
+240511-09:46:35 checkwifiConnState: wireless card connection check failed.
+240511-09:46:39 run app: netsh wlan show interface | findstr State
+240511-09:46:39 app output:     State                  : associating
+
+240511-09:46:39 checkwifiConnState: wireless card connection check failed.
+240511-09:46:43 run app: netsh wlan show interface | findstr State
+240511-09:46:43 app output:     State                  : disconnected
+
+240511-09:46:43 checkwifiConnState: wireless card connection check failed.
+240511-09:46:47 run app: netsh wlan show interface | findstr State
+240511-09:46:47 app output:     State                  : disconnected
+
+240511-09:46:47 checkwifiConnState: wireless card connection check failed.
+240511-09:46:51 waitConnected -> timeout on connect
+240511-09:46:51 Trying connection in loop...The count is: 3
+240511-09:46:51 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240511-09:46:51 app output: Connection request was completed successfully.
+
+240511-09:46:51 run app: netsh wlan show interface | findstr State
+240511-09:46:51 app output:     State                  : associating
+
+240511-09:46:51 checkwifiConnState: wireless card connection check failed.
+240511-09:46:55 run app: netsh wlan show interface | findstr State
+240511-09:46:55 app output:     State                  : associating
+
+240511-09:46:55 checkwifiConnState: wireless card connection check failed.
+240511-09:46:59 run app: netsh wlan show interface | findstr State
+240511-09:46:59 app output:     State                  : associating
+
+240511-09:46:59 checkwifiConnState: wireless card connection check failed.
+240511-09:47:03 run app: netsh wlan show interface | findstr State
+240511-09:47:03 app output:     State                  : associating
+
+240511-09:47:03 checkwifiConnState: wireless card connection check failed.
+240511-09:47:07 run app: netsh wlan show interface | findstr State
+240511-09:47:07 app output:     State                  : associating
+
+240511-09:47:07 checkwifiConnState: wireless card connection check failed.
+240511-09:47:11 run app: netsh wlan show interface | findstr State
+240511-09:47:11 app output:     State                  : disconnected
+
+240511-09:47:11 checkwifiConnState: wireless card connection check failed.
+240511-09:47:15 run app: netsh wlan show interface | findstr State
+240511-09:47:15 app output:     State                  : disconnected
+
+240511-09:47:15 checkwifiConnState: wireless card connection check failed.
+240511-09:47:19 run app: netsh wlan show interface | findstr State
+240511-09:47:20 app output:     State                  : disconnected
+
+240511-09:47:20 checkwifiConnState: wireless card connection check failed.
+240511-09:47:24 run app: netsh wlan show interface | findstr State
+240511-09:47:24 app output:     State                  : associating
+
+240511-09:47:24 checkwifiConnState: wireless card connection check failed.
+240511-09:47:28 run app: netsh wlan show interface | findstr State
+240511-09:47:28 app output:     State                  : associating
+
+240511-09:47:28 checkwifiConnState: wireless card connection check failed.
+240511-09:47:32 run app: netsh wlan show interface | findstr State
+240511-09:47:32 app output:     State                  : disconnected
+
+240511-09:47:32 checkwifiConnState: wireless card connection check failed.
+240511-09:47:36 run app: netsh wlan show interface | findstr State
+240511-09:47:36 app output:     State                  : disconnected
+
+240511-09:47:36 checkwifiConnState: wireless card connection check failed.
+240511-09:47:40 run app: netsh wlan show interface | findstr State
+240511-09:47:40 app output:     State                  : disconnected
+
+240511-09:47:40 checkwifiConnState: wireless card connection check failed.
+240511-09:47:44 run app: netsh wlan show interface | findstr State
+240511-09:47:44 app output:     State                  : disconnected
+
+240511-09:47:44 checkwifiConnState: wireless card connection check failed.
+240511-09:47:48 run app: netsh wlan show interface | findstr State
+240511-09:47:48 app output:     State                  : disconnected
+
+240511-09:47:48 checkwifiConnState: wireless card connection check failed.
+240511-09:47:52 run app: netsh wlan show interface | findstr State
+240511-09:47:52 app output:     State                  : disconnected
+
+240511-09:47:52 checkwifiConnState: wireless card connection check failed.
+240511-09:47:56 run app: netsh wlan show interface | findstr State
+240511-09:47:56 app output:     State                  : disconnected
+
+240511-09:47:56 checkwifiConnState: wireless card connection check failed.
+240511-09:48:00 run app: netsh wlan show interface | findstr State
+240511-09:48:00 app output:     State                  : disconnected
+
+240511-09:48:01 checkwifiConnState: wireless card connection check failed.
+240511-09:48:05 run app: netsh wlan show interface | findstr State
+240511-09:48:05 app output:     State                  : disconnected
+
+240511-09:48:05 checkwifiConnState: wireless card connection check failed.
+240511-09:48:09 run app: netsh wlan show interface | findstr State
+240511-09:48:09 app output:     State                  : disconnected
+
+240511-09:48:09 checkwifiConnState: wireless card connection check failed.
+240511-09:48:13 run app: netsh wlan show interface | findstr State
+240511-09:48:13 app output:     State                  : disconnected
+
+240511-09:48:13 checkwifiConnState: wireless card connection check failed.
+240511-09:48:17 run app: netsh wlan show interface | findstr State
+240511-09:48:17 app output:     State                  : disconnected
+
+240511-09:48:17 checkwifiConnState: wireless card connection check failed.
+240511-09:48:21 run app: netsh wlan show interface | findstr State
+240511-09:48:21 app output:     State                  : disconnected
+
+240511-09:48:21 checkwifiConnState: wireless card connection check failed.
+240511-09:48:25 run app: netsh wlan show interface | findstr State
+240511-09:48:25 app output:     State                  : disconnected
+
+240511-09:48:25 checkwifiConnState: wireless card connection check failed.
+240511-09:48:29 run app: netsh wlan show interface | findstr State
+240511-09:48:29 app output:     State                  : disconnected
+
+240511-09:48:29 checkwifiConnState: wireless card connection check failed.
+240511-09:48:33 run app: netsh wlan show interface | findstr State
+240511-09:48:33 app output:     State                  : associating
+
+240511-09:48:33 checkwifiConnState: wireless card connection check failed.
+240511-09:48:37 run app: netsh wlan show interface | findstr State
+240511-09:48:37 app output:     State                  : associating
+
+240511-09:48:37 checkwifiConnState: wireless card connection check failed.
+240511-09:48:41 run app: netsh wlan show interface | findstr State
+240511-09:48:41 app output:     State                  : associating
+
+240511-09:48:41 checkwifiConnState: wireless card connection check failed.
+240511-09:48:45 run app: netsh wlan show interface | findstr State
+240511-09:48:45 app output:     State                  : disconnected
+
+240511-09:48:45 checkwifiConnState: wireless card connection check failed.
+240511-09:48:49 run app: netsh wlan show interface | findstr State
+240511-09:48:49 app output:     State                  : disconnected
+
+240511-09:48:49 checkwifiConnState: wireless card connection check failed.
+240511-09:48:53 waitConnected -> timeout on connect
+240511-09:48:53 Trying connection in loop...The count is: 4
+240511-09:48:53 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240511-09:48:54 app output: Connection request was completed successfully.
+
+240511-09:48:54 run app: netsh wlan show interface | findstr State
+240511-09:48:54 app output:     State                  : associating
+
+240511-09:48:54 checkwifiConnState: wireless card connection check failed.
+240511-09:48:58 run app: netsh wlan show interface | findstr State
+240511-09:48:58 app output:     State                  : associating
+
+240511-09:48:58 checkwifiConnState: wireless card connection check failed.
+240511-09:49:02 run app: netsh wlan show interface | findstr State
+240511-09:49:02 app output:     State                  : associating
+
+240511-09:49:02 checkwifiConnState: wireless card connection check failed.
+240511-09:49:06 run app: netsh wlan show interface | findstr State
+240511-09:49:06 app output:     State                  : associating
+
+240511-09:49:06 checkwifiConnState: wireless card connection check failed.
+240511-09:49:10 run app: netsh wlan show interface | findstr State
+240511-09:49:10 app output:     State                  : associating
+
+240511-09:49:10 checkwifiConnState: wireless card connection check failed.
+240511-09:49:14 run app: netsh wlan show interface | findstr State
+240511-09:49:14 app output:     State                  : disconnected
+
+240511-09:49:14 checkwifiConnState: wireless card connection check failed.
+240511-09:49:18 run app: netsh wlan show interface | findstr State
+240511-09:49:18 app output:     State                  : disconnected
+
+240511-09:49:18 checkwifiConnState: wireless card connection check failed.
+240511-09:49:22 run app: netsh wlan show interface | findstr State
+240511-09:49:22 app output:     State                  : disconnected
+
+240511-09:49:22 checkwifiConnState: wireless card connection check failed.
+240511-09:49:26 run app: netsh wlan show interface | findstr State
+240511-09:49:26 app output:     State                  : associating
+
+240511-09:49:26 checkwifiConnState: wireless card connection check failed.
+240511-09:49:30 run app: netsh wlan show interface | findstr State
+240511-09:49:30 app output:     State                  : associating
+
+240511-09:49:30 checkwifiConnState: wireless card connection check failed.
+240511-09:49:34 run app: netsh wlan show interface | findstr State
+240511-09:49:34 app output:     State                  : disconnected
+
+240511-09:49:34 checkwifiConnState: wireless card connection check failed.
+240511-09:49:38 run app: netsh wlan show interface | findstr State
+240511-09:49:38 app output:     State                  : disconnected
+
+240511-09:49:38 checkwifiConnState: wireless card connection check failed.
+240511-09:49:42 run app: netsh wlan show interface | findstr State
+240511-09:49:43 app output:     State                  : disconnected
+
+240511-09:49:43 checkwifiConnState: wireless card connection check failed.
+240511-09:49:47 run app: netsh wlan show interface | findstr State
+240511-09:49:47 app output:     State                  : disconnected
+
+240511-09:49:47 checkwifiConnState: wireless card connection check failed.
+240511-09:49:51 run app: netsh wlan show interface | findstr State
+240511-09:49:51 app output:     State                  : disconnected
+
+240511-09:49:51 checkwifiConnState: wireless card connection check failed.
+240511-09:49:55 run app: netsh wlan show interface | findstr State
+240511-09:49:55 app output:     State                  : disconnected
+
+240511-09:49:55 checkwifiConnState: wireless card connection check failed.
+240511-09:49:59 run app: netsh wlan show interface | findstr State
+240511-09:49:59 app output:     State                  : disconnected
+
+240511-09:49:59 checkwifiConnState: wireless card connection check failed.
+240511-09:50:03 run app: netsh wlan show interface | findstr State
+240511-09:50:03 app output:     State                  : associating
+
+240511-09:50:03 checkwifiConnState: wireless card connection check failed.
+240511-09:50:07 run app: netsh wlan show interface | findstr State
+240511-09:50:07 app output:     State                  : associating
+
+240511-09:50:07 checkwifiConnState: wireless card connection check failed.
+240511-09:50:11 run app: netsh wlan show interface | findstr State
+240511-09:50:11 app output:     State                  : associating
+
+240511-09:50:11 checkwifiConnState: wireless card connection check failed.
+240511-09:50:15 run app: netsh wlan show interface | findstr State
+240511-09:50:15 app output:     State                  : associating
+
+240511-09:50:15 checkwifiConnState: wireless card connection check failed.
+240511-09:50:19 run app: netsh wlan show interface | findstr State
+240511-09:50:19 app output:     State                  : associating
+
+240511-09:50:19 checkwifiConnState: wireless card connection check failed.
+240511-09:50:23 run app: netsh wlan show interface | findstr State
+240511-09:50:23 app output:     State                  : disconnected
+
+240511-09:50:23 checkwifiConnState: wireless card connection check failed.
+240511-09:50:27 run app: netsh wlan show interface | findstr State
+240511-09:50:27 app output:     State                  : disconnected
+
+240511-09:50:27 checkwifiConnState: wireless card connection check failed.
+240511-09:50:31 run app: netsh wlan show interface | findstr State
+240511-09:50:31 app output:     State                  : disconnected
+
+240511-09:50:31 checkwifiConnState: wireless card connection check failed.
+240511-09:50:35 run app: netsh wlan show interface | findstr State
+240511-09:50:35 app output:     State                  : associating
+
+240511-09:50:35 checkwifiConnState: wireless card connection check failed.
+240511-09:50:39 run app: netsh wlan show interface | findstr State
+240511-09:50:40 app output:     State                  : associating
+
+240511-09:50:40 checkwifiConnState: wireless card connection check failed.
+240511-09:50:44 run app: netsh wlan show interface | findstr State
+240511-09:50:44 app output:     State                  : disconnected
+
+240511-09:50:44 checkwifiConnState: wireless card connection check failed.
+240511-09:50:48 run app: netsh wlan show interface | findstr State
+240511-09:50:48 app output:     State                  : disconnected
+
+240511-09:50:48 checkwifiConnState: wireless card connection check failed.
+240511-09:50:56 waitConnected -> timeout on connect
+240511-09:50:56 Trying connection in loop...The count is: 5
+240511-09:50:56 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240511-09:50:56 app output: Connection request was completed successfully.
+
+240511-09:50:56 run app: netsh wlan show interface | findstr State
+240511-09:51:05 app output:     State                  : disconnecting
+
+240511-09:51:05 checkwifiConnState: wireless card connection check failed.
+240511-09:51:09 run app: netsh wlan show interface | findstr State
+240511-09:51:09 app output:     State                  : associating
+
+240511-09:51:09 checkwifiConnState: wireless card connection check failed.
+240511-09:51:13 run app: netsh wlan show interface | findstr State
+240511-09:51:13 app output:     State                  : associating
+
+240511-09:51:13 checkwifiConnState: wireless card connection check failed.
+240511-09:51:17 run app: netsh wlan show interface | findstr State
+240511-09:51:17 app output:     State                  : associating
+
+240511-09:51:17 checkwifiConnState: wireless card connection check failed.
+240511-09:51:21 run app: netsh wlan show interface | findstr State
+240511-09:51:22 app output:     State                  : associating
+
+240511-09:51:22 checkwifiConnState: wireless card connection check failed.
+240511-09:51:26 run app: netsh wlan show interface | findstr State
+240511-09:51:26 app output:     State                  : associating
+
+240511-09:51:26 checkwifiConnState: wireless card connection check failed.
+240511-09:51:30 run app: netsh wlan show interface | findstr State
+240511-09:51:30 app output:     State                  : disconnected
+
+240511-09:51:30 checkwifiConnState: wireless card connection check failed.
+240511-09:51:34 run app: netsh wlan show interface | findstr State
+240511-09:51:34 checkwifiConnState: wireless card connection check failed.
+240511-09:51:38 run app: netsh wlan show interface | findstr State
+240511-09:51:38 app output:     State                  : connected
+
+240511-09:51:43 run app: route print -4
+240511-09:51:43 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+  9...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+ 17...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.34     40
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.34    296
+
+     172.16.27.34  255.255.255.255         On-link      172.16.27.34    296
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.34    296
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.34    296
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.34    296
+
+===========================================================================
+
+Persistent Routes:
+
+  None
+
+240511-09:51:43 sending result: true
+240511-09:51:43 [Errno 10054] An existing connection was forcibly closed by the remote host
+240511-09:51:43 waiting for client request...
+240511-09:51:43 Server is ready...

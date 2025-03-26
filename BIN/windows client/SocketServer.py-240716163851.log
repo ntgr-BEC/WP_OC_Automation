@@ -1,0 +1,2228 @@
+240716-16:38:51 Server is ready...
+240716-16:58:26 Connected by: ('172.16.27.3', 56980)
+240716-16:58:27 Received data is: WAFfindSSID apwp14270
+240716-16:58:27 wifiOff: adapter_name: Wi-Fi
+240716-16:58:27 run app: netsh interface set interface name="Wi-Fi" disable
+240716-16:58:27 app output: 
+
+240716-16:58:32 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240716-16:58:32 app output:    Administrative state: Disabled             
+
+240716-16:58:32 wifiOn: adapter_name: Wi-Fi
+240716-16:58:32 run app: netsh interface set interface name="Wi-Fi" enable
+240716-16:58:33 app output: 
+
+240716-16:58:38 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240716-16:58:38 app output:    Administrative state: Enabled             
+
+240716-16:58:38 run app: scannet.exe
+240716-16:58:38 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240716-16:58:38 run app: netsh wlan show network | findstr apwp14270
+240716-16:58:38 app output: SSID 166 : apwp14270
+
+240716-16:58:38 sending result: true
+240716-16:58:38 waiting for client request...
+240716-16:58:38 Server is ready...
+240716-16:58:40 Connected by: ('172.16.27.3', 56994)
+240716-16:58:41 Received data is: WAFconnect apwp14270 123456798 WPA2PSK aes
+240716-16:58:41 wifiConnect
+240716-16:58:41 filename name is: apwp14270.xml
+240716-16:58:41 run app: netsh wlan delete profile name =*
+240716-16:58:41 app output: Profile "apwp16636" is deleted from interface "Wi-Fi".
+
+240716-16:58:41 wifiOff: adapter_name: Wi-Fi
+240716-16:58:41 run app: netsh interface set interface name="Wi-Fi" disable
+240716-16:58:41 app output: 
+
+240716-16:58:46 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240716-16:58:46 app output:    Administrative state: Disabled             
+
+240716-16:58:46 wifiOn: adapter_name: Wi-Fi
+240716-16:58:46 run app: netsh interface set interface name="Wi-Fi" enable
+240716-16:58:47 app output: 
+
+240716-16:58:52 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240716-16:58:52 app output:    Administrative state: Enabled             
+
+240716-16:58:52 run app: scannet.exe
+240716-16:58:52 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240716-16:58:52 run app: netsh wlan show network | findstr apwp14270
+240716-16:58:52 app output: SSID 189 : apwp14270
+
+240716-16:58:52 run app: netsh wlan add profile filename="apwp14270.xml"
+240716-16:58:52 app output: Profile apwp14270 is added on interface Wi-Fi.
+
+240716-16:58:52 run app: netsh wlan set profileparameter name="apwp14270" connectionmode=auto
+240716-16:58:52 app output: 
+
+Profile "apwp14270" on interface "Wi-Fi" updated successfully.
+
+
+
+240716-16:59:00 wifiOff: adapter_name: Wireless Network Connection
+240716-16:59:00 run app: netsh interface set interface name="Wireless Network Connection" disable
+240716-16:59:00 app output: No more data is available.
+
+
+
+
+
+240716-16:59:05 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240716-16:59:05 checkwifiModuleState -> state: dummy result
+240716-16:59:05 wifiOn: adapter_name: Wireless Network Connection
+240716-16:59:05 run app: netsh interface set interface name="Wireless Network Connection" enable
+240716-16:59:05 app output: No more data is available.
+
+
+
+
+
+240716-16:59:10 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240716-16:59:10 checkwifiModuleState -> state: dummy result
+240716-16:59:10 Trying connection in loop...The count is: 1
+240716-16:59:10 run app: netsh wlan connect name ="apwp14270" ssid="apwp14270"
+240716-16:59:10 app output: Connection request was completed successfully.
+
+240716-16:59:10 run app: netsh wlan show interface | findstr State
+240716-16:59:11 app output:     State                  : disconnecting
+
+240716-16:59:11 checkwifiConnState: wireless card connection check failed.
+240716-16:59:15 run app: netsh wlan show interface | findstr State
+240716-16:59:15 app output:     State                  : connected
+
+240716-16:59:20 run app: route print -4
+240716-16:59:20 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+  9...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+ 17...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.31.1     172.16.31.37     40
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+      172.16.31.0    255.255.255.0         On-link      172.16.31.37    296
+
+     172.16.31.37  255.255.255.255         On-link      172.16.31.37    296
+
+    172.16.31.255  255.255.255.255         On-link      172.16.31.37    296
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.31.37    296
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.31.37    296
+
+===========================================================================
+
+Persistent Routes:
+
+  None
+
+240716-16:59:20 sending result: true
+240716-16:59:20 waiting for client request...
+240716-16:59:20 Server is ready...
+240717-12:32:28 Connected by: ('172.16.27.3', 60507)
+240717-12:32:29 Received data is: WAFfindSSID Client1234
+240717-12:32:29 wifiOff: adapter_name: Wi-Fi
+240717-12:32:29 run app: netsh interface set interface name="Wi-Fi" disable
+240717-12:32:30 app output: 
+
+240717-12:32:35 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:32:35 app output:    Administrative state: Disabled             
+
+240717-12:32:35 wifiOn: adapter_name: Wi-Fi
+240717-12:32:35 run app: netsh interface set interface name="Wi-Fi" enable
+240717-12:32:36 app output: 
+
+240717-12:32:41 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:32:41 app output:    Administrative state: Enabled             
+
+240717-12:32:41 run app: scannet.exe
+240717-12:32:41 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 apwp14270
+
+  Association Attributes for this connection
+
+    SSID:		 apwp14270
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 94-A6-7E-A8-70-28
+
+    PHY network type:	 Unknown = 10
+
+    PHY index:		 5
+
+    Signal Quality:	 94
+
+    Receiving Rate:	 344000
+
+    Transmission Rate:	 117000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:32:41 run app: netsh wlan show network | findstr Client1234
+240717-12:32:45 run app: scannet.exe
+240717-12:32:45 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:32:45 run app: netsh wlan show network | findstr Client1234
+240717-12:32:49 run app: scannet.exe
+240717-12:32:50 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:32:50 run app: netsh wlan show network | findstr Client1234
+240717-12:32:54 run app: scannet.exe
+240717-12:32:54 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:32:54 run app: netsh wlan show network | findstr Client1234
+240717-12:32:58 run app: scannet.exe
+240717-12:32:58 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:32:58 run app: netsh wlan show network | findstr Client1234
+240717-12:33:02 findSSID -> not able to scan the ssid: Client1234
+240717-12:33:02 run app: netsh wlan show network | findstr SSID
+240717-12:33:02 app output: SSID 1 : New
+
+SSID 2 : y-shaz
+
+SSID 3 : gpprod
+
+SSID 4 : SSidCheck
+
+SSID 5 : SSID-NEW1
+
+SSID 6 : SSIDPROD
+
+SSID 7 : VALUE-1
+
+SSID 8 : 1222
+
+SSID 9 : 
+
+SSID 10 : VALUE-2
+
+SSID 11 : fgvsdfsd
+
+SSID 12 : 1-MB-WP2-Ent
+
+SSID 13 : 2-MB-WP2-PSK
+
+SSID 14 : 3-MB-Op-ECP
+
+SSID 15 : 123 Test
+
+SSID 16 : qwerty1234
+
+SSID 17 : 999icpLINKK
+
+SSID 18 : ARNE
+
+SSID 19 : Product support
+
+SSID 20 : 710Guest
+
+SSID 21 : ssid
+
+SSID 22 : 00_11r_test_ch
+
+SSID 23 : VLAN-5
+
+SSID 24 : 999ICPregister
+
+SSID 25 : 99bcp
+
+SSID 26 : Enterprise
+
+SSID 27 : WWW
+
+SSID 28 : 650E-VLAN-4
+
+SSID 29 : 1-SK-GC-SSID
+
+SSID 30 : !!!!!WAX210
+
+    HESSID                  : 54:07:7d:ae:71:17
+
+SSID 31 : Scaled-630E
+
+SSID 32 : Scaled-MDU
+
+SSID 33 : MDU-MPSK
+
+SSID 34 : !!!!!WAX210_3
+
+SSID 35 : 2-SK-GC
+
+SSID 36 : RSD12
+
+SSID 37 : apwp22020
+
+SSID 38 : 4-WPA2-PSK
+
+SSID 39 : 14th-feb-enterprise
+
+SSID 40 : 5th-Org-SSID
+
+SSID 41 : 11r-pl-roam
+
+SSID 42 : !#$% Office
+
+SSID 43 : CorpEmployee
+
+SSID 44 : ThirdSSID
+
+SSID 45 : ()()()()()()wax605-open vlan
+
+SSID 46 : sumanprod
+
+SSID 47 : apassid9564
+
+SSID 48 : NETGEAR-4
+
+SSID 49 : ORBI80
+
+SSID 50 : LINEDINN
+
+SSID 51 : cfdregba
+
+SSID 52 : regicp618
+
+SSID 53 : regcustomicp618
+
+SSID 54 : Third-Enterprise-SSID
+
+SSID 55 : !!!ifb
+
+SSID 56 : Netgear5AA9CF
+
+SSID 57 : apwp22554
+
+SSID 58 : icptopbcp
+
+SSID 59 : Basic Captive Portal
+
+SSID 60 : iss
+
+SSID 61 : delssid3
+
+SSID 62 : ssid
+
+SSID 63 : Beta@21
+
+SSID 64 : delssid2
+
+SSID 65 : delssid1
+
+SSID 66 : dgssid
+
+SSID 67 : Airpod Pro
+
+SSID 68 : Airpod Lite
+
+SSID 69 : Airpod Zip
+
+SSID 70 : Alexa
+
+SSID 71 : 24 VLAN
+
+SSID 72 : UP1
+
+SSID 73 : 22 VLAN
+
+SSID 74 : !!! Scale
+
+SSID 75 : Bangalore
+
+SSID 76 : SK Testing
+
+SSID 77 : HomeSSIDQuick
+
+SSID 78 : nextSSID
+
+SSID 79 : @@@WAC540
+
+SSID 80 : GOPI_THT
+
+SSID 81 : 1234urlfilter
+
+SSID 82 : zetuprod
+
+SSID 83 : apnormalorg
+
+SSID 84 : Maint-Beta-Sol-V22
+
+SSID 85 : NETGEAR-18
+
+SSID 86 : NetgearFADD7F-setup
+
+SSID 87 : NETGEAR-17
+
+SSID 88 : NETGEAR-16
+
+SSID 89 : NETGEAR-15
+
+SSID 90 : Maint-Beta Solution 20
+
+SSID 91 : will1
+
+SSID 92 : apwp22746
+
+SSID 93 : Test Naveen
+
+SSID 94 : basictocip
+
+SSID 95 : !!!!!!@@@B-WPA2-PSK-W
+
+SSID 96 : Netgear17EB9F
+
+SSID 97 : @@@620mix
+
+SSID 98 : @@@@@WAX620-AP
+
+SSID 99 : hhhh
+
+SSID 100 : goodssid
+
+SSID 101 : 0winrad
+
+SSID 102 : 63888fb
+
+SSID 103 : newbcp
+
+SSID 104 : 555ICPlinkkkk
+
+SSID 105 : 63888linkeed
+
+SSID 106 : 710Nat
+
+SSID 107 : ECPopen
+
+SSID 108 : 63888reg
+
+SSID 109 : bcp710
+
+SSID 110 : bnbm
+
+SSID 111 : _UnderScored
+
+SSID 112 : 28624
+
+SSID 113 : 638888orgfb
+
+SSID 114 : !wb75link
+
+SSID 115 : 63888orgregedit
+
+SSID 116 : PRJCBUGEN_T13884
+
+SSID 117 : !wbe75fb
+
+SSID 118 : 6388orglinkd
+
+SSID 119 : 638efb
+
+SSID 120 : !wb75icreg
+
+SSID 121 : ssstest123
+
+SSID 122 : NetgearA8EC9F
+
+SSID 123 : Netgear6B845F
+
+SSID 124 : ECPgoWifi
+
+SSID 125 : !edits758icpfb
+
+SSID 126 : @@ORBI96
+
+SSID 127 : Automation_139
+
+SSID 128 : Automation_138
+
+SSID 129 : Automation_137
+
+SSID 130 : 1GP-WA610Y
+
+SSID 131 : PBS-610Y
+
+SSID 132 : Netgear-BFEA5F
+
+SSID 133 : !!!newchec
+
+SSID 134 : 1234Tejuorg1234
+
+SSID 135 : MAS-STAFF
+
+SSID 136 : Org-NE
+
+SSID 137 : Pro-Enterprise
+
+SSID 138 : Newly-Created-SSID-Name-Remotely
+
+SSID 139 : MAS-STUDENT
+
+SSID 140 : 0client
+
+SSID 141 : 222
+
+SSID 142 : onatn1234
+
+SSID 143 : QWE
+
+SSID 144 : MAS-GUEST
+
+SSID 145 : MAS-EVENT
+
+SSID 146 : CHOLA-D3
+
+SSID 147 : !!Icheep
+
+SSID 148 : SETGP
+
+SSID 149 : sdasdasdfsf
+
+SSID 150 : CapBasicTest
+
+SSID 151 : remote 11kv
+
+SSID 152 : EU-615
+
+SSID 153 : !!bcheep
+
+SSID 154 : !icheepld
+
+SSID 155 : !!Echep
+
+SSID 156 : orgkv
+
+SSID 157 : icpissue
+
+SSID 158 : orgss610y
+
+SSID 159 : 77 rad
+
+SSID 160 : gozone
+
+SSID 161 : mvsm
+
+SSID 162 : 1mvsm
+
+SSID 163 : 2mvsm
+
+SSID 164 : @@@@@WPA3Enterprise
+
+SSID 165 : @@@WPA2Enterprise
+
+SSID 166 : 72a605icp
+
+SSID 167 : NETGEARA43D7F-SETUP
+
+SSID 168 : 605vlan21
+
+SSID 169 : NETGEARAADD5F-SETUP
+
+SSID 170 : firstwifi
+
+SSID 171 : 12SumantaICPTestLink
+
+SSID 172 : 12SumantaICPTestReg
+
+SSID 173 : NETGEARAAE4DF-SETUP
+
+SSID 174 : 12NewSumanta1234
+
+SSID 175 : ###1suren750ap11@@@11
+
+SSID 176 : 72059AP620
+
+SSID 177 : apwp14270
+
+SSID 178 : @@surenOrbi111
+
+SSID 179 : ngguest
+
+SSID 180 : Kotha
+
+SSID 181 : NtgLite-ecp
+
+SSID 182 : ORBI76
+
+SSID 183 : MAS-VOIP
+
+SSID 184 : NonDefaultVLAN
+
+SSID 185 : CustomVLAN10
+
+SSID 186 : EnterpriseSSID
+
+SSID 187 : 5th-VLAN
+
+SSID 188 : 5th-Org-Wide
+
+SSID 189 : 1-Only
+
+SSID 190 : Netgear-BF9E1F
+
+SSID 191 : apwp33441
+
+SSID 192 : ORBI26
+
+SSID 193 : apwp39889
+
+SSID 194 : office
+
+SSID 195 : 00_11r_pollachi
+
+SSID 196 : 00_WPA2Enterprise_test
+
+SSID 197 : 00_11r_pollachi_vlan9
+
+SSID 198 : 750FFBB
+
+SSID 199 : AllssidCheck3
+
+SSID 200 : AllssidCheck2
+
+SSID 201 : AllssidCheck1
+
+SSID 202 : AllssidCheck
+
+SSID 203 : 540rapid
+
+SSID 204 : set122
+
+SSID 205 : gopiRFtest
+
+SSID 206 : DIGI-TALKIES
+
+SSID 207 : ncof
+
+SSID 208 : WAYU-WAF
+
+SSID 209 : SERUM11
+
+SSID 210 : tejuprod
+
+SSID 211 : NETGEARB9BC5F-SETUP
+
+SSID 212 : 540orgofnc
+
+SSID 213 : ###1suren750EAP333
+
+SSID 214 : @@@WPA-Mix
+
+SSID 215 : ###1suren750EAP444
+
+SSID 216 : DemoSSID
+
+SSID 217 : @@@WAX615-open
+
+SSID 218 : Hhvhygu
+
+SSID 219 : 555ICPfb
+
+SSID 220 : 555ICPregister
+
+SSID 221 : !-0-Jaze SSID Edited
+
+SSID 222 : !&! Local SSID
+
+SSID 223 : Netgear6B7AFF
+
+SSID 224 : ORBI75-IOT
+
+SSID 225 : ORBI75-Family
+
+SSID 226 : ORBI75-Guest
+
+SSID 227 : ORBI75-sunil
+
+SSID 228 : 0org-open
+
+SSID 229 : 0org-wpa2
+
+SSID 230 : 6-cl1
+
+SSID 231 : 1gozonep
+
+SSID 232 : tempvlan
+
+SSID 233 : Try-SSID
+
+SSID 234 : No-MLO-Org-Wide
+
+SSID 235 : Local=BCP
+
+SSID 236 : ECPLOC1234
+
+SSID 237 : Non BCP=
+
+SSID 238 : ExistingICP
+
+SSID 239 : ExistingECP
+
+SSID 240 : ExistingBCP
+
+SSID 241 : ECPSpace
+
+SSID 242 : @wbe710-icp-krish
+
+SSID 243 : pr460
+
+SSID 244 : NETGEAR-8
+
+SSID 245 : 11r Roam
+
+SSID 246 : SSIDOLA
+
+SSID 247 : NETGEAR843A9F-SETUP
+
+SSID 248 : 1AutoBEC
+
+SSID 249 : NETGEAR-11
+
+SSID 250 : 200 Scaled
+
+SSID 251 : 1234
+
+SSID 252 : NETGEAR5A677F-SETUP
+
+SSID 253 : kjhgfc
+
+SSID 254 : WPA3
+
+SSID 255 : Netgear254FEF
+
+SSID 256 : 1234@505wp2
+
+SSID 257 : org-ecp
+
+SSID 258 : Y-ent
+
+SSID 259 : Y-DVLAN
+
+SSID 260 : office
+
+SSID 261 : 
+
+SSID 262 : 1234OrgICPTeju
+
+SSID 263 : !!!!!!!!!!INTERNET1
+
+SSID 264 : @@@@@@Internet2
+
+SSID 265 : Edit-5Ghz-ISO
+
+SSID 266 : 99ICPfb
+
+SSID 267 : ap618ratelmt
+
+SSID 268 : ap618macacl;
+
+SSID 269 : fxhbnfx
+
+SSID 270 : ap618ars
+
+SSID 271 : ORBI46
+
+SSID 272 : ap618opensingleband
+
+SSID 273 : ap618norm
+
+SSID 274 : ap618wpa2ent
+
+SSID 275 : regcustdefa
+
+SSID 276 : @new_Interop_WAX605
+
+SSID 277 : mbns
+
+SSID 278 : !ecpcheck
+
+SSID 279 : !ecpgojone
+
+SSID 280 : 05th May For the Migration
+
+SSID 281 : new
+
+SSID 282 : !madwar
+
+SSID 283 : 5656566
+
+SSID 284 : PRJCBUGEN_T35132
+
+SSID 285 : NETGEAR-1
+
+SSID 286 : CHFD
+
+SSID 287 : news
+
+SSID 288 : 000 mb retest
+
+240717-12:33:02 sending result: false
+240717-12:33:02 waiting for client request...
+240717-12:33:02 Server is ready...
+240717-12:33:14 Connected by: ('172.16.27.3', 60537)
+240717-12:33:15 Received data is: WAFfindSSID Client1234
+240717-12:33:15 wifiOff: adapter_name: Wi-Fi
+240717-12:33:15 run app: netsh interface set interface name="Wi-Fi" disable
+240717-12:33:15 app output: 
+
+240717-12:33:20 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:33:20 app output:    Administrative state: Disabled             
+
+240717-12:33:20 wifiOn: adapter_name: Wi-Fi
+240717-12:33:20 run app: netsh interface set interface name="Wi-Fi" enable
+240717-12:33:22 app output: 
+
+240717-12:33:27 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:33:27 app output:    Administrative state: Enabled             
+
+240717-12:33:27 run app: scannet.exe
+240717-12:33:27 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 apwp14270
+
+  Association Attributes for this connection
+
+    SSID:		 apwp14270
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 94-A6-7E-A8-70-28
+
+    PHY network type:	 Unknown = 10
+
+    PHY index:		 5
+
+    Signal Quality:	 99
+
+    Receiving Rate:	 459000
+
+    Transmission Rate:	 117000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:33:27 run app: netsh wlan show network | findstr Client1234
+240717-12:33:31 run app: scannet.exe
+240717-12:33:31 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:33:31 run app: netsh wlan show network | findstr Client1234
+240717-12:33:32 app output: SSID 33 : Client1234
+
+240717-12:33:32 sending result: true
+240717-12:33:32 waiting for client request...
+240717-12:33:32 Server is ready...
+240717-12:33:34 Connected by: ('172.16.27.3', 60551)
+240717-12:33:35 Received data is: WAFconnect Client1234  123456798  WPA2PSK aes
+240717-12:33:35 wifiConnect
+240717-12:33:35 filename name is: Client1234.xml
+240717-12:33:35 run app: netsh wlan delete profile name =*
+240717-12:33:35 app output: Profile "67667" is deleted from interface "Wi-Fi".
+
+Profile "apwp14270" is deleted from interface "Wi-Fi".
+
+240717-12:33:35 wifiOff: adapter_name: Wi-Fi
+240717-12:33:35 run app: netsh interface set interface name="Wi-Fi" disable
+240717-12:33:35 app output: 
+
+240717-12:33:40 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:33:40 app output:    Administrative state: Disabled             
+
+240717-12:33:40 wifiOn: adapter_name: Wi-Fi
+240717-12:33:40 run app: netsh interface set interface name="Wi-Fi" enable
+240717-12:33:41 app output: 
+
+240717-12:33:46 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:33:46 app output:    Administrative state: Enabled             
+
+240717-12:33:46 run app: scannet.exe
+240717-12:33:46 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:33:46 run app: netsh wlan show network | findstr Client1234
+240717-12:33:46 app output: SSID 218 : Client1234
+
+240717-12:33:46 run app: netsh wlan add profile filename="Client1234.xml"
+240717-12:33:46 app output: Profile Client1234 is added on interface Wi-Fi.
+
+240717-12:33:46 run app: netsh wlan set profileparameter name="Client1234" connectionmode=auto
+240717-12:33:47 app output: 
+
+Profile "Client1234" on interface "Wi-Fi" updated successfully.
+
+
+
+240717-12:33:57 wifiOff: adapter_name: Wireless Network Connection
+240717-12:33:57 run app: netsh interface set interface name="Wireless Network Connection" disable
+240717-12:33:57 app output: No more data is available.
+
+
+
+
+
+240717-12:34:02 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240717-12:34:02 checkwifiModuleState -> state: dummy result
+240717-12:34:02 wifiOn: adapter_name: Wireless Network Connection
+240717-12:34:02 run app: netsh interface set interface name="Wireless Network Connection" enable
+240717-12:34:02 app output: No more data is available.
+
+
+
+
+
+240717-12:34:07 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240717-12:34:07 checkwifiModuleState -> state: dummy result
+240717-12:34:07 Trying connection in loop...The count is: 1
+240717-12:34:07 run app: netsh wlan connect name ="Client1234" ssid="Client1234"
+240717-12:34:07 app output: Connection request was completed successfully.
+
+240717-12:34:07 run app: netsh wlan show interface | findstr State
+240717-12:34:08 app output:     State                  : disconnecting
+
+240717-12:34:08 checkwifiConnState: wireless card connection check failed.
+240717-12:34:12 run app: netsh wlan show interface | findstr State
+240717-12:34:12 app output:     State                  : connected
+
+240717-12:34:17 run app: route print -4
+240717-12:34:17 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+  9...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+ 17...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.10     50
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.10    306
+
+     172.16.27.10  255.255.255.255         On-link      172.16.27.10    306
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.10    306
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.10    306
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.10    306
+
+===========================================================================
+
+Persistent Routes:
+
+  None
+
+240717-12:34:17 sending result: true
+240717-12:34:17 waiting for client request...
+240717-12:34:17 Server is ready...
+240717-12:50:40 Connected by: ('172.16.27.3', 61943)
+240717-12:50:41 Received data is: WAFfindSSID Client1234
+240717-12:50:41 wifiOff: adapter_name: Wi-Fi
+240717-12:50:41 run app: netsh interface set interface name="Wi-Fi" disable
+240717-12:50:41 app output: 
+
+240717-12:50:46 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:50:46 app output:    Administrative state: Disabled             
+
+240717-12:50:46 wifiOn: adapter_name: Wi-Fi
+240717-12:50:46 run app: netsh interface set interface name="Wi-Fi" enable
+240717-12:50:47 app output: 
+
+240717-12:50:52 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:50:52 app output:    Administrative state: Enabled             
+
+240717-12:50:52 run app: scannet.exe
+240717-12:50:53 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Connected
+
+
+
+  WLAN_CONNECTION_ATTRIBUTES for this interface
+
+  Interface State:	 Connected
+
+  Connection Mode:	 connection initiated by wireless service automatically using a persistent profile
+
+  Profile name used:	 Client1234
+
+  Association Attributes for this connection
+
+    SSID:		 Client1234
+
+    BSS Network type:	 Infrastructure
+
+    MAC address:	 94-A6-7E-B6-B6-68
+
+    PHY network type:	 Unknown = 10
+
+    PHY index:		 5
+
+    Signal Quality:	 98
+
+    Receiving Rate:	 413000
+
+    Transmission Rate:	 138000
+
+
+
+  Security Attributes for this connection
+
+    Security enabled:	 Yes
+
+    802.1X enabled:	 No
+
+    Authentication Algorithm: RSNA with PSK
+
+    Cipher Algorithm:	 CCMP
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:50:53 run app: netsh wlan show network | findstr Client1234
+240717-12:50:53 app output: SSID 190 : Client1234
+
+240717-12:50:53 sending result: true
+240717-12:50:53 waiting for client request...
+240717-12:50:53 Server is ready...
+240717-12:50:55 Connected by: ('172.16.27.3', 61966)
+240717-12:50:56 Received data is: WAFconnect Client1234  123456798  WPA2PSK aes
+240717-12:50:56 wifiConnect
+240717-12:50:56 filename name is: Client1234.xml
+240717-12:50:56 run app: netsh wlan delete profile name =*
+240717-12:50:56 app output: Profile "Client1234" is deleted from interface "Wi-Fi".
+
+240717-12:50:56 wifiOff: adapter_name: Wi-Fi
+240717-12:50:56 run app: netsh interface set interface name="Wi-Fi" disable
+240717-12:50:56 app output: 
+
+240717-12:51:01 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:51:01 app output:    Administrative state: Disabled             
+
+240717-12:51:01 wifiOn: adapter_name: Wi-Fi
+240717-12:51:01 run app: netsh interface set interface name="Wi-Fi" enable
+240717-12:51:03 app output: 
+
+240717-12:51:08 run app: netsh interface show interface name="Wi-Fi" | findstr Admin
+240717-12:51:08 app output:    Administrative state: Enabled             
+
+240717-12:51:08 run app: scannet.exe
+240717-12:51:08 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:51:08 run app: netsh wlan show network | findstr Client1234
+240717-12:51:12 run app: scannet.exe
+240717-12:51:12 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:51:12 run app: netsh wlan show network | findstr Client1234
+240717-12:51:16 run app: scannet.exe
+240717-12:51:16 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:51:16 run app: netsh wlan show network | findstr Client1234
+240717-12:51:20 run app: scannet.exe
+240717-12:51:20 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:51:20 run app: netsh wlan show network | findstr Client1234
+240717-12:51:24 run app: scannet.exe
+240717-12:51:24 app output: Num Entries: 1
+
+Current Index: 0
+
+  Interface Index[0]:	 0
+
+  InterfaceGUID[0]:	 {E8A0E705-09D6-4389-8D50-1E5BC0BE80E1}
+
+  Interface Description[0]: Intel(R) Wi-Fi 6 AX201 160MHz
+
+  Interface State[0]:	 Not connected
+
+
+
+Scan whole network.
+
+PASS
+
+240717-12:51:24 run app: netsh wlan show network | findstr Client1234
+240717-12:51:28 findSSID -> not able to scan the ssid: Client1234
+240717-12:51:28 run app: netsh wlan show network | findstr SSID
+240717-12:51:29 app output: SSID 1 : NETGEAR-9
+
+SSID 2 : 
+
+SSID 3 : onatn1234
+
+SSID 4 : Remote 11KV
+
+SSID 5 : 11r Roam
+
+SSID 6 : 7XX MaintBeta
+
+SSID 7 : mpsk
+
+SSID 8 : @wbe718-wpa3-56-mlo
+
+SSID 9 : ()()()()()()wax605-wpa2
+
+SSID 10 : ()()()()()()wax605-wpa2-vlan
+
+SSID 11 : ()()()()()()wax605-open vlan
+
+SSID 12 : ()()()()()()wax605-wpa2-ent
+
+SSID 13 : ()()()()()wax605-wpa2-ent-dvlan
+
+SSID 14 : @wbe718-qa-25-mlo-wpa3m
+
+SSID 15 : 05th May For the Migration
+
+SSID 16 : 
+
+SSID 17 : @wbe718-qa-enter2
+
+SSID 18 : basictocip
+
+SSID 19 : @wbe710-icp-krish
+
+SSID 20 : PRJCBUGEN_T13884
+
+SSID 21 : 505and564
+
+SSID 22 : @@@WAC540
+
+SSID 23 : Office-NAT
+
+SSID 24 : Org-NE
+
+SSID 25 : Debug-SSID-Test
+
+SSID 26 : Android SSID
+
+SSID 27 : CHOLA-D3
+
+SSID 28 : 11111 5Ghz-Edit
+
+SSID 29 : 620-Special
+
+SSID 30 : rrr
+
+SSID 31 : 2sssid
+
+SSID 32 : vlan2
+
+SSID 33 : mUlti-620
+
+SSID 34 : 7thinsightQA
+
+SSID 35 : SSIDPROD
+
+SSID 36 : VALUE-1
+
+SSID 37 : VALUE-2
+
+SSID 38 : fgvsdfsd
+
+SSID 39 : 1234@505wp2
+
+SSID 40 : gpprod
+
+SSID 41 : GOPI_THT
+
+SSID 42 : NETGEARA4569F-SETUP
+
+SSID 43 : NETGEAR6B857F-SETUP
+
+SSID 44 : Netgear254FEF
+
+SSID 45 : 540orgofnc
+
+SSID 46 : firstwifi
+
+SSID 47 : !!!ifb
+
+SSID 48 : 2-MB-WP2-PSK
+
+SSID 49 : 3-MB-Op-ECP
+
+SSID 50 : Location
+
+SSID 51 : 123 Test
+
+SSID 52 : office
+
+SSID 53 : AllssidCheck1
+
+SSID 54 : 4-WPA2-PSK
+
+SSID 55 : 14th-feb-enterprise
+
+SSID 56 : 5th-Org-SSID
+
+SSID 57 : 1234OrgICPTeju
+
+SSID 58 : Y-ent
+
+SSID 59 : Y-DVLAN
+
+SSID 60 : 1234Tejuorg1234
+
+SSID 61 : 00_WPA2Enterprise_test
+
+SSID 62 : 650E-VLAN-4
+
+SSID 63 : !!!!!WAX210
+
+    HESSID                  : 54:07:7d:ae:71:17
+
+SSID 64 : !ecpgojone
+
+SSID 65 : 00-WPA3Enterprise_Test
+
+SSID 66 : 00_11r_pollachi_vlan9
+
+SSID 67 : ap618opensingleband
+
+SSID 68 : WWW
+
+SSID 69 : ap618norm
+
+SSID 70 : apwp22020
+
+SSID 71 : RSD12
+
+SSID 72 : SK Testing
+
+SSID 73 : 710Guest
+
+SSID 74 : ORBI80
+
+SSID 75 : ap618wpa2ent
+
+SSID 76 : Edit-5Ghz-ISO
+
+SSID 77 : regicp618
+
+SSID 78 : regcustomicp618
+
+SSID 79 : regcustdefa
+
+SSID 80 : 11r-pl-roam
+
+SSID 81 : Scaled-630E
+
+SSID 82 : Scaled-MDU
+
+SSID 83 : 00_11r_test_ch
+
+SSID 84 : ARNE
+
+SSID 85 : Product support
+
+SSID 86 : ORBI46
+
+SSID 87 : @new_Interop_WAX605
+
+SSID 88 : MDU-MPSK
+
+SSID 89 : DIRECT-42-HP DeskJet 2700 series
+
+SSID 90 : !ecpcheck
+
+SSID 91 : 63888orgregedit
+
+SSID 92 : 638efb
+
+SSID 93 : 6sfinal
+
+SSID 94 : 63888fb
+
+SSID 95 : 63888reg
+
+SSID 96 : VLAN-5
+
+SSID 97 : ssstest123
+
+SSID 98 : 5656566
+
+SSID 99 : Maint-Beta Solution 20
+
+SSID 100 : Maint-Beta-Sol-V22
+
+SSID 101 : ORBI76
+
+SSID 102 : Airpod Zip
+
+SSID 103 : 750FFBB
+
+SSID 104 : 1234
+
+SSID 105 : !!! Scale
+
+SSID 106 : Netgear5AA9CF
+
+SSID 107 : Enterprise
+
+SSID 108 : cfdchecknew
+
+SSID 109 : LINEDINN
+
+SSID 110 : cfdregba
+
+SSID 111 : 000 mb retest
+
+SSID 112 : Alexa
+
+SSID 113 : 24 VLAN
+
+SSID 114 : UP1
+
+SSID 115 : Airpod Lite
+
+SSID 116 : ssid
+
+SSID 117 : delssid2
+
+SSID 118 : dgssid
+
+SSID 119 : 22 VLAN
+
+SSID 120 : Bangalore
+
+SSID 121 : Beta@21
+
+SSID 122 : 00_11r_pollachi
+
+SSID 123 : Airpod Pro
+
+SSID 124 : SSID-NEW1
+
+SSID 125 : HomeSSIDQuick
+
+SSID 126 : 1234urlfilter
+
+SSID 127 : nextSSID
+
+SSID 128 : zetuprod
+
+SSID 129 : apnormalorg
+
+SSID 130 : NetgearFADD7F-setup
+
+SSID 131 : !#$% Office
+
+SSID 132 : NETGEAR-18
+
+SSID 133 : NETGEAR-17
+
+SSID 134 : NETGEAR-16
+
+SSID 135 : NETGEAR-15
+
+SSID 136 : ssid
+
+SSID 137 : hhhh
+
+SSID 138 : goodssid
+
+SSID 139 : 0winrad
+
+SSID 140 : will1
+
+SSID 141 : 63888linkeed
+
+SSID 142 : bnbm
+
+SSID 143 : 638888orgfb
+
+SSID 144 : !wb75link
+
+SSID 145 : NetgearA8EC9F
+
+SSID 146 : sumanprod
+
+SSID 147 : 6388orglinkd
+
+SSID 148 : apwp21948
+
+SSID 149 : ECPopen
+
+SSID 150 : Netgear6B845F
+
+SSID 151 : !wb75icreg
+
+SSID 152 : apwp22746
+
+SSID 153 : ECPgoWifi
+
+SSID 154 : 28624
+
+SSID 155 : !edits758icpfb
+
+SSID 156 : !wbe75fb
+
+SSID 157 : Automation_137
+
+SSID 158 : Netgear-BFEA5F
+
+SSID 159 : Automation_139
+
+SSID 160 : Automation_138
+
+SSID 161 : !!!newchec
+
+SSID 162 : @@ORBI96
+
+SSID 163 : MAS-GUEST
+
+SSID 164 : Pro-Enterprise
+
+SSID 165 : MAS-EVENT
+
+SSID 166 : orgkv
+
+SSID 167 : 0client
+
+SSID 168 : Newly-Created-SSID-Name-Remotely
+
+SSID 169 : QWE
+
+SSID 170 : !!Icheep
+
+SSID 171 : CapBasicTest
+
+SSID 172 : 222
+
+SSID 173 : EU-615
+
+SSID 174 : remote 11kv
+
+SSID 175 : sdasdasdfsf
+
+SSID 176 : !!bcheep
+
+SSID 177 : !icheepld
+
+SSID 178 : !!Echep
+
+SSID 179 : 1org-WPa2
+
+SSID 180 : 0org-wpa2
+
+SSID 181 : 72a605icp
+
+SSID 182 : 605vlan88
+
+SSID 183 : 605vlan21
+
+SSID 184 : Netgear6B7AFF
+
+SSID 185 : NETGEARAADD5F-SETUP
+
+SSID 186 : NETGEARA43D7F-SETUP
+
+SSID 187 : apassid9564
+
+SSID 188 : 12SumantaICPTest
+
+SSID 189 : 12SumantaICPTestLink
+
+SSID 190 : 24 Open
+
+SSID 191 : 12SumantaICPTestReg
+
+SSID 192 : NETGEARAAE4DF-SETUP
+
+SSID 193 : 00 Basic SSID
+
+SSID 194 : 12NewSumanta1234
+
+SSID 195 : 11 Default SSID
+
+SSID 196 : @@surenOrbi111
+
+SSID 197 : Kotha
+
+SSID 198 : ngguest
+
+SSID 199 : NtgLite-ecp
+
+SSID 200 : NonDefaultVLAN
+
+SSID 201 : CustomVLAN10
+
+SSID 202 : EnterpriseSSID
+
+SSID 203 : 5th-VLAN
+
+SSID 204 : 5th-Org-Wide
+
+SSID 205 : 1-Only
+
+SSID 206 : MAS-STAFF
+
+SSID 207 : MAS-STUDENT
+
+SSID 208 : MAS-VOIP
+
+SSID 209 : apwp33441
+
+SSID 210 : apwp39889
+
+SSID 211 : ORBI26
+
+SSID 212 : airpod
+
+SSID 213 : Airpod-lite
+
+SSID 214 : airpod-zip
+
+SSID 215 : office
+
+SSID 216 : gozone
+
+SSID 217 : icpissue
+
+SSID 218 : mvsm
+
+SSID 219 : 1mvsm
+
+SSID 220 : 540rapid
+
+SSID 221 : 1222
+
+SSID 222 : DIGI-TALKIES
+
+SSID 223 : ncof
+
+SSID 224 : 2mvsm
+
+SSID 225 : we11
+
+SSID 226 : SSICKCreateCheck
+
+SSID 227 : AllssidCheck3
+
+SSID 228 : AllssidCheck2
+
+SSID 229 : set122
+
+SSID 230 : gopiRFtest
+
+SSID 231 : SERUM11
+
+SSID 232 : WAYU-WAF
+
+SSID 233 : AllssidCheck
+
+SSID 234 : tejuprod
+
+SSID 235 : NETGEARB9BC5F-SETUP
+
+SSID 236 : @@@WPA-Mix
+
+SSID 237 : @@@WAP2Enter-WAX615
+
+SSID 238 : @@@WAX615-open
+
+SSID 239 : DemoSSID
+
+SSID 240 : CorpEmployee
+
+SSID 241 : test
+
+SSID 242 : ThirdSSID
+
+SSID 243 : Hhvhygu
+
+SSID 244 : 555BCP
+
+SSID 245 : 555ICPfb
+
+SSID 246 : 555ICPregister
+
+SSID 247 : 555ICPlinkkkk
+
+SSID 248 : NETGEAR9BB35F-SETUP
+
+SSID 249 : Pre-Shared-Key
+
+SSID 250 : Open-SSID-16
+
+SSID 251 : Enterprise-18
+
+SSID 252 : ###1suren750EAP22
+
+SSID 253 : ###1suren750ap11@@@11
+
+SSID 254 : ORBI75-sunil
+
+SSID 255 : ###1suren750EAP333
+
+SSID 256 : ORBI75-IOT
+
+SSID 257 : ###1suren750EAP444
+
+SSID 258 : ORBI75-Family
+
+SSID 259 : ORBI75-Guest
+
+SSID 260 : No-MLO-Org-Wide
+
+SSID 261 : ExistingICP
+
+SSID 262 : ExistingECP
+
+SSID 263 : ExistingBCP
+
+SSID 264 : ECPLOC1234
+
+SSID 265 : ECPSpace
+
+SSID 266 : Non BCP=
+
+SSID 267 : ()()()()()()wax605-wpaa3ent
+
+SSID 268 : pr460
+
+SSID 269 : PR123
+
+SSID 270 : NETGEAR08F08F-SETUP
+
+SSID 271 : NisPR
+
+SSID 272 : NETGEAR-8
+
+SSID 273 : icptopbcp
+
+SSID 274 : 1AutoBEC
+
+SSID 275 : NETGEAR0721BD
+
+SSID 276 : Netgear17EB9F
+
+SSID 277 : kjhgfc
+
+SSID 278 : NETGEARA9999F-SETUP
+
+SSID 279 : Third-Enterprise-SSID
+
+SSID 280 : 200 Scaled
+
+SSID 281 : NETGEAR5A677F-SETUP
+
+SSID 282 : y-shaz
+
+SSID 283 : apwp22554
+
+SSID 284 : fxhbnfx
+
+SSID 285 : !madwar
+
+SSID 286 : newbcp
+
+SSID 287 : 710Nat
+
+SSID 288 : bcp710
+
+SSID 289 : new
+
+SSID 290 : news
+
+SSID 291 : sk-production-11r
+
+SSID 292 : SK-Production-MPSK-2Gig
+
+240717-12:51:29 run app: netsh wlan add profile filename="Client1234.xml"
+240717-12:51:29 app output: Profile Client1234 is added on interface Wi-Fi.
+
+240717-12:51:29 run app: netsh wlan set profileparameter name="Client1234" connectionmode=auto
+240717-12:51:29 app output: 
+
+Profile "Client1234" on interface "Wi-Fi" updated successfully.
+
+
+
+240717-12:51:39 wifiOff: adapter_name: Wireless Network Connection
+240717-12:51:39 run app: netsh interface set interface name="Wireless Network Connection" disable
+240717-12:51:39 app output: No more data is available.
+
+
+
+
+
+240717-12:51:44 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240717-12:51:44 checkwifiModuleState -> state: dummy result
+240717-12:51:44 wifiOn: adapter_name: Wireless Network Connection
+240717-12:51:44 run app: netsh interface set interface name="Wireless Network Connection" enable
+240717-12:51:44 app output: No more data is available.
+
+
+
+
+
+240717-12:51:49 run app: netsh interface show interface name="Wireless Network Connection" | findstr Admin
+240717-12:51:49 checkwifiModuleState -> state: dummy result
+240717-12:51:49 Trying connection in loop...The count is: 1
+240717-12:51:49 run app: netsh wlan connect name ="Client1234" ssid="Client1234"
+240717-12:51:49 app output: The network specified by profile "Client1234" is not available to connect.
+
+240717-12:51:49 run app: netsh wlan show interface | findstr State
+240717-12:51:49 app output:     State                  : disconnected
+
+240717-12:51:49 checkwifiConnState: wireless card connection check failed.
+240717-12:51:53 run app: netsh wlan show interface | findstr State
+240717-12:51:53 app output:     State                  : disconnected
+
+240717-12:51:53 checkwifiConnState: wireless card connection check failed.
+240717-12:51:57 run app: netsh wlan show interface | findstr State
+240717-12:51:58 app output:     State                  : disconnected
+
+240717-12:51:58 checkwifiConnState: wireless card connection check failed.
+240717-12:52:02 run app: netsh wlan show interface | findstr State
+240717-12:52:02 app output:     State                  : disconnected
+
+240717-12:52:02 checkwifiConnState: wireless card connection check failed.
+240717-12:52:06 run app: netsh wlan show interface | findstr State
+240717-12:52:06 app output:     State                  : disconnected
+
+240717-12:52:06 checkwifiConnState: wireless card connection check failed.
+240717-12:52:10 run app: netsh wlan show interface | findstr State
+240717-12:52:10 app output:     State                  : disconnected
+
+240717-12:52:10 checkwifiConnState: wireless card connection check failed.
+240717-12:52:14 run app: netsh wlan show interface | findstr State
+240717-12:52:14 app output:     State                  : disconnected
+
+240717-12:52:14 checkwifiConnState: wireless card connection check failed.
+240717-12:52:18 run app: netsh wlan show interface | findstr State
+240717-12:52:18 app output:     State                  : disconnected
+
+240717-12:52:18 checkwifiConnState: wireless card connection check failed.
+240717-12:52:22 run app: netsh wlan show interface | findstr State
+240717-12:52:22 app output:     State                  : disconnected
+
+240717-12:52:22 checkwifiConnState: wireless card connection check failed.
+240717-12:52:26 run app: netsh wlan show interface | findstr State
+240717-12:52:26 app output:     State                  : disconnected
+
+240717-12:52:26 checkwifiConnState: wireless card connection check failed.
+240717-12:52:30 run app: netsh wlan show interface | findstr State
+240717-12:52:30 app output:     State                  : disconnected
+
+240717-12:52:30 checkwifiConnState: wireless card connection check failed.
+240717-12:52:34 run app: netsh wlan show interface | findstr State
+240717-12:52:34 app output:     State                  : disconnected
+
+240717-12:52:34 checkwifiConnState: wireless card connection check failed.
+240717-12:52:38 run app: netsh wlan show interface | findstr State
+240717-12:52:38 app output:     State                  : disconnected
+
+240717-12:52:38 checkwifiConnState: wireless card connection check failed.
+240717-12:52:42 run app: netsh wlan show interface | findstr State
+240717-12:52:42 app output:     State                  : disconnected
+
+240717-12:52:42 checkwifiConnState: wireless card connection check failed.
+240717-12:52:46 run app: netsh wlan show interface | findstr State
+240717-12:52:46 app output:     State                  : disconnected
+
+240717-12:52:46 checkwifiConnState: wireless card connection check failed.
+240717-12:52:50 run app: netsh wlan show interface | findstr State
+240717-12:52:50 app output:     State                  : disconnected
+
+240717-12:52:50 checkwifiConnState: wireless card connection check failed.
+240717-12:52:54 run app: netsh wlan show interface | findstr State
+240717-12:52:55 app output:     State                  : disconnected
+
+240717-12:52:55 checkwifiConnState: wireless card connection check failed.
+240717-12:52:59 run app: netsh wlan show interface | findstr State
+240717-12:52:59 app output:     State                  : disconnected
+
+240717-12:52:59 checkwifiConnState: wireless card connection check failed.
+240717-12:53:03 run app: netsh wlan show interface | findstr State
+240717-12:53:03 app output:     State                  : disconnected
+
+240717-12:53:03 checkwifiConnState: wireless card connection check failed.
+240717-12:53:07 run app: netsh wlan show interface | findstr State
+240717-12:53:07 app output:     State                  : disconnected
+
+240717-12:53:07 checkwifiConnState: wireless card connection check failed.
+240717-12:53:11 run app: netsh wlan show interface | findstr State
+240717-12:53:11 app output:     State                  : disconnected
+
+240717-12:53:11 checkwifiConnState: wireless card connection check failed.
+240717-12:53:15 run app: netsh wlan show interface | findstr State
+240717-12:53:15 app output:     State                  : disconnected
+
+240717-12:53:15 checkwifiConnState: wireless card connection check failed.
+240717-12:53:19 run app: netsh wlan show interface | findstr State
+240717-12:53:19 app output:     State                  : disconnected
+
+240717-12:53:19 checkwifiConnState: wireless card connection check failed.
+240717-12:53:23 run app: netsh wlan show interface | findstr State
+240717-12:53:23 app output:     State                  : disconnected
+
+240717-12:53:23 checkwifiConnState: wireless card connection check failed.
+240717-12:53:27 run app: netsh wlan show interface | findstr State
+240717-12:53:27 app output:     State                  : disconnected
+
+240717-12:53:27 checkwifiConnState: wireless card connection check failed.
+240717-12:53:31 run app: netsh wlan show interface | findstr State
+240717-12:53:31 app output:     State                  : disconnected
+
+240717-12:53:31 checkwifiConnState: wireless card connection check failed.
+240717-12:53:35 run app: netsh wlan show interface | findstr State
+240717-12:53:35 app output:     State                  : disconnected
+
+240717-12:53:35 checkwifiConnState: wireless card connection check failed.
+240717-12:53:39 run app: netsh wlan show interface | findstr State
+240717-12:53:39 app output:     State                  : disconnected
+
+240717-12:53:39 checkwifiConnState: wireless card connection check failed.
+240717-12:53:43 run app: netsh wlan show interface | findstr State
+240717-12:53:43 app output:     State                  : disconnected
+
+240717-12:53:43 checkwifiConnState: wireless card connection check failed.
+240717-12:53:47 run app: netsh wlan show interface | findstr State
+240717-12:53:48 app output:     State                  : disconnected
+
+240717-12:53:48 checkwifiConnState: wireless card connection check failed.
+240717-12:53:52 waitConnected -> timeout on connect
+240717-12:53:52 Trying connection in loop...The count is: 2
+240717-12:53:52 run app: netsh wlan connect name ="Client1234" ssid="Client1234"
+240717-12:53:52 app output: The network specified by profile "Client1234" is not available to connect.
+
+240717-12:53:52 run app: netsh wlan show interface | findstr State
+240717-12:53:52 app output:     State                  : disconnected
+
+240717-12:53:52 checkwifiConnState: wireless card connection check failed.
+240717-12:53:56 run app: netsh wlan show interface | findstr State
+240717-12:53:56 app output:     State                  : disconnected
+
+240717-12:53:56 checkwifiConnState: wireless card connection check failed.
+240717-12:54:00 run app: netsh wlan show interface | findstr State
+240717-12:54:00 app output:     State                  : disconnected
+
+240717-12:54:00 checkwifiConnState: wireless card connection check failed.
+240717-12:54:04 run app: netsh wlan show interface | findstr State
+240717-12:54:04 app output:     State                  : disconnected
+
+240717-12:54:04 checkwifiConnState: wireless card connection check failed.
+240717-12:54:08 run app: netsh wlan show interface | findstr State
+240717-12:54:08 app output:     State                  : disconnected
+
+240717-12:54:08 checkwifiConnState: wireless card connection check failed.
+240717-12:54:12 run app: netsh wlan show interface | findstr State
+240717-12:54:13 app output:     State                  : connected
+
+240717-12:54:18 run app: route print -4
+240717-12:54:18 app output: ===========================================================================
+
+Interface List
+
+  4...c4 cb e1 2b 80 0e ......Realtek PCIe GbE Family Controller
+
+  9...a0 59 50 d0 78 3f ......Microsoft Wi-Fi Direct Virtual Adapter #3
+
+ 17...a0 59 50 d0 78 3e ......Intel(R) Wi-Fi 6 AX201 160MHz
+
+ 11...a0 59 50 d0 78 42 ......Bluetooth Device (Personal Area Network)
+
+  1...........................Software Loopback Interface 1
+
+===========================================================================
+
+
+
+IPv4 Route Table
+
+===========================================================================
+
+Active Routes:
+
+Network Destination        Netmask          Gateway       Interface  Metric
+
+          0.0.0.0          0.0.0.0      172.16.27.1     172.16.27.10     45
+
+        127.0.0.0        255.0.0.0         On-link         127.0.0.1    331
+
+        127.0.0.1  255.255.255.255         On-link         127.0.0.1    331
+
+  127.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+      172.16.27.0    255.255.255.0         On-link     172.16.27.201   1256
+
+      172.16.27.0    255.255.255.0         On-link      172.16.27.10    301
+
+     172.16.27.10  255.255.255.255         On-link      172.16.27.10    301
+
+    172.16.27.201  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link     172.16.27.201   1256
+
+    172.16.27.255  255.255.255.255         On-link      172.16.27.10    301
+
+        224.0.0.0        240.0.0.0         On-link         127.0.0.1    331
+
+        224.0.0.0        240.0.0.0         On-link     172.16.27.201   1256
+
+        224.0.0.0        240.0.0.0         On-link      172.16.27.10    301
+
+  255.255.255.255  255.255.255.255         On-link         127.0.0.1    331
+
+  255.255.255.255  255.255.255.255         On-link     172.16.27.201   1256
+
+  255.255.255.255  255.255.255.255         On-link      172.16.27.10    301
+
+===========================================================================
+
+Persistent Routes:
+
+  None
+
+240717-12:54:18 sending result: true
+240717-12:54:18 waiting for client request...
+240717-12:54:18 Server is ready...
