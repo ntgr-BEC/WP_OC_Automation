@@ -83,7 +83,7 @@ public class Testcase extends TestCaseBase {
             UserManage userManage = new UserManage();
             userManage.logout();
 
-            if (new HamburgerMenuPage(false).checkEmailMessage(managerInfo.get("Email Address"))) {
+            if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(managerInfo.get("Email Address"))) {
                 Map<String, String> managerAccountInfo = new HashMap<String, String>();
                 managerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
                 managerAccountInfo.put("Password", WebportalParam.adminPassword);

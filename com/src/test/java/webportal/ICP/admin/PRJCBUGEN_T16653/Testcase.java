@@ -37,7 +37,7 @@ public class Testcase extends TestCaseBase {
     Random              r                        = new Random();
     int                 num                      = r.nextInt(10000000);
     String              accessCode               = "";
-    String              managerEmail             = "voucheradmin" + String.valueOf(num) + "@sharklasers.com";
+    String              managerEmail             = "voucheradmin" + String.valueOf(num) + "@yopmail.com";
 
     @Feature("ICP.admin") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T16653") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -112,7 +112,7 @@ public class Testcase extends TestCaseBase {
         UserManage userManage = new UserManage();
         userManage.logout();
 
-        if (new HamburgerMenuPage(false).checkEmailMessage(vadminInfo.get("Email Address"))) {
+        if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(vadminInfo.get("Email Address"))) {
             Map<String, String> managerAccountInfo = new HashMap<String, String>();
             managerAccountInfo.put("Confirm Email", vadminInfo.get("Email Address"));
             managerAccountInfo.put("Password", WebportalParam.adminPassword);

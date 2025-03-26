@@ -71,7 +71,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Invite manager and check url in invite email can sign up;")
     public void step2() {
-        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@sharklasers.com";
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num) + "@yopmail.com";
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", "test15008");
         managerInfo.put("Email Address", mailname);
@@ -85,7 +85,7 @@ public class Testcase extends TestCaseBase {
             UserManage userManage = new UserManage();
             userManage.logout();
 
-            if (new HamburgerMenuPage(false).checkEmailMessage(managerInfo.get("Email Address"))) {
+            if (new HamburgerMenuPage(false).checkEmailMessageForMultiAdmin(managerInfo.get("Email Address"))) {
                 Map<String, String> managerAccountInfo = new HashMap<String, String>();
                 managerAccountInfo.put("Confirm Email", managerInfo.get("Email Address"));
                 managerAccountInfo.put("Password", WebportalParam.adminPassword);
