@@ -2592,10 +2592,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 editModule(serialNumber).shouldBe(Condition.visible).hover();
                 MyCommonAPIs.sleep(3000);
                 enterDevice(serialNumber).shouldBe(Condition.visible).click();
-                MyCommonAPIs.sleep(5 * 1000);
+                MyCommonAPIs.sleep(8 * 1000);
                 break;
             }
             refresh();
+            MyCommonAPIs.sleepi(5);
         }
     }
 
