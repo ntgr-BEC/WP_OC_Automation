@@ -1598,8 +1598,8 @@ public class DevicesDashPage extends DevicesDashPageElements {
 
         String result = "No device exits or no device exits";
         new MyCommonAPIs().open(URLParam.hrefaccount, true);
-
-        if (DeviceCount.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (DeviceCount.shouldBe(Condition.visible).exists()) {
             if (getText(DeviceCount).equals("1")) {
                 result = "Onedevice";
             }
@@ -3415,6 +3415,15 @@ public boolean verifySettingPageFilterAirbridge() {
 //                String Serial = String.valueOf(random.ints(1000000000,9999999999).findFirst().getAsInt());
                 
                 return serial;
+            }
+            
+            public boolean isDeviceNotUnmanaged(String serialNumber) {
+                refresh();
+                MyCommonAPIs.sleepi(5);
+                if (getDeviceStatus(serialNumber).contains("Waiting for first connect"))
+                    return true;
+                else
+                    return false;
             }
 }
     

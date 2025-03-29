@@ -2472,6 +2472,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // subscriptions.click();
 
         waitReady();
+        MyCommonAPIs.sleepi(5);
         if (cancelSubscriptionNew.exists()) {
             cancelSubscriptionNew.click();
         } else if (cancelsubscription.exists()) {
@@ -2480,7 +2481,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             cancelBasicSub.click();
         }
         MyCommonAPIs.sleepi(3);
-        $x("//p[text()='Are you sure that you want to cancel your subscription plan?']//following::button[contains(text(),'OK')][1]").click();
+        $x("//p[text()='Are you sure that you want to cancel your subscription plan?']//following::button[contains(text(),'OK')][1]").shouldBe(Condition.visible).click();
         waitReady();
         MyCommonAPIs.sleepi(10);
         if (closedevicecredits.exists()) {
@@ -2996,7 +2997,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // paymentsumbit.click();
         MyCommonAPIs.sleepi(10);
         // checkAutoRenew(map);
-        click(Termsandcondition, true);
+        //click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
     }
