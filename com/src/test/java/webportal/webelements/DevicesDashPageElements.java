@@ -312,7 +312,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     // public SelenideElement onedevice = $("#tdDevModlIddevicesDash0");
     // public SelenideElement Twodevice = $("#tdDevModlIddevicesDash1");
     // public SelenideElement Threedevice = $("#tdDevModlIddevicesDash2");
-    public SelenideElement DeviceCount = $("#_spnTotalDevliLocDiv0");
+    public SelenideElement DeviceCount = $x("//p[text()='Devices']/..//h2");
     public SelenideElement DeviceCountOrg = $x("//*[@id=\"_divorgDiv0\"]/div/div[1]/ul/li[3]");
     public SelenideElement deviceListfirstDevice    = $("#pspnddevicesDash0");
     public SelenideElement deviceListfirstdevice1   = $("#tdinpEditdevicesDash0");
