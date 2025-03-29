@@ -2982,6 +2982,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             upgrade.click();
         }
         // MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(10);
         waitElement(checkoutbutton);
 
         selectPremiumTime(map);
