@@ -61,6 +61,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        System.out.println(mailname + "@mailinator.com");
         new AccountPage().deleteOneLocation("OnBoardingTest");
         System.out.println("start to do tearDown");
     }
@@ -123,9 +124,10 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
         
-        boolean result = true;
-        
         assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Twodevice"), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap6serialNo);
       
     }
 
@@ -169,16 +171,17 @@ public class Testcase extends TestCaseBase {
         SeconddevInfo.put("MAC Address1", WebportalParam.ap8macaddress);
         new DevicesDashPage(false).addNewdummyDevice(SeconddevInfo);
         
-        assertTrue(new DevicesDashPage(false).isDeviceUnmanged(WebportalParam.ap8serialNo), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap8serialNo), "More device exits");
       
     }
 
-//    
-//    @Step("Test Step 7: cancel Subscription")
-//    public void step7() {
-//        
-//        new HamburgerMenuPage(false).cancelSubscription();     
-//        assertTrue(new HamburgerMenuPage().CancelSubscriptionformpremiumanually(), "did not cancel");
-//        
-//    }
+    
+    @Step("Test Step 7: cancel Subscription")
+    public void step7() {
+        
+        new HamburgerMenuPage(false).cancelSubscription();     
+        assertTrue(new HamburgerMenuPage().CancelSubscriptionformpremiumanually(), "did not cancel");
+        
+    }
 }
