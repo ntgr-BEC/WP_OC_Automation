@@ -100,11 +100,10 @@ public class Testcase extends TestCaseBase {
         firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
         firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
         
-        System.out.println(firststdevInfo);
- 
-                
+        System.out.println(firststdevInfo);                
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
       
     }
 

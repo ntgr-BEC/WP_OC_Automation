@@ -105,7 +105,8 @@ public class Testcase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
       
     }
 
