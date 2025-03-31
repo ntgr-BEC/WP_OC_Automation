@@ -56,6 +56,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        System.out.println(mailname + "@mailinator.com");
         new AccountPage().deleteOneLocation("OnBoardingTest");
         System.out.println("start to do tearDown");
     }
@@ -105,7 +106,8 @@ public class Testcase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
       
     }
 
