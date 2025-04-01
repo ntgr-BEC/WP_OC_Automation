@@ -17,10 +17,10 @@ import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 
 /**
- * @author zheli
+ * @author  zheli
  */
 /**
- * @author Lenovo
+ * @author  Lenovo
  *
  */
 public class DevicesDashPageElements extends MyCommonAPIs {
