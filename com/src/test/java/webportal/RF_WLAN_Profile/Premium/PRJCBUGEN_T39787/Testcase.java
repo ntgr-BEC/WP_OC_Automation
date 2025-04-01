@@ -50,10 +50,29 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {   
-        new DevicesDashPage().GoToDevicesDashPage();
-        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
-        new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        try {
+            new DevicesDashPage().GoToDevicesDashPage();
+        } catch (Exception e) {
+            System.out.println("Failed to navigate to Devices Dashboard: " + e.getMessage());
+        }
+
+        try {
+            new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
+        } catch (Exception e) {
+            System.out.println("Failed to unassign RF: " + e.getMessage());
+        }
+
+        try {
+            new WirelessQuickViewPage().GotoRF();
+        } catch (Exception e) {
+            System.out.println("Failed to go to RF: " + e.getMessage());
+        }
+
+        try {
+            new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        } catch (Exception e) {
+            System.out.println("Failed to delete RF: " + e.getMessage());
+        }
         System.out.println("start to do tearDown");
 
     }
