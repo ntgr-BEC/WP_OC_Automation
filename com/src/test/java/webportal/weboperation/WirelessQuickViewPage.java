@@ -11418,20 +11418,30 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);        
         RadioSettingsRF.click();
         MyCommonAPIs.sleepi(5);
-       
-        if (map.containsKey("2.4GHz output power")) {
+        $x("//span[text()='5GHz or 5GHz Low']/..//*[contains(@id,'PlusNsaAccordHeadSettng')]").shouldBe(Condition.visible);
+        executeJavaScript("arguments[0].click();", $x("//span[text()='5GHz or 5GHz Low']/..//*[contains(@id,'PlusNsaAccordHeadSettng')]"));
+        MyCommonAPIs.sleepi(5);
+        if (map.containsKey("5GHz output power")) {
             
-            outputpower24.selectOption(map.get("2.4GHz output power"));
-            
-        }
-         if (map.containsKey("2.4GHz channel width")) {
-             
-             channelWidth24.selectOption(map.get("2.4GHz channel width"));
+            outputpower5lowDevice.shouldBe(Condition.visible).selectOption(map.get("5GHz output power"));
             
         }
-         if (map.containsKey("2.4GHz Radio Mode")) {
+        MyCommonAPIs.sleepi(1);
+         if (map.containsKey("5GHz channel width")) {
              
-             RadioMode24.selectOption(map.get("2.4GHz Radio Mode"));
+             Selenide.executeJavaScript("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('change'));", channelWidth5lowDevice, map.get("5GHz channel width"));
+            
+        }
+         MyCommonAPIs.sleepi(10);
+         if ($x("//p[contains(text(),'better channel allocation based on channel width')]/../..//button[text()='OK']").isDisplayed()) {
+             $x("//p[contains(text(),'better channel allocation based on channel width')]/../..//button[text()='OK']").shouldBe(Condition.visible).click();
+         } else {
+             logger.info("Popup Not come");
+         }
+         MyCommonAPIs.sleepi(1);
+         if (map.containsKey("5GHz Radio Mode")) {
+             
+             RadioMode5lowDevice.shouldBe(Condition.visible).selectOption(map.get("5GHz Radio Mode"));
      
        }
          MyCommonAPIs.sleepi(2);
