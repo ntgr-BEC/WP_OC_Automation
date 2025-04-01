@@ -49,7 +49,9 @@ public class Testcase extends TestCaseBase {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() {   
+    public void tearDown() {
+        new DevicesDashPage().GoToDevicesDashPage();
+        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
         new WirelessQuickViewPage().GotoRF();
         new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
         System.out.println("start to do tearDown");
@@ -85,11 +87,11 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Edit Radio settings of  RF profile")
     public void step3() {
         
-        RFdata.put("2.4GHz output power", "Half");
-        RFdata.put("2.4GHz channel width", "40MHz");
-        RFdata.put("2.4GHz Radio Mode", "11be");
+        RFdata.put("5GHz output power", "Half");
+        RFdata.put("5GHz channel width", "40MHz");
+        RFdata.put("5GHz Radio Mode", "11ac");
         
-       new WirelessQuickViewPage(false).assignedinstantWiFI(RFdata);
+       new WirelessQuickViewPage(false).assignedRadioSetting(RFdata);
         
     }
     
@@ -114,11 +116,7 @@ public class Testcase extends TestCaseBase {
             }
             count += 1;
         }
-        
-        new DevicesDashPage().GoToDevicesDashPage();
-        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
-        
-        
+                
     }
     
  
