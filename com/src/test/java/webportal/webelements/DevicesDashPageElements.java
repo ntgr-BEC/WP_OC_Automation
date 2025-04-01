@@ -512,7 +512,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(4)']");
     public SelenideElement devicesOptionUnderSetting        = $x("//a[@href='/#/organization/devices']");
     public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 4 of 4 entries']");
-    //AddedByPratik
+    //Added By Pratik
     public SelenideElement wbeAPAFPowemodeStatus(String powerMode) {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }
