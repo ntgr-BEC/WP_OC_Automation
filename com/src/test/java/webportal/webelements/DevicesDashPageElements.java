@@ -462,9 +462,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
 
     public SelenideElement SelectDevice(String serialNumber) {
         if($x("//p[text()='"+serialNumber+"']/../../..//input[@type='checkbox']").isDisplayed()) {
-            return $x("//td[text()='" + serialNumber + "']/../td/small/label/i");
+            return $x("//p[text()='"+serialNumber+"']/../../..//input[@type='checkbox']");
         }else {
-            return $x("//td[text()='" + serialNumber + "']/../td/p/small/label");
+            return $x("//p[text()='"+serialNumber+"']/../../..//input[@type='checkbox']");
         }
     }
     
