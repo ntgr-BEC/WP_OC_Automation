@@ -461,7 +461,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
 
     public SelenideElement SelectDevice(String serialNumber) {
-        if($x("//td[text()='" + serialNumber + "']/../td/small/label/i").isDisplayed()) {
+        if($x("//p[text()='"+serialNumber+"']/../../..//input[@type='checkbox']").isDisplayed()) {
             return $x("//td[text()='" + serialNumber + "']/../td/small/label/i");
         }else {
             return $x("//td[text()='" + serialNumber + "']/../td/p/small/label");
@@ -473,8 +473,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
     public SelenideElement devicesRF(String serialNumber) {
         System.out.println("<----------check device RF --------------->");
-        System.out.println(deviceRFIndex);
-        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceRFIndex));
+        //System.out.println(deviceRFIndex);
+        return $x("//span[text()='"+serialNumber+"']/../../../..//span[contains(@id,'cell-rfProfile')]/span");
     }
     //addedbyPratik
     public SelenideElement moveMultipleDevicesfromOneLocation(String serialNumber) {
