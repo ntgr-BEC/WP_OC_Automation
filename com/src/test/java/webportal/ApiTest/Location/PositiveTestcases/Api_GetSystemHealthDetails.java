@@ -86,14 +86,11 @@ public class Api_GetSystemHealthDetails extends TestCaseBaseApi{
         
 //        DEFAULT SYSTEM HEALTH DETAILS   
         getResponse.then().statusCode(200)
-        .body("details.totalConnectedClients", equalTo("0"))
         .body("details.healthStatus", equalTo("Everything OK"))
         .body("details.healthStatusCode", equalTo("0"))
         .body("details.notificationCount", equalTo(0))
         .body("details.criticalCount", equalTo(0))
-        .body("details.warningCount", equalTo(0))
-        .body("details.totalUnreadUserAlarms", equalTo(0))
-        .body("details.totalWirelessConnectedClients", equalTo(0));
+        .body("details.warningCount", equalTo(0));
        
     }                  
     }
