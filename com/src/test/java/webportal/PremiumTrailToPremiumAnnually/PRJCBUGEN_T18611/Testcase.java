@@ -60,6 +60,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        System.out.println(mailname + "@mailinator.com");
         new AccountPage().deleteOneLocation("OnBoardingTest");
         System.out.println("start to do tearDown");
     }
@@ -67,6 +68,10 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
+        
+//        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+//        webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
+        
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
 
         
@@ -117,9 +122,10 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
         
-        boolean result = true;
-        
         assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Twodevice"), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap2serialNo);
       
     }
 
@@ -164,7 +170,7 @@ public class Testcase extends TestCaseBase {
         SeconddevInfo.put("MAC Address1", WebportalParam.ap4macaddress);
         new DevicesDashPage(false).addNewdummyDevice(SeconddevInfo);
         
-        assertTrue(new DevicesDashPage(false).isDeviceUnmanged(WebportalParam.ap4serialNo), "More device exits");
+        assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap4serialNo), "More device exits");
       
     }
 

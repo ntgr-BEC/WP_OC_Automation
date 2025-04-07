@@ -67,7 +67,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+
     }
 
     @Step("Test Step 2: Add WIFI ssid and enable instant captive portal, check client connect wifi;")

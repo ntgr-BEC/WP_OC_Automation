@@ -993,7 +993,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
      */
     public boolean waitDevicesReConnected(String sNo) {
         String sCur = null;
-        MyCommonAPIs.sleepi(120);
+        MyCommonAPIs.sleepi(60);
         MyCommonAPIs.timerStart(30 * 30);
         boolean timeout = true;
         open(URLParam.hrefDevices, true);
@@ -1598,8 +1598,8 @@ public class DevicesDashPage extends DevicesDashPageElements {
 
         String result = "No device exits or no device exits";
         new MyCommonAPIs().open(URLParam.hrefaccount, true);
-
-        if (DeviceCount.exists()) {
+        MyCommonAPIs.sleepi(10);
+        if (DeviceCount.shouldBe(Condition.visible).exists()) {
             if (getText(DeviceCount).equals("1")) {
                 result = "Onedevice";
             }
@@ -3115,11 +3115,12 @@ public boolean verifySettingPageFilterAirbridge() {
             public void AssignRF(String SLNo, String RFName) {
                 MyCommonAPIs.sleepi(5); 
                 waitElement(SelectDevice(SLNo));
-                SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                //SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                executeJavaScript("arguments[0].click();", SelectDevice(SLNo));
                 MyCommonAPIs.sleepi(2);
                 waitElement(AssignRFProfile);
                 AssignRFProfile.shouldBe(Condition.visible).click();
-                MyCommonAPIs.sleepi(2);
+                MyCommonAPIs.sleepi(30);
                 waitElement(SelectRF);
                 SelectRF.shouldBe(Condition.visible).selectOption(RFName);
                 MyCommonAPIs.sleepi(2);
@@ -3130,26 +3131,26 @@ public boolean verifySettingPageFilterAirbridge() {
             }
             
             public void UNAssignRF(String SLNo) {
-                MyCommonAPIs.sleepi(5); 
+                MyCommonAPIs.sleepi(10); 
                 waitElement(SelectDevice(SLNo));
-                SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                //SelectDevice(SLNo).shouldBe(Condition.visible).click();
+                executeJavaScript("arguments[0].click();", SelectDevice(SLNo));
                 MyCommonAPIs.sleepi(2);
                 waitElement(UnassignRFProfile);
                 UnassignRFProfile.shouldBe(Condition.visible).click();
-                MyCommonAPIs.sleepi(30);
-                waitElement(yesButtonUnassignRFProfile);
+                MyCommonAPIs.sleepi(90);
                 yesButtonUnassignRFProfile.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(10);
                 
             }
             
 	public void AssignRFMulti(String SLNo, String SLno2,String RFName) {
-                MyCommonAPIs.sleepi(5); 
+                MyCommonAPIs.sleepi(10); 
                 waitElement(SelectDevice(SLNo));
-                SelectDevice(SLNo).click();
+                executeJavaScript("arguments[0].click();", SelectDevice(SLNo));
                 MyCommonAPIs.sleepi(5); 
                 waitElement(SelectDevice(SLno2));
-                SelectDevice(SLno2).click();
+                executeJavaScript("arguments[0].click();", SelectDevice(SLno2));
                 MyCommonAPIs.sleepi(2);
                 waitElement(AssignRFProfile);
                 AssignRFProfile.click();
@@ -3415,6 +3416,15 @@ public boolean verifySettingPageFilterAirbridge() {
 //                String Serial = String.valueOf(random.ints(1000000000,9999999999).findFirst().getAsInt());
                 
                 return serial;
+            }
+            
+            public boolean isDeviceNotUnmanaged(String serialNumber) {
+                refresh();
+                MyCommonAPIs.sleepi(5);
+                if (getDeviceStatus(serialNumber).contains("Waiting for first connect"))
+                    return true;
+                else
+                    return false;
             }
 }
     

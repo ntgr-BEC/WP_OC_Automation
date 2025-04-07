@@ -17,10 +17,10 @@ import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 
 /**
- * @author zheli
+ * @author  zheli
  */
 /**
- * @author Lenovo
+ * @author  Lenovo
  *
  */
 public class DevicesDashPageElements extends MyCommonAPIs {
@@ -312,7 +312,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     // public SelenideElement onedevice = $("#tdDevModlIddevicesDash0");
     // public SelenideElement Twodevice = $("#tdDevModlIddevicesDash1");
     // public SelenideElement Threedevice = $("#tdDevModlIddevicesDash2");
-    public SelenideElement DeviceCount = $("#_spnTotalDevliLocDiv0");
+    public SelenideElement DeviceCount = $x("//p[text()='Devices']/..//h2");
     public SelenideElement DeviceCountOrg = $x("//*[@id=\"_divorgDiv0\"]/div/div[1]/ul/li[3]");
     public SelenideElement deviceListfirstDevice    = $("#pspnddevicesDash0");
     public SelenideElement deviceListfirstdevice1   = $("#tdinpEditdevicesDash0");
@@ -461,11 +461,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
 
     public SelenideElement SelectDevice(String serialNumber) {
-        if($x("//td[text()='" + serialNumber + "']/../td/small/label/i").isDisplayed()) {
-            return $x("//td[text()='" + serialNumber + "']/../td/small/label/i");
-        }else {
-            return $x("//td[text()='" + serialNumber + "']/../td/p/small/label");
-        }
+            return $x("//p[text()='"+serialNumber+"']/../../..//input[@type='checkbox']");
     }
     
 
@@ -473,8 +469,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
     public SelenideElement devicesRF(String serialNumber) {
         System.out.println("<----------check device RF --------------->");
-        System.out.println(deviceRFIndex);
-        return $x("//img[@data-deviceserial='" + serialNumber + String.format("']/ancestor::tr/td[%s]", deviceRFIndex));
+        //System.out.println(deviceRFIndex);
+        return $x("//span[text()='"+serialNumber+"']/../../../..//span[contains(@id,'cell-rfProfile')]/span");
     }
     //addedbyPratik
     public SelenideElement moveMultipleDevicesfromOneLocation(String serialNumber) {
@@ -512,7 +508,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement totaldevicesAvilable             = $x("//h3[text()='(4)']");
     public SelenideElement devicesOptionUnderSetting        = $x("//a[@href='/#/organization/devices']");
     public SelenideElement pageDetailsAnddevices            = $x("//div[text()='Showing 1 to 4 of 4 entries']");
-    //AddedByPratik
+    //Added By Pratik
     public SelenideElement wbeAPAFPowemodeStatus(String powerMode) {
         return $x("//*[text()='Connected (PoE "+powerMode+" only)']");
     }

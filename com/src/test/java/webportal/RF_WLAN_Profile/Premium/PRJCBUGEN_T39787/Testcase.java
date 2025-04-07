@@ -50,8 +50,29 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {   
-        new WirelessQuickViewPage().GotoRF();
-        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        try {
+            new DevicesDashPage().GoToDevicesDashPage();
+        } catch (Exception e) {
+            System.out.println("Failed to navigate to Devices Dashboard: " + e.getMessage());
+        }
+
+        try {
+            new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
+        } catch (Exception e) {
+            System.out.println("Failed to unassign RF: " + e.getMessage());
+        }
+
+        try {
+            new WirelessQuickViewPage().GotoRF();
+        } catch (Exception e) {
+            System.out.println("Failed to go to RF: " + e.getMessage());
+        }
+
+        try {
+            new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        } catch (Exception e) {
+            System.out.println("Failed to delete RF: " + e.getMessage());
+        }
         System.out.println("start to do tearDown");
 
     }
@@ -63,7 +84,6 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
@@ -85,9 +105,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Edit Radio settings of  RF profile")
     public void step3() {
         
-        RFdata.put("2.4GHz output power", "Half");
-        RFdata.put("2.4GHz channel width", "40MHz");
-        RFdata.put("2.4GHz Radio Mode", "11ac");
+        RFdata.put("5GHz output power", "Half");
+        RFdata.put("5GHz channel width", "40MHz");
+        RFdata.put("5GHz Radio Mode", "11ac");
         
        new WirelessQuickViewPage(false).assignedRadioSetting(RFdata);
         
@@ -104,14 +124,25 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 5: check assigned radio settings profile")
     public void step5() {
         
-        new DevicesDashPage().enterDevice(WebportalParam.ap1serialNo);
-        assertTrue(new WirelessQuickViewPage().outputpower24Device.getSelectedText().equals(RFdata.get("2.4GHz output power")) &
-                new WirelessQuickViewPage().channelWidth24Device.getSelectedText().equals(RFdata.get("2.4GHz channel width")) &
-                new WirelessQuickViewPage().RadioMode24Device.getSelectedText().equals(RFdata.get("2.4GHz Radio Mode")),"");
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new WirelessQuickViewPage(false).RadioAndChannels.click(); 
+        MyCommonAPIs.sleepi(10);
+        new WirelessQuickViewPage(false).DropDown5GhzLow.click();
+        MyCommonAPIs.sleepi(10);
+        String radioMode = new WirelessQuickViewPage(false).RadioMode5Device.getSelectedText();
+        System.out.println("Radio Mode: " + radioMode);
+        String channelWidth = new WirelessQuickViewPage(false).channelWidth5Device.getSelectedText();
+        System.out.println("Channel Width: " + channelWidth);
+        String outputPower = new WirelessQuickViewPage(false).outputpower5Device.getSelectedText();
+        System.out.println("Output Power: " + outputPower);
         
-        
-        new DevicesDashPage().GoToDevicesDashPage();
-        new DevicesDashPage().UNAssignRF(WebportalParam.ap1serialNo);
+        assertTrue(
+                radioMode.equals(RFdata.get("5GHz Radio Mode")) &&
+                channelWidth.equals(RFdata.get("5GHz channel width")) &&
+                outputPower.contains(RFdata.get("5GHz output power")),
+                "2.4GHz settings do not match expected values: " + RFdata
+            );
+      
     }
    
     

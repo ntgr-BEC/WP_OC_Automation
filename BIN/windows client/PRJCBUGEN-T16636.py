@@ -3,6 +3,8 @@
 import os, sys, time, re
 import xml.dom.minidom as minidom
 from seleniumlib import ClientTestCase, unittest, By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class Cpa(ClientTestCase):
@@ -28,6 +30,9 @@ class Cpa(ClientTestCase):
         test_result = 1
 
         driver = self.driver
+        wait = WebDriverWait(driver, 30)
+
+
         try:
             driver.get(self.base_url)
         except Exception as err:
@@ -50,19 +55,27 @@ class Cpa(ClientTestCase):
         # self.capturescreen()
         # if url_titleName.find('Portal') != -1:
         for i in range(5):
-            self.wait_element(By.ID, 'lSubmit')
-            self.driver.find_element_by_id('lSubmit').click()
-            time.sleep(15)
-            self.wait_element(By.ID, 'username')
+            element = wait.until(EC.presence_of_element_located((By.ID, "lSubmit")))
+            # self.wait_element(By.ID, '')
+            element.click()
+            # self.driver.find_element_by_id('lSubmit').click()
+            # self.wait_element(By.ID, 'username')
+            wait.until(EC.presence_of_element_located((By.ID, "username")))
             self.driver.find_element_by_id('username').send_keys('sumanta.span@gmail.com')
-            self.driver.find_element_by_id('password').send_keys('Borqs@1234')
-            self.driver.find_element_by_xpath('//*[@id="app__container"]/main/div[2]/form/div[3]/button').click()
-            time.sleep(15)
-            if self.is_element_present(By.XPATH, '(/html/body/div[1]/div/div[1]/span)[1]'):
+            self.driver.find_element_by_id('password').send_keys('Netgear@123')
+            self.driver.find_element_by_xpath('//button[@aria-label="Sign in"]').click()
+            time.sleep(10)
+            liveUrl = self.driver.current_url
+            print("Current Url = ", liveUrl)
+            if "rediff" in liveUrl:
                 test_result = 1
                 break
-        else:
-            test_result = 0
+            #if self.is_element_present(By.ID, 'input__email_verification_pin'):
+                #test_result = 1
+                #break
+            else:
+                test_result = 0
+
 
         print "finalresult:", test_result
 

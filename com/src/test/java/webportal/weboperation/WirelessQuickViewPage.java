@@ -2592,10 +2592,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 editModule(serialNumber).shouldBe(Condition.visible).hover();
                 MyCommonAPIs.sleep(3000);
                 enterDevice(serialNumber).shouldBe(Condition.visible).click();
-                MyCommonAPIs.sleep(5 * 1000);
+                MyCommonAPIs.sleep(8 * 1000);
                 break;
             }
             refresh();
+            MyCommonAPIs.sleepi(5);
         }
     }
 
@@ -7372,16 +7373,31 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(15);
         logger.info("Delete ssid.");
         // executeJavaScript("arguments[0].removeAttribute('class')", editWifi(Ssid));
-        if (orgWideSSIDedit(Ssid).exists()) {
-            orgWideSSIDedit(Ssid).click();
-            logger.info("Edit ssid.");
-            MyCommonAPIs.sleepi(10);
-            if (deleteOrgSSID.exists()) {
-                deleteOrgSSID.click();
-            } else {
-                deleteOrgSSID1.click();
-            }
-            MyCommonAPIs.sleepi(40);
+//        if (orgWideSSIDedit(Ssid).exists()) {
+//            orgWideSSIDedit(Ssid).click();
+//            logger.info("Edit ssid.");
+//            MyCommonAPIs.sleepi(10);
+//            if (deleteOrgSSID.exists()) {
+//                deleteOrgSSID.click();
+//            } else {
+//                deleteOrgSSID1.click();
+//            }
+//            MyCommonAPIs.sleepi(40);
+//            deletessidyes.click();
+//            MyCommonAPIs.sleep(5 * 1000);
+//        }
+        //
+//        Never change this method pratik
+        
+        if (checkSsidIsExist(Ssid)) {
+            logger.info("Delete ssid.");
+            MyCommonAPIs.sleepi(5);
+            $x("//span[text()='" +Ssid+ "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(Ssid).hover();
+            MyCommonAPIs.sleep(3000);
+            deleteSsid(Ssid).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleepi(30);
             deletessidyes.click();
             MyCommonAPIs.sleep(5 * 1000);
         }
@@ -11402,20 +11418,30 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(10);        
         RadioSettingsRF.click();
         MyCommonAPIs.sleepi(5);
-       
-        if (map.containsKey("2.4GHz output power")) {
+        $x("//span[text()='5GHz or 5GHz Low']/..//*[contains(@id,'PlusNsaAccordHeadSettng')]").shouldBe(Condition.visible);
+        executeJavaScript("arguments[0].click();", $x("//span[text()='5GHz or 5GHz Low']/..//*[contains(@id,'PlusNsaAccordHeadSettng')]"));
+        MyCommonAPIs.sleepi(5);
+        if (map.containsKey("5GHz output power")) {
             
-            outputpower24.selectOption(map.get("2.4GHz output power"));
-            
-        }
-         if (map.containsKey("2.4GHz channel width")) {
-             
-             channelWidth24.selectOption(map.get("2.4GHz channel width"));
+            outputpower5lowDevice.shouldBe(Condition.visible).selectOption(map.get("5GHz output power"));
             
         }
-         if (map.containsKey("2.4GHz Radio Mode")) {
+        MyCommonAPIs.sleepi(1);
+         if (map.containsKey("5GHz channel width")) {
              
-             RadioMode24.selectOption(map.get("2.4GHz Radio Mode"));
+             Selenide.executeJavaScript("arguments[0].value = arguments[1]; arguments[0].dispatchEvent(new Event('change'));", channelWidth5lowDevice, map.get("5GHz channel width"));
+            
+        }
+         MyCommonAPIs.sleepi(10);
+         if ($x("//p[contains(text(),'better channel allocation based on channel width')]/../..//button[text()='OK']").isDisplayed()) {
+             $x("//p[contains(text(),'better channel allocation based on channel width')]/../..//button[text()='OK']").shouldBe(Condition.visible).click();
+         } else {
+             logger.info("Popup Not come");
+         }
+         MyCommonAPIs.sleepi(1);
+         if (map.containsKey("5GHz Radio Mode")) {
+             
+             RadioMode5lowDevice.shouldBe(Condition.visible).selectOption(map.get("5GHz Radio Mode"));
      
        }
          MyCommonAPIs.sleepi(2);
