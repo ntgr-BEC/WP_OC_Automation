@@ -56,7 +56,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
 
-        new WirelessQuickViewPage(false).deleteALLORGSSID();
+        new WirelessQuickViewPage(false).deleteOrgSsidYes(ssidInfoNew.get("SSID"));
         System.out.println("start to do tearDown");
     }
 
@@ -69,93 +69,93 @@ public class Testcase extends TestCaseBase {
        
     }
 
-//    @Step("Test Step 2: Add WIFI ssid and enable instant captive portal, check client connect wifi;")
-//    public void step2() {
-//        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num);
-//        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
-//        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
-//      
-//
-//        ssidInfo.put("SSID", "apwp16640");
-//        ssidInfo.put("Security", "WPA2 Personal");
-//        ssidInfo.put("Password", "12345678");
-//        ssidInfoNew.put("SSID", "apwp16640NEW");
-//        ssidInfoNew.put("Security", "WPA2 Personal");
-//        ssidInfoNew.put("Password", "12345678");
-//        new OrganizationPage(false).CreateOrgSSId(ssidInfo);
-//
-//        Map<String, String> icpInfo = new HashMap<String, String>();
-//        icpInfo.put("Portal Name", "showad");
-//        icpInfo.put("Welcome Headline", "Welcome to BEC");
-//        icpInfo.put("Captive Portal Logo", "DEFAULT_LOGO");
-//        icpInfo.put("Desktop Background Image", "DEFAULT_BG");
-//        icpInfo.put("Landing Page URL", "https://www.rediff.com");
-//        icpInfo.put("Session Duration", "5 min");
-//        icpInfo.put("Step Type", "Display Ad");
-//        icpInfo.put("Ad Name", "welcome");
-//        icpInfo.put("Image Path", System.getProperty("user.dir") + "/src/test/resources/displayad.bmp");
-//        new WirelessQuickViewPage(false).enableCaptivePortalTypeOrg(ssidInfo.get("SSID"), icpInfo);
-//
-//        MyCommonAPIs.sleepi(3 * 60);
-//        
-//       
-//
-//        int sum = 0;
-//        while (true) {
-//            MyCommonAPIs.sleepi(10);
-//            if (new Javasocket()
-//                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp16640")
-//                    .indexOf("true") != -1) {
-//                break;
-//            } else if (sum > 30) {
-//                assertTrue(false, "Client cannot connected.");
-//                break;
-//            }
-//            sum += 1;
-//        }
-//
-//        boolean result1 = true;
-//        if (!new Javasocket()
-//                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp16640 12345678 WPA2PSK aes")
-//                .equals("true")) {
-//            result1 = false;
-//            MyCommonAPIs.sleepi(20);
-//            if (new Javasocket()
-//                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp16640 12345678 WPA2PSK aes")
-//                    .equals("true")) {
-//                result1 = true;
-//            }
-//        }
-//
-//        assertTrue(result1, "Client cannot connected.");
-//
-//    }
-//
-//    @Step("Test Step 3: Check whether captive portal page is shown or not;")
-//    public void step3() {
-//        MyCommonAPIs.sleepsync();
-//
-//
-////        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
-//        assertTrue(
-//                new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
-//                        "WAFruncaptive PRJCBUGEN-T16639.py www.rediff.com test test").indexOf("finalresult: 1") != -1,
-//                "Captive portal not take effect.");
-//        new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
-//    }
-//    
-//    @Step("Test step 4: Rename SSID")
-//    public void step4() {
-//        new OrganizationPage(false).renameOrgnaizationwideSSID(ssidInfoNew);
-//        new WirelessQuickViewPage().connectClient(ssidInfoNew);
-//        MyCommonAPIs.sleepsync();
+    @Step("Test Step 2: Add WIFI ssid and enable instant captive portal, check client connect wifi;")
+    public void step2() {
+        mailname = new HamburgerMenuPage(false).getRandomWord() + String.valueOf(num);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+        new OrganizationPage(false).goToOrgSsid(WebportalParam.Organizations);
+      
+
+        ssidInfo.put("SSID", "apwp16640");
+        ssidInfo.put("Security", "WPA2 Personal");
+        ssidInfo.put("Password", "12345678");
+        ssidInfoNew.put("SSID", "apwp16640NEW");
+        ssidInfoNew.put("Security", "WPA2 Personal");
+        ssidInfoNew.put("Password", "12345678");
+        new OrganizationPage(false).CreateOrgSSId(ssidInfo);
+
+        Map<String, String> icpInfo = new HashMap<String, String>();
+        icpInfo.put("Portal Name", "showad");
+        icpInfo.put("Welcome Headline", "Welcome to BEC");
+        icpInfo.put("Captive Portal Logo", "DEFAULT_LOGO");
+        icpInfo.put("Desktop Background Image", "DEFAULT_BG");
+        icpInfo.put("Landing Page URL", "https://www.rediff.com");
+        icpInfo.put("Session Duration", "5 min");
+        icpInfo.put("Step Type", "Display Ad");
+        icpInfo.put("Ad Name", "welcome");
+        icpInfo.put("Image Path", System.getProperty("user.dir") + "/src/test/resources/displayad.bmp");
+        new WirelessQuickViewPage(false).enableCaptivePortalTypeOrg(ssidInfo.get("SSID"), icpInfo);
+
+        MyCommonAPIs.sleepi(3 * 60);
+        
+       
+
+        int sum = 0;
+        while (true) {
+            MyCommonAPIs.sleepi(10);
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID apwp16640")
+                    .indexOf("true") != -1) {
+                break;
+            } else if (sum > 30) {
+                assertTrue(false, "Client cannot connected.");
+                break;
+            }
+            sum += 1;
+        }
+
+        boolean result1 = true;
+        if (!new Javasocket()
+                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp16640 12345678 WPA2PSK aes")
+                .equals("true")) {
+            result1 = false;
+            MyCommonAPIs.sleepi(20);
+            if (new Javasocket()
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect apwp16640 12345678 WPA2PSK aes")
+                    .equals("true")) {
+                result1 = true;
+            }
+        }
+
+        assertTrue(result1, "Client cannot connected.");
+
+    }
+
+    @Step("Test Step 3: Check whether captive portal page is shown or not;")
+    public void step3() {
+        MyCommonAPIs.sleepsync();
+
+
 //        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
-//        assertTrue(
-//                new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
-//                        "WAFruncaptive PRJCBUGEN-T16639.py www.rediff.com test test").indexOf("finalresult: 1") != -1,
-//                "Captive portal not take effect.");
-//        new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
-//    }
+        assertTrue(
+                new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFruncaptive PRJCBUGEN-T16639.py www.rediff.com test test").indexOf("finalresult: 1") != -1,
+                "Captive portal not take effect.");
+        new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
+    }
+    
+    @Step("Test step 4: Rename SSID")
+    public void step4() {
+        new OrganizationPage(false).renameOrgnaizationwideSSID(ssidInfoNew);
+        new WirelessQuickViewPage().connectClient(ssidInfoNew);
+        MyCommonAPIs.sleepsync();
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        assertTrue(
+                new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport,
+                        "WAFruncaptive PRJCBUGEN-T16639.py www.rediff.com test test").indexOf("finalresult: 1") != -1,
+                "Captive portal not take effect.");
+        new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
+    }
     
     
     
