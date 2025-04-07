@@ -51,6 +51,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        System.out.println(mailname + "@mailinator.com");
         new AccountPage().deleteOneLocation("OnBoardingTest");
         System.out.println("start to do tearDown");
     }
@@ -120,10 +121,11 @@ public class Testcase extends TestCaseBase {
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo1);
-        
-        boolean result = true;
-        
+
         assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Twodevice"), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap2serialNo);
       
     }
 
@@ -168,7 +170,8 @@ public class Testcase extends TestCaseBase {
         SeconddevInfo.put("MAC Address1", WebportalParam.ap4macaddress);
         new DevicesDashPage(false).addNewdummyDevice(SeconddevInfo);
         
-        assertTrue(new DevicesDashPage(false).isDeviceUnmanged(WebportalParam.ap4serialNo), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap4serialNo), "More device exits");
       
     }
 

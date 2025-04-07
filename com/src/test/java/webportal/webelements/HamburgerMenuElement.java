@@ -328,7 +328,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement billingcountry = $("#country");
     public SelenideElement billingstate1  = $x("//select[@name='state']");
     public SelenideElement billingstate2  = $x("//input[@name='state']");
-    public SelenideElement billingicon    = $x("//*[@id=\"billing_icon_checked\"]");
+    public SelenideElement billingicon    = $x("//*[@id=\"billingBlock-savedBilling-plusIcon\"]");
     public SelenideElement billingstate3  = $("#state-text");
     // public SelenideElement billingstate2 = $x("//input[@name='state']");
     public SelenideElement billingvatnum = $x("//input[@id='orderSumary-vatregis-input']");

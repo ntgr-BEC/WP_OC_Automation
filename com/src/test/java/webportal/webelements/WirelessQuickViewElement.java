@@ -1457,9 +1457,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement channelWidth24                  = $x("//span[text()='2.4GHz']/../..//*[@id='dropdown-width']");
      public SelenideElement RadioMode24                     = $x("//span[text()='2.4GHz']/../..//*[text()='Radio Mode']/../../select");
      
-     public SelenideElement outputpower24Device             = $x("(//*[@id=\"divColMdRadiChnl\"]/div[2]/select)[1]");
-     public SelenideElement channelWidth24Device            = $x("(//*[@id=\"divOnOdSetRadiChnl\"]/select)[1]");
-     public SelenideElement RadioMode24Device               = $x("(//*[@id=\"divSettRadiChnl\"]/select)[1]");
+     public SelenideElement outputpower24Device = $x("//span[text()='2.4GHz']/../..//*[text()='Output Power']/../select");
+     public SelenideElement channelWidth24Device = $x("//span[text()='2.4GHz']/../..//*[@id='divOnOdSetRadiChnl']/select");
+     public SelenideElement RadioMode24Device = $x("//span[text()='2.4GHz']/../..//h5[text()='Radio Mode']/../select");
      public SelenideElement channel4                        = $x("//*[@id=\"instant_WiFi\"]/div[4]/div/div[2]/div[2]/div[1]/div[1]/div[2]/span[4]/label/i");
      public SelenideElement channel56                       = $x("//*[@id=\"instant_WiFi\"]/div[4]/div/div[2]/div[2]/div[1]/div[1]/div[2]/span[4]/label/i");
      public SelenideElement Devicelist(String text, int num) {
@@ -1568,6 +1568,12 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 	 public SelenideElement icpRadiobutton 								= $x("//p[text()='Instant Captive Portal']/ancestor::label");
 	 public SelenideElement SaveeditRFRadioChannels                     = $x("//*[@id=\"btnSaveUpdteRadiChnl\"]");
 	 public SelenideElement okaybtneditRFRadioChannels                  = $x("//p[contains(text(),'RF Profile Radio Settings have been saved')]/../..//button[text()='OK']");
+     public SelenideElement outputpower5Device = $x("//span[text()='5GHz']/../..//*[text()='Output Power']/../select");
+     public SelenideElement channelWidth5Device = $x("//span[text()='5GHz']/../..//*[@id='divOnOdSetRadiChnl']/select");
+     public SelenideElement RadioMode5Device = $x("//span[text()='5GHz']/../..//h5[text()='Radio Mode']/../select");
+     public SelenideElement outputpower5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//*[text()='Output Power']/../select");
+     public SelenideElement channelWidth5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//*[@id='divOnOdSetRadiChnl']/select");
+     public SelenideElement RadioMode5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//h5[text()='Radio Mode']/../../select");
 
 }
 
