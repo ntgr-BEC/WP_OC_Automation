@@ -2511,13 +2511,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changePlanToPremium(Map<String, String> map) {
         waitReady();
-        if (changesubscription.exists()) {
-            changesubscription.click();
-        } else if (changeSubNew.exists()) {
-            changeSubNew.click();
-        } else if (subscriptionupgrade.exists()) {
-            subscriptionupgrade.click();
-        }
+        MyCommonAPIs.sleepi(10);
+        changeSubNew.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         waitElement(checkoutbutton);
         if (map.get("Country") == "US" || map.get("Country") == "Canada") {
@@ -2539,21 +2534,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 }
             }
         }
-        checkoutbutton.click();
+        checkoutbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
-        // setDevNum(map);
-        if (savenum.isDisplayed()) {
-            savenum.click();
-            MyCommonAPIs.sleepi(10);
-        }
-        waitReady();
-        // setDevNumAndInputBillingInfo1(map);
-        // inputCardInfo(map);
-
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         clickPlaceOrder();
-
     }
 
     public boolean checkMoreNeeded(String number) {
@@ -10286,6 +10271,117 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
     }
 
 
+    public boolean verifyMultipackDeviceCreditPacks(Map<String, String> map) {
+        boolean allChecksPassed = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        try {
+            // Step 1
+            if (!(multipackSubscriptionId.shouldBe(Condition.visible).isDisplayed())) {
+                System.out.println("Step 1 Failed: Insight Premium text mismatch");
+                allChecksPassed = false;
+            }
+            System.out.println(multipackSubscriptionId.getText());
+
+            // Step 2
+            String activationDateStr = getText(multipackActivationDate);
+            LocalDateTime activationDate = parseDate(activationDateStr);
+            System.out.println(multipackActivationDate.getText()+" "+activationDate);
+            
+            // Step 3
+            String expirationDateStr = getText(multipackExpirationDate);
+            LocalDateTime expirationDate = parseDate(expirationDateStr);
+            System.out.println(multipackExpirationDate.getText()+" "+expirationDate);
+            
+            // Step 4
+            if (!verifyMultipackPurchaseYearDiffrences(activationDate, expirationDate, map)) {
+                System.out.println("Step 4 Failed: Activation and Expiration date difference mismatch");
+                allChecksPassed = false;
+            }
+            
+            // Step 5
+            if (!verifyText(multipackStatus, "Active")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("Status: "+multipackStatus.getText());
+            
+            // Step 6
+            if (!verifyText(multipackDeviceCredits, map.get("Device Credits Pack"))) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("DeviceCredits: "+multipackDeviceCredits.getText());
+
+            // Step 7
+            if (!verifyText(multipackAutoRenewal, "On")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("autoRenewal: "+multipackAutoRenewal.getText());
+            
+            
+         // Step 8
+            int credits = extractInteger(deviceCredits);
+            String actualDeviceCredits = deviceCredits.getText();
+            if (!actualDeviceCredits.equals(map.get("Device Credits Pack"))) {
+                System.out.println("Step 8 Failed: Device Credits count mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("deviceCredits: "+deviceCredits.getText());
+
+            // Step 9
+            int idevices = extractInteger(insightDevices);
+            
+            System.out.println("insightDevices: "+insightDevices);
+
+            // Step 10
+            int avCredits = extractInteger(availableCredits);
+            
+            System.out.println("availableCredits: "+availableCredits);
+
+            // Step 11
+            int expectedAvailableCredits = credits - idevices;
+            if (expectedAvailableCredits != avCredits) {
+                System.out.println("Step 12 Failed: Available Credits mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedAvailableCredits: "+expectedAvailableCredits);
+
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            allChecksPassed = false;
+        }
+
+        return allChecksPassed;
+    }
+    
+    private boolean verifyMultipackPurchaseYearDiffrences(LocalDateTime start, LocalDateTime end, Map<String, String> map) {
+
+        String durationStr = map.get("Buy Year"); // "1", "3", "5", etc.
+        int expectedYearDifference = Integer.parseInt(durationStr);
+
+        int startYear = start.getYear();
+        int startMonth = start.getMonthValue();
+
+        int endYear = end.getYear();
+        int endMonth = end.getMonthValue();
+
+        boolean isSameMonth = startMonth == endMonth;
+        boolean isExpectedYearDiff = (endYear - startYear) == expectedYearDifference;
+
+        System.out.println("Start: " + start + ", End: " + end);
+        System.out.println("Expected Years: " + expectedYearDifference + ", Actual Years: " + (endYear - startYear));
+
+        return isExpectedYearDiff;
+    }
     
 }
 
