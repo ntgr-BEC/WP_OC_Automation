@@ -641,7 +641,7 @@ public class OrganizationElement extends MyCommonAPIs {
     }
     
     public SelenideElement ariaSetIndex(String index) {
-        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='8']/div/span");
+        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='7']/div/span");
         return dropdownelementnew;
     }
     
