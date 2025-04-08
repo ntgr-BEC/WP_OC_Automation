@@ -85,10 +85,13 @@ public class Testcase extends TestCaseBase {
     }
     
     
-//    @Step("Test Step 2: Check account try trial;")
-//    public void step2() {
-//        assertTrue(new HamburgerMenuPage().checkAccountTryTrial());
-//    }
+    @Step("Test Step 2: Check account free trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();       
+    }
+    
     
     @Step("Test Step3: Create new location")
     public void step3() {
@@ -148,9 +151,9 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Kotka");
     
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
-    }
-            
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+    }    
  
     
     @Step("Test Step 6: Add device and check whether it throws error while adding Thisrd device;")
@@ -174,7 +177,8 @@ public class Testcase extends TestCaseBase {
         
         new AccountPage().enterLocation("OnBoardingTest");
         assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap8serialNo), "More device exits");
-      
+        assertTrue(new HamburgerMenuPage(false).verifyFourDevicesOnboardedSubscriptionPage(), "total four insight devices are not showing correctly on subscription page");
+        
     }
 
     
