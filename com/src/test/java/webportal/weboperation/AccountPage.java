@@ -990,7 +990,7 @@ public class AccountPage extends AccountPageElement {
         // locationlist.click();
         // }
         System.out.println("enterd");
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(30);
         deleteLocation(locationName);
         MyCommonAPIs.sleepi(10);
         return new AccountPage();

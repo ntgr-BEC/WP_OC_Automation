@@ -16,6 +16,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -1397,55 +1399,73 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean checkAccountTryTrial() {
-        boolean result = false;
-        // accountmanager.click();
-        // MyCommonAPIs.sleepi(10);
+        boolean result = true;
         waitReady();
-        // String url = MyCommonAPIs.getCurrentUrl();
-        // if (url.contains("#/accountManagement/purchaseHistory")) {
-        // if(closeLockedWindow.exists()) {
-        // closeLockedWindow.click();
-        // }}
-        closeLockedDialog();
-        // subscriptions.click();
-        // MyCommonAPIs.sleepi(10);
-        waitReady();
-        if (closedevicecredits.exists()) {
-            closedevicecredits.click();
-        }
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (accountmanager.isDisplayed()) {
-            accountmanager.click();
-            MyCommonAPIs.sleepi(5);
-            closeLockedDialog();
-            subscriptions.click();
-            MyCommonAPIs.sleepi(10);
-            if (closedevicecredits.exists()) {
-                closedevicecredits.click();
-            }
-            // waitElement(trytrialbutton);
-
-        }
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
         logger.info("Check account try trial...");
-        // trytrialbutton.click();
-        // MyCommonAPIs.sleepi(10);
-        // clickBoxLastButton();
-        // MyCommonAPIs.sleepi(10);
-        // clickBoxLastButton();
-        //
-        // MyCommonAPIs.sleepsync();
-
-        if (currentsubscription.exists()) {
-            if (getText(currentsubscription).equals("Insight Premium Trial Subscription")) {
-                result = true;
-            }
-        } else if (currentsubscriptionpremium.exists()) {
-            if (getText(currentsubscriptionpremium).contains("Insight Premium Trial")) {
-                result = true;
-            }
-
+        
+     // Step 1
+        String p1 = currentsubscription.shouldBe(Condition.visible).getText();
+        System.out.println("Subscription: "+p1);
+        if (!(p1.equals("Insight Premium Trial"))) {
+            System.out.println("Step 1 Failed");
+            result = false;
         }
+               
+     // Step 2
+        String activationDateStr = getText(activationDateText);
+        LocalDateTime activationDate = parseDate(activationDateStr);
+        System.out.println(activationDateText.getText()+" "+activationDate);
+        
+        // Step 3
+        String expirationDateStr = getText(expirationDateText);
+        LocalDateTime expirationDate = parseDate(expirationDateStr);
+        System.out.println(expirationDateText.getText()+" "+expirationDate);
+        
+        // Step 4
+        if (!isNextMonthSameYear(activationDate, expirationDate)) {
+            result = false;
+            System.out.println("Step 4: Failed");
+        }
+
+        // Step 5
+        double price = extractNumericValue(pricePerDevice);
+        System.out.println("pricePerDevice: "+pricePerDevice);
+
+        // Step 6
+        double billing = extractNumericValue(billingInfo);
+        System.out.println("billingInfo: "+billingInfo);
+        
+        if (!(price==billing)) {
+            System.out.println("Step 6 Failed");
+            result = false;        
+        }
+
+        // Step 7
+        if (!verifyText(autoRenewal, "N/A")) {
+            System.out.println("Step 7 Failed");
+            result = false;
+        }
+        
+        System.out.println("autoRenewal: "+autoRenewal.getText());
+
+        // Step 8
+        String actualDeviceCredits = deviceCredits1.getText().trim();
+        String actualDeviceCredits1 = availableCredits1.getText().trim();
+        String actualDeviceCredits2 = insightDevices.getText().trim();
+
+        System.out.println("deviceCredits: " + actualDeviceCredits);
+        System.out.println("availableCredits: " + actualDeviceCredits1);
+        System.out.println("insightDevices: " + actualDeviceCredits2);
+        
+        if (!(actualDeviceCredits.equals("Unlimited") && actualDeviceCredits1.equals("Unlimited") && actualDeviceCredits2.equals("0"))) {
+            System.out.println("Step 8 Failed");
+            result = false;
+        }
+        
         return result;
+        
     }
 
     public boolean checkAccountEmail(String email) {
@@ -7181,7 +7201,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     
     // added by vivek
     public void expandinsigtdivCreditsSection() {
-        expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(1);
+        purchaseorderhistory.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        expandinsigtdivcredits.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(2);
     }
     
@@ -10048,7 +10071,222 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
 
         return result;
     }
+    
+    public boolean verifyInsightPageData(String devicenumbers) {
+        boolean allChecksPassed = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        try {
+            // Step 1
+            if (!verifyText(insightPremiumText1, "Insight Premium")) {
+                System.out.println("Step 1 Failed: Insight Premium text mismatch");
+                allChecksPassed = false;
+            }
+            System.out.println(insightPremiumText1.getText());
 
+            // Step 2
+            String activationDateStr = getText(activationDateText);
+            LocalDateTime activationDate = parseDate(activationDateStr);
+            System.out.println(activationDateText.getText()+" "+activationDate);
+            
+            // Step 3
+            String expirationDateStr = getText(expirationDateText);
+            LocalDateTime expirationDate = parseDate(expirationDateStr);
+            System.out.println(expirationDateText.getText()+" "+expirationDate);
+            
+            // Step 4
+            if (!validateDateDifference(activationDate, expirationDate)) {
+                System.out.println("Step 4 Failed: Activation and Expiration date difference mismatch");
+                allChecksPassed = false;
+            }
+
+            // Step 5
+            double price = extractNumericValue(pricePerDevice);
+            System.out.println("pricePerDevice: "+pricePerDevice);
+
+            // Step 6
+            double billing = extractNumericValue(billingInfo);
+            System.out.println("billingInfo: "+billingInfo);
+
+            // Step 7
+            if (!verifyText(autoRenewal, "On")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("autoRenewal: "+autoRenewal.getText());
+
+            // Step 8
+            int credits = extractInteger(deviceCredits);
+            String actualDeviceCredits = deviceCredits.getText();
+            if (!actualDeviceCredits.equals(devicenumbers)) {
+                System.out.println("Step 8 Failed: Device Credits count mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("deviceCredits: "+deviceCredits.getText());
+
+            // Step 9
+            double expectedBilling = price * credits;
+            if (expectedBilling != billing) {
+                System.out.println("Step 9 Failed: Billing calculation mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedBilling: "+expectedBilling);
+
+            // Step 10
+            int idevices = extractInteger(insightDevices);
+            
+            System.out.println("insightDevices: "+insightDevices);
+
+            // Step 11
+            int avCredits = extractInteger(availableCredits);
+            
+            System.out.println("availableCredits: "+availableCredits);
+
+            // Step 12
+            int expectedAvailableCredits = credits - idevices;
+            if (expectedAvailableCredits != avCredits) {
+                System.out.println("Step 12 Failed: Available Credits mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedAvailableCredits: "+expectedAvailableCredits);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            allChecksPassed = false;
+        }
+
+        return allChecksPassed;
+    }
+
+
+    private boolean verifyText(SelenideElement element, String expected) {
+        String actual = element.shouldBe(Condition.visible).getText().trim();
+        return actual.equals(expected);
+    }
+
+
+    public String getText(SelenideElement xpath) {
+        return xpath.shouldBe(Condition.visible).getText().trim();
+    }
+
+    private LocalDateTime parseDate(String rawDate) {
+        try {
+            // Normalize 'a.m.' or 'p.m.' to 'AM' / 'PM'
+            rawDate = rawDate.replace("a.m.", "AM").replace("p.m.", "PM");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy hh:mm a", Locale.ENGLISH);
+            return LocalDateTime.parse(rawDate, formatter);
+        } catch (Exception e) {
+            throw new RuntimeException("Date parsing failed for input: " + rawDate, e);
+        }
+    }
+
+
+    private boolean validateDateDifference(LocalDateTime start, LocalDateTime end) {
+        int startYear = start.getYear();
+        int startMonth = start.getMonthValue();
+
+        int endYear = end.getYear();
+        int endMonth = end.getMonthValue();
+
+        // Monthly plan check (ignoring days)
+        boolean isMonthly = 
+            (startYear == endYear && endMonth == startMonth + 1) ||           // e.g., Apr → May
+            (startMonth == 12 && endMonth == 1 && endYear == startYear + 1);  // e.g., Dec → Jan
+
+        // Yearly plan check (ignoring days)
+        boolean isYearly = (endYear == startYear + 1 && endMonth == startMonth);
+
+        System.out.println("Start: " + start + ", End: " + end);
+        System.out.println("Monthly: " + isMonthly + ", Yearly: " + isYearly);
+
+        return isMonthly || isYearly;
+    }
+
+    public double extractNumericValue(SelenideElement element) {
+        String text = element.shouldBe(Condition.visible).getText().replaceAll("[^\\d.]", "");
+        return Double.parseDouble(text);
+    }
+
+    private int extractInteger(SelenideElement element) {
+        String text = element.shouldBe(Condition.visible).getText().replaceAll("\\D+", "");
+        return Integer.parseInt(text);
+    }
+    
+    public boolean verifyFourDevicesOnboardedSubscriptionPage() {
+        boolean result = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        int credits = extractInteger(deviceCredits);
+        String actualDeviceCredits = deviceCredits.getText();
+
+        int idevices = extractInteger(insightDevices);
+        int rqCredits = extractInteger(requiredCredits);
+
+        int expectedAvailableCredits = idevices - credits;
+        if (expectedAvailableCredits != rqCredits) {
+            System.out.println("Step 12 Failed: Required Credits mismatch");
+            result = false;
+        }
+        return true;
+    }
+    
+    private boolean isNextMonthSameYear(LocalDateTime start, LocalDateTime end) {
+        int startMonth = start.getMonthValue();
+        int endMonth = end.getMonthValue();
+        int startYear = start.getYear();
+        int endYear = end.getYear();
+
+        System.out.println("Start Month: " + startMonth + ", End Month: " + endMonth);
+        System.out.println("Start Year: " + startYear + ", End Year: " + endYear);
+
+        return (endMonth == (startMonth % 12) + 1) && (startYear == endYear);
+    }
+    
+    public boolean verifyfreetrailOnPurchaseOrderHistoryPage() {
+        boolean result = true;
+        
+        MyCommonAPIs.sleepi(10);
+        System.out.println(premiumTrailSubsc.shouldBe(Condition.visible).getText());
+        System.out.println(unlimitedDevices.shouldBe(Condition.visible).getText());
+        System.out.println("activatedfreetraildate:  "+activatedfreetraildate.shouldBe(Condition.visible).getText());
+        System.out.println("expirationFreeTrailDate:  "+expirationFreeTrailDate.shouldBe(Condition.visible).getText());
+        if (!(premiumTrailSubsc.isDisplayed() && unlimitedDevices.isDisplayed() 
+                && activatedfreetraildate.isDisplayed() && expirationFreeTrailDate.isDisplayed())) {
+            result = false;
+        }
+        
+        String activationStr = activatedfreetraildate.getText();
+        String expirationStr = expirationFreeTrailDate.getText();
+
+        LocalDate activationDate = parseDateFromString(activationStr);
+        LocalDate expirationDate = parseDateFromString(expirationStr);
+
+        if (!(isNextMonthSameYear(activationDate, expirationDate))) {
+            System.out.println("Invalid: Not exactly one-month duration");
+            result = false;
+        }
+        
+        return result;
+    }
+    
+    
+    private LocalDate parseDateFromString(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+        return LocalDate.parse(dateStr, formatter);
+    }
+    
+    
+    private boolean isNextMonthSameYear(LocalDate activation, LocalDate expiration) {
+        return activation.getYear() == expiration.getYear()
+                && activation.plusMonths(1).getMonthValue() == expiration.getMonthValue();
+    }
+
+
+    
 }
 
 
