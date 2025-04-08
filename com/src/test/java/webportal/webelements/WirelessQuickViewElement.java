@@ -445,21 +445,21 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public static SelenideElement    MACConfirmButton                             = $x("//div[@class=\"modal-footer mb-10\"]/button[@class=\"btn btn-primary\"][1]");
     
     
-    public String basicList = "//td[text()='%s']/..";
+    public String basicList = "//span[text()='%s']/../../..";
     public String uptime    = basicList + "/td[13]";
     
 
     public SelenideElement inputnameyes(String text) {
-        SelenideElement yes = $x("(//td[text()='" + text + "']/../td[1]//button)[1]/i");
+        SelenideElement yes = $x("(//span[text()='" + text + "']/../../../td[1]//button)[1]/i");
         return yes;
     }
 
     public SelenideElement inputName(String text) {
         SelenideElement inputname;
-        if($x("(//td[text()='" + text + "']/../td[1]//input)[2]").isDisplayed()) {
-         inputname = $x("(//td[text()='" + text + "']/../td[1]//input)[2]");
+        if($x("(//span[text()='" + text + "']/../../../td[1]//input)[2]").isDisplayed()) {
+         inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)[2]");
         }else {
-          inputname = $x("(//td[text()='" + text + "']/../td[1]//input)");
+          inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)");
         }
           
         
@@ -473,7 +473,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     }
 
     public SelenideElement editName(String text) {
-        SelenideElement nameelement = $x("//td[text()='" + text + "']/../td[1]");
+        SelenideElement nameelement = $x("//span[text()='" + text + "']/../../../td[1]");
         return nameelement;
     }
 
@@ -484,12 +484,12 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     
     public SelenideElement editModule(String text) {
         //SelenideElement Ssid = $x("//td[text()='" + text + "']/../td[15]/p");
-        SelenideElement Ssid = $x("//td[text()='" + text + "']/../td[17]/p");
+        SelenideElement Ssid = $x("//span[text()='" + text + "']/../../../td[17]/p");
         return Ssid;
     }
     
     public SelenideElement editModuleforswitch(String text) {
-        SelenideElement Ssid = $x("//td[text()='" + text + "']/../td[3]");
+        SelenideElement Ssid = $x("//span[text()='" + text + "']/../../../td[3]");
         return Ssid;
     }
     
@@ -505,13 +505,13 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
   
     public SelenideElement enterDevice(String text) {
         //SelenideElement device = $x("//td[text()='" + text + "']/../td[15]/p//i[1]");
-        SelenideElement device = $x("//td[text()='" + text + "']/../td[17]/p//i[2]");
+        SelenideElement device = $x("//span[text()='" + text + "']/../../../td[17]/p//i[2]");
         return device;
   }
     
     public SelenideElement enterDevice1(String text) {
         //SelenideElement device = $x("//td[text()='" + text + "']/../td[15]/p//i[1]");
-        SelenideElement device = $x("//td[text()='" + text + "']/../td[16]/p//i[3]");
+        SelenideElement device = $x("//span[text()='" + text + "']/../../../td[16]/p//i[3]");
         return device;
   }
  
@@ -521,7 +521,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 //    }
     
     public SelenideElement deleteDevice(String text) {
-        SelenideElement Ssid = $x("//td[text()='" + text + "']/../td[17]/p//i[3]");
+        SelenideElement Ssid = $x("//span[text()='" + text + "']/../../../td[17]/p//i[3]");
         return Ssid;
     }
     
