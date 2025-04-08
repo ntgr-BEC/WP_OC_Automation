@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.time.Year;
+
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 
 import util.MyCommonAPIs;
@@ -303,13 +305,13 @@ public class InsightServicesPage extends InsightServicesPageElement {
     public void inputPaymentPage(Map<String, String> map) {
         waitReady();
         clickSubscriptionPlanNext();
-
         inputBillingInfo(map);
         // clickSaveButton();
         inputPaymentInfo(map);
         // clickSaveButton();
-        click(Termsandcondition, true);
-        MyCommonAPIs.sleepi(3);
+        MyCommonAPIs.sleepi(10);
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
         new HamburgerMenuPage(false).clickPlaceOrder();
         // gotomainpage.click();
         waitReady();
