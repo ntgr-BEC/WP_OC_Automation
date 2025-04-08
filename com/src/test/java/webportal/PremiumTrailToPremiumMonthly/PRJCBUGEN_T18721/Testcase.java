@@ -70,7 +70,9 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Create IM WP account success;")
     public void step1() {
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        
+      WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+      webportalLoginPage.loginByUserPassword(WebportalParam.loginName, WebportalParam.loginPassword);
         
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
@@ -86,10 +88,12 @@ public class Testcase extends TestCaseBase {
     }
     
     
-//    @Step("Test Step 2: Check account try trial;")
-//    public void step2() {
-//        assertTrue(new HamburgerMenuPage().checkAccountTryTrial());
-//    }
+    @Step("Test Step 2: Check account free trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();       
+    }
     
     @Step("Test Step 3: Create new location")
     public void step3() {
@@ -148,7 +152,8 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Florida");
     
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
     }
             
     
@@ -175,6 +180,7 @@ public class Testcase extends TestCaseBase {
         
         new AccountPage().enterLocation("OnBoardingTest");
         assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap8serialNo), "More device exits");
+        assertTrue(new HamburgerMenuPage(false).verifyFourDevicesOnboardedSubscriptionPage(), "total four insight devices are not showing correctly on subscription page");
       
     }
 

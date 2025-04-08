@@ -87,10 +87,10 @@ public class Testcase extends TestCaseBase {
     }
     
     
-//    @Step("Test Step 2: Check account try trial;")
-//    public void step2() {
-//        assertTrue(new HamburgerMenuPage().checkAccountTryTrial());
-//    }
+    @Step("Test Step 2: Check account try trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage().checkAccountTryTrial());
+    }
     
     @Step("Test Step 3: Create new location")
     public void step3() {
