@@ -73,7 +73,9 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
                 MyCommonAPIs.sleepi(5);
-            } if (createNewLocationButton.shouldBe(Condition.visible).isDisplayed()) {
+            } 
+            
+            if (createNewLocationButton.isDisplayed()) {
                 createNewLocationButton.shouldBe(Condition.visible).click();
             } else if (addNetworkButton.isDisplayed()) {
                 addNetworkButton.shouldBe(Condition.visible).click();
