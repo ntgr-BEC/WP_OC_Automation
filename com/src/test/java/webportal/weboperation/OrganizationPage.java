@@ -316,10 +316,13 @@ public class OrganizationPage extends OrganizationElement {
     }
 
     public void editOrganization(Map<String, String> map) {
-        waitElement(sOrganizationLocationElement1);
+//        waitElement(sOrganizationLocationElement1);
         if (checkOrganizationIsExist(map.get("Name"))) {
-            dropdownOrganizationElement(map.get("Name")).click();
-            editOrganizationElement(map.get("Name")).click();
+//            dropdownOrganizationElement(map.get("Name")).click();
+//            editOrganizationElement(map.get("Name")).click();
+            String rowindex=dropdownOrganizationElementNew(map.get("Name")).getAttribute("aria-rowindex");
+            ariaSetIndex(rowindex).click();
+            ariaSetIndexEdit(rowindex).click();
             MyCommonAPIs.sleepi(1);
             refresh();
             MyCommonAPIs.sleepi(15);

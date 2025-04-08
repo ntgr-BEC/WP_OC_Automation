@@ -654,5 +654,10 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Allocate']");
         return dropdownelementnew;
     }
+    
+    public SelenideElement ariaSetIndexEdit(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
+        return dropdownelementnew;
+    }
 
 }
