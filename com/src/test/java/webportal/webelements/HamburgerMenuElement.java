@@ -294,7 +294,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
             " //*[@id=\"_divConSecsubscriptions\"]/div[2]/div/div[2]/div[1]/div[2]/div/div/ul/li[3]/p[2]");
     public SelenideElement        deviceredsubscriptionNew    = $x("//div[@class='SubsDeviceslist']/div[1]/h2");
     public SelenideElement        changesubscription          = $("#btnModslLearnMoreSubscription");
-    public static SelenideElement changeSubNew                = $x("//span[text()='" + WebportalParam.getLocText("Change Subscription") + "']");
+    public static SelenideElement changeSubNew                = $x("//span[text()='Change Subscription']");
     public SelenideElement        buydevicecredits            = $("#btnBuyDeviceSubscription");
     public SelenideElement        billingandpayment           = $("#btnDefDeviceSubscription");
     public static SelenideElement billingandpaymentNew        = $x("//span[text()='" + WebportalParam.getLocText("Subscription Billing") + "']");
@@ -1051,6 +1051,15 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  expirationFreeTrailDate           = $x("(//th[text()='Activated On']/../../..//td/p)[3]");
   public SelenideElement  deviceCredits1                     = $x("(//p[text()='Device Credits']/../p)[1]");
   public SelenideElement  availableCredits1                  = $x("(//p[text()='Available Credits']/../p)[1]");
+  
+  //PratikMultipack
+  public SelenideElement multipackActivationDate = $x("//tbody/tr/td[2]/span");
+  public SelenideElement multipackExpirationDate = $x("//tbody/tr/td[3]/p");
+  public SelenideElement multipackDeviceCredits = $x("//tbody/tr/td[4]/span");
+  public SelenideElement multipackStatus = $x("//tbody/tr/td[5]/span");
+  public SelenideElement multipackAutoRenewal = $x("//tbody/tr/td[6]");
+  public SelenideElement multipackSubscriptionId = $x("//tr/td[1]/span");
+  
   
 }
 
