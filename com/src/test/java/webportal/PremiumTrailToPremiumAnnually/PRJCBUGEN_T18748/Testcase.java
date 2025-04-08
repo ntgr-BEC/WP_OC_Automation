@@ -97,7 +97,6 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "8700");
         locationInfo.put("Country", "Switzerland");
-        new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
         
        
@@ -145,7 +144,8 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Kuesnacht");
     
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage().checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
     }
             
     
@@ -170,6 +170,7 @@ public class Testcase extends TestCaseBase {
         
         new AccountPage().enterLocation("OnBoardingTest");
         assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap4serialNo), "More device exits");
+        assertTrue(new HamburgerMenuPage(false).verifyFourDevicesOnboardedSubscriptionPage(), "total four insight devices are not showing correctly on subscription page");
       
     }
 
