@@ -755,11 +755,9 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
     public String getDeviceStatus(String serialNumber) {
         if ((devicesStatus(serialNumber)).exists()){
             return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else if (devicesStatus(serialNumber).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
-        }
+        }  
+        return "";
+    
     }
 
     public String getDeviceStatusunmanged(String serialNumber) {
@@ -803,12 +801,8 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
 
     public String getDeviceUptime(String serialNumber, boolean getInt) {
         String sDate = "";
-        if ((devicesUptime(serialNumber)).exists() && (devicesUptime1(serialNumber)).exists()){
+        if ((devicesUptime(serialNumber)).exists()){
             sDate = getText(devicesUptime(serialNumber));
-        } else if (devicesStatus(serialNumber).exists()) {
-            sDate = getText(devicesUptime(serialNumber));
-        } else {
-            sDate = getText(devicesUptime1(serialNumber));
         }
         if (getInt) {
             char[] charfield = sDate.toCharArray();
@@ -944,7 +938,10 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
         String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
         ariaSetIndex(row).click();
         MyCommonAPIs.sleepi(3);
-        ariaSetIndexReboot(row).click();
+        ariaSetIndexReboot(row).click();        
+        rebootconfirm.click();
+        clickBoxLastButton();
+        MyCommonAPIs.sleepi(60);
     }
 
     public void NorebootDevice(String sNo) {
@@ -1041,7 +1038,6 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
                     if (!getDeviceUptime(sNo, false).equals(sCur)) {
                         timeout = false;
                         break;
-
                     }
                 } else {
                     sCur = null;
