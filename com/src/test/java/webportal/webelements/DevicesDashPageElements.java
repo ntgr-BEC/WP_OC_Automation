@@ -272,8 +272,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
        
     }
     
-    public SelenideElement devicesStatus(String row) {
+    public SelenideElement devicesStatus(String serialNumber) {
 //        return $x("//img[@data-deviceserial='" + row + String.format("']/ancestor::tr/td[%s]", deviceStatusIndex));
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
         return $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"deviceStatus\"]");
     }
     
