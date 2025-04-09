@@ -298,7 +298,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public String sDeviceStatus   = "//div[@col-id=\"deviceStatus\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceSerialNo = "//div[@col-id=\"serialNo\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceModel    = "//div[@col-id=\"model\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
-    public String sDeviceFW       = "//div[@col-id=\"firmware\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
+    public String sDeviceFW       = "//div[@col-id=\"fwVersion\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceIp       = "//div[@col-id=\"ipAddr\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     public String sDeviceUptime   = "//div[@col-id=\"upTime\" and not(ancestor::div[@aria-rowindex=\"1\"])]";
     
@@ -549,6 +549,12 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     
     public SelenideElement ariaSetIndexDelete(String index) {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Delete']");
+        return dropdownelementnew;
+    }
+    
+    
+    public SelenideElement ariaSetIndexEdit(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
     

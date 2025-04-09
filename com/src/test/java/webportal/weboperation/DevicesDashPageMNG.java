@@ -437,20 +437,30 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             return;
 
         boolean clicked = false;
-        for (int i = 0; i < 2; i++) {
-            enterDeviceSummary(serialNumber).hover();
-            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
-                if (t.isDisplayed()) {
-                    t.click();
-                    clicked = true;
-                    break;
-                }
-            }
-            waitReady();
-            if (clicked) {
-                break;
-            }
-        }
+        
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(row).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(row).shouldBe(Condition.visible).click();
+        
+//        String index = getDeviceAriaIndex(serialNumber);
+        
+        
+//        for (int i = 0; i < 2; i++) {
+//            enterDeviceSummary(serialNumber).hover();
+//            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
+//                if (t.isDisplayed()) {
+//                    t.click();
+//                    clicked = true;
+//                    break;
+//                }
+//            }
+//            waitReady();
+//            if (clicked) {
+//                break;
+//            }
+//        }
         waitReady();
         MyCommonAPIs.sleep(5000);
     }
