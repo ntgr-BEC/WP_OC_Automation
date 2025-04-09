@@ -132,11 +132,12 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Budapest  ");
        
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")))), "Amount is incorrect.");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
         paymentInfo.put("Subscription Time", "Yearly");
         new HamburgerMenuPage(false).changePlanToPremium(paymentInfo);
         new AccountPage().enterLocation("OnBoardingTest");
-        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")))), "Amount is incorrect.");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
     }
     
     @Step("Test Step 5: cancel Subscription")
