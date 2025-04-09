@@ -113,7 +113,8 @@ public class Testcase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
       
     }
     
@@ -137,26 +138,13 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("CVV Number", "123");
         paymentInfo.put("Expiration Month", "May");
         paymentInfo.put("Expiration Year", "2030");
-        new HamburgerMenuPage().upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 0)), "Amount is incorrect.");
-        assertTrue (new HamburgerMenuPage(false).checkMonthlyCurency(Currency, MonthlyAmount), "Currency and Amount is wrong");
-        
-    }
-    
-    @Step("Test Step 5: Purchase One more device credit and check whether it will allow us to add one more device;")
-    public void step5() {
+        String paymentPagetotalvalue = new HamburgerMenuPage().inputPaymentPageInfoforCAA(paymentInfo);
+        assertTrue (new HamburgerMenuPage(false).checkMonthlyCurency(Currency, MonthlyAmount, paymentPagetotalvalue), "Currency and Amount is wrong");
         
         new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
-        
-        Map<String, String> paymentInfo = new HashMap<String, String>();
-        
         paymentInfo.put("Subscription Time", "Yearly");
-        paymentInfo.put("Number of Device Credits", "3");
-        
-        new HamburgerMenuPage(false).changeMoToYr(paymentInfo);
-        
-        assertTrue(new HamburgerMenuPage(false).checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 2)), "Amount is incorrect.");
-        assertTrue (new HamburgerMenuPage(false).checkMonthlyCurency(Currency, YearlyAmount), "Currency and Amount is wrong");
+        String paymentPagetotalvalue1 = new HamburgerMenuPage(false).changePlanToPremiumForCAA(paymentInfo);
+        assertTrue (new HamburgerMenuPage(false).checkMonthlyCurency(Currency, YearlyAmount, paymentPagetotalvalue1), "Currency and Amount is wrong");
     }
     
     
