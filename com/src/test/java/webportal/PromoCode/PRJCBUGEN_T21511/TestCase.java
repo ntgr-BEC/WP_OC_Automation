@@ -16,6 +16,9 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
+import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.weboperation.AccountPage;
@@ -78,9 +81,9 @@ public class TestCase extends TestCaseBase {
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "Australia");
-        new HamburgerMenuPage();
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+        //new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     
@@ -100,6 +103,8 @@ public class TestCase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
 
       
     }
@@ -107,25 +112,23 @@ public class TestCase extends TestCaseBase {
     @Step("Test Step 4: Add device To the Network;")
     public void step4() {
         
+        WebportalLoginPage webportalLoginPage1 = new WebportalLoginPage(true);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo = new CommonDataType().CARD_INFO;
         paymentInfo.put("Subscription Time", "Monthly");
         paymentInfo.put("Number of Device Credits", "3");
         paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T21511");
+        paymentInfo.put("Last Name", "T17564");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Street 4568 James Avenue");
-        paymentInfo.put("City", "INVERNESS");
-        paymentInfo.put("Zip", "34451");
+        paymentInfo.put("Street Address", "Springs Rd");
+        paymentInfo.put("City", "Red Bank");
+        paymentInfo.put("Zip", "32003");
         paymentInfo.put("Country", "US");
         paymentInfo.put("State", "Florida");
-        paymentInfo.put("Card Number", "4112344112344113");
-        paymentInfo.put("CVV Number", "123");
-        paymentInfo.put("Expiration Month", "May");
-        paymentInfo.put("Expiration Year", "2030");
         paymentInfo.put("Promo Code", WebportalParam.promocode1);
         assertTrue(
-                new HamburgerMenuPage(false).checkPromoCode(paymentInfo)
-                        && new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(paymentInfo.get("Number of Device Credits")),
+                new HamburgerMenuPage(false).checkPromoCode(paymentInfo),
                 "Buy premium subscription unsuccessful.");
     }
 

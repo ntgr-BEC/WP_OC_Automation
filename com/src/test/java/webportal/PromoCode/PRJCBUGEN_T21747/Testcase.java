@@ -16,6 +16,9 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
+import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
@@ -58,31 +61,32 @@ public class Testcase extends TestCaseBase {
     }
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 1: Create IM WP account in United States success;")
+    @Step("Test Step 1:  Create an account;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T21747");
+        accountInfo.put("Last Name", "T21510");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
-
         new HamburgerMenuPage(false).createAccount(accountInfo);
+        WebportalLoginPage webportalLoginPage1 = new WebportalLoginPage(true);
+
+      
     }
-    
+        
     @Step("Test Step 2: Create new location")
     public void step2() {
         
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "4560");
-        locationInfo.put("Country", "Australia");
-        new HamburgerMenuPage();
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+       // new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     
@@ -102,29 +106,35 @@ public class Testcase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
-      
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+    
     }
 
-    @Step("Test Step 4: Check buy premium subscription;")
+    
+    @Step("Test Step 4: Add device To the Network;")
     public void step4() {
+        WebportalLoginPage webportalLoginPage1 = new WebportalLoginPage(true);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo = new CommonDataType().CARD_INFO;
         paymentInfo.put("Subscription Time", "Yearly");
-        paymentInfo.put("Number of Device Credits", "1");
+        paymentInfo.put("Number of Device Credits", "2");
         paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T21747");
+        paymentInfo.put("Last Name", "T17564");
         paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Street 4568 James Avenue");
-        paymentInfo.put("City", "INVERNESS");
-        paymentInfo.put("Zip", "34451");
+        paymentInfo.put("Street Address", "Springs Rd");
+        paymentInfo.put("City", "Red Bank");
+        paymentInfo.put("Zip", "32003");
         paymentInfo.put("Country", "US");
         paymentInfo.put("State", "Florida");
-        paymentInfo.put("Card Number", "4112344112344113");
-        paymentInfo.put("CVV Number", "123");
-        paymentInfo.put("Expiration Month", "May");
-        paymentInfo.put("Expiration Year", "2030");
         paymentInfo.put("Promo Code", WebportalParam.promocode1);
-        new HamburgerMenuPage(true).inputPaymentPageInfo(paymentInfo);
+        assertTrue(
+                new HamburgerMenuPage(false).checkPromoCode(paymentInfo),
+                "Buy premium subscription unsuccessful.");
+        
+        
+        
     }
 
 }
