@@ -753,7 +753,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
     }
 
     public String getDeviceStatus(String serialNumber) {
-        if ((devicesStatus(serialNumber)).exists() && (devicesStatus1(serialNumber)).exists()){
+        if ((devicesStatus(serialNumber)).exists()){
             return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
         } else if (devicesStatus(serialNumber).exists()) {
             return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
@@ -941,28 +941,10 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             }
             refresh();
         }
-        for (SelenideElement se : $$x(sDeviceSerialNo)) {
-            String sSerialNo = getText(se);
-            if (getText(se).equalsIgnoreCase(sNo)) {
-                if (addDevice1.exists()) {
-                    addDevice1.hover();
-                }
-                se.hover();
-                sleepi(1);
-                for (SelenideElement se1 : $$(".rebootDeviceIcon")) {
-                    if (se1.isDisplayed()) {
-                        logger.info(sNo);
-                        se1.click();
-                        sleepi(20);
-                        rebootconfirm.click();
-                        clickBoxLastButton();
-                        MyCommonAPIs.sleepi(60);
-                        break;
-                    }
-                }
-                break;
-            }
-        }
+        String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexReboot(row).click();
     }
 
     public void NorebootDevice(String sNo) {
