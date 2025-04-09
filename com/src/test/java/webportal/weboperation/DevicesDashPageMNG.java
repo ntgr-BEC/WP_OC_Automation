@@ -803,7 +803,7 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
 
     public String getDeviceUptime(String serialNumber, boolean getInt) {
         String sDate = "";
-        if ((devicesUptime(serialNumber)).exists() && (devicesUptime1(serialNumber)).exists()){
+        if ((devicesUptime(serialNumber)).exists()){
             sDate = getText(devicesUptime(serialNumber));
         } else if (devicesStatus(serialNumber).exists()) {
             sDate = getText(devicesUptime(serialNumber));
