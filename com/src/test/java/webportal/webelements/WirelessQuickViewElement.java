@@ -456,13 +456,13 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
     public SelenideElement inputName(String text) {
         SelenideElement inputname;
-        if($x("(//span[text()='" + text + "']/../../../td[1]//input)[2]").isDisplayed()) {
-         inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)[2]");
-        }else {
-          inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)");
+        if($x("//span[text()='" + text + "']/../../../td[1]").isDisplayed()) {
+         inputname = $x("//span[text()='"+text+"']/../../..//input[starts-with(@id, 'tdinpEditdevicesDash')]");
+        }
+        else {
+          inputname = $x("//span[text()='"+text+"']/../../..//input[starts-with(@id, 'tdinpEditdevicesDash')]");
         }
           
-        
         return inputname;
     }
 
