@@ -52,8 +52,8 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           updateDevicelist   = $x("//*[@id=\"content\"]/div[6]/div/div[2]/button[2]");
     
     
-    public SelenideElement           SummaryAdd                = $x("//*[@id=\"_divLocOptLocDash\"]/div[1]/span");
-    public SelenideElement           SummaryMultiple           = $x("//*[@id=\"_divLocOptLocDash\"]/div[1]/ul/li[2]/a/b");
+    public SelenideElement           SummaryAdd                = $x("//div[@data-tooltip='Add Device']");
+    public SelenideElement           SummaryMultiple           = $x("//b[text()='Add Multiple Devices']");
      
     public SelenideElement           RouterClick              = $x("//*[@id=\"divMaindevicesDash\"]/div[1]/ul/li[3]/a");
     public SelenideElement           RouterAdd                 = $x("//*[@id=\"_righticon\"]/div[1]/span");
