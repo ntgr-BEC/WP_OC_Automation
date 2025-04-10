@@ -5726,24 +5726,36 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         String actOnDate = "";
         String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println(tablerow);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+   
+        actOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        expOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        
+        System.out.println("Year extracted : " + actOnDate);
+        System.out.println("Year extracted : " + expOnDate);
+        
+        
+        int actOnYear = extractYear(actOnDate);
+        System.out.println("Year Actual : " + actOnYear);
+        int expOnYear = extractYear(expOnDate);
+        System.out.println("Year Expiry : " + expOnYear);
+//        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
+//        SelenideElement Newele = $x("//span[contains(text(), '" + lic + "')]/../.."); 
+//        System.out.println(tablerow);
+//        System.out.println("clollection of an element");
+//        for (SelenideElement ele : tablerow) {
+//            System.out.println(ele);
+//            System.out.println("Print the element");
+//            String actOnDateText = Newele.findElement(By.xpath("/td[4]")).getText();
+//            String expOnDateText = Newele.findElement(By.xpath("/td[5]")).getText();
+//            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
+//            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
+//            System.out.println(actOnDate);
+//            System.out.println(expOnDate);
+//
+//            break;
+//        }
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnYear) - Integer.valueOf(actOnYear)) == 5)) {
 
             result = true;
             logger.info("Order history display correct.");
