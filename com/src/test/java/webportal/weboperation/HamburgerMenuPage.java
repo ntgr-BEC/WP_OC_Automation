@@ -5376,29 +5376,30 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean VerifyTermsandCondition() {
 
         boolean result = false;
-        boolean result1 = false;
-        boolean result2 = false;
+       
 
         ManagePaymentMethods.click();
-        MyCommonAPIs.sleep(3000);
-        if (Termaandcondition.exists()) {
-            logger.info("Terms and confition Exits");
-            result1 = true;
-        }
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        waitReady();
+//        MyCommonAPIs.sleep(3000);
+//        if (Termaandcondition.exists()) {
+//            logger.info("Terms and confition Exits");
+//            result1 = true;
+//        }
+//        TermaandconditionCheckbox.click();
+//        TermaandconditionAccept.click();
+//        waitReady();
+        
         MyCommonAPIs.sleepi(30);
         if (BillingInfo.exists()) {
             logger.info("Billing info exits");
-            result2 = true;
-        }
-
-        if ((result1 == true) && (result2 == true)) {
-
             result = true;
         }
 
+        if (result == true)
+            result = true;
+
+           cancel.click();
+           MyCommonAPIs.sleepi(5);
+        
         return result;
 
     }

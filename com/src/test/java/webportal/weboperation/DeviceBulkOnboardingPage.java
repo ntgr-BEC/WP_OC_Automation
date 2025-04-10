@@ -427,7 +427,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(10);        
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(20);
-        click(selectAll, true);
+//        click(selectAll1, true);
+        selectAll1.click();
         MyCommonAPIs.sleepi(5);
         updatelocationButton.click();
         MyCommonAPIs.sleepi(5);
