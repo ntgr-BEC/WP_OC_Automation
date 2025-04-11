@@ -10434,14 +10434,9 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         if (map.containsKey("VAT Registration Number")) {
             billingvatnum.setValue(map.get("VAT Registration Number"));
         }
-        // savenum.click();
+        
         MyCommonAPIs.sleepi(10);
         inputCardInfo(map);
-        // checkAutoRenew(map);
-        // paymentsumbit.click();
-        MyCommonAPIs.sleepi(10);
-        // checkAutoRenew(map);
-        //click(Termsandcondition, true);
         
         String subTotal = $x("//td[contains(text(),'Sub Total')]/../td/strong").shouldBe(Condition.visible).getText();
         totalValue = $x("//td[text()=' Total ']/../td/strong").shouldBe(Condition.visible).getText();

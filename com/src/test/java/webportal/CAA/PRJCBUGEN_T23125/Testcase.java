@@ -64,7 +64,7 @@ public class Testcase extends TestCaseBase {
         System.out.println("start to do tearDown");
     }
 
-    // Each step is a single test step from Jira Test Case
+    // Each step is a single test step from Jira
     @Step("Test Step 1: Create IM WP account in Poland success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);

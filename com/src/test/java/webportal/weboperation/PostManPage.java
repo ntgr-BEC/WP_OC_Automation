@@ -69,7 +69,7 @@ public class PostManPage  extends MyCommonAPIs{
     public void Deregister(String SLNo) {    
         
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
-            // Create the HTTP POST request
+            // Create the HTTP POST request to deregister AP
             HttpPost postRequest = new HttpPost("https://ocapi-qa.netgear.com/api/v2/ocProductRegisterDeactivate/?accessToken=eyJraWQiOiJvc2FqOVNyemR1SWgrUTFRa3NqcTZpZU9EU25PYXFyQnY5ekFVV3pkT2lNPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwNDA4ODRhOC0zMGQxLTcwMmUtNzFmYy1kOWE4OTI4NjY0YzQiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9KYUdVeVB1Y3MiLCJjbGllbnRfaWQiOiI3amI5MmNuZm9iMTFpOTVvdDQ4bmdqZXNlOCIsIm9yaWdpbl9qdGkiOiI4Njc4YmE4My1iOTY2LTQ1NjctYjM5My1jMGU3NjQzNTk0MjgiLCJldmVudF9pZCI6IjFhMTMwM2MyLWFmODItNGU0OS1hMDFlLTQzZWI0MzYzNWM3ZSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3NDQzNTI0NTUsImV4cCI6MTc0NDM1MzkwMiwiaWF0IjoxNzQ0MzUzMDAyLCJqdGkiOiI4OGM5MzUzOC1iZDk1LTQyMDEtOGMwZi01YjQwY2ViNWY4ZmUiLCJ1c2VybmFtZSI6IjA0MDg4NGE4LTMwZDEtNzAyZS03MWZjLWQ5YTg5Mjg2NjRjNCJ9.kUnL55YbTeDbtXg_4dFlBRyYgT4jmw0U6J3aMvurHRWf_dI58TVF3Ekqu2CO_g3LCCsLseOsU0x2DBa1aqgtwolaMYXSKEI8Q4MNOR1bFebclnYyBoNfGWJtVlLo_Y22R69EHJlzY7CaKLeOGIJJMJSOhl3Q6BL5-8Xm20MoxP1GtsrkOHil_2RWstOGK7t23bYAA8Wjy9IFNeojz8Wpc6zmfoLqaXMOpvieh-DHQE2krSv6kalzbrTNtu4A8G6uC7YNjqg1Fcaz1AH7htQaEcMrRP_bNuTcZH9pVbW_xDoTHvPk-ydYZp6r-0JdHCEom_QRRPiAsC570R4dVMegbg");
 
             // Add headers
