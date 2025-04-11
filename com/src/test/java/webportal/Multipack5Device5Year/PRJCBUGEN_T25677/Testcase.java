@@ -107,7 +107,8 @@ public class Testcase extends TestCaseBase {
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
       
     }
 
@@ -135,16 +136,15 @@ public class Testcase extends TestCaseBase {
 
         new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
         
-        assertTrue(new HamburgerMenuPage(false).checkSubscriptionsPage("Insight Premium", paymentInfo.get("Device Credits Pack")),
-                "Subscriptions page display error.");
+        assertTrue(new HamburgerMenuPage(false).verifyMultipackDeviceCreditPacks(paymentInfo), "Subscriptions page display error.");
     }
     
-//    @Step("Test Step 5: Check cancel devices credits;")
-//    public void step5() {
-//        new HamburgerMenuPage().cancelDeviceCredits();
-//
-//        assertTrue(!new HamburgerMenuPage(false).checkDeviceCredits(paymentInfo.get("Device Credits Pack")));
-//    }
+    @Step("Test Step 5: Check cancel devices credits;")
+    public void step5() {
+        new HamburgerMenuPage().cancelDeviceCredits();
+
+       assertTrue(!new HamburgerMenuPage(false).checkDeviceCredits(paymentInfo.get("Device Credits Pack")));
+   }
 
 
 }

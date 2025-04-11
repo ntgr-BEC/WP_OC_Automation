@@ -19,6 +19,7 @@ import testbase.TestCaseBase;
 import webportal.param.CommonDataType;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
+import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.PostManPage;
@@ -105,12 +106,59 @@ public class Testcase extends TestCaseBase {
                 "Subscriptions page display error.");
     }
     
-    @Step("Test Step 3: Check cancel devices credits;")
+    @Step("Test Step 3: Add device To the Network;")
     public void step3() {
+        
+        new AccountPage().enterLocation("OnBoardingTest");
+        
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+       
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        
+        System.out.println(firststdevInfo);
+ 
+                
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+      
+      
+    }
+
+
+    @Step("Test Step 4: Check buy vpn services;")
+    public void step4() {
+        
+        Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo = new CommonDataType().CARD_INFO;
+        
+        new HamburgerMenuPage(false).closeLockedDialog();
+        new HamburgerMenuPage().gotoInsightPremiumSubscriptions();
+       
+        paymentInfo.put("First Name", "New");
+        paymentInfo.put("Last Name", "New");
+        paymentInfo.put("Email", mailname + "@mailinator.com");
+        paymentInfo.put("Device Credits Pack", "5");
+        paymentInfo.put("Buy Year", "1");
+        paymentInfo.put("Email", mailname + "@mailinator.com");
+        paymentInfo.put("Street Address", "Stadhouderskade");
+        paymentInfo.put("City", "Amsterdam");
+        paymentInfo.put("Zip", "1054");
+        paymentInfo.put("Country", "Netherlands");
+        paymentInfo.put("State", "Amsterdam");
+
+        new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
+        
+        assertTrue(new HamburgerMenuPage(false).verifyMultipackDeviceCreditPacks(paymentInfo), "Subscriptions page display error.");
+    }
+
+    @Step("Test Step 5: Check cancel devices credits;")
+    public void step5() {
         new HamburgerMenuPage().cancelDeviceCredits();
 
         assertTrue(!new HamburgerMenuPage(false).checkDeviceCredits(paymentInfo.get("Device Credits Pack")));
     }
-
 
 }

@@ -100,14 +100,15 @@ public class Testcase extends TestCaseBase {
         Map<String, String> firststdevInfo = new HashMap<String, String>();
        
         
-        firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap1serialNo);
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5serialNo);
         
         System.out.println(firststdevInfo);
  
                 
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
       
     }
 
@@ -134,9 +135,7 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Stuttgart");
        
         new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
-        
-        assertTrue(new HamburgerMenuPage(false).checkSubscriptionsPage("Insight Premium", paymentInfo.get("Device Credits Pack")),
-                "Subscriptions page display error.");
+        assertTrue(new HamburgerMenuPage(false).verifyMultipackDeviceCreditPacks(paymentInfo), "Subscriptions page display error.");
     }
     
     @Step("Test Step 5: Check cancel devices credits;")
