@@ -60,7 +60,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new AccountPage().deleteOneLocation("OnBoardingTest");  new AccountPage().deleteOneLocation("OnBoardingTest");
+        new AccountPage().deleteOneLocation("OnBoardingTest");
         System.out.println("start to do tearDown");
     }
 
