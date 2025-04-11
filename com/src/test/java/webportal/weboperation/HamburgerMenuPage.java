@@ -2511,6 +2511,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changePlanToPremium(Map<String, String> map) {
         waitReady();
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         MyCommonAPIs.sleepi(10);
         changeSubNew.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
@@ -2536,8 +2537,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         checkoutbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
+        $x("//button[text()=' Save ']").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
         Termsandcondition.shouldBe(Condition.visible).click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
     }
 
@@ -10427,10 +10430,10 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         // checkAutoRenew(map);
         //click(Termsandcondition, true);
         
-        String subTotal = $x("").shouldBe(Condition.visible).getText();
-        totalValue = $x("").shouldBe(Condition.visible).getText();
+        String subTotal = $x("//td[contains(text(),'Sub Total')]/../td/strong").shouldBe(Condition.visible).getText();
+        totalValue = $x("//td[text()=' Total ']/../td/strong").shouldBe(Condition.visible).getText();
         String tv = totalValue;
-        String tax = $x("").shouldBe(Condition.visible).getText();
+        String tax = $x("//td[contains(text(),'Tax')]/../td/strong").shouldBe(Condition.visible).getText();
         System.out.println("Sub Total Value on payment page: "+subTotal);
         System.out.println("tax Value on payment page: "+tax);
         System.out.println("Total Value on payment page: "+totalValue);
