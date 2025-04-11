@@ -16,6 +16,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.io.BufferedReader;
@@ -26,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -1397,55 +1399,73 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public boolean checkAccountTryTrial() {
-        boolean result = false;
-        // accountmanager.click();
-        // MyCommonAPIs.sleepi(10);
+        boolean result = true;
         waitReady();
-        // String url = MyCommonAPIs.getCurrentUrl();
-        // if (url.contains("#/accountManagement/purchaseHistory")) {
-        // if(closeLockedWindow.exists()) {
-        // closeLockedWindow.click();
-        // }}
-        closeLockedDialog();
-        // subscriptions.click();
-        // MyCommonAPIs.sleepi(10);
-        waitReady();
-        if (closedevicecredits.exists()) {
-            closedevicecredits.click();
-        }
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (accountmanager.isDisplayed()) {
-            accountmanager.click();
-            MyCommonAPIs.sleepi(5);
-            closeLockedDialog();
-            subscriptions.click();
-            MyCommonAPIs.sleepi(10);
-            if (closedevicecredits.exists()) {
-                closedevicecredits.click();
-            }
-            // waitElement(trytrialbutton);
-
-        }
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
         logger.info("Check account try trial...");
-        // trytrialbutton.click();
-        // MyCommonAPIs.sleepi(10);
-        // clickBoxLastButton();
-        // MyCommonAPIs.sleepi(10);
-        // clickBoxLastButton();
-        //
-        // MyCommonAPIs.sleepsync();
-
-        if (currentsubscription.exists()) {
-            if (getText(currentsubscription).equals("Insight Premium Trial Subscription")) {
-                result = true;
-            }
-        } else if (currentsubscriptionpremium.exists()) {
-            if (getText(currentsubscriptionpremium).contains("Insight Premium Trial")) {
-                result = true;
-            }
-
+        
+     // Step 1
+        String p1 = currentsubscription.shouldBe(Condition.visible).getText();
+        System.out.println("Subscription: "+p1);
+        if (!(p1.equals("Insight Premium Trial"))) {
+            System.out.println("Step 1 Failed");
+            result = false;
         }
+               
+     // Step 2
+        String activationDateStr = getText(activationDateText);
+        LocalDateTime activationDate = parseDate(activationDateStr);
+        System.out.println(activationDateText.getText()+" "+activationDate);
+        
+        // Step 3
+        String expirationDateStr = getText(expirationDateText);
+        LocalDateTime expirationDate = parseDate(expirationDateStr);
+        System.out.println(expirationDateText.getText()+" "+expirationDate);
+        
+        // Step 4
+        if (!isNextMonthSameYear(activationDate, expirationDate)) {
+            result = false;
+            System.out.println("Step 4: Failed");
+        }
+
+        // Step 5
+        double price = extractNumericValue(pricePerDevice);
+        System.out.println("pricePerDevice: "+pricePerDevice);
+
+        // Step 6
+        double billing = extractNumericValue(billingInfo);
+        System.out.println("billingInfo: "+billingInfo);
+        
+        if (!(price==billing)) {
+            System.out.println("Step 6 Failed");
+            result = false;        
+        }
+
+        // Step 7
+        if (!verifyText(autoRenewal, "N/A")) {
+            System.out.println("Step 7 Failed");
+            result = false;
+        }
+        
+        System.out.println("autoRenewal: "+autoRenewal.getText());
+
+        // Step 8
+        String actualDeviceCredits = deviceCredits1.getText().trim();
+        String actualDeviceCredits1 = availableCredits1.getText().trim();
+        String actualDeviceCredits2 = insightDevices.getText().trim();
+
+        System.out.println("deviceCredits: " + actualDeviceCredits);
+        System.out.println("availableCredits: " + actualDeviceCredits1);
+        System.out.println("insightDevices: " + actualDeviceCredits2);
+        
+        if (!(actualDeviceCredits.equals("Unlimited") && actualDeviceCredits1.equals("Unlimited") && actualDeviceCredits2.equals("0"))) {
+            System.out.println("Step 8 Failed");
+            result = false;
+        }
+        
         return result;
+        
     }
 
     public boolean checkAccountEmail(String email) {
@@ -2240,7 +2260,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // checkAutoRenew(map);
         // MyCommonAPIs.sleepi(10);
         MyCommonAPIs.sleepi(10);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         // $x("//button[text()='Cancel']").click();
@@ -2457,7 +2477,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // paymentsumbit.click();
         MyCommonAPIs.sleepi(10);
         // checkAutoRenew(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         clickPlaceOrder();
     }
@@ -2491,13 +2511,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changePlanToPremium(Map<String, String> map) {
         waitReady();
-        if (changesubscription.exists()) {
-            changesubscription.click();
-        } else if (changeSubNew.exists()) {
-            changeSubNew.click();
-        } else if (subscriptionupgrade.exists()) {
-            subscriptionupgrade.click();
-        }
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        changeSubNew.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         waitElement(checkoutbutton);
         if (map.get("Country") == "US" || map.get("Country") == "Canada") {
@@ -2519,21 +2535,13 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 }
             }
         }
-        checkoutbutton.click();
+        checkoutbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
-        // setDevNum(map);
-        if (savenum.isDisplayed()) {
-            savenum.click();
-            MyCommonAPIs.sleepi(10);
-        }
-        waitReady();
-        // setDevNumAndInputBillingInfo1(map);
-        // inputCardInfo(map);
-
-        click(Termsandcondition, true);
-        MyCommonAPIs.sleepi(10);
+        $x("//button[text()=' Save ']").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
-
     }
 
     public boolean checkMoreNeeded(String number) {
@@ -2560,25 +2568,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean inputPormoCode(Map<String, String> map) {
         boolean result = false;
         if (map.containsKey("Promo Code")) {
-            addpromocode.click();
-            MyCommonAPIs.sleepi(2);
-            enterpromocode.setValue("test123");
-            // donebutton.click();
+            addpromocode.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(5);
-
-            ElementsCollection checkpoint = $$x("//div[@hidden]//a");
-            if (checkpoint.size() == 1) {
-                enterpromocode.setValue(map.get("Promo Code"));
-                // donebutton.click();
-                conformpromocode.click();
+                enterpromocode.shouldBe(Condition.visible).setValue(map.get("Promo Code"));
+                MyCommonAPIs.sleepi(1);
+                conformpromocode.shouldBe(Condition.visible).click();
                 MyCommonAPIs.waitReady();
                 MyCommonAPIs.sleepi(3);
-                if (totalprice.getText().contains("$0.00 USD")) {
+                if (totalprice.shouldBe(Condition.visible).getText().contains("$0.00 USD")) {
                     result = true;
                     logger.info("Input promo code success.");
                 }
             }
-        }
         return result;
     }
 
@@ -2632,7 +2633,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(10);
         result = inputPormoCode(map);
         MyCommonAPIs.sleepi(5);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -2792,7 +2793,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(10);
         result = inputPormoCode(map);
         MyCommonAPIs.sleepi(5);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         MyCommonAPIs.waitElement(DevieCreditsCount);
@@ -2873,7 +2874,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 MyCommonAPIs.sleepi(10);
                 result = inputPormoCode(map);
                 MyCommonAPIs.sleepi(5);
-                click(Termsandcondition, true);
+                Termsandcondition.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
                 clickPlaceOrder();
                 MyCommonAPIs.waitElement(DevieCreditsCount);
@@ -3053,7 +3054,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         checkoutbutton.click();
         setDevNum(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -3088,7 +3089,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         checkoutbutton.click();
         setDevNum(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -3153,11 +3154,28 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         return result;
     }
 
-    public boolean checkMonthlyCurency(String currency, String Amount) {
+    public boolean checkMonthlyCurency(String currency, String Amount, String totalAmountShownonPaymentpage) {
+        
         boolean result = false;
-        String BasicCurrency = getText(currencysubscriptionNew);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        billingInfo.shouldBe(Condition.visible);
+        String BasicCurrency = getText(billingInfo);
+        System.out.println("BasicCurrency: "+BasicCurrency+" currency: "+currency);
+        String subscriptionPage = BasicCurrency;
 
-        if (BasicCurrency.contains(currency) && BasicCurrency.contains(Amount)) {
+        // Step 1: Extract currency symbol from s2 (non-digit, non-space, non-slash)
+        String currencySymbol = subscriptionPage.replaceAll("[\\d\\s./a-zA-Z]", "");
+
+        // Step 2: Extract amount (number with decimal) from s2
+        String amount = subscriptionPage.replaceAll("[^\\d.]", "");
+
+        // Step 3: Combine symbol and amount
+        String expectedPattern = currencySymbol + amount;
+        
+        System.out.println("Formattted value to match format of Payment page Total Value : "+expectedPattern);
+
+        if (BasicCurrency.contains(currency) && BasicCurrency.contains(Amount) && totalAmountShownonPaymentpage.contains(expectedPattern)) {
             logger.info("Displayed correct currency and amount");
             result = true;
         }
@@ -5361,29 +5379,30 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean VerifyTermsandCondition() {
 
         boolean result = false;
-        boolean result1 = false;
-        boolean result2 = false;
+       
 
         ManagePaymentMethods.click();
-        MyCommonAPIs.sleep(3000);
-        if (Termaandcondition.exists()) {
-            logger.info("Terms and confition Exits");
-            result1 = true;
-        }
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        waitReady();
+//        MyCommonAPIs.sleep(3000);
+//        if (Termaandcondition.exists()) {
+//            logger.info("Terms and confition Exits");
+//            result1 = true;
+//        }
+//        TermaandconditionCheckbox.click();
+//        TermaandconditionAccept.click();
+//        waitReady();
+        
         MyCommonAPIs.sleepi(30);
         if (BillingInfo.exists()) {
             logger.info("Billing info exits");
-            result2 = true;
-        }
-
-        if ((result1 == true) && (result2 == true)) {
-
             result = true;
         }
 
+        if (result == true)
+            result = true;
+
+           cancel.click();
+           MyCommonAPIs.sleepi(5);
+        
         return result;
 
     }
@@ -5711,24 +5730,36 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         String actOnDate = "";
         String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println(tablerow);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+   
+        actOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        expOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        
+        System.out.println("Year extracted : " + actOnDate);
+        System.out.println("Year extracted : " + expOnDate);
+        
+        
+        int actOnYear = extractYear(actOnDate);
+        System.out.println("Year Actual : " + actOnYear);
+        int expOnYear = extractYear(expOnDate);
+        System.out.println("Year Expiry : " + expOnYear);
+//        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
+//        SelenideElement Newele = $x("//span[contains(text(), '" + lic + "')]/../.."); 
+//        System.out.println(tablerow);
+//        System.out.println("clollection of an element");
+//        for (SelenideElement ele : tablerow) {
+//            System.out.println(ele);
+//            System.out.println("Print the element");
+//            String actOnDateText = Newele.findElement(By.xpath("/td[4]")).getText();
+//            String expOnDateText = Newele.findElement(By.xpath("/td[5]")).getText();
+//            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
+//            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
+//            System.out.println(actOnDate);
+//            System.out.println(expOnDate);
+//
+//            break;
+//        }
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
+        if (((Integer.valueOf(expOnYear) - Integer.valueOf(actOnYear)) == 5)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -7181,7 +7212,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     
     // added by vivek
     public void expandinsigtdivCreditsSection() {
-        expandinsigtdivcredits.click();
+        MyCommonAPIs.sleepi(1);
+        purchaseorderhistory.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        expandinsigtdivcredits.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(2);
     }
     
@@ -10048,7 +10082,444 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
 
         return result;
     }
+    
+    public boolean verifyInsightPageData(String devicenumbers) {
+        boolean allChecksPassed = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        try {
+            // Step 1
+            if (!verifyText(insightPremiumText1, "Insight Premium")) {
+                System.out.println("Step 1 Failed: Insight Premium text mismatch");
+                allChecksPassed = false;
+            }
+            System.out.println(insightPremiumText1.getText());
 
+            // Step 2
+            String activationDateStr = getText(activationDateText);
+            LocalDateTime activationDate = parseDate(activationDateStr);
+            System.out.println(activationDateText.getText()+" "+activationDate);
+            
+            // Step 3
+            String expirationDateStr = getText(expirationDateText);
+            LocalDateTime expirationDate = parseDate(expirationDateStr);
+            System.out.println(expirationDateText.getText()+" "+expirationDate);
+            
+            // Step 4
+            if (!validateDateDifference(activationDate, expirationDate)) {
+                System.out.println("Step 4 Failed: Activation and Expiration date difference mismatch");
+                allChecksPassed = false;
+            }
+
+            // Step 5
+            double price = extractNumericValue(pricePerDevice);
+            System.out.println("pricePerDevice: "+pricePerDevice);
+
+            // Step 6
+            double billing = extractNumericValue(billingInfo);
+            System.out.println("billingInfo: "+billingInfo);
+
+            // Step 7
+            if (!verifyText(autoRenewal, "On")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("autoRenewal: "+autoRenewal.getText());
+
+            // Step 8
+            int credits = extractInteger(deviceCredits);
+            String actualDeviceCredits = deviceCredits.getText();
+            if (!actualDeviceCredits.equals(devicenumbers)) {
+                System.out.println("Step 8 Failed: Device Credits count mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("deviceCredits: "+deviceCredits.getText());
+
+            // Step 9
+            double expectedBilling = price * credits;
+            if (expectedBilling != billing) {
+                System.out.println("Step 9 Failed: Billing calculation mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedBilling: "+expectedBilling);
+
+            // Step 10
+            int idevices = extractInteger(insightDevices);
+            
+            System.out.println("insightDevices: "+insightDevices);
+
+            // Step 11
+            int avCredits = extractInteger(availableCredits);
+            
+            System.out.println("availableCredits: "+availableCredits);
+
+            // Step 12
+            int expectedAvailableCredits = credits - idevices;
+            if (expectedAvailableCredits != avCredits) {
+                System.out.println("Step 12 Failed: Available Credits mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedAvailableCredits: "+expectedAvailableCredits);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            allChecksPassed = false;
+        }
+
+        return allChecksPassed;
+    }
+
+
+    private boolean verifyText(SelenideElement element, String expected) {
+        String actual = element.shouldBe(Condition.visible).getText().trim();
+        return actual.equals(expected);
+    }
+
+
+    public String getText(SelenideElement xpath) {
+        return xpath.shouldBe(Condition.visible).getText().trim();
+    }
+
+    private LocalDateTime parseDate(String rawDate) {
+        try {
+            // Normalize 'a.m.' or 'p.m.' to 'AM' / 'PM'
+            rawDate = rawDate.replace("a.m.", "AM").replace("p.m.", "PM");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy hh:mm a", Locale.ENGLISH);
+            return LocalDateTime.parse(rawDate, formatter);
+        } catch (Exception e) {
+            throw new RuntimeException("Date parsing failed for input: " + rawDate, e);
+        }
+    }
+
+
+    private boolean validateDateDifference(LocalDateTime start, LocalDateTime end) {
+        int startYear = start.getYear();
+        int startMonth = start.getMonthValue();
+
+        int endYear = end.getYear();
+        int endMonth = end.getMonthValue();
+
+        // Monthly plan check (ignoring days)
+        boolean isMonthly = 
+            (startYear == endYear && endMonth == startMonth + 1) ||           // e.g., Apr → May
+            (startMonth == 12 && endMonth == 1 && endYear == startYear + 1);  // e.g., Dec → Jan
+
+        // Yearly plan check (ignoring days)
+        boolean isYearly = (endYear == startYear + 1 && endMonth == startMonth);
+
+        System.out.println("Start: " + start + ", End: " + end);
+        System.out.println("Monthly: " + isMonthly + ", Yearly: " + isYearly);
+
+        return isMonthly || isYearly;
+    }
+
+    public double extractNumericValue(SelenideElement element) {
+        String text = element.shouldBe(Condition.visible).getText().replaceAll("[^\\d.]", "");
+        return Double.parseDouble(text);
+    }
+
+    private int extractInteger(SelenideElement element) {
+        String text = element.shouldBe(Condition.visible).getText().replaceAll("\\D+", "");
+        return Integer.parseInt(text);
+    }
+    
+    public boolean verifyFourDevicesOnboardedSubscriptionPage() {
+        boolean result = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        int credits = extractInteger(deviceCredits);
+        String actualDeviceCredits = deviceCredits.getText();
+
+        int idevices = extractInteger(insightDevices);
+        int rqCredits = extractInteger(requiredCredits);
+
+        int expectedAvailableCredits = idevices - credits;
+        if (expectedAvailableCredits != rqCredits) {
+            System.out.println("Step 12 Failed: Required Credits mismatch");
+            result = false;
+        }
+        return true;
+    }
+    
+    private boolean isNextMonthSameYear(LocalDateTime start, LocalDateTime end) {
+        int startMonth = start.getMonthValue();
+        int endMonth = end.getMonthValue();
+        int startYear = start.getYear();
+        int endYear = end.getYear();
+
+        System.out.println("Start Month: " + startMonth + ", End Month: " + endMonth);
+        System.out.println("Start Year: " + startYear + ", End Year: " + endYear);
+
+        return (endMonth == (startMonth % 12) + 1) && (startYear == endYear);
+    }
+    
+    public boolean verifyfreetrailOnPurchaseOrderHistoryPage() {
+        boolean result = true;
+        
+        MyCommonAPIs.sleepi(10);
+        System.out.println(premiumTrailSubsc.shouldBe(Condition.visible).getText());
+        System.out.println(unlimitedDevices.shouldBe(Condition.visible).getText());
+        System.out.println("activatedfreetraildate:  "+activatedfreetraildate.shouldBe(Condition.visible).getText());
+        System.out.println("expirationFreeTrailDate:  "+expirationFreeTrailDate.shouldBe(Condition.visible).getText());
+        if (!(premiumTrailSubsc.isDisplayed() && unlimitedDevices.isDisplayed() 
+                && activatedfreetraildate.isDisplayed() && expirationFreeTrailDate.isDisplayed())) {
+            result = false;
+        }
+        
+        String activationStr = activatedfreetraildate.getText();
+        String expirationStr = expirationFreeTrailDate.getText();
+
+        LocalDate activationDate = parseDateFromString(activationStr);
+        LocalDate expirationDate = parseDateFromString(expirationStr);
+
+        if (!(isNextMonthSameYear(activationDate, expirationDate))) {
+            System.out.println("Invalid: Not exactly one-month duration");
+            result = false;
+        }
+        
+        return result;
+    }
+    
+    
+    private LocalDate parseDateFromString(String dateStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.ENGLISH);
+        return LocalDate.parse(dateStr, formatter);
+    }
+    
+    
+    private boolean isNextMonthSameYear(LocalDate activation, LocalDate expiration) {
+        return activation.getYear() == expiration.getYear()
+                && activation.plusMonths(1).getMonthValue() == expiration.getMonthValue();
+    }
+
+
+    public boolean verifyMultipackDeviceCreditPacks(Map<String, String> map) {
+        boolean allChecksPassed = true;
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        try {
+            // Step 1
+            if (!(multipackSubscriptionId.shouldBe(Condition.visible).isDisplayed())) {
+                System.out.println("Step 1 Failed: Insight Premium text mismatch");
+                allChecksPassed = false;
+            }
+            System.out.println(multipackSubscriptionId.getText());
+
+            // Step 2
+            String activationDateStr = getText(multipackActivationDate);
+            LocalDateTime activationDate = parseDate(activationDateStr);
+            System.out.println(multipackActivationDate.getText()+" "+activationDate);
+            
+            // Step 3
+            String expirationDateStr = getText(multipackExpirationDate);
+            LocalDateTime expirationDate = parseDate(expirationDateStr);
+            System.out.println(multipackExpirationDate.getText()+" "+expirationDate);
+            
+            // Step 4
+            if (!verifyMultipackPurchaseYearDiffrences(activationDate, expirationDate, map)) {
+                System.out.println("Step 4 Failed: Activation and Expiration date difference mismatch");
+                allChecksPassed = false;
+            }
+            
+            // Step 5
+            if (!verifyText(multipackStatus, "Active")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("Status: "+multipackStatus.getText());
+            
+            // Step 6
+            if (!verifyText(multipackDeviceCredits, map.get("Device Credits Pack"))) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("DeviceCredits: "+multipackDeviceCredits.getText());
+
+            // Step 7
+            if (!verifyText(multipackAutoRenewal, "On")) {
+                System.out.println("Step 7 Failed: Auto Renewal is not ON");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("autoRenewal: "+multipackAutoRenewal.getText());
+            
+            
+         // Step 8
+            int credits = extractInteger(deviceCredits);
+            String actualDeviceCredits = deviceCredits.getText();
+            if (!actualDeviceCredits.equals(map.get("Device Credits Pack"))) {
+                System.out.println("Step 8 Failed: Device Credits count mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("deviceCredits: "+deviceCredits.getText());
+
+            // Step 9
+            int idevices = extractInteger(insightDevices);
+            
+            System.out.println("insightDevices: "+insightDevices);
+
+            // Step 10
+            int avCredits = extractInteger(availableCredits);
+            
+            System.out.println("availableCredits: "+availableCredits);
+
+            // Step 11
+            int expectedAvailableCredits = credits - idevices;
+            if (expectedAvailableCredits != avCredits) {
+                System.out.println("Step 12 Failed: Available Credits mismatch");
+                allChecksPassed = false;
+            }
+            
+            System.out.println("expectedAvailableCredits: "+expectedAvailableCredits);
+
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            allChecksPassed = false;
+        }
+
+        return allChecksPassed;
+    }
+    
+    private boolean verifyMultipackPurchaseYearDiffrences(LocalDateTime start, LocalDateTime end, Map<String, String> map) {
+
+        String durationStr = map.get("Buy Year"); // "1", "3", "5", etc.
+        int expectedYearDifference = Integer.parseInt(durationStr);
+
+        int startYear = start.getYear();
+        int startMonth = start.getMonthValue();
+
+        int endYear = end.getYear();
+        int endMonth = end.getMonthValue();
+
+        boolean isSameMonth = startMonth == endMonth;
+        boolean isExpectedYearDiff = (endYear - startYear) == expectedYearDifference;
+
+        System.out.println("Start: " + start + ", End: " + end);
+        System.out.println("Expected Years: " + expectedYearDifference + ", Actual Years: " + (endYear - startYear));
+
+        return isExpectedYearDiff;
+    }
+    
+    public String inputPaymentPageInfoforCAA(Map<String, String> map) {
+        String totalValue = "";
+        logger.info("Start upgrade subsctiption...");
+        MyCommonAPIs.sleepi(5);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(5);
+        if (ChangebuttonMoToYr.exists()) {
+            ChangebuttonMoToYr.click();
+        }
+        if (Changebutton.exists()) {
+            Changebutton.click();
+        } else {
+            waitElement(upgrade);
+            upgrade.click();
+        }
+        // MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(10);
+        waitElement(checkoutbutton);
+
+        selectPremiumTime(map);
+
+        setDevNumAndInputBillingInfo(map);
+        if (map.containsKey("VAT Registration Number")) {
+            billingvatnum.setValue(map.get("VAT Registration Number"));
+        }
+        
+        MyCommonAPIs.sleepi(10);
+        inputCardInfo(map);
+        
+        String subTotal = $x("//td[contains(text(),'Sub Total')]/../td/strong").shouldBe(Condition.visible).getText();
+        totalValue = $x("//td[text()=' Total ']/../td/strong").shouldBe(Condition.visible).getText();
+        String tv = totalValue;
+        String tax = $x("//td[contains(text(),'Tax')]/../td/strong").shouldBe(Condition.visible).getText();
+        System.out.println("Sub Total Value on payment page: "+subTotal);
+        System.out.println("tax Value on payment page: "+tax);
+        System.out.println("Total Value on payment page: "+totalValue);
+        
+        String subtOtal1 = subTotal.replaceAll("[^\\d.]", "");
+        double subtOtal1Int = Double.parseDouble(subtOtal1);
+        
+        String tax1 = tax.replaceAll("[^\\d.]", "");
+        double taxInt = Double.parseDouble(tax1);
+        
+        String totalValue1 = tv.replaceAll("[^\\d.]", "");
+        double totalValueInt = Double.parseDouble(totalValue1);
+        
+        assertTrue((subtOtal1Int + taxInt == totalValueInt));      
+        System.out.println("Values showing on payment page are equal: "+(subtOtal1Int + taxInt == totalValueInt));
+        
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        clickPlaceOrder();
+        return totalValue;
+    }
+    
+    public String changePlanToPremiumForCAA(Map<String, String> map) {
+        String totalValue;
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        changeSubNew.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(checkoutbutton);
+        if (map.get("Country") == "US" || map.get("Country") == "Canada") {
+            logger.info("entered US region");
+            if (map.containsKey("Subscription Time")) {
+                if (map.get("Subscription Time").equals("Monthly")) {
+                    monthlyUS.selectRadio(monthlyUS.getAttribute("value"));
+                } else if (map.get("Subscription Time").equals("Yearly")) {
+                    yearlyUS.selectRadio(yearlyUS.getAttribute("value"));
+                }
+            }
+        } else {
+            logger.info("entered other region");
+            if (map.containsKey("Subscription Time")) {
+                if (map.get("Subscription Time").equals("Monthly")) {
+                    monthly.selectRadio(monthly.getAttribute("value"));
+                } else if (map.get("Subscription Time").equals("Yearly")) {
+                    yearly.selectRadio(yearly.getAttribute("value"));
+                }
+            }
+        }
+        checkoutbutton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(20);
+        
+        String subTotal = $x("").shouldBe(Condition.visible).getText();
+        totalValue = $x("").shouldBe(Condition.visible).getText();
+        String tv = totalValue;
+        String tax = $x("").shouldBe(Condition.visible).getText();
+        System.out.println("Sub Total Value on payment page: "+subTotal);
+        System.out.println("tax Value on payment page: "+tax);
+        System.out.println("Total Value on payment page: "+totalValue);
+        
+        String subtOtal1 = subTotal.replaceAll("[^\\d.]", "");
+        double subtOtal1Int = Double.parseDouble(subtOtal1);
+        
+        String tax1 = tax.replaceAll("[^\\d.]", "");
+        double taxInt = Double.parseDouble(tax1);
+        
+        String totalValue1 = tv.replaceAll("[^\\d.]", "");
+        double totalValueInt = Double.parseDouble(totalValue1);
+        
+        assertTrue((subtOtal1Int + taxInt == totalValueInt));      
+        System.out.println("Values showing on payment page are equal: "+(subtOtal1Int + taxInt == totalValueInt));
+        
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        clickPlaceOrder();
+        
+        return totalValue;
+    }
+    
 }
 
 

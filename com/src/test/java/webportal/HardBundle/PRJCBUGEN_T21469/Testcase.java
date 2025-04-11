@@ -43,7 +43,7 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new OrganizationPage().deleteOrganizationNew(organizationName);
+//        new OrganizationPage().deleteOrganizationNew(organizationName);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -56,20 +56,20 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Create Organization and Location ")
     public void step2() {
-        Map<String, String> organizationInfo = new HashMap<String, String>();
-        organizationInfo.put("Name", organizationName);
-
-        OrganizationPage OrganizationPage = new OrganizationPage();
-        OrganizationPage.addOrganization(organizationInfo);
-        OrganizationPage.openOrg(organizationName);
-        HashMap<String, String> locationInfo     = new HashMap<String, String>();
-        locationInfo.put("Location Name", locationName);
-        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
-        locationInfo.put("Zip Code", "12345");
-        locationInfo.put("Country", "China");
-        new AccountPage(false).addNetwork(locationInfo);
+//        Map<String, String> organizationInfo = new HashMap<String, String>();
+//        organizationInfo.put("Name", organizationName);
+//
+//        OrganizationPage OrganizationPage = new OrganizationPage();
+//        OrganizationPage.addOrganization(organizationInfo);
+//        OrganizationPage.openOrg(organizationName);
+//        HashMap<String, String> locationInfo     = new HashMap<String, String>();
+//        locationInfo.put("Location Name", locationName);
+//        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+//        locationInfo.put("Zip Code", "12345");
+//        locationInfo.put("Country", "China");
+//        new AccountPage(false).addNetwork(locationInfo);
         
-        new HamburgerMenuPage().configCreditAllocation(organizationName, 4, 0, 0);
+//        new HamburgerMenuPage().configCreditAllocation(organizationName, 4, 0, 0);
     }
     
     @Step("Test Step 3:  Add hardbundle device")

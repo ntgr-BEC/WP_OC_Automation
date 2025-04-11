@@ -437,20 +437,30 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             return;
 
         boolean clicked = false;
-        for (int i = 0; i < 2; i++) {
-            enterDeviceSummary(serialNumber).hover();
-            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
-                if (t.isDisplayed()) {
-                    t.click();
-                    clicked = true;
-                    break;
-                }
-            }
-            waitReady();
-            if (clicked) {
-                break;
-            }
-        }
+        
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex"); 
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(row).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(row).shouldBe(Condition.visible).click();
+        
+//        String index = getDeviceAriaIndex(serialNumber);
+        
+        
+//        for (int i = 0; i < 2; i++) {
+//            enterDeviceSummary(serialNumber).hover();
+//            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
+//                if (t.isDisplayed()) {
+//                    t.click();
+//                    clicked = true;
+//                    break;
+//                }
+//            }
+//            waitReady();
+//            if (clicked) {
+//                break;
+//            }
+//        }
         waitReady();
         MyCommonAPIs.sleep(5000);
     }
@@ -743,13 +753,11 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
     }
 
     public String getDeviceStatus(String serialNumber) {
-        if ((devicesStatus(serialNumber)).exists() && (devicesStatus1(serialNumber)).exists()){
+        if ((devicesStatus(serialNumber)).exists()){
             return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else if (devicesStatus(serialNumber).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
-        }
+        }  
+        return "";
+    
     }
 
     public String getDeviceStatusunmanged(String serialNumber) {
@@ -793,12 +801,8 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
 
     public String getDeviceUptime(String serialNumber, boolean getInt) {
         String sDate = "";
-        if ((devicesUptime(serialNumber)).exists() && (devicesUptime1(serialNumber)).exists()){
+        if ((devicesUptime(serialNumber)).exists()){
             sDate = getText(devicesUptime(serialNumber));
-        } else if (devicesStatus(serialNumber).exists()) {
-            sDate = getText(devicesUptime(serialNumber));
-        } else {
-            sDate = getText(devicesUptime1(serialNumber));
         }
         if (getInt) {
             char[] charfield = sDate.toCharArray();
@@ -931,28 +935,13 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
             }
             refresh();
         }
-        for (SelenideElement se : $$x(sDeviceSerialNo)) {
-            String sSerialNo = getText(se);
-            if (getText(se).equalsIgnoreCase(sNo)) {
-                if (addDevice1.exists()) {
-                    addDevice1.hover();
-                }
-                se.hover();
-                sleepi(1);
-                for (SelenideElement se1 : $$(".rebootDeviceIcon")) {
-                    if (se1.isDisplayed()) {
-                        logger.info(sNo);
-                        se1.click();
-                        sleepi(20);
-                        rebootconfirm.click();
-                        clickBoxLastButton();
-                        MyCommonAPIs.sleepi(60);
-                        break;
-                    }
-                }
-                break;
-            }
-        }
+        String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexReboot(row).click();        
+        rebootconfirm.click();
+        clickBoxLastButton();
+        MyCommonAPIs.sleepi(60);
     }
 
     public void NorebootDevice(String sNo) {
@@ -1049,7 +1038,6 @@ public class DevicesDashPageMNG extends DevicesDashPageElements {
                     if (!getDeviceUptime(sNo, false).equals(sCur)) {
                         timeout = false;
                         break;
-
                     }
                 } else {
                     sCur = null;

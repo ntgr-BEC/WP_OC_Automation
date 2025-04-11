@@ -148,7 +148,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     //public SelenideElement        Unlimited              = $x("//*[@id=\"premiumSubscriptionPackDiv\"]/div/div[1]/div/div/div[1]/p[1]");
     //public SelenideElement        Unlimited              = $x("//p[text() = 'Unlimited']");
     public SelenideElement        trytrialbutton              = $("#btnDefaultTrialsubscriptions");
-    public SelenideElement        currentsubscription         = $("#hplanNamesubscriptions");
+    public SelenideElement        currentsubscription         = $x("//*[@class='premiumSubscriptionBlock']/..//p[contains(text(),'Insight Premium')]");
     public static SelenideElement currentSubscriptionNew      = $x("//h3[text()='" + WebportalParam.getLocText("Type") + "']/../p");
     public static SelenideElement subscriptionTableActivation = $x("//h3[text()='" + WebportalParam.getLocText("Activation") + "']/../p");
     public static SelenideElement subscriptionTableExpiration = $x("//h3[text()='" + WebportalParam.getLocText("Expiration") + "']/../p");
@@ -294,7 +294,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
             " //*[@id=\"_divConSecsubscriptions\"]/div[2]/div/div[2]/div[1]/div[2]/div/div/ul/li[3]/p[2]");
     public SelenideElement        deviceredsubscriptionNew    = $x("//div[@class='SubsDeviceslist']/div[1]/h2");
     public SelenideElement        changesubscription          = $("#btnModslLearnMoreSubscription");
-    public static SelenideElement changeSubNew                = $x("//span[text()='" + WebportalParam.getLocText("Change Subscription") + "']");
+    public static SelenideElement changeSubNew                = $x("//span[text()='Change Subscription']");
     public SelenideElement        buydevicecredits            = $("#btnBuyDeviceSubscription");
     public SelenideElement        billingandpayment           = $("#btnDefDeviceSubscription");
     public static SelenideElement billingandpaymentNew        = $x("//span[text()='" + WebportalParam.getLocText("Subscription Billing") + "']");
@@ -343,10 +343,10 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public String          paymentautorenewstatus = "//input[@name='AutoRenew']";
     public SelenideElement paymentsumbit          = $("#submitPayment");
     public SelenideElement addpromocode           = $(".PromoCodeBlock:nth-child(2)");
-    public SelenideElement conformpromocode       = $("#add-promo");
+    public SelenideElement conformpromocode       = $("//div[@id='orderSumary-showpromocode-div']//button[@id = 'add-promo' and text()=' Add Promo Code ']");
 
     public SelenideElement        enterpromocode      = $("#enter-promo");
-    public static SelenideElement totalprice          = $x("//td[text()=' " + WebportalParam.getLocText("Total") + " ']/../td[2]");
+    public static SelenideElement totalprice          = $x("//td[text()=' Total ']/../td[2]/strong");
     public SelenideElement        donebutton          = $x("//button[text()='Done']");
     public SelenideElement        checkbox            = $x("//*[@id=\"styled-checkbox-1\"]");
     public static SelenideElement placeyourorder      = $x("//button[text()='" + WebportalParam.getLocText("Place Your order") + "']");
@@ -1033,5 +1033,33 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  unlimitedDeviceCredits            = $x("//p[text()='Device Credits']/../p[text()='Unlimited']");
   public SelenideElement  unlimitedAvailableCredits         = $x("//p[text()='Available Credits']/../p[text()='Unlimited']");
   public SelenideElement  insightDevicesCountfreeTrail      = $x("//p[text()='Insight Devices']/../h2");
+  //AddedByPratik
+  public SelenideElement  insightPremiumText1               = $x("//p[text()='Insight Premium']");
+  public SelenideElement  activationDateText                = $x("//h3[text()='Activation']/../p");
+  public SelenideElement  expirationDateText                = $x("//h3[text()='Expiration']/../p");
+  public SelenideElement  pricePerDevice                    = $x("//h3[text()='Price Per Device']/../p");
+  public SelenideElement  billingInfo                       = $x("//h3[text()='Billing']/../p");
+  public SelenideElement  autoRenewal                       = $x("//h3[text()='Auto Renewal']/../p");
+  public SelenideElement  deviceCredits                     = $x("//p[text()='Device Credits']/../h2");
+  public SelenideElement  insightDevices                    = $x("//p[text()='Insight Devices']/../h2");
+  public SelenideElement  availableCredits                  = $x("//p[text()='Available Credits']/../h2");
+  public SelenideElement  requiredCredits                   = $x("//p[text()='Required Credits']/../h2");
+  
+  public SelenideElement  premiumTrailSubsc                 = $x("//span[text()='Insight Premium Trial Subscription']");
+  public SelenideElement  unlimitedDevices                  = $x("//span[text()='Unlimited']");
+  public SelenideElement  activatedfreetraildate            = $x("(//th[text()='Activated On']/../../..//td/p)[1]");
+  public SelenideElement  expirationFreeTrailDate           = $x("(//th[text()='Activated On']/../../..//td/p)[3]");
+  public SelenideElement  deviceCredits1                     = $x("(//p[text()='Device Credits']/../p)[1]");
+  public SelenideElement  availableCredits1                  = $x("(//p[text()='Available Credits']/../p)[1]");
+  
+  //PratikMultipack
+  public SelenideElement multipackActivationDate = $x("//tbody/tr/td[2]/span");
+  public SelenideElement multipackExpirationDate = $x("//tbody/tr/td[3]/p");
+  public SelenideElement multipackDeviceCredits = $x("//tbody/tr/td[4]/span");
+  public SelenideElement multipackStatus = $x("//tbody/tr/td[5]/span");
+  public SelenideElement multipackAutoRenewal = $x("//tbody/tr/td[6]");
+  public SelenideElement multipackSubscriptionId = $x("//tr/td[1]/span");
+  
+  
 }
 

@@ -2,11 +2,13 @@ package webportal.webelements;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.$$x;
 
 import java.util.logging.Logger;
 
 import org.openqa.selenium.By;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.SelenideElement;
 
@@ -319,7 +321,7 @@ public class DeviceScreenNavigationElement extends MyCommonAPIs {
   public SelenideElement    CloseButton                         = $x("//*[@id=\"topologyContainer\"]/div[5]/div/div/div[1]/button/img");
   public SelenideElement    DownloadimgButton                   = $x("//*[@id=\"saveButton\"]");
   
-  public SelenideElement    ClientsPage                        = $x("(//*[text()=\"Clients\"])[3]"); 
+  public ElementsCollection    ClientsPage                      = $$x("//*[text()=\"Clients\"]"); 
   public SelenideElement    AllButton                           = $x("//*[@id=\"cleintComponentContainer\"]/div[1]/div[2]/div[1]/div[1]/div[1]/div/div[1]/label/p");
   public SelenideElement    WiredButton                         = $x("//*[@id=\"cleintComponentContainer\"]/div[1]/div[2]/div/div[1]/div[1]/div/div[2]/label/p");
   public SelenideElement    WirelessButton                      = $x("//*[@id=\"cleintComponentContainer\"]/div[1]/div[2]/div[1]/div[1]/div[1]/div/div[3]/label/p");

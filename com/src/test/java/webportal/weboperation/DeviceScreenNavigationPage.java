@@ -22,6 +22,7 @@ import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.DeviceBRVPNUsersElement;
 import webportal.webelements.DeviceScreenNavigationElement;
+import webportal.weboperation.GenericMethods;
 
 public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
     Logger logger = Logger.getLogger("DeviceScreenNavigationPage");
@@ -961,7 +962,8 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
 
        public boolean verifyDeviceClients() {
            MyCommonAPIs.sleepi(5); 
-           ClientsPage.click();
+           GenericMethods.clickVisibleElements(ClientsPage);
+//           ClientsPage.click();
            MyCommonAPIs.sleepi(2); 
            boolean result = false;       
            System.out.println(AllButton.isDisplayed());
@@ -976,7 +978,9 @@ public class DeviceScreenNavigationPage extends DeviceScreenNavigationElement {
            return result;
        }
       
-       public boolean verifyDeviceLeds() {
+   
+
+    public boolean verifyDeviceLeds() {
            WebCheck.checkHrefIcon(URLParam.hrefDeviceLeds);
            MyCommonAPIs.sleepi(5); 
            boolean result = false;       

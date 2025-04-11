@@ -1,4 +1,4 @@
-package webportal.MUBBilling.PRJCBUGEN_T21888;
+package webportal.NightlyBuild.PRJCBUGEN_T34372;
 
 import static org.testng.Assert.assertTrue;
 
@@ -16,28 +16,34 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.param.URLParam;
 import webportal.param.WebportalParam;
+import webportal.publicstep.WebCheck;
+import webportal.weboperation.DeviceBulkOnboardingPage;
+import webportal.weboperation.DeviceScreenNavigationPage;
 import webportal.weboperation.DevicesDashPage;
-import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author Tejeshwini k V
- *
+ * @author Anusha H
  */
 public class Testcase extends TestCaseBase {
+    
+    
+   
 
-    @Feature("MUBBilling") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T21888") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify the Terms and condition while enabling Usage Based Billing") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T21888") // It's a testcase id/link from Jira Test Case.
+    @Feature("NightlyBuild") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T34372") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Clients page Navigation in the pro account") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN0-T34372") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
+  
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -48,19 +54,16 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
-       
+        handle.gotoLoction();
+
     }
 
-    @Step("Test Step 2: verify functionality of Cancel button")
-    public void step2() {  
+    @Step("Test Step 2: Verify Clients page")
+    public void step2() {
+            new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+            assertTrue(new  DeviceScreenNavigationPage().verifyDeviceClients()," Clients Screen is not complete");
         
-        new HamburgerMenuPage(false).GooMUB();
-      assertTrue(new HamburgerMenuPage(false).VerifyTermsandCondition(),"Terms and condition is not avilable to accept");
-       
-        
-    }
-
-
+    } 
 }

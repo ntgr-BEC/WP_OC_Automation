@@ -73,7 +73,9 @@ public class AccountPage extends AccountPageElement {
             for (String ss : map.keySet()) {
                 logger.info(ss + ": " + map.get(ss));
                 MyCommonAPIs.sleepi(5);
-            } if (createNewLocationButton.shouldBe(Condition.visible).isDisplayed()) {
+            } 
+            
+            if (createNewLocationButton.isDisplayed()) {
                 createNewLocationButton.shouldBe(Condition.visible).click();
             } else if (addNetworkButton.isDisplayed()) {
                 addNetworkButton.shouldBe(Condition.visible).click();
@@ -990,7 +992,7 @@ public class AccountPage extends AccountPageElement {
         // locationlist.click();
         // }
         System.out.println("enterd");
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(30);
         deleteLocation(locationName);
         MyCommonAPIs.sleepi(10);
         return new AccountPage();

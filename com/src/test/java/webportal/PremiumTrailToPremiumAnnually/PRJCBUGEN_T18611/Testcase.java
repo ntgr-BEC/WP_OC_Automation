@@ -88,8 +88,13 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
-      
-    
+    @Step("Test Step 2: Check account free trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();       
+    }
+     
     @Step("Test Step 3: Create new location")
     public void step3() {
         
@@ -98,7 +103,6 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "4560");
         locationInfo.put("Country", "Australia");
-        new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
     }
     
@@ -129,7 +133,7 @@ public class Testcase extends TestCaseBase {
       
     }
 
-    @Step("Test Step 5: chnage premium Trail to Premium Yearly;")
+    @Step("Test Step 5: change premium Trail to Premium Yearly;")
     public void step5() {
         new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         Map<String, String> paymentInfo = new HashMap<String, String>();
@@ -145,7 +149,8 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("Country", "Australia");
         paymentInfo.put("State", "Queensland");
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage().checkSubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
     }
             
     
@@ -171,6 +176,7 @@ public class Testcase extends TestCaseBase {
         new DevicesDashPage(false).addNewdummyDevice(SeconddevInfo);
         
         assertTrue(new DevicesDashPage(false).isDeviceNotUnmanaged(WebportalParam.ap4serialNo), "More device exits");
+        assertTrue(new HamburgerMenuPage(false).verifyFourDevicesOnboardedSubscriptionPage(), "total four insight devices are not showing correctly on subscription page");
       
     }
 
