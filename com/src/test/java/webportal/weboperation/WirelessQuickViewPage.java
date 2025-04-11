@@ -1354,6 +1354,8 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void editApName(String serialNumber, String newname) {
         if (checkApIsExist(serialNumber)) {
+//            editName(serialNumber).hover();
+//            MyCommonAPIs.sleepi(1);
             editName(serialNumber).click();
             MyCommonAPIs.sleepi(3);
             inputName(serialNumber).clear();
@@ -2994,15 +2996,23 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return new WirelessQuickViewPage();
     }
 
-    public boolean checkApNameIsExist(String serialNumber, String Name) {
+    public boolean checkApNameIsExist(String serialNumber, String expectedName) {
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
         boolean result = false;
-        if ($x("//td[text()='" + serialNumber + "']/../td[1]").getText().equals(Name)) {
+
+        editName(serialNumber).hover();
+        String actualName = editName(serialNumber).getText();
+
+        if (actualName.contains(expectedName)) {
             result = true;
-            logger.info("Ap name:" + Name + " is existed.");
+            logger.info("AP name contains expected value. Actual: " + actualName + ", Expected: " + expectedName);
+        } else {
+            logger.info("AP name does NOT contain expected value. Actual: " + actualName + ", Expected: " + expectedName);
         }
+
         return result;
     }
+
 
     public boolean checkswitchNameIsExist(String serialNumber, String Name) {
         WebCheck.checkHrefIcon(URLParam.hrefDevices);
@@ -3075,7 +3085,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     public boolean checkApIsExist(String serialNumber) {
         waitReady();
         boolean result = false;
-        String sElement = String.format("//td[text()='%s']", serialNumber);
+        String sElement = String.format("//span[text()='%s']", serialNumber);
         logger.info("on element: " + sElement);
         if ($x(sElement).exists() || $x("//span[text()='"+serialNumber+"']").exists()) {
             result = true;

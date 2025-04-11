@@ -1,4 +1,4 @@
-package webportal.MUBBilling.PRJCBUGEN_T21888;
+package webportal.MUBBilling.DontRun.PRJCBUGEN_T21888;
 
 import static org.testng.Assert.assertTrue;
 
@@ -49,7 +49,6 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName,WebportalParam.adminPassword);
-
        
     }
 

@@ -1,4 +1,4 @@
-package webportal.MUBBilling.PRJCBUGEN_T21881;
+package webportal.MUBBilling.DontRun.PRJCBUGEN_T21881;
 
 import static org.testng.Assert.assertTrue;
 
