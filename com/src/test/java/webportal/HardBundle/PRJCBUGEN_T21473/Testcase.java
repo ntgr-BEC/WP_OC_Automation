@@ -16,6 +16,9 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
+import webportal.param.CommonDataType;
+import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
@@ -68,7 +71,7 @@ public class Testcase extends TestCaseBase {
         
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T15589");
+        accountInfo.put("Last Name", "T21473");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear#123");
@@ -76,22 +79,71 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Country", "Australia");
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
+    
+    @Step("Test Step 2: Check account free trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();       
+    }
    
     
-    @Step("Test Step 4: Create Location ")
-    public void step4() {
-        new HamburgerMenuPage(false).closeLockedDialog();     
+    @Step("Test Step 3: Create Location ")
+    public void step3() {    
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "4560");
         locationInfo.put("Country", "Australia");
+        new HamburgerMenuPage();
         new AccountPage().addNetwork(locationInfo);
         
     }
     
-    @Step("Test Step 5: Add HB device ")
+    @Step("Test Step 4: Add device To the Network;")
+    public void step4() {
+        
+        new AccountPage().enterLocation("OnBoardingTest");
+        
+        Map<String, String> firststdevInfo = new HashMap<String, String>();
+        Map<String, String> firststdevInfo1 = new HashMap<String, String>();
+        
+        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
+        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
+        
+        System.out.println(firststdevInfo);
+                
+        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        
+        assertTrue(new DevicesDashPage().checkNumberOfDevices().equals("Onedevice"), "More device exits");
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
+      
+    }
+    
+    @Step("Test Step 5: chnage premium Trail to Premium Monthly;")
     public void step5() {
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo = new CommonDataType().CARD_INFO;
+        paymentInfo.put("Subscription Time", "Monthly");
+        paymentInfo.put("Number of Device Credits", "0");
+        paymentInfo.put("First Name", mailname);
+        paymentInfo.put("Last Name", "T17512");
+        paymentInfo.put("Email", mailname + "@mailinator.com");
+        paymentInfo.put("Street Address", "Main Street");
+        paymentInfo.put("City", "Montville");
+        paymentInfo.put("Zip", "4560");
+        paymentInfo.put("Country", "Australia");
+        paymentInfo.put("State", "Queensland");
+    
+        new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+    }
+    
+    @Step("Test Step 6: Add HB device ")
+    public void step6() {
         
         new AccountPage().enterLocation(locationName);
         
@@ -158,33 +210,4 @@ public class Testcase extends TestCaseBase {
         
     }
     
-    
-    @Step("Test Step 6: change  Basic  to Premium Monthly;")
-    public void step6() {
-        new AccountPage().enterLocation(locationName);
-        Map<String, String> firststdevInfo = new HashMap<String, String>();
-        firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
-        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap5serialNo);
-        
-        Map<String, String> paymentInfo = new HashMap<String, String>();
-        paymentInfo.put("Subscription Time", "Monthly");
-        paymentInfo.put("Number of Device Credits", "2");
-        paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T17512");
-        paymentInfo.put("Email", mailname + "@mailinator.com");
-        paymentInfo.put("Street Address", "Main Street");
-        paymentInfo.put("City", "Montville");
-        paymentInfo.put("Zip", "4560");
-        paymentInfo.put("Country", "Australia");
-        paymentInfo.put("State", "Queensland");
-        paymentInfo.put("Card Number", "5193911111111112");
-        paymentInfo.put("CVV Number", "123");
-        paymentInfo.put("Expiration Month", "May");
-        paymentInfo.put("Expiration Year", "2030");
-        new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
-        assertTrue(new HamburgerMenuPage(false).checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 0)), "Amount is incorrect.");
-   
-    }
 }

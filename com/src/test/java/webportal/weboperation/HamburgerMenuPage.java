@@ -2260,7 +2260,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // checkAutoRenew(map);
         // MyCommonAPIs.sleepi(10);
         MyCommonAPIs.sleepi(10);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         // $x("//button[text()='Cancel']").click();
@@ -2477,7 +2477,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // paymentsumbit.click();
         MyCommonAPIs.sleepi(10);
         // checkAutoRenew(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         clickPlaceOrder();
     }
@@ -2511,6 +2511,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changePlanToPremium(Map<String, String> map) {
         waitReady();
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         MyCommonAPIs.sleepi(10);
         changeSubNew.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
@@ -2536,8 +2537,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         checkoutbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
+        $x("//button[text()=' Save ']").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
         Termsandcondition.shouldBe(Condition.visible).click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
     }
 
@@ -2565,25 +2568,18 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean inputPormoCode(Map<String, String> map) {
         boolean result = false;
         if (map.containsKey("Promo Code")) {
-            addpromocode.click();
-            MyCommonAPIs.sleepi(2);
-            enterpromocode.setValue("test123");
-            // donebutton.click();
+            addpromocode.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(5);
-
-            ElementsCollection checkpoint = $$x("//div[@hidden]//a");
-            if (checkpoint.size() == 1) {
-                enterpromocode.setValue(map.get("Promo Code"));
-                // donebutton.click();
-                conformpromocode.click();
+                enterpromocode.shouldBe(Condition.visible).setValue(map.get("Promo Code"));
+                MyCommonAPIs.sleepi(1);
+                conformpromocode.shouldBe(Condition.visible).click();
                 MyCommonAPIs.waitReady();
                 MyCommonAPIs.sleepi(3);
-                if (totalprice.getText().contains("$0.00 USD")) {
+                if (totalprice.shouldBe(Condition.visible).getText().contains("$0.00 USD")) {
                     result = true;
                     logger.info("Input promo code success.");
                 }
             }
-        }
         return result;
     }
 
@@ -2637,7 +2633,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(10);
         result = inputPormoCode(map);
         MyCommonAPIs.sleepi(5);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -2797,7 +2793,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(10);
         result = inputPormoCode(map);
         MyCommonAPIs.sleepi(5);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         MyCommonAPIs.waitElement(DevieCreditsCount);
@@ -2878,7 +2874,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 MyCommonAPIs.sleepi(10);
                 result = inputPormoCode(map);
                 MyCommonAPIs.sleepi(5);
-                click(Termsandcondition, true);
+                Termsandcondition.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
                 clickPlaceOrder();
                 MyCommonAPIs.waitElement(DevieCreditsCount);
@@ -3058,7 +3054,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         checkoutbutton.click();
         setDevNum(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -3093,7 +3089,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
         checkoutbutton.click();
         setDevNum(map);
-        click(Termsandcondition, true);
+        Termsandcondition.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
         logger.info("Finish upgrade subsctiption...");
@@ -3158,11 +3154,28 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         return result;
     }
 
-    public boolean checkMonthlyCurency(String currency, String Amount) {
+    public boolean checkMonthlyCurency(String currency, String Amount, String totalAmountShownonPaymentpage) {
+        
         boolean result = false;
-        String BasicCurrency = getText(currencysubscriptionNew);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(10);
+        billingInfo.shouldBe(Condition.visible);
+        String BasicCurrency = getText(billingInfo);
+        System.out.println("BasicCurrency: "+BasicCurrency+" currency: "+currency);
+        String subscriptionPage = BasicCurrency;
 
-        if (BasicCurrency.contains(currency) && BasicCurrency.contains(Amount)) {
+        // Step 1: Extract currency symbol from s2 (non-digit, non-space, non-slash)
+        String currencySymbol = subscriptionPage.replaceAll("[\\d\\s./a-zA-Z]", "");
+
+        // Step 2: Extract amount (number with decimal) from s2
+        String amount = subscriptionPage.replaceAll("[^\\d.]", "");
+
+        // Step 3: Combine symbol and amount
+        String expectedPattern = currencySymbol + amount;
+        
+        System.out.println("Formattted value to match format of Payment page Total Value : "+expectedPattern);
+
+        if (BasicCurrency.contains(currency) && BasicCurrency.contains(Amount) && totalAmountShownonPaymentpage.contains(expectedPattern)) {
             logger.info("Displayed correct currency and amount");
             result = true;
         }
@@ -5366,29 +5379,30 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean VerifyTermsandCondition() {
 
         boolean result = false;
-        boolean result1 = false;
-        boolean result2 = false;
+       
 
         ManagePaymentMethods.click();
-        MyCommonAPIs.sleep(3000);
-        if (Termaandcondition.exists()) {
-            logger.info("Terms and confition Exits");
-            result1 = true;
-        }
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        waitReady();
+//        MyCommonAPIs.sleep(3000);
+//        if (Termaandcondition.exists()) {
+//            logger.info("Terms and confition Exits");
+//            result1 = true;
+//        }
+//        TermaandconditionCheckbox.click();
+//        TermaandconditionAccept.click();
+//        waitReady();
+        
         MyCommonAPIs.sleepi(30);
         if (BillingInfo.exists()) {
             logger.info("Billing info exits");
-            result2 = true;
-        }
-
-        if ((result1 == true) && (result2 == true)) {
-
             result = true;
         }
 
+        if (result == true)
+            result = true;
+
+           cancel.click();
+           MyCommonAPIs.sleepi(5);
+        
         return result;
 
     }
@@ -5716,24 +5730,36 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         String actOnDate = "";
         String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println(tablerow);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+   
+        actOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        expOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        
+        System.out.println("Year extracted : " + actOnDate);
+        System.out.println("Year extracted : " + expOnDate);
+        
+        
+        int actOnYear = extractYear(actOnDate);
+        System.out.println("Year Actual : " + actOnYear);
+        int expOnYear = extractYear(expOnDate);
+        System.out.println("Year Expiry : " + expOnYear);
+//        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
+//        SelenideElement Newele = $x("//span[contains(text(), '" + lic + "')]/../.."); 
+//        System.out.println(tablerow);
+//        System.out.println("clollection of an element");
+//        for (SelenideElement ele : tablerow) {
+//            System.out.println(ele);
+//            System.out.println("Print the element");
+//            String actOnDateText = Newele.findElement(By.xpath("/td[4]")).getText();
+//            String expOnDateText = Newele.findElement(By.xpath("/td[5]")).getText();
+//            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
+//            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
+//            System.out.println(actOnDate);
+//            System.out.println(expOnDate);
+//
+//            break;
+//        }
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 3)) {
+        if (((Integer.valueOf(expOnYear) - Integer.valueOf(actOnYear)) == 5)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -10381,6 +10407,117 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         System.out.println("Expected Years: " + expectedYearDifference + ", Actual Years: " + (endYear - startYear));
 
         return isExpectedYearDiff;
+    }
+    
+    public String inputPaymentPageInfoforCAA(Map<String, String> map) {
+        String totalValue = "";
+        logger.info("Start upgrade subsctiption...");
+        MyCommonAPIs.sleepi(5);
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        MyCommonAPIs.sleepi(5);
+        if (ChangebuttonMoToYr.exists()) {
+            ChangebuttonMoToYr.click();
+        }
+        if (Changebutton.exists()) {
+            Changebutton.click();
+        } else {
+            waitElement(upgrade);
+            upgrade.click();
+        }
+        // MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(10);
+        waitElement(checkoutbutton);
+
+        selectPremiumTime(map);
+
+        setDevNumAndInputBillingInfo(map);
+        if (map.containsKey("VAT Registration Number")) {
+            billingvatnum.setValue(map.get("VAT Registration Number"));
+        }
+        
+        MyCommonAPIs.sleepi(10);
+        inputCardInfo(map);
+        
+        String subTotal = $x("//td[contains(text(),'Sub Total')]/../td/strong").shouldBe(Condition.visible).getText();
+        totalValue = $x("//td[text()=' Total ']/../td/strong").shouldBe(Condition.visible).getText();
+        String tv = totalValue;
+        String tax = $x("//td[contains(text(),'Tax')]/../td/strong").shouldBe(Condition.visible).getText();
+        System.out.println("Sub Total Value on payment page: "+subTotal);
+        System.out.println("tax Value on payment page: "+tax);
+        System.out.println("Total Value on payment page: "+totalValue);
+        
+        String subtOtal1 = subTotal.replaceAll("[^\\d.]", "");
+        double subtOtal1Int = Double.parseDouble(subtOtal1);
+        
+        String tax1 = tax.replaceAll("[^\\d.]", "");
+        double taxInt = Double.parseDouble(tax1);
+        
+        String totalValue1 = tv.replaceAll("[^\\d.]", "");
+        double totalValueInt = Double.parseDouble(totalValue1);
+        
+        assertTrue((subtOtal1Int + taxInt == totalValueInt));      
+        System.out.println("Values showing on payment page are equal: "+(subtOtal1Int + taxInt == totalValueInt));
+        
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        clickPlaceOrder();
+        return totalValue;
+    }
+    
+    public String changePlanToPremiumForCAA(Map<String, String> map) {
+        String totalValue;
+        waitReady();
+        MyCommonAPIs.sleepi(10);
+        changeSubNew.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(checkoutbutton);
+        if (map.get("Country") == "US" || map.get("Country") == "Canada") {
+            logger.info("entered US region");
+            if (map.containsKey("Subscription Time")) {
+                if (map.get("Subscription Time").equals("Monthly")) {
+                    monthlyUS.selectRadio(monthlyUS.getAttribute("value"));
+                } else if (map.get("Subscription Time").equals("Yearly")) {
+                    yearlyUS.selectRadio(yearlyUS.getAttribute("value"));
+                }
+            }
+        } else {
+            logger.info("entered other region");
+            if (map.containsKey("Subscription Time")) {
+                if (map.get("Subscription Time").equals("Monthly")) {
+                    monthly.selectRadio(monthly.getAttribute("value"));
+                } else if (map.get("Subscription Time").equals("Yearly")) {
+                    yearly.selectRadio(yearly.getAttribute("value"));
+                }
+            }
+        }
+        checkoutbutton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(20);
+        
+        String subTotal = $x("").shouldBe(Condition.visible).getText();
+        totalValue = $x("").shouldBe(Condition.visible).getText();
+        String tv = totalValue;
+        String tax = $x("").shouldBe(Condition.visible).getText();
+        System.out.println("Sub Total Value on payment page: "+subTotal);
+        System.out.println("tax Value on payment page: "+tax);
+        System.out.println("Total Value on payment page: "+totalValue);
+        
+        String subtOtal1 = subTotal.replaceAll("[^\\d.]", "");
+        double subtOtal1Int = Double.parseDouble(subtOtal1);
+        
+        String tax1 = tax.replaceAll("[^\\d.]", "");
+        double taxInt = Double.parseDouble(tax1);
+        
+        String totalValue1 = tv.replaceAll("[^\\d.]", "");
+        double totalValueInt = Double.parseDouble(totalValue1);
+        
+        assertTrue((subtOtal1Int + taxInt == totalValueInt));      
+        System.out.println("Values showing on payment page are equal: "+(subtOtal1Int + taxInt == totalValueInt));
+        
+        Termsandcondition.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        clickPlaceOrder();
+        
+        return totalValue;
     }
     
 }

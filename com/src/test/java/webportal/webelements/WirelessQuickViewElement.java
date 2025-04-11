@@ -456,13 +456,13 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
 
     public SelenideElement inputName(String text) {
         SelenideElement inputname;
-        if($x("(//span[text()='" + text + "']/../../../td[1]//input)[2]").isDisplayed()) {
-         inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)[2]");
-        }else {
-          inputname = $x("(//span[text()='" + text + "']/../../../td[1]//input)");
+        if($x("//span[text()='" + text + "']/../../../td[1]").isDisplayed()) {
+         inputname = $x("//span[text()='"+text+"']/../../..//input[starts-with(@id, 'tdinpEditdevicesDash')]");
+        }
+        else {
+          inputname = $x("//span[text()='"+text+"']/../../..//input[starts-with(@id, 'tdinpEditdevicesDash')]");
         }
           
-        
         return inputname;
     }
 
@@ -1574,6 +1574,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement outputpower5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//*[text()='Output Power']/../select");
      public SelenideElement channelWidth5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//*[@id='divOnOdSetRadiChnl']/select");
      public SelenideElement RadioMode5lowDevice = $x("//span[contains(text(),'5GHz Low')]/../..//h5[text()='Radio Mode']/../../select");
+     public ElementsCollection checkedCheckboxes24GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '2.4 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
+     public ElementsCollection checkedCheckboxes5GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '5 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
+     public ElementsCollection checkedCheckboxes6GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '6 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
 
 }
 
