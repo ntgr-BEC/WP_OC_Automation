@@ -75,6 +75,9 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Country", "UK");
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();
     }
     
     @Step("Test Step 2: Create new location")
@@ -128,16 +131,20 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "England");
        
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
+        paymentInfo.put("Subscription Time", "Yearly");
+        new HamburgerMenuPage(false).changePlanToPremium(paymentInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyInsightPageData(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits")) + 1)), "Amount is incorrect.");
 
-        if (new HamburgerMenuPage(false)
-                .checkMonthlySubscriptionScreen(String.valueOf(Integer.valueOf(paymentInfo.get("Number of Device Credits"))))) {
-            paymentInfo.put("Subscription Time", "Yearly");
-            new HamburgerMenuPage(false).changePlanToPremium(paymentInfo);
-            assertTrue(new HamburgerMenuPage(false).checkSubscriptionScreen(paymentInfo.get("Number of Device Credits")),
-                    "Buy premium subscription unsuccessful.");
-        } else {
-            assertTrue(false);
+        
         }
+        @Step("Test Step 5: cancel Subscription")
+        public void step5() {
+            
+          new HamburgerMenuPage(false).cancelSubscription();     
+          assertTrue(new HamburgerMenuPage().CancelSubscriptionformpremiumanually(), "did not cancel");
     }
 
 }

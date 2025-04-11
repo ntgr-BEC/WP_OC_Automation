@@ -112,7 +112,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 4: Add device To the Network;")
     public void step4() {
         
- new AccountPage().enterLocation("OnBoardingTest");
+        new AccountPage().enterLocation("OnBoardingTest");
         
         Map<String, String> firststdevInfo = new HashMap<String, String>();
         Map<String, String> firststdevInfo1 = new HashMap<String, String>();

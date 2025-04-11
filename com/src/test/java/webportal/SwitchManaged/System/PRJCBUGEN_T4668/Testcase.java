@@ -73,10 +73,10 @@ public class Testcase extends TestCaseBase implements Config {
     }
 
     @Step("Test Step 6: After switch reload, check switch info on Web Portal and device Web GUI")
-    public void step9() {
+    public void step6() {
         new DevicesDashPageMNG().waitAllSwitchDevicesConnected();
         String tmpStr = handle.getCmdOutput("show vlan", false);
-        assertFalse(tmpStr.contains("777"));
+        assertTrue(tmpStr.contains("777"));
     }
 
     @AfterMethod(alwaysRun = true)

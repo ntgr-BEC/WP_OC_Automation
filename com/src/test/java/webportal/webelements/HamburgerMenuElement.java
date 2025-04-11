@@ -343,10 +343,10 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public String          paymentautorenewstatus = "//input[@name='AutoRenew']";
     public SelenideElement paymentsumbit          = $("#submitPayment");
     public SelenideElement addpromocode           = $(".PromoCodeBlock:nth-child(2)");
-    public SelenideElement conformpromocode       = $("#add-promo");
+    public SelenideElement conformpromocode       = $("//div[@id='orderSumary-showpromocode-div']//button[@id = 'add-promo' and text()=' Add Promo Code ']");
 
     public SelenideElement        enterpromocode      = $("#enter-promo");
-    public static SelenideElement totalprice          = $x("//td[text()=' " + WebportalParam.getLocText("Total") + " ']/../td[2]");
+    public static SelenideElement totalprice          = $x("//td[text()=' Total ']/../td[2]/strong");
     public SelenideElement        donebutton          = $x("//button[text()='Done']");
     public SelenideElement        checkbox            = $x("//*[@id=\"styled-checkbox-1\"]");
     public static SelenideElement placeyourorder      = $x("//button[text()='" + WebportalParam.getLocText("Place Your order") + "']");

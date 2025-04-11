@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import webportal.param.URLParam;
 import webportal.publicstep.WebCheck;
 import webportal.webelements.SyslogElement;
+import static com.codeborne.selenide.Selenide.$$x;
 
 public class SyslogPage extends SyslogElement {
     Logger logger = Logger.getLogger("SyslogPage");
@@ -22,6 +23,7 @@ public class SyslogPage extends SyslogElement {
         setText(txtIp, ip);
         setText(txtPort, port);
         btnSave.click();
+        GenericMethods.clickVisibleElements($$x("//*[text()=\"OK\"]"));
     }
 
     public void disableSyslog() {

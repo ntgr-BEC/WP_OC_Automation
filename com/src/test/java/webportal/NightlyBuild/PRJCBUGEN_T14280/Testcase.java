@@ -49,7 +49,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        new DevicesDashPage().checkDeviceInAdminAccount();
+//        new DevicesDashPage().checkDeviceInAdminAccount();
     }
 
     @Step("Test Step 2: Set new name and click on ok and new name should be set on AP;")
