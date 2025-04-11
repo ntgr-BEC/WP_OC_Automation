@@ -108,19 +108,19 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 7: Verify HBB Premium 1 Year Subs Text Should be there")
     public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSubsLocationName(locationName), "Insight Premium 1 year subs Texts are not present");
+        assertTrue(new HamburgerMenuPage(false).VerifyHBBInsightPreOneYearSubsText(), "Insight Premium 1 year subs Texts are not present");
 
     }
 
     @Step("Test Step8: Verify The Location Name should be shown Under the Location Section")
     public void step8() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightSubsQuantity(), "LocationName Not Showing correct Under the Location Section");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSubsLocationName(locationName), "LocationName Not Showing correct Under the Location Section");
 
     }
 
     @Step("Test Step9: Verify the Activation date and Expiry date should be Today's Date")
     public void step9() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(1), "Activation Date is not equal to Today's Date");
 
     }
 
@@ -139,7 +139,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step12: Verify for HBB 2nd Divice the Activation date and Expiry date should be there")
     public void step12() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSecondDivActivationDateisTodayDate(),
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSecondDivActivationDateisTodayDate(1),
                 "Activation Date is not equal to Today's Date for second device");
 
     }

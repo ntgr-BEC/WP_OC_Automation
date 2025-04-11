@@ -1,4 +1,4 @@
-package webportal.AdvancedPurchaseHistory.PRJCBUGEN_T36498;
+package webportal.AdvancedPurchaseHistory.DontRunICPVPN.PRJCBUGEN_T36497;
 
 import static org.testng.Assert.assertTrue;
 
@@ -38,10 +38,10 @@ public class Testcase extends TestCaseBase {
     String              locationName = "PurchaseHistoryLoc";
 
     @Feature("IM-7.2 AdvancedPurchaseHistory") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T36498") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify Purchase History All Details after purchasing the VPN for 10 AP With One Year") // It's a test case title from Jira
-    // Test Case.
-    @TmsLink("PRJCBUGEN-T36498") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T36497") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify Purchase History All Details after purchasing the VPN for 3 AP With One Year") // It's a test case title from Jira
+                                                                                                                // Test Case.
+    @TmsLink("PRJCBUGEN-T36497") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T36498");
+        accountInfo.put("Last Name", "T36497");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear1@");
@@ -89,12 +89,11 @@ public class Testcase extends TestCaseBase {
 
         Map<String, String> paymentInfo = new HashMap<String, String>();
         paymentInfo = new CommonDataType().CARD_INFO;
-
         paymentInfo.put("First Name", mailname);
-        paymentInfo.put("Last Name", "T36498");
+        paymentInfo.put("Last Name", "T36497");
         paymentInfo.put("Email", WebportalParam.loginName);
         paymentInfo.put("YearNum", "1");
-        paymentInfo.put("BuyNum", "10");
+        paymentInfo.put("BuyNum", "3");
         paymentInfo.put("First Name", mailname);
         paymentInfo.put("Last Name", "T36496");
         paymentInfo.put("Email", mailname + "@mailinator.com");
@@ -113,15 +112,15 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 7: Verify VPN 10 Devices, 1 Years subscription Text are present there")
+    @Step("Test Step 7: Verify VPN 3 Devices, 1 Years subscription Text are present there")
     public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheVPNforTenDevicesSubsText(), "VPN 1 year 10 Device subs Texts are not present");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheVPNforThreeAPOneYearSubsText(), "VPN 1 year 3 Device subs Texts are not present");
 
     }
 
-    @Step("Test Step8: Verify The Credit Count should be 10")
+    @Step("Test Step8: Verify The Credit Count should be Three")
     public void step8() {
-        assertTrue(new HamburgerMenuPage(false).VerifyVPNCreditQuantityforTenDevices(), "Credit Count is not 10");
+        assertTrue(new HamburgerMenuPage(false).VerifyVPNCreditQuantityforThreeDevice(), "Credit Count is not 3");
 
     }
 

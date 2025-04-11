@@ -1,4 +1,4 @@
-package webportal.AdvancedPurchaseHistory.PRJCBUGEN_T36492;
+package webportal.AdvancedPurchaseHistory.DontRunICPVPN.PRJCBUGEN_T36494;
 
 import static org.testng.Assert.assertTrue;
 
@@ -40,24 +40,22 @@ public class Testcase extends TestCaseBase {
     String              locationName = "PurchaseHistoryLoc";
 
     @Feature("IM-7.2 AdvancedPurchaseHistory") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T36492") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify Purchase History All Details after purchase the ICP 10 AP for One Year") // It's a test case title from Jira
-                                                                                                          // Test Case.
-    @TmsLink("PRJCBUGEN-T36492") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T36494") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify Purchase History All Details after purchase the ICP 40 AP for One Year") // It's a test case title from Jira
+                                                                                                             // Test Case.
+    @TmsLink("PRJCBUGEN-T36494") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
     }
     
-
     @BeforeMethod(alwaysRun = true)
     public void tearUp() {
        
        new PostManPage().Deregister(WebportalParam.ap1serialNo);
         
     }
-
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
@@ -72,7 +70,7 @@ public class Testcase extends TestCaseBase {
 
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T36492");
+        accountInfo.put("Last Name", "T36494");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear1@");
@@ -115,6 +113,7 @@ public class Testcase extends TestCaseBase {
         
     }
 
+
     @Step("Test Step 4: Buy 3 AP Device for 1 Years;")
     public void step4() {
         Map<String, String> CaptivePortalPaymentInfo = new HashMap<String, String>();
@@ -122,7 +121,7 @@ public class Testcase extends TestCaseBase {
         CaptivePortalPaymentInfo.put("First Name", mailname);
         CaptivePortalPaymentInfo.put("Last Name", "T23919");
         CaptivePortalPaymentInfo.put("Email", mailname + "@mailinator.com");
-        CaptivePortalPaymentInfo.put("Quantity", "10");
+        CaptivePortalPaymentInfo.put("Quantity", "40");
         CaptivePortalPaymentInfo.put("Duration", "1");
         CaptivePortalPaymentInfo.put("Street Address", "Springs Rd");
         CaptivePortalPaymentInfo.put("City", "Red Bank");
@@ -142,9 +141,9 @@ public class Testcase extends TestCaseBase {
 
     }
 
-    @Step("Test Step 7: Verify ICP 10 AP, 1 Year subscription Text are present there")
+    @Step("Test Step 7: Verify ICP 40 AP, 1 Years subscription Text are present there")
     public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheICPforTenAPOneYearSubsText(), "ICP 1 year 10 AP subs Texts are not present");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheICPforFortyAPOneYearSubsText(), "ICP 1 year 40 AP subs Texts are not present");
 
     }
 

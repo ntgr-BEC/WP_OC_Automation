@@ -1,4 +1,4 @@
-package webportal.AdvancedPurchaseHistory.PRJCBUGEN_T36490;
+package webportal.AdvancedPurchaseHistory.DontRunICPVPN.PRJCBUGEN_T36496;
 
 import static org.testng.Assert.assertTrue;
 
@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -22,7 +21,6 @@ import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.InsightServicesPage;
-import webportal.weboperation.PostManPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
@@ -40,22 +38,14 @@ public class Testcase extends TestCaseBase {
     String              locationName = "PurchaseHistoryLoc";
 
     @Feature("IM-7.2 AdvancedPurchaseHistory") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T36490") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Test to verify Purchase History All Details after purchase the ICP Three AP for One Year") // It's a test case title from Jira
+    @Story("PRJCBUGEN_T36496") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Test to verify Purchase History All Details after purchasing the VPN for 1 AP With One Year") // It's a test case title from Jira
                                                                                                              // Test Case.
-    @TmsLink("PRJCBUGEN-T36490") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T36496") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p2") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         runTest(this);
-    }
-    
-
-    @BeforeMethod(alwaysRun = true)
-    public void tearUp() {
-       
-       new PostManPage().Deregister(WebportalParam.ap1serialNo);
-        
     }
 
     @AfterMethod(alwaysRun = true)
@@ -71,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T36490");
+        accountInfo.put("Last Name", "T36496");
         accountInfo.put("Email Address", mailname + "@mailinator.com");
         accountInfo.put("Confirm Email", mailname + "@mailinator.com");
         accountInfo.put("Password", "Netgear1@");
@@ -93,69 +83,52 @@ public class Testcase extends TestCaseBase {
         new AccountPage().addNetwork(locationInfo);
 
     }
-    
-    @Step("Test Step 3: Add device To the Network;")
-    public void step3() {
-        
-        new AccountPage(false).enterLocation(WebportalParam.location1);
-        
-         new AccountPage().enterLocation("OnBoardingTest");
-        
-        Map<String, String> firststdevInfo = new HashMap<String, String>();
-       
-        
-        firststdevInfo.put("Serial Number1", WebportalParam.ap1serialNo);
-        firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
-        
-        System.out.println(firststdevInfo);
- 
-                
-        new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
-        
-    }
 
-    @Step("Test Step 4: Buy 3 AP Device for 1 Years;")
+
+    @Step("Test Step 4: Verify that user can buy VPN license subscription for 1 device  1 year")
     public void step4() {
-        Map<String, String> CaptivePortalPaymentInfo = new HashMap<String, String>();
-        CaptivePortalPaymentInfo = new CommonDataType().CARD_INFO;
-        CaptivePortalPaymentInfo.put("First Name", mailname);
-        CaptivePortalPaymentInfo.put("Last Name", "T23919");
-        CaptivePortalPaymentInfo.put("Email", mailname + "@mailinator.com");
-        CaptivePortalPaymentInfo.put("Quantity", "3");
-        CaptivePortalPaymentInfo.put("Duration", "1");
-        CaptivePortalPaymentInfo.put("Street Address", "Springs Rd");
-        CaptivePortalPaymentInfo.put("City", "Red Bank");
-        CaptivePortalPaymentInfo.put("Zip", "32003");
-        CaptivePortalPaymentInfo.put("Country", "US");
-        CaptivePortalPaymentInfo.put("State", "Florida");
-        new InsightServicesPage(false).buyCaptivePortalProducts(CaptivePortalPaymentInfo);
-         boolean result = false;
-         result = new HamburgerMenuPage().checkCaptivePortalServicesCredits();
-         assertTrue(result, "<2> Captive portal services credits is incorrect.");
+
+        Map<String, String> paymentInfo = new HashMap<String, String>();
+        paymentInfo = new CommonDataType().CARD_INFO;
+        
+        paymentInfo.put("First Name", mailname);
+        paymentInfo.put("Last Name", "T36496");
+        paymentInfo.put("Email", WebportalParam.loginName);
+        paymentInfo.put("YearNum", "1");
+        paymentInfo.put("BuyNum", "1");
+        paymentInfo.put("First Name", mailname);
+        paymentInfo.put("Last Name", "T36496");
+        paymentInfo.put("Email", mailname + "@mailinator.com");
+        paymentInfo.put("Street Address", "Springs Rd");
+        paymentInfo.put("City", "Red Bank");
+        paymentInfo.put("Zip", "32003");
+        paymentInfo.put("Country", "US");
+        paymentInfo.put("State", "Florida");
+        new InsightServicesPage(false).buyVpnProducts(paymentInfo);
     }
 
-    @Step("Test Step 6: Open Purchase History Page and expand insigt HBB div Credits Section")
+    @Step("Test Step 6: Open Purchase History Page and expand ICP Credits Section")
     public void step6() {
         new HamburgerMenuPage().openAccountMgmt();
-        new HamburgerMenuPage(false).expandICPCreditsSection();
+        new HamburgerMenuPage(false).expandVPNCreditsSection();
 
     }
 
-    @Step("Test Step 7: Verify ICP 3 AP, 1 Year subscription Text are present there")
+    @Step("Test Step 7: Verify VPN 1 AP, 1 Years subscription Text are present there")
     public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheICPforThreeAPOneYearSubsText(), "ICP 1 year 3 AP subs Texts are not present");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheVPNforThreeYearSubsText(), "VPN 1 year 1 AP subs Texts are not present");
 
     }
 
     @Step("Test Step8: Verify The Credit Count should be one")
     public void step8() {
-        assertTrue(new HamburgerMenuPage(false).VerifyICPforThreeYearCreditQuantity(), "Credit Count is not correct");
+        assertTrue(new HamburgerMenuPage(false).VerifyVPNCreditQuantity(), "Credit Count is not correct");
 
     }
 
     @Step("Test Step9: Verify the Activation date and Expiry date should be according to testcase")
     public void step9() {
-        assertTrue(new HamburgerMenuPage(false).VerifyICPActivationAndExpiryDats(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyVPNActivationAndExpiryDats(), "Activation Date is not equal to Today's Date");
 
     }
 }

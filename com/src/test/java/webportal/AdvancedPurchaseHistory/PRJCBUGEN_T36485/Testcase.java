@@ -100,19 +100,19 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 5: Verify HBB Premium 1 Year Subs Text are present there")
     public void step5() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSubsLocationName(locationName), "Insight Premium 1 year subs Texts are not present");
+        assertTrue(new HamburgerMenuPage(false).VerifyHBBInsightPreOneYearSubsText(), "Insight Premium 1 year subs Texts are not present");
 
     }
 
     @Step("Test Step7: Verify The Location Name should be shown Under the Location Section")
     public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightSubsQuantity(), "LocationName Not Showing correct Under the Location Section");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSubsLocationName(locationName), "LocationName Not Showing correct Under the Location Section");
 
     }
 
-    @Step("Test Step8: Verify the Activation date and Expiry date should be Today's Date")
+    @Step("Test Step8: Verify the Activation date and Expiry date should be according to test")
     public void step8() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(1), "Year Diff is not 1");
 
     }
 

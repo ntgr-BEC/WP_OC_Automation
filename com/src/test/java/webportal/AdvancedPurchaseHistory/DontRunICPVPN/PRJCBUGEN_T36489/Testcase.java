@@ -1,4 +1,4 @@
-package webportal.AdvancedPurchaseHistory.PRJCBUGEN_T36489;
+package webportal.AdvancedPurchaseHistory.DontRunICPVPN.PRJCBUGEN_T36489;
 
 import static org.testng.Assert.assertTrue;
 
