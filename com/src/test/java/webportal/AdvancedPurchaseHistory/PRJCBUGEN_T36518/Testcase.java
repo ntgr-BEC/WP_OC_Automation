@@ -105,6 +105,8 @@ public class Testcase extends TestCaseBase {
         firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
         System.out.println(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new AccountPage().enterLocation(locationName);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
     }
 
@@ -149,7 +151,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step9: Verify the Activation date and Expiry date should be according to testcase")
     public void step9() {
-        assertTrue(new HamburgerMenuPage(false).VerifyThePreTrialActivationAndExpiryDates(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyThePreTrialActivationAndExpiryDatesYearly(), "Activation Date is not equal to Today's Date");
 
     }
 }

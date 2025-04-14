@@ -7,6 +7,7 @@ import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.testng.Assert.assertTrue;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 
 import com.codeborne.selenide.Condition;
@@ -2511,6 +2512,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void changePlanToPremium(Map<String, String> map) {
         waitReady();
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
         MyCommonAPIs.sleepi(10);
         changeSubNew.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
@@ -2536,8 +2538,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         checkoutbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
+        $x("//button[text()=' Save ']").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
         Termsandcondition.shouldBe(Condition.visible).click();
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(5);
         clickPlaceOrder();
     }
 
@@ -5376,29 +5380,30 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     public boolean VerifyTermsandCondition() {
 
         boolean result = false;
-        boolean result1 = false;
-        boolean result2 = false;
+       
 
         ManagePaymentMethods.click();
-        MyCommonAPIs.sleep(3000);
-        if (Termaandcondition.exists()) {
-            logger.info("Terms and confition Exits");
-            result1 = true;
-        }
-        TermaandconditionCheckbox.click();
-        TermaandconditionAccept.click();
-        waitReady();
+//        MyCommonAPIs.sleep(3000);
+//        if (Termaandcondition.exists()) {
+//            logger.info("Terms and confition Exits");
+//            result1 = true;
+//        }
+//        TermaandconditionCheckbox.click();
+//        TermaandconditionAccept.click();
+//        waitReady();
+        
         MyCommonAPIs.sleepi(30);
         if (BillingInfo.exists()) {
             logger.info("Billing info exits");
-            result2 = true;
-        }
-
-        if ((result1 == true) && (result2 == true)) {
-
             result = true;
         }
 
+        if (result == true)
+            result = true;
+
+           cancel.click();
+           MyCommonAPIs.sleepi(5);
+        
         return result;
 
     }
@@ -5726,24 +5731,36 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         String actOnDate = "";
         String expOnDate = "";
-        String orderQty = "";
-        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
-        System.out.println(tablerow);
-        System.out.println("clollection of an element");
-        for (SelenideElement ele : tablerow) {
-            System.out.println(ele);
-            System.out.println("Print the element");
-            String actOnDateText = ele.findElement(By.xpath("/td[4]")).getText();
-            String expOnDateText = ele.findElement(By.xpath("/td[5]")).getText();
-            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
-            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
-            System.out.println(actOnDate);
-            System.out.println(expOnDate);
+   
+        actOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        expOnDate = $x("//span[contains(text(), '" + lic + "')]/../../td[5]").getText();
+        
+        System.out.println("Year extracted : " + actOnDate);
+        System.out.println("Year extracted : " + expOnDate);
+        
+        
+        int actOnYear = extractYear(actOnDate);
+        System.out.println("Year Actual : " + actOnYear);
+        int expOnYear = extractYear(expOnDate);
+        System.out.println("Year Expiry : " + expOnYear);
+//        ElementsCollection tablerow = $$x("//span[contains(text(), '" + lic + "')]/../..");
+//        SelenideElement Newele = $x("//span[contains(text(), '" + lic + "')]/../.."); 
+//        System.out.println(tablerow);
+//        System.out.println("clollection of an element");
+//        for (SelenideElement ele : tablerow) {
+//            System.out.println(ele);
+//            System.out.println("Print the element");
+//            String actOnDateText = Newele.findElement(By.xpath("/td[4]")).getText();
+//            String expOnDateText = Newele.findElement(By.xpath("/td[5]")).getText();
+//            actOnDate = actOnDateText.substring(actOnDateText.lastIndexOf(",") + 2, actOnDateText.length());
+//            expOnDate = expOnDateText.substring(expOnDateText.lastIndexOf(",") + 2, expOnDateText.length());
+//            System.out.println(actOnDate);
+//            System.out.println(expOnDate);
+//
+//            break;
+//        }
 
-            break;
-        }
-
-        if (((Integer.valueOf(expOnDate) - Integer.valueOf(actOnDate)) == 5)) {
+        if (((Integer.valueOf(expOnYear) - Integer.valueOf(actOnYear)) == 5)) {
 
             result = true;
             logger.info("Order history display correct.");
@@ -7292,26 +7309,67 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
     
  // added by Vivek
-    public boolean VerifyTheHBBDivActivationDateisTodayDate() {
+//    public boolean VerifyTheHBBDivActivationDateisTodayDate() {
+//        boolean result = false;
+//        MyCommonAPIs.sleepi(2);
+//        String ActDate = HBBDivCreditActivationDate.text();
+//        MyCommonAPIs.sleepi(1);
+//        String expiryDate = HBBDivCreditExpiryDate.text();
+//        System.out.println("Activation on ---");
+//        System.out.println(ActDate);
+//        System.out.println("Expires on ---");
+//        System.out.println(expiryDate);
+//        LocalDate currentDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+//        String date = currentDate.format(formatter); 
+//        
+//        if (ActDate.contains(date));
+//        {
+//            result = true;
+//        }
+//        return result;
+//    }
+//    
+    
+    public boolean VerifyTheHBBDivActivationDateisTodayDate(int expectedYearDiff) {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
         String ActDate = HBBDivCreditActivationDate.text();
         MyCommonAPIs.sleepi(1);
         String expiryDate = HBBDivCreditExpiryDate.text();
+
         System.out.println("Activation on ---");
         System.out.println(ActDate);
         System.out.println("Expires on ---");
         System.out.println(expiryDate);
-        LocalDate currentDate = LocalDate.now();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        String date = currentDate.format(formatter); 
-        
-        if (ActDate.contains(date));
-        {
-            result = true;
+
+        try {
+            LocalDate activationDate = LocalDate.parse(ActDate, formatter);
+            LocalDate expiryDateLocal = LocalDate.parse(expiryDate, formatter);
+
+            int activationYear = activationDate.getYear();
+            int expiryYear = expiryDateLocal.getYear();
+            int actualYearDiff = expiryYear - activationYear;
+
+            System.out.println("Year difference (by year only): " + actualYearDiff);
+
+            LocalDate currentDate = LocalDate.now();
+            String currentFormattedDate = currentDate.format(formatter);
+
+            if (actualYearDiff == expectedYearDiff) {
+                result = true;
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
         }
+
         return result;
     }
+
+
     
  // added by Vivek
     public boolean VerifyHBBSecondDivInsightPreOneYearSubsText() {
@@ -7338,26 +7396,65 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
     
  // added by Vivek
-    public boolean VerifyTheHBBSecondDivActivationDateisTodayDate() {
+//    public boolean VerifyTheHBBSecondDivActivationDateisTodayDate() {
+//        boolean result = false;
+//        MyCommonAPIs.sleepi(2);
+//        String ActDate = HBBSecDivCreditActivationDate.text();
+//        MyCommonAPIs.sleepi(1);
+//        String expiryDate = HBBSecDivCreditExpiryDate.text();
+//        System.out.println("Activation on ---");
+//        System.out.println(ActDate);
+//        System.out.println("Expires on ---");
+//        System.out.println(expiryDate);
+//        LocalDate currentDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+//        String date = currentDate.format(formatter); 
+//        
+//        if (ActDate.contains(date));
+//        {
+//            result = true;
+//        }
+//        return result;
+//    }
+    
+    public boolean VerifyTheHBBSecondDivActivationDateisTodayDate(int expectedYearDiff) {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
         String ActDate = HBBSecDivCreditActivationDate.text();
         MyCommonAPIs.sleepi(1);
         String expiryDate = HBBSecDivCreditExpiryDate.text();
+
         System.out.println("Activation on ---");
         System.out.println(ActDate);
         System.out.println("Expires on ---");
         System.out.println(expiryDate);
-        LocalDate currentDate = LocalDate.now();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        String date = currentDate.format(formatter); 
-        
-        if (ActDate.contains(date));
-        {
-            result = true;
+
+        try {
+            LocalDate activationDate = LocalDate.parse(ActDate, formatter);
+            LocalDate expiryDateLocal = LocalDate.parse(expiryDate, formatter);
+
+            int activationYear = activationDate.getYear();
+            int expiryYear = expiryDateLocal.getYear();
+            int actualYearDiff = expiryYear - activationYear;
+
+            System.out.println("Year difference (by year only): " + actualYearDiff);
+
+            LocalDate currentDate = LocalDate.now();
+            String currentFormattedDate = currentDate.format(formatter);
+
+            if (actualYearDiff == expectedYearDiff) {
+                result = true;
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
         }
+
         return result;
     }
+
     
  // added by Vivek
     public boolean VerifyHBBThirdDivInsightPreOneYearSubsText() {
@@ -7384,26 +7481,66 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
     
  // added by Vivek
-    public boolean VerifyTheHBBThirdDivActivationDateisTodayDate() {
+//    public boolean VerifyTheHBBThirdDivActivationDateisTodayDate() {
+//        boolean result = false;
+//        MyCommonAPIs.sleepi(2);
+//        String ActDate = HBBThirdDivCreditActivationDate.text();
+//        MyCommonAPIs.sleepi(1);
+//        String expiryDate = HBBThirdDivCreditExpiryDate.text();
+//        System.out.println("Activation on ---");
+//        System.out.println(ActDate);
+//        System.out.println("Expires on ---");
+//        System.out.println(expiryDate);
+//        LocalDate currentDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+//        String date = currentDate.format(formatter); 
+//        
+//        if (ActDate.contains(date));
+//        {
+//            result = true;
+//        }
+//        return result;
+//    }
+    
+    
+    public boolean VerifyTheHBBThirdDivActivationDateisTodayDate(int expectedYearDiff) {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
         String ActDate = HBBThirdDivCreditActivationDate.text();
         MyCommonAPIs.sleepi(1);
         String expiryDate = HBBThirdDivCreditExpiryDate.text();
+
         System.out.println("Activation on ---");
         System.out.println(ActDate);
         System.out.println("Expires on ---");
         System.out.println(expiryDate);
-        LocalDate currentDate = LocalDate.now();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        String date = currentDate.format(formatter); 
-        
-        if (ActDate.contains(date));
-        {
-            result = true;
+
+        try {
+            LocalDate activationDate = LocalDate.parse(ActDate, formatter);
+            LocalDate expiryDateLocal = LocalDate.parse(expiryDate, formatter);
+
+            int activationYear = activationDate.getYear();
+            int expiryYear = expiryDateLocal.getYear();
+            int actualYearDiff = expiryYear - activationYear;
+
+            System.out.println("Year difference (by year only): " + actualYearDiff);
+
+            LocalDate currentDate = LocalDate.now();
+            String currentFormattedDate = currentDate.format(formatter);
+
+            if (actualYearDiff == expectedYearDiff) {
+                result = true;
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
         }
+
         return result;
     }
+
     
     // added by vivek
     public void expandICPCreditsSection() {
@@ -7704,26 +7841,88 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
     
  // added by Vivek
-    public boolean VerifyThePreTrialActivationAndExpiryDates() {
+//    public boolean VerifyThePreTrialActivationAndExpiryDates() {
+//        boolean result = false;
+//        MyCommonAPIs.sleepi(2);
+//        String ActDate = PreMonthlyDivCreditSubsActiDate.text();
+//        MyCommonAPIs.sleepi(1);
+//        String expiryDate = PreMonthlyDivCreditSubsExpDate.text();
+//        System.out.println("Activation on ---");
+//        System.out.println(ActDate);
+//        System.out.println("Expires on ---");
+//        System.out.println(expiryDate);
+//        LocalDate currentDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+//        String date = currentDate.format(formatter); 
+//        
+//        if (ActDate.contains(date));
+//        {
+//            result = true;
+//        }
+//        return result;
+//    }
+    
+    public boolean VerifyThePreTrialActivationAndExpiryDatesYearly() {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
         String ActDate = PreMonthlyDivCreditSubsActiDate.text();
         MyCommonAPIs.sleepi(1);
         String expiryDate = PreMonthlyDivCreditSubsExpDate.text();
+
         System.out.println("Activation on ---");
         System.out.println(ActDate);
         System.out.println("Expires on ---");
         System.out.println(expiryDate);
-        LocalDate currentDate = LocalDate.now();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        String date = currentDate.format(formatter); 
-        
-        if (ActDate.contains(date));
-        {
-            result = true;
+
+        try {
+            LocalDate activationDate = LocalDate.parse(ActDate, formatter);
+            LocalDate expiryDateLocal = LocalDate.parse(expiryDate, formatter);
+
+            int activationYear = activationDate.getYear();
+            int expiryYear = expiryDateLocal.getYear();
+            int actualYearDiff = expiryYear - activationYear;
+
+            System.out.println("Year difference (by year only): " + actualYearDiff);
+
+            LocalDate currentDate = LocalDate.now();
+            String currentFormattedDate = currentDate.format(formatter);
+
+            if (actualYearDiff == 1) {
+                result = true;
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
         }
+
         return result;
     }
+
+    
+    public boolean VerifyThePreTrialActivationAndExpiryDates() {
+        boolean result = true;
+        MyCommonAPIs.sleepi(2);
+
+        String activationStr = PreMonthlyDivCreditSubsActiDate.getText();
+        String expirationStr = PreMonthlyDivCreditSubsExpDate.getText();
+        System.out.println("Activation on ---");
+        System.out.println(activationStr);
+        System.out.println("Expires on ---");
+        System.out.println(expirationStr);
+
+        LocalDate activationDate = parseDateFromString(activationStr);
+        LocalDate expirationDate = parseDateFromString(expirationStr);
+
+        if (!(isNextMonthSameYear(activationDate, expirationDate))) {
+            System.out.println("Invalid: Not exactly one-month duration");
+            result = false;
+        }
+
+        return result;
+    }
+
     
     // added by Vivek
     public boolean VerifyThePreTrialToPreYearlySubsText() {
@@ -7768,26 +7967,66 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
     
  // added by Vivek
-    public boolean VerifyTheInsightPreSubsActivationAndExpiryDates() {
+//    public boolean VerifyTheInsightPreSubsActivationAndExpiryDates() {
+//        boolean result = false;
+//        MyCommonAPIs.sleepi(2);
+//        String ActDate = insightPreSubsCreditActivationDate.text();
+//        MyCommonAPIs.sleepi(1);
+//        String expiryDate = insightPreSubsCreditExpiryDate.text();
+//        System.out.println("Activation on ---");
+//        System.out.println(ActDate);
+//        System.out.println("Expires on ---");
+//        System.out.println(expiryDate);
+//        LocalDate currentDate = LocalDate.now();
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
+//        String date = currentDate.format(formatter); 
+//        
+//        if (ActDate.contains(date));
+//        {
+//            result = true;
+//        }
+//        return result;
+//    }
+    
+//    added by Vivek
+    public boolean VerifyTheInsightPreSubsActivationAndExpiryDatesMultiPack(int expectedYearDiff) {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
         String ActDate = insightPreSubsCreditActivationDate.text();
         MyCommonAPIs.sleepi(1);
         String expiryDate = insightPreSubsCreditExpiryDate.text();
+
         System.out.println("Activation on ---");
         System.out.println(ActDate);
         System.out.println("Expires on ---");
         System.out.println(expiryDate);
-        LocalDate currentDate = LocalDate.now();
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
-        String date = currentDate.format(formatter); 
-        
-        if (ActDate.contains(date));
-        {
-            result = true;
+
+        try {
+            LocalDate activationDate = LocalDate.parse(ActDate, formatter);
+            LocalDate expiryDateLocal = LocalDate.parse(expiryDate, formatter);
+
+            int activationYear = activationDate.getYear();
+            int expiryYear = expiryDateLocal.getYear();
+            int actualYearDiff = expiryYear - activationYear;
+
+            System.out.println("Year difference (by year only): " + actualYearDiff);
+
+            LocalDate currentDate = LocalDate.now();
+            String currentFormattedDate = currentDate.format(formatter);
+
+            if (actualYearDiff == expectedYearDiff) {
+                result = true;
+            }
+
+        } catch (DateTimeParseException e) {
+            System.out.println("Date parsing error: " + e.getMessage());
         }
+
         return result;
     }
+
     
     // added by Vivek
     public boolean VerifyMultiPackforFiveDivThreeYearsSubsText() {
@@ -10418,19 +10657,14 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         if (map.containsKey("VAT Registration Number")) {
             billingvatnum.setValue(map.get("VAT Registration Number"));
         }
-        // savenum.click();
+        
         MyCommonAPIs.sleepi(10);
         inputCardInfo(map);
-        // checkAutoRenew(map);
-        // paymentsumbit.click();
-        MyCommonAPIs.sleepi(10);
-        // checkAutoRenew(map);
-        //click(Termsandcondition, true);
         
-        String subTotal = $x("").shouldBe(Condition.visible).getText();
-        totalValue = $x("").shouldBe(Condition.visible).getText();
+        String subTotal = $x("//td[contains(text(),'Sub Total')]/../td/strong").shouldBe(Condition.visible).getText();
+        totalValue = $x("//td[text()=' Total ']/../td/strong").shouldBe(Condition.visible).getText();
         String tv = totalValue;
-        String tax = $x("").shouldBe(Condition.visible).getText();
+        String tax = $x("//td[contains(text(),'Tax')]/../td/strong").shouldBe(Condition.visible).getText();
         System.out.println("Sub Total Value on payment page: "+subTotal);
         System.out.println("tax Value on payment page: "+tax);
         System.out.println("Total Value on payment page: "+totalValue);

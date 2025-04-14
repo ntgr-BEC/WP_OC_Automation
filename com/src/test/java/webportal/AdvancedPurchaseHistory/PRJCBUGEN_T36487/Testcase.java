@@ -133,7 +133,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step9: Verify the Activation date and Expiry date should be Today's Date")
     public void step9() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBDivActivationDateisTodayDate(1), "Activation Date is not equal to Today's Date");
 
     }
 
@@ -152,7 +152,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step12: Verify for HBB 2nd Divice the Activation date and Expiry date should be there")
     public void step12() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSecondDivActivationDateisTodayDate(),
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBSecondDivActivationDateisTodayDate(1),
                 "Activation Date is not equal to Today's Date for second device");
 
     }
@@ -172,7 +172,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step15: Verify for HBB 3rd Divice the Activation date and Expiry date should be there")
     public void step15() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBThirdDivActivationDateisTodayDate(),
+        assertTrue(new HamburgerMenuPage(false).VerifyTheHBBThirdDivActivationDateisTodayDate(1),
                 "Activation Date is not equal to Today's Date for Third device");
 
     }

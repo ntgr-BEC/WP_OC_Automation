@@ -85,28 +85,9 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: Open Purchase History Page and expand insigt divice credits Section")
     public void step4() {
-        new HamburgerMenuPage().openAccountMgmt();
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
         new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
-
-    }
-
-    @Step("Test Step 5: Verify Search Icon and Insight Premium Trial Subs Text should be there")
-    public void step5() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheSearcIconIsThere(), "Search icon is not Present");
-        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightPremiumTrialSubsText(), "Insight Premium Trial Subs Texts are not present");
-
-    }
-
-    @Step("Test Step7: Verify The Quantity should be shown Unlimited")
-    public void step7() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightSubsQuantity(), "Quantity is not showing Unlimited");
-
-    }
-
-    @Step("Test Step8: Verify the Activation date and Expiry date should be Today's Date")
-    public void step8() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheActivationDateisTodayDate(), "Activation Date is not equal to Today's Date");
-
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();
     }
 
 }

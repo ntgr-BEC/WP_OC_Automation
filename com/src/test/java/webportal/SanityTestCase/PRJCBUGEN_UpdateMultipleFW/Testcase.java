@@ -14,6 +14,7 @@ import util.APUtils;
 import util.BRUtils;
 import util.XMLManagerForTest;
 import webportal.param.WebportalParam;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.WebportalLoginPage;
 
 /**
@@ -36,8 +37,8 @@ public class Testcase extends TestCaseBase {
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
         webportalLoginPage.defaultLogin();
-        handle.gotoLoction();
-
+//        handle.gotoLoction();
+        new AccountPage(false).enterLocation(WebportalParam.location1);
         XMLManagerForTest xmlManager = new XMLManagerForTest();
         /**
          * 0 - sw, 1 - ap, 2 - br, 3 - orbi
@@ -58,7 +59,7 @@ public class Testcase extends TestCaseBase {
             lsFirmware = xmlManager.getValuesFromWebPortAndDut("BR1", firmwareNodeName);
         } else if (devType == 3) {
             devSerialNo = WebportalParam.ob1serialNo;
-            lsFirmware = xmlManager.getValuesFromWebPortAndDut("ORBI1", firmwareNodeName);
+            lsFirmware = xmlManager.getValuesFromWebPortAndDut("OR1", firmwareNodeName);
         }
 
         if (lsFirmware.size() == 0)
@@ -70,7 +71,7 @@ public class Testcase extends TestCaseBase {
         int failUpgradeCount = 0;
         int runTime = 0;
         while (true) {
-        //while (runTime < 10 ) {
+        //while (runTime < 21 ) {
             System.out.println(String.format(
                     "==Summary: No of Pass Downgraded(%d)/No of Pass Upgraded: (%d)/No of Fail Downgraded(%d)/No of Fail Upgraded: (%d)",
                     passDowngradeCount, passUpgradeCount, failDowngradeCount, failUpgradeCount));
@@ -98,7 +99,7 @@ public class Testcase extends TestCaseBase {
                     failUpgradeCount++;
                     continue;
                 }
-
+               
                 ddp.gotoPage();
                 if (ddp.waitDevicesReConnected(devSerialNo)) {
                     fmp.gotoFirmwarePage();

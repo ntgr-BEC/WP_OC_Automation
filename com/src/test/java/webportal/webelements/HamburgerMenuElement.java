@@ -826,15 +826,15 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public static SelenideElement HardBdlDivCreditSubsText        = $x("(//th[text()='Subscriptions']/../../..//tbody//td[@style='white-space: pre-line;'])[2]");
   public static SelenideElement HbbLocInfo                      = $x("(//th[text()='Location']/../../..//tbody//td[2]/span)[1]");
   public static SelenideElement HBBDivCreditActivationDate      = $x("(//th[text()='Activated On']/../../..//tbody//td[3]/p)[2]");
-  public static SelenideElement HBBDivCreditExpiryDate          = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[2]");
+  public static SelenideElement HBBDivCreditExpiryDate          = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[4]");
   public static SelenideElement HardBdlSecDivCreditSubsText     = $x("(//th[text()='Subscriptions']/../../..//tbody//td[@style='white-space: pre-line;'])[3]");
   public static SelenideElement HbbSecondLocInfo                = $x("(//th[text()='Location']/../../..//tbody//td[2]/span)[2]");
   public static SelenideElement HBBSecDivCreditActivationDate   = $x("(//th[text()='Activated On']/../../..//tbody//td[3]/p)[3]");
-  public static SelenideElement HBBSecDivCreditExpiryDate       = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[3]");
+  public static SelenideElement HBBSecDivCreditExpiryDate       = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[6]");
   public static SelenideElement HardBdlThirdDivCreditSubsText   = $x("(//th[text()='Subscriptions']/../../..//tbody//td[@style='white-space: pre-line;'])[4]");
   public static SelenideElement HbbThirdLocInfo                 = $x("(//th[text()='Location']/../../..//tbody//td[2]/span)[3]");
   public static SelenideElement HBBThirdDivCreditActivationDate = $x("(//th[text()='Activated On']/../../..//tbody//td[3]/p)[4]");
-  public static SelenideElement HBBThirdDivCreditExpiryDate     = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[4]");
+  public static SelenideElement HBBThirdDivCreditExpiryDate     = $x("(//th[text()='Expires On']/../../..//tbody//td[4]/p)[8]");
   public static SelenideElement ExpaindICPCreditSection         = $x("//span[text()='Insight Captive Portal']/../span[2]/i[2]");
   public static SelenideElement ICPDivCreditSubsText            = $x("//span[text()='Insight Captive Portal']/../..//th[text()='Subscriptions']/../../..//td[@style='white-space: pre-line;']");
   public static SelenideElement ICPDivCreditSubsQuantity        = $x("//span[text()='Insight Captive Portal']/../..//th[text()='Quantity']/../../..//td[2]");
