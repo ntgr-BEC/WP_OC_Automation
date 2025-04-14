@@ -707,12 +707,12 @@ public class DevicesDashPage extends DevicesDashPageElements {
 
     public String getDeviceStatus(String serialNumber) {
         String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
-        if ((devicesStatus(row)).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(row)));
+        if ((devicesStatus(serialNumber)).exists()) {
+            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
         } else if (devicesStatus(row).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(row)));
+            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
         } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(row)));
+            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
         }
     }
 
