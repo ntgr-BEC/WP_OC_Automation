@@ -144,10 +144,15 @@ public class AccountPageElement extends MyCommonAPIs {
 
     public SelenideElement locationName(String text) {
         waitReady();
-        if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
-            waitElement("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
-        }
-        SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
+//        if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
+//            waitElement("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
+//        }
+//        SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(WebportalParam.location1).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        SelenideElement location=Locationname(rowindex);
+        System.out.println(location);
         return location;
     }
 
@@ -223,7 +228,7 @@ public class AccountPageElement extends MyCommonAPIs {
     }
 
     public void deleteLocation(String Name) {
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(15);
         SelenideElement deleteLocation3 = $x("//button[text()='Delete']");
         if( $x("//p[@title='" + Name + "']/../../ul/li/a").exists())
         {
@@ -234,7 +239,7 @@ public class AccountPageElement extends MyCommonAPIs {
         SelenideElement deleteLocation4 = $x("//button[@class='btn btn-danger' and text()='Delete']");
         SelenideElement deleteLocation5 = $x("//b[text()='Delete']");
         SelenideElement deleteLocation6 = $x("//button[@class='btn btn-danger' and text()='Yes, delete location']");
-        MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(35);
         if ($x(deleteLocation1).exists()) {
             $x(deleteLocation1).click();
         } else if ($x(deleteLocation2).exists()) {
@@ -248,7 +253,7 @@ public class AccountPageElement extends MyCommonAPIs {
         } else {
             deleteLocation6.click();
         }
-        MyCommonAPIs.sleepi(60);
+        MyCommonAPIs.sleepi(35);
         if(deleteLocation4.exists()) {
         waitElement(deleteLocation4);
         deleteLocation4.click();
@@ -324,6 +329,12 @@ public class AccountPageElement extends MyCommonAPIs {
     
     public SelenideElement dropdownLocationElementNew(String name) {
         SelenideElement dropdownelementnew = $x("//p[text()='"+name+"']/../../..");
+        return dropdownelementnew;
+    }
+    
+    
+    public SelenideElement Locationname(String name) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+ name +"']/div[@col-id =\"locations\"]");
         return dropdownelementnew;
     }
     
