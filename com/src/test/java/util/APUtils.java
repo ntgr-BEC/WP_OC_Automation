@@ -15,6 +15,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import webportal.param.WebportalParam;
 import webportal.webelements.DevicesDashPageElements;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.WirelessQuickViewPage;
 
 public class APUtils extends MyCommonAPIs {
     final static Logger logger              = Logger.getLogger("APUtils");
@@ -1719,6 +1720,36 @@ public String getNASID(String Model) {
     }
     return status;
 }
+
+public String checkInstantWifiRadiomodes() {
+    
+    String output = "";
+    int waitTime = 5;
+    long startTime = System.currentTimeMillis();
+    long maxWaitTime = 30 * 1000;
+
+    logger.info("Executing SSH command and waiting for logs...");
+    plink.getOutput("tail -f /tmp/log/messages |grep -i rf &", default_timeout_ssh);
+    MyCommonAPIs.sleepi(10);
+    new WirelessQuickViewPage(false).enableInstantWiFi();
+    MyCommonAPIs.sleepi(10);
+    while ((System.currentTimeMillis() - startTime) < maxWaitTime) {
+        output = plink.getOutput("tail -f /tmp/log/messages |grep -i rf &", default_timeout_ssh);
+
+        if (output != null && !output.trim().isEmpty()) {  // ✅ Breaks the loop if output is found
+            logger.info("Received output: " + output);
+            return output;
+        }
+
+        logger.info("Waiting for log output...");
+        MyCommonAPIs.sleepi(waitTime);
+    }
+
+    logger.info("No valid output received after waiting " + (maxWaitTime / 1000) + " seconds.");
+    return output;
+}
+
+
 
 }
 

@@ -50,7 +50,6 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        //new AccountPage().deleteOneLocation(locationName);
     }
     
     @Step("Test Step 1: Create IM WP account success;")
@@ -68,16 +67,17 @@ public class Testcase extends TestCaseBase {
         new HamburgerMenuPage(false).createAccount(accountInfo);
     }
     
-//    @Step("Test Step 2: Check account try trial;")
-//    public void step2() {
-//        assertTrue(new HamburgerMenuPage().checkAccountTryTrial());
-//    }       
+    @Step("Test Step 2: Check account free trial;")
+    public void step2() {
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage();       
+    }
+     
     
-    @Step("Test Step 4: Create Location ")
-    public void step4() {
-        
-//        new HardBundlePage().GoTocreateLocation();
-        new HamburgerMenuPage(false).closeLockedDialog();
+    @Step("Test Step 3: Create Location ")
+    public void step3() {
+       
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);

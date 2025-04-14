@@ -32,6 +32,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
@@ -49,6 +50,8 @@ import webportal.publicstep.WebCheck;
 import webportal.webelements.WirelessQuickViewElement;
 
 import org.openqa.selenium.By;
+import static com.codeborne.selenide.CollectionCondition.*;
+import org.json.JSONObject;
 
 
 /**
@@ -60,6 +63,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     */
     Logger          logger;
     public SSIDData ssidData = null;
+    List<String> checkedValues = new ArrayList<>();
 
     public WirelessQuickViewPage() {
         // TODO Auto-generated constructor stub
@@ -12120,7 +12124,116 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         MyCommonAPIs.sleepi(3);
         GenericMethods.clickVisibleElements(captiveok);
     }
-  
+        
+    public void enableInstantWiFi() {
+        MyCommonAPIs.sleepi(1);
+        new WirelessQuickViewPage(false).clickOnAllRestoreDefaultLink();
+        MyCommonAPIs.sleepi(3);
+        $x("//h5[text()='Automatic Transmit Power Allocation']/..//span").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(3);
+        new WirelessQuickViewPage(false).clickOnOptimizeButton();
+        MyCommonAPIs.sleepi(1);
+    }
+    
+    //AddedByPratikInstantWiFi
+    public boolean validateAllGHzValuesFromSSHArePresentInUI() {
+        // 🔹 1. Get raw Tera Term SSH output
+        String teraTermOutput = new APUtils(WebportalParam.ap1IPaddress).checkInstantWifiRadiomodes();
+        System.out.println("tera Term Output: " + teraTermOutput);
+        // 🔹 2. Extract & parse JSON
+        String json1 = teraTermOutput.split("Rf settings : ")[1].split("\\.\\.")[0].trim();
+        String json2 = teraTermOutput.split("Rf Ranked Channel : ")[1].trim();
+
+        JSONObject obj1 = new JSONObject(json1);
+        JSONObject obj2 = new JSONObject(json2);
+
+        JSONObject wlanSettings1 = obj1.getJSONObject("wlanSettings").getJSONObject("wlanSettingTable");
+        JSONObject wlanSettings2 = obj2.getJSONObject("wlanSettings").getJSONObject("wlanSettingTable");
+
+        // 🔹 3. Extract values into array lists
+        List<String> ghz24List = extractBandValues(wlanSettings1, wlanSettings2, "wlan0");
+        List<String> ghz5List = extractBandValues(wlanSettings1, wlanSettings2, "wlan1");
+        List<String> ghz6List = extractBandValues(wlanSettings1, wlanSettings2, "wlan2");
+
+        System.out.println("✅ 2.4GHz SSH Values: " + ghz24List);
+        System.out.println("✅ 5GHz SSH Values: " + ghz5List);
+        System.out.println("✅ 6GHz SSH Values: " + ghz6List);
+
+        // 🔹 4. Get UI values
+        List<String> uiCheckedValues24GHz = getCheckedValuesFromPageFor24Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues24GHz);
+        List<String> uiCheckedValues5GHz = getCheckedValuesFromPageFor5Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues5GHz);
+        List<String> uiCheckedValues6GHz = getCheckedValuesFromPageFor6Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues6GHz);
+
+        // 🔹 5. Validate for each band (starting with 2.4GHz)
+        boolean is24GHzValid = validateBandValuesPresent(ghz24List, uiCheckedValues24GHz, "2.4GHz");
+        boolean is5GHzValid  = validateBandValuesPresent(ghz5List,  uiCheckedValues5GHz,  "5GHz");
+        boolean is6GHzValid  = validateBandValuesPresent(ghz6List,  uiCheckedValues6GHz,  "6GHz");
+
+        boolean finalResult = is24GHzValid && is5GHzValid && is6GHzValid;
+        System.out.println("🎯 Final Validation Result: " + finalResult);
+        return finalResult;
+    }
+
+    // ✅ Extract method for getting channel + rrmCh2/3 from two JSON objects
+    public List<String> extractBandValues(JSONObject settings1, JSONObject settings2, String wlanKey) {
+        List<String> bandList = new ArrayList<>();
+        bandList.add(settings1.getJSONObject(wlanKey).getString("channel"));          // channel
+        bandList.add(settings2.getJSONObject(wlanKey).getString("rrmCh2"));           // rrmCh2
+        bandList.add(settings2.getJSONObject(wlanKey).getString("rrmCh3"));           // rrmCh3
+        return bandList;
+    }
+
+    // ✅ Common reusable comparison logic
+    public boolean validateBandValuesPresent(List<String> sshBandValues, List<String> uiValues, String bandName) {
+        boolean allMatch = true;
+        for (String val : sshBandValues) {
+            if (!uiValues.contains(val)) {
+                System.out.println("❌ " + bandName + " missing in UI: " + val);
+                return allMatch = false;
+            }
+        }
+        if (allMatch) {
+            System.out.println("✅ All " + bandName + " values from SSH are present in UI!");
+        }
+        return allMatch;
+    }
+
+    // ✅ Pull checked values from UI (2.4GHz page)
+    public List<String> getCheckedValuesFromPageFor24Ghz() {
+        List<String> checkedValues = new ArrayList<>();
+        MyCommonAPIs.sleepi(5);
+        checkedCheckboxes24GHz.shouldHave(sizeGreaterThan(0));
+        for (SelenideElement element : checkedCheckboxes24GHz) {
+            checkedValues.add(element.getText().trim());
+        }
+        return checkedValues;
+    }
+    
+    // ✅ Pull checked values from UI (5GHz page)
+    public List<String> getCheckedValuesFromPageFor5Ghz() {
+        List<String> checkedValues = new ArrayList<>();
+        MyCommonAPIs.sleepi(5);
+        checkedCheckboxes5GHz.shouldHave(sizeGreaterThan(0));
+        for (SelenideElement element : checkedCheckboxes5GHz) {
+            checkedValues.add(element.getText().trim());
+        }
+        return checkedValues;
+    }
+    
+    // ✅ Pull checked values from UI (6GHz page)
+    public List<String> getCheckedValuesFromPageFor6Ghz() {
+        List<String> checkedValues = new ArrayList<>();
+        MyCommonAPIs.sleepi(5);
+        checkedCheckboxes6GHz.shouldHave(sizeGreaterThan(0));
+        for (SelenideElement element : checkedCheckboxes6GHz) {
+            checkedValues.add(element.getText().trim());
+        }
+        return checkedValues;
+    }
+    
 }
 
   

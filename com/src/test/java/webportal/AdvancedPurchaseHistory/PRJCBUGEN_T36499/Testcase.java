@@ -94,6 +94,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Country", "United States of America");
         new AccountPage().addNetwork(locationInfo);
         new AccountPage(false).enterLocation(locationName);
+        
 
     }
 
@@ -104,6 +105,8 @@ public class Testcase extends TestCaseBase {
         firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
         System.out.println(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new AccountPage().enterLocation(locationName);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
     }
 
@@ -123,6 +126,7 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("Country", "US");
         paymentInfo.put("State", "Florida");
         new HamburgerMenuPage(false).upgradeSubscription(paymentInfo);
+    
     }
 
     @Step("Test Step 6: Open Purchase History Page and expand Subs Div Credits Section")

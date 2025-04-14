@@ -82,6 +82,9 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Country", "United States");
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
+        assertTrue(new HamburgerMenuPage(false).checkAccountTryTrial());
+        new HamburgerMenuPage(false).expandinsigtdivCreditsSection();
+        new HamburgerMenuPage(false).verifyfreetrailOnPurchaseOrderHistoryPage(); 
         // webportalLoginPage.defaultLogin();
     }
 
@@ -106,6 +109,8 @@ public class Testcase extends TestCaseBase {
         firststdevInfo.put("MAC Address1", WebportalParam.ap1macaddress);
         System.out.println(firststdevInfo);
         new DevicesDashPage(false).addNewdummyDevice(firststdevInfo);
+        new AccountPage().enterLocation("OnBoardingTest");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
 
     }
 
@@ -130,8 +135,8 @@ public class Testcase extends TestCaseBase {
         paymentInfo.put("State", "Florida");
         new InsightServicesPage(false).buyInsightPremiumSubscriptions(paymentInfo);
 
-        assertTrue(new HamburgerMenuPage(false).checkSubscriptionsPage("Insight Premium", paymentInfo.get("Device Credits Pack")),
-                "Subscriptions page display error.");
+        new AccountPage().enterLocation("OnBoardingTest");
+        assertTrue(new HamburgerMenuPage(false).verifyMultipackDeviceCreditPacks(paymentInfo), "Subscriptions page display error.");
     }
 
     @Step("Test Step 6: Open Purchase History Page and expand Subs Div Credits Section")
@@ -156,7 +161,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step9: Verify the Activation date and Expiry date should be according to testcase")
     public void step9() {
-        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightPreSubsActivationAndExpiryDates(), "Activation Date is not equal to Today's Date");
+        assertTrue(new HamburgerMenuPage(false).VerifyTheInsightPreSubsActivationAndExpiryDatesMultiPack(5), "Activation Date is not equal to Today's Date");
 
     }
 }

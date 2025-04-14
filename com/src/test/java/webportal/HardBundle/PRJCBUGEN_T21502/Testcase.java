@@ -77,10 +77,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: Create Location ")
     public void step3() {
-        
-//       new HardBundlePage().GoTocreateLocation();
-        new HamburgerMenuPage(false).closeLockedDialog();
-        
+               
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("Location Name", locationName);
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
