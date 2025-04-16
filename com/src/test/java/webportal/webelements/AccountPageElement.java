@@ -149,7 +149,7 @@ public class AccountPageElement extends MyCommonAPIs {
 //        }
 //        SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
         MyCommonAPIs.sleepi(2);
-        String rowindex=dropdownLocationElementNew(WebportalParam.location1).getAttribute("aria-rowindex");
+        String rowindex=dropdownLocationElementNew(text).getAttribute("aria-rowindex");
         MyCommonAPIs.sleepi(2);
         SelenideElement location=Locationname(rowindex);
         System.out.println(location);

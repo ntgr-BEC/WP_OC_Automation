@@ -29,9 +29,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
 
     @Feature("NightlyBuild") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T14167") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T141689") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("verify delete AP end of suit") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T14167") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T141689") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
