@@ -15,6 +15,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import webportal.param.WebportalParam;
 import webportal.webelements.DevicesDashPageElements;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.PRXFirmwarePage;
 import webportal.weboperation.WirelessQuickViewPage;
 
 public class APUtils extends MyCommonAPIs {
@@ -453,6 +454,30 @@ public class APUtils extends MyCommonAPIs {
             MyCommonAPIs.sleepi(30);
         }
         return bUpdated;
+    }
+    
+    public boolean updateFirmwareOldSwitch(String firmwareURL) {
+        System.out.println("code to downgrade the firmeare");
+        boolean bUpdated = false;
+        String fwver = getVersion(false);
+        String fwurl = WebportalParam.pr1Firmware;
+        System.out.println(fwurl);
+        if (firmwareURL != null) {
+            fwurl = firmwareURL;
+        }
+        if (fwurl.contains(fwver)) {
+            logger.info("device is already in this version: " + fwurl);
+        } else {
+            bUpdated = true;
+            logger.info("to update system: " + fwurl);
+            new PRXFirmwarePage().FWUpgradeSwitch(WebportalParam.loginPassword, WebportalParam.pr1IPaddress);
+                       
+            MyCommonAPIs.sleepi(30);
+            RunCommand.waitSWAlive(WebportalParam.pr1IPaddress);
+            MyCommonAPIs.sleepi(30);
+    }
+        return bUpdated;
+        
     }
 
     public boolean get11REnableStatus(String Model) {

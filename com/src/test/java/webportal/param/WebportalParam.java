@@ -125,6 +125,7 @@ public class WebportalParam {
     public static String                               OrbiDefaultPassword;
     public static String                               Country;
     public static String                               ap1TargetFirmware;
+    public static String                               swimage;
 
     // add by bingke.xue for nas.
     public static String nas1SerialNo;
@@ -553,6 +554,7 @@ public class WebportalParam {
         ap2deveiceName = xmlManager.getValueFromWebPortAndDut("AP2", "DeviceName");
         ap2Firmware = xmlManager.getValueFromWebPortAndDut("AP2", "Firmware");
         ap2Model = xmlManager.getValueFromWebPortAndDut("AP2", "Model");
+        swimage = xmlManager.getValueFromPortXml("//swimage");
 
         ap3IPaddress = xmlManager.getValueFromWebPortAndDut("AP3", "Ip_Address");
         ap4IPaddress = xmlManager.getValueFromWebPortAndDut("AP4", "Ip_Address");
