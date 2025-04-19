@@ -1152,7 +1152,10 @@ public class DevicesDashPage extends DevicesDashPageElements {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
         gotoAllLocations();
         WebCheck.checkHrefIcon(URLParam.hrefDevices);
-        new WirelessQuickViewPage(false).editName(serialNumber).doubleClick();
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        ariaSetIndex(row).click();
+        MyCommonAPIs.sleepi(3);
+        ariaSetIndexEdit(row).click();       
 
     }
 
