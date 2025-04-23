@@ -34,7 +34,7 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
     Map<String, String> headers = new HashMap<String, String>();
     String id;
     
-    @Feature("Api_ModifyMacAcl") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_DeleteMacAcl") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test modify MAC ACL config from the particular network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
@@ -46,6 +46,7 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
     @AfterMethod(alwaysRun=true)
     public void teardown()
     {    
+        System.out.print("Start to tear down");
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",WebportalParam.networkId);
         pathParams.put("id",id);  
@@ -71,7 +72,7 @@ public class Api_DeleteMacAcl extends TestCaseBaseApi{
         
         String requestBody = "{\"deleteMacAclConfigInfo\":{\"macAuth\":\"1\",\"type\":\"0\",\"policy\":\"0\",\"macList\":[\"11-33-11-22-34-77\"]}}";
         
-//        //TO PERFORM ANY REQUEST 
+//        TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Wireless_MacAcl"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         

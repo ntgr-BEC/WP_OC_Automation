@@ -65,7 +65,7 @@ public class Api_ModifySyslogSettings extends TestCaseBaseApi{
        
         pathParams.put("networkId",networkId);
         
-        String requestBody= "{\"sysLogSettings\":{\"syslogStatus\":\"1\",\"syslogServerIp\":\"192.17.1.1\",\"syslogServerPort\":\"514\"}}";
+        String requestBody= "{\"sysLogSettings\":{\"syslogStatus\":\"1\",\"syslogServerIp\":\"192.17.1.1\",\"syslogServerPort\":\"514\",\"syslogLevel\": \"8\"}}";
       
         //TO PERFORM ANY REQUEST 
         Response getResponse = ApiRequest.sendPutRequest(endPointUrl.get("Syslog_Settings"), requestBody, headers, pathParams, null); 

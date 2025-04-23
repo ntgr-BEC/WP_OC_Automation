@@ -71,7 +71,7 @@ public class Api_GetSystemHealthDetails extends TestCaseBaseApi{
         networkId=add.jsonPath().getString("networkInfo[0].networkId");  
         
         Map<String, String> headers = new HashMap<String, String>();
-//        headers.put("accountId",WebportalParam.accountId);
+        headers.put("accountId",WebportalParam.accountId);
         headers.put("token",WebportalParam.token);
         headers.put("apikey",WebportalParam.apikey);    
       
