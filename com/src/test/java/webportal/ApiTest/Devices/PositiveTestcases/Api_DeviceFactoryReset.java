@@ -67,9 +67,17 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("DeviceFactoryReset_DeviceReboot"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
-        MyCommonAPIs.sleepi(100);
-        new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
-        MyCommonAPIs.sleepi(980);
+         MyCommonAPIs.sleepi(300);
+         if(WebportalParam.serverUrl.equals("insight.netegear.com"))
+         {
+             Response add = new Api_AddDevice().step1();  
+         }
+         else
+         {
+             new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
+             MyCommonAPIs.sleepi(500);
+         }
+//        
     }
 
 }
