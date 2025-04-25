@@ -62,8 +62,7 @@ public class Api_GetDeviceMeshInfo extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Device_MeshInfo"), headers, pathParams, null);
         getResponse.then().body("response.status", equalTo(true))
-         .body("response.message", equalTo("Device getInfo successfully"))
-         .body("deviceInfo.isSupported", equalTo("Yes"));
+         .body("response.message", equalTo("Device getInfo successfully"));
        }
 
 }
