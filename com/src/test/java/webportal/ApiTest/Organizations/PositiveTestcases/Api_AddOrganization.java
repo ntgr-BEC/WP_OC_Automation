@@ -44,16 +44,16 @@ public class Api_AddOrganization extends TestCaseBaseApi{
         step1();
     }
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    { 
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//        pathParams.put("orgId",orgId);
-//        pathParams.put("accountId",WebportalParam.accountIdPro);
-//        
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//    }  
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("orgId",orgId);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }  
   
     @Step("Send get request to {url}")
     public Response step1()
@@ -62,10 +62,11 @@ public class Api_AddOrganization extends TestCaseBaseApi{
             endPointUrl = new ApiRequest().ENDPOINT_URL;          
             headers.put("apikey",WebportalParam.apikey);
             headers.put("token",WebportalParam.tokenPro);
-                                   
+                            
             Map<String, String> pathParams = new HashMap<String, String>();
             pathParams.put("accountId",WebportalParam.accountIdPro);
-            String requestBody1="{\"orgInfo\":{\"orgName\":\""+org+"\",\"ownerName\":\"\",\"ownerEmail\":\"\",\"persPhnNo\":\"\",\"busiPhnNo\":\"\",\"emailRecipient\":[\"1\",\"2\"],\"pushRecipient\":[\"1\",\"2\"],\"deviceOwnership\":\"1\",\"repRecipient\":[\"1\",\"2\"],\"isSchedule\":\"1\",\"frequency\":\"1\",\"applyToAllOrg\":\"0\"}}";       
+            String requestBody1= "{\"orgInfo\":{\"orgName\":\"" + org + "\",\"ownerName\":\"\",\"ownerEmail\":\"" + WebportalParam.adminName + "\",\"persPhnNo\":\"\",\"busiPhnNo\":\"\",\"emailRecipient\":[\"1\",\"2\"],\"pushRecipient\":[\"1\",\"2\"],\"deviceOwnership\":\"1\",\"repRecipient\":[\"1\",\"2\"],\"isSchedule\":\"1\",\"frequency\":\"1\",\"applyToAllOrg\":\"0\"}}";
+;       
             
             
             //TO ADD NETWORK AND RETRIEVE NETWORK ID
