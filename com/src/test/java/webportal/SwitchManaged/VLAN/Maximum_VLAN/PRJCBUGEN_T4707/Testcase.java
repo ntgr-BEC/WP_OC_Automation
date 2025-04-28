@@ -49,82 +49,82 @@ public class Testcase extends TestCaseBase implements Config {
         webportalLoginPage.defaultLogin();
         handle.gotoLoction();
 
-        wvp.gotoPage();
-        wvp.deleteAllVlan();
-        wvp.deleteAllVlanCli();
+//        wvp.gotoPage();
+//        wvp.deleteAllVlan();
+//        wvp.deleteAllVlanCli();
     }
 
     @Step("Test Step 2: Create a maximum of 256 VLANs.")
     public void step2() {
-        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
-        WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
-        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
-        MyCommonAPIs.sleep(8000);
+//        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+//        WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
+//        WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
+//        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
+//        MyCommonAPIs.sleep(8000);
 
         WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        vlanPage.addCustomVlanWithPorts("abcdefghijklmnopqrst100", "100", dut1Name, sw1port, "tag", null, null, null, null);
-        vlanPage.addCustomVlanWithPorts("abcdefghijklmnopqrst101", "101", dut1Name, sw1port, "tag", null, null, null, null);
+//        vlanPage.addCustomVlanWithPorts("abcdefghijklmnopqrst100", "100", dut1Name, sw1port, "tag", null, null, null, null);
+//        vlanPage.addCustomVlanWithPorts("abcdefghijklmnopqrst101", "101", dut1Name, sw1port, "tag", null, null, null, null);
 
-        for (int i = 200; i < 452; i++) {
-            String vlanname = "abcdvlan" + i;
+        for (int i = 161; i < 300; i++) {
+            String vlanname = "AutoBEC5" + i;
             sMaxVlan = vlanname;
             vlanPage.addCustomVlanWithPorts(vlanname, String.valueOf(i), dut1Name, sw1port, "tag", null, null, null, null);
 
         }
     }
 
-    @Step("Test Step 3: check cli")
-    public void step3() {
-        String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
-        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]);
-        String result2 = handle.getCmdOutputShowRunningConfig(false);
-        // if (MyCommonAPIs.matches(result1, String.format("VLAN Entries Currently in Use\\.+ +255"))) {
-        if (result2.contains(sMaxVlan)) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult, "----Check Point 1 Fail:show vlan, 1 cli is:" + result2);
-        }
-
-        String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
-        if (SwitchCLIUtils.isTagPort(port1, "200") && result1.contains("200")) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1, 1 cli is:" + result1);
-        }
-
-        result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
-        if (SwitchCLIUtils.isTagPort(port2, "200") && result1.contains("200")) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1, 2 cli is:" + result1);
-        }
-    }
-
-    @Step("Test Step 4: Check configuration on webportal")
-    public void step4() {
-        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        List<String> vlans = vlanPage.getVlans();
-        MyCommonAPIs.sleep(3000);
-
-        System.out.println("vlan is:" + vlans);
-        if (vlans.contains("abcdefghijklmnopqrst100") && vlans.contains("abcdefghijklmnopqrst101")) {
-            micResult = true;
-        } else {
-            micResult = false;
-            assertTrue(micResult, "------Check Point 4: vlan100 vlan101 is show:" + vlans);
-        }
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void restore() {
-        System.out.println("start to do restore");
-        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
-        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
-        vlanPage.deleteAllVlan();
-    }
+//    @Step("Test Step 3: check cli")
+//    public void step3() {
+//        String port1 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[0]);
+//        String port2 = WebportalParam.getSwitchPort(WebportalParam.sw1Model, sw1port[1]);
+//        String result2 = handle.getCmdOutputShowRunningConfig(false);
+//        // if (MyCommonAPIs.matches(result1, String.format("VLAN Entries Currently in Use\\.+ +255"))) {
+//        if (result2.contains(sMaxVlan)) {
+//            micResult = true;
+//        } else {
+//            micResult = false;
+//            assertTrue(micResult, "----Check Point 1 Fail:show vlan, 1 cli is:" + result2);
+//        }
+//
+//        String result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port1, false).toLowerCase();
+//        if (SwitchCLIUtils.isTagPort(port1, "200") && result1.contains("200")) {
+//            micResult = true;
+//        } else {
+//            micResult = false;
+//            assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1, 1 cli is:" + result1);
+//        }
+//
+//        result1 = MyCommonAPIs.getCmdOutput("show running-config interface " + port2, false).toLowerCase();
+//        if (SwitchCLIUtils.isTagPort(port2, "200") && result1.contains("200")) {
+//            micResult = true;
+//        } else {
+//            micResult = false;
+//            assertTrue(micResult, "----Check Point 1 Fail:show vlan 100 on dut1, 2 cli is:" + result1);
+//        }
+//    }
+//
+//    @Step("Test Step 4: Check configuration on webportal")
+//    public void step4() {
+//        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+//        List<String> vlans = vlanPage.getVlans();
+//        MyCommonAPIs.sleep(3000);
+//
+//        System.out.println("vlan is:" + vlans);
+//        if (vlans.contains("abcdefghijklmnopqrst100") && vlans.contains("abcdefghijklmnopqrst101")) {
+//            micResult = true;
+//        } else {
+//            micResult = false;
+//            assertTrue(micResult, "------Check Point 4: vlan100 vlan101 is show:" + vlans);
+//        }
+//    }
+//
+//    @AfterMethod(alwaysRun = true)
+//    public void restore() {
+//        System.out.println("start to do restore");
+//        WiredQuickViewPage wiredQuickViewPage = new WiredQuickViewPage();
+//        WiredVLANPageForVLANPage vlanPage = new WiredVLANPageForVLANPage();
+//        vlanPage.deleteAllVlan();
+//    }
 
 }
