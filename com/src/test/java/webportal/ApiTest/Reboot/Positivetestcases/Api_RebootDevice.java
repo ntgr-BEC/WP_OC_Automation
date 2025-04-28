@@ -62,7 +62,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
                           .body("response.message", equalTo("Success in fetching reboot now information."));
         
-        MyCommonAPIs.sleepi(1000);
+        MyCommonAPIs.sleepi(500);
 
     }
                   

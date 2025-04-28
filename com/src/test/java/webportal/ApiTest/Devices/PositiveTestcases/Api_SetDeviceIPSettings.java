@@ -13,11 +13,17 @@ import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import testbase.TestCaseBase;
 import testbase.TestCaseBaseApi;
+import util.MyCommonAPIs;
 import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 //import webportal.weboperation.WirelessQuickViewPage;
 import webportal.param.WebportalParam;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.ApiRequest;
+import webportal.weboperation.DevicesApIpSettingsPage;
+import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.WebportalLoginPage;
 
 import static io.restassured.RestAssured.*;
 
@@ -42,6 +48,18 @@ public class Api_SetDeviceIPSettings extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+    }
+    
+    @AfterMethod
+    public void teardown()
+    {
+        new TestCaseBase().startBrowser();
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
+        webportalLoginPage.defaultLogin();
+        new AccountPage(false).enterLocation("office1");
+        new DevicesDashPage().enterDevice(WebportalParam.ap1serialNo);
+        new DevicesApIpSettingsPage().enableAssignAutomaticallyIPAddrees();
+        MyCommonAPIs.sleepi(250);
     }
 
     @Step("Send get request to {url}")
@@ -77,6 +95,8 @@ public class Api_SetDeviceIPSettings extends TestCaseBaseApi{
         //TO PERFORM ANY REQUEST
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("IP_Statistics"), requestBody, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
+        
+        MyCommonAPIs.sleepi(250);
                            
     }
 
