@@ -73,7 +73,7 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Add_Device_Pro"), requestBody, headers, pathParams2, null); 
         getResponse.then().body("response.status", equalTo(true));
-        MyCommonAPIs.sleepi(1000);
+        MyCommonAPIs.sleepi(500);
        
     }
 
