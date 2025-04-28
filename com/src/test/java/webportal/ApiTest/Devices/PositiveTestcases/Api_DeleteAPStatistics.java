@@ -78,7 +78,7 @@ public class Api_DeleteAPStatistics extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true));
         id=getResponse.jsonPath().getString("wirelessNetworkInfo.wirelessNetworkId");
         
-        MyCommonAPIs.sleepi(200);
+        MyCommonAPIs.sleepi(180);
         ssidInfo.put("SSID", "SSID_TESTIT");
         ssidInfo.put("Security", "WPA2 Personal");
         ssidInfo.put("Password", "Pass@123");

@@ -632,7 +632,7 @@ import util.*;
                 put("Modify_InstantWIFI", "insightappcom/api/wireless/v1/networkRFSettings/{networkId}/{requestType}");
                 put("API_Headers", "insightappcom/api/v1/apiHeaders");
                 put("Add_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
-                put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAclDevice/{networkId}/{wirelessNetworkId}");
+                put("Delete_Wireless_MacAcl", "insightappcom/api/wireless/v1/macAcl/{networkId}/{wirelessNetworkId}");
                 put("Vlan", "insightappcom/api/wired/v1/vlan/{networkId}");
                 put("Get_Acl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/aclSettings");
                 put("Get_iPAcl","insightappcom/api/wired/v1/{networkId}/vlan/{vlanId}/ipAclSettings");

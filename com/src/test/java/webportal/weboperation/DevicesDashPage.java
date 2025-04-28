@@ -435,29 +435,36 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public void enterDevice(String serialNumber) {
+        
+        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
+        if ((devicesStatus(serialNumber)).exists()) {
+            ariaSetIndex(row).click();
+            MyCommonAPIs.sleepi(3);
+            ariaSetIndexEdit(row).click();
+        }
         // executeJavaScript("arguments[0].removeAttribute('class')",
         // editModule(serialNumber));
         // MyCommonAPIs.sleep(3000);
-        if (WebportalParam.enableDebug && $("a[data-target*='.Share']").exists())
-            return;
-
-        boolean clicked = false;
-        for (int i = 0; i < 2; i++) {
-            enterDeviceSummary(serialNumber).hover();
-            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
-                if (t.isDisplayed()) {
-                    t.click();
-                    clicked = true;
-                    break;
-                }
-            }
-            waitReady();
-            if (clicked) {
-                break;
-            }
-        }
-        waitReady();
-        MyCommonAPIs.sleep(5000);
+//        if (WebportalParam.enableDebug && $("a[data-target*='.Share']").exists())
+//            return;
+//
+//        boolean clicked = false;
+//        for (int i = 0; i < 2; i++) {
+//            enterDeviceSummary(serialNumber).hover();
+//            for (SelenideElement t : $$("p[id*=ptdNomrginDevIddevicesDash] img[src*=edit]")) {
+//                if (t.isDisplayed()) {
+//                    t.click();
+//                    clicked = true;
+//                    break;
+//                }
+//            }
+//            waitReady();
+//            if (clicked) {
+//                break;
+//            }
+//        }
+//        waitReady();
+//        MyCommonAPIs.sleep(5000);
     }
 
     public DevicesSwitchSummaryPage enterDevicesSwitchSummary(String serialNumber) {
