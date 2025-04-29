@@ -40,7 +40,7 @@ public class Api_SetDeviceIPSettings extends TestCaseBaseApi{
     Map<String, String> endPointUrl = new HashMap<String, String>();
  
     
-    @Feature("Api_GetDeviceIPSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_SetDeviceIPSettings") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test sets device IP settings for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.

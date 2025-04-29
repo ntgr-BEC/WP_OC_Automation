@@ -39,7 +39,7 @@ public class Api_AddDevicePro extends TestCaseBaseApi{
     Map<String, String> pathParams = new HashMap<String, String>();
     Map<String, String> deviceInfo = new HashMap<String, String>();
     
-    @Feature("Api_AddDevice") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Feature("Api_AddDevice_Pro") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("This test will add device pro for the Netgear APIs based on specific Network ID") // It's a testcase title from Jira Test Case.
     @TmsLink("PRJCBUGEN_T001") // It's a testcase id/link from Jira Test Case.
