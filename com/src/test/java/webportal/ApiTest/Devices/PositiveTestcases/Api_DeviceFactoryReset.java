@@ -75,7 +75,7 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
          else
          {
              new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
-             MyCommonAPIs.sleepi(500);
+             MyCommonAPIs.sleepi(700);
          }
          
         

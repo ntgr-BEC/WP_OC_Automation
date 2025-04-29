@@ -93,12 +93,12 @@ public class Api_MoveDevice extends TestCaseBaseApi{
         LocID = response1.jsonPath().getString("networkInfo[0].networkId");
         
         //To create a location wihich is same as existing loaction {to match WIRELESS REGION]
-        String requestBody1="{\"srcNetworkId\":\""+WebportalParam.networkId+"\",\"srcOrgId\":\""+WebportalParam.orgId+"\",\"targetOrganizations\":[{\"networkList\":[\""+LocID+"\"],\"orgId\":\""+OrgID+"\"}]}"; 
+        String requestBody1="{\"srcNetworkId\":\""+WebportalParam.networkIdPro+"\",\"srcOrgId\":\""+WebportalParam.orgId+"\",\"targetOrganizations\":[{\"networkList\":[\""+LocID+"\"],\"orgId\":\""+OrgID+"\"}]}"; 
         
         Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Clone_Network"), requestBody1, headers, null, null);   
         
         //Allocate device credits for new org
-//        new Api_AllocateDeviceCredits().step2(1,1,OrgID);
+        new Api_AllocateDeviceCredits().step2(1,OrgID);
                
         Map<String, String> pathParams = new HashMap<String, String>();
         pathParams.put("networkId",WebportalParam.networkIdPro);
