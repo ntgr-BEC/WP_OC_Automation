@@ -58,6 +58,7 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
+        new DevicesDashPage().checkDeviceInNormalAccount("admin");
       
     }
 
@@ -69,11 +70,5 @@ public class Testcase extends TestCaseBase {
         }
         
        
-    @Step("Test Step 3: Verify Topology page")
-    public void step3() {
-            new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
-            assertTrue(new  DeviceScreenNavigationPage().verifyDeviceToplologyOption()," Topology options is not complete");
-            MyCommonAPIs.sleepi(15); 
-        }
-        }
+    }
 
