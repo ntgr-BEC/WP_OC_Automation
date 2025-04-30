@@ -1,4 +1,4 @@
-package webportal.NASID.PRJCBUGEN_T42789;
+package webportal.NASID.PRJCBUGEN_T42796;
 
 import static org.testng.Assert.assertTrue;
 
@@ -25,9 +25,11 @@ import util.Javasocket;
 import util.MyCommonAPIs;
 import util.RunCommand;
 import webportal.param.WebportalParam;
-import webportal.webelements.WirelessQuickViewElement;
+import webportal.webelements.DeviceGroupElement;
 import webportal.weboperation.DeviceGroupPage;
+import webportal.weboperation.DevicesApSummaryPage;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.DevicesDashPageMNG;
 import webportal.weboperation.FileHandling;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
@@ -42,19 +44,15 @@ public class Testcase extends TestCaseBase {
     
     Map<String, String> locationInfo = new HashMap<String, String>();
     Map<String, String> ECPInfo = new HashMap<String, String>();
-//    String NASID = "abcde";
-    int length = 254 ;
-    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     Random random = new Random();
-    StringBuilder sb = new StringBuilder(length);
     int randomNumber = random.nextInt(1000000);
     String SSID    = "SSID" + String.valueOf(randomNumber);
-    String NASID;
+    String NASID = "abc";
     
     @Feature("NASID") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T42789") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Configure the External Captive Portal SSID with maximum length custom NAS identifier") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T42789") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T42796") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify the NAS identifier can be reconfigured to default value after a custom NAS config in External Captive Portal SSID") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T42796") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -63,7 +61,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes(SSID);
+//        new WirelessQuickViewPage().deleteSsidYes(SSID);
         System.out.println("start to do tearDown");
     }
 
@@ -75,16 +73,8 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add numbers NASIS;")
+    @Step("Test Step 2: add ECP ssid and check NASID")
     public void step2() {
-        
-        
-        for (int i = 0; i < length; i++) {
-            sb.append(characters.charAt(random.nextInt(characters.length())));
-        }
-
-        NASID = sb.toString();
-        System.out.println("Random Alphabet String of 553 characters:\n" + NASID);
         
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("SSID", SSID);
@@ -100,19 +90,47 @@ public class Testcase extends TestCaseBase {
         ECPInfo.put("Secondary Address", "3.18.137.68");
         ECPInfo.put("PasswordGoZone", "Bijdragl");
         ECPInfo.put("NASID", NASID);
-        
-        
         new WirelessQuickViewPage().enableECP(locationInfo.get("SSID"), ECPInfo);  
-        
+      
         
     }  
     
     @Step("Test Step 3: check SSH;")
     public void step3() {
+        MyCommonAPIs.sleepi(120);
+        String VapIndex = new APUtils(WebportalParam.ap1IPaddress).Addeditssid();
+        Map<String, String> value = new WirelessQuickViewPage().findSSID(VapIndex, locationInfo.get("SSID"));
+        System.out.println("value is "+value);
         
-        assertTrue(new WirelessQuickViewElement().MAXNASID.isDisplayed(), "NASID is not Pushed");
+        new RunCommand().enableSSH4AP( WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
+        
+        String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASIDofssid(WebportalParam.ap1Model, value.get("VAP"));
+        System.out.println("SSHoutput is "+SSHoutput);
+        assertTrue(SSHoutput.contains(NASID), "NASID is not Pushed");
     }  
-     
+    
+    @Step("Test Step 4: Remove NAS ID;")
+    public void step4() {
+        
+        new WirelessQuickViewPage().DefaultNAS(locationInfo);
+        
+    }
+    
+    @Step("Test Step 5: check SSH;")
+    public void step5() {
+        MyCommonAPIs.sleepi(120);
+        String VapIndex = new APUtils(WebportalParam.ap1IPaddress).Addeditssid();
+        Map<String, String> value = new WirelessQuickViewPage().findSSID(VapIndex, locationInfo.get("SSID"));
+        System.out.println("value is "+value);
+        
+        new RunCommand().enableSSH4AP( WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
+        
+        String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASIDofssid(WebportalParam.ap1Model, value.get("VAP"));
+        System.out.println("SSHoutput is "+SSHoutput);
+        assertTrue(SSHoutput.contains("exCpNasIdentifier NONE"), "NASID is not Pushed");
+    }  
+    
+  
   }    
 
       

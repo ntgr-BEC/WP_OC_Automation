@@ -8,6 +8,7 @@ import static com.codeborne.selenide.Selenide.$x;
 
 import org.apache.log4j.Logger;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import util.MyCommonAPIs;
@@ -168,21 +169,44 @@ public class DeviceGroupElement extends MyCommonAPIs {
     
     public SelenideElement locationName(String text) {
         waitReady();
-        if (!$("#_divColNoNetWork").exists() & !$x("//p[text()='Networks not available']").exists()) {
-            waitElement("//div[@class='locationDiv']");
-        }
-        SelenideElement location = $x("//div[@class='locationDiv']//span[text()='" + text + "']");
-        return location;
+//      if (!$("#_divColNoNetWork").exists() & !$x("//*[contains(text(), 'No Rows To Show')]").exists()) {
+//          waitElement("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
+//      }
+//      SelenideElement location = $x("//div[@col-id='locations' and contains(@class, 'ag-cell') and not(contains(@class, 'ag-header'))]");
+      MyCommonAPIs.sleepi(2);
+      String rowindex=dropdownLocationElementNew(text).getAttribute("aria-rowindex");
+      MyCommonAPIs.sleepi(2);
+      SelenideElement location=Locationname(rowindex);
+      return location;
+    }
+    
+    public SelenideElement dropdownLocationElementNew(String name) {
+        SelenideElement dropdownelementnew = $x("//p[text()='"+name+"']/../../..");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement Locationname(String name) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+ name +"']/div[@col-id =\"locations\"]");
+        return dropdownelementnew;
     }
     
     public void editNetwork(String Name) {
-        MyCommonAPIs.sleepi(5);
-        waitElement($x("//p[@title='" + Name + "']/../../ul/li/a"));
-        $x("//p[@title='" + Name + "']/../../ul/li/a").click();
-        MyCommonAPIs.sleepi(5);
-        waitElement($x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]"));
-        $x("//p[@title='" + Name + "']/../../ul//b[contains(text(),'Edit')]").click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew(Name).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
+    }
+    
+    public SelenideElement ariaSetIndexEdit(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement ariaSetIndex(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//div[@aria-colindex='7']/div/span");
+        return dropdownelementnew;
     }
     
     public static SelenideElement        enableSysLogText                         =$x("//*[text()=\"Enable Syslog\"]");
@@ -196,6 +220,7 @@ public class DeviceGroupElement extends MyCommonAPIs {
     public static SelenideElement enableRadiouscheck                  = $x("//*[@id=\"onOffAuthStatusRadius\"]");
     public static SelenideElement enableRadious                       = $x("//*[@id=\"_divTogOnOfSetRaLiBlColMdRowStRad\"]/span");
     public static SelenideElement NASID                               = $x("//*[@id=\"nasIdentifierValue\"]");
+    public static SelenideElement NASIDECP                            = $x("//*[text()=\"NAS-Identifier\"]/../../div[2]/input");
     public static SelenideElement SaveRadious                         = $x("//*[@id=\"_buSaveBtnTwo\"]");
     public static SelenideElement confirmRadious                      = $x("//*[@id=\"SuccsEditWirNet\"]");
     public static SelenideElement confirmdisableRadious               = $x("//*[contains(text(), \"SSIDs using WPA Enterprise security will stop working\")]/../../div/button[contains(@class, 'btn-danger')]");

@@ -1,4 +1,4 @@
-package webportal.NASID.PRJCBUGEN_T42773;
+package webportal.NASID.PRJCBUGEN_T42784;
 
 import static org.testng.Assert.assertTrue;
 
@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
@@ -24,6 +25,7 @@ import util.Javasocket;
 import util.MyCommonAPIs;
 import util.RunCommand;
 import webportal.param.WebportalParam;
+import webportal.webelements.DeviceGroupElement;
 import webportal.weboperation.DeviceGroupPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.FileHandling;
@@ -39,12 +41,16 @@ public class Testcase extends TestCaseBase {
 
     
     Map<String, String> locationInfo = new HashMap<String, String>();
-    String NASID = "12345678";
+    Map<String, String> ECPInfo = new HashMap<String, String>();
+    String NASID = "abcde";
+    Random random = new Random();
+    int randomNumber = random.nextInt(1000000);
+    String SSID    = "SSID" + String.valueOf(randomNumber);
     
     @Feature("NASID") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T42773") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Configure the Enterprise SSID with custom NAS identifier of all numbers") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T42773") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T42784") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify the NAS-Identifier field is present for the Enterprise RADIUS settings") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T42784") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -53,7 +59,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new DeviceGroupPage().disable();
+        new WirelessQuickViewPage().deleteSsidYes(SSID);
         System.out.println("start to do tearDown");
     }
 
@@ -65,25 +71,15 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add numbers NASID;")
+    @Step("Test Step 2: Go to Radius setting;")
     public void step2() {
         
-        Map<String, String> locationInfo = new HashMap<String, String>();
-        locationInfo.put("SSID", "apwp22345");
-        locationInfo.put("Security", "WPA2 Enterprise");
-        new WirelessQuickViewPage().addSsid1(locationInfo);
-        
-        
         new DeviceGroupPage().GoToeditRadious(WebportalParam.location1);
-        new DeviceGroupPage().AddNASID(NASID);
+        assertTrue(new DeviceGroupElement().NASID.isDisplayed(),"NASID option does not exits");
+        
     }  
     
-    @Step("Test Step 3: check SSH;")
-    public void step3() {
-        new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
-        String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASID(WebportalParam.ap1Model);
-        assertTrue(SSHoutput.contains(NASID), "NASID is not Pushed");
-    }  
+    
      
   }    
 
