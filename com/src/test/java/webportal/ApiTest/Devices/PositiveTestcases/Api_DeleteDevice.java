@@ -69,7 +69,7 @@ public class Api_DeleteDevice extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Device"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
         getResponse.then().body("response.message", equalTo("Device deleted."));
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(10);
         
         return getResponse;
                           

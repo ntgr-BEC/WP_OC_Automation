@@ -20,6 +20,7 @@ import webportal.ApiTest.Location.PositiveTestcases.Api_AddNetwork;
 import webportal.param.WebportalParam;
 import webportal.publicstep.UserManage;
 import webportal.param.WebportalParam;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.ApiRequest;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.DevicesSwitchCableTestPage;
@@ -60,7 +61,8 @@ public class Api_SwitchCableTest extends TestCaseBaseApi{
         new TestCaseBase().startBrowser();
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage();
         webportalLoginPage.defaultLogin();
-        tcb.handle.gotoLoction("office2");
+//        tcb.handle.gotoLoction("office2");
+        new AccountPage(false).enterLocation("office2");
     }
 
     @Step("Perform cable test")

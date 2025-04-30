@@ -208,7 +208,7 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
             String port2Mode, String video) {
         NetworkSetupPage nsp = new NetworkSetupPage();
         nsp.gotoPage();
-        nsp.createNetwork("testnet", 0, name, id);
+        nsp.createNetwork("Network5", 0, name, id);
         gotoPage();
         openVlan(name, id, 0);
 
@@ -229,7 +229,7 @@ public class WiredVLANPageForVLANPage extends WiredVLANForVLANElement {
 
         clickSave();
         waitReady();
-        sleepsync();
+//        sleepsync();
     }
 
     /**

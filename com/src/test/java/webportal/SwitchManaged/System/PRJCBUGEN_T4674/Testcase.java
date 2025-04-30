@@ -57,7 +57,7 @@ public class Testcase extends TestCaseBase implements Config {
         
         System.out.println(mailBody.contains("Device Name"));
         System.out.println(mailBody.contains("Network Name"));
-        System.out.println(mailBody.contains("Serial No"));
+        System.out.println(mailBody.contains("Serial Number"));
         System.out.println(mailBody.contains("Model"));
         if (mailBody.contains("Device Name") && mailBody.contains("Network Name") 
                 && mailBody.contains("Serial No") && mailBody.contains("Model")) {

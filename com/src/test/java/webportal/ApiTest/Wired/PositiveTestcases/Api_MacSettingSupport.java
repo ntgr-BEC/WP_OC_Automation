@@ -42,14 +42,14 @@ public class Api_MacSettingSupport extends TestCaseBaseApi{
         step1();
     }
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    {  
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//       pathParams.put("networkId",networkId);    
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//    }
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    {  
+        Map<String, String> pathParams = new HashMap<String, String>();
+       pathParams.put("networkId",networkId);    
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Network_Sanity"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+    }
 
     
     //call set vlan here
@@ -74,16 +74,17 @@ public class Api_MacSettingSupport extends TestCaseBaseApi{
         pathParams.put("networkId",networkId);
         pathParams.put("vlanId",vlanId);
         
-        String body="{\"macAuthenticationInfo\":{\"mode\":\"0\",\"action\":\"0\"}}";
-
+        String body="{\"macAuthenticationInfo\":{\"mode\":\"1\",\"action\":\"0\"}}";
+        String body1="{\"macAuthenticationInfo\":{\"mode\":\"0\",\"action\":\"0\"}}";
         //TO PERFORM ANY REQUEST
        
-        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Enable_MacAcl"),body, headers, pathParams, null); 
+        Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Enable_MacAcl"),body, headers, pathParams, null); 
+        Response getResponse = ApiRequest.sendPostRequest(endPointUrl.get("Enable_MacAcl"),body1, headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true));
                       
         
         return getResponse;
-        
+
                 
     }
 
