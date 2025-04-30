@@ -68,15 +68,16 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
          MyCommonAPIs.sleepi(300);
-         if(WebportalParam.serverUrl.equals("insight.netegear.com"))
+         if(WebportalParam.serverUrl.equals("https://insight.netgear.com/"))
          {
              Response add = new Api_AddDevice().step1();  
          }
          else
          {
              new ApiRequest().Setserver(WebportalParam.ap1IPaddress);
-             MyCommonAPIs.sleepi(500);
+             MyCommonAPIs.sleepi(700);
          }
+         
         
     }
 

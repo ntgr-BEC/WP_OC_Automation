@@ -3033,7 +3033,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
         boolean result = false;
         MyCommonAPIs.sleepi(10);
-        if ($x("//td[text()='" + serialNumber + "']/../td[2]").getText().equals("Connected")) {
+        if ($x("//span[text()='" + serialNumber + "']/../../../td[2]").getText().equals("Connected")) {
             result = true;
             logger.info("Ap SN:" + serialNumber + " is online.");
         }

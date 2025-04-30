@@ -47,25 +47,25 @@ public class Api_AllocateDeviceCredits extends TestCaseBaseApi{
         step2(DC, OrgID);
     }
     
-//    @AfterMethod(alwaysRun=true)
-//    public void teardown()
-//    { 
-//        
-//        Map<String, String> pathParams = new HashMap<String, String>();
-//        pathParams.put("orgId",OrgID);
-//        pathParams.put("accountId",WebportalParam.accountIdPro);
-//        
-//        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
-//        getResponse1.then().body("response.status", equalTo(true));
-//       
-//    }  
-//    
+    @AfterMethod(alwaysRun=true)
+    public void teardown()
+    { 
+        
+        Map<String, String> pathParams = new HashMap<String, String>();
+        pathParams.put("orgId",OrgID);
+        pathParams.put("accountId",WebportalParam.accountIdPro);
+        
+        Response getResponse1 = ApiRequest.sendDeleteRequest(endPointUrl.get("Delete_Organization"), headers, pathParams, null); 
+        getResponse1.then().body("response.status", equalTo(true));
+       
+    }  
+    
     @Step("Send get request to {url}")
     public void step1()
     {
         response1 = new Api_AddOrganization().step1();
         OrgID = response1.jsonPath().getString("orgInfo.orgId");
-        Licence = new ApiRequest().readLicenceKeyByTxt("Write");
+     
 
        
     }
@@ -73,8 +73,7 @@ public class Api_AllocateDeviceCredits extends TestCaseBaseApi{
     @Step("Send get request to {url}")
     public void step2(int DC, String OrgID)
     {     
-        
-
+        Licence = new ApiRequest().readLicenceKeyByTxt("Write");
         endPointUrl = new ApiRequest().ENDPOINT_URL;        
         System.out.println(OrgID);
         headers.put("token",WebportalParam.tokenPro);
@@ -91,7 +90,7 @@ public class Api_AllocateDeviceCredits extends TestCaseBaseApi{
         Response getResponse1 = ApiRequest.sendPostRequest(endPointUrl.get("Add_Purchase_Confirmation"),requestBody1, headers, null, null); 
         getResponse1.then().body("response.status", equalTo(true));
         
-        String requestBody2="{\"bsVpnCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"cfCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"cfTopUpCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"devCredInfo\":{\"creditCount\":2,\"unusedLicKeys\":[{\"credits\":0,\"key\":\""+Licence+"\"}]},\"instantCpCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"vpnCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]}}";
+        String requestBody2="{\"bsVpnCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"cfCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"cfTopUpCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"devCredInfo\":{\"creditCount\":"+DC+",\"unusedLicKeys\":[{\"credits\":0,\"key\":\""+Licence+"\"}]},\"instantCpCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]},\"vpnCredInfo\":{\"creditCount\":0,\"unusedLicKeys\":[{\"credits\":0,\"key\":\"string\"}]}}";
         
         Response getResponse2 = ApiRequest.sendPostRequest(endPointUrl.get("AllocateCredits"), requestBody2, headers, pathParams, null); 
         getResponse2.then().body("response.status", equalTo(true));

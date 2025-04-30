@@ -555,24 +555,25 @@ import util.*;
             WebDriver driver = WebDriverRunner.getWebDriver();
             String oprnURL = "http://"+APIP+":9999/insight_server";
             String username = "admin";
-            String password = "Netgear1@";
-            
+            String password = "password";
+           
             // Construct the URL with basic authentication
-            String url = "http://" + username + ":" + password + "@172.16.27.43:9999/insight_server";
-
+            String url = "http://" + username + ":" + password + "@"+APIP+":9999/insight_server";
+            System.out.println("URL is"+url);
             ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
             Selenide.switchTo().window(1);
             String currentURL = new MyCommonAPIs().getCurrentUrl();
             System.out.println(currentURL);
-            MyCommonAPIs.sleepi(5);     
-            if(url.contains("maint-beta")) {
+            MyCommonAPIs.sleepi(5);
+            
+            if(WebportalParam.serverUrl.contains("maint-beta")) {
                 System.out.println("inside Maint-beta");
                 new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
-            }else if(url.contains("pri-qa")) {
+            }else if(WebportalParam.serverUrl.contains("pri-qa")) {
                 System.out.println("inside Pri-qa");
                 new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
             }
-            else {
+            else if(WebportalParam.serverUrl.contains("maint-qa")) {
                 System.out.println("inside Maint-qa");
                 new DevicesDashPageElements().dropdownclick.selectOption("MAINT-QA"); 
             }
@@ -584,6 +585,7 @@ import util.*;
             }
             MyCommonAPIs.sleepi(5);
             Selenide.switchTo().window(0);   
+            driver.quit();
 
         }
 

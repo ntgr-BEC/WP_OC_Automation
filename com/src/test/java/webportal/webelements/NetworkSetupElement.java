@@ -151,7 +151,7 @@ public class NetworkSetupElement extends MyCommonAPIs {
         } else
             throw new RuntimeException("Not able to finish all steps");
         
-        MyCommonAPIs.sleepi(30);
+        MyCommonAPIs.sleepi(20);
     }
 
     /**
