@@ -60,10 +60,9 @@ public class DevicesApSummaryPage extends DevicesApSummaryPageElement {
 
     public void clickReset() {
         logger.info("Click reset button.");
-        WebCheck.checkHrefIcon(URLParam.hrefDevicesApSummary);
+        Dropdown.click();
+        MyCommonAPIs.sleepi(10);
         reset.click();
-        getPageErrorMsg();
-        MyCommonAPIs.sleepi(3);
         if (resetconfirmnew.exists()) {
             resetconfirmnew.click();
         } else {

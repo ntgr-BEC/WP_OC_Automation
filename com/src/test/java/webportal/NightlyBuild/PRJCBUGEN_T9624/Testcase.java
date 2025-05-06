@@ -60,6 +60,7 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         new DevicesDashPage().checkDeviceInAdminAccount();
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
     }
 
     @Step("Test Step 2: Check radio and channel page;")

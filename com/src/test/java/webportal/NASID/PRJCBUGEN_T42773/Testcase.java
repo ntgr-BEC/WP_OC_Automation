@@ -65,7 +65,7 @@ public class Testcase extends TestCaseBase {
         handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Add numbers NASIS;")
+    @Step("Test Step 2: Add numbers NASID;")
     public void step2() {
         
         Map<String, String> locationInfo = new HashMap<String, String>();
@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: check SSH;")
     public void step3() {
-        new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
+        new RunCommand().enableSSH4AP(WebportalParam.ap1IPaddress, WebportalParam.loginPassword);
         String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASID(WebportalParam.ap1Model);
         assertTrue(SSHoutput.contains(NASID), "NASID is not Pushed");
     }  

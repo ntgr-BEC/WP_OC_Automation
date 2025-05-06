@@ -3543,7 +3543,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void clickBusinessInfoPageButton() {
-        MyCommonAPIs.sleepi(1);
+        MyCommonAPIs.sleepi(5);
         if (businessDone.exists()) {
             businessDone.click();
         } else {

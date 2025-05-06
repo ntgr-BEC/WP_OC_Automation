@@ -63,7 +63,7 @@ public class AccountPage extends AccountPageElement {
         // if (locationlist.getAttribute("aria-expanded").equals("false")) {
         // locationlist.click();
         // }
-        if (locationName(map.get("Location Name")).exists()) {
+        if (dropdownLocationElementNew(map.get("Location Name")).exists()) {
             logger.info("Location is existed.");
             exit = true;
         }

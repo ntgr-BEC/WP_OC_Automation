@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -3032,7 +3033,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         WebCheck.checkHrefIcon(URLParam.hrefWireless);
         boolean result = false;
         MyCommonAPIs.sleepi(10);
-        if ($x("//td[text()='" + serialNumber + "']/../td[2]").getText().equals("Connected")) {
+        if ($x("//span[text()='" + serialNumber + "']/../../../td[2]").getText().equals("Connected")) {
             result = true;
             logger.info("Ap SN:" + serialNumber + " is online.");
         }
@@ -8625,7 +8626,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
                 selectDropdown.click();
                 MyCommonAPIs.sleepi(4);
                 if(map.get("ECP Type").equals("GoZone Wi-Fi")) {
-                    selectGoZone.click();
+//                    selectGoZone.click();
                 }else {
                 selectJaze.click();
             }
@@ -12234,6 +12235,82 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return checkedValues;
     }
     
+    public void ECPNASID(Map<String, String> map) {
+        
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        if (checkSsidIsExist(map.get("SSID"))) {
+            clickEditSsid(map.get("SSID"));
+            enableECP();
+            MyCommonAPIs.sleepi(4);
+            radius.click();
+            MyCommonAPIs.sleepi(5);
+    }
+        
+    }
+    
+    
+    public static Map<String, String> findSSID(String data, String targetSSID) {
+        // Initialize scanner to read the input data
+        Scanner scanner = new Scanner(data);
+        Pattern pattern = Pattern.compile("^([a-zA-Z0-9]+).*ESSID:\"([^\"]*)\"");
+
+        Map<String, String> result = new HashMap<>();
+        
+        try {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                Matcher matcher = pattern.matcher(line);
+
+                if (matcher.find()) {
+                    String iface = matcher.group(1);
+                    String ssid = matcher.group(2);
+
+                    if (ssid.equals(targetSSID)) {
+                        // Found matching SSID, store VAP and WiFi interface info
+                        result.put("WiFi", iface);
+                        
+                        if (iface.contains("vap")) {
+                            String vap = iface.substring(iface.indexOf("vap"));
+                            result.put("VAP", vap);
+                        } else {
+                            result.put("VAP", "Not a VAP interface");
+                        }
+
+                        return result; // Return the result immediately
+                    }
+                }
+            }
+        } catch (Exception e) {
+            // Handle any potential exceptions
+            e.printStackTrace();
+        } finally {
+            // Always close the scanner to release resources
+            scanner.close();
+        }
+
+        // Return null if SSID is not found
+        return null;
+    }
+
+    
+    public void DefaultNAS(Map<String, String> map) {
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        if (checkSsidIsExist(map.get("SSID"))) {
+            clickEditSsid(map.get("SSID"));            
+        }
+        MyCommonAPIs.sleepi(3);
+        if (entercaptiveportal.exists()) {
+            entercaptiveportal.click();
+        }
+        
+        NASID.clear();
+        MyCommonAPIs.sleepi(4);
+        SaveeditECP.click();
+    }
 }
 
   

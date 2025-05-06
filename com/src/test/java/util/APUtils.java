@@ -15,6 +15,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import webportal.param.WebportalParam;
 import webportal.webelements.DevicesDashPageElements;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.PRXFirmwarePage;
 import webportal.weboperation.WirelessQuickViewPage;
 
 public class APUtils extends MyCommonAPIs {
@@ -453,6 +454,30 @@ public class APUtils extends MyCommonAPIs {
             MyCommonAPIs.sleepi(30);
         }
         return bUpdated;
+    }
+    
+    public boolean updateFirmwareOldSwitch(String firmwareURL) {
+        System.out.println("code to downgrade the firmeare");
+        boolean bUpdated = false;
+        String fwver = getVersion(false);
+        String fwurl = WebportalParam.pr1Firmware;
+        System.out.println(fwurl);
+        if (firmwareURL != null) {
+            fwurl = firmwareURL;
+        }
+        if (fwurl.contains(fwver)) {
+            logger.info("device is already in this version: " + fwurl);
+        } else {
+            bUpdated = true;
+            logger.info("to update system: " + fwurl);
+            new PRXFirmwarePage().FWUpgradeSwitch(WebportalParam.loginPassword, WebportalParam.pr1IPaddress);
+                       
+            MyCommonAPIs.sleepi(30);
+            RunCommand.waitSWAlive(WebportalParam.pr1IPaddress);
+            MyCommonAPIs.sleepi(30);
+    }
+        return bUpdated;
+        
     }
 
     public boolean get11REnableStatus(String Model) {
@@ -1636,10 +1661,44 @@ public void Setserver(String APIP){
     String currentURL = new MyCommonAPIs().getCurrentUrl();
     System.out.println(currentURL);
     MyCommonAPIs.sleepi(5);     
-    if(url.contains("maint-beta")) {
+    if(WebportalParam.serverUrl.contains("maint-beta")) {
         System.out.println("inside Maint-beta");
         new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
-    }else if(url.contains("pri-qa")) {
+    }else if(WebportalParam.serverUrl.contains("pri-qa")) {
+        System.out.println("inside Pri-qa");
+        new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
+    }
+    new DevicesDashPageElements().submit.click();
+    
+    MyCommonAPIs.sleepi(5);
+    if(new DevicesDashPageElements().sucessmessage.exists()) {
+    System.out.println(new DevicesDashPageElements().sucessmessage.getText());
+    }
+    MyCommonAPIs.sleepi(5);
+    Selenide.switchTo().window(0);   
+
+}
+public void SetserverAP(String APIP, String PWD){  
+    logger.info("entered WAC model");
+//    String url = WebportalParam.serverUrlLogin.substring(0, WebportalParam.serverUrlLogin.indexOf("."));
+//    System.out.println("URL is "+ url);
+    WebDriver driver = WebDriverRunner.getWebDriver();
+    String oprnURL = "http://"+APIP+":9999/insight_server";
+    String username = "admin";
+    String password = PWD;
+    
+    // Construct the URL with basic authentication
+    String url = "http://" + username + ":" + password + "@"+APIP+":9999/insight_server";
+
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "', '_blank');");
+    Selenide.switchTo().window(1);
+    String currentURL = new MyCommonAPIs().getCurrentUrl();
+    System.out.println(currentURL);
+    MyCommonAPIs.sleepi(5);     
+    if(WebportalParam.serverUrl.contains("maint-beta")) {
+        System.out.println("inside Maint-beta");
+        new DevicesDashPageElements().dropdownclick.selectOption("MAINT-BETA");
+    }else if(WebportalParam.serverUrl.contains("pri-qa")) {
         System.out.println("inside Pri-qa");
         new DevicesDashPageElements().dropdownclick.selectOption("PRI-QA");      
     }
@@ -1715,6 +1774,20 @@ public String getNASID(String Model) {
         MyCommonAPIs.sleepi(30);
         logger.info("entered WAX model");
         status = plink.getOutput("grep -nir \"nasIdentifier\" /sysconfig/config", default_timeout_ssh);
+        System.out.println(status);
+       
+    }
+    return status;
+}
+
+public String getNASIDofssid(String Model, String vap) {
+    boolean result = false;
+    String status = "";
+ 
+    if ( Model.startsWith("WAX") || Model.startsWith("WBE")) {
+        MyCommonAPIs.sleepi(30);
+        logger.info("entered WAX model");
+        status = plink.getOutput("grep -nir \""+vap+":exCpnasIdentifier\" /sysconfig/config", default_timeout_ssh);
         System.out.println(status);
        
     }

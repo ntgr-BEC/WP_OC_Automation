@@ -62,8 +62,8 @@ public class Api_RetrievePurchaseOrderHistory extends TestCaseBaseApi{
         Response getResponse = ApiRequest.sendGetRequest(endPointUrl.get("Retrieve_PurchaseOrderHistory"), headers, pathParams, null); 
         getResponse.then().body("response.status", equalTo(true))
         .body("response.message", equalTo("success"))
-        .body("details.categoryList[0].categoryId", equalTo("101"))
-        .body("details.categoryList[0].categoryName", equalTo("Insight Subscriptions"));
+        .body("details.categoryList[0].categoryId", equalTo("hbPlan"))
+        .body("details.categoryList[0].categoryName", equalTo("Insight Included with Hardware"));
         
                
         }

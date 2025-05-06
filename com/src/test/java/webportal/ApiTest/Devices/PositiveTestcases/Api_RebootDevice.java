@@ -54,7 +54,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         pathParams.put("deviceType","AP");    
         pathParams.put("serialNo",WebportalParam.ap1deveiceName);
       
-        String requestBody="{\"deviceInfo\":{\"command\":{\"type\":0,\"reboot\":1}}} or {\"deviceInfo\":{\"command\":{\"type\":1,\"hardFactoryReset\":1}}}";
+        String requestBody="{\"deviceInfo\":{\"command\":{\"type\":0,\"reboot\":1}}}";
   
         //TO PERFORM ANY REQUEST
 
@@ -62,7 +62,7 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true))
                           .body("response.message", equalTo("Your configuration has been applied. It may take some time to reflect"));
 
-        MyCommonAPIs.sleepi(1000);
+        MyCommonAPIs.sleepi(500);
     }
                   
     }

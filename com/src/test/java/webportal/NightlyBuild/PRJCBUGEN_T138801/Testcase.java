@@ -25,9 +25,9 @@ public class Testcase extends TestCaseBase {
     String organizationName = "PRJCBUGEN_T13880";
 
     @Feature("NightlyBuild") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T13880") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T138801") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Verify that if the user is able to edit  the organization ") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T13880") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T138801") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1")
     public void test() throws Exception {
@@ -54,7 +54,7 @@ public class Testcase extends TestCaseBase {
         
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
-//        page.addOrganization(organizationInfo);
+        page.addOrganization(organizationInfo);
 
         if (page.checkOrganizationIsExist(organizationName)) {
             System.out.println("inside org");
