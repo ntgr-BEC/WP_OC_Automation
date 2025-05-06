@@ -77,7 +77,7 @@ public class Api_AddDevice extends TestCaseBaseApi{
         getResponse.then().body("response.status", equalTo(true));
         getResponse.then().body("response.message", equalTo("Device added."))
         .body("deviceInfo.deviceName", equalTo(WebportalParam.ap1deveiceName));
-        MyCommonAPIs.sleepi(500);
+//        MyCommonAPIs.sleepi(500);
         
         return getResponse;
                           

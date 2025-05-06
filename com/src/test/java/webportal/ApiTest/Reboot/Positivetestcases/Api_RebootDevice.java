@@ -2,11 +2,14 @@
 package webportal.ApiTest.Reboot.Positivetestcases;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.testng.Assert.assertTrue;
+
 import testbase.TestCaseBaseApi;
 import util.MyCommonAPIs;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import io.qameta.allure.Description;
@@ -40,6 +43,12 @@ public class Api_RebootDevice extends TestCaseBaseApi{
         step1();
     }
   
+    @BeforeMethod
+    public void beforeMethod()
+    {
+        System.out.print("Inside befor");
+        assertTrue(new ApiRequest().Validatedevice(WebportalParam.networkId, WebportalParam.ap1serialNo),"Device is not in connected state");
+    }
     @Step("Send get request to {url}")
     public void step1()
     { 

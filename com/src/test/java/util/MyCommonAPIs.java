@@ -577,7 +577,7 @@ public class MyCommonAPIs {
                     "evt.initEvent('dblclick', true, true);" +
                     "arguments[0].dispatchEvent(evt);", getSE(el));
         } else {
-            getSE(el).shouldBe(Condition.visible).doubleClick();
+            getSE(el).shouldBe(Condition.visible).click();
         }
         waitReady();
     }
@@ -1703,6 +1703,12 @@ public class MyCommonAPIs {
             el.click();
         }
     }
+    
+    public static boolean checkSelected(SelenideElement el) {
+        boolean sta = el.is(Condition.checked);
+        return sta;
+        }
+    
     
     /**
      * @param id

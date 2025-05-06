@@ -1,6 +1,7 @@
 package webportal.ApiTest.Devices.PositiveTestcases;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.testng.Assert.assertTrue;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -46,6 +47,12 @@ public class Api_DeviceFactoryReset extends TestCaseBaseApi{
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
         step1();
+    }
+    
+    @BeforeMethod
+    public void beforeMethod()
+    {
+        assertTrue(new ApiRequest().Validatedevice(WebportalParam.networkId, WebportalParam.ap1serialNo),"Device is not in connected state");
     }
     
     @Step("Send get request to {url}")

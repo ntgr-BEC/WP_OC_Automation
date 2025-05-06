@@ -32,8 +32,8 @@ public class Testcase extends TestCaseBase {
 
     
     Map<String, String> ipInfo = new HashMap<String, String>();
-    String ipMain= WebportalParam.ap1IPaddress;
-    String mainIp = WebportalParam.ap1IPaddress;
+    String ipMain= WebportalParam.ap2IPaddress;
+    String mainIp = WebportalParam.ap2IPaddress;
     String ip = mainIp.substring(0, mainIp.lastIndexOf(".")) + ".250";
     
     @Feature("StaticAndDynamicIP") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -48,9 +48,9 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap2serialNo);
         Map<String, String> ipInfo1 = new HashMap<String, String>();
-        ipInfo1.put("IP Address", WebportalParam.ap1IPaddress);
+        ipInfo1.put("IP Address", WebportalParam.ap2IPaddress);
         new DevicesApIpSettingsPage().setIp(ipInfo1);
         MyCommonAPIs.sleepi(120);
         new DevicesApIpSettingsPage().enableAssignAutomaticallyIPAddrees();
@@ -70,15 +70,15 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: go to ap settings and change IP adrees to static and save it then reboot Ap")
     public void step2() {
         
-        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap2serialNo);
         ipInfo.put("IP Address", ip);
         new DevicesApIpSettingsPage().setIp(ipInfo); 
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap2serialNo);
         boolean result = false;
         int i = 0;
 
         while (i < 10) {
-            if (new APUtils(ipInfo.get("IP Address")).getIpStatus1(WebportalParam.ap1Model).contains(ip)) {
+            if (new APUtils(ipInfo.get("IP Address")).getIpStatus1(WebportalParam.ap2Model).contains(ip)) {
                 result = true;
                 break;
             }
@@ -87,16 +87,16 @@ public class Testcase extends TestCaseBase {
         }
 
         if (result) {
-            assertTrue(new WirelessQuickViewPage().checkApIsOnline(WebportalParam.ap1serialNo)
-                    && new WirelessQuickViewPage().checkApIpCorrect(WebportalParam.ap1serialNo, ip));
+            assertTrue(new WirelessQuickViewPage().checkApIsOnline(WebportalParam.ap2serialNo)
+                    && new WirelessQuickViewPage().checkApIpCorrect(WebportalParam.ap2serialNo, ip));
         } else {
             assertTrue(false, "Changed ip address failed.");
         }
         
         int upTimeBefore = new WirelessQuickViewPage().getApUptime();
-        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
+        new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap2serialNo);
         new DevicesApSummaryPage().clickReboot();
-        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap2serialNo);
         MyCommonAPIs.sleepi(30);
 
     }
@@ -108,7 +108,7 @@ public class Testcase extends TestCaseBase {
         int i = 0;
 
         while (i < 10) {
-            if (new APUtils(ipInfo.get("IP Address")).getIpStatus1(WebportalParam.ap1Model).contains(ip)) {
+            if (new APUtils(ipInfo.get("IP Address")).getIpStatus1(WebportalParam.ap2Model).contains(ip)) {
                 result = true;
                 break;
             }
@@ -117,8 +117,8 @@ public class Testcase extends TestCaseBase {
         }
 
         if (result) {
-            assertTrue(new WirelessQuickViewPage().checkApIsOnline(WebportalParam.ap1serialNo)
-                    && new WirelessQuickViewPage().checkApIpCorrect(WebportalParam.ap1serialNo, ip));
+            assertTrue(new WirelessQuickViewPage().checkApIsOnline(WebportalParam.ap2serialNo)
+                    && new WirelessQuickViewPage().checkApIpCorrect(WebportalParam.ap2serialNo, ip));
         } else {
             assertTrue(false, "Changed ip address failed.");
         }
