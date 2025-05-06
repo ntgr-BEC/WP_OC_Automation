@@ -335,9 +335,29 @@ public class FileHandling extends HamburgerMenuElement {
         }
         
     }
+	
+	
+	public boolean assertLogAfterTime(String logFilePath,  String ssid) throws IOException  {
+      
+        boolean found = false;
+        BufferedReader br = new BufferedReader(new FileReader(logFilePath));
+        String line;
+
+        while ((line = br.readLine()) != null) {
+            if (line.contains("connected to " + ssid)) {
+                    System.out.println("✅ Found log: " + line);
+                    found = true;
+                    break;
+                }
+            }
+
+        br.close();
+        return found;
+        }
+ }
        
     
    
     
    
-       }
+       

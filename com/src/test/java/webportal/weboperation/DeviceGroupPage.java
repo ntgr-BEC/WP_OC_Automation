@@ -15,6 +15,7 @@ import util.MyCommonAPIs;
 import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
+import webportal.webelements.AccountPageElement;
 import webportal.webelements.ButtonElements;
 import webportal.webelements.DeviceGroupElement;
 import java.io.*;
@@ -72,11 +73,8 @@ public class DeviceGroupPage extends DeviceGroupElement {
      }
     
     public void GoToSysLog(String locationName) {
-        boolean result = false;
-        if (locationName(locationName).exists()) {
-            editNetwork(locationName);
-            MyCommonAPIs.sleepi(3);
-        }
+        
+       new AccountPageElement().editNetwork(locationName);
         MyCommonAPIs.sleepi(5);
         SysLog.click();
 

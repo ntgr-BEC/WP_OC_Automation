@@ -58,6 +58,8 @@ import testbase.TestCaseBase;
 import util.APUtils;
 import util.Javasocket;
 import util.MyCommonAPIs;
+import webportal.ApiTest.Devices.PositiveTestcases.Api_AddDevice;
+import webportal.ApiTest.Devices.PositiveTestcases.Api_GetDevices;
 import webportal.param.CommonDataType;
 import webportal.param.CommonDataType.SSIDData;
 import webportal.param.URLParam;
@@ -75,6 +77,7 @@ import util.*;
             RestAssured.baseURI=WebportalParam.baseURI;
             RestAssured.defaultParser=Parser.JSON;
         }
+        static Response response;
 
         // Generic GET request method
         public static Response sendGetRequest(String endpoint, Map<String, String> headers, Map<String, String> pathParams, Map<String, String> queryParams) {
@@ -548,7 +551,124 @@ import util.*;
 
         }
         
-        public void Setserver(String APIP){  
+        public static Response getDeviceinfo(String NetworkID) {
+            
+            Map<String, String> headers = new HashMap<String, String>();
+            Map<String, String> endPointUrl = new HashMap<String, String>();
+            Map<String, String> pathParams = new HashMap<String, String>();
+            endPointUrl = new ApiRequest().ENDPOINT_URL;
+
+            headers.put("token",WebportalParam.token);
+            headers.put("apikey",WebportalParam.apikey);
+            headers.put("accountId",WebportalParam.accountId);     
+          
+            pathParams.put("networkId",NetworkID);
+            pathParams.put("page","0");
+             
+            //TO PERFORM ANY REQUEST
+             Response response = ApiRequest.sendGetRequest(endPointUrl.get("Get_Device"), headers, pathParams, null);
+             return response;
+        }
+        
+        
+        
+        
+        
+        public static boolean isDeviceExists(Response response)
+        {
+            String message =  response.jsonPath().getString("response.message");
+            if(message.equalsIgnoreCase("success"))
+            {
+                return true;
+            }
+
+                return false;
+
+            
+            
+        }
+        
+        public static boolean Validatedevice(String networkId, String Serial)
+        {                   
+            
+             response= getDeviceinfo(networkId);
+             response.prettyPrint();
+            if(!isDeviceExists(response))
+            {
+                new Api_AddDevice().step1();
+            }
+            
+             response= getDeviceinfo(networkId);
+            
+            while(true)
+            {
+                System.out.print("inside while");
+                response= getDeviceinfo(networkId);
+                String devicestatus =  response.jsonPath().getString("deviceInfo[0].deviceStatus");
+                switch(devicestatus)
+                {
+                case "1":
+                    System.out.print("Device is online");
+                    return true;
+                    
+                case "0":
+                    int retry1=0;
+                    while(retry1<9)
+                    {
+                       
+                        MyCommonAPIs.sleepi(100);
+                        response= getDeviceinfo(networkId);
+                        devicestatus =  response.jsonPath().getString("deviceInfo[0].deviceStatus");
+                        if(devicestatus.equals("1"))
+                        {
+                            System.out.print("Device is online");
+                            return true;
+                        }
+                        else
+                        {
+                            retry1++;
+                            System.out.print("Device is offline. Waiting for 100seconds...Retry" +(retry1+1));
+                        }
+                        
+                    }
+                    System.out.print("Device is offline after 9 retries");
+                    return false;
+                    
+                case "3":
+                    int retry2=0;
+                    Setserver(Serial);
+                    while(retry2<9)
+                    {
+                       
+                        MyCommonAPIs.sleepi(100);
+                        response= getDeviceinfo(networkId);
+                        devicestatus =  response.jsonPath().getString("deviceInfo[0].deviceStatus");
+                        if(devicestatus.equals("1"))
+                        {
+                            System.out.print("Device is online");
+                            return true;
+                        }
+                        else
+                        {
+                            retry2++;
+                            System.out.print("Device is offline. Waiting for 100seconds...Retry" +(retry2+1));
+                        }
+                        
+                    }
+                    return false;
+                    
+                    default:
+                        System.out.print(" status code:"+ devicestatus);
+                        return false;
+              
+                }
+                
+            }
+            
+            
+        }
+        
+        public static void Setserver(String APIP){  
             
             new TestCaseBase().startBrowser();
             System.out.println("Setting Server");
