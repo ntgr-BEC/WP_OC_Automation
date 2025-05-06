@@ -76,35 +76,20 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
             String ps = WebportalParam.curWebDriver.getPageSource();
             if (ps.length() < 250)
                 return false;
-            if (loginEmailNew.exists()) {
-                loginEmailNew.clear();
-                loginEmailNew.sendKeys(user);
-            } else if (loginEmailCognito.exists()) {
+             if (loginEmailCognito.exists()) {
                 loginEmailCognito.clear();
                 loginEmailCognito.sendKeys(user);
-            }else {
-                loginEmailNew1.clear();
-                loginEmailNew1.sendKeys(user);
-            }
-            
+            }            
             sleepi(1);
-            if (loginPwdNew.exists()) {
-                loginPwdNew.clear();
-                loginPwdNew.sendKeys(passwd);
-            } else if (loginPwdCognito.exists()) {
+            if (loginPwdCognito.exists()) {
                 loginPwdCognito.clear();
                 loginPwdCognito.sendKeys(passwd);
-            } else {
-                loginPwdNew1.clear();
-                loginPwdNew1.sendKeys(passwd);
-            }
+            } 
 
             sleepi(5);
-            if (loginButtonNew.exists()) {
-                loginButtonNew.click();
-            }else {
+            if (loginButtonCognito.exists()) {
                 loginButtonCognito.click();
-           }
+            }
             sleepi(10);
             if (NoThankYou.isDisplayed()) {
                 NoThankYou.click();
