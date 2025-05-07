@@ -471,7 +471,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement devicesRF(String serialNumber) {
         System.out.println("<----------check device RF --------------->");
         //System.out.println(deviceRFIndex);
-        return $x("//span[text()='"+serialNumber+"']/../../../..//span[contains(@id,'cell-rfProfile')]/span");
+        return $x("//span[text()='"+serialNumber+"']/../../../../..//span[contains(@id,'cell-rfProfile')]/span");
     }
     //addedbyPratik
     public SelenideElement moveMultipleDevicesfromOneLocation(String serialNumber) {
@@ -558,6 +558,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+    
+    public SelenideElement selectAlldevicesondevicesDashpage = $x("(//span[text()='Name']/../../../..//div[@role='columnheader']//input[@type='checkbox'])[1]");
     
     
 }

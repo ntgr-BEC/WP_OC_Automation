@@ -1577,7 +1577,38 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public ElementsCollection checkedCheckboxes24GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '2.4 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
      public ElementsCollection checkedCheckboxes5GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '5 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
      public ElementsCollection checkedCheckboxes6GHz = $$x("//div[contains(@class, 'gigaHertzRepeater')][.//span[contains(text(), '6 GHz')]]//input[@type='checkbox'][@checked]/following-sibling::p");
-
+     public SelenideElement instantWiFiPrefrredRFProfile                = $x("//div[@class='leftMenuItems']//a[text()='Instant WiFi Preferred Channel']");
+     public SelenideElement instantWiFiHeader                           = $x("//div[text()='Instant WiFi Preferred Channel']");
+     public SelenideElement rfProfilesClick(String pname) {
+         SelenideElement  rfProfilesClick1 = $x("//td[text()='"+pname+"' and @class='colorPurple underlineText']");
+         return rfProfilesClick1;
+     }
+    public SelenideElement advanceWirelessSetting5GHzLowBandplus        = $x("//span[text()='5GHz or 5GHz Low']/..//i[@class='icon icon-icon-collapse']");
+    public SelenideElement advanceWirelessSetting5GHzHighBandplus       = $x("//span[text()='5GHz High']/..//i[@class='icon icon-icon-collapse']");
+    public SelenideElement advanceWirelessSetting6GHzBandplus           = $x("//span[text()='6GHz']/..//i[@class='icon icon-icon-collapse']");
+    public SelenideElement bcmcRateLimitText24GhzBand                   = $x("//span[text()='2.4GHz']/../..//*[text()='Broadcast/Multicast Rate Limiting']");
+    public SelenideElement bcmcRateLimitText5GhzlowBand                 = $x("//span[text()='5GHz or 5GHz Low']/../..//*[text()='Broadcast/Multicast Rate Limiting']");
+    public SelenideElement bcmcRateLimitText5GhzHighBand                = $x("//span[text()='5GHz High']/../..//*[text()='Broadcast/Multicast Rate Limiting']");
+    public SelenideElement bcmcRateLimitText6GhzBand                    = $x("//span[text()='6GHz']/../..//*[text()='Broadcast/Multicast Rate Limiting']");
+    public SelenideElement sliderBCMCRateLimit                          = $x("//div[contains(@class, 'input-range__slider')]");
+    public SelenideElement valueContainerBCMCRateLimit                  = $x("(//span[text()='2.4GHz']/../..//span[@class='input-range__label-container'])[2]");
+    public SelenideElement apGUIAdvancedButton                          = $x("//button[contains(text(),'Advanced')]");
+    public SelenideElement apGUIProceedLink                             = $x("//a[contains(text(),'Proceed to')]");
+    public SelenideElement apGUIUserNameInput                           = $x("//input[@id='userName']");
+    public SelenideElement apGUIUserPwdInput                            = $x("//input[@id='userPwd']");
+    public SelenideElement apGUIEnterButton                             = $x("//button[@id='enter']");
+    public SelenideElement apGUIManagementLink                          = $x("//a[text()='Management']");
+    public SelenideElement apGUIOkButton                                = $x("//button[text()='OK']");
+    public SelenideElement apGUIWirelessLink                            = $x("//a[text()='Wireless']");
+    public SelenideElement apGUIWirelessAdvanced                        = $x("//a[@id='wirelessadvanced_s']");
+    public SelenideElement apGUIBroadcastLabel1                         = $x("(//label[text()='Broadcast/Multicast Rate Limiting (1-512)'])[1]");
+    public SelenideElement apGUIBroadcastSpan2                          = $x("(//label[text()='Broadcast/Multicast Rate Limiting (1-512)']/..//span[@class='InputRange-labelContainer'])[2]");
+    public SelenideElement saveWirelessSettingsBtn                      = $x("//button[@id='btnSaveUpdteRadiChnl']");
+    public SelenideElement successMsgAdvancedWireSett                   = $x("//p[contains(text(),'saved successfully')]");
+    public SelenideElement okbuttonAdvancedWireSett                     = $x("//p[contains(text(),'saved successfully')]/../..//button[contains(text(),'OK')]");
+    public SelenideElement optimizeNowRFProfile                         = $x("//button[text()='Optimize Now']");
+    public SelenideElement successInstantWiFiRFProfile                  = $x("//*[contains(text(),'Your configuration has been applied')]");
+    
 }
 
 
