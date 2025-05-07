@@ -25,6 +25,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import jdk.nashorn.internal.runtime.arrays.ContinuousArrayData;
+import org.apache.poi.util.SystemOutLogger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.Point;
@@ -35,6 +37,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
@@ -52,6 +55,12 @@ import webportal.webelements.WirelessQuickViewElement;
 import org.openqa.selenium.By;
 import static com.codeborne.selenide.CollectionCondition.*;
 import org.json.JSONObject;
+import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Condition.visible;
+import java.time.Duration;
+import static com.codeborne.selenide.Selenide.switchTo;
+
+
 
 
 /**
@@ -4524,17 +4533,19 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
     }
 
     public void GoToWirelessSettings() {
+        MyCommonAPIs.sleepi(10);
         if (settingsorquickview.exists()) {
             settingsorquickview.click();
         }
         waitReady();
         MyCommonAPIs.sleepi(10);
-        if (Advance1.exists()) {
+        waitElement(Advance2);
+        if (Advance2.exists()) {
             WebDriver driver = WebDriverRunner.getWebDriver();
             Actions a = new Actions(driver);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.scrollBy(0, 250)", "");
-            a.moveToElement(Advance1).perform();
+            a.moveToElement(Advance2).perform();
             a.moveToElement(WirelessSetting).click().perform();
         }
 
@@ -12234,6 +12245,509 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         return checkedValues;
     }
     
+    public boolean checkCustomProfileOptions(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        waitElement(addssid);
+
+        if (checkSsidIsExist(map.get("SSID"))) {
+            logger.info("Edit ssid.");
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
+            MyCommonAPIs.sleep(3000);
+            editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleep(8 * 1000);
+
+        }
+        boolean iscustompresent = false;
+        MyCommonAPIs.sleepi(4);
+        iscustompresent = map.containsKey("custom");
+        if (iscustompresent == true) {
+            if (map.get("custom").equals("enable")) {
+                custom.shouldBe(Condition.visible);
+                custom.click();
+                MyCommonAPIs.sleepi(4);
+                SelectProfile.shouldBe(Condition.visible);
+                ElementsCollection options = SelectProfile.$$("option");
+
+                List<String> actualOptions = options.stream().map(SelenideElement::getText).collect(Collectors.toList());
+                
+                System.out.println(actualOptions);
+
+                List<String> expectedOptions = Arrays.asList("Select Profile", "Savant", "B & O", "NICE", "BluOS");
+
+                Assert.assertEquals(actualOptions, expectedOptions, "Dropdown options do not match!");
+                result = true;
+                logger.info("All Customer profile options are visible while editing ssid");
+                SelectProfile.selectOption("NICE");
+            }
+            
+            MyCommonAPIs.sleepi(5);
+            saveedit.click();
+            MyCommonAPIs.sleepi(5);
+            if (saveedfinal.isDisplayed()) {
+                saveedfinal.click();
+            }
+
+        }
+        return result;
+    }
+    
+    public boolean checkRateLimitARSTabsVisible(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        waitElement(addssid);
+
+        if (checkSsidIsExist(map.get("SSID"))) {
+            logger.info("Edit ssid.");
+            $x("//span[text()='" + map.get("SSID") + "']").hover();
+            MyCommonAPIs.sleep(3000);
+            editWifi(map.get("SSID")).hover();
+            MyCommonAPIs.sleep(3000);
+            editSsid(map.get("SSID")).waitUntil(Condition.visible, 60 * 1000).click();
+            MyCommonAPIs.sleep(8 * 1000);
+
+        }
+        boolean iscustompresent = false;
+        MyCommonAPIs.sleepi(4);
+        iscustompresent = map.containsKey("custom");
+        if (iscustompresent == true) {
+            if (map.get("custom").equals("enable")) {
+                custom.shouldBe(Condition.visible);
+                custom.click();
+                MyCommonAPIs.sleepi(4);
+                SelectProfile.shouldBe(Condition.visible);
+                SelectProfile.selectOption("Savant");
+                MyCommonAPIs.sleepi(5);
+                if (!($x("//div[@class='leftMenuItems']//a[text()='Rate Limiting']").isDisplayed() && $x("//div[@class='leftMenuItems']//a[text()='Advanced Rate Selection']").isDisplayed())) {
+                    result = true;
+                    logger.info("Rate Limit and ARS tabs are not visible after enabling customer profile");
+                }
+            }
+            
+            MyCommonAPIs.sleepi(5);
+            saveedit.click();
+            MyCommonAPIs.sleepi(5);
+            if (saveedfinal.isDisplayed()) {
+                saveedfinal.click();
+            }
+
+        }
+        return result;
+    }
+    
+    public boolean verifyNotAbletodeleteRF(String Pname) {
+        boolean result = false;
+        if (settingsorquickview.exists()) {
+            settingsorquickview.click();
+        }
+        waitReady();
+        if (checkRFExist(Pname)) {
+            logger.info("Delete RF Profile.");
+
+            System.out.println(Pname);
+            MyCommonAPIs.sleepi(10);
+            waitReady();
+            String sElement = String.format("//td[text()='%s']", Pname);
+            logger.info("on element:" + sElement);
+
+            $x(sElement).hover();
+            MyCommonAPIs.sleep(3000);
+
+            editRF(Pname).hover();
+            MyCommonAPIs.sleep(3000);
+            deleteRFprofile(Pname).shouldBe(Condition.visible, Condition.enabled).click();
+            MyCommonAPIs.sleep(8000);
+            MyCommonAPIs.sleepi(30);
+            deletessidyes.click();
+            MyCommonAPIs.sleepi(30);
+            if ($x("//p[contains(text(),'The RF Profile cannot be deleted')]").isDisplayed()) {
+                System.out.println($x("//p[contains(text(),'The RF Profile cannot be deleted')]").getText());
+                result = true;
+            }
+            $x("//p[contains(text(),'The RF Profile cannot be deleted')]/../..//button[text()='OK']").click();
+            MyCommonAPIs.sleep(5 * 1000);
+        }
+        return result;
+    }
+    
+    public boolean checkdefaultRFExist(String Pname) {
+        System.out.println(Pname);
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s' and @class='colorPurple underlineText']", Pname);
+        logger.info("on element:" + sElement);
+        if ($x(sElement).exists()) {
+            result = true;
+            logger.info("RFProfile:" + Pname + " is existed.");
+        }
+        return result;
+    }
+
+    private List<String> labelValues = new ArrayList<>(); // Global variable to store label values
+
+    public boolean verifyDefaultInstantwiFiChannelsonRfProfile(String pname) {
+        boolean result = false;
+        waitElement(rfProfilesClick(pname));
+        rfProfilesClick(pname).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        waitElement(instantWiFiPrefrredRFProfile);
+        MyCommonAPIs.sleepi(1);
+        instantWiFiPrefrredRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        waitElement(instantWiFiHeader);
+        MyCommonAPIs.sleepi(1);
+        instantWiFiHeader.shouldBe(Condition.visible);
+        ElementsCollection checkedCheckboxes = $$x("//input[@type='checkbox' and @checked]/following-sibling::i");
+        System.out.println("All Checked: " + checkedCheckboxes.size());
+        result = true;
+        labelValues.clear(); // Clear the list before adding new values
+        for (SelenideElement checkbox : checkedCheckboxes) {
+            SelenideElement label = checkbox.closest("label").$("p");
+            String labelText = label.getText();
+            labelValues.add(labelText); // Add label text to the global list
+            System.out.println("Label: " + labelText);
+            if (!checkbox.isDisplayed()) {
+                result = false;
+                break;
+            }
+        }
+        System.out.println("Collected Labels: " + labelValues); // Print the global list
+        return result;
+    }
+
+    private List<String> labelValues1 = new ArrayList<>(); // Global variable to store label values
+
+    public boolean verifyDefaultInstantwiFiChannelsonNewRfProfile(String pname) {
+        boolean result = false;
+        System.out.println(pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", pname);
+        logger.info("on element:" + sElement);
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        editRF(pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        waitElement(instantWiFiPrefrredRFProfile);
+        instantWiFiPrefrredRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        waitElement(instantWiFiHeader);
+        MyCommonAPIs.sleepi(1);
+        instantWiFiHeader.shouldBe(Condition.visible);
+        ElementsCollection checkedCheckboxes = $$x("//input[@type='checkbox' and @checked]/following-sibling::i");
+        System.out.println("All Checked: " + checkedCheckboxes.size());
+        result = true;
+        labelValues.clear(); // Clear the list before adding new values
+        for (SelenideElement checkbox : checkedCheckboxes) {
+            SelenideElement label = checkbox.closest("label").$("p");
+            String labelText = label.getText();
+            labelValues1.add(labelText); // Add label text to the global list
+            System.out.println("Label: " + labelText);
+            if (!checkbox.isDisplayed()) {
+                result = false;
+                break;
+            }
+        }
+        System.out.println("Collected Labels: " + labelValues1); // Print the global list
+        return result;
+    }
+
+    private List<String> rfProfileBandChannels = new ArrayList<>(); // Global variable to store label values
+
+    public List<String> verifyRFProfileInstantWifiBandChannels(String pname, String band) {
+        System.out.println(pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", pname);
+        logger.info("on element:" + sElement);
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        editRF(pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        waitElement(instantWiFiPrefrredRFProfile);
+        instantWiFiPrefrredRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        waitElement(instantWiFiHeader);
+        MyCommonAPIs.sleepi(1);
+        instantWiFiHeader.shouldBe(Condition.visible);
+        ElementsCollection rfProfileChannels = $$x("//span[text()='" + band + "']/../../../..//input[@type='checkbox' and @checked]/following-sibling::i");
+        System.out.println("All Checked: " + rfProfileChannels.size());
+        rfProfileBandChannels.clear(); // Clear the list before adding new values
+        for (SelenideElement checkbox : rfProfileChannels) {
+            SelenideElement label = checkbox.closest("label").$("p");
+            String labelText = label.getText();
+            rfProfileBandChannels.add(labelText); // Add label text to the global list
+            System.out.println("Label: " + labelText);
+        }
+        System.out.println("Collected Labels: " + rfProfileBandChannels); // Print the global list
+        return rfProfileBandChannels;
+    }
+
+    public boolean validateAllGHzValuesPresentInUILocationLevel(List<String> band24GHz, List<String> band5GHz, List<String> band6GHz) {
+        // 🔹 1. Extract values into array lists
+        List<String> ghz24List = band24GHz;
+        List<String> ghz5List = band5GHz;
+        List<String> ghz6List = band6GHz;
+
+        System.out.println("✅ 2.4GHz RF Profile Instant Wifi Values: " + ghz24List);
+        System.out.println("✅ 5GHz RF Profile Instant Wifi Values: " + ghz5List);
+        System.out.println("✅ 6GHz RF Profile Instant Wifi Values: " + ghz6List);
+
+        // 🔹 2. Get UI values
+        List<String> uiCheckedValues24GHz = getCheckedValuesFromPageFor24Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues24GHz);
+        List<String> uiCheckedValues5GHz = getCheckedValuesFromPageFor5Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues5GHz);
+        List<String> uiCheckedValues6GHz = getCheckedValuesFromPageFor6Ghz();
+        System.out.println("🖥️ UI Checked Values: " + uiCheckedValues6GHz);
+
+        // 🔹 3. Validate for each band (starting with 2.4GHz)
+        boolean is24GHzValid = validateBandValuesPresent(ghz24List, uiCheckedValues24GHz, "2.4GHz");
+        boolean is5GHzValid  = validateBandValuesPresent(ghz5List,  uiCheckedValues5GHz,  "5GHz");
+        boolean is6GHzValid  = validateBandValuesPresent(ghz6List,  uiCheckedValues6GHz,  "6GHz");
+
+        boolean finalResult = is24GHzValid && is5GHzValid && is6GHzValid;
+        System.out.println("🎯 Final Validation Result: " + finalResult);
+        return finalResult;
+    }
+
+    public Map<String, List<String>> getAllGHzValuesPresentInUILocationLevel() {
+
+        // 🔹 1. Get UI values
+        List<String> uiCheckedValues24GHz = getCheckedValuesFromPageFor24Ghz();
+        System.out.println("🖥️ UI Checked Values (24GHz): " + uiCheckedValues24GHz);
+        List<String> uiCheckedValues5GHz = getCheckedValuesFromPageFor5Ghz();
+        System.out.println("🖥️ UI Checked Values (5GHz): " + uiCheckedValues5GHz);
+        List<String> uiCheckedValues6GHz = getCheckedValuesFromPageFor6Ghz();
+        System.out.println("🖥️ UI Checked Values (6GHz): " + uiCheckedValues6GHz);
+
+        // 🔹 2. Store values in a HashMap
+        Map<String, List<String>> ghzValuesMap = new HashMap<>();
+        ghzValuesMap.put("24GHz", uiCheckedValues24GHz);
+        ghzValuesMap.put("5GHz", uiCheckedValues5GHz);
+        ghzValuesMap.put("6GHz", uiCheckedValues6GHz);
+
+        return ghzValuesMap;
+    }
+
+    public boolean verifyBroadcastMulticastRateLimitonAdvanceWirelessSettingsPage(){
+
+        boolean result = false;
+        assertTrue(bcmcRateLimitText24GhzBand.shouldBe(visible).isDisplayed(), "2.4GHz band Broadcast multicast Option is not visible");
+        System.out.println(bcmcRateLimitText24GhzBand.getText());
+
+        advanceWirelessSetting5GHzLowBandplus.shouldBe(visible).click();
+        MyCommonAPIs.sleepi(5);
+        assertTrue(bcmcRateLimitText5GhzlowBand.shouldBe(visible).isDisplayed(), "5GHz Low band Broadcast multicast Option is not visible");
+        System.out.println(bcmcRateLimitText5GhzlowBand.getText());
+
+        advanceWirelessSetting5GHzHighBandplus.shouldBe(visible).click();
+        MyCommonAPIs.sleepi(5);
+        assertTrue(bcmcRateLimitText5GhzHighBand.shouldBe(visible).isDisplayed(), "5GHz High band Broadcast multicast Option is not visible");
+        System.out.println(bcmcRateLimitText5GhzHighBand.getText());
+
+        advanceWirelessSetting6GHzBandplus.shouldBe(visible).click();
+        MyCommonAPIs.sleepi(5);
+        assertTrue(bcmcRateLimitText6GhzBand.shouldBe(visible).isDisplayed(), "6GHz band Broadcast multicast Option is not visible");
+        System.out.println(bcmcRateLimitText6GhzBand.getText());
+        result = true;
+        return result;
+
+    }
+
+    public boolean moveSliderUntilValue(String targetValue, String saveSettings) {
+        try {
+            sliderBCMCRateLimit.shouldBe(Condition.visible).shouldBe(Condition.enabled);
+
+            WebDriver driver = WebDriverRunner.getWebDriver();
+            WebElement handle = sliderBCMCRateLimit.toWebElement();
+
+            Actions actions = new Actions(driver);
+            int stepSize = 2; // pixel steps
+            int maxAttempts = 150;
+            int attempts = 0;
+
+            String currentValue = valueContainerBCMCRateLimit.getText().trim();
+            int current = Integer.parseInt(currentValue);
+            int target = Integer.parseInt(targetValue);
+
+            // Determine direction
+            int direction = (target > current) ? 1 : -1;
+
+            while (!currentValue.equals(targetValue) && attempts < maxAttempts) {
+                actions.clickAndHold(handle).moveByOffset(direction * stepSize, 0).release().perform();
+
+                MyCommonAPIs.sleepi(1); // wait for UI update
+                currentValue = valueContainerBCMCRateLimit.getText().trim();
+                System.out.println("Current Value: " + currentValue);
+                attempts++;
+            }
+
+            if (currentValue.equals(targetValue)) {
+                System.out.println("Successfully reached value: " + targetValue);
+                MyCommonAPIs.sleepi(5);
+                if (saveSettings.contains("Save")) {
+                    saveWirelessSettingsBtn.shouldBe(Condition.visible).click();
+                    MyCommonAPIs.sleepi(10);
+                    if (successMsgAdvancedWireSett.shouldBe(Condition.visible).isDisplayed()) {
+                        System.out.println("successMsgAdvancedWireSett: " + successMsgAdvancedWireSett.getText());
+                        okbuttonAdvancedWireSett.shouldBe(Condition.visible).click();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return true;
+                }
+
+            } else {
+                System.out.println("Failed to reach value: " + targetValue + " after max attempts");
+                return false;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean verifyBroadcastLimit(String url, String expectedValue, String username, String password) {
+        WebDriver driver = WebDriverRunner.getWebDriver();
+        String originalTab = driver.getWindowHandle();
+        try {
+            // Open new tab
+            ((JavascriptExecutor) driver).executeScript("window.open()");
+            Thread.sleep(2000);
+
+            // Get all tabs and switch to the new one (index 1)
+            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+            driver.switchTo().window(tabs.get(1));
+            open("https://" + url);
+
+            // Step 1: Click Advanced
+            MyCommonAPIs.sleepi(30);
+            if (apGUIAdvancedButton.isDisplayed()) {
+                MyCommonAPIs.sleepi(30);
+                apGUIAdvancedButton.shouldBe(visible).click();
+                MyCommonAPIs.sleepi(5);
+                // Step 2: Click Proceed
+                apGUIProceedLink.shouldBe(visible).click();
+                MyCommonAPIs.sleepi(30);
+            } else {
+                logger.info("Adavnced button and link is not there");
+            }
+            
+            // Step 3: Enter credentials
+            apGUIUserNameInput.shouldBe(visible);
+            apGUIUserPwdInput.shouldBe(visible);
+            apGUIUserNameInput.setValue(username);
+            MyCommonAPIs.sleepi(1);
+            apGUIUserPwdInput.setValue(password);
+            MyCommonAPIs.sleepi(1);
+            apGUIEnterButton.shouldBe(visible).click();
+            MyCommonAPIs.sleepi(30);
+
+            // Step 4: Click Management
+            apGUIManagementLink.shouldBe(visible).click();
+            MyCommonAPIs.sleepi(30);
+
+            // Step 5: Click OK if present
+            if (apGUIOkButton.exists() && apGUIOkButton.isDisplayed()) {
+                apGUIOkButton.shouldBe(visible).click();
+                MyCommonAPIs.sleepi(10);
+            }
+
+            // Step 6: Click Wireless > Advanced
+            apGUIWirelessLink.shouldBe(visible).click();
+            MyCommonAPIs.sleepi(5);
+
+            apGUIWirelessAdvanced.shouldBe(visible).click();
+            MyCommonAPIs.sleepi(30);
+
+            // Step 7: Verify broadcast label is visible
+            apGUIBroadcastLabel1.shouldBe(visible);
+
+            // Step 8: Retrieve span value and compare
+            apGUIBroadcastSpan2.shouldBe(visible);
+            String actualValue = apGUIBroadcastSpan2.getText().trim();
+            System.out.println("actualValue: " + actualValue);
+            System.out.println("expectedValue: " + expectedValue.trim());
+            return actualValue.equals(expectedValue.trim());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            // Close the new tab and return to the original
+            driver.close();
+            driver.switchTo().window(originalTab);
+        }
+    }
+    
+    public boolean verifyInstantWifiOptimizeNowonRFProfile(String pname) {
+        boolean result = false;
+        System.out.println(pname);
+        MyCommonAPIs.sleepi(10);
+        waitReady();
+        String sElement = String.format("//td[text()='%s']", pname);
+        logger.info("on element:" + sElement);
+        $x(sElement).hover();
+        MyCommonAPIs.sleep(3000);
+        editRF(pname).hover();
+        MyCommonAPIs.sleep(3000);
+        editRFprofile(pname).waitUntil(Condition.visible, 60 * 1000).click();
+        MyCommonAPIs.sleep(8 * 1000);
+        MyCommonAPIs.sleepi(10);
+        waitElement(instantWiFiPrefrredRFProfile);
+        instantWiFiPrefrredRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        waitElement(instantWiFiHeader);
+        MyCommonAPIs.sleepi(1);
+        instantWiFiHeader.shouldBe(Condition.visible);
+        optimizeNowRFProfile.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        if (successInstantWiFiRFProfile.shouldBe(Condition.visible).isDisplayed()) {
+            System.out.println(successInstantWiFiRFProfile.getText());
+            result = true;
+        }
+        MyCommonAPIs.sleepi(120);
+        return result;
+    }
+    
+    public String getChannelIndexValue(String band) {
+        // Locate the select element using XPath
+        SelenideElement select = $x("//span[text()='" + band + "']/../..//h5[text()='Channel']/../select");
+
+        // Get selected text and trim it
+        String selectedText = select.getSelectedText().trim(); // e.g., "Auto(1)"
+        System.out.println("selectedText : "+selectedText);
+        // Extract number from parentheses using regex
+        String extractedNumber = "";
+        if (selectedText.matches(".*\\((\\d+)\\).*")) {
+            extractedNumber = selectedText.replaceAll(".*\\((\\d+)\\).*", "$1");
+            System.out.println("extractedNumber : "+extractedNumber);
+        }
+
+        return extractedNumber;
+    }
+
 }
 
   
