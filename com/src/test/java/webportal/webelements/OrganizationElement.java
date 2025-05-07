@@ -659,5 +659,42 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+	
+	public static SelenideElement getOrgTooltipTitle(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']");
+    }
+
+    public static SelenideElement getOrgTooltipCountHeader(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../h2");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']/..//span");
+    }
+    
+    public SelenideElement orgName                          = $x("//span[contains(@id,'cell-orgName')]//span");
+    public SelenideElement totaldevicescountHeader          = $x("//span[contains(@id,'cell-totalDevice')]//span");
+    public SelenideElement onlinedevicescountHeader         = $x("//span[contains(@id,'cell-onlineDevice')]//span");
+    public SelenideElement filterIconAllDevicesPage         = $x("//span[@class='icon-filter']");
 
 }
