@@ -1,4 +1,4 @@
-package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39745;
+package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39791;
 
 import static org.testng.Assert.assertTrue;
 
@@ -28,7 +28,7 @@ import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author  Tejeshwini K V
+ * @author  Pratik
  *
  */
 public class Testcase extends TestCaseBase {
@@ -36,9 +36,9 @@ public class Testcase extends TestCaseBase {
     Map<String, String> ssidInfo = new HashMap<String, String>();
 
     @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
-    @Story("PRJCBUGEN_T39745") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify whether user able to enable / disable Customer profile option in Add / Edit SSID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T39745") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T39791") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify In edit SSID wizard, we need to provide an \"Customer profile\" drop-down with list of customer profiles present") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T39791") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -59,37 +59,26 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: While creating ssid add customer profile and verify")
+    @Step("Test Step 2: Delete device and enable IGMP")
     public void step2() {
        
         
         ssidInfo.put("SSID", "apwp14270");
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
-        ssidInfo.put("custom", "enable");
-        new WirelessQuickViewPage().addSsidcustom(ssidInfo);
-        
-        assertTrue(!new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is disabled");
+        new WirelessQuickViewPage().addSsid1(ssidInfo);
        
     }
     
-    @Step("Test Step 3: disable customer profile and verify")
+    
+    @Step("Test Step 3: verify customer profiles all options are available while creating new ssid")
     public void step3() {
-              
-
-        ssidInfo.put("custom", "disable");
-        new WirelessQuickViewPage().disableCustomerProfile(ssidInfo);
-        
-        assertTrue(new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is enabled");
-       
+        ssidInfo.put("custom", "enable");
+        assertTrue(new WirelessQuickViewPage().checkCustomProfileOptions(ssidInfo),"All Customer profile options are not visible while editing ssid");
     }
-    
-    
-   
     
        
 

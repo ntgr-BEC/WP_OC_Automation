@@ -1,4 +1,4 @@
-package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39745;
+package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39790;
 
 import static org.testng.Assert.assertTrue;
 
@@ -28,7 +28,7 @@ import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author  Tejeshwini K V
+ * @author  Pratik
  *
  */
 public class Testcase extends TestCaseBase {
@@ -36,9 +36,9 @@ public class Testcase extends TestCaseBase {
     Map<String, String> ssidInfo = new HashMap<String, String>();
 
     @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
-    @Story("PRJCBUGEN_T39745") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify whether user able to enable / disable Customer profile option in Add / Edit SSID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T39745") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T39790") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("In location level Add SSID wizard, we should provide an option for the user to select the customer profile.") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T39790") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -59,7 +59,6 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
@@ -75,22 +74,6 @@ public class Testcase extends TestCaseBase {
         
         assertTrue(!new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is disabled");
        
-    }
-    
-    @Step("Test Step 3: disable customer profile and verify")
-    public void step3() {
-              
-
-        ssidInfo.put("custom", "disable");
-        new WirelessQuickViewPage().disableCustomerProfile(ssidInfo);
-        
-        assertTrue(new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is enabled");
-       
-    }
-    
-    
-   
-    
-       
+    }       
 
 }

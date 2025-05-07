@@ -1,4 +1,4 @@
-package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39745;
+package webportal.RF_WLAN_Profile.Premium.GermanyEULocation.PRJCBUGEN_T40164;
 
 import static org.testng.Assert.assertTrue;
 
@@ -22,6 +22,7 @@ import webportal.param.URLParam;
 import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.weboperation.AccountPage;
+import webportal.weboperation.DevicesApSummaryPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
@@ -33,12 +34,12 @@ import webportal.weboperation.WirelessQuickViewPage;
  */
 public class Testcase extends TestCaseBase {
     
-    Map<String, String> ssidInfo = new HashMap<String, String>();
+    Map<String, String> RFdata = new HashMap<String, String>();
 
     @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
-    @Story("PRJCBUGEN_T39745") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify whether user able to enable / disable Customer profile option in Add / Edit SSID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T39745") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T40164") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify that user should BE able to delete the newly created RF Profile which is not assigned to the AP") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T40164") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -47,9 +48,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("apwp14270");
         System.out.println("start to do tearDown");
-
     }
 
     // Each step is a single test step from Jira Test Case
@@ -59,38 +58,29 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: While creating ssid add customer profile and verify")
+    @Step("Test Step 2: Create two RF Profiles and Verify")
     public void step2() {
-       
         
-        ssidInfo.put("SSID", "apwp14270");
-        ssidInfo.put("Security", "WPA2 Personal Mixed");
-        ssidInfo.put("Password", "123456798");
-        ssidInfo.put("custom", "enable");
-        new WirelessQuickViewPage().addSsidcustom(ssidInfo);
+        RFdata.put("RFName", "Netgear");
+        RFdata.put("RFDescription", "BEC Automation Team");
+        RFdata.put("Copy Configurations", "Open Office");       
+        new WirelessQuickViewPage().GotoRF();
+        assertTrue(new WirelessQuickViewPage(false).checkdefaultRFExist("Open Office"),"RF Not created");
+        assertTrue(new WirelessQuickViewPage(false).checkdefaultRFExist("Outdoor"),"RF Not created");
+        new WirelessQuickViewPage(false).CreateRFProfile(RFdata);
+        assertTrue(new WirelessQuickViewPage(false).checkRFExist(RFdata.get("RFName")),"RF Not created");
         
-        assertTrue(!new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is disabled");
-       
-    }
+    }  
     
-    @Step("Test Step 3: disable customer profile and verify")
+    @Step("Test Step 3: Delete RF profile")
     public void step3() {
-              
-
-        ssidInfo.put("custom", "disable");
-        new WirelessQuickViewPage().disableCustomerProfile(ssidInfo);
         
-        assertTrue(new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is enabled");
-       
+        new WirelessQuickViewPage().GotoRF();
+        new WirelessQuickViewPage(false).deleteRF(RFdata.get("RFName"));
+        
     }
-    
-    
-   
-    
        
-
 }

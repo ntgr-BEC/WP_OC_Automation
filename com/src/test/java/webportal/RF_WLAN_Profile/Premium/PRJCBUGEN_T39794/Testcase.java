@@ -1,5 +1,6 @@
-package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39745;
+package webportal.RF_WLAN_Profile.Premium.PRJCBUGEN_T39794;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static org.testng.Assert.assertTrue;
 
 import java.util.HashMap;
@@ -23,12 +24,14 @@ import webportal.param.WebportalParam;
 import webportal.publicstep.WebCheck;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.HamburgerMenuPage;
+import webportal.weboperation.InsightServicesPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
 
 /**
  *
- * @author  Tejeshwini K V
+ * @author  Pratik
  *
  */
 public class Testcase extends TestCaseBase {
@@ -36,9 +39,9 @@ public class Testcase extends TestCaseBase {
     Map<String, String> ssidInfo = new HashMap<String, String>();
 
     @Feature("RF_WLAN_Profile.Premium") // It's a folder/component name to make test suite more readable from Jira Test Case
-    @Story("PRJCBUGEN_T39745") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify whether user able to enable / disable Customer profile option in Add / Edit SSID") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T39745") // It's a testcase id/link from Jira Test Case.
+    @Story("PRJCBUGEN_T39794") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("In Location Level SSID, we should add \"Customer profile\" column, here we will show the Customer profile name mapped to this SSID.") // It's a testcase title from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T39794") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -47,7 +50,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("apwp14270");
+        new WirelessQuickViewPage().deleteSsidYes("PRJCBUGEN_T39794");
         System.out.println("start to do tearDown");
 
     }
@@ -59,38 +62,37 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.defaultLogin();
 
         handle.gotoLoction();
-        //new DevicesDashPage().checkDeviceInAdminAccount();
        
     }
 
-    @Step("Test Step 2: While creating ssid add customer profile and verify")
+    @Step("Test Step 2: Delete device and enable IGMP")
     public void step2() {
-       
-        
-        ssidInfo.put("SSID", "apwp14270");
+           
+        ssidInfo.put("SSID", "PRJCBUGEN_T39794");
         ssidInfo.put("Security", "WPA2 Personal Mixed");
         ssidInfo.put("Password", "123456798");
-        ssidInfo.put("custom", "enable");
-        new WirelessQuickViewPage().addSsidcustom(ssidInfo);
-        
-        assertTrue(!new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is disabled");
+        new WirelessQuickViewPage().addSsid1(ssidInfo);
        
     }
     
-    @Step("Test Step 3: disable customer profile and verify")
+    
+    @Step("Test Step 3: Enable customer profile")
     public void step3() {
-              
-
-        ssidInfo.put("custom", "disable");
-        new WirelessQuickViewPage().disableCustomerProfile(ssidInfo);
-        
-        assertTrue(new WirelessQuickViewPage().checkCustomProfileeditSSID(ssidInfo),"RF is enabled");
-       
+        ssidInfo.put("custom", "enable");
+        new WirelessQuickViewPage().checkRateLimitARSTabsVisible(ssidInfo);
     }
-    
-    
-   
-    
-       
+
+    @Step("Test Step 4: verify Customer Profile and Captive Portal is visible after enabling customer profile")
+    public void step4() {
+
+        MyCommonAPIs.sleepi(10);
+        boolean result = false;
+        if ($x("//th[text()='Customer Profile']").isDisplayed() && $x("//td[text()='Savant']").isDisplayed() && $x("//th[text()='Captive Portal']").isDisplayed()) {
+            result = true;
+        }
+
+        assertTrue(result, "Customer Profile and Captive Portal is not visible after enabling customer profile");
+
+    }
 
 }
