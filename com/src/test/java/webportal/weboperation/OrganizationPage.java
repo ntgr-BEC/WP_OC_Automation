@@ -7022,5 +7022,42 @@ public class OrganizationPage extends OrganizationElement {
         }
         return result;
     }
+	
+    // AddedByPratik
+    public boolean verifyOnlineDevicesTooltipOnOrgDashboardPage(String tooltip) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        getOrgTooltipTitle(tooltip).shouldBe(Condition.visible);
+        System.out.println("Step1: " + getOrgTooltipTitle(tooltip).getText());
+        getOrgTooltipCountHeader(tooltip).shouldBe(Condition.visible);
+        String devicesCount = getOrgTooltipCountHeader(tooltip).getText();
+        System.out.println("Step2: " + devicesCount);
+        if ((devicesCount.trim()).equals("3")) {
+            getOrgTooltipCountHeader(tooltip).hover();
+            MyCommonAPIs.sleepi(1);
+            getOrgTooltipSwitchesRow(tooltip).shouldBe(Condition.visible);
+            getOrgTooltipSwitchesValue(tooltip).shouldBe(Condition.visible);
+            System.out.println("Step3: " + getOrgTooltipSwitchesRow(tooltip).getText() + " " + getOrgTooltipSwitchesValue(tooltip).getText());
+            getOrgTooltipAccessPointsRow(tooltip).shouldBe(Condition.visible);
+            getOrgTooltipAccessPointsValue(tooltip).shouldBe(Condition.visible);
+            System.out.println(
+                    "Step3: " + getOrgTooltipAccessPointsRow(tooltip).getText() + " " + getOrgTooltipAccessPointsValue(tooltip).getText());
+            getOrgTooltipRoutersRow(tooltip).shouldBe(Condition.visible);
+            getOrgTooltipRoutersValue(tooltip).shouldBe(Condition.visible);
+            System.out.println("Step3: " + getOrgTooltipRoutersRow(tooltip).getText() + " " + getOrgTooltipRoutersValue(tooltip).getText());
+            String switchesVa = getOrgTooltipSwitchesValue(tooltip).getText();
+            String switchesVal = switchesVa.replace(":", "").trim(); 
+            String apsVa = getOrgTooltipAccessPointsValue(tooltip).getText();
+            String apsVal = apsVa.replace(":", "").trim(); 
+            String routersVa = getOrgTooltipRoutersValue(tooltip).getText();
+            String routersVal = routersVa.replace(":", "").trim();
+            if (((switchesVal.trim()).equals("1")) && ((apsVal.trim()).equals("1")) && ((routersVal.trim()).equals("1"))) {
+                logger.info("In " + tooltip + " tooltip all values showing correctly");
+                result = true;
+            }
+
+        }
+        return result;
+    }
     
 }
