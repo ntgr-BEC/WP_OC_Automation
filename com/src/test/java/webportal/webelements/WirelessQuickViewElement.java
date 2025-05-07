@@ -1114,6 +1114,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      public SelenideElement        WebKey                   = $x("//*[text() = 'Key']/../../div[2]/input");
      public SelenideElement        AllowHTTPSEnable         = $x("(//*[@name ='allowHTTPS']/..)[1]");
      public SelenideElement        AllowFailsafe            = $x("(//*[@name ='failsafe']/..)[1]");
+     public SelenideElement        MAXNASID                 = $x("//div[text()='NAS-Identifier value should be between 3-253 characters in length.']");
      
      
      public SelenideElement        SplashPageURLHelp            = $x("//*[@id=\"SplashPageURL\"]/div/div/div/div/div/span");
