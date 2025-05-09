@@ -63,8 +63,8 @@ public class Testcase extends TestCaseBase {
     }
 
     @Step("Test Step 2: Verify radio and channel page")
-    public void step2() {
-        
+    public void step2() {        
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);        
         new WirelessQuickViewPage().enterDeviceYes(WebportalParam.ap1serialNo);
         assertTrue(new  DeviceScreenNavigationPage().verifyRadioandChannel()," Radio and channel page is not complete");
      }

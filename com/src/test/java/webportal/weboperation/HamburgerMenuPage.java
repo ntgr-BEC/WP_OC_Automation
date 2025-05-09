@@ -3543,7 +3543,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void clickBusinessInfoPageButton() {
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(20);
         if (businessDone.exists()) {
             businessDone.click();
         } else {
@@ -3570,7 +3570,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         businesscountry.selectOption(map.get("Country"));
         MyCommonAPIs.sleepi(1);
         businessphone.setValue(map.get("Business Phone Number"));
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(20);
         if (acceptpolicyBusinessInfo1.isDisplayed() && acceptpolicyBusinessInfo2.isDisplayed()) {
             acceptpolicyBusinessInfo1.click();
             MyCommonAPIs.sleepi(1);
@@ -6021,7 +6021,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 //            addSchedule.click();
         }
         AddProLicense.sendKeys(LicenceKey);
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(20);
         ClickAdd.click();
         MyCommonAPIs.sleepi(5);
         if(ClickAddok.isDisplayed()) {
@@ -6069,7 +6069,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
 
         AddProLicense.setValue(LicenceKey);
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(20);
         ClickAdd.click();
         MyCommonAPIs.sleepi(5);
         ClickAddok.click();
@@ -6255,7 +6255,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         AddICPKey.click();
         MyCommonAPIs.sleepi(20);
         AddICPLicenseKey.sendKeys(LicenceKey);
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(20);
         ClickAddICP.click();
         MyCommonAPIs.sleepi(5);
         if (ClickAddok.exists()) {
@@ -7056,7 +7056,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         AddVPNKey.click();
         MyCommonAPIs.sleepi(15);
         AddICPLicenseKey.sendKeys(LicenceKey);
-        MyCommonAPIs.sleepi(10);
+        MyCommonAPIs.sleepi(20);
         ClickAddICP.click();
         MyCommonAPIs.sleepi(5);
         if (ClickAddok.exists()) {
@@ -8867,7 +8867,7 @@ public void AddKeyToOrg(String LicenceKey, String selectOrg) {
     SelectOrgInSubspage(selectOrg).click();
     System.out.println("Immediate is alredy clicked");
     AddProLicense.sendKeys(LicenceKey);
-    MyCommonAPIs.sleepi(10);
+    MyCommonAPIs.sleepi(20);
     ClickAdd.click();
     MyCommonAPIs.sleepi(10);
     if(ClickAddok.isDisplayed()) {

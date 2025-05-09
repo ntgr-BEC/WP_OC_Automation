@@ -59,6 +59,7 @@ public class Testcase extends TestCaseBase {
 
         handle.gotoLoction();
         new DevicesDashPage().checkDeviceInNormalAccount("admin");
+        new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
       
     }
 
