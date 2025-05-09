@@ -659,5 +659,108 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+    
+    public static SelenideElement getOrgTooltipTitle(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']");
+    }
 
+    public static SelenideElement getOrgTooltipCountHeader(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../h2");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']/..//span");
+    }
+    
+    public SelenideElement orgName                          = $x("//span[contains(@id,'cell-orgName')]//span");
+    public SelenideElement totaldevicescountHeader          = $x("//span[contains(@id,'cell-totalDevice')]//span");
+    public SelenideElement onlinedevicescountHeader         = $x("//span[contains(@id,'cell-onlineDevice')]//span");
+    public SelenideElement filterIconAllDevicesPage         = $x("//span[@class='icon-filter']");
+    public SelenideElement clearAllBtnAllDevicesPage        = $x("//span[text()='Clear all']");
+    public SelenideElement applyBtnAllDevicesPage           = $x("//button[@id='_btnApplyOrg']");
+    public SelenideElement serialNumberCell                 = $x("//div[@col-id='serialNo']/div/span");
+    public SelenideElement nextButtonAllDevicesPage         = $x("//span[text()='Page 1 of 2']/..//button[text()='Next']");
+    public SelenideElement searchInputAllDevicesPage        = $x("//span[@class='icon-filter']/../../../../..//input[@class='agGridSearch']");
+    public SelenideElement activefilter                     = $x("//a[@class='displayOptions active']");
+    public SelenideElement cancelBtnAllDevicesPage          = $x("//button[@id='_btnCancelOrg']");
+    public SelenideElement offlineFilteroption              = $x("//a[text()='Offline']");
+    public SelenideElement onlineFilteroption               = $x("//a[text()='Online']");
+    public SelenideElement expiredFilteroption              = $x("//a[text()='Expired']");
+    public SelenideElement sortOrgOption                    = $x("//a[@id='_ancDropToggOptOrg']/span");
+    public SelenideElement totaldeviceSortopt               = $x("//p[text()='Total Devices']");
+    public SelenideElement onlineDevicesSort                = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Online Devices']");
+    public SelenideElement offlineDevicesSort               = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Offline Devices']");
+    public SelenideElement deviceCreditStatusSort           = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Device Credit Status']");
+    public SelenideElement ownerSort                        = $x("//p[text()='Owner']");
+    public SelenideElement allActiveFilter                  = $x("//a[text()='All Active']");
+    public SelenideElement totaldevicesheader               = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Total Devices']");
+    public SelenideElement Onlinedevicesheader              = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Online Devices']");
+    public SelenideElement offlinedevicesheader             = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Offline Devices']");
+    public SelenideElement deviceCreditStatusheader         = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Device Credit Status']");
+    public SelenideElement Ownerheader                      = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Owner']");
+    
+    public static SelenideElement getHeaderOrgName(String orgName) {
+        return $x("//span[contains(@id,'cell-orgName')]//span[text()='"+orgName+"']");
+    }
+    
+    public static SelenideElement getHeaderTotalDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-totalDevice')]/span");
+    }
+    
+    public static SelenideElement getHeaderOnlineDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-onlineDevice')]/div/span");
+    }
+    
+    public static SelenideElement getHeaderOfflineDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-offlineDevice')]/div/span");
+    }
+    
+    public static SelenideElement getHeaderCreditExpiredCounts(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-creditExpireCounts')]/div/div/p");
+    }
+    
+    public static SelenideElement getHeaderOwnerName(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-ownerName')]/p");
+    }
+    
+    public static SelenideElement orgSettingsDevice(String srNo) {
+        return $x("//div[@class='ag-center-cols-container']//span[text()='"+srNo+"']");
+    }
+    
+    public static SelenideElement locdashSettingsDevice(String srNo) {
+        return $x("//div[@aria-rowcount='4']//div[@col-id='serialNo']//span[text()='"+srNo+"']");
+    }
+    
+    public static ElementsCollection settingsOrgDevicesConnectedState = $$x("//div[@class='ag-center-cols-container']//span[text()='Connected']");
+    public SelenideElement orgDashboardHeaderTable                    = $x("//div[@class='ag-theme-material TableHeadBlock customGridTable']");
+    public SelenideElement orgDashboardSettingsICON                   = $x("//img[@src='assets/img/Header/icon-settings.png']");
+    public SelenideElement orgDashboardSettingsICONDevicestab         = $x("//a[@href='/#/organization/devices']");
+    public SelenideElement devicesTablesList                          = $x("//div[@class='ag-pinned-left-cols-container']");
+    public SelenideElement locationDashboardTable                     = $x("//div[@class='ag-center-cols-container']");
+    public SelenideElement settingsDevicesPageTable                   = $x("//div[@aria-rowcount='4']");
+    public SelenideElement a1         = $x("");
+    public SelenideElement a10         = $x("");
+    
+    
+        
 }

@@ -5,11 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static org.testng.Assert.assertTrue;
 
@@ -30,7 +27,6 @@ import webportal.webelements.HamburgerMenuElement;
 //import org.apache.tika.parser.pdf.PDFParser;  
 import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.pdf.PDFParser;  
-import java.util.Scanner;
 
 
 
@@ -336,8 +332,5 @@ public class FileHandling extends HamburgerMenuElement {
         
     }
        
-    
-   
-    
    
        }

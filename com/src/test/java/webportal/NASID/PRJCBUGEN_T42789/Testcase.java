@@ -25,7 +25,6 @@ import util.Javasocket;
 import util.MyCommonAPIs;
 import util.RunCommand;
 import webportal.param.WebportalParam;
-import webportal.webelements.WirelessQuickViewElement;
 import webportal.weboperation.DeviceGroupPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.FileHandling;
@@ -42,14 +41,10 @@ public class Testcase extends TestCaseBase {
     
     Map<String, String> locationInfo = new HashMap<String, String>();
     Map<String, String> ECPInfo = new HashMap<String, String>();
-//    String NASID = "abcde";
-    int length = 254 ;
-    String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    String NASID = "abcde";
     Random random = new Random();
-    StringBuilder sb = new StringBuilder(length);
     int randomNumber = random.nextInt(1000000);
     String SSID    = "SSID" + String.valueOf(randomNumber);
-    String NASID;
     
     @Feature("NASID") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T42789") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -78,18 +73,9 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add numbers NASIS;")
     public void step2() {
         
-        
-        for (int i = 0; i < length; i++) {
-            sb.append(characters.charAt(random.nextInt(characters.length())));
-        }
-
-        NASID = sb.toString();
-        System.out.println("Random Alphabet String of 553 characters:\n" + NASID);
-        
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("SSID", SSID);
-        locationInfo.put("Security", "WPA2 Personal Mixed");
-        locationInfo.put("Password", "123456798");
+        locationInfo.put("Security", "WPA2 Enterprise");
         new WirelessQuickViewPage().addSsid1(locationInfo);
         ECPInfo.put("ECP Type", "GoZone Wi-Fi");
         ECPInfo.put("Walled Garden", "*.smartwifiplatform.com");
@@ -109,8 +95,9 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: check SSH;")
     public void step3() {
-        
-        assertTrue(new WirelessQuickViewElement().MAXNASID.isDisplayed(), "NASID is not Pushed");
+        new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
+        String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASID(WebportalParam.ap1Model);
+        assertTrue(SSHoutput.contains(NASID), "NASID is not Pushed");
     }  
      
   }    

@@ -45,6 +45,8 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
+        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
         new ManagerPage(false).deleteSecondaryAdminEmail(secAdminMail);
         System.out.println("start to do tearDown");
     }
