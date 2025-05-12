@@ -765,5 +765,27 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement devicecreditAllocatePlusicon               = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-plus-circle.png']");
     public SelenideElement devicecreditAllocateMinusicon              = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-minus-circle.png']");
     public SelenideElement allocatingDevCreditValue                   = $x("//span[text()='Device Credits']/../..//input[@type='text']"); 
+    public SelenideElement verifyNoOrgText                            = $x("//p[contains(text(),'You do not have any organizations')]");
+    public SelenideElement verifycreditrsAllocateSuccess              = $x("//*[text()='The credits have been allocated successfully']");
+    
+    public SelenideElement ariaSetIndexDeallocate(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Deallocate']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement modalHeader                                = $x("//h4[contains(., 'Deallocate Credits')]");
+    public SelenideElement deviceCreditsLabel                         = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']");
+    public SelenideElement deviceCreditsInput                         = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/ancestor::tr//input");
+    public SelenideElement instantVpnGroupCreditsLabel                = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant VPN Group Credits']");
+    public SelenideElement instantVpnGroupCreditsInput                = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant VPN Group Credits']/ancestor::tr//input");
+    public SelenideElement instantCaptivePortalCreditsLabel           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant Captive Portal Credits']");
+    public SelenideElement instantCaptivePortalCreditsInput           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant Captive Portal Credits']/ancestor::tr//input");
+    public SelenideElement businessVpnLabel                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Business VPN']");
+    public SelenideElement businessVpnInput                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Business VPN']/ancestor::tr//input");
+    public SelenideElement canceldeallocateButton                     = $x("//h4[contains(., 'Deallocate Credits')]/../..//button[text()='Cancel']");
+    public SelenideElement deallocateButton                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//button[text()='Deallocate']");
+    public SelenideElement creditTypeDeallocate                       = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Credit Type']");
+    public SelenideElement verifySuccessDeallocate                    = $x("//div[text()='The credits have been deallocated successfully.']");
+
     
 }
