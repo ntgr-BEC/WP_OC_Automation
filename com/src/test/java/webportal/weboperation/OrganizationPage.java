@@ -35,7 +35,6 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
-import com.strobel.decompiler.languages.java.ast.Keys;
 
 import groovy.time.Duration;
 import util.APUtils;
@@ -54,6 +53,10 @@ import static com.codeborne.selenide.Selenide.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import static com.codeborne.selenide.Condition.visible;
+
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+
 
 
 public class OrganizationPage extends OrganizationElement {
@@ -1400,25 +1403,15 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(2);
         homePage.click();
         MyCommonAPIs.sleepi(20);
-        if (checkOrganizationIsExist(name)) {
-            if(dropdownOrganizationElement(name).exists()) 
-            {
-            dropdownOrganizationElement(name).click();
-            addCreditsOrganizationElement(name).click();
-            }
-            else
-            {
-                  String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
-                  ariaSetIndex(rowindex).click();
-                  ariaSetIndexAllocate(rowindex).click();                             
-            }        
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        if (deviceCredits.exists()) {
+            icpCreditsInput.sendKeys("6");
+            MyCommonAPIs.sleepi(1);
+            allocateBtn.click();
             MyCommonAPIs.sleepi(5);
-            if (deviceCredits.exists()) {
-                icpCreditsInput.sendKeys("4");
-                MyCommonAPIs.sleepi(1);
-                allocateBtn.click();
-                MyCommonAPIs.sleepi(5);
-            }
         }
     }
 
@@ -7765,25 +7758,16 @@ public class OrganizationPage extends OrganizationElement {
     public boolean verifyAllocatedDeviceCredits(String name) {
         boolean result = true;
         MyCommonAPIs.sleepi(15);
-        
-        if(dropdownOrganizationElement(name).exists()) 
-        {
-        dropdownOrganizationElement(name).click();
-        addCreditsOrganizationElement(name).click();
-        }
-        else
-        {
-              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
-              ariaSetIndex(rowindex).click();
-              ariaSetIndexAllocate(rowindex).click();                             
-        }        
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
         MyCommonAPIs.sleepi(5);
         if ($x("(//td[text()='6'])[1]").shouldBe(Condition.visible).isDisplayed()) {
-            System.out.println("Device Credits allocated successfully ie: "+$x("(//td[text()='6'])[1]").getText());
+            System.out.println("Device Credits allocated successfully ie: " + $x("(//td[text()='6'])[1]").getText());
         } else {
             result = false;
             System.out.println("Device Credits not allocated successfully");
-        }      
+        }
         closeIconCreditAlllocation.shouldBe(Condition.visible).click();
         return result;
     }
@@ -7791,25 +7775,16 @@ public class OrganizationPage extends OrganizationElement {
     public boolean verifyAllocatedICPCredits(String name) {
         boolean result = true;
         MyCommonAPIs.sleepi(15);
-        
-        if(dropdownOrganizationElement(name).exists()) 
-        {
-        dropdownOrganizationElement(name).click();
-        addCreditsOrganizationElement(name).click();
-        }
-        else
-        {
-              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
-              ariaSetIndex(rowindex).click();
-              ariaSetIndexAllocate(rowindex).click();                             
-        }        
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
         MyCommonAPIs.sleepi(5);
         if ($x("(//td[text()='6'])[1]").shouldBe(Condition.visible).isDisplayed()) {
-            System.out.println("Device Credits allocated successfully ie: "+$x("(//td[text()='6'])[1]").getText());
+            System.out.println("Device Credits allocated successfully ie: " + $x("(//td[text()='6'])[1]").getText());
         } else {
             result = false;
             System.out.println("Device Credits not allocated successfully");
-        }      
+        }
         closeIconCreditAlllocation.shouldBe(Condition.visible).click();
         return result;
     }
@@ -7836,9 +7811,9 @@ public class OrganizationPage extends OrganizationElement {
     public boolean verifycancelBtnDeviceCreditPopup(String name) {
         boolean result = false;
         MyCommonAPIs.sleepi(15);
-              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
-              ariaSetIndex(rowindex).click();
-              ariaSetIndexAllocate(rowindex).click();                                    
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
         deviceCreditsTextbox.sendKeys("6");
@@ -7921,6 +7896,289 @@ public class OrganizationPage extends OrganizationElement {
         MyCommonAPIs.sleepi(5);
         return result;
     }
-
     
+    public boolean verifyAllocateAndSuccesscreditAllocation(String name) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("6");
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        verifycreditrsAllocateSuccess.shouldBe(Condition.visible);
+        System.out.println("verifycreditrsAllocateSuccess : " + verifycreditrsAllocateSuccess.getText());
+        if (verifycreditrsAllocateSuccess.isDisplayed()) {
+            result = true;
+            logger.info("Verified Success Messgae for allocating credits");
+        }
+
+        return result;
+    }
+    
+    public boolean verifyCloseICONAllocatedDeviceCredits(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        if (closeIconCreditAlllocation.shouldBe(Condition.visible).isDisplayed()) {
+            System.out.println("close icon is displyed on device credits page");
+            closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(10);
+            getHeaderOrgName(name).shouldBe(Condition.visible);
+            if (getHeaderOrgName(name).isDisplayed()) {
+                System.out.println("device credits page is closed and landed on organization page");
+            } else {
+                result = false;
+                System.out.println("device credits page is not closed and landed on organization page");
+            }
+        } else {
+            result = false;
+            System.out.println("close icon is not displyed on device credits page");
+        }
+        return result;
+    }
+    
+    public boolean verifyUsedUnsedCreditsAfterOnboardingdevices(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        String alloCatedCreds = "";
+        String unUsedcreds = "";
+        if ($x("//td[text()='6']").isDisplayed() && $x("//td[text()='5']").isDisplayed()) {
+            alloCatedCreds = $x("//td[text()='6']").getText();
+            unUsedcreds = $x("//td[text()='5']").getText();
+            int alloCatedCred = Integer.parseInt(alloCatedCreds);
+            int unUsedcred = Integer.parseInt(unUsedcreds);
+            int usedcred = alloCatedCred-unUsedcred;
+            System.out.println("alloCatedCred : "+alloCatedCred+"  unUsedcred : "+unUsedcred+"  usedcred : "+usedcred);
+            if (usedcred==1) {
+                System.out.println("After onboarding devices verified used, unused creds");
+                closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+            } else {
+                result = false;
+                System.out.println("After onboarding devices not verified used, unused creds");
+            }
+        } else {
+            result = false;
+            System.out.println("After onboarding devices not verified used, unused creds");
+        }
+        return result;
+    }
+    
+    public boolean verifyUsedUnsedCreditsAfterOnboardingNodevices(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        String alloCatedCreds = "";
+        String unUsedcreds = "";
+        if ($x("(//td[text()='6'])[1]").isDisplayed() && $x("(//td[text()='6'])[2]").isDisplayed()) {
+            alloCatedCreds = $x("(//td[text()='6'])[1]").getText();
+            unUsedcreds = $x("(//td[text()='6'])[2]").getText();
+            int alloCatedCred = Integer.parseInt(alloCatedCreds);
+            int unUsedcred = Integer.parseInt(unUsedcreds);
+            int usedcred = alloCatedCred-unUsedcred;
+            System.out.println("alloCatedCred : "+alloCatedCred+"  unUsedcred : "+unUsedcred+"  usedcred : "+usedcred);
+            if (usedcred==0) {
+                System.out.println("After deleteing devices verified used, unused creds");
+                closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+            } else {
+                result = false;
+                System.out.println("After deleteing devices not verified used, unused creds");
+            }
+        } else {
+            result = false;
+            System.out.println("After deleteing devices not verified used, unused creds");
+        }
+        return result;
+    }
+    
+    public boolean verifydeallocatepopupElements(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+
+        try {
+            String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+            ariaSetIndex(rowindex).click();
+            ariaSetIndexDeallocate(rowindex).click();
+            MyCommonAPIs.sleepi(5);
+            modalHeader.shouldBe(Condition.visible);
+            if (!modalHeader.isDisplayed()) {
+                System.out.println("Modal header is not visible.");
+                result = false;
+            }
+            if (!deviceCreditsLabel.isDisplayed()) {
+                System.out.println("Device Credits label is not visible.");
+                result = false;
+            }
+            if (!deviceCreditsInput.isDisplayed()) {
+                System.out.println("Device Credits input is not visible.");
+                result = false;
+            }
+            if (!instantVpnGroupCreditsLabel.isDisplayed()) {
+                System.out.println("Instant VPN Group Credits label is not visible.");
+                result = false;
+            }
+            if (!instantVpnGroupCreditsInput.isDisplayed()) {
+                System.out.println("Instant VPN Group Credits input is not visible.");
+                result = false;
+            }
+            if (!instantCaptivePortalCreditsLabel.isDisplayed()) {
+                System.out.println("Instant Captive Portal Credits label is not visible.");
+                result = false;
+            }
+            if (!instantCaptivePortalCreditsInput.isDisplayed()) {
+                System.out.println("Instant Captive Portal Credits input is not visible.");
+                result = false;
+            }
+            if (!businessVpnLabel.isDisplayed()) {
+                System.out.println("Business VPN label is not visible.");
+                result = false;
+            }
+            if (!businessVpnInput.isDisplayed()) {
+                System.out.println("Business VPN input is not visible.");
+                result = false;
+            }
+            if (!canceldeallocateButton.isDisplayed()) {
+                System.out.println("Cancel button is not visible.");
+                result = false;
+            }
+            if (!deallocateButton.isDisplayed()) {
+                System.out.println("Deallocate button is not visible.");
+                result = false;
+            }
+            if (!creditTypeDeallocate.isDisplayed()) {
+                System.out.println("Credit Type label is not visible.");
+                result = false;
+            }
+
+            // Click cancel to close the popup and confirm it's gone
+            canceldeallocateButton.click();
+            MyCommonAPIs.sleepi(3);
+            if (modalHeader.isDisplayed()) {
+                System.out.println("Popup did not close after clicking Cancel.");
+                result = false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception occurred during verification: " + e.getMessage());
+            result = false;
+        }
+
+        return result;
+    }
+    
+    public boolean verifyDeallocateCreditsOnOrgPage(String name) {
+        boolean result = true;
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        modalHeader.shouldBe(Condition.visible);
+        deviceCreditsInput.shouldBe(Condition.visible).setValue("6");
+        MyCommonAPIs.sleepi(2);
+        deallocateButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        verifySuccessDeallocate.shouldBe(Condition.visible);
+        System.out.println("verifySuccessDeallocate : "+verifySuccessDeallocate.getText());
+        if (!(verifySuccessDeallocate.isDisplayed())) {
+            result = false;
+            System.out.println("deallocate is not done successfully");
+        }
+        return result;
+    }
+    
+    public boolean verifyCancelBtnOnDeallocateCreditsPage(String name) {
+        boolean result = true;
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        modalHeader.shouldBe(Condition.visible);
+        deviceCreditsInput.shouldBe(Condition.visible).setValue("6");
+        MyCommonAPIs.sleepi(2);
+        canceldeallocateButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        if (!(verifyAllocatedDeviceCredits(name))) {
+            result = false;
+            System.out.println("deallocate cancel button is not Working");
+        }
+        return result;
+    }
+    
+    public boolean verifyDeallocatePopupElements(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+
+        try {
+            // Trigger the popup
+            String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+            ariaSetIndex(rowindex).click();
+            ariaSetIndexDeallocate(rowindex).click();
+            MyCommonAPIs.sleepi(5);
+
+            // List of elements to verify
+            Map<String, SelenideElement> elementsToCheck = new HashMap<>();
+            elementsToCheck.put("Modal Header", modalHeader);
+            elementsToCheck.put("Device Credits Label", deviceCreditsLabel);
+            elementsToCheck.put("Device Credits Input", deviceCreditsInput);
+            elementsToCheck.put("Instant VPN Group Credits Label", instantVpnGroupCreditsLabel);
+            elementsToCheck.put("Instant VPN Group Credits Input", instantVpnGroupCreditsInput);
+            elementsToCheck.put("Instant Captive Portal Credits Label", instantCaptivePortalCreditsLabel);
+            elementsToCheck.put("Instant Captive Portal Credits Input", instantCaptivePortalCreditsInput);
+            elementsToCheck.put("Business VPN Label", businessVpnLabel);
+            elementsToCheck.put("Business VPN Input", businessVpnInput);
+            elementsToCheck.put("Cancel Button", canceldeallocateButton);
+            elementsToCheck.put("Deallocate Button", deallocateButton);
+            elementsToCheck.put("Credit Type Label", creditTypeDeallocate);
+
+            // Check element visibility
+            for (Map.Entry<String, SelenideElement> entry : elementsToCheck.entrySet()) {
+                if (!entry.getValue().isDisplayed()) {
+                    System.out.println("❌ Element not visible: " + entry.getKey());
+                    result = false;
+                } else {
+                    System.out.println("✅ Element visible: " + entry.getKey());
+                }
+            }
+
+            // Tab through inputs and check focus moves
+            deviceCreditsInput.pressTab();
+            if (!instantVpnGroupCreditsInput.equals(WebDriverRunner.getWebDriver().switchTo().activeElement())) {
+                System.out.println("❌ Tab navigation failed between inputs.");
+                result = false;
+            } else {
+                System.out.println("✅ Tab navigation between inputs working.");
+            }
+
+            MyCommonAPIs.sleepi(5);
+            canceldeallocateButton.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
+            if (modalHeader.isDisplayed()) {
+                System.out.println("❌ Popup did not close after clicking Cancel.");
+                result = false;
+            } else {
+                System.out.println("✅ Cancel button closed the popup successfully.");
+            }
+
+        } catch (Exception e) {
+            System.out.println("❌ Exception during popup verification: " + e.getMessage());
+            result = false;
+        }
+
+        return result;
+    }
+
+
 }
