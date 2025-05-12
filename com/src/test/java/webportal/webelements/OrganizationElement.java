@@ -758,9 +758,12 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement devicesTablesList                          = $x("//div[@class='ag-pinned-left-cols-container']");
     public SelenideElement locationDashboardTable                     = $x("//div[@class='ag-center-cols-container']");
     public SelenideElement settingsDevicesPageTable                   = $x("//div[@aria-rowcount='4']");
-    public SelenideElement a1         = $x("");
-    public SelenideElement a10         = $x("");
+    public SelenideElement closeIconCreditAlllocation                 = $x("//div[contains(@class,'addDevices allocateCreditsModal')]//img[@src='assets/img/commonIcons/whiteCross.png']");
+    public SelenideElement deviceCreditsselect                        = $x("//div[@id='deviceCredits']");
+    public SelenideElement creditsSelectAll                           = $x("//p[text()='Select All']/../i");
+    public SelenideElement cancelBtnDeviceCreditPopup                 = $x("//*[text()='Netgear1']/../../..//button[text()='Cancel']");
+    public SelenideElement devicecreditAllocatePlusicon               = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-plus-circle.png']");
+    public SelenideElement devicecreditAllocateMinusicon              = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-minus-circle.png']");
+    public SelenideElement allocatingDevCreditValue                   = $x("//span[text()='Device Credits']/../..//input[@type='text']"); 
     
-    
-        
 }

@@ -38,7 +38,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.strobel.decompiler.languages.java.ast.Keys;
 
 import groovy.time.Duration;
-import junit.framework.Assert;
 import util.APUtils;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
@@ -1386,26 +1385,12 @@ public class OrganizationPage extends OrganizationElement {
 
     public void creditAllocation(String name) {
         MyCommonAPIs.sleepi(15);
-        
-        if(dropdownOrganizationElement(name).exists()) 
-        {
-        dropdownOrganizationElement(name).click();
-        addCreditsOrganizationElement(name).click();
-        }
-        else
-        {
-              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
-              ariaSetIndex(rowindex).click();
-              ariaSetIndexAllocate(rowindex).click();                             
-        }        
-        
-//        waitElement(dropdownOrganizationElement(name));
-//        dropdownOrganizationElement(name).click();
-//        MyCommonAPIs.sleepi(2);
-//        allocateCredits.click();
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
         MyCommonAPIs.sleepi(5);
         waitElement(deviceCreditsTextbox);
-        deviceCreditsTextbox.sendKeys("5");
+        deviceCreditsTextbox.sendKeys("6");
         MyCommonAPIs.sleepi(1);
         allocateBtn.click();
         MyCommonAPIs.sleepi(5);
@@ -2952,7 +2937,7 @@ public class OrganizationPage extends OrganizationElement {
             //}        
             MyCommonAPIs.sleepi(5);
             if (icpCreditsOrg.shouldBe(Condition.visible).exists()) {
-                icpCreditAllocation.shouldBe(Condition.visible).sendKeys("2");
+                icpCreditAllocation.shouldBe(Condition.visible).sendKeys("6");
                 MyCommonAPIs.sleepi(1);
                 allocateBtn.shouldBe(Condition.visible).click();
                 MyCommonAPIs.sleepi(5);
@@ -7776,5 +7761,166 @@ public class OrganizationPage extends OrganizationElement {
         }
         return result;
     }
+    
+    public boolean verifyAllocatedDeviceCredits(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        
+        if(dropdownOrganizationElement(name).exists()) 
+        {
+        dropdownOrganizationElement(name).click();
+        addCreditsOrganizationElement(name).click();
+        }
+        else
+        {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexAllocate(rowindex).click();                             
+        }        
+        MyCommonAPIs.sleepi(5);
+        if ($x("(//td[text()='6'])[1]").shouldBe(Condition.visible).isDisplayed()) {
+            System.out.println("Device Credits allocated successfully ie: "+$x("(//td[text()='6'])[1]").getText());
+        } else {
+            result = false;
+            System.out.println("Device Credits not allocated successfully");
+        }      
+        closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+        return result;
+    }
+    
+    public boolean verifyAllocatedICPCredits(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        
+        if(dropdownOrganizationElement(name).exists()) 
+        {
+        dropdownOrganizationElement(name).click();
+        addCreditsOrganizationElement(name).click();
+        }
+        else
+        {
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexAllocate(rowindex).click();                             
+        }        
+        MyCommonAPIs.sleepi(5);
+        if ($x("(//td[text()='6'])[1]").shouldBe(Condition.visible).isDisplayed()) {
+            System.out.println("Device Credits allocated successfully ie: "+$x("(//td[text()='6'])[1]").getText());
+        } else {
+            result = false;
+            System.out.println("Device Credits not allocated successfully");
+        }      
+        closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+        return result;
+    }
+    
+    public boolean verifyDeviceCreditsLicenseKeysSelectAll(String name) {
+        boolean result = false;
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        deviceCreditsselect.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        creditsSelectAll.shouldBe(Condition.visible);
+        if (creditsSelectAll.isDisplayed()) {
+            creditsSelectAll.click();
+            result = true;
+        }
+        MyCommonAPIs.sleepi(1);
+        allocateBtn.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifycancelBtnDeviceCreditPopup(String name) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(15);
+              String rowindex=dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+              ariaSetIndex(rowindex).click();
+              ariaSetIndexAllocate(rowindex).click();                                    
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys("6");
+        MyCommonAPIs.sleepi(1);
+        cancelBtnDeviceCreditPopup.shouldBe(Condition.visible);
+        if (cancelBtnDeviceCreditPopup.isDisplayed()) {
+            cancelBtnDeviceCreditPopup.click();
+            result = true;
+        }
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifyZeroAllocatedDeviceCredits(String name) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();                                    
+        MyCommonAPIs.sleepi(5);
+
+        // Verify all "0" cells
+        ElementsCollection zeroCells = $$x("//td[text()='0']");
+        System.out.println("Found zeroCells count: " + zeroCells.size());
+
+        boolean allAreZero = zeroCells.stream()
+            .allMatch(cell -> cell.getText().trim().equals("0"));
+
+        if (allAreZero) {
+            System.out.println("All credits are zero as expected.");
+        } else {
+            result = false;
+            System.out.println("Some credits are not zero.");
+        }
+
+        closeIconCreditAlllocation.shouldBe(Condition.visible).click();
+        return result;
+    }
+    
+    public boolean creditAllocationPlusMinusVerification(String name, String creds) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(15);
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexAllocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        waitElement(deviceCreditsTextbox);
+        deviceCreditsTextbox.sendKeys(creds);
+
+        MyCommonAPIs.sleepi(1);
+        devicecreditAllocatePlusicon.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        devicecreditAllocatePlusicon.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        String pluscredVal = allocatingDevCreditValue.shouldBe(Condition.visible).getValue();
+        System.out.println("pluscredVal : " + pluscredVal);
+        if (pluscredVal.equals("8")) {
+            System.out.println("Plus credit button working fine");
+        } else {
+            result = false;
+            System.out.println("Plus credit button is not working fine");
+        }
+
+        MyCommonAPIs.sleepi(1);
+        devicecreditAllocateMinusicon.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        devicecreditAllocateMinusicon.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        String minuscredVal = allocatingDevCreditValue.shouldBe(Condition.visible).getValue();
+        System.out.println("minuscredVal : " + minuscredVal);
+        if (minuscredVal.equals(creds)) {
+            System.out.println("minus credit button working fine");
+        } else {
+            result = false;
+            System.out.println("minus credit button is not working fine");
+        }
+
+        allocateBtn.click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+
     
 }
