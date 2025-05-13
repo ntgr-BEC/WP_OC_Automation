@@ -4251,7 +4251,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void openCreateProAccountUrl() {
         System.out.println("opening register URL");
-        String url = WebportalParam.serverUrlLogin.substring(0, WebportalParam.serverUrlLogin.indexOf(".")) + ".insight.netgear.com/#/register";
+        String url = "https://" + WebportalParam.serverUrlLogin + "/#/register";
         // String url = "insight.netgear.com/#/register";
         // String url = "https://pri-qa.insight.netgear.com/#/register";
         System.out.println(url);
