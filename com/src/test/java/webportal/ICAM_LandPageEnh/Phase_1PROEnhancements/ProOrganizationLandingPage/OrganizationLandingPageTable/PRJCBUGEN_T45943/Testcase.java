@@ -1,7 +1,6 @@
 package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.ProOrganizationLandingPage.OrganizationLandingPageTable.PRJCBUGEN_T45943;
 
 import static com.codeborne.selenide.Selenide.$$x;
-import static org.junit.Assert.assertFalse;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
