@@ -786,6 +786,8 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement deallocateButton                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//button[text()='Deallocate']");
     public SelenideElement creditTypeDeallocate                       = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Credit Type']");
     public SelenideElement verifySuccessDeallocate                    = $x("//div[text()='The credits have been deallocated successfully.']");
-
+    public SelenideElement deviceCreditDeallocateMinusbtn             = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/../../..//img[@alt='decrease']");
+    public SelenideElement deviceCreditDeallocatePlusbtn              = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/../../..//img[@alt='increase']");
+    public SelenideElement closeIcondeallocatePopup                   = $x("//h4[contains(., 'Deallocate Credits')]/..//button[@class='close']");
     
 }
