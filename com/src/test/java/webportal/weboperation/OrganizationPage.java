@@ -8179,6 +8179,386 @@ public class OrganizationPage extends OrganizationElement {
 
         return result;
     }
+    
+    public boolean verifyDeallocateButtonIsdiabled(String name) {
 
+        boolean result = false;
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+
+        modalHeader.shouldBe(Condition.visible);
+        String devcred = deviceCreditsInput.shouldBe(Condition.visible).getValue();
+        System.out.println("deviceCreditsInput : " + devcred);
+        String instantVpnCred = instantVpnGroupCreditsInput.shouldBe(Condition.visible).getValue();
+        System.out.println("instantVpnGroupCreditsInput : " + instantVpnCred);
+        String icpcred = instantCaptivePortalCreditsInput.shouldBe(Condition.visible).getValue();
+        System.out.println("instantCaptivePortalCreditsInput : " + icpcred);
+        String bvpncred = businessVpnInput.shouldBe(Condition.visible).getValue();
+        System.out.println("businessVpnInput : " + bvpncred);
+
+        if (devcred.trim().equals("0") && instantVpnCred.trim().equals("0") && icpcred.trim().equals("0") && bvpncred.trim().equals("0")) {
+            System.out.println("All values on deallocation page are '0'");
+            if (deallocateButton.getAttribute("disabled") != null) {
+                System.out.println("Deallocate button is disabled.");
+                result = true;
+                canceldeallocateButton.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(5);
+            }
+        }
+        return result;
+    }
+    
+    public boolean verifyDeallocateCredits(String name, String creds) {
+        
+        boolean result = true;
+
+        String rowindex = dropdownOrganizationElementNew(name).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+
+        String devcred = deviceCreditsInput.shouldBe(Condition.visible).getValue();
+        System.out.println("deviceCreditsInput : " + devcred);
+        
+        if ((devcred.trim().equals(creds))) {
+            System.out.println("deviceCreditsInput : " + devcred);
+        } else {
+            result = false;
+            System.out.println("Sufficient device credits are not avilable to deallocate");
+        }
+         
+        deallocateButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        
+        String devcred1 = deviceCreditsInput.shouldBe(Condition.visible).getValue();
+        System.out.println("deviceCreditsInput : " + devcred1);
+        
+        if ((devcred1.trim().equals("0"))) {
+            System.out.println("deviceCreditsInput : " + devcred);
+        } else {
+            result = false;
+            System.out.println("device credits are not '0'");
+        }
+        
+        canceldeallocateButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        return result;
+    }
+    
+    public boolean deallocateDeviceCreditsIncreaseDecrese(String orgName) {
+        try {
+
+            String rowindex = dropdownOrganizationElementNew(orgName).getAttribute("aria-rowindex");
+
+            // Open the Deallocate Credits modal
+            ariaSetIndex(rowindex).click();
+            ariaSetIndexDeallocate(rowindex).click();
+            MyCommonAPIs.sleepi(5); // Wait for modal to load
+
+            // Verify modal and input field are visible
+            if (!modalHeader.isDisplayed() || !deviceCreditsInput.isDisplayed()) {
+                System.out.println("Modal or Device Credits input not visible.");
+                return false;
+            }
+
+            // Capture initial value
+            int initial = Integer.parseInt(deviceCreditsInput.getValue());
+            System.out.println("Initial Device Credits: " + initial);
+
+            // Click minus (-) button once
+            deviceCreditDeallocateMinusbtn.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(1);
+            int afterMinus = Integer.parseInt(deviceCreditsInput.getValue());
+            System.out.println("After -1: " + afterMinus);
+
+            // Click plus (+) button once
+            deviceCreditDeallocatePlusbtn.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(1);
+            int afterPlus = Integer.parseInt(deviceCreditsInput.getValue());
+            System.out.println("After +1: " + afterPlus);
+
+            // Verify final value equals initial
+            if (afterPlus != initial) {
+                System.out.println("Final value mismatch. Expected: " + initial + ", Found: " + afterPlus);
+                return false;
+            }
+
+            // Click Deallocate
+            deallocateButton.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleep(10);
+            verifySuccessDeallocate.shouldBe(Condition.visible);
+            // Verify success message
+            if (verifySuccessDeallocate.isDisplayed()) {
+                System.out.println("Credits successfully deallocated.");
+                return true;
+            } else {
+                System.out.println("Success message not displayed.");
+                return false;
+            }
+
+        } catch (Exception e) {
+            System.out.println("Exception during deallocation: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean closeIconDeallocatePopup(String orgname) {
+
+        boolean result = false;
+        String rowindex = dropdownOrganizationElementNew(orgname).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexDeallocate(rowindex).click();
+        MyCommonAPIs.sleepi(5);
+        closeIcondeallocatePopup.shouldBe(Condition.visible);
+        if (closeIcondeallocatePopup.isDisplayed()) {
+            closeIcondeallocatePopup.click();
+            MyCommonAPIs.sleepi(5);
+            orgName.shouldBe(Condition.visible);
+            result = true;
+            System.out.println("Clicked on close icon button on Deallocate popup and then verified popup closed");
+        }
+        return result;
+    }
+    
+    public boolean verifyfilterOptionIsVisible() {
+        boolean result = true;
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible);
+        if (filterIconAllDevicesPage.isDisplayed()) {
+            System.out.println("Filter option is visible on organization dashboard page");
+            result = true;
+        }
+        return result;
+    }
+    
+    public boolean verifyfilterDropdownOptionsareVisible() {
+        boolean result = true;
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (offlineFilteroption.isDisplayed() && onlineFilteroption.isDisplayed() && expiredFilteroption.isDisplayed() && allActiveFilter.isDisplayed()) {
+            System.out.println("Filter dropdown options are visible on organization dashboard page");
+            result = true;
+            cancelBtnAllDevicesPage.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
+        }
+        return result;
+    }
+    
+    public boolean verifyFilterOptionDevicesfororganizationHeader(String orgName, String orgName1) {
+
+        boolean result = true;
+
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        offlineFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        String offlinedeviecFilter = getHeaderOfflineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + offlinedeviecFilter);
+        String onlinedeviecFilter = getHeaderOnlineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + onlinedeviecFilter);
+        if (offlinedeviecFilter.equals("3") && onlinedeviecFilter.equals("0")) {
+            System.out.println("offline devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("offline devices filter not applied successfully");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        onlineFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        String offlinedeviecFilter1 = getHeaderOfflineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter1: " + offlinedeviecFilter1);
+        String onlinedeviecFilter1 = getHeaderOnlineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("onlinedeviecFilter1: " + onlinedeviecFilter1);
+        if (onlinedeviecFilter1.equals("3") && offlinedeviecFilter1.equals("0")) {
+            System.out.println("online devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("online devices filter not applied successfully");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifyCreditsFilterOptionsFunctionality(String orgName, String orgName1) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        expiredFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed())) {
+            System.out.println("Both organizations are not visible because expired credits are not there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are visible when expired credits are not there");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        allActiveFilter.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed()
+                && getHeaderCreditExpiredCounts(orgName).isDisplayed() && getHeaderCreditExpiredCounts(orgName1).isDisplayed()) {
+            System.out.println("Both organizations are visible because Active credits are there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are not visible when Active credits are there");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        return result;
+    }
+    
+    public boolean verifyClearFilterOptionorganizationHeader(String orgName, String orgName1) {
+
+        boolean result = true;
+
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        String offlinedeviecFilter = getHeaderOfflineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + offlinedeviecFilter);
+        String onlinedeviecFilter = getHeaderOnlineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + onlinedeviecFilter);
+        if (offlinedeviecFilter.equals("3") && onlinedeviecFilter.equals("0")) {
+            System.out.println("offline devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("offline devices filter not applied successfully");
+        }
+
+        String offlinedeviecFilter1 = getHeaderOfflineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter1: " + offlinedeviecFilter1);
+        String onlinedeviecFilter1 = getHeaderOnlineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("onlinedeviecFilter1: " + onlinedeviecFilter1);
+        if (onlinedeviecFilter1.equals("3") && offlinedeviecFilter1.equals("0")) {
+            System.out.println("online devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("online devices filter not applied successfully");
+        }
+
+        if ((getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed())) {
+            System.out.println("Both organizations are visible because expired credits are not there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are not visible when expired credits are not there");
+        }
+
+        if (getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed()
+                && getHeaderCreditExpiredCounts(orgName).isDisplayed() && getHeaderCreditExpiredCounts(orgName1).isDisplayed()) {
+            System.out.println("Both organizations are visible because Active credits are there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are not visible when Active credits are there");
+        }
+
+        return result;
+    }
+    
+    public boolean verifyCancelButtonOnFilterOptionorganizationHeader(String orgName, String orgName1) {
+
+        boolean result = true;
+
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        cancelBtnAllDevicesPage.shouldBe(Condition.visible);
+        if ((cancelBtnAllDevicesPage.isDisplayed())) {
+            cancelBtnAllDevicesPage.click();
+            System.out.println("Cancel Button on filter dropdown is visible");
+            MyCommonAPIs.sleepi(5);
+        } else {
+            result = false;
+            System.out.println("Cancel Button on filter dropdown is not visible");
+        }
+
+        String offlinedeviecFilter = getHeaderOfflineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + offlinedeviecFilter);
+        String onlinedeviecFilter = getHeaderOnlineDevices(orgName1).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: " + onlinedeviecFilter);
+        if (offlinedeviecFilter.equals("3") && onlinedeviecFilter.equals("0")) {
+            System.out.println("offline devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("offline devices filter not applied successfully");
+        }
+
+        String offlinedeviecFilter1 = getHeaderOfflineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter1: " + offlinedeviecFilter1);
+        String onlinedeviecFilter1 = getHeaderOnlineDevices(orgName).shouldBe(Condition.visible).getText();
+        System.out.println("onlinedeviecFilter1: " + onlinedeviecFilter1);
+        if (onlinedeviecFilter1.equals("3") && offlinedeviecFilter1.equals("0")) {
+            System.out.println("online devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("online devices filter not applied successfully");
+        }
+
+        if ((getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed())) {
+            System.out.println("Both organizations are visible because expired credits are not there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are not visible when expired credits are not there");
+        }
+
+        if (getHeaderOrgName(orgName).isDisplayed() && getHeaderOrgName(orgName1).isDisplayed()
+                && getHeaderCreditExpiredCounts(orgName).isDisplayed() && getHeaderCreditExpiredCounts(orgName1).isDisplayed()) {
+            System.out.println("Both organizations are visible because Active credits are there");
+        } else {
+            result = false;
+            System.out.println("Both organizations are not visible when Active credits are there");
+        }
+
+        return result;
+    }
 
 }
