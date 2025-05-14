@@ -6228,19 +6228,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-        MyCommonAPIs.sleepi(15);
-        if (proaccCreatedNotificationCognito.exists()) {
-            proaccCreatedOKBtnCognito.click();
-            MyCommonAPIs.sleepi(15);
-            if (isInLoginPage()) {
-                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
-            }
-            waitReady();
-            MyCommonAPIs.sleepsync();
-        } else if (!isInLoginPage()) {
-            waitReady();
-            MyCommonAPIs.sleepsync();
-        }
+//        MyCommonAPIs.sleepi(15);
+//        if (proaccCreatedNotificationCognito.exists()) {
+//            proaccCreatedOKBtnCognito.click();
+//            MyCommonAPIs.sleepi(15);
+//            if (isInLoginPage()) {
+//                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+//            }
+//            waitReady();
+//            MyCommonAPIs.sleepsync();
+//        } else if (!isInLoginPage()) {
+//            waitReady();
+//            MyCommonAPIs.sleepsync();
+//        }
         return result;
     }
 
