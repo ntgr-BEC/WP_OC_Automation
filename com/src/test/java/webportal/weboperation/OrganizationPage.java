@@ -8560,5 +8560,484 @@ public class OrganizationPage extends OrganizationElement {
 
         return result;
     }
+    
+    public boolean verifydevicesOnOrgDashboard(String apSrNo, String swSrNo, String obSrNo, String header) {
+        boolean result = true;
+        if(header.equals("Total Devices")) {
+            getHeaderTotalDevices("Netgear").shouldBe(Condition.visible).click();
+        } else if (header.equals("Online Devices")) {
+            getHeaderOnlineDevices("Netgear").shouldBe(Condition.visible).click();
+        }
+        MyCommonAPIs.sleepi(5);
+        refresh();
+        MyCommonAPIs.sleepi(10);
+        devicesTablesList.shouldBe(Condition.visible);
+        for (SelenideElement element : settingsOrgDevicesConnectedState) {
+            if (!element.isDisplayed()) {
+                result = false;
+                System.out.println("Step2: Element not visible: " + element);
+                break;
+            }
+        }
 
+        if (result) {
+            System.out.println("Step2:  All elements are visible.");
+        } else {
+            result = false;
+            System.out.println("Step2: Some elements are not visible.");
+        }
+        if (orgSettingsDevice(apSrNo).isDisplayed() && orgSettingsDevice(swSrNo).isDisplayed() && orgSettingsDevice(obSrNo).isDisplayed()) {
+            System.out.println("Step2: All devices are listed on devices page: " + orgSettingsDevice(apSrNo).getText() + " || "
+                    + orgSettingsDevice(swSrNo).getText() + " || " + orgSettingsDevice(obSrNo).getText());
+        } else {
+            result = false;
+            System.out.println("Step2: All devices are not listed on devices page");
+        }
+
+        return result;
+    }
+    
+    public boolean verifyOfflinedevicesOnOrgDashboard(String apSrNo, String swSrNo, String obSrNo, String header) {
+        boolean result = true;
+        getHeaderOfflineDevices("Netgear").shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        devicesTablesList.shouldBe(Condition.visible);
+        for (SelenideElement element : settingsOrgDevicestate) {
+            if (!element.isDisplayed()) {
+                result = false;
+                System.out.println("Step2: Element not visible: " + element);
+                break;
+            }
+        }
+
+        if (result) {
+            System.out.println("Step2:  All elements are visible.");
+        } else {
+            result = false;
+            System.out.println("Step2: Some elements are not visible.");
+        }
+        if (orgSettingsDevice(apSrNo).isDisplayed() && orgSettingsDevice(swSrNo).isDisplayed() && orgSettingsDevice(obSrNo).isDisplayed()) {
+            System.out.println("Step2: All devices are listed on devices page: " + orgSettingsDevice(apSrNo).getText() + " || "
+                    + orgSettingsDevice(swSrNo).getText() + " || " + orgSettingsDevice(obSrNo).getText());
+        } else {
+            result = false;
+            System.out.println("Step2: All devices are not listed on devices page");
+        }
+
+        return result;
+    }
+    
+    public boolean isFilterActive(String header, String type) {
+        if(header.equals("Total Devices")) {
+            getHeaderTotalDevices("Netgear").shouldBe(Condition.visible).click();
+        } else if (header.equals("Online Devices")) {
+            getHeaderOnlineDevices("Netgear").shouldBe(Condition.visible).click();
+        } else if (header.equals("Offline Devices")) {
+            getHeaderOfflineDevices("Netgear").shouldBe(Condition.visible).click();
+        }
+        MyCommonAPIs.sleepi(10);
+        filterOrgSetting.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        filterOption(type).shouldBe(Condition.visible);
+        if (filterOption(type).isDisplayed() && filterOption(type).getAttribute("class").contains("active")) {
+            System.out.println(type+" filter is active.");
+            cancelBtnAllDevicesPage.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
+            return true;
+        } else {
+            System.out.println(type+" filter is NOT active.");
+            return false;
+        }
+    }
+    
+    public boolean verifyOrgDashboardAndOrgSettingsDevicesTableWhenclickonHeaderTabs(String apSrNo, String swSrNo, String obSrNo, String header, 
+            String apSrNo1, String swSrNo1, String obSrNo1) {
+        boolean result = true;
+        if(header.equals("Total Devices")) {
+            getHeaderTotalDevices("Netgear").shouldBe(Condition.visible).click();
+        } else if (header.equals("Online Devices")) {
+            getHeaderOnlineDevices("Netgear").shouldBe(Condition.visible).click();
+        } else if (header.equals("Offline Devices")) {
+            getHeaderOfflineDevices("Netgear").shouldBe(Condition.visible).click();
+        }
+        MyCommonAPIs.sleepi(10);
+        filterOrgSetting.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        devicesTablesList.shouldBe(Condition.visible);
+        
+        for (SelenideElement element : settingsOrgDevicesConnectedState) {
+            if (!element.isDisplayed()) {
+                result = false;
+                System.out.println("Step1 Online Devices : Element not visible: " + element);
+                break;
+            }
+        }
+        
+        if (result) {
+            System.out.println("Step1 Online Devices :  All elements are visible.");
+        } else {
+            result = false;
+            System.out.println("Step1 Online Devices : Some elements are not visible.");
+        }
+        
+        for (SelenideElement element : settingsOrgDevicestate) {
+            if (!element.isDisplayed()) {
+                result = false;
+                System.out.println("Step2  Offline Devices : Element not visible: " + element);
+                break;
+            }
+        }
+
+        if (result) {
+            System.out.println("Step2  Offline Devices:  All elements are visible.");
+        } else {
+            result = false;
+            System.out.println("Step2  Offline Devices: Some elements are not visible.");
+        }
+        
+        if (orgSettingsDevice(apSrNo).isDisplayed() && orgSettingsDevice(swSrNo).isDisplayed() && orgSettingsDevice(obSrNo).isDisplayed() &&
+            orgSettingsDevice(apSrNo1).isDisplayed() && orgSettingsDevice(swSrNo1).isDisplayed() && orgSettingsDevice(obSrNo1).isDisplayed()) {
+            System.out.println("Step2: All devices are listed on devices page: " + orgSettingsDevice(apSrNo).getText() + " || "
+                    + orgSettingsDevice(swSrNo).getText() + " || " + orgSettingsDevice(obSrNo).getText()
+                    + orgSettingsDevice(apSrNo1).getText() + " || "
+                    + orgSettingsDevice(swSrNo1).getText() + " || " + orgSettingsDevice(obSrNo1).getText());
+        } else {
+            result = false;
+            System.out.println("Step2: All devices are not listed on devices page");
+        }
+
+        return result;
+    }
+    
+    public boolean verifyOrgHeaderSortOptionsForOneOrg(String orgName) {
+        boolean result = true;
+
+        MyCommonAPIs.sleepi(5);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        status.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        serialNumber.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clients.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        model.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        creditStatus.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        type.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        location.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        rebootStatus.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        managed.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        if (getDeviceBySerial(WebportalParam.ap1serialNo).isDisplayed()
+                && getDeviceBySerial(WebportalParam.sw1serialNo).isDisplayed()
+                && getDeviceBySerial(WebportalParam.ob1serialNo).isDisplayed()) {
+
+            if (!(statusHeaderOrgSett.isDisplayed() && serailNoHeaderOrgSett.isDisplayed()
+                    && clientheaderOrgSett.isDisplayed() && modelheaderOrgSett.isDisplayed()
+                    && creditStatusHeaderorgSett.isDisplayed() && typeHeaderorgsett.isDisplayed()
+                    && locationhdrSett.isDisplayed() && rebootStatusHdrSett.isDisplayed()
+                    && ManagedHdrSett.isDisplayed())) {
+                System.out.println("Step1: true");
+            } else {
+                result = false;
+                System.out.println("Step1: false");
+            }
+        } else {
+            result = false;
+            System.out.println("Step1: false");
+        }
+
+        // Status sort and Connected verification
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        status.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        if (statusHeaderOrgSett.isDisplayed()) {
+            if (connectedStatuses.size() == 3) {
+                for (SelenideElement status : connectedStatuses) {
+                    if (!status.isDisplayed()) {
+                        result = false;
+                        System.out.println("Step2: false");
+                        break;
+                    }
+                }
+            } else {
+                result = false;
+                System.out.println("Step2: false");
+            }
+        } else {
+            result = false;
+            System.out.println("Step2: false");
+        }
+
+        // Serial number sort and verify
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        serialNumber.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+
+        if (!(serailNoHeaderOrgSett.isDisplayed()
+                && deviceSerialOnTable(WebportalParam.ap1serialNo).isDisplayed()
+                && deviceSerialOnTable(WebportalParam.sw1serialNo).isDisplayed()
+                && deviceSerialOnTable(WebportalParam.ob1serialNo).isDisplayed())) {
+            result = false;
+            System.out.println("Step3: false");
+        }
+
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        clients.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!clientheaderOrgSett.isDisplayed()) {
+            result = false;
+            System.out.println("Step4: false");
+        }
+
+        // Model
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        model.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(modelheaderOrgSett.isDisplayed()
+                && modelByValue(WebportalParam.ap1Model).isDisplayed()
+                && modelByValue(WebportalParam.sw1Model).isDisplayed()
+                && modelByValue(WebportalParam.ob1Model).isDisplayed())) {
+            result = false;
+            System.out.println("Step5: false");
+        }
+
+        // Credit Status
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        creditStatus.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(creditStatusHeaderorgSett.isDisplayed() && activeCredits.size() == 3)) {
+            result = false;
+            System.out.println("Step6: false");
+        }
+
+     // Step 7: Type
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        type.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        try {
+            typeHeaderorgsett.scrollIntoView(true).shouldBe(Condition.visible);
+            deviceTypeSW.scrollIntoView(true).shouldBe(Condition.visible);
+            deviceTypeOrbi.scrollIntoView(true).shouldBe(Condition.visible);
+            deviceTypeAP.scrollIntoView(true).shouldBe(Condition.visible);
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = false;
+            System.out.println("Step7: false");
+        }
+
+        // Step 8: Location
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        location.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        try {
+            locationhdrSett.scrollIntoView(true).shouldBe(Condition.visible);
+            if (locationOffice.size() != 3) {
+                result = false;
+                System.out.println("Step8: false - Expected 3 locations, found: " + locationOffice.size());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = false;
+            System.out.println("Step8: false");
+        }
+
+
+        // Reboot Status
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        rebootStatus.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        rebootStatusHdrSett.hover();
+        MyCommonAPIs.sleepi(1);
+        if (!(rebootStatusHdrSett.isDisplayed() && rebootStatusNA.size() == 3)) {
+            result = false;
+            System.out.println("Step9: false");
+        }
+
+        // Managed
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        managed.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        sortOrgOption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        ManagedHdrSett.hover();
+        MyCommonAPIs.sleepi(1);
+        if (!(ManagedHdrSett.isDisplayed() && managedSwitches.size() == 3)) {
+            result = false;
+            System.out.println("Step10: false");
+        }
+
+        return result;
+    }
+    
+    public boolean isOfflineZeroNotClickable(String orgName) {
+        try {
+            // Step 1: Locate the element using your existing method
+            SelenideElement offlineDeviceElement = getHeaderOfflineDevices(orgName);
+
+            // Step 2: Ensure it's visible
+            offlineDeviceElement.shouldBe(Condition.visible);
+
+            // Step 3: Get the text and parse count
+            String offlineText = offlineDeviceElement.getText().trim();
+            int offlineCount = Integer.parseInt(offlineText);
+
+            // Step 4: If count is 0, ensure it's not redirecting
+            if (offlineCount == 0) {
+                String currentUrl = WebDriverRunner.url();
+
+                // Click the element
+                offlineDeviceElement.click();
+
+                // Wait a bit to allow any navigation attempt
+                Selenide.sleep(1000);
+
+                String newUrl = WebDriverRunner.url();
+
+                // If URL is unchanged, it's not redirecting – return true
+                if (newUrl.equals(currentUrl)) {
+                    System.out.println("URL not changed on click when count is 0");
+                    return true;
+                } else {
+                    System.out.println("URL changed on click when count is 0");
+                    return false;
+                }
+            } else {
+                System.out.println("Offline count is not zero (" + offlineCount + "), skipping test.");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+public boolean verifyFilterOptionsOnLocationLandingpageHeader() {
+        
+        boolean result = true;
+        
+        MyCommonAPIs.sleepi(5);
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        offlineFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        String offlinedeviecFilter = loclandpageNoData.shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter: "+offlinedeviecFilter);
+        if (loclandpageNoData.isDisplayed()) {
+            System.out.println("offline devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("offline devices filter not applied successfully");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        onlineFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        String offlinedeviecFilter1 = loclandpageofflineDevices.shouldBe(Condition.visible).getText();
+        System.out.println("offlinedeviecFilter1: "+offlinedeviecFilter1);
+        String onlinedeviecFilter1 = loclandpageonlineDevices.shouldBe(Condition.visible).getText();
+        System.out.println("onlinedeviecFilter1: "+onlinedeviecFilter1);
+        if (onlinedeviecFilter1.equals("3") && offlinedeviecFilter1.equals("0")) {
+            System.out.println("online devices filter applied successfully");
+        } else {
+            result = false;
+            System.out.println("online devices filter not applied successfully");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        expiredFilteroption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (loclandpageNoData.isDisplayed()) {
+            System.out.println("locations are not visible because expired credits are not there "+loclandpageNoData.getText());
+        } else {
+            result = false;
+            System.out.println("locations are visible when expired credits are not there");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        allActiveFilter.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (loclandpageDeviceCredits.isDisplayed()) {
+            System.out.println("locations are visible because Active credits are there "+loclandpageDeviceCredits.getText());
+        } else {
+            result = false;
+            System.out.println("locations are not visible when Active credits are there");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        clearAllBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        applyBtnAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        return result;
+    }
+    
 }
