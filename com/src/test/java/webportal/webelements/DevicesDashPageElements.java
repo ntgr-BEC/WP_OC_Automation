@@ -55,6 +55,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement        gobtn             = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement        nextbtn           = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement        viewDevicesProacc = $x("//*[@id=\"btnSavCapPort\"]");
+	public SelenideElement ClickonThreedots                 = $x("//*[@id=\"divColMdSwitchBtn\"]/div[1]");
+    public SelenideElement RestoreDevice                    = $x("//*[@data-target = \".resetModal\"]");
+    public SelenideElement confirmRestore                   = $x("//*[text()=\"Yes, factory reset.\"]");
     // for airbridge
     public SelenideElement btnNextStep      = $(".in .cancelBtn");
     public SelenideElement btnAddMoreDevice = $(".in .btn-primary");
