@@ -4,6 +4,7 @@
 package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
+import static org.testng.Assert.assertTrue;
 
 import java.util.Map;
 import java.util.logging.Logger;
@@ -279,5 +280,74 @@ public class WiredGroupPortConfigPage extends WiredGroupPortConfigPageElement {
         MyCommonAPIs.takess("check config on group port config page");
         saveButton.click();
         waitReady();
+    }
+    
+    
+    public void setVLAN(String[] tagVLANIDs, String[] UnVLANIDs, Map<String, String[]> portarray, Map<String, String> GroupConfig) {
+        for (String ss : portarray.keySet()) {
+            for (String sss : portarray.get(ss)) {
+                System.out.println(ss + ": " + sss);
+            }
+        }
+
+        int nSize = portarray.size();
+        System.out.println("size of array is "+nSize);
+        for (String key : portarray.keySet()) {
+            String deviceName = key;
+            String[] portName = portarray.get(key);
+            for (int i = 0; i < portName.length; i++) {
+                clickPort(deviceName, portName[i]).click();
+            }
+        }
+        for (String vlanId : tagVLANIDs) {
+            System.out.println("Setting VLAN ID: " + vlanId);
+            clickVLAN(vlanId).click();
+            tag.click();
+        }
+        for (String vlanId : UnVLANIDs) {
+            System.out.println("Setting VLAN ID: " + vlanId);
+            clickVLAN(vlanId).click();
+            Untag.click();
+        }
+        
+        if (GroupConfig.get("Default_VLAN") != null) {
+            defaultVlanSelect.selectOption(GroupConfig.get("Default_VLAN"));
+        }
+       
+        saveButton.click();
+        MyCommonAPIs.sleepi(10);
+        new GenericMethods().clickVisibleElements(confirmtag);
+        waitReady();
+    }
+    
+    public boolean checkVLANconfigTag(String[] vlanIdstag, String[] vlan_ids) {
+        boolean result = false;
+        
+        for (String taggedVlan : vlanIdstag) {
+            
+            for (String vlan : vlan_ids) {
+                if (vlan.contains(taggedVlan + "(T)")) {
+                    result = true;
+                    break;
+                }
+            }
+            
+        }       
+        return result;        
+    }
+    
+    public boolean checkVLANconfigUnTag(String[] vlanIdsuntag, String[] vlan_ids) {
+        boolean result = false;
+        
+        for (String untaggedVlan : vlanIdsuntag) {
+            for (String vlan : vlan_ids) {
+                if (vlan.contains(untaggedVlan + "(U)")) {
+                    result = true;
+                    break;
+                }
+            }
+           
+        }
+        return result;        
     }
 }
