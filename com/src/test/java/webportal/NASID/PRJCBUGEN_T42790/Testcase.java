@@ -25,7 +25,6 @@ import util.Javasocket;
 import util.MyCommonAPIs;
 import util.RunCommand;
 import webportal.param.WebportalParam;
-import webportal.webelements.WirelessQuickViewElement;
 import webportal.weboperation.DeviceGroupPage;
 import webportal.weboperation.DevicesDashPage;
 import webportal.weboperation.FileHandling;
@@ -42,7 +41,7 @@ public class Testcase extends TestCaseBase {
     
     Map<String, String> locationInfo = new HashMap<String, String>();
     Map<String, String> ECPInfo = new HashMap<String, String>();
-    String NASID = "ab";
+    String NASID = "abcde";
     Random random = new Random();
     int randomNumber = random.nextInt(1000000);
     String SSID    = "SSID" + String.valueOf(randomNumber);
@@ -76,8 +75,7 @@ public class Testcase extends TestCaseBase {
         
         Map<String, String> locationInfo = new HashMap<String, String>();
         locationInfo.put("SSID", SSID);
-        locationInfo.put("Security", "WPA2 Personal Mixed");
-        locationInfo.put("Password", "123456798");
+        locationInfo.put("Security", "WPA2 Enterprise");
         new WirelessQuickViewPage().addSsid1(locationInfo);
         ECPInfo.put("ECP Type", "GoZone Wi-Fi");
         ECPInfo.put("Walled Garden", "*.smartwifiplatform.com");
@@ -97,7 +95,9 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 3: check SSH;")
     public void step3() {
-        assertTrue(new WirelessQuickViewElement().MAXNASID.isDisplayed(), "NASID is not Pushed");
+        new RunCommand().enableSSH4AP(WebportalParam.loginPassword, WebportalParam.ap1IPaddress);
+        String SSHoutput = new APUtils(WebportalParam.ap1IPaddress).getNASID(WebportalParam.ap1Model);
+        assertTrue(SSHoutput.contains(NASID), "NASID is not Pushed");
     }  
      
   }    

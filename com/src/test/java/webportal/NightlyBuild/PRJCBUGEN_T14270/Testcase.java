@@ -148,7 +148,9 @@ public class Testcase extends TestCaseBase {
             devInfo.put("Device Name", WebportalParam.ap1deveiceName);
             devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
             new DevicesDashPage().addNewDevice(devInfo);
+        
             new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
+        
             assertTrue(new WirelessQuickViewPage().checkApIsOnline(WebportalParam.ap1serialNo));
 
     }

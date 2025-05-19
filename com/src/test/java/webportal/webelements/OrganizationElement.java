@@ -659,5 +659,197 @@ public class OrganizationElement extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+    
+    public static SelenideElement getOrgTooltipTitle(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']");
+    }
 
+    public static SelenideElement getOrgTooltipCountHeader(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../h2");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']");
+    }
+
+    public static SelenideElement getOrgTooltipSwitchesValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Switches']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']");
+    }
+
+    public static SelenideElement getOrgTooltipAccessPointsValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Access Points']/..//span");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersRow(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']");
+    }
+
+    public static SelenideElement getOrgTooltipRoutersValue(String orgTooltip) {
+        return $x("//div[contains(@class,'orgDashboard')]//p[text()='" + orgTooltip + "']/../..//td[text()='Routers']/..//span");
+    }
+    
+    public SelenideElement orgName                          = $x("//span[contains(@id,'cell-orgName')]//span");
+    public SelenideElement totaldevicescountHeader          = $x("//span[contains(@id,'cell-totalDevice')]//span");
+    public SelenideElement onlinedevicescountHeader         = $x("//span[contains(@id,'cell-onlineDevice')]//span");
+    public SelenideElement filterIconAllDevicesPage         = $x("//span[@class='icon-filter']");
+    public SelenideElement clearAllBtnAllDevicesPage        = $x("//span[text()='Clear all']");
+    public SelenideElement applyBtnAllDevicesPage           = $x("//button[@id='_btnApplyOrg']");
+    public SelenideElement serialNumberCell                 = $x("//div[@col-id='serialNo']/div/span");
+    public SelenideElement nextButtonAllDevicesPage         = $x("//span[text()='Page 1 of 2']/..//button[text()='Next']");
+    public SelenideElement searchInputAllDevicesPage        = $x("//span[@class='icon-filter']/../../../../..//input[@class='agGridSearch']");
+    public SelenideElement activefilter                     = $x("//a[@class='displayOptions active']");
+    public SelenideElement cancelBtnAllDevicesPage          = $x("//button[@id='_btnCancelOrg']");
+    public SelenideElement offlineFilteroption              = $x("//a[text()='Offline']");
+    public SelenideElement onlineFilteroption               = $x("//a[text()='Online']");
+    public SelenideElement expiredFilteroption              = $x("//a[text()='Expired']");
+    public SelenideElement sortOrgOption                    = $x("//a[@id='_ancDropToggOptOrg']/span");
+    public SelenideElement totaldeviceSortopt               = $x("//p[text()='Total Devices']");
+    public SelenideElement onlineDevicesSort                = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Online Devices']");
+    public SelenideElement offlineDevicesSort               = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Offline Devices']");
+    public SelenideElement deviceCreditStatusSort           = $x("//a[@id='_ancDropToggOptOrg']/span/../..//p[text()='Device Credit Status']");
+    public SelenideElement ownerSort                        = $x("//p[text()='Owner']");
+    public SelenideElement allActiveFilter                  = $x("//a[text()='All Active']");
+    public SelenideElement totaldevicesheader               = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Total Devices']");
+    public SelenideElement Onlinedevicesheader              = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Online Devices']");
+    public SelenideElement offlinedevicesheader             = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Offline Devices']");
+    public SelenideElement deviceCreditStatusheader         = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Device Credit Status']");
+    public SelenideElement Ownerheader                      = $x("//div[@class='ag-header-row ag-header-row-column']//span[text()='Owner']");
+    
+    public static SelenideElement getHeaderOrgName(String orgName) {
+        return $x("//span[contains(@id,'cell-orgName')]//span[text()='"+orgName+"']");
+    }
+    
+    public static SelenideElement getHeaderTotalDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-totalDevice')]/span");
+    }
+    
+    public static SelenideElement getHeaderOnlineDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-onlineDevice')]/div/span");
+    }
+    
+    public static SelenideElement getHeaderOfflineDevices(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-offlineDevice')]/div/span");
+    }
+    
+    public static SelenideElement getHeaderCreditExpiredCounts(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-creditExpireCounts')]/div/div/p");
+    }
+    
+    public static SelenideElement getHeaderOwnerName(String orgName) {
+        return $x("//span[text()='"+orgName+"']/../../../../..//span[contains(@id,'cell-ownerName')]/p");
+    }
+    
+    public static SelenideElement orgSettingsDevice(String srNo) {
+        return $x("//div[@class='ag-center-cols-container']//span[text()='"+srNo+"']");
+    }
+    
+    public static SelenideElement locdashSettingsDevice(String srNo) {
+        return $x("//div[@aria-rowcount='4']//div[@col-id='serialNo']//span[text()='"+srNo+"']");
+    }
+    
+    public static ElementsCollection settingsOrgDevicesConnectedState = $$x("//div[@class='ag-center-cols-container']//span[text()='Connected']");
+    public SelenideElement orgDashboardHeaderTable                    = $x("//div[@class='ag-theme-material TableHeadBlock customGridTable']");
+    public SelenideElement orgDashboardSettingsICON                   = $x("//img[@src='assets/img/Header/icon-settings.png']");
+    public SelenideElement orgDashboardSettingsICONDevicestab         = $x("//a[@href='/#/organization/devices']");
+    public SelenideElement devicesTablesList                          = $x("//div[@class='ag-pinned-left-cols-container']");
+    public SelenideElement locationDashboardTable                     = $x("//div[@class='ag-center-cols-container']");
+    public SelenideElement settingsDevicesPageTable                   = $x("//div[@aria-rowcount='4']");
+    public SelenideElement closeIconCreditAlllocation                 = $x("//div[contains(@class,'addDevices allocateCreditsModal')]//img[@src='assets/img/commonIcons/whiteCross.png']");
+    public SelenideElement deviceCreditsselect                        = $x("//div[@id='deviceCredits']");
+    public SelenideElement creditsSelectAll                           = $x("//p[text()='Select All']/../i");
+    public SelenideElement cancelBtnDeviceCreditPopup                 = $x("//*[text()='Netgear1']/../../..//button[text()='Cancel']");
+    public SelenideElement devicecreditAllocatePlusicon               = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-plus-circle.png']");
+    public SelenideElement devicecreditAllocateMinusicon              = $x("//span[text()='Device Credits']/../..//img[@src='assets/img/commonIcons/icon-minus-circle.png']");
+    public SelenideElement allocatingDevCreditValue                   = $x("//span[text()='Device Credits']/../..//input[@type='text']"); 
+    public SelenideElement verifyNoOrgText                            = $x("//p[contains(text(),'You do not have any organizations')]");
+    public SelenideElement verifycreditrsAllocateSuccess              = $x("//*[text()='The credits have been allocated successfully']");
+    
+    public SelenideElement ariaSetIndexDeallocate(String index) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Deallocate']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement modalHeader                                = $x("//h4[contains(., 'Deallocate Credits')]");
+    public SelenideElement deviceCreditsLabel                         = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']");
+    public SelenideElement deviceCreditsInput                         = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/ancestor::tr//input");
+    public SelenideElement instantVpnGroupCreditsLabel                = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant VPN Group Credits']");
+    public SelenideElement instantVpnGroupCreditsInput                = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant VPN Group Credits']/ancestor::tr//input");
+    public SelenideElement instantCaptivePortalCreditsLabel           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant Captive Portal Credits']");
+    public SelenideElement instantCaptivePortalCreditsInput           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Instant Captive Portal Credits']/ancestor::tr//input");
+    public SelenideElement businessVpnLabel                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Business VPN']");
+    public SelenideElement businessVpnInput                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Business VPN']/ancestor::tr//input");
+    public SelenideElement canceldeallocateButton                     = $x("//h4[contains(., 'Deallocate Credits')]/../..//button[text()='Cancel']");
+    public SelenideElement deallocateButton                           = $x("//h4[contains(., 'Deallocate Credits')]/../..//button[text()='Deallocate']");
+    public SelenideElement creditTypeDeallocate                       = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Credit Type']");
+    public SelenideElement verifySuccessDeallocate                    = $x("//div[text()='The credits have been deallocated successfully.']");
+    public SelenideElement deviceCreditDeallocateMinusbtn             = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/../../..//img[@alt='decrease']");
+    public SelenideElement deviceCreditDeallocatePlusbtn              = $x("//h4[contains(., 'Deallocate Credits')]/../..//span[text()='Device Credits']/../../..//img[@alt='increase']");
+    public SelenideElement closeIcondeallocatePopup                   = $x("//h4[contains(., 'Deallocate Credits')]/..//button[@class='close']");
+    public static ElementsCollection settingsOrgDevicestate           = $$x("//div[@class='ag-center-cols-container']//span[text()='Waiting for first connect']");
+    public SelenideElement filterOrgSetting                           = $x("//span[@class='icon-filter']");
+    
+    public SelenideElement filterOption(String type) {
+        SelenideElement dropdownelementnew = $x("//a[contains(@class, 'displayOptions') and text()='"+type+"']");
+        return dropdownelementnew;
+    }
+    
+    public SelenideElement status                                     = $x("//p[text()='Status']");
+    public SelenideElement serialNumber                               = $x("//p[text()='Serial #']");
+    public SelenideElement clients                                    = $x("//label//p[text()='Clients']");
+    public SelenideElement model                                      = $x("//p[text()='Model']");
+    public SelenideElement creditStatus                               = $x("//p[text()='Credit Status']");
+    public SelenideElement type                                       = $x("//p[text()='Type']");
+    public SelenideElement location                                   = $x("//p[text()='Location']");
+    public SelenideElement rebootStatus                               = $x("//p[text()='Reboot Status']");
+    public SelenideElement managed                                    = $x("//p[text()='Managed']");
+
+    public SelenideElement getDeviceBySerial(String srno) {
+        return $x("//span[text()='Device Name']/../../../../../../..//div[@class='deviceImageDiv']/../..//span[text()='" + srno + "']");
+    }
+    
+    public SelenideElement statusHeaderOrgSett                        = $x("//span[text()='Device Name']/../../../../../..//span[text()='Status']");                          
+    public ElementsCollection connectedStatuses                       = $$x("//span[text()='Status']/../../../../../../../..//span[text()='Connected']");
+    public SelenideElement serailNoHeaderOrgSett                      = $x("//span[text()='Device Name']/../../../../../..//span[text()='Serial #']");
+    
+    public SelenideElement deviceSerialOnTable(String srno) {
+        return $x("//div[@col-id='serialNo']//span[text()='"+srno+"']");
+    }
+    
+    public SelenideElement clientheaderOrgSett                        = $x("//span[text()='Device Name']/../../../../../..//span[text()='Clients']");
+    public SelenideElement modelheaderOrgSett                         = $x("//span[text()='Device Name']/../../../../../..//span[text()='Model']");
+    
+    public SelenideElement modelByValue(String model) {
+        return $x("//div[@col-id='model']/..//div[contains(text(),'" + model + "')]");
+    }
+    
+    public SelenideElement creditStatusHeaderorgSett                  = $x("//span[text()='Device Name']/../../../../../..//span[text()='Credit Status']");     
+    public ElementsCollection activeCredits                           = $$x("//div[@col-id='creditStatus']//div[text()='Active']");
+    public SelenideElement typeHeaderorgsett                          = $x("//span[text()='Device Name']/../../../../../..//span[text()='Type']");
+    public SelenideElement deviceTypeSW                               = $x("//div[@col-id='deviceType']/..//div[text()='SW']");
+    public SelenideElement deviceTypeOrbi                             = $x("//div[@col-id='deviceType']/..//div[text()='ORBI']");
+    public SelenideElement deviceTypeAP                               = $x("//div[@col-id='deviceType']/..//div[text()='AP']");
+    public SelenideElement locationhdrSett                            = $x("//span[text()='Device Name']/../../../../../..//span[text()='Location']");
+    public ElementsCollection locationOffice                          = $$x("//div[@col-id='networkName']//span[text()='office1']");
+    public SelenideElement rebootStatusHdrSett                        = $x("//span[text()='Device Name']/../../../../../..//span[text()='Reboot Status']");
+    public ElementsCollection rebootStatusNA                          = $$x("//div[@col-id='rebootStatus']/..//div[text()='N/A']");
+    public SelenideElement ManagedHdrSett                             = $x("//span[text()='Device Name']/../../../../../..//span[text()='Managed']");
+    public ElementsCollection managedSwitches                         = $$x("//div[@col-id='managed']//label/span");
+    
+    //location landing page Table
+    
+    public SelenideElement verifyLocName(String loc) {
+        return $x("//div[@col-id='locations']//p[text()='"+loc+"']");
+    }
+    
+    public SelenideElement loclandpageofflineDevices                  = $x("//div[@col-id='offlineDevice']/div/span");
+    public SelenideElement loclandpageonlineDevices                   = $x("//div[@col-id='onlineDevice']/div/span");
+    public SelenideElement loclandpageTotalDevices                    = $x("//div[@col-id='totalDevice']/span");
+    public SelenideElement loclandpageDeviceCredits                   = $x("//div[@col-id='creditExpireCounts']/div/div/p");
+    public SelenideElement loclandpageClients                         = $x("//div[@col-id='connectedClients']/span");
+    public SelenideElement loclandpageNoData                          = $x("//*[text()='No Rows To Show']");
+    
 }

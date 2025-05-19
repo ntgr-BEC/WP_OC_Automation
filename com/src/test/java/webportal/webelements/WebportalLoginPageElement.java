@@ -40,7 +40,7 @@ public class WebportalLoginPageElement extends MyCommonAPIs {
     public SelenideElement darkthemeInput    = $("#enableDarkMode");
     public SelenideElement darkthemeSpan    = $x("//*[@id='enableDarkMode']/../span");
     public SelenideElement sidebarCloseIcon    = $x("//*[contains(@class,'sideBarCloseIcon')]");
-    public SelenideElement loginNowButton   = $x("//*[@id=\"button_premium\"]");
+    public SelenideElement loginNowButton   = $x("//button[text()='Login Now']");   //*[@id=\"button_premium\"]
     public SelenideElement goToInsightAcc   = $x("//p/a[@data-target='.goToMyAccModal']");
     public SelenideElement YesButton        = $x("//button[@class='btn btn-primary' and text()='Yes']");
     public SelenideElement loginButton1 = $x("//button[@id='Login-btn']");

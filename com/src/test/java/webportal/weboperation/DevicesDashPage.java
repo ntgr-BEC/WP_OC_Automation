@@ -3436,5 +3436,37 @@ public boolean verifySettingPageFilterAirbridge() {
                 else
                     return false;
             }
+            
+            public void AssignRFToAllDevices(String RFName) {
+                
+                MyCommonAPIs.sleepi(5); 
+                waitElement(selectAlldevicesondevicesDashpage);
+                executeJavaScript("arguments[0].click();", selectAlldevicesondevicesDashpage);
+                MyCommonAPIs.sleepi(2);
+                waitElement(AssignRFProfile);
+                AssignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(30);
+                waitElement(SelectRF);
+                SelectRF.shouldBe(Condition.visible).selectOption(RFName);
+                MyCommonAPIs.sleepi(2);
+                waitElement(SaveRF);
+                SaveRF.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(10);
+                
+            }
+            
+            public void unAssignRFforAllDevices() {
+                
+                MyCommonAPIs.sleepi(10); 
+                waitElement(selectAlldevicesondevicesDashpage);
+                executeJavaScript("arguments[0].click();", selectAlldevicesondevicesDashpage);
+                MyCommonAPIs.sleepi(2);
+                waitElement(UnassignRFProfile);
+                UnassignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(90);
+                yesButtonUnassignRFProfile.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(10);
+                
+            }
 }
     

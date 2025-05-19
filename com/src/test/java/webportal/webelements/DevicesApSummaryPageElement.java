@@ -18,7 +18,7 @@ public class DevicesApSummaryPageElement extends MyCommonAPIs {
     public SelenideElement rebootconfirm      = $x("//button[text()='Continue']");
     public SelenideElement reset              = $("#divColMdAptn > div.moreIcon.HeaderAdminBlock.open > ul > li:nth-child(1)");
     public SelenideElement resetconfirm       = $x("//button[text()='Yes, reset']");
-    public SelenideElement resetconfirmnew    = $x("//button[text()='Yes, factory reset.']");
+    public SelenideElement resetconfirmnew    = $x("//button[text()='Yes, reset.']");
     public SelenideElement share              = $("#divBackPurpleEightApBtn");
     public SelenideElement shareemail         = $("#share_email_id");
     public SelenideElement send               = $x("//button[text()='Send']");

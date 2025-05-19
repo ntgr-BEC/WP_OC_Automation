@@ -471,7 +471,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement devicesRF(String serialNumber) {
         System.out.println("<----------check device RF --------------->");
         //System.out.println(deviceRFIndex);
-        return $x("//span[text()='"+serialNumber+"']/../../../..//span[contains(@id,'cell-rfProfile')]/span");
+        return $x("//span[text()='"+serialNumber+"']/../../../../..//span[contains(@id,'cell-rfProfile')]/span");
     }
     //addedbyPratik
     public SelenideElement moveMultipleDevicesfromOneLocation(String serialNumber) {
@@ -492,13 +492,13 @@ public class DevicesDashPageElements extends MyCommonAPIs {
 
     //AddedByPratik   
     public SelenideElement scrollToMac(String mac) {
-        return $x("//td[text()='"+mac+"']");
+        return $x("//span[text()='"+mac+"']");
     } 
     public SelenideElement enableDisableManagedSwitch(String srno) {
-        return $x("//td[text()='"+srno+"']/..//span[@class='cstmSlider cstmRound']");
+        return $x("//span[text()='"+srno+"']/../../../../..//label[@class='cmnSwitch ']/span");
     }
     public SelenideElement unmanagedStatus(String srno) {
-        return $x("//td[text()='"+srno+"']/..//label[text()='Unmanaged']");
+        return $x("//span[text()='"+srno+"']/../../../../..//label[text()='Unmanaged']");
     }
     public SelenideElement yesButtonforSwitch               = $x("//p[contains(text(),'Are you sure you want to unmanage')]/../..//button[text()='Yes']");
     public SelenideElement confirmmationMessage             = $x("//*[contains(text(),'Your configuration has been applied')]");
@@ -558,6 +558,8 @@ public class DevicesDashPageElements extends MyCommonAPIs {
         SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//li[text() = 'Edit']");
         return dropdownelementnew;
     }
+    
+    public SelenideElement selectAlldevicesondevicesDashpage = $x("(//span[text()='Name']/../../../..//div[@role='columnheader']//input[@type='checkbox'])[1]");
     
     
 }
