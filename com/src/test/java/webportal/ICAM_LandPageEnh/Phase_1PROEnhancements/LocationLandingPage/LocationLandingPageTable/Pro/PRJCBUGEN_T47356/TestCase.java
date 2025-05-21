@@ -74,7 +74,6 @@ public class TestCase extends TestCaseBase {
         int totalLocationsrequired = 50;
         int created = 0;
         for(int i = 1; i <=totalLocationsrequired; i++){
-//            try {
             Random random = new Random();
             int num = random.nextInt(100000);
             String formatted = String.format("%05d", num);
@@ -83,19 +82,7 @@ public class TestCase extends TestCaseBase {
             new AccountPage(false).addNetworkforLocationCheck(locationInfo);
             created = created+1;
             System.out.println("Location ---------->"+created+" Created");
-            MyCommonAPIs.sleepi(5);
-//            Selenide.refresh();
-//            Selenide.sleep(5000);
-//            Selenide.refresh();
-//            Selenide.sleep(5000);
-//            assertTrue(new AccountPage(false).VerifyCreatedLocations(Loclist, totalLocationsrequired), "Missing Networks/Locations Noted");
-//            MyCommonAPIs.sleepi(5);
-//            }
-//            catch(Exception e){
-////                System.out.println("Exception => " + e.getMessage());
-////                System.out.println("Some error occured while Creation new location");
-////            }
-//            
+            MyCommonAPIs.sleepi(5);   
             }  
         Selenide.sleep(5000);
         Selenide.refresh();
