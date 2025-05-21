@@ -189,6 +189,9 @@ public class SwitchTelnet {
         }
         MyCommonAPIs.sleepi(120);
     }
+    
+    
+    
 
     public void switchDefault() {
         setEnable();
@@ -593,13 +596,25 @@ public class SwitchTelnet {
     
     public void switchDisconnect() {
         setEnable();
+        if (isRltkSW) {
         telnet.write("application stop appmgr");
+        }else {
+            telnet.write("configure");
+            telnet.write("no cloudAgent");
+            telnet.write("exit");
+        }
         MyCommonAPIs.sleepi(120);
     }
     
     public void switchConnect() {
         setEnable();
+        if (isRltkSW) {
         telnet.write("application start appmgr");
+        }else {
+            telnet.write("configure");
+            telnet.write("cloudAgent");
+            telnet.write("exit");
+        }
         MyCommonAPIs.sleepi(120);
     }
 }

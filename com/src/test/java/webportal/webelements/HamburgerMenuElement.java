@@ -796,7 +796,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public static SelenideElement Orgimmediet                  = $x("//span[contains(text(), 'Organization Level Active Subscription')]/../span[2]/i[2]");
   public static SelenideElement ICPpropage                     = $x("//a[text()='Captive Portal Services']");
 
-  public SelenideElement loginNowButton   = $x("//*[@id=\"button_premium\"]"); 
+  public SelenideElement loginNowButton   = $x("//*[text()=\"Login Now\"]"); 
   public SelenideElement selcetDate(String Date) {
       SelenideElement selectdate = $x("//*[text()='" + Date + "'][contains(@class, 'react-datepicker__day--today')]");
       return selectdate;

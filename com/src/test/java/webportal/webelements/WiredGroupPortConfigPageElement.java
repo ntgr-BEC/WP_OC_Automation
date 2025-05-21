@@ -93,5 +93,14 @@ public class WiredGroupPortConfigPageElement extends MyCommonAPIs {
         logger.info(String.format(": <%s>-%s>", devName, portId));
         getPort(devName, portId).click();
     }
+
+    public SelenideElement clickVLAN(String VLANID) {
+         SelenideElement VLAN = $x("//*[@id=\"vlanCheckbox_"+VLANID+"\"]/..");
+        return VLAN;
+    }
+
+    public SelenideElement Untag            = $x("//button[text()=\"Untag\"]");
+    public SelenideElement tag              = $x("//button[text()=\"Tag\"]");
+    public ElementsCollection confirmtag    = $$x("//button[text()=\"Yes\"]");
     
 }

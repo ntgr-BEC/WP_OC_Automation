@@ -59,7 +59,7 @@ public class AccountPage extends AccountPageElement {
 
     public void addNetwork(Map<String, String> map) {
         boolean exit = false;
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(10);
         // if (locationlist.getAttribute("aria-expanded").equals("false")) {
         // locationlist.click();
         // }

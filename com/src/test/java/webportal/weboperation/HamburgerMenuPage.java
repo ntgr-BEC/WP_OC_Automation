@@ -297,84 +297,150 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         }
         
     }
-
+    
+    
     public void createAccount(Map<String, String> map) {
-       
-        MyCommonAPIs.sleepi(10);
-        long t= System.currentTimeMillis();
-        long end = t+10;
-        System.out.println(end);
-        System.out.println("going inside while");
-        while(System.currentTimeMillis() < end) {
-            Selenide.refresh();
-            System.out.println("inside while");
-            if(loginNowButton.exists()) {
-              loginNowButton.click();
-              break;
-            }
-            MyCommonAPIs.sleepi(10);
-        }         
-        if (loginButtonLandingPage.exists()) {
-            loginButtonLandingPage.click();
-            MyCommonAPIs.sleepi(10);
-            inputAccountInfo(map);
-            MyCommonAPIs.sleepi(15);
-            
-            if(loginPwdNewcognito.isDisplayed()) {
-            loginPwdNewcognito.sendKeys(map.get("Password"));
-            SigninbuttonCognito.click();
-            }
-            MyCommonAPIs.sleepi(15);
-            
-            if (NoThankYou.isDisplayed()) {
-                NoThankYou.click();
-            }
-//            waitElement(finishPage);
-            if (finishCreate.isDisplayed()) {
-                finishCreate.click();
-            }
-            if (finishbutton.isDisplayed()) {
-                finishbutton.click();
-            }
-            MyCommonAPIs.sleepi(15);
-            String url = MyCommonAPIs.getCurrentUrl();
-            if (!url.contains("billing")) {
-                waitElement(notificationicon);
 
-            }
+        MyCommonAPIs.sleepi(5);
+        long t = System.currentTimeMillis();
+        long end = t + 10;
 
-            closeLockedWindow.click();
-        } else {
-            inputAccountInfo(map);
-            MyCommonAPIs.sleepi(15);
-            
-            if(loginPwdNewcognito.isDisplayed()) {
-            loginPwdNewcognito.sendKeys(map.get("Password"));
-            SigninbuttonCognito.click();
-            }
-            MyCommonAPIs.sleepi(15);
+        int retryCount = 0;
+        boolean loginSuccess = false;
 
-            if (NoThankYou.isDisplayed()) {
-                NoThankYou.click();
+        while (retryCount < 3 && !loginSuccess) {
+            if (loginNowButton.exists()) {
+                loginNowButton.click();
+                System.out.println("Clicked for attempt #" + (retryCount + 1));
+                MyCommonAPIs.sleepi(10);
+                inputAccountInfo(map);
+                MyCommonAPIs.sleepi(10);
+                if (loginPwdNewcognito.isDisplayed()) {
+                    loginPwdNewcognito.sendKeys(map.get("Password"));
+                    SigninbuttonCognito.click();
+                    loginSuccess = true;
+                    break;
+                } else {
+                    System.out.println("loginPwdNewcognito not displayed, retrying...");
+                    retryCount++;
+                    MyCommonAPIs.sleepi(5); // small wait before retry
+                }
+            } else {
+                break; // button not present, exit loop
             }
-//            waitElement(finishPage);
-            if (finishCreate.isDisplayed()) {
-                finishCreate.click();
-            }
-            if (finishbutton.isDisplayed()) {
-                finishbutton.click();
-            }
-            MyCommonAPIs.sleepi(20);
-            String url = MyCommonAPIs.getCurrentUrl();
-            if (!url.contains("billing")) {
-                waitElement(notificationicon);
-
-            }
-
-            closeLockedWindow.click();
-
         }
+
+        if (!loginSuccess) {
+            System.out.println("Failed to reach loginPwdNewcognito after retries.");
+            return;
+        }
+        MyCommonAPIs.sleepi(10);
+
+        if (NoThankYou.isDisplayed()) {
+            NoThankYou.click();
+        }
+
+        closeLockedWindow.click();
     }
+    
+
+//    public void createAccount(Map<String, String> map) {
+//       
+//        MyCommonAPIs.sleepi(5);
+//        long t= System.currentTimeMillis();
+//        long end = t+10;
+////        System.out.println(end);
+////        System.out.println("going inside while");
+//        if(loginNowButton.exists()) {
+//            loginNowButton.click();
+//            System.out.println("Clicked for 1st time");
+//            MyCommonAPIs.sleepi(10);
+//            inputAccountInfo(map);}
+//            MyCommonAPIs.sleepi(15);
+//      
+//          if(loginPwdNewcognito.isDisplayed()) {
+//          loginPwdNewcognito.sendKeys(map.get("Password"));
+//          SigninbuttonCognito.click();
+//          }
+//          MyCommonAPIs.sleepi(15);
+//    
+//          if (NoThankYou.isDisplayed()) {
+//              NoThankYou.click();
+//          }
+//          closeLockedWindow.click();
+
+//        while(System.currentTimeMillis() < end) {
+//            Selenide.refresh();
+////            System.out.println("inside while");
+//            if(loginNowButton.exists()) {
+//              loginNowButton.click();
+//              System.out.println("Clicked for 1st time");
+//              break;
+//            }
+//            MyCommonAPIs.sleepi(10);
+//        }         
+//        if (loginButtonLandingPage.exists()) {
+//            loginButtonLandingPage.click();
+//            System.out.println("Clicked  for 2nd time");
+//            MyCommonAPIs.sleepi(10);
+//            inputAccountInfo(map);
+//            MyCommonAPIs.sleepi(15);
+//            
+//            if(loginPwdNewcognito.isDisplayed()) {
+//            loginPwdNewcognito.sendKeys(map.get("Password"));
+//            SigninbuttonCognito.click();
+//            }
+//            MyCommonAPIs.sleepi(15);
+//            
+//            if (NoThankYou.isDisplayed()) {
+//                NoThankYou.click();
+//            }
+////            waitElement(finishPage);
+//            if (finishCreate.isDisplayed()) {
+//                finishCreate.click();
+//            }
+//            if (finishbutton.isDisplayed()) {
+//                finishbutton.click();
+//            }
+//            MyCommonAPIs.sleepi(15);
+//            String url = MyCommonAPIs.getCurrentUrl();
+//            if (!url.contains("billing")) {
+//                waitElement(notificationicon);
+//
+//            }
+//
+//            closeLockedWindow.click();
+//        } else {
+//            inputAccountInfo(map);
+//            MyCommonAPIs.sleepi(15);
+//            
+//            if(loginPwdNewcognito.isDisplayed()) {
+//            loginPwdNewcognito.sendKeys(map.get("Password"));
+//            SigninbuttonCognito.click();
+//            }
+//            MyCommonAPIs.sleepi(15);
+//
+//            if (NoThankYou.isDisplayed()) {
+//                NoThankYou.click();
+//            }
+////            waitElement(finishPage);
+//            if (finishCreate.isDisplayed()) {
+//                finishCreate.click();
+//            }
+//            if (finishbutton.isDisplayed()) {
+//                finishbutton.click();
+//            }
+//            MyCommonAPIs.sleepi(20);
+//            String url = MyCommonAPIs.getCurrentUrl();
+//            if (!url.contains("billing")) {
+//                waitElement(notificationicon);
+//
+//            }
+//
+//            closeLockedWindow.click();
+//
+//        }
+//    }
 
     public void MigrateAccount(Map<String, String> map) {
         waitElement(createaccount);

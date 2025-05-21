@@ -62,7 +62,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         logger = Logger.getLogger(pageName);
         logger.info("init...");
         refresh();
-        reloadDeviceList();
+//        reloadDeviceList();
     }
     
     public void GoToDevicesDashPage() {
@@ -330,7 +330,6 @@ public class DevicesDashPage extends DevicesDashPageElements {
         for (String ss : map.keySet()) {
             logger.info(ss + ": " + map.get(ss));
         }
-
         clickAddDevice();
         MyCommonAPIs.sleepi(5);
         waitElement(goDeviceBtn);
@@ -921,7 +920,31 @@ public class DevicesDashPage extends DevicesDashPageElements {
                       ariaSetIndex(row).click();
                       MyCommonAPIs.sleepi(3);
                       ariaSetIndexReboot(row).click();
+					  rebootconfirm.click();
         
+    }
+	
+	public void restoreDevice(String sNo) {
+        String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(row).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(row).shouldBe(Condition.visible).click();
+//        MyCommonAPIs.sleepi(2);
+        waitElement(ClickonThreedots);
+        ClickonThreedots.click();
+        RestoreDevice.click();
+        waitElement(confirmRestore);
+        confirmRestore.click();
+        WebCheck.checkHrefIcon(URLParam.hrefDevices);
+        for (int i = 0; i < 5; i++) {
+            if (!new WirelessQuickViewPage(false).checkApIsExist(sNo)) {
+                break;
+            }
+            refresh();
+            MyCommonAPIs.sleepi(30);
+        }
+                            
     }
 
     public void NorebootDevice(String sNo) {
@@ -1287,7 +1310,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public void checkDeviceInNormalAccount(String account) {
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
+       
         gotoAllLocations();
         new AccountPage().enterLocation(WebportalParam.location1);
         if (getDeviceName(WebportalParam.ap1serialNo).equals("")) {
@@ -1297,6 +1320,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
             devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
             if (checkAddDevice(devInfo)) {
             } else {
+                WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
                 UserManage userManage = new UserManage();
                 userManage.logout();
                 webportalLoginPage.defaultLogin();
