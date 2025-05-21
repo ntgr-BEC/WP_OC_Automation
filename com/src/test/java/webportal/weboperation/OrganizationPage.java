@@ -54,6 +54,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import static com.codeborne.selenide.Condition.visible;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 
@@ -9038,6 +9039,208 @@ public boolean verifyFilterOptionsOnLocationLandingpageHeader() {
         MyCommonAPIs.sleepi(5);
         
         return result;
+    }
+
+    public boolean verifyPremiumAccLocDashSearchfunct() {
+        
+        boolean result = true;
+        MyCommonAPIs.sleepi(5);
+        searchOptionOnlocDash.shouldBe(Condition.visible);
+        searchOptionOnlocDash.setValue("Total Devices").sendKeys(Keys.ENTER);
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashTotalDevice.isDisplayed())) {
+            result = false;
+            System.out.println("Step1: False After searching Total device Count its not visible");
+        } else {
+            System.out.println("Step1: Pass After searching Total device Count its visible : "+locDashTotalDevice.getText());
+            searchOptionOnlocDash.clear();
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        searchOptionOnlocDash.shouldBe(Condition.visible);
+        searchOptionOnlocDash.setValue("Online Devices").sendKeys(Keys.ENTER);
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashOnlineDevice.isDisplayed())) {
+            result = false;
+            System.out.println("Step2: False After searching Online Devices Count its not visible");
+        } else {
+            System.out.println("Step2: Pass After searching Online Devices Count its visible : "+locDashOnlineDevice.getText());
+            searchOptionOnlocDash.clear();
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        searchOptionOnlocDash.shouldBe(Condition.visible);
+        searchOptionOnlocDash.setValue("Offline Devices").sendKeys(Keys.ENTER);
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashOfflineDevice.isDisplayed())) {
+            result = false;
+            System.out.println("Step3: False After searching Offline Devices Count its not visible");
+        } else {
+            System.out.println("Step3: Pass After searching Offline Devices Count its visible : "+locDashOfflineDevice.getText());
+            searchOptionOnlocDash.clear();
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        searchOptionOnlocDash.shouldBe(Condition.visible);
+        searchOptionOnlocDash.setValue("Connected Clients").sendKeys(Keys.ENTER);
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashConnectedClients.isDisplayed())) {
+            result = false;
+            System.out.println("Step4: False After searching Connected Clients Count its not visible");
+        } else {
+            System.out.println("Step4: Pass After searching Connected Clients Count its visible : "+locDashConnectedClients.getText());
+            searchOptionOnlocDash.clear();
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        return result;
+        
+    }
+    
+    public boolean verifyPremiumAccLocDashSortfunct() {
+        
+        boolean result = true;
+        MyCommonAPIs.sleepi(5);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashSortTotalDevices.isDisplayed() && locDashSortOnlineDevices.isDisplayed() && locDashSortOfflineDevices.isDisplayed() && locDashSortConnectedClients.isDisplayed())) {
+            result = false;
+            System.out.println("Step1: False All Sort options are not visible");
+        } else {
+            System.out.println("Step1: Pass All Sort options are visible : "+locDashSortTotalDevices.getText()+" : "+locDashSortOnlineDevices.getText()+" : "+locDashSortOfflineDevices.getText()+
+                    " : "+locDashSortConnectedClients.getText());
+            locDashSortDropdown.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
+            
+        } if (!(locDashTotalDevice.isDisplayed() && locDashOnlineDevice.isDisplayed() && locDashOfflineDevice.isDisplayed() && locDashConnectedClients.isDisplayed())) {
+            result = false;
+            System.out.println("Step2: False All Header options are not visible");
+        } else {
+            System.out.println("Step2: Pass All haeder options are visible");
+            MyCommonAPIs.sleepi(5);
+        }
+
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        locDashSortTotalDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashOnlineDevice.isDisplayed() && locDashOfflineDevice.isDisplayed() && locDashConnectedClients.isDisplayed() && (!locDashTotalDevice.isDisplayed()))) {
+            result = false;
+            System.out.println("Step3: False Total devices Header option is visible");
+        } else {
+            System.out.println("Step3: Pass Total devices Header option is not visible");
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        locDashSortOnlineDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortTotalDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashTotalDevice.isDisplayed() && locDashOfflineDevice.isDisplayed() && locDashConnectedClients.isDisplayed() && (!locDashOnlineDevice.isDisplayed()))) {
+            result = false;
+            System.out.println("Step3: False Online devices Header option is visible");
+        } else {
+            System.out.println("Step3: Pass Online devices Header option is not visible");
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        locDashSortOnlineDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortOfflineDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashTotalDevice.isDisplayed() && locDashOnlineDevice.isDisplayed() && locDashConnectedClients.isDisplayed() && (!locDashOfflineDevice.isDisplayed()))) {
+            result = false;
+            System.out.println("Step3: False offline devices Header option is visible");
+        } else {
+            System.out.println("Step3: Pass Offline devices Header option is not visible");
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        locDashSortConnectedClients.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortOfflineDevices.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(locDashTotalDevice.isDisplayed() && locDashOnlineDevice.isDisplayed() && locDashOfflineDevice.isDisplayed() && (!locDashConnectedClients.isDisplayed()))) {
+            result = false;
+            System.out.println("Step3: False Connected Client Header option is visible");
+        } else {
+            System.out.println("Step3: Pass Connected Client Header option is not visible");
+            MyCommonAPIs.sleepi(5);
+        }
+        
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        locDashSortConnectedClients.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(1);
+        locDashSortDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        
+        return result;
+        
+    }
+    
+    public boolean verifyAllDeviceTypeCounts() {
+        String expected = "1";
+        boolean allMatched = true;
+
+        // Hover over 'Devices' and validate children
+        locDashDevicesHeaderCount.hover();
+        MyCommonAPIs.sleepi(1);
+        allMatched &= hoverAndValidate(locDashDevicesSwitchesSpanCount, "2");
+        allMatched &= hoverAndValidate(locDashDevicesRoutersSpanCount, "4");
+        allMatched &= hoverAndValidate(locDashDevicesAccessPointsSpanCount, "2");
+
+        // Hover over 'Online Devices' and validate children
+        locDashOnlineDevicesHeaderCount.hover();
+        MyCommonAPIs.sleepi(1);
+        allMatched &= hoverAndValidate(locDashOnlineSwitchesSpanCount, expected);
+        allMatched &= hoverAndValidate(locDashOnlineRoutersSpanCount, "2");
+        allMatched &= hoverAndValidate(locDashOnlineAccessPointsSpanCount, expected);
+
+        // Hover over 'Offline Devices' and validate children
+        locDashOfflineDevicesHeaderCount.hover();
+        MyCommonAPIs.sleepi(1);
+        allMatched &= hoverAndValidate(locDashOfflineSwitchesSpanCount, expected);
+        allMatched &= hoverAndValidate(locDashOfflineRoutersSpanCount, "2");
+        allMatched &= hoverAndValidate(locDashOfflineAccessPointsSpanCount, expected);
+
+        if (allMatched) {
+            System.out.println("✅ All device count texts matched expected value: " + expected);
+        } else {
+            System.out.println("❌ Some device count texts did not match expected value: " + expected);
+        }
+        
+        return allMatched;
+        
+    }
+
+    private boolean hoverAndValidate(SelenideElement element, String expectedText) {
+        try {
+            element.hover();
+            SelenideElement countSpan = element.closest("tr")
+                .find(By.cssSelector("td.text-right span.margin-left-5"))
+                .shouldBe(visible);
+            String actualText = countSpan.getText().replace(":", "").trim();
+            System.out.println("Hovered: " + element + " | Extracted: " + actualText);
+            return expectedText.equals(actualText);
+        } catch (Exception e) {
+            System.out.println("⚠️ Error during hover/validation: " + e.getMessage());
+            return false;
+        }
     }
     
 }
