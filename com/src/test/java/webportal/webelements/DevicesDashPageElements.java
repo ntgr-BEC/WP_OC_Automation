@@ -55,6 +55,9 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement        gobtn             = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement        nextbtn           = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement        viewDevicesProacc = $x("//*[@id=\"btnSavCapPort\"]");
+	public SelenideElement ClickonThreedots                 = $x("//*[@id=\"divColMdSwitchBtn\"]/div[1]");
+    public SelenideElement RestoreDevice                    = $x("//*[@data-target = \".resetModal\"]");
+    public SelenideElement confirmRestore                   = $x("//*[text()=\"Yes, factory reset.\"]");
     // for airbridge
     public SelenideElement btnNextStep      = $(".in .cancelBtn");
     public SelenideElement btnAddMoreDevice = $(".in .btn-primary");
@@ -492,13 +495,13 @@ public class DevicesDashPageElements extends MyCommonAPIs {
 
     //AddedByPratik   
     public SelenideElement scrollToMac(String mac) {
-        return $x("//td[text()='"+mac+"']");
+        return $x("//span[text()='"+mac+"']");
     } 
     public SelenideElement enableDisableManagedSwitch(String srno) {
-        return $x("//td[text()='"+srno+"']/..//span[@class='cstmSlider cstmRound']");
+        return $x("//span[text()='"+srno+"']/../../../../..//label[@class='cmnSwitch ']/span");
     }
     public SelenideElement unmanagedStatus(String srno) {
-        return $x("//td[text()='"+srno+"']/..//label[text()='Unmanaged']");
+        return $x("//span[text()='"+srno+"']/../../../../..//label[text()='Unmanaged']");
     }
     public SelenideElement yesButtonforSwitch               = $x("//p[contains(text(),'Are you sure you want to unmanage')]/../..//button[text()='Yes']");
     public SelenideElement confirmmationMessage             = $x("//*[contains(text(),'Your configuration has been applied')]");

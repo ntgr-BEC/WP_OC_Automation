@@ -920,7 +920,31 @@ public class DevicesDashPage extends DevicesDashPageElements {
                       ariaSetIndex(row).click();
                       MyCommonAPIs.sleepi(3);
                       ariaSetIndexReboot(row).click();
+					  rebootconfirm.click();
         
+    }
+	
+	public void restoreDevice(String sNo) {
+        String row = getDeviceAriaIndex(sNo).getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(row).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(row).shouldBe(Condition.visible).click();
+//        MyCommonAPIs.sleepi(2);
+        waitElement(ClickonThreedots);
+        ClickonThreedots.click();
+        RestoreDevice.click();
+        waitElement(confirmRestore);
+        confirmRestore.click();
+        WebCheck.checkHrefIcon(URLParam.hrefDevices);
+        for (int i = 0; i < 5; i++) {
+            if (!new WirelessQuickViewPage(false).checkApIsExist(sNo)) {
+                break;
+            }
+            refresh();
+            MyCommonAPIs.sleepi(30);
+        }
+                            
     }
 
     public void NorebootDevice(String sNo) {

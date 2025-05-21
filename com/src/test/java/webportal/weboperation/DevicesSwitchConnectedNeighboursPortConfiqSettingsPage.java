@@ -355,7 +355,7 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
      * @param  vlanList
      *                    split by , (ex: 25,35)
      * @param  portMode
-     *                    0 - access, 1 - trunk, 2 - delete
+     *                    0 - access, 1 - trunk, 2 - Untag
      * @return            Note: will do on two switch
      */
     public void setPortVlan(String vlanList, int portMode) {
@@ -375,11 +375,19 @@ public class DevicesSwitchConnectedNeighboursPortConfiqSettingsPage extends Devi
 //                ele2.click();
                 MyCommonAPIs.sleepi(1);
             }
+            if (portMode == 2) {
+                Untag.click();
+                MyCommonAPIs.sleepi(5);
+//                SelenideElement ele2 = $x(String.format(vlanRadioStr, s));
+//                ele2.scrollIntoView(true);
+//                ele2.click();
+                MyCommonAPIs.sleepi(1);
+            }
         }
         vlanIdSelect.click();
         MyCommonAPIs.sleepi(1);
         ButtonElements.saveButton();
-        MyCommonAPIs.sleepi(180);
+//        MyCommonAPIs.sleepi(180);
     }
     
 }

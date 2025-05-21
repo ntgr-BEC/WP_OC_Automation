@@ -1240,5 +1240,15 @@ public class WebportalParam {
             return true;
         return true;
     }
+    
+    public static String getPlainSwitchPort(String model, String port) {
+            port = port.replace("xmg", "").replace("mg", "").replace("xg", "").replace("g", "").replace("1/0/", "").replace("0/", "");
+            System.out.println(port);
+            return port;
+   
+
+        }
+
+    
 
 }
