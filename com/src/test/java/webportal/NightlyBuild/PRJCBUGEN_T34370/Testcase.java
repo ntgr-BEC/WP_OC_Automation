@@ -58,11 +58,9 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
 
         handle.gotoLoction();
-<<<<<<< HEAD
         new DevicesDashPage().checkDeviceInNormalAccount("admin");
         new DevicesDashPage().waitDevicesReConnected(WebportalParam.ap1serialNo);
-=======
->>>>>>> f3c7741605f2f117ffd02f7993e5f9a3fb6a4163
+
       
     }
 

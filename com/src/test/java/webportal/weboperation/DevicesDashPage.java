@@ -62,7 +62,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
         logger = Logger.getLogger(pageName);
         logger.info("init...");
         refresh();
-        reloadDeviceList();
+//        reloadDeviceList();
     }
     
     public void GoToDevicesDashPage() {
@@ -330,7 +330,6 @@ public class DevicesDashPage extends DevicesDashPageElements {
         for (String ss : map.keySet()) {
             logger.info(ss + ": " + map.get(ss));
         }
-
         clickAddDevice();
         MyCommonAPIs.sleepi(5);
         waitElement(goDeviceBtn);
@@ -1287,7 +1286,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public void checkDeviceInNormalAccount(String account) {
-        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
+       
         gotoAllLocations();
         new AccountPage().enterLocation(WebportalParam.location1);
         if (getDeviceName(WebportalParam.ap1serialNo).equals("")) {
@@ -1297,6 +1296,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
             devInfo.put("MAC Address1", WebportalParam.ap1macaddress);
             if (checkAddDevice(devInfo)) {
             } else {
+                WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
                 UserManage userManage = new UserManage();
                 userManage.logout();
                 webportalLoginPage.defaultLogin();
