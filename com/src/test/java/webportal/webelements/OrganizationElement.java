@@ -877,6 +877,48 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement locDashOfflineRoutersSpanCount             = $x("//p[text()='Offline Devices']/../h2/../..//td[text()='Routers']/..//span");
     public SelenideElement locDashOfflineAccessPointsSpanCount        = $x("//p[text()='Offline Devices']/../h2/../..//td[text()='Access Points']/..//span");
     public SelenideElement locDashLocationsHeaderCount                = $x("//p[text()='Locations']/../h2");
+    public SelenideElement locationSummaryPageImage                   = $x("//img[@id='headerLocImg']");
+    public SelenideElement locationSummaryPagName                     = $x("//a[@id='locationDropdown']//span[text()='office1']");
+    public SelenideElement userNameOwnername                          = $x("//p[text()='Owner Name']");
+    public SelenideElement userNameOwnerEmail                         = $x("//p[text()='Owner Name']/../../..//img[@src='assets/img/commonIcons/edit.png']");
+    public SelenideElement userNameOnlocDashboard                     = $x("//p[text()='Owner Name']/../h3");
+    public SelenideElement userEmailOnlocDashboard                    = $x("//p[text()='Owner Email']/../h3");
+    public SelenideElement userNumberOnlocDashboard                   = $x("//p[text()='Phone']/../h3");
+    public SelenideElement userBusinessNoOnlocDashboard               = $x("//p[text()='Business Phone']/../h3");
+    public SelenideElement clientsPageConnected1ClientTextHdr         = $x("//li[contains(@class, 'clientConnectedTab') and contains(text(), 'Connected')]");
 
+    public SelenideElement verifyAPSerialNoOnClientPage(String apsrno) {
+        return $x("//td[@title='"+apsrno+"']/span");
+    }
     
+    public SelenideElement verifyConnectedClientmacOnClientPage(String clientmac) {
+        return $x("//span[text()='"+clientmac+"']");
+    }
+    
+    public SelenideElement settingMenuAdminDropdown                  = $x("//div[contains(@class,'settingMenu AdminDropDown')]");
+    public SelenideElement voucherAdminsLink                         = $x("//a[text()='Voucher Admins']");
+    public SelenideElement addManagerButtonIcon                      = $x("//a[@href='#/manager/add']/span");
+    public SelenideElement managerNameInput                          = $x("//input[@id='managerName']");
+    public SelenideElement ownerNameInput                            = $x("//input[@id='ownerName']");
+    public SelenideElement saveButtonVCAdmin                         = $x("//button[@id='saveOrgBtn']");
+    public SelenideElement cancelButtonVCAdmin                       = $x("//a[text()='Cancel']");
+    public SelenideElement inviteSentSuccessButton                   = $x("//p[contains(text(),'Your invitation has been sent')]/../..//button[@id='successModalInviteManager']");
+    public SelenideElement vcAdminStatus                             = $x("//td[@id='tdDevMacAddrdevicesDash']//span[@class='underline']");
+
+    public SelenideElement devMacAddrEmailCell(String mail) {
+        return $x("//td[contains(@id,'tdDevMacAddrdevicesDash') and text()='"+mail+"']");
+    }
+    
+    public SelenideElement deleteDeviceIcon(String mail) {
+        return $x("//td[contains(@id,'tdDevMacAddrdevicesDash') and text()='"+mail+"']/..//img[@class='deleteDeviceIcon']");
+    }
+    
+   public SelenideElement confirmRemoveButton       = $x("//p[text()='Do you want to continue?']/../..//button[text()='Remove']");
+   public SelenideElement verifyActiveStatusVC      = $x("//td[text()='Active']");
+
+
+
+
+
+
 }
