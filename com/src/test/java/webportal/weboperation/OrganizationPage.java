@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.log4j.chainsaw.Main;
@@ -9243,4 +9244,357 @@ public boolean verifyFilterOptionsOnLocationLandingpageHeader() {
         }
     }
     
+    public boolean verifyEditUserName() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        userNameOwnername.shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(10);
+        userNameOwnerEmail.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        $x("//label[text()='Pick Existing Owner']/..//select[@id='existingUser']")
+        .shouldBe(Condition.visible)
+        .selectOption("Select an owner");
+        MyCommonAPIs.sleepi(5);
+        ownerName.shouldBe(Condition.visible);
+        MyCommonAPIs.sleep(10);
+        String ownname1 = "own" + String.valueOf(new Random().nextInt(10000000));
+        String ownMail = "own" + String.valueOf(new Random().nextInt(10000000)) + "@yopmail.com";
+        if (ownerName.isDisplayed()) {
+            Selenide.executeJavaScript("arguments[0].value = '';", ownerName);
+            MyCommonAPIs.sleep(10);
+            ownerName.sendKeys(ownname1);
+            MyCommonAPIs.sleep(10);
+            Selenide.executeJavaScript("arguments[0].value = '';", ownerEmail);
+            MyCommonAPIs.sleep(10);
+            ownerEmail.sendKeys(ownMail);
+            result = true;
+            System.out.println("User Name changed to " + ownname1);
+        }
+        waitElement(SaveOrg);
+        MyCommonAPIs.sleepi(1);
+        SaveOrg.click();
+        logger.info("--------------- Organisation is Edited Succesfully ----------");
+        Selenide.sleep(10000);
+        if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+            $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+        }
+        MyCommonAPIs.sleepi(10);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        String actOwnname = userNameOnlocDashboard.shouldBe(Condition.visible).getText();
+        System.out.println("Edited owner/user Name is "+actOwnname);
+        if (actOwnname.trim().equals(ownname1)) {
+            result = true;
+            System.out.println("User Name edited successfully");
+        } else {
+            result = true;
+            System.out.println("User Name is not edited successfully");
+        }
+        return result;
+    }
+    
+    public boolean verifyEditEmail() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        userNameOwnername.shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(10);
+        userNameOwnerEmail.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        $x("//label[text()='Pick Existing Owner']/..//select[@id='existingUser']")
+        .shouldBe(Condition.visible)
+        .selectOption("Select an owner");
+        MyCommonAPIs.sleepi(5);
+        ownerEmail.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleep(10);
+        String ownMail = "own" + String.valueOf(new Random().nextInt(10000000)) + "@yopmail.com";
+        if (ownerEmail.isDisplayed()) {
+            Selenide.executeJavaScript("arguments[0].value = '';", ownerEmail);
+            MyCommonAPIs.sleep(10);
+            ownerEmail.sendKeys(ownMail);
+            MyCommonAPIs.sleep(10);
+            result = true;
+            System.out.println("User Email changed to " + ownMail);
+        }
+        waitElement(SaveOrg);
+        MyCommonAPIs.sleepi(1);
+        SaveOrg.click();
+        logger.info("--------------- Organisation is Edited Succesfully ----------");
+        Selenide.sleep(10000);
+        if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+            $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+        }
+        MyCommonAPIs.sleepi(10);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        String actOwnEmail = userEmailOnlocDashboard.shouldBe(Condition.visible).getText();
+        System.out.println("Edited owner/user Email is "+actOwnEmail);
+        if (actOwnEmail.trim().equalsIgnoreCase(ownMail)) {
+            result = true;
+            System.out.println("User email edited successfully");
+        } else {
+            result = true;
+            System.out.println("User eamil is not edited successfully");
+        }
+        return result;
+    }
+    
+    public boolean verifyuserNumber() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        userNameOwnername.shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(10);
+        userNameOwnerEmail.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        ownerPhone.shouldBe(Condition.visible);
+        MyCommonAPIs.sleep(10);
+        String ownnum = "0000000000";
+        if (ownerPhone.isDisplayed()) {
+            ownerPhone.clear();
+            MyCommonAPIs.sleep(10);
+            ownerPhone.sendKeys(ownnum);
+            MyCommonAPIs.sleep(10);
+            result = true;
+            System.out.println("User Number changed to " + ownnum);
+        }
+        waitElement(SaveOrg);
+        MyCommonAPIs.sleepi(1);
+        SaveOrg.click();
+        logger.info("--------------- Organisation is Edited Succesfully ----------");
+        Selenide.sleep(10000);
+        if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+            $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+        }
+        MyCommonAPIs.sleepi(10);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        String actOwnPhone = userNumberOnlocDashboard.shouldBe(Condition.visible).getText();
+        System.out.println("Edited user phone number is "+actOwnPhone);
+        if (actOwnPhone.trim().equalsIgnoreCase(ownnum)) {
+            result = true;
+            System.out.println("User phone number edited successfully");
+        } else {
+            result = true;
+            System.out.println("User phone number is not edited successfully");
+        }
+        return result;
+    }
+    
+    public boolean verifybusinessNumber() {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        userNameOwnername.shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(10);
+        userNameOwnerEmail.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        businessPhone.shouldBe(Condition.visible);
+        MyCommonAPIs.sleep(10);
+        String businessnum = "1234567890";
+        if (businessPhone.isDisplayed()) {
+            businessPhone.clear();
+            MyCommonAPIs.sleep(10);
+            businessPhone.sendKeys(businessnum);
+            MyCommonAPIs.sleep(10);
+            result = true;
+            System.out.println("business Number changed to " + businessnum);
+        }
+        waitElement(SaveOrg);
+        MyCommonAPIs.sleepi(1);
+        SaveOrg.click();
+        logger.info("--------------- Organisation is Edited Succesfully ----------");
+        Selenide.sleep(10000);
+        if ($x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").exists()) {
+            $x("//h4[text()='Organization Updated Successfully']/../..//button[text()='OK']").click();
+        }
+        MyCommonAPIs.sleepi(10);
+        openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(10);
+        String actBusinessPhone = userNameOwnername.shouldBe(Condition.visible).getText();
+        System.out.println("Edited business phone number is "+actBusinessPhone);
+        if (actBusinessPhone.trim().equalsIgnoreCase(businessnum)) {
+            result = true;
+            System.out.println("business phone number edited successfully");
+        } else {
+            result = true;
+            System.out.println("business phone number is not edited successfully");
+        }
+        return result;
+    }
+    
+    public boolean verifyConnectedclientsClientsPage() {
+        boolean result = true;
+        locDashConnectedClients.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        clientsPageConnected1ClientTextHdr.shouldBe(Condition.visible);
+        String url = WebDriverRunner.url();
+        if (!(url.contains(URLParam.hrefClients))) {
+            result = false;
+            System.out.println("Step1: False After clicking on connected client count user not went to clients page url is" + url);
+        } else {
+            System.out.println("Step1: Pass After clicking on connected client count user went to clients page url is " + url);
+        }
+
+        verifyAPSerialNoOnClientPage(WebportalParam.ap1serialNo).shouldBe(Condition.visible);
+        verifyConnectedClientmacOnClientPage(WebportalParam.clientwlanmac).shouldBe(Condition.visible);
+        System.out.println("AP Serial Number Visible on clients page ie: " + verifyAPSerialNoOnClientPage(WebportalParam.ap1serialNo).getText()
+                + " And also client mac is showing on clients page ie: "
+                + verifyConnectedClientmacOnClientPage(WebportalParam.clientwlanmac).getText());
+        if (!(verifyAPSerialNoOnClientPage(WebportalParam.ap1serialNo).isDisplayed()
+                && verifyConnectedClientmacOnClientPage(WebportalParam.clientwlanmac).isDisplayed())) {
+            result = false;
+            System.out.println("Step2: False AP Details and Clients details are not shown on Clients Page");
+        } else {
+            System.out.println("Step2: Pass AP Details and Clients details are shown on Clients Page");
+        }
+
+        return result;
+    }
+    
+    public boolean verifyOnlineDevicesCountCliableAndredirecttodevicesPageVerifyActiveFilter() {
+        boolean result = true;
+        locDashOnlineDevice.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        String url = WebDriverRunner.url();
+        if (!(url.contains(URLParam.hrefDevices))) {
+            result = false;
+            System.out.println("Step1: False After clicking on Online Devices count user not went to Devices dash page url is" + url);
+        } else {
+            System.out.println("Step1: Pass After clicking on Online Devices count user went to Devices dash url is " + url);
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(activefilter.isDisplayed() && onlineFilteroption.isDisplayed() && activefilter.shouldBe(visible).getText().trim().equals("Online"))) {
+            result = false;
+            System.out.println("Step2: False on devices dashboard page active filter and online filter is not visisble ie: "
+                    + activefilter.shouldBe(visible).getText().trim());
+        } else {
+            System.out.println("Step2: Pass on devices dashboard page active filter and online filter is visisble ie: "
+                    + activefilter.shouldBe(visible).getText().trim());
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifyTotalDevicesCountCliableAndredirecttodevicesPageVerifyActiveFilter() {
+        boolean result = true;
+        locDashTotalDevice.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        String url = WebDriverRunner.url();
+        if (!(url.contains(URLParam.hrefDevices))) {
+            result = false;
+            System.out.println("Step1: False After clicking on total Devices count user not went to Devices dash page url is" + url);
+        } else {
+            System.out.println("Step1: Pass After clicking on total Devices count user went to Devices dash url is " + url);
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (activefilter.isDisplayed()) {
+            result = false;
+            System.out.println("Step2: False on devices dashboard page active filter is visisble");
+        } else {
+            System.out.println("Step2: Pass on devices dashboard page active filter is not visisble");
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifyOfflineDevicesCountCliableAndredirecttodevicesPageVerifyActiveFilter() {
+        boolean result = true;
+        locDashOfflineDevice.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        String url = WebDriverRunner.url();
+        if (!(url.contains(URLParam.hrefDevices))) {
+            result = false;
+            System.out.println("Step1: False After clicking on Offline Devices count user not went to Devices dash page url is" + url);
+        } else {
+            System.out.println("Step1: Pass After clicking on Offline Devices count user went to Devices dash url is " + url);
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        if (!(activefilter.isDisplayed() && offlineFilteroption.isDisplayed() && activefilter.shouldBe(visible).getText().trim().equals("Offline"))) {
+            result = false;
+            System.out.println("Step2: False on devices dashboard page active filter and offline filter is not visisble ie: "
+                    + activefilter.shouldBe(visible).getText().trim());
+        } else {
+            System.out.println("Step2: Pass on devices dashboard page active filter and offline filter is visisble ie: "
+                    + activefilter.shouldBe(visible).getText().trim());
+        }
+        filterIconAllDevicesPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        return result;
+    }
+    
+    public boolean verifyAddVoucherAdminInPremiumAcc(Map<String, String> map) {
+        boolean result = true;
+        MyCommonAPIs.sleepi(10);
+        settingMenuAdminDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        voucherAdminsLink.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        if (!(addManagerButtonIcon.isDisplayed())) {
+            result = false;
+            System.out.println("Step1: false Add device button is not visible for VC Admin");
+        } else {
+            System.out.println("Step1: Pass Add device button is visible for VC Admin");
+            addManagerButtonIcon.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(10);
+            managerNameInput.shouldBe(Condition.visible).sendKeys(map.get("Name"));
+            MyCommonAPIs.sleepi(1);
+            ownerNameInput.shouldBe(Condition.visible).sendKeys(map.get("Email Address"));
+            MyCommonAPIs.sleepi(1);
+            saveButtonVCAdmin.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
+            if (!(inviteSentSuccessButton.shouldBe(Condition.visible).isDisplayed())) {
+                result = false;
+                System.out.println("Step2: False VC Admin not added successfully");
+            } else {
+                System.out.println("Step2: Pass VC Admin added successfully");
+                inviteSentSuccessButton.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(5);
+            }
+        }
+        return result;
+    }
+    
+    public boolean deleteVCAdmin(String mail) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        settingMenuAdminDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        voucherAdminsLink.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        devMacAddrEmailCell(mail).shouldBe(Condition.visible).hover();
+        MyCommonAPIs.sleep(10);
+        deleteDeviceIcon(mail).shouldBe(Condition.visible).hover().click();
+        MyCommonAPIs.sleepi(10);
+        confirmRemoveButton.shouldBe(Condition.visible);
+        if (confirmRemoveButton.isDisplayed()) {
+            result = true;
+            confirmRemoveButton.click();
+        }
+        return result;
+    }
+    
+    public boolean verifyActiveStatusofVCAdmin(String mail) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        settingMenuAdminDropdown.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+        voucherAdminsLink.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        if (verifyActiveStatusVC.shouldBe(Condition.visible).isDisplayed() && devMacAddrEmailCell(mail).shouldBe(Condition.visible).isDisplayed()) {
+            System.out.println("Added Voucher Admin is active now");
+            result = true;
+        }
+        return result;
+    }
 }
