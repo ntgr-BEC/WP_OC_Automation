@@ -1,4 +1,4 @@
-package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.LocationLandingPage.LocationLandingPageTable.Premium.PRJCBUGEN_T46164;
+package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.LocationLandingPage.Premium_Route_Redirect.PRJCBUGEN_T46312;
 
 import static org.testng.Assert.assertTrue;
 
@@ -32,10 +32,10 @@ import webportal.weboperation.WirelessQuickViewPage;
  */
 public class Testcase extends TestCaseBase {
 
-    @Feature("LocationLandingPageTable") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T46164") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify that Number of connected clients in a location") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN_T46164") // It's a testcase id/link from Jira Test Case.
+    @Feature("Premium_Route_Redirect") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T46312") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify that On clicking \"Connected Clients\", it should route to location Clients table with filter option selected")
+    @TmsLink("PRJCBUGEN_T46312") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -44,7 +44,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        new WirelessQuickViewPage().deleteSsidYes("PRJCBUGEN_T46164");
+        new WirelessQuickViewPage().deleteSsidYes("PRJCBUGEN_T46312");
         System.out.println("start to do tearDown");
     }
 
@@ -61,7 +61,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 2: Add WIFI ssid and now connect client to this ssid;")
     public void step2() {
         Map<String, String> locationInfo = new HashMap<String, String>();
-        locationInfo.put("SSID", "PRJCBUGEN_T46164");
+        locationInfo.put("SSID", "PRJCBUGEN_T46312");
         locationInfo.put("Security", "WPA2 Personal Mixed");
         locationInfo.put("Password", "123456798");
         new WirelessQuickViewPage().addSsid1(locationInfo);
@@ -69,7 +69,7 @@ public class Testcase extends TestCaseBase {
         int sum = 0;
         while (true) {
             MyCommonAPIs.sleepi(10);
-            if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID PRJCBUGEN_T46164")
+            if (new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFfindSSID PRJCBUGEN_T46312")
                     .indexOf("true") != -1) {
                 break;
             } else if (sum > 30) {
@@ -81,11 +81,11 @@ public class Testcase extends TestCaseBase {
 
         boolean result1 = true;
         if (!new Javasocket()
-                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect PRJCBUGEN_T46164 123456798 WPA2PSK aes")
+                .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect PRJCBUGEN_T46312 123456798 WPA2PSK aes")
                 .equals("true")) {
             result1 = false;
             if (new Javasocket()
-                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect PRJCBUGEN_T46164 123456798 WPA2PSK aes")
+                    .sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "WAFconnect PRJCBUGEN_T46312 123456798 WPA2PSK aes")
                     .equals("true")) {
                 result1 = true;
             }
@@ -103,6 +103,7 @@ public class Testcase extends TestCaseBase {
         String clients = new OrganizationPage(false).locDashConnectedClients.shouldBe(Condition.visible).getText();
         System.out.println("connected Clients on Location dashboard page : " + clients);
         assertTrue(clients.trim().equals("1"), "connected connect is not shown in Connected Client header tab count");
+        assertTrue(new OrganizationPage(false).verifyConnectedclientsClientsPage(), "AP Details and Clients details are not shown on Clients Page");
         new Javasocket().sendCommandToWinClient(WebportalParam.clientip, WebportalParam.clientport, "netsh wlan disconnect");
     }
 
