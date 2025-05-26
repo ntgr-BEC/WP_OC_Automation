@@ -1,6 +1,5 @@
 package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.LocationLandingPage.LocationLandingHeader.Premium.PRJCBUGEN_T46070;
 
-import static org.junit.Assert.assertTrue;
 import static org.testng.Assert.assertTrue;
 
 import java.util.ArrayList;
