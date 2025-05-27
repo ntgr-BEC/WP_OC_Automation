@@ -71,17 +71,22 @@ public class Testcase extends TestCaseBase {
         assertTrue(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort2))).isDisplayed());
 
         MyCommonAPIs.sleepsync();
-        if(WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("dhcp l2relay"), "admin mode not enabled");
-        assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
-                .contains("dhcp l2relay"), "admin mode not enabled");
-        }else {
+        if (WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false).contains("dhcp l2relay"),
+                    "admin mode not enabled");
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false).contains("dhcp l2relay"),
+                    "admin mode not enabled");
+        } else if (WebportalParam.sw1Model.contains("MS10")) {
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false).contains("dhcp l2-relay"),
+                    "admin mode not enabled");
+            assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false).contains("dhcp l2-relay"),
+                    "admin mode not enabled");
+
+        } else {
             assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                     .contains("dhcp l2relay option"), "admin mode not enabled");
             assertTrue(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort2CLI, false)
                     .contains("dhcp l2relay option"), "admin mode not enabled");
-            
         }
     }
 
@@ -95,11 +100,15 @@ public class Testcase extends TestCaseBase {
         assertFalse(WiredDhcpRelayElement.txtPortAdminModeCheck(Integer.toString(Integer.parseInt(WebportalParam.sw1LagPort1))).isDisplayed());
         
         MyCommonAPIs.sleepsync();
-        if(WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
-        assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
-                .contains("dhcp l2relay"), "admin mode should be disabled");
-        }else {
-            
+        if (WebportalParam.sw1Model.contains("M4250") || WebportalParam.sw1Model.contains("M4350")) {
+            assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false).contains("dhcp l2relay"),
+                    "admin mode should be disabled");
+        } else if (WebportalParam.sw1Model.contains("MS10")) {
+            assertFalse(
+                    MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false).contains("dhcp l2-relay"),
+                    "admin mode should be disabled");
+        } else {
+
             assertFalse(MyCommonAPIs.getCmdOutput("show running-config interface " + WebportalParam.sw1LagPort1CLI, false)
                     .contains("dhcp l2relay option"), "admin mode should be disabled");
         }

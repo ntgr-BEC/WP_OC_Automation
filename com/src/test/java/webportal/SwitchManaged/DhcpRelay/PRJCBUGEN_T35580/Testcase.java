@@ -59,12 +59,24 @@ public class Testcase extends TestCaseBase {
 
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode not enabled");
 
-        handle.waitCmdReady("l2-relay", true);
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            handle.waitCmdReady("l2-relay", true);
+        } else {
+            handle.waitCmdReady("l2relay", true);
+        }
+        
         MyCommonAPIs.sleepsync();
+        
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean str1 = tmpStr.contains("dhcp l2-relay");
+            assertTrue(str1, "Dhcp L2 Relay is not enabled");
+        } else {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean str1 = tmpStr.contains("dhcp l2relay");
+            assertTrue(str1, "Dhcp L2 Relay is not enabled");
+        }
 
-        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean str1 = tmpStr.contains("dhcp l2relay");
-        assertTrue(str1, "Dhcp L2 Relay is not enabled");
 
     }
 
@@ -76,12 +88,23 @@ public class Testcase extends TestCaseBase {
 
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode not disabled");
 
-        handle.waitCmdReady("l2-relay", true);
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            handle.waitCmdReady("l2-relay", true);
+        } else {
+            handle.waitCmdReady("l2relay", true);
+        }
+        
         MyCommonAPIs.sleepsync();
 
-        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean str1 = tmpStr.contains("dhcp l2relay");
-        assertFalse(str1, "Dhcp L2 Relay line is there");
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean str1 = tmpStr.contains("dhcp l2-relay");
+            assertFalse(str1, "Dhcp L2 Relay line is there");
+        } else {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean str1 = tmpStr.contains("dhcp l2relay");
+            assertFalse(str1, "Dhcp L2 Relay line is there");
+        }
 
     }
 

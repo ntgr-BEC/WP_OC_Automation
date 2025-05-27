@@ -105,11 +105,28 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
          MyCommonAPIs.sleepsync();
-         handle.waitCmdReady("l2-relay", true);
+         
+         if (WebportalParam.sw1Model.contains("MS10")) {
+             handle.waitCmdReady("l2-relay", true);
+         } else {
+             handle.waitCmdReady("l2relay", true);
+         }
+         
+         MyCommonAPIs.sleepsync();
+         
+         boolean relayConfig = false;
+         boolean vlanRelayConfig  = false; 
+         
+         if (WebportalParam.sw1Model.contains("MS10")) {
+             String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+             relayConfig = tmpStr.contains("dhcp l2-relay");
+             vlanRelayConfig = tmpStr.contains("dhcp l2-relay vlan 100");
+         } else {
+             String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+             relayConfig = tmpStr.contains("dhcp l2relay");
+             vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
+         }
 
-         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean relayConfig = tmpStr.contains("dhcp l2relay");
-         boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
          assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
          assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
 
@@ -159,19 +176,31 @@ import webportal.webelements.WiredDhcpSnoopingElement;
          assertFalse(WiredDhcpSnoopingElement.dhcpSnoopingModebutton.isSelected(), "Admin Mode should be enabled");
          assertFalse(WiredDhcpSnoopingElement.selectUserVlanbutton("100").isSelected(), "User vlan should be enable");
          
-         handle.waitCmdReady("l2-relay", true);
          MyCommonAPIs.sleepsync();
+         if (WebportalParam.sw1Model.contains("MS10")) {
+             handle.waitCmdReady("l2-relay", true);
+         } else {
+             handle.waitCmdReady("l2relay", true);
+         }
+         
          MyCommonAPIs.sleepsync();
          
+         boolean relayConfig = false;
+         boolean vlanRelayConfig  = false;
+         
+         if (WebportalParam.sw1Model.contains("MS10")) {
+             String tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+             relayConfig = tmpStr1.contains("dhcp l2-relay");
+             vlanRelayConfig = tmpStr1.contains("dhcp l2-relay vlan 100");
+         } else {
+             String tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+             relayConfig = tmpStr1.contains("dhcp l2relay");
+             vlanRelayConfig = tmpStr1.contains("dhcp l2relay vlan 100");
+         }
          
          String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
          boolean vlanSnoopingConfig = tmpStr.contains("dhcp snooping vlan 100");
          assertTrue(!vlanSnoopingConfig, "Dhcp Snooping vlan 100 should be disbled");
-         
-         
-         String tmpStr1 = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-         boolean relayConfig = tmpStr1.contains("dhcp l2relay");
-         boolean vlanRelayConfig = tmpStr1.contains("dhcp l2relay vlan 100");
          assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
          assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
      }

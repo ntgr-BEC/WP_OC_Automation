@@ -23,6 +23,7 @@ import webportal.weboperation.WiredQuickViewPage;
 import webportal.weboperation.WiredVLANPage;
 import webportal.weboperation.WiredVLANPageForVLANPage;
 import webportal.param.URLParam;
+import webportal.param.WebportalParam;
 import webportal.webelements.WiredDhcpRelayElement;
 
 /**
@@ -102,12 +103,22 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 4: check in the GUI")
     public void step4() {
+        boolean relayConfig = false;
+        boolean vlanRelayConfig = false;
+        
         handle.waitCmdReady("l2-relay", true);
         MyCommonAPIs.sleepsync();
 
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("dhcp l2relay");
-        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
+        
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            relayConfig = tmpStr.contains("dhcp l2-relay");
+            vlanRelayConfig = tmpStr.contains("dhcp l2-relay vlan 100");
+        } else {
+            relayConfig = tmpStr.contains("dhcp l2relay");
+            vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
+        }
+        
         if (relayConfig && vlanRelayConfig) {
             micResult = true;
         } else {

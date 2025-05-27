@@ -94,14 +94,27 @@ public class Testcase extends TestCaseBase {
         assertTrue(WiredDhcpRelayElement.enableGlobalConfigAdminMode.isEnabled(), "Admin Mode should be enabled");
         assertTrue(WiredDhcpRelayElement.dhcpRelayGlobalConfigUserVlanEnableButton.isEnabled(), "User vlan should be enable");
 
-        handle.waitCmdReady("l2relay", true);
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            handle.waitCmdReady("l2-relay", true);
+        } else {
+            handle.waitCmdReady("l2relay", true);
+        }
+        
         MyCommonAPIs.sleepsync();
 
-        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("dhcp l2relay");
-        boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
-        assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
-        assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean relayConfig = tmpStr.contains("dhcp l2-relay");
+            boolean vlanRelayConfig = tmpStr.contains("dhcp l2-relay vlan 100");
+            assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
+            assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
+        } else {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean relayConfig = tmpStr.contains("dhcp l2relay");
+            boolean vlanRelayConfig = tmpStr.contains("dhcp l2relay vlan 100");
+            assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
+            assertTrue(vlanRelayConfig, "Dhcp l2 relay vlan 100 should be enabled");
+        }
 
     }
     

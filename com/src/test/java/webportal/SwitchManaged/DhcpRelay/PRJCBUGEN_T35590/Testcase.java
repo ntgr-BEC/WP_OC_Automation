@@ -73,12 +73,23 @@ public class Testcase extends TestCaseBase {
         int numberOfSelectedPorts = WiredDhcpRelayElement.allAdminModes.size();
         assertEquals(numberOfPorts, numberOfSelectedPorts, "all ports admin mode not enabled");
 
-        handle.waitCmdReady("l2-relay", true);
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            handle.waitCmdReady("l2-relay", true);
+        } else {
+            handle.waitCmdReady("l2relay", true);
+        }
+        
         MyCommonAPIs.sleepsync();
 
-        String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
-        boolean relayConfig = tmpStr.contains("dhcp l2relay");
-        assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
+        if (WebportalParam.sw1Model.contains("MS10")) {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean relayConfig = tmpStr.contains("dhcp l2-relay");
+            assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
+        } else {
+            String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
+            boolean relayConfig = tmpStr.contains("dhcp l2relay");
+            assertTrue(relayConfig, "Dhcp L2 Relay should be enabled");
+        }
 
     }
 
