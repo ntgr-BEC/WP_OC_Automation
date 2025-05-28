@@ -43,6 +43,7 @@ public class Testcase extends TestCaseBase {
     String mailname = "apwptest" + String.valueOf(num);
     String organizationName = "PRJCBUGEN_T33712";
     String initialUrl =  "";
+    HashMap<String, String> locationInfo = new HashMap<String, String>();
 
     @Feature("Premium_To_Pro_Migration") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T33712") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -93,7 +94,7 @@ public class Testcase extends TestCaseBase {
         
 //      new HamburgerMenuPage(false).clickAddInsightIncludedDevices();
         new HamburgerMenuPage(false).closeLockedDialog();
-        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        
         locationInfo.put("Location Name", "OnBoardingTest");
         locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
         locationInfo.put("Zip Code", "32003");
@@ -106,7 +107,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: Add dummy non hardbundle device To the Network;")
     public void step3() {
         
-        new AccountPage(false).enterLocation(WebportalParam.location1);
+        new AccountPage(false).enterLocation(locationInfo.get("Location Name"));
         
          Map<String, String> firststdevInfo = new HashMap<String, String>();
        
