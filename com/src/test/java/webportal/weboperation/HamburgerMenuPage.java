@@ -4317,7 +4317,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void openCreateProAccountUrl() {
         System.out.println("opening register URL");
-        String url =  WebportalParam.serverUrlLogin + "/#/register";
+        String url = "https://" + WebportalParam.serverUrlLogin + "/#/register";
         // String url = "insight.netgear.com/#/register";
         // String url = "https://pri-qa.insight.netgear.com/#/register";
         System.out.println(url);
@@ -6294,19 +6294,19 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         inputBusinessInfo(map);
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
-//        MyCommonAPIs.sleepi(15);
-//        if (proaccCreatedNotificationCognito.exists()) {
-//            proaccCreatedOKBtnCognito.click();
-//            MyCommonAPIs.sleepi(15);
-//            if (isInLoginPage()) {
-//                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
-//            }
-//            waitReady();
-//            MyCommonAPIs.sleepsync();
-//        } else if (!isInLoginPage()) {
-//            waitReady();
-//            MyCommonAPIs.sleepsync();
-//        }
+        MyCommonAPIs.sleepi(15);
+        if (proaccCreatedNotificationCognito.exists()) {
+            proaccCreatedOKBtnCognito.click();
+            MyCommonAPIs.sleepi(15);
+            if (isInLoginPage()) {
+                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+            }
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        } else if (!isInLoginPage()) {
+            waitReady();
+            MyCommonAPIs.sleepsync();
+        }
         return result;
     }
 
@@ -10808,6 +10808,61 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         
         return totalValue;
     }
+    
+    public boolean FillInvitemanagerVCAdminInfoAndVerifylogin(Map<String, String> map) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(5);
+        waitElement(ownerconfirmemail);
+        ownerconfirmemail.shouldBe(Condition.visible).sendKeys(map.get("Confirm Email"));
+        MyCommonAPIs.sleepi(1);
+        ownerpassword.shouldBe(Condition.visible).sendKeys(map.get("Password"));
+        MyCommonAPIs.sleepi(1);
+        ownerconfirmpwd.shouldBe(Condition.visible).sendKeys(map.get("Confirm Password"));
+        MyCommonAPIs.sleepi(1);
+        ownercountrycode.shouldBe(Condition.visible).selectOption(map.get("Country"));
+        MyCommonAPIs.sleepi(1);
+        ownerphonenum.shouldBe(Condition.visible).sendKeys(map.get("Phone Number"));
+        MyCommonAPIs.sleepi(1);
+
+        if (policyText1.isDisplayed()) {
+            policyText1.click();
+        }
+
+        MyCommonAPIs.sleepi(1);
+        if (policyText2.isDisplayed()) {
+            policyText2.click();
+        }
+
+        MyCommonAPIs.sleepi(1);
+        if (signupbuttonForManagerandOwner.isDisplayed()) {
+            signupbuttonForManagerandOwner.click();
+        }
+
+        MyCommonAPIs.sleepi(20);
+        if ($x("//p[contains(text(),'created. Please log in to continue')]/../..//button[text()='OK']").isDisplayed()) {
+            $x("//p[contains(text(),'created. Please log in to continue')]/../..//button[text()='OK']").click();
+        }
+        MyCommonAPIs.sleepi(20);
+        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(false);
+        if (isInLoginPage()) {
+            System.out.printf("try to login with user: %s\n", map.get("Confirm Email"));
+            logger.info("checking to input credit...");
+            webportalLoginPage.inputLogin(map.get("Confirm Email"), map.get("Password"));
+        }
+
+        MyCommonAPIs.sleepi(20);
+        if ($x("//button[text()='OK. Got it']").isDisplayed()) {
+            $x("//button[text()='OK. Got it']").click();
+        }
+
+        MyCommonAPIs.sleepi(10);
+        if ($x("//div[@class='locationDiv']//p[@title='office1']").shouldBe(Condition.visible).isDisplayed()) {
+            result = true;
+            logger.info("Account created and loggedin");
+        }
+        return result;
+    }
+    
     
 }
 
