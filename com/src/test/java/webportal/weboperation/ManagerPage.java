@@ -50,6 +50,32 @@ public class ManagerPage extends ManagerPageElement {
         logger.info("init...");
     }
 
+    
+    public void deleteallSecondaryAdminEmail() {
+        MyCommonAPIs.sleepi(5);
+        if (managerdropdown.exists()) {
+            managerdropdown.click();
+        }
+        MyCommonAPIs.sleepi(2);
+        waitElement(secondaryAdminOpt);
+        secondaryAdminOpt.click();
+        MyCommonAPIs.sleepi(10);
+        while($x("//td[2]").exists()) {
+        String SAname = $x("//td[2]").getText();      
+        executeJavaScript("arguments[0].removeAttribute('class')", verifySecondaryAdmin(SAname));
+        MyCommonAPIs.sleep(3000);
+        verifySecondaryAdmin(SAname).hover();
+        MyCommonAPIs.sleep(3);
+        deleteSecAdmin(SAname).waitUntil(Condition.visible, 60 * 1000).hover().click();
+        MyCommonAPIs.sleepi(5);
+        if (removemanager.isDisplayed()) {
+            removemanager.click();
+        } else {
+            removemanagernew.click();
+        }
+        MyCommonAPIs.sleep(8 * 1000);
+        }
+    }
     public void addManager(Map<String, String> map) {
         MyCommonAPIs.sleepi(5);  
         waitElement(addmanager);
