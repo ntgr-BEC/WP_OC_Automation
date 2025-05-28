@@ -65,7 +65,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
-        organizationInfo.put("Owner Name", "test14345");
+        organizationInfo.put("Owner Name", mailname);
         organizationInfo.put("Email Address", ownMail);
         organizationInfo.put("Phone Number", "12345678910");
         organizationInfo.put("Business Phone Number", "10987654321");

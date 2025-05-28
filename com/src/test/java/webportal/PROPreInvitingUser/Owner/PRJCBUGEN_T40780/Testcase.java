@@ -33,6 +33,7 @@ public class Testcase extends TestCaseBase {
     String mailname = "owner" + String.valueOf(num);
     String ownMail  = mailname + "@yopmail.com";
     String organizationName = "PRJCBUGEN_T40780";
+    
 
     @Feature("PROPreInvitingUser") // It's a folder/component name to make test suite more readable from Jira Test Case.
     @Story("PRJCBUGEN_T40780") // It's a testcase id/link from Jira Test Case but replace - with _.
@@ -64,7 +65,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
-        organizationInfo.put("Owner Name", "test14345");
+        organizationInfo.put("Owner Name", mailname);
         organizationInfo.put("Email Address", ownMail);
         organizationInfo.put("Phone Number", "12345678910");
         organizationInfo.put("Business Phone Number", "10987654321");
