@@ -1,0 +1,76 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Insight Nightly Build Test Report - Pri-qa Server</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+            table, th, td { border: 1px solid black; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            .summary { margin-top: 20px; font-weight: bold; }
+            .pass { color: green; }
+            .fail { color: red; }
+            .accepted { color: green; }
+            .stable { color: orange; }
+            .unstable { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>Daily Insight Nightly Build Test Report</h1>
+        
+        
+        
+    
+    <h2 style="color: black; font-weight: bold;">Server Details:</h2>
+    <h3>Pri-qa Server</h3>
+    <p><span style="color: black;"><b>Web Portal Version : 7.7.5.18</b></span></p>
+    <p><span style="color: black;"><b>Cloud Version : 7.7.5.8</b></span></p>
+
+    <h2 black; font-weight: bold;">Execution Status:</h2>
+    <h2 class="unstable"><b>BUILD UNSTABLE</b></h2>
+    <p><b>Pass Percentage:</b> <span style="color: green;">66.67%</span></p>
+    <p><b>Fail Percentage:</b> <span style="color: red;">33.33%</span></p>
+    <p><b>Total Time:</b> 32:29 min</p>
+    
+        <table>
+            <tr>
+                <th>Test Case ID</th>
+                <th>Test Case Name</th>
+                <th>Result</th>
+            </tr>
+    
+            <tr>
+                <td>PRJCBUGEN_T40771</td>
+                <td>Test to verify user clicks on the invitation URL then its redirects login page instead of the signup page for the again invited Secondary Admin.</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>PRJCBUGEN_T40761</td>
+                <td>Test to verify the user is able to see the manager account as active in the PRO admin manager list when the user again invites and login.</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>PRJCBUGEN_T40772</td>
+                <td>Test to verify the user is able to see the Secondary Admin account as active in the PRO admin Secondary Admin list when the user again invites and login.</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+        </table>
+        <div class="summary">
+            <p>Total Tests: 3</p>
+            <p class="pass">Passed: 2</p>
+            <p class="fail">Failed: 1</p>
+        </div>
+        
+        <div class="Regards">
+            <p>Regards,</p>
+            <p>BEC Automation Team</p>
+        </div>
+    </body>
+    </html>
+    
