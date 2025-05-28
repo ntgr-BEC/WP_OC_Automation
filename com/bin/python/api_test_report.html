@@ -1,0 +1,792 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Insight Nightly Build Test Report - Pri-qa Server</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+            table, th, td { border: 1px solid black; padding: 8px; text-align: left; }
+            th { background-color: #f2f2f2; }
+            .summary { margin-top: 20px; font-weight: bold; }
+            .pass { color: green; }
+            .fail { color: red; }
+            .accepted { color: green; }
+            .stable { color: orange; }
+            .unstable { color: red; }
+        </style>
+    </head>
+    <body>
+        <h1>API Test Report</h1>
+    
+    <h2 style="color: black; font-weight: bold;">Execution Status:</h2>
+    <h2 class="stable"><b>BUILD STABLE</b></h2>
+    <p><b>Pass Percentage:</b> <span style="color: green;">82.55%</span></p>
+    <p><b>Fail Percentage:</b> <span style="color: red;">17.45%</span></p>
+    <p><b>Total Tests:</b> 149</p>
+   <div class="summary">
+            <p class="pass">Passed: 123</p>
+            <p class="fail">Failed: 26</p>
+        </div>
+    
+        <table>
+            <tr>
+                <th>Test Case Name</th>
+                <th>Result</th>
+            </tr>
+    
+            <tr>
+                <td>Api_AddBulkDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetApiHeaders</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetMeshInfo</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ClientsInfo</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetBulkAddDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetAPStatistics</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSdmStatus</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetSdmStatus</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetDeviceIPSettings</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetLedSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddDevice</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetBlueLedSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeviceDetailsByDeviceIdentifier</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetDeviceMeshInfo</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SwitchCableTest</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeviceDiagnostic</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetConnectedNeighborsList</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetKnownUnknownAPs</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetDeviceRFChannel</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_RebootDevice</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetBlueLedSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteDevice</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetDeviceRFChannel</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetDeviceIPSettings</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ConnectedWifiClients</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetFirmwareUpgrade</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_FetchCreditsInformation</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_FirmwareUpgrade</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddPurchaseConfirmation</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetLicensekeyInformation</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetPurchaseConfirmation</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddNetwork</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetArsConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSystemHealthDetails</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateLocationAddress</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSyslogSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateLocationPassword</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifySyslogSettings</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateNetwork</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteNetwork</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSNMPConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetSNMPConfig</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateManagers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetManagerInfo</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetManagers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddManagers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteManagers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetOwnersList</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetOrganizationIdentifier</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AllocateDeviceCredits</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddOrganization</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetCreditAllocationAccount</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_Deleteorganization</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetAllocateDeviceCredits</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateOrganization</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetListOfOrganization</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_RebootDevice</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetCountryList</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetTimeZoneList</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetInsightModels</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DNSLookupTest</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_PingTestResults</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DNSLookupResults</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OoklaSpeedTest</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OoklaSpeedTestResults</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_TracerouteResults</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_PingTest</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_TracerouteTest</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteSecondaryAdmins</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSecondaryAdmins</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_InviteSecondaryAdmins</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_RetrievePurchaseOrderHistory</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetLagGroupForNw</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetVlanMembers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetWiredRadiusPortConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetVlanInfo</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyRadiusServerConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteVlan</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteVlanMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetVlanMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyVlanIpAclSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteVlanIpAclSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyVlan</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyVlanMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetVlanIpAclSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetVlanMembers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetVlanMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetSpanningTree</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteStaticRoute</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddLagGroup</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteLagGroupPort</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetStaticRoute</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddWirelessNetworkMgtVlan</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_CreateVlan</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetStaticRoute</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyLagGroup</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetRadiusServerConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyVlanMembers</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetIpAclSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetLagGroupById</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetAclSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_VlanListing</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetSpanningTree</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_MacSettingSupport</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteUrlFilter</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OptimizeNow</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetInstantWifi</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ListWirelessSsids</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetNetworkSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddUrlFilter</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetNetworkSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetScheduleWifi</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyInstantWifi</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetWirelessSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_UpdateSsid</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetDefaultNatSsids</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddMacAcl</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetFastRoaming</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetMeshInfo</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetTrafficPolicies</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddSsid</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetWirelessSettings</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteSsid</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifyFastRoaming</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetUrlFilter</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetTrafficPoliciesPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OrgSsidRadiusServerConfig</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OrgSsidMacAuthUpdateDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetTrafficPoliciesForLocSsidPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeleteSsidPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OrgSsidMacAuthAddDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddSsidPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetTrafficPoliciesPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetOrgSsidDetailsBySsidIdentifer</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetLocSsidDetailsBySsidIdentifer</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ModifySsidPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetOrgSsidDetailsByOrgIdentifer</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_OrgSsidMacAuthDeleteDevices</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetListOfNetwork</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddLocationPro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_CloneLocation</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_SetSNMPConfiguration</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_AddDevicePro</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetUsageBillingStatus</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_ConfigureUsageBilling</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_GetUsageHistory</td>
+                <td class="fail">Fail</td>
+            </tr>
+        
+            <tr>
+                <td>Api_DeviceFactoryReset</td>
+                <td class="pass">Pass</td>
+            </tr>
+        
+        </table>
+        <div class="Regards">
+            <p>Regards,</p>
+            <p>BEC Automation Team</p>
+        </div>
+    </body>
+    </html>
+    
