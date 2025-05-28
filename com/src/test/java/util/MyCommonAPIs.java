@@ -735,27 +735,46 @@ public class MyCommonAPIs {
             swIp = WebportalParam.sw2IPaddress;
         }
         logger.info(String.format("<%s>-<%s>", swIp, cmd));
-        SwitchTelnet st;
-        try {
-            st = new SwitchTelnet(swIp, WebportalParam.loginDevicePassword, true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "error";
-        }
-        
-        st.setEnable();
-        String sRet = "";
-        if (cmd.contains(";")) {
-            for (String s : cmd.split(";")) {
-                if (s.equalsIgnoreCase("config")) {
-                    SwitchTelnet.telnet.setPrompt(st.isRltkSW, true);
+        int retries = 3;
+        for (int attempt = 1; attempt <= retries; attempt++) {
+            SwitchTelnet st = null;
+            try {
+                st = new SwitchTelnet(swIp, WebportalParam.loginDevicePassword, true);
+                st.setEnable();
+                String sRet = "";
+                System.out.println("Before Loop : "+st);
+                if (cmd.contains(";")) {
+                    for (String s : cmd.split(";")) {
+                        if (s.equalsIgnoreCase("config")) {
+                            SwitchTelnet.telnet.setPrompt(st.isRltkSW, true);
+                            System.out.println("In if Loop : "+s);
+                        }
+                        sRet = st.getCLICommand(s);
+                        System.out.println("Outer for Loop : "+sRet);
+                    }
+                } else {
+                    sRet = st.getCLICommand(cmd);
+                    System.out.println("Out off Loop : "+sRet);
                 }
-                sRet = st.getCLICommand(s);
+                return sRet;
+            } catch (Exception e) {
+                logger.info("Attempt " + attempt + " failed for command '" + cmd + "' on " + swIp + ": " + e.getMessage());
+                if (attempt == retries) {
+                    logger.info("All retries failed for command '" + cmd + "'");
+                    return "error";
+                }
+                MyCommonAPIs.sleep(2000); // Wait 2 seconds before retrying
+            } finally {
+                if (st != null) {
+                    try {
+                        st.disconnect();
+                    } catch (Exception e) {
+                        logger.info("Failed to close Telnet connection: " + e.getMessage());
+                    }
+                }
             }
-        } else {
-            sRet = st.getCLICommand(cmd);
         }
-        return sRet;
+        return "error";
     }
     
     /**

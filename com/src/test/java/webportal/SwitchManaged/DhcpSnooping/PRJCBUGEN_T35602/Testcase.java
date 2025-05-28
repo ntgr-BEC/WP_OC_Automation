@@ -126,7 +126,8 @@ public class Testcase extends TestCaseBase {
         String tmpStr = MyCommonAPIs.getCmdOutput("show running-config  ", false);
         boolean vlanSnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 200");
         assertFalse(vlanSnoopingConfig, "Dhcp Snooping vlan 200 should be enabled");
-        assertTrue(MyCommonAPIs.getCmdOutput("show ip dhcp snooping ", false).contains("Disabled"), "admin mode sould be disabled");
+        assertTrue(MyCommonAPIs.getCmdOutput("show ip dhcp snooping ", false).toLowerCase().contains("disabled"), 
+                "admin mode should be disabled");
 
         boolean vlan100SnoopingConfig = tmpStr.contains("ip dhcp snooping vlan 100");
         assertTrue(vlan100SnoopingConfig, "Dhcp snooping vlan 100 should be enabled");
