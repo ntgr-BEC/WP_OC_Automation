@@ -1,4 +1,5 @@
-package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.LocationLandingPage.LocationLandingPageTable.PRJCBUGEN_T46151;
+package webportal.ICAM_LandPageEnh.Phase_1PROEnhancements.LocationLandingPage.LocationLandingHeader.Premium.PRJCBUGEN_T46071;
+
 
 import static org.testng.Assert.assertTrue;
 
@@ -44,12 +45,12 @@ public class Testcase extends TestCaseBase {
 
     Map<String, String> locationInfo = new HashMap<String, String>();
 
-    @Feature("LocationLandingPageTable") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T46151") // It's a testcase id/link from Jira Test Case but replace - with _.
-    @Description("Verify that filters") // It's // Jira
+    @Feature("LocationLandingHeader") // It's a folder/component name to make test suite more readable from Jira Test Case.
+    @Story("PRJCBUGEN_T46071") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Description("Verify that able to see location icon  on location page header") // It's // Jira
     // Test
     // Case.
-    @TmsLink("PRJCBUGEN_T46151") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN_T46071") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -58,25 +59,28 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
+
         System.out.println("start to do tearDown");
+
     }
 
     // Each step is a single test step from Jira Test Case
-    @Step("Test Step 1: Login to pro account success.")
+    @Step("Test Step 1: Login to premium account success.")
     public void step1() {
 
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
-
+        webportalLoginPage.defaultLogin();
+        handle.gotoLoction();
     }
 
-    @Step("Test Step 2: Verify working of Location landing page location header filter")
+    @Step("Test Step 2: Verify location is visible on location dashboard")
     public void step2() {
 
-        new OrganizationPage(false).openOrg("Netgear");
-        MyCommonAPIs.sleepi(5);
-        assertTrue(new OrganizationPage(false).verifyFilterOptionsOnLocationLandingpageHeader(),
-                "Location landing page location header filter not working");
+        MyCommonAPIs.sleepi(10);
+        assertTrue(
+                new OrganizationPage(false).locationSummaryPageImage.shouldBe(Condition.visible).isDisplayed()
+                        && new OrganizationPage(false).locationSummaryPagName.shouldBe(Condition.visible).isDisplayed(),
+                "On location dashboard page location name is not visisble");
 
     }
 
