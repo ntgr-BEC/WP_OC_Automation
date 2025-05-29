@@ -81,7 +81,7 @@ public class AccountPage extends AccountPageElement {
                 addNetworkButton.shouldBe(Condition.visible).click();
             } else if (addNetWorkButton.isDisplayed()) {
                 addNetWorkButton.click();
-            } else if (addNetWorkPro.exists()) {
+            } else if (addNetWorkPro.isDisplayed()) {
                 addNetWorkPro.click();
                 MyCommonAPIs.sleepi(5);
                 addsinglelocation.shouldBe(Condition.visible).click();
@@ -210,76 +210,66 @@ public class AccountPage extends AccountPageElement {
     }
 
     public void addNetworkforLocationCheck(Map<String, String> map) {
-        boolean exit = false;
         try {
 
+            logger.info("Create location.");
+            for (String ss : map.keySet()) {
+                logger.info(ss + ": " + map.get(ss));
+            }
+            MyCommonAPIs.sleepi(5);
+            if (addNetWorkButton.isDisplayed()) {
+                addNetWorkButton.click();
+                MyCommonAPIs.sleepi(5);
+            } else if (addNetWorkPro.isDisplayed()) {
+                addNetWorkPro.click();
+                MyCommonAPIs.sleepi(5);
+                addsinglelocation.click();
+                MyCommonAPIs.sleepi(5);
+            }
+            // timeZone.waitUntil(Condition.matchText("UTC"), 20 * 1000);
+            // MyCommonAPIs.sleep(10000);
+            addNetLocationName.sendKeys(map.get("Location Name"));
+            MyCommonAPIs.sleep(1000);
+            addNetPassword.sendKeys(map.get("Device Admin Password"));
+            if (map.containsKey("Street")) {
+                addNetStreet.setValue(map.get("Street"));
+            }
+            if (map.containsKey("City")) {
+                addNetCity.setValue(map.get("City"));
+            }
+            if (map.containsKey("State")) {
+                addNetState.setValue(map.get("State"));
+            }
+            addNetZipcode.sendKeys(map.get("Zip Code"));
+            netCountryList.selectOption(map.get("Country"));
+            if (map.containsKey("Time Zone")) {
+                timeZone.selectOption(map.get("Time Zone"));
+            }
+
+            if (map.containsKey("Wireless Region")) {
+                setWirelessRegion(map.get("Wireless Region"));
+            }
+
+            if (map.containsKey("image") && ImageIcon.exists()) {
+                System.out.println("clickkkkkkkkkkkkkkkkkkkkk" + ImageIcon.getAttribute("type"));
+                ImageIcon.sendKeys(map.get("image"));
+                /**
+                 * Autoit used if required
+                 * // Runtime.getRuntime().exec(map.get("image"));
+                 * //usage if req : locationInfo.put("image", "D:\\Automation_WP\\BIN\\Autoit\\autofirst.exe");
+                 **/
+            }
+            // ButtonElements.SAVEBUTTON.click();
+            MyCommonAPIs.sleepi(2);
+            savebutton.click();
+
+            MyCommonAPIs.sleepi(3);
             // if (locationlist.getAttribute("aria-expanded").equals("false")) {
             // locationlist.click();
             // }
 
             if (locationName(map.get("Location Name")).exists()) {
-                logger.info("Location is existed.");
-                exit = true;
-            }
-
-            if (!exit) {
-                logger.info("Create location.");
-                for (String ss : map.keySet()) {
-                    logger.info(ss + ": " + map.get(ss));
-                }
-                MyCommonAPIs.sleepi(5);
-                if (addNetWorkButton.exists()) {
-                    addNetWorkButton.click();
-                } else if (addNetWorkPro.exists()) {
-                    addNetWorkPro.click();
-                    addsinglelocation.click();
-                }
-//                timeZone.waitUntil(Condition.matchText("UTC"), 20 * 1000);
-                // MyCommonAPIs.sleep(10000);
-                addNetLocationName.sendKeys(map.get("Location Name"));
-                MyCommonAPIs.sleep(1000);
-                addNetPassword.sendKeys(map.get("Device Admin Password"));
-                if (map.containsKey("Street")) {
-                    addNetStreet.setValue(map.get("Street"));
-                }
-                if (map.containsKey("City")) {
-                    addNetCity.setValue(map.get("City"));
-                }
-                if (map.containsKey("State")) {
-                    addNetState.setValue(map.get("State"));
-                }
-                addNetZipcode.sendKeys(map.get("Zip Code"));
-                netCountryList.selectOption(map.get("Country"));
-                if (map.containsKey("Time Zone")) {
-                    timeZone.selectOption(map.get("Time Zone"));
-                }
-
-                if (map.containsKey("Wireless Region")) {
-                    setWirelessRegion(map.get("Wireless Region"));
-                }
-
-                if (map.containsKey("image") && ImageIcon.exists()) {
-                    System.out.println("clickkkkkkkkkkkkkkkkkkkkk" + ImageIcon.getAttribute("type"));
-                    ImageIcon.sendKeys(map.get("image"));
-                    /**
-                     * Autoit used if required
-                     * // Runtime.getRuntime().exec(map.get("image"));
-                     * //usage if req : locationInfo.put("image", "D:\\Automation_WP\\BIN\\Autoit\\autofirst.exe");
-                     **/
-                }
-                // ButtonElements.SAVEBUTTON.click();
-                MyCommonAPIs.sleepi(2);
-                savebutton.click();
-
-                MyCommonAPIs.sleepi(3);
-                // if (locationlist.getAttribute("aria-expanded").equals("false")) {
-                // locationlist.click();
-                // }
-
-                if (locationName(map.get("Location Name")).exists()) {
-                    logger.info("Location create successful");
-                }
-
+                logger.info("Location create successful");
             }
         } catch (Exception e) {
             System.out.println("Exception => " + e.getMessage());
@@ -1069,39 +1059,26 @@ public class AccountPage extends AccountPageElement {
 
     // Added By Shoib
     public boolean VerifyCreatedLocations(List<String> loclist, int totalinput) {
-        // TODO Auto-generated method stub
         boolean res = false;
-        int count = 0;
-        int totalcount = loclist.size();
-        TotalLocationCountPath.scrollIntoView("{behavior: \"instant\", block: \"end\", inline: \"nearest\"}");
-        String displaycount = TotalLocationCountPath.getText();
-        System.out.println(displaycount);
-        if (displaycount.contains("(" + Integer.toString(totalcount) + ")")) {
+        OrganizationPage page = new OrganizationPage();
+        page.gotoPage();
+        MyCommonAPIs.sleepi(5);
+        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
+        MyCommonAPIs.sleepi(5);
+        new OrganizationPage(false).locDashLocationsHeaderCount.shouldBe(Condition.visible);
+        String displaycount = new OrganizationPage(false).locDashLocationsHeaderCount.getText();
+        System.out.println("Count on UI : "+displaycount);
+        String str2 = Integer.toString(totalinput);
+        if (displaycount.trim().equals(str2)) {
             System.out.println("Total Locations Count Created are Matching with the Available Location Count On Page");
-            System.out.println("Printing Total Locations Count --->" + totalcount + displaycount);
+            System.out.println("Printing Total Locations Count --->" + str2 + displaycount);
             res = true;
         }
 
         else {
             System.out.println("Location Count Mismatching ----- Alert");
-            System.out.println("Printing Total Locations Count --->" + totalcount + displaycount);
+            System.out.println("Printing Total Locations Count --->" + displaycount);
         }
-
-        // for(String temp : loclist) {
-        // if(locationName(temp).scrollIntoView("{behavior: \"instant\", block: \"end\", inline: \"nearest\"}") != null) {
-        // System.out.println("Scrolled to Location");}
-        // else {
-        // locationName(temp).scrollIntoView("{behavior: \"instant\", block: \"end\", inline: \"nearest\"}");
-        // }
-        //
-        // if (locationName(temp).exists()) {
-        // logger.info(temp+"<----Location Exists[Happy]");
-        // count = count+1;
-        // }
-        // else {
-        // logger.info(temp+"<----Location Doesnot Exists[Sad]");
-        // }
-        // }
 
         return res;
     }
