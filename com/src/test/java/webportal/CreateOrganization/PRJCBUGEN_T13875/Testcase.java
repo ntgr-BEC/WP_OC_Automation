@@ -5,12 +5,15 @@ import static org.testng.Assert.assertTrue;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+import com.codeborne.selenide.Condition;
+
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -44,7 +47,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
-
-        assertTrue(page.AddOrg.exists(), "check Add org must be existed for admin user");
+        MyCommonAPIs.sleepi(5);
+        assertTrue(page.AddOrg.shouldBe(Condition.visible).isDisplayed(), "check Add org must be existed for admin user");
     }
 }

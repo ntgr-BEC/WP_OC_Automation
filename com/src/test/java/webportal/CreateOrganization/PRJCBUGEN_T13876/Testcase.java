@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -44,7 +45,7 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
-        
-        assertTrue(!page.AddOrg.exists(), "check Add org must not be existed for Manager user");
+        MyCommonAPIs.sleepi(5);
+        assertTrue(!page.AddOrg.isDisplayed(), "check Add org must not be existed for Manager user");
     }
 }

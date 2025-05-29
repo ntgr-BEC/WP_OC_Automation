@@ -1102,15 +1102,16 @@ public class AccountPage extends AccountPageElement {
 
     public void editAndChangePasswordPriaccLocation() {
 
-        MyCommonAPIs.sleepi(1);
-        editLocation.click();
-        MyCommonAPIs.sleepi(1);
-        editLocationbtn.click();
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew("office1").getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         changePassword.clear();
         MyCommonAPIs.sleepi(1);
         changePassword.sendKeys("Netgear2@");
-        viewPassword.click();
         MyCommonAPIs.sleepi(1);
         clkonSave.click();
         MyCommonAPIs.sleepi(2);
@@ -1121,15 +1122,13 @@ public class AccountPage extends AccountPageElement {
 
     public boolean verifyLocPassword() {
         boolean result = false;
-        MyCommonAPIs.sleepi(1);
-        editLocation.click();
-        MyCommonAPIs.sleepi(1);
-        editLocationbtn.click();
-        MyCommonAPIs.sleepi(1);
-        viewPassword.click();
-        MyCommonAPIs.sleepi(1);
-        checkPassword.click();
-        MyCommonAPIs.sleepi(1);
+        MyCommonAPIs.sleepi(2);
+        String rowindex=dropdownLocationElementNew("office1").getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
         if (checkPassword.isDisplayed()) {
             System.out.println("Location Password Changed to Netgear2@");
             result = true;
@@ -1143,15 +1142,16 @@ public class AccountPage extends AccountPageElement {
 
     public void editAndChangePasswordProaccLocation() {
 
-        MyCommonAPIs.sleepi(5);
-        editLocationpro.click();
         MyCommonAPIs.sleepi(2);
-        editLocationbtnpro.click();
+        String rowindex=dropdownLocationElementNew("office1").getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         changePasswordpro.clear();
         MyCommonAPIs.sleepi(1);
         changePasswordpro.sendKeys("Netgear2@");
-        viewPasswordpro.click();
         MyCommonAPIs.sleepi(1);
         clkonSavepro.click();
         MyCommonAPIs.sleepi(1);
@@ -1163,9 +1163,11 @@ public class AccountPage extends AccountPageElement {
     public boolean verifyProLocPassword() {
         boolean result = false;
         MyCommonAPIs.sleepi(2);
-        editLocationpro.click();
-        MyCommonAPIs.sleepi(1);
-        editLocationbtnpro.click();
+        String rowindex=dropdownLocationElementNew("office1").getAttribute("aria-rowindex");
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         checkproPassword.click();
         MyCommonAPIs.sleepi(1);

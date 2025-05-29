@@ -569,15 +569,7 @@ public class OrganizationPage extends OrganizationElement {
 
        public boolean checkOrganizationIsExist(String name) {
         boolean result = false;
-        listChangeToGrid();
-        // if(orgClick.exists())
-        // {
-        // orgClick.click();
-        // }
-        MyCommonAPIs.sleepi(10);
-        System.out.println(organizationElement(name).exists());
-        System.out.println(organizationElement(name).isDisplayed());
-        
+        System.out.println(organizationElement(name).shouldBe(Condition.visible).isDisplayed());    
         if (organizationElement(name).exists() ||  organizationElement(name).isDisplayed()) {
             result = true;
             logger.info("Organization is existed.");

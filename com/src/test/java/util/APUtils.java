@@ -1684,7 +1684,7 @@ public boolean getCustomerProfileStatus(String CustomerProfileOption, String Mod
     MyCommonAPIs.sleepi(5);
     boolean result = false;
     String status = "";
-    if (Model.startsWith("WBE")) {
+    if (Model.startsWith("WBE") || Model.startsWith("WAX")) {
         logger.info("entered WBE model");
         status = plink.getOutput("cat /sysconfig/config | grep customerProfile", default_timeout_ssh);
         if (status.contains(CustomerProfileOption)) {

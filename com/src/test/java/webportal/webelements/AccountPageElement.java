@@ -278,7 +278,7 @@ public class AccountPageElement extends MyCommonAPIs {
     }
     }
     
-    public SelenideElement        checkPassword               = $x("//input[@value=\"Netgear2@\"]");
+    public SelenideElement        checkPassword               = $x("//input[@value='Netgear2@']");
     public SelenideElement        editLocationpro             = $x("//*[@id=\"_ancliLocDiv0\"]");
     public SelenideElement        editLocationbtnpro          = $x("//b[text()='Edit']");
     public SelenideElement        changePasswordpro           = $x("//*[@id=\"editAdminPass\"]");
