@@ -4317,7 +4317,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void openCreateProAccountUrl() {
         System.out.println("opening register URL");
-        String url = "https://" + WebportalParam.serverUrlLogin + "/#/register";
+        String url = WebportalParam.serverUrlLogin + "/#/register";
         // String url = "insight.netgear.com/#/register";
         // String url = "https://pri-qa.insight.netgear.com/#/register";
         System.out.println(url);
@@ -6295,11 +6295,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         clickBusinessInfoPageButton();
         logger.info("Sign up success.");
         MyCommonAPIs.sleepi(15);
-        if (proaccCreatedNotificationCognito.exists()) {
+        if (proaccCreatedOKBtnCognito.isDisplayed()) {
             proaccCreatedOKBtnCognito.click();
             MyCommonAPIs.sleepi(15);
             if (isInLoginPage()) {
-                new WebportalLoginPage().inputLogin((map.get("Confirm Email")), (map.get("Password")));
+                new WebportalLoginPage(false).inputLogin((map.get("Confirm Email")), (map.get("Password")));
             }
             waitReady();
             MyCommonAPIs.sleepsync();

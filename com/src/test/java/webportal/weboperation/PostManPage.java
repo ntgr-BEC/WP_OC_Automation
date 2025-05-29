@@ -79,6 +79,9 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.concurrent.TimeUnit;
 import java.io.IOException;
+import okhttp3.*;
+import org.json.JSONObject;
+import java.io.IOException;
 
 public class PostManPage extends MyCommonAPIs {
 
@@ -86,7 +89,7 @@ public class PostManPage extends MyCommonAPIs {
         logger.info("into Postman...");
     }
 
-    public void Deregister(String SLNo) {
+    public void Deregisterold(String SLNo) {
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             // Create the HTTP POST request to deregister AP
@@ -126,125 +129,83 @@ public class PostManPage extends MyCommonAPIs {
 
     }
     
-    public static String getRefreshToken() throws Exception {
-        String url = "https://cognito-idp.eu-west-1.amazonaws.com/";
-        URL obj = new URL(url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+    private static final String CLIENT_ID = "3329e9jbjhg6ecv365afgp709b";
+    private static final String USERNAME = "sumanta.jena@netgear.com";
+    private static final String PASSWORD = "!@Automation@1234"; // Replace with actual
+    private static final String API_KEY = "175208f843081dc7d9addad1e372c51c04c4c3dd54834a500d85955f71742a34";
 
-        // Setting basic post request
-        con.setRequestMethod("POST");
-        con.setRequestProperty("Content-Type", "application/x-amz-json-1.1");
-        con.setRequestProperty("X-Amz-Target", "AWSCognitoIdentityProviderService.InitiateAuth");
+    public static void Deregister(String serialNumber) {
+        try {
+            String refreshToken = getRefreshToken();
+            String accessToken = getAccessToken(refreshToken);
+            performDeregister(serialNumber, accessToken);
+        } catch (Exception e) {
+            System.err.println("Failed to deregister device " + serialNumber + ": " + e.getMessage());
+        }
+    }
 
-        // Request body
-        String jsonInputString = "{\n" +
-                "   \"AuthParameters\" : {\n" +
-                "      \"USERNAME\" : \"sumanta.jena@netgear.com\",\n" +
-                "      \"PASSWORD\" : \"!@Automation@1234\"\n" +
-                "   },\n" +
-                "   \"AuthFlow\" : \"USER_PASSWORD_AUTH\",\n" +
-                "   \"ClientId\" : \"454f9lfekd240pu1kdfpqth9fg\"\n" +
+    private static String getRefreshToken() throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        String json = "{\n" +
+                "  \"AuthParameters\": {\n" +
+                "    \"USERNAME\": \"" + USERNAME + "\",\n" +
+                "    \"PASSWORD\": \"" + PASSWORD + "\"\n" +
+                "  },\n" +
+                "  \"AuthFlow\": \"USER_PASSWORD_AUTH\",\n" +
+                "  \"ClientId\": \"" + CLIENT_ID + "\"\n" +
                 "}";
 
-        // Send post request
-        con.setDoOutput(true);
-        DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-        wr.writeBytes(jsonInputString);
-        wr.flush();
-        wr.close();
+        RequestBody body = RequestBody.create(MediaType.parse("application/x-amz-json-1.1"), json);
+        Request request = new Request.Builder()
+                .url("https://cognito-idp.us-east-1.amazonaws.com")
+                .post(body)
+                .addHeader("Content-Type", "application/x-amz-json-1.1")
+                .addHeader("X-Amz-Target", "AWSCognitoIdentityProviderService.InitiateAuth")
+                .build();
 
-        int responseCode = con.getResponseCode();
-        if (responseCode != HttpURLConnection.HTTP_OK) {
-            throw new RuntimeException("Failed : HTTP error code : " + responseCode);
+        try (Response response = client.newCall(request).execute()) {
+            String res = response.body().string();
+            return new JSONObject(res).getJSONObject("AuthenticationResult").getString("RefreshToken");
         }
-
-        BufferedReader in = new BufferedReader(
-                new InputStreamReader(con.getInputStream()));
-        String inputLine;
-        StringBuilder response = new StringBuilder();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        // Parse JSON
-        JSONObject jsonResponse = new JSONObject(response.toString());
-        String refreshToken = jsonResponse.getJSONObject("AuthenticationResult").getString("RefreshToken");
-
-        return refreshToken;
     }
-    
 
-    public static String getAccessToken() {
-        String accessToken = "";
-        HttpURLConnection con = null;
-        try {
-            String url = "https://accounts2-stg.netgear.com/api/getAccessToken";
-            URL obj = new URL(url);
-            con = (HttpURLConnection) obj.openConnection();
+    private static String getAccessToken(String refreshToken) throws IOException {
+        OkHttpClient client = new OkHttpClient();
 
-            con.setRequestMethod("POST");
-            con.setConnectTimeout(10000);
-            con.setReadTimeout(10000);
+        Request request = new Request.Builder()
+                .url("https://accounts-qa.netgear.com/api/getAccessToken")
+                .get()
+                .addHeader("X-Amz-Target", "AWSCognitoIdentityProviderService.InitiateAuth")
+                .addHeader("Content-Type", "application/json")
+                .addHeader("appkey", CLIENT_ID)
+                .addHeader("Authorization", "Bearer " + refreshToken)
+                .build();
 
-            // Set headers
-            con.setRequestProperty("X-Amz-Target", "AWSCognitoIdentityProviderService.InitiateAuth");
-            con.setRequestProperty("Content-Type", "application/json");
-            con.setRequestProperty("appkey", "454f9lfekd240pu1kdfpqth9fg");
-
-            // Use latest refresh token or valid one
-            String bearerToken = getRefreshToken();
-            con.setRequestProperty("Authorization", "Bearer " + bearerToken);
-
-            // Enable output for POST
-            con.setDoOutput(true);
-
-            // Send empty JSON body if expected
-            String jsonInputString = "{}";
-            try (OutputStream os = con.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
-                os.write(input, 0, input.length);
-            }
-
-            int responseCode = con.getResponseCode();
-            if (responseCode == 200) {
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
-                    StringBuilder response = new StringBuilder();
-                    String inputLine;
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    JSONObject jsonResponse = new JSONObject(response.toString());
-
-                    // Ensure key name matches actual response format
-                    if (jsonResponse.has("accessToken")) {
-                        accessToken = jsonResponse.getString("accessToken");
-                    } else {
-                        System.err.println("Access token key not found in response.");
-                    }
-                }
-            } else {
-                System.err.println("Failed to get access token. HTTP error code: " + responseCode);
-                try (BufferedReader err = new BufferedReader(new InputStreamReader(con.getErrorStream(), "utf-8"))) {
-                    StringBuilder errorResponse = new StringBuilder();
-                    String inputLine;
-                    while ((inputLine = err.readLine()) != null) {
-                        errorResponse.append(inputLine);
-                    }
-                    System.err.println("Error response body: " + errorResponse.toString());
-                }
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (con != null) {
-                con.disconnect();
-            }
+        try (Response response = client.newCall(request).execute()) {
+            String res = response.body().string();
+            return new JSONObject(res).getJSONObject("data").getString("accessToken");
         }
-        return accessToken;
     }
+
+    private static void performDeregister(String serialNumber, String accessToken) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        String bodyJson = "{ \"serialNumber\": \"" + serialNumber + "\" }";
+        RequestBody body = RequestBody.create(MediaType.parse("text/plain"), bodyJson);
+
+        Request request = new Request.Builder()
+                .url("https://ocapi-qa.netgear.com/api/v2/ocProductRegisterDeactivate/?accessToken=" + accessToken)
+                .post(body)
+                .addHeader("x-dreamfactory-api-key", API_KEY)
+                .addHeader("Content-Type", "text/plain")
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            System.out.println("Deregister response: " + response.code());
+            System.out.println(response.body().string());
+        }
+    } 
 
     }
     

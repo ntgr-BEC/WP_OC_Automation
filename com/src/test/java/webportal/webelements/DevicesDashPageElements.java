@@ -148,7 +148,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
             addDeviceProAccount.click();
         }
         else {
-            addDeviceProAccount.click();
+            addDeviceProAccount1.click();
             MyCommonAPIs.sleepi(5);
         }
             if (addSingleDevice.exists()) {
@@ -348,6 +348,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     public SelenideElement ap                         = $x("//tr[contains(@id,'trtbdydevicesDash')]/td[text()='Access Point']");
     public SelenideElement noDeviceAvailable          = $x("//td[text()='No device available']");
     public SelenideElement addDeviceProAccount        = $x("//div[@id='divLocBardevicesDash']/div/span[@class='icon-add dropdown-toggle']");
+    public SelenideElement addDeviceProAccount1       = $x("//*[@id=\"_divRowColIconOrg\"]/div[2]/span");
     public SelenideElement lastKnownInfo              = $x("//p[text()='Last known information']");
     public SelenideElement lastKnownInfostarsym       = $x("//span[text()='*' and @class='colorRed']");
     public SelenideElement upTimedeviceDashVerify     = $x("//td[@id='tdUpTimedevicesDash0']");
