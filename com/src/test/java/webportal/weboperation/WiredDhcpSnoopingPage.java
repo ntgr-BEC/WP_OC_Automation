@@ -95,7 +95,9 @@ public class WiredDhcpSnoopingPage extends WiredDhcpSnoopingElement {
         if (el.exists()) {
             if (!isEnable(el)) {
                 click(el);
+                MyCommonAPIs.sleepi(5);
                 click(saveGlobalConfiguration);
+                MyCommonAPIs.sleepi(5);
             }
         }
 
