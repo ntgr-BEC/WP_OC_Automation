@@ -14,6 +14,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
@@ -51,13 +52,13 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
-        
+        MyCommonAPIs.sleepi(5);
         Map<String, String> organizationInfo = new HashMap<String, String>();
         organizationInfo.put("Name", organizationName);
         
         Map<String, String> organizationInfo1 = new HashMap<String, String>();
         page.addOrganization(organizationInfo);
-
+        MyCommonAPIs.sleepi(5);
         if (page.checkOrganizationIsExist(organizationName)) {
             organizationInfo1.put("Name", organizationName);
             organizationInfo1.put("Scheduled Reports", "disable");

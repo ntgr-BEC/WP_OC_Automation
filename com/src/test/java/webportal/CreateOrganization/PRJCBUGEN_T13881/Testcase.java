@@ -11,6 +11,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.Story;
 import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
+import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
 import webportal.weboperation.AccountPage;
 import webportal.weboperation.OrganizationPage;
@@ -51,8 +52,11 @@ public class Testcase extends TestCaseBase {
     public void step2() {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
+        MyCommonAPIs.sleepi(5);
         page.addOrganization(organizationName1, "1");
+        MyCommonAPIs.sleepi(5);
         page.openOrg(organizationName1);
+        MyCommonAPIs.sleepi(5);
         AccountPage page1 = new AccountPage(true);
         assertTrue(page1.checkLocationNumber("1"), "Created organization with 1 location failed.");
     }
@@ -61,9 +65,13 @@ public class Testcase extends TestCaseBase {
     public void step3() {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
+        MyCommonAPIs.sleepi(5);
         page.addOrganization(organizationName2, "2");
+        MyCommonAPIs.sleepi(5);
         page.openOrg(organizationName2);
+        MyCommonAPIs.sleepi(5);
         AccountPage page1 = new AccountPage(true);
+        MyCommonAPIs.sleepi(5);
         assertTrue(page1.checkLocationNumber("2"), "Created organization with 2 locations failed.");
     }
     
