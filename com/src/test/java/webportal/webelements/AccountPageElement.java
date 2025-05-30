@@ -35,7 +35,7 @@ public class AccountPageElement extends MyCommonAPIs {
     public SelenideElement           TotalLocationCountPath= $x("//div[@class=\"TableHeader headerindex1\"]/h3[1]");
     
     public static SelenideElement    addNetWorkButton      = $("[data-tooltip='" + WebportalParam.getLocText("Add Network") + "']");
-    public static SelenideElement    addNetWorkPro         = $("[data-tooltip='" + WebportalParam.getLocText("Add Location") + "']");
+    public static SelenideElement    addNetWorkPro         = $x("//div[@data-tooltip='Add Location']/span");
     public SelenideElement           addsinglelocation     = $x("//b[text()='Add Single Location']/..");
     public SelenideElement           locationlist          = $("#locationDropdown");
     public ElementsCollection        alllocations          = $$(Selectors.byXpath("//ul[@class='search-location-list']/li"));

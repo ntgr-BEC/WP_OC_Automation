@@ -97,31 +97,23 @@ public class Testcase extends TestCaseBase {
           
       @Step("Test Step 3: Create two locations;")
       public void step3() {
-          OrganizationPage OrganizationPage = new OrganizationPage();
-          OrganizationPage.openOrg(organizationName);
-          HashMap<String, String> locationInfo1 = new HashMap<String, String>();
-          locationInfo1.put("Device Admin Password", WebportalParam.loginDevicePassword);
-          locationInfo1.put("Zip Code", "12345");
-          locationInfo1.put("Country", WebportalParam.Country);
           List<String> Loclist=new ArrayList<String>();  
           int totalLocationsrequired = 2;
           int created = 0;
-          for(int i = 1; i <=totalLocationsrequired; i++){
-              Random random = new Random();
-              int num = random.nextInt(100000);
-              String formatted = String.format("%05d", num);
-              Loclist.add(locationName+i);
-              locationInfo1.put("Location Name", locationName+i);
-              new AccountPage(false).addNetworkforLocationCheck(locationInfo1);
-              created = created+1;
-              System.out.println("Location ---------->"+created+" Created");
-              MyCommonAPIs.sleepi(5);             
-          }  
-          Selenide.sleep(5000);
-          Selenide.refresh();
-          Selenide.sleep(5000);
-          Selenide.refresh();
-          Selenide.sleep(5000);
+          new OrganizationPage(false).openOrg("Netgear");
+          HashMap<String, String> locationInfo = new HashMap<String, String>();
+          locationInfo.put("Location Name", "office1");
+          locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+          locationInfo.put("Zip Code", "70184");
+          locationInfo.put("Country", "Germany");
+          new AccountPage(false).addNetwork(locationInfo);
+          new OrganizationPage(false).openOrg("Netgear");
+          HashMap<String, String> locationInfo1 = new HashMap<String, String>();
+          locationInfo1.put("Location Name", "office2");
+          locationInfo1.put("Device Admin Password", WebportalParam.loginDevicePassword);
+          locationInfo1.put("Zip Code", "70184");
+          locationInfo1.put("Country", "Germany");
+          new AccountPage(false).addNetwork(locationInfo1);
           assertTrue(new AccountPage(false).VerifyCreatedLocations(Loclist, totalLocationsrequired), "Missing Networks/Locations Noted");
       }
       
