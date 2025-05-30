@@ -582,31 +582,32 @@ public class OrganizationPage extends OrganizationElement {
     public boolean checkOrganizationPolicy(Map<String, String> map) {
         boolean result = false;
         Map<String, String> organizationInfo = new HashMap<String, String>();
-        waitElement(sOrganizationLocationElement1);
-        if (checkOrganizationIsExist(map.get("Name"))) {
-            dropdownOrganizationElement(map.get("Name")).click();
-            editOrganizationElement(map.get("Name")).click();
-            waitElement(NameOrg);
-            MyCommonAPIs.sleepi(2);
-            if (map.containsKey("Email Notifications")) {
-                String emailnotificationsresult = "";
-                if (map.get("Email Notifications").contains("Admin")) {
-                    if ($x(emailnotificationsadmin).isSelected()) {
-                        emailnotificationsresult += "Admin,";
-                    }
+        String rowindex = dropdownOrganizationElementNew(map.get("Name")).getAttribute("aria-rowindex");
+        ariaSetIndex(rowindex).click();
+        ariaSetIndexEdit(rowindex).click();
+        MyCommonAPIs.sleepi(1);
+        refresh();
+        MyCommonAPIs.sleepi(15);
+        waitElement(NameOrg);
+        MyCommonAPIs.sleepi(2);
+        if (map.containsKey("Email Notifications")) {
+            String emailnotificationsresult = "";
+            if (map.get("Email Notifications").contains("Admin")) {
+                if ($x(emailnotificationsadmin).isSelected()) {
+                    emailnotificationsresult += "Admin,";
                 }
-                if (map.get("Email Notifications").contains("Owner")) {
-                    if ($x(emailnotificationsowner).isSelected()) {
-                        emailnotificationsresult += "Owner,";
-                    }
-                }
-                if (map.get("Email Notifications").contains("Manager")) {
-                    if ($x(emailnotificationsmanager).isSelected()) {
-                        emailnotificationsresult += "Manager,";
-                    }
-                }
-                organizationInfo.put("Email Notifications", emailnotificationsresult);
             }
+            if (map.get("Email Notifications").contains("Owner")) {
+                if ($x(emailnotificationsowner).isSelected()) {
+                    emailnotificationsresult += "Owner,";
+                }
+            }
+            if (map.get("Email Notifications").contains("Manager")) {
+                if ($x(emailnotificationsmanager).isSelected()) {
+                    emailnotificationsresult += "Manager,";
+                }
+            }
+            organizationInfo.put("Email Notifications", emailnotificationsresult);
         }
         if (map.containsKey("Mobile App Push Notifications")) {
             String mobileappnotifications = "";
