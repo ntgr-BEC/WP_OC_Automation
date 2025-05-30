@@ -2921,99 +2921,103 @@ public boolean verifySettingPageFilterbyLocation() {
     }
 
 public boolean verifySettingPageFilterOrbi() {
-    
-    boolean result = false;
-    MyCommonAPIs.sleepi(10);
-    waitElement(premiumAccGoToMainPage);
-    premiumAccGoToMainPage.click();
-    MyCommonAPIs.sleepi(10);
-    refresh();
-    MyCommonAPIs.sleepi(10);
-    waitElement(settingsIconOnHomePage);
-    settingsIconOnHomePage.click();
-    MyCommonAPIs.sleepi(2);
-    waitElement(myDevicesoption);
-    myDevicesoption.hover();
-    myDevicesoption.click();
-    MyCommonAPIs.sleepi(30);
-    if (alldevices4Number.exists() && oneLocation.exists() && settingPagetext.exists() && locationsText.exists() && office1Text.exists() ) {
-        logger.info("Landed successfully on Settings==>MyDevices page");
-        plusIconMyDevices.click();
+
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(premiumAccGoToMainPage);
+        premiumAccGoToMainPage.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(10);
+        refresh();
+        MyCommonAPIs.sleepi(10);
+        waitElement(settingsIconOnHomePage);
+        settingsIconOnHomePage.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilter);
-        settingsPageFilter.click();
-        MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilterOrbi);
-        settingsPageFilterOrbi.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsfilteroffice1loc);
-        settingsfilteroffice1loc.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsFilterApplyBtn);
-        settingsFilterApplyBtn.click();
-        MyCommonAPIs.sleepi(5);
-        if (settingsFilterOrbi.exists() && 
-                ((settingsFilterAPWAC.exists() || settingsFilterAPWAX.exists() || settingsFilterSwitch.exists() || settingsFilterBR500.exists() || settingsFilterNoDevices.exists())!=true)) {
-            result = true;
-            logger.info("Settings==>MyDevices Filter Orbi and verifed Orbi showing only");
+        waitElement(myDevicesoption);
+        myDevicesoption.shouldBe(Condition.visible).hover();
+        myDevicesoption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(30);
+        System.out.println("Before outer loop");
+        System.out.println("Before outer loop alldevices4Number "+ alldevices4Number.shouldBe(Condition.visible).isDisplayed());
+        System.out.println("Before outer loop oneLocation "+ oneLocation.shouldBe(Condition.visible).isDisplayed());
+        System.out.println("Before outer loop settingPagetext "+ settingPagetext.shouldBe(Condition.visible).isDisplayed());
+        System.out.println("Before outer loop locationsText "+ locationsText.shouldBe(Condition.visible).isDisplayed());
+        System.out.println("Before outer loop office1Text "+ office1Text.shouldBe(Condition.visible).isDisplayed());
+        if (alldevices4Number.shouldBe(Condition.visible).isDisplayed() && oneLocation.shouldBe(Condition.visible).isDisplayed()
+                && settingPagetext.shouldBe(Condition.visible).isDisplayed() && locationsText.shouldBe(Condition.visible).isDisplayed()
+                && office1Text.shouldBe(Condition.visible).isDisplayed()) {
+            logger.info("Landed successfully on Settings==>MyDevices page");
+            plusIconMyDevices.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilter);
-            settingsPageFilter.click();
-            MyCommonAPIs.sleepi(1);
+            settingsPageFilter.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilterOrbi);
-            settingsPageFilterOrbi.click();
+            settingsPageFilterOrbi.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(1);
             waitElement(settingsfilteroffice1loc);
-            settingsfilteroffice1loc.click();
+            settingsfilteroffice1loc.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleepi(1);
             waitElement(settingsFilterApplyBtn);
-            settingsFilterApplyBtn.click();
-            MyCommonAPIs.sleepi(1);
+            settingsFilterApplyBtn.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(10);
+            System.out.println("Before inner loop");
+            System.out.println("Before inner loop settingsFilterOrbi "+ settingsFilterOrbi.shouldBe(Condition.visible).isDisplayed());
+            System.out.println("Before inner loop settingsFilterAPWAC "+ settingsFilterAPWAC.isDisplayed());
+            System.out.println("Before inner loop settingsFilterAPWAX "+ settingsFilterAPWAX.isDisplayed());
+            System.out.println("Before inner loop settingsFilterSwitch "+ settingsFilterSwitch.isDisplayed());
+            System.out.println("Before inner loop settingsFilterBR500 "+ settingsFilterBR500.isDisplayed());
+            System.out.println("Before inner loop settingsFilterNoDevices "+ settingsFilterNoDevices.isDisplayed());
+            if (settingsFilterOrbi.shouldBe(Condition.visible).isDisplayed() && (!(settingsFilterAPWAC.isDisplayed()
+                    || settingsFilterAPWAX.isDisplayed()
+                    || settingsFilterSwitch.isDisplayed()
+                    || settingsFilterBR500.isDisplayed()
+                    || settingsFilterNoDevices.isDisplayed()))) {
+                result = true;
+                logger.info("Settings==>MyDevices Filter Orbi and verifed Orbi showing only");
+                waitElement(settingsPageFilter);
+                settingsPageFilter.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsPageFilterOrbi);
+                settingsPageFilterOrbi.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsfilteroffice1loc);
+                settingsfilteroffice1loc.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsFilterApplyBtn);
+                settingsFilterApplyBtn.shouldBe(Condition.visible).click();
+                MyCommonAPIs.sleepi(1);
+            }
+
         }
-        
+        return result;
+
     }
-    return result;
 
-}
+    public boolean verifySettingPageFilterBusinessrouter() {
 
-public boolean verifySettingPageFilterBusinessrouter() {
-    
-    boolean result = false;
-    MyCommonAPIs.sleepi(10);
-    waitElement(premiumAccGoToMainPage);
-    premiumAccGoToMainPage.click();
-    MyCommonAPIs.sleepi(10);
-    refresh();
-    MyCommonAPIs.sleepi(10);
-    waitElement(settingsIconOnHomePage);
-    settingsIconOnHomePage.click();
-    MyCommonAPIs.sleepi(2);
-    waitElement(myDevicesoption);
-    myDevicesoption.hover();
-    myDevicesoption.click();
-    MyCommonAPIs.sleepi(30);
-    if (alldevices4Number.exists() && oneLocation.exists() && settingPagetext.exists() && locationsText.exists() && office1Text.exists() ) {
-        logger.info("Landed successfully on Settings==>MyDevices page");
-        plusIconMyDevices.click();
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(premiumAccGoToMainPage);
+        premiumAccGoToMainPage.click();
+        MyCommonAPIs.sleepi(10);
+        refresh();
+        MyCommonAPIs.sleepi(10);
+        waitElement(settingsIconOnHomePage);
+        settingsIconOnHomePage.click();
         MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilter);
-        settingsPageFilter.click();
-        MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilterBR500);
-        settingsPageFilterBR500.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsfilteroffice1loc);
-        settingsfilteroffice1loc.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsFilterApplyBtn);
-        settingsFilterApplyBtn.click();
-        MyCommonAPIs.sleepi(5);
-        if (settingsFilterBR500.exists() && 
-                ((settingsFilterOrbi.exists() || settingsFilterSwitch.exists() || settingsFilterAPWAC.exists() || settingsFilterAPWAX.exists() || settingsFilterNoDevices.exists())!=true)) {
-            result = true;
-            logger.info("Settings==>MyDevices Filter BR500 and verifed BR500 showing only");
+        waitElement(myDevicesoption);
+        myDevicesoption.hover();
+        myDevicesoption.click();
+        MyCommonAPIs.sleepi(30);
+        if (alldevices4Number.shouldBe(Condition.visible).isDisplayed() && oneLocation.shouldBe(Condition.visible).isDisplayed()
+                && settingPagetext.shouldBe(Condition.visible).isDisplayed() && locationsText.shouldBe(Condition.visible).isDisplayed()
+                && office1Text.shouldBe(Condition.visible).isDisplayed()) {
+            logger.info("Landed successfully on Settings==>MyDevices page");
+            plusIconMyDevices.click();
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilter);
             settingsPageFilter.click();
-            MyCommonAPIs.sleepi(1);
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilterBR500);
             settingsPageFilterBR500.click();
             MyCommonAPIs.sleepi(1);
@@ -3021,53 +3025,58 @@ public boolean verifySettingPageFilterBusinessrouter() {
             settingsfilteroffice1loc.click();
             MyCommonAPIs.sleepi(1);
             waitElement(settingsFilterApplyBtn);
-            settingsFilterApplyBtn.click();
-            MyCommonAPIs.sleepi(1);
-        }
-        
-    }
-    return result;
-}
+            settingsFilterApplyBtn.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(10);
+            if (settingsFilterBR500.shouldBe(Condition.visible).isDisplayed() && (!(settingsFilterOrbi.isDisplayed()
+                    || settingsFilterSwitch.isDisplayed()
+                    || settingsFilterAPWAC.isDisplayed()
+                    || settingsFilterAPWAX.isDisplayed()
+                    || settingsFilterNoDevices.isDisplayed()))) {
+                result = true;
+                logger.info("Settings==>MyDevices Filter BR500 and verifed BR500 showing only");
+                waitElement(settingsPageFilter);
+                settingsPageFilter.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsPageFilterBR500);
+                settingsPageFilterBR500.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsfilteroffice1loc);
+                settingsfilteroffice1loc.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsFilterApplyBtn);
+                settingsFilterApplyBtn.click();
+                MyCommonAPIs.sleepi(1);
+            }
 
-public boolean verifySettingPageFilterSwitch() {
-    
-    boolean result = false;
-    MyCommonAPIs.sleepi(10);
-    waitElement(premiumAccGoToMainPage);
-    premiumAccGoToMainPage.click();
-    MyCommonAPIs.sleepi(10);
-    refresh();
-    MyCommonAPIs.sleepi(10);
-    waitElement(settingsIconOnHomePage);
-    settingsIconOnHomePage.click();
-    MyCommonAPIs.sleepi(2);
-    waitElement(myDevicesoption);
-    myDevicesoption.hover();
-    myDevicesoption.click();
-    MyCommonAPIs.sleepi(30);
-    if (alldevices4Number.exists() && oneLocation.exists() && settingPagetext.exists() && locationsText.exists() && office1Text.exists() ) {
-        logger.info("Landed successfully on Settings==>MyDevices page");
-        plusIconMyDevices.click();
+        }
+        return result;
+    }
+
+    public boolean verifySettingPageFilterSwitch() {
+
+        boolean result = false;
+        MyCommonAPIs.sleepi(10);
+        waitElement(premiumAccGoToMainPage);
+        premiumAccGoToMainPage.click();
+        MyCommonAPIs.sleepi(10);
+        refresh();
+        MyCommonAPIs.sleepi(10);
+        waitElement(settingsIconOnHomePage);
+        settingsIconOnHomePage.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilter);
-        settingsPageFilter.click();
-        MyCommonAPIs.sleepi(2);
-        waitElement(settingsPageFilterSwitch);
-        settingsPageFilterSwitch.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsfilteroffice1loc);
-        settingsfilteroffice1loc.click();
-        MyCommonAPIs.sleepi(1);
-        waitElement(settingsFilterApplyBtn);
-        settingsFilterApplyBtn.click();
-        MyCommonAPIs.sleepi(5);
-        if (settingsFilterSwitch.exists() && 
-                ((settingsFilterOrbi.exists() || settingsFilterAPWAC.exists() || settingsFilterAPWAX.exists() || settingsFilterBR500.exists() || settingsFilterNoDevices.exists())!=true)) {
-            result = true;
-            logger.info("Settings==>MyDevices Filter Switch and verifed Switch showing only");
+        waitElement(myDevicesoption);
+        myDevicesoption.shouldBe(Condition.visible).hover();
+        myDevicesoption.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(30);
+        if (alldevices4Number.shouldBe(Condition.visible).isDisplayed() && oneLocation.shouldBe(Condition.visible).isDisplayed()
+                && settingPagetext.shouldBe(Condition.visible).isDisplayed() && locationsText.shouldBe(Condition.visible).isDisplayed()
+                && office1Text.shouldBe(Condition.visible).isDisplayed()) {
+            logger.info("Landed successfully on Settings==>MyDevices page");
+            plusIconMyDevices.click();
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilter);
             settingsPageFilter.click();
-            MyCommonAPIs.sleepi(1);
+            MyCommonAPIs.sleepi(2);
             waitElement(settingsPageFilterSwitch);
             settingsPageFilterSwitch.click();
             MyCommonAPIs.sleepi(1);
@@ -3075,13 +3084,32 @@ public boolean verifySettingPageFilterSwitch() {
             settingsfilteroffice1loc.click();
             MyCommonAPIs.sleepi(1);
             waitElement(settingsFilterApplyBtn);
-            settingsFilterApplyBtn.click();
-            MyCommonAPIs.sleepi(1);
+            settingsFilterApplyBtn.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(10);
+            if (settingsFilterSwitch.shouldBe(Condition.visible).isDisplayed() && (!(settingsFilterOrbi.isDisplayed()
+                    || settingsFilterAPWAC.isDisplayed()
+                    || settingsFilterAPWAX.isDisplayed()
+                    || settingsFilterBR500.isDisplayed()
+                    || settingsFilterNoDevices.isDisplayed()))) {
+                result = true;
+                logger.info("Settings==>MyDevices Filter Switch and verifed Switch showing only");
+                waitElement(settingsPageFilter);
+                settingsPageFilter.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsPageFilterSwitch);
+                settingsPageFilterSwitch.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsfilteroffice1loc);
+                settingsfilteroffice1loc.click();
+                MyCommonAPIs.sleepi(1);
+                waitElement(settingsFilterApplyBtn);
+                settingsFilterApplyBtn.click();
+                MyCommonAPIs.sleepi(1);
+            }
+
         }
-        
+        return result;
     }
-    return result;
-}
 
 public boolean verifySettingPageFilterAirbridge() {
     
