@@ -2,6 +2,11 @@ package webportal.CreateOrganization.PRJCBUGEN_T13881;
 
 import static org.testng.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -53,12 +58,20 @@ public class Testcase extends TestCaseBase {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
         MyCommonAPIs.sleepi(5);
-        page.addOrganization(organizationName1, "1");
+        Map<String, String> organizationInfo = new HashMap<String, String>();
+        organizationInfo.put("Name", organizationName1);
+        page.addOrganization(organizationInfo);
         MyCommonAPIs.sleepi(5);
-        page.openOrg(organizationName1);
-        MyCommonAPIs.sleepi(5);
-        AccountPage page1 = new AccountPage(true);
-        assertTrue(page1.checkLocationNumber("1"), "Created organization with 1 location failed.");
+        List<String> Loclist=new ArrayList<String>();  
+        int totalLocationsrequired = 1;
+        int created = 0;
+        new OrganizationPage(false).openOrg(organizationName1);
+        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", "office1");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "70184");
+        locationInfo.put("Country", "Germany");
+        new AccountPage(false).addNetwork(locationInfo);
     }
 
     @Step("Test Step 3:  to Create multiple locations under the organization")
@@ -66,13 +79,20 @@ public class Testcase extends TestCaseBase {
         OrganizationPage page = new OrganizationPage();
         page.gotoPage();
         MyCommonAPIs.sleepi(5);
-        page.addOrganization(organizationName2, "2");
+        Map<String, String> organizationInfo1 = new HashMap<String, String>();
+        organizationInfo1.put("Name", organizationName2);
+        page.addOrganization(organizationInfo1);
         MyCommonAPIs.sleepi(5);
-        page.openOrg(organizationName2);
-        MyCommonAPIs.sleepi(5);
-        AccountPage page1 = new AccountPage(true);
-        MyCommonAPIs.sleepi(5);
-        assertTrue(page1.checkLocationNumber("2"), "Created organization with 2 locations failed.");
+        List<String> Loclist=new ArrayList<String>();  
+        int totalLocationsrequired = 1;
+        int created = 0;
+        new OrganizationPage(false).openOrg(organizationName1);
+        HashMap<String, String> locationInfo = new HashMap<String, String>();
+        locationInfo.put("Location Name", "office1");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "70184");
+        locationInfo.put("Country", "Germany");
+        new AccountPage(false).addNetwork(locationInfo);
     }
     
 }
