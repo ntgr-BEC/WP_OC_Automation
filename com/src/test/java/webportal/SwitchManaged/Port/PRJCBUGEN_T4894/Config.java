@@ -31,15 +31,24 @@ public interface Config {
                                                                 };
 
     public static String                    PORT_SPEED          = "1000 Mbps";
+    public static String                    PORT_SPEEDSM          = "10 Mbps";
     public static String                    DUPLEX_MODE         = "Full";
     public static String                    PORT_SPEED_RESTORE  = "Auto";
     public static String                    DUPLEX_MODE_RESTORE = "Auto";
-    public final static Map<String, String> BATTCHSETTING1      = new HashMap<String, String>() {
+    public final static Map<String, String> BATTCHSETTING      = new HashMap<String, String>() {
                                                                     {
                                                                         put("Enable_Port", "ON");
                                                                         put("Duplex_Mode", DUPLEX_MODE);
                                                                         ;
                                                                         put("Port_Speed", PORT_SPEED);
+                                                                    }
+                                                                };
+public final static Map<String, String> BATTCHSETTING1      = new HashMap<String, String>() {
+                                                                    {
+                                                                        put("Enable_Port", "ON");
+                                                                        put("Duplex_Mode", DUPLEX_MODE);
+                                                                        ;
+                                                                        put("Port_Speed", PORT_SPEEDSM);
                                                                     }
                                                                 };
     public final static Map<String, String> BATTCHSETTING2      = new HashMap<String, String>() {

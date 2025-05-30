@@ -57,7 +57,11 @@ public class Testcase extends TestCaseBase implements Config {
     @Step("Test Step 2: Change port speed mode to 1000 full")
     public void step2() {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
+        }else {
+            devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEEDSM);
+        }
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE1);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.clickSave();
     }
@@ -87,7 +91,11 @@ public class Testcase extends TestCaseBase implements Config {
         MyCommonAPIs.sleepi(180);
         handle.waitCmdReady(PORTSPEED_CLI, false);
         expectValue = SwitchCLIUtils.getPortInfo("g" + WebportalParam.sw1Port6);
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEED.replaceAll("Mbps", "").trim()) && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
+        }else {
+            assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEEDSM.replaceAll("Mbps", "").trim()) && SwitchCLIUtils.PortClass.duplexMode == 1, "check port speed/deplex");
+        }
     }
 
 //    @Step("Test Step 4: Change port speed mode to 1000 full")

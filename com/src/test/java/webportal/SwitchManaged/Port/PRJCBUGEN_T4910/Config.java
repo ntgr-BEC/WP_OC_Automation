@@ -11,6 +11,7 @@ public interface Config {
     public String STROM_Set     = "50";
 
     public static String PORT_SPEED   = "1000 Mbps";
+    public static String PORT_SPEEDSM   = "100 Mbps";
     public static String DUPLEX_MODE1 = "Full";
     public static String DUPLEX_MODE2 = "Half";
 

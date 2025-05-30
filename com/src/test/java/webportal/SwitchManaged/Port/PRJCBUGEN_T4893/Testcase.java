@@ -132,7 +132,9 @@ public class Testcase extends TestCaseBase implements Config {
         WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
         portNumber = wiredGroupPortConfigPage.multiSettingAllPorts(BATTCHSETTING2);
         // two switches are not same, but at least 8 for one
+        System.out.println("1 portNumber"+portNumber);
         portNumber = 14;
+        System.out.println("2 portNumber"+portNumber);
     }
 
     @Step("Test Step 6: Check ports status on both switchs，from GUI")
@@ -203,6 +205,6 @@ public class Testcase extends TestCaseBase implements Config {
     @AfterMethod(alwaysRun = true)
     public void restore() {
         System.out.println("start to do restore");
-        step2();
+//        step2();
     }
 }

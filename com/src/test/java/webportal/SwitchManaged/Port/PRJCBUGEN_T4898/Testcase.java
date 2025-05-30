@@ -60,9 +60,9 @@ public class Testcase extends TestCaseBase implements Config {
         WiredVLANPage wiredVLANPage = new WiredVLANPage(false);
         WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
         if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
-        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING3);
+        wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
         }else {
-            wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING1);
+            wiredGroupPortConfigPage.multiSetting(SWITCH1_PORTARRAY, BATTCHSETTING);
         }
             
         
@@ -95,12 +95,12 @@ public class Testcase extends TestCaseBase implements Config {
             System.out.println("egressRate = "+ egressRate );   
             System.out.println("stormControlRate = "+ stormControlRate ); 
             
-            System.out.println("portSpeed inside config = "+ BATTCHSETTING3.get("Port_Speed") ); 
+            System.out.println("portSpeed inside config = "+ BATTCHSETTING1.get("Port_Speed") ); 
             
             System.out.println("portSpeed = "+ portSpeed ); 
             if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
             if (expectRateLimitValue.contains(egressRate) && expectStormControlValue.contains(stormControlRate)
-                    && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(BATTCHSETTING3.get("Port_Speed"), portSpeed)) {
+                    && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(BATTCHSETTING1.get("Port_Speed"), portSpeed)) {
                 micResult = true;
             } else {
                 micResult = false;

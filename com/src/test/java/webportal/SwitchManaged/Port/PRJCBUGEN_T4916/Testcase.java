@@ -51,7 +51,11 @@ public class Testcase extends TestCaseBase implements Config {
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyPortDescription(portDesc);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.disablePort();
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
+        }else {
+            devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEEDSM);
+        }
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE);
         expectValue = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyMaxFrameSizeRandom();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.clickSave();
@@ -64,7 +68,11 @@ public class Testcase extends TestCaseBase implements Config {
         assertTrue(SwitchCLIUtils.PortClass.sPortVal.contains(portDesc), "check port desc");
         assertTrue(SwitchCLIUtils.PortClass.isShutdown, "check shutdown");
         assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(expectValue), "check framesize");
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEED.replaceAll(" Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
+        }else {
+            assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEEDSM.replaceAll(" Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1), "check port speed/deplex");
+        }
     }
 
     @AfterMethod(alwaysRun = true)

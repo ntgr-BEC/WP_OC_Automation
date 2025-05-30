@@ -24,10 +24,10 @@ public interface Config {
                                                                       }
                                                                   };
     public String[]                           sw1port             = {
-            "1"
+            WebportalParam.sw1Port1
     };
     public String[]                           sw2port             = {
-            "1"
+            WebportalParam.sw2Port6
     };
     public final static Map<String, String[]> SWITCH_PORTARRAY    = new HashMap<String, String[]>() {
                                                                       {
@@ -41,8 +41,16 @@ public interface Config {
                                                                           put("Duplex_Mode", DUPLEX_MODE);
                                                                           put("Port_Speed", PORT_SPEED);
                                                                       }
+    };
+   public final static Map<String, String>   BATTCHSETTING2      = new HashMap<String, String>() {
+                                                                          {
+                                                                              put("Enable_Port", "ON");
+                                                                              put("Duplex_Mode", DUPLEX_MODE);
+                                                                              put("Port_Speed", PORT_SPEEDSM);
+                                                                          }
                                                                   };
     public static String                      PORT_SPEED          = "1000 Mbps";
+    public static String                      PORT_SPEEDSM        = "100 Mbps";
     public static String                      DUPLEX_MODE         = "Full";
     public static String                      PORT_SPEED_RESTORE  = "Auto";
     public static String                      DUPLEX_MODE_RESTORE = "Auto";

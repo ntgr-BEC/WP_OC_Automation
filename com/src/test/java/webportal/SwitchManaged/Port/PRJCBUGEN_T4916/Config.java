@@ -9,7 +9,7 @@ public interface Config {
     String portDesc      = "port1_desc";
     String STROM_Restore = "100";
     String STROM_Set     = "50";
-
+    String PORT_SPEEDSM  = "10 Mbps";
     String PORT_SPEED  = "1000 Mbps";
     String DUPLEX_MODE = "Full";
 

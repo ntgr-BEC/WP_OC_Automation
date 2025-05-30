@@ -54,8 +54,13 @@ public class Testcase extends TestCaseBase implements Config {
 
     @Step("Test Step 2: config DUT1 port 1 and DUT2 port1 at 10M half-duplex")
     public void step2() {
+        
         WiredGroupPortConfigPage wiredGroupPortConfigPage = new WiredGroupPortConfigPage();
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
         wiredGroupPortConfigPage.multiSetting(SWITCH_PORTARRAY, BATTCHSETTING);
+        }else {
+            wiredGroupPortConfigPage.multiSetting(SWITCH_PORTARRAY, BATTCHSETTING1);
+        }
     }
 
     @Step("Test Step 3: Config successfully,and ports' status is 10M half-duplex on webportal")
@@ -70,12 +75,22 @@ public class Testcase extends TestCaseBase implements Config {
             DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
             String duplexMode = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getDuplexMode();
             String portSpeed = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.getPortSpeed();
+            if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
             if (duplexMode.toLowerCase().equals(DUPLEX_MODE.toLowerCase())
                     && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(PORT_SPEED, portSpeed)) {
                 micResult = true;
             } else {
                 micResult = false;
                 assertTrue(micResult, "fail in check port: " + sw1port[i] + " -> " + DUPLEX_MODE + PORT_SPEED);
+            }
+            }else {
+                if (duplexMode.toLowerCase().equals(DUPLEX_MODE.toLowerCase())
+                        && devicesSwitchConnectedNeighboursPortConfiqSettingsPage.cmpPortSpeed(PORT_SPEEDSM, portSpeed)) {
+                    micResult = true;
+                } else {
+                    micResult = false;
+                    assertTrue(micResult, "fail in check port: " + sw1port[i] + " -> " + DUPLEX_MODE + PORT_SPEEDSM);
+                }
             }
         }
     }
@@ -84,11 +99,21 @@ public class Testcase extends TestCaseBase implements Config {
     public void step4() {
         // check on dut CLI
         String portall = SwitchCLIUtils.getPortInfo(WebportalParam.sw1Port1);        //replaced g1 by WebportalParam.sw1Port1
-        if (SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && (SwitchCLIUtils.PortClass.duplexMode == 1)) {
+        if(WebportalParam.sw1Model.contains("M4") && WebportalParam.sw2Model.contains("M4")) {
+        if (SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEED.replaceAll(" Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1)) {
             micResult = true;
         } else {
             micResult = false;
             assertTrue(micResult, "Check 10M and Full on port");
+        }
+        }else {
+            if (SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEEDSM.replaceAll(" Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1)) {
+                micResult = true;
+            } else {
+                micResult = false;
+                assertTrue(micResult, "Check 10M and Full on port");
+            }
+            
         }
     }
 

@@ -62,7 +62,12 @@ public class Testcase extends TestCaseBase implements Config {
         devicesSwitchSummaryPage.enterPortConfigSummary(portNo.replace("g", ""));
         DevicesSwitchConnectedNeighboursPortConfiqSettingsPage devicesSwitchConnectedNeighboursPortConfiqSettingsPage = new DevicesSwitchConnectedNeighboursPortConfiqSettingsPage();
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyPortDescription(portDesc);
+        if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEED);
+        }else {
+            devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setPortSpeed(PORT_SPEEDSM);
+        }
+            
         randomFrameSize = devicesSwitchConnectedNeighboursPortConfiqSettingsPage.modifyMaxFrameSizeRandom();
         System.out.println("randomFrameSize" + randomFrameSize);
         devicesSwitchConnectedNeighboursPortConfiqSettingsPage.setDeplexMode(DUPLEX_MODE);
@@ -83,7 +88,11 @@ public class Testcase extends TestCaseBase implements Config {
         handle.waitCmdReady(portDesc, false);
         String sRet = SwitchCLIUtils.getPortInfo(portNo);
         assertTrue(sRet.contains(portDesc), "check for " + portDesc);
-        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains("1000") && (SwitchCLIUtils.PortClass.duplexMode == 1), "check for " + PORTSPEED_CLI);
+        if(WebportalParam.sw1Model.contains("M4350") || WebportalParam.sw1Model.contains("M4250")) {
+        assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEED.replaceAll("Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1), "check for " + PORTSPEED_CLI);
+        }else {
+            assertTrue(SwitchCLIUtils.PortClass.sPortSpeed.contains(PORT_SPEEDSM.replaceAll("Mbps", "").trim()) && (SwitchCLIUtils.PortClass.duplexMode == 1), "check for " + PORTSPEED_CLI);
+        }
         assertTrue(SwitchCLIUtils.PortClass.sPortFramesize.contains(randomFrameSize), "check for " + randomFrameSize);
         assertTrue(SwitchCLIUtils.PortClass.sPortStormControlRate.contains(STROM_Set), "check for " + STROM_Set_CLI);
     }

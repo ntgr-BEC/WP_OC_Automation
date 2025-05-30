@@ -28,7 +28,7 @@ public interface Config {
     public static String                    PORT_SPEED_RESTORE  = "Auto";
     public static String                    DUPLEX_MODE_RESTORE = "Auto";
     public static String                    PORTSPEED_CLI       = "100 full-duplex";
-    public final static Map<String, String> BATTCHSETTING1      = new HashMap<String, String>() {
+    public final static Map<String, String> BATTCHSETTING      = new HashMap<String, String>() {
                                                                     {
                                                                         put("Enable_Port", "ON");
                                                                         put("Egress_Rate_Limit", "random");
@@ -49,7 +49,7 @@ public interface Config {
                                                                 };
                                                                 
                                                                 
-    public final static Map<String, String> BATTCHSETTING3      = new HashMap<String, String>() {
+    public final static Map<String, String> BATTCHSETTING1      = new HashMap<String, String>() {
                                                                     {
                                                                         put("Enable_Port", "ON");
                                                                         put("Egress_Rate_Limit", "random");
