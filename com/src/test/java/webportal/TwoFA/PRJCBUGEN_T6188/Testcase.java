@@ -51,7 +51,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Enable 2FA and change primary phone number,check login is correct;")
     public void step2() {
-        String oldphonenum = "5417083275";
+        String oldphonenum = "485906541";
         String newphonenum = "7015168317";
         new HamburgerMenuPage().enableTwoFA(oldphonenum, WebportalParam.CountryOTP);
         new HamburgerMenuPage().addTwoFAPhonenumAndChangePrimary(oldphonenum, newphonenum, WebportalParam.CountryOTP);

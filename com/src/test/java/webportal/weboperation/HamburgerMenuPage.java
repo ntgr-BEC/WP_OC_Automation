@@ -216,6 +216,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void inputAcccountEmail(Map<String, String> map) {
+        
+        MyCommonAPIs.sleepi(20);
         if (createaccount.exists()) {
             createaccount.click();
         }
@@ -460,6 +462,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         long t= System.currentTimeMillis();
         long end = t+12000;
+        boolean loginSuccess = false;
         System.out.println("going inside while");
         while(System.currentTimeMillis() < end) {
             System.out.println("inside while");
@@ -470,7 +473,15 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
             MyCommonAPIs.sleepi(10);
         }
+        System.out.println("out of while");
         inputAccountInfo(map);
+        MyCommonAPIs.sleepi(30);
+        if (loginPwdNewcognito.isDisplayed()) {
+            loginPwdNewcognito.sendKeys(map.get("Password"));
+            SigninbuttonCognito.click();
+            loginSuccess = true;
+        }
+        MyCommonAPIs.sleepi(10);
         waitElement(yesenbalenew);
         yesenbalenew.click();
         // if (yesenbale.exists()) {
@@ -536,7 +547,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // }
         // }
         // code by tejeshwini
-        if ($x("//h2[contains(text(),'Enter phone number')]").exists()) {
+        if ($x("//h1[contains(text(),'Select verification method')]").exists()) {
 
             if (inputphone.exists()) {
                 logger.info("In the \"Add SMS Verification\" page now.");
@@ -979,14 +990,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                 if ($x("//span[text()='Enable']").exists()
                         &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
                     System.out.println("inside click");
-                    $x("(//span[text()='Enable']/..//div)[4]").click();
+                    $x("(//span[text()='Enable']/..//div)").click();
                 }
             }
         } else {
             System.out.println("inside else");
             if ($x("//span[text()='Enable']").exists() && ($x("//span[text()='Enable']/../md-switch").getAttribute("aria-checked").equals("false") )) {
                 System.out.println("inside enable");
-                $x("(//span[text()='Enable']/..//div)[4]").click();
+                $x("(//span[text()='Enable']/..//div)").click();
             }
             finishSignup(phonenum, Country);
         }
@@ -999,14 +1010,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
                     if ($x("//span[text()='Enable']").exists()
                             &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
                         System.out.println("inside click");
-                        $x("(//span[text()='Enable']/..//div)[4]").click();
+                        $x("(//span[text()='Enable']/..//div)").click();
                     }
                 }
             } else {
                 System.out.println("inside else");
                 if ($x("//span[text()='Enable']").exists() &&  $x("//span[text()='Enable']/../mat-slide-toggle/div/button").getAttribute("aria-checked").equals("false")) {
                     System.out.println("inside enable");
-                    $x("(//span[text()='Enable']/..//div)[4]").click();
+                    $x("(//span[text()='Enable']/..//div)").click();
                 }
                 finishSignup(phonenum, Country);
             }
@@ -4320,7 +4331,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public void openCreateProAccountUrl() {
         System.out.println("opening register URL");
-        String url = WebportalParam.serverUrlLogin + "/#/register";
+        String url = WebportalParam.serverUrlLogin + "#/register";
         // String url = "insight.netgear.com/#/register";
         // String url = "https://pri-qa.insight.netgear.com/#/register";
         System.out.println(url);

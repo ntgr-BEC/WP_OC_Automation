@@ -163,7 +163,7 @@ public class CustomReportElement extends MyCommonAPIs {
     public String elementWidgetTable  = "div[class*=AddDeviceAcc] > div:nth-child(%s) ";
     public String btnExpandWidget     = elementWidgetTable + "i:first-child+i";
     public String staReportWidgetType = elementWidgetTable + "h3";
-    public String cbWidgetSelector    = elementWidgetTable + "input";
+    public String cbWidgetSelector    = elementWidgetTable + "label i";
     public String txtWidgetSelector   = elementWidgetTable + "h6";
     public String txtAllWidgetNames   = ".WidgetsBlock h6";
 

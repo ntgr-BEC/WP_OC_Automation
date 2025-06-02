@@ -1,4 +1,4 @@
-package webportal.TwoFA.PRJCBUGEN_T6140;
+package webportal.TwoFA.Working.PRJCBUGEN_T6140;
 
 import static org.testng.Assert.assertTrue;
 
@@ -43,10 +43,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("/dashboard")) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        }
+        new HamburgerMenuPage(false).closeLockedDialog();
         System.out.println("start to do tearDown");
     }
 
