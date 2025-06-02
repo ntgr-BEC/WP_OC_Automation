@@ -317,7 +317,7 @@ public class DevicesDashPageElements extends MyCommonAPIs {
     // public SelenideElement Twodevice = $("#tdDevModlIddevicesDash1");
     // public SelenideElement Threedevice = $("#tdDevModlIddevicesDash2");
     public SelenideElement DeviceCount = $x("//p[text()='Devices']/..//h2");
-    public SelenideElement DeviceCountOrg = $x("//*[@id=\"_divorgDiv0\"]/div/div[1]/ul/li[3]");
+    public SelenideElement DeviceCountOrg = $x("//div[@col-id=\"totalDevice\" and @role=\"gridcell\"]//span");
     public SelenideElement deviceListfirstDevice    = $("#pspnddevicesDash0");
     public SelenideElement deviceListfirstdevice1   = $("#tdinpEditdevicesDash0");
     public SelenideElement connectedState           = $x("//span[@class='colorGreen deviceStatus']");

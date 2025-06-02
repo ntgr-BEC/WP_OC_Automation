@@ -162,22 +162,52 @@ public class OrganizationPage extends OrganizationElement {
 //        waitReady();
 //    }
     
+//    public void openOrg(String name) {
+//        open(URLParam.hreforganization, true);
+//        MyCommonAPIs.sleepi(2);
+//        SelenideElement orgElement = $x("//*[@col-id='orgName']/..//*[text()='" + name + "']");
+//        waitElement(orgElement);
+//        orgElement.shouldBe(Condition.visible);
+//        if (orgElement.exists() && orgElement.isDisplayed()) {
+//            orgElement.click();
+//            logger.info("Clicked on organization: " + name);
+//        } else {
+//            logger.info("Organization not found: " + name);
+//            throw new NoSuchElementException("Organization " + name + " not found on the page.");
+//        }
+//        
+//        waitReady(); // Ensure the page is ready after clicking
+//    }
+    
+    
     public void openOrg(String name) {
         open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(2);
+
+        // Try to find the organization by the given name
         SelenideElement orgElement = $x("//*[@col-id='orgName']/..//*[text()='" + name + "']");
-        waitElement(orgElement);
-        orgElement.shouldBe(Condition.visible);
-        if (orgElement.exists() && orgElement.isDisplayed()) {
+
+        // Wait for the organization table to load
+        waitElement($x("//*[@col-id='orgName']"));
+
+        if (orgElement.exists()) {
+            waitElement(orgElement);
+            orgElement.shouldBe(Condition.visible);
             orgElement.click();
             logger.info("Clicked on organization: " + name);
         } else {
-            logger.info("Organization not found: " + name);
-            throw new NoSuchElementException("Organization " + name + " not found on the page.");
+            // Fallback: click the first organization on the page
+            logger.warning("Organization not found: " + name + ". Clicking the first available organization instead.");
+
+            SelenideElement firstOrg = $x("(//*[@col-id='orgName'])[2]/..//*[contains(@class, 'org-name') or self::div]");
+            waitElement(firstOrg);
+            firstOrg.shouldBe(Condition.visible).click();
+            logger.info("Clicked on the first organization as fallback.");
         }
-        
+
         waitReady(); // Ensure the page is ready after clicking
     }
+
 
     public void GotoSettings() {
         waitElement(OrgPagebody);

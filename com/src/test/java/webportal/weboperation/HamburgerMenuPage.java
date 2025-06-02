@@ -280,8 +280,10 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
    if (policyTextcognito.exists()) {
             policyTextcheckboxcognito.click();           
         }
+         
         else if(policyText.exists())
         {
+            MyCommonAPIs.sleepi(2);
             policyTextcheckbox.click();           
         }
 //        MyCommonAPIs.sleepi(10);
@@ -292,6 +294,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 //            acceptPolicy1.shouldBe(Condition.visible).click();
 //            MyCommonAPIs.sleepi(5);
 //        System.out.println("out of policy check box");
+        MyCommonAPIs.sleepi(2);
         if(continuebutton.is(Condition.visible) && continuebutton.is(Condition.enabled)) { 
             continuebutton.shouldBe(Condition.visible).click();
         }else if  (continuebutton1.is(Condition.visible) && continuebutton1.is(Condition.enabled)){

@@ -97,9 +97,10 @@ public class TestCase extends TestCaseBase {
     
         System.out.println("check where the screen is");
         new DeviceBulkOnboardingPage().GoToSummaryPage(locationName);
+        System.out.println("CheckPoint1");
         new DeviceBulkOnboardingPage().ImportCvsFilesummaryscreenBySelectingALL(filePath);
 
-      
+        System.out.println("CheckPoint2");
         assertTrue(new DevicesDashPage(false).checkNumberOfDevicesOrganization().equals("Threedevice"), "More device exits");
     }
   
