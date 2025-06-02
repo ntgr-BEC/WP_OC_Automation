@@ -1665,7 +1665,8 @@ public class DevicesDashPage extends DevicesDashPageElements {
         new MyCommonAPIs().open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(20);
 //        String DeviceCount = DeviceCountOrg.getText();
-//        System.out.println(DeviceCount);
+        System.out.println("CheckPoint3");
+        System.out.println(getText(DeviceCountOrg));
         if (DeviceCountOrg.exists()) {
             if (getText(DeviceCountOrg).equals("1")) {
                 result = "Onedevice";

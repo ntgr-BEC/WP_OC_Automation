@@ -32,7 +32,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           errorMassege = $x("//*[@id=\"content\"]/div[4]/div/div[1]/div/div/div[1]/table/tbody/tr[1]/td[4]/div/span");
     public SelenideElement           clickhereButton       =$x("//*[@id=\"_divMainLocDash\"]/div[2]/div[1]/div/div/div[4]/div[1]/div[2]/div[2]/h5/a");
     public SelenideElement           updatelocationButton = $x("//*[@id=\"content\"]/div[5]/div/div[2]/button[2]");
-    public SelenideElement           selectAll  = $("#multipleAll");
+    public SelenideElement           selectAll  = $x("//*[@id='multipleAll']/..//i");
     public SelenideElement           selectAll1  = $x("//*[@id=\"multipleAll\"]/../i");
     public SelenideElement           checkAll  = $("//*[@id=\"content\"]/div[6]/div/div[1]/div/div/div[1]/div/table/thead/tr/th[1]/div/span/label/i");
     public SelenideElement           updatedevicelistButton = $x("//*[@id=\"content\"]/div[4]/div/div[2]/button[2]");

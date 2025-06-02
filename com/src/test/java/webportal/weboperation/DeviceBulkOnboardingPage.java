@@ -118,12 +118,13 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     public void wronglocationName(String FilePath) {
                
         String warningContent = "";
-        changeaddDeviceButton.click();
-        addMultiDevicechange.click();
+        SummaryAdd.click();
+        SummaryMultiple.click();
         MyCommonAPIs.sleepi(5);
         browseButton.sendKeys(FilePath);
         MyCommonAPIs.sleepi(5);
-        click(SelectALL);
+//        click(SelectALL);
+        SelectALL.click();
         MyCommonAPIs.sleepi(5);
         upload.click();
   
@@ -258,7 +259,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(5);        
         browseButton.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+//        click(selectAll, true);
+        selectAll.click();
         MyCommonAPIs.sleepi(5);
         updatelocationButton.click();
         System.out.println("sadf322222222222222222222222222222114");
@@ -318,7 +320,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         browseButton.sendKeys(FilePath);
         System.out.println("sadf322222222222222222222222222222113");
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+//        click(selectAll, true);
+        selectAll.click();
         MyCommonAPIs.sleepi(10);        
         updatelocationButton.click();
         MyCommonAPIs.sleepi(5);
@@ -414,8 +417,9 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(20);
 //        click(selectAll, true);
+        selectAll.click();
 //        MyCommonAPIs.sleepi(5);
-//        updateDevicelist.click();
+        updatelocationButton.click();
 //        MyCommonAPIs.sleepi(5);
         Viewdevice.click();
         MyCommonAPIs.sleepi(10);
@@ -490,7 +494,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(5);        
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+        selectAll.click();
+//        click(selectAll, true);
         MyCommonAPIs.sleepi(5);
         if (updatelocationButton.exists()) {
             updatelocationButton.click();
@@ -508,7 +513,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(5);        
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+        selectAll.click();
+//        click(selectAll, true);
         MyCommonAPIs.sleepi(5);
         if (updatelocationButton.exists()) {
             updatelocationButton.click();
@@ -526,7 +532,8 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(5);        
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+//        click(selectAll, true);
+        selectAll.click();
         MyCommonAPIs.sleepi(5);
         if (updatelocationButton.exists()) {
             updatelocationButton.click();
@@ -563,10 +570,13 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
         MyCommonAPIs.sleepi(5);        
         OrgUpload.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
+        selectAll.click();
+//        click(selectAll, true);
         MyCommonAPIs.sleepi(5);
         if (updatelocationButton.exists()) {
             updatelocationButton.click();
+            System.out.println("Clicked on update location Button");
+            MyCommonAPIs.sleepi(5);
         }
         System.out.println("sadf322222222222222222222222222222114");
     }

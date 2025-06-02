@@ -46,7 +46,7 @@ public class Testcase extends TestCaseBase {
     
     @Step("Test Step 2: Edit Location and Change Password")
     public void step2() {
-        
+
         new AccountPage().editAndChangePasswordProaccLocation();
         assertTrue(new AccountPage().verifyProLocPassword(),"password is not updated successfully");
     }
