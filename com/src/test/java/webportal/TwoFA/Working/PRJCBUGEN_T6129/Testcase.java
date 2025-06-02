@@ -1,4 +1,4 @@
-package webportal.TwoFA.PRJCBUGEN_T6129;
+package webportal.TwoFA.Working.PRJCBUGEN_T6129;
 
 import static org.testng.Assert.assertTrue;
 
@@ -40,14 +40,7 @@ public class Testcase extends TestCaseBase {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        String url = MyCommonAPIs.getCurrentUrl();
-        if (url.contains("/#/locked")) {
         new HamburgerMenuPage(false).closeLockedDialog();
-        }
-         url = MyCommonAPIs.getCurrentUrl();
-        if (!url.endsWith("/dashboard")) {
-            WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        }
         System.out.println("start to do tearDown");
     }
 

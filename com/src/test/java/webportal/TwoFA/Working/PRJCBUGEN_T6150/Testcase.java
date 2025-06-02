@@ -1,4 +1,4 @@
-package webportal.TwoFA.PRJCBUGEN_T6150;
+package webportal.TwoFA.Working.PRJCBUGEN_T6150;
 
 import static org.testng.Assert.assertTrue;
 
@@ -52,29 +52,30 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 1: Login IM WP success;")
     public void step1() {
         WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-        
-        accountInfo.put("First Name", mailname);
-        accountInfo.put("Last Name", "T17523");
-        accountInfo.put("Email Address", mailname + "@mailinator.com");
-        accountInfo.put("Confirm Email", mailname + "@mailinator.com");
-        accountInfo.put("Password", "Netgear#123");
+//        
+//        accountInfo.put("First Name", mailname);
+//        accountInfo.put("Last Name", "T17523");
+//        accountInfo.put("Email Address", mailname + "@yopmail.com");
+//        accountInfo.put("Confirm Email", mailname + "@yopmail.com");
+//        accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
-        accountInfo.put("Country", "Ireland");
-
-
-        new HamburgerMenuPage(false).createAccount(accountInfo);
+//        accountInfo.put("Country", "Ireland");
+//
+//
+//        new HamburgerMenuPage(false).createAccount(accountInfo);
       
     }
 
     @Step("Test Step 2: Enable 2FA and check resend message;")
     public void step2() {
-        new HamburgerMenuPage().enableTwoFAEmail();
-        MyCommonAPIs.sleepi(10);
+//        new HamburgerMenuPage().enableTwoFAEmail();
+//        MyCommonAPIs.sleepi(10);
+//        
+//        UserManage userManage = new UserManage();
+//        userManage.logout();
         
-        UserManage userManage = new UserManage();
-        userManage.logout();
-        
-        new WebportalLoginPage().twoFaEmailLogin(mailname,accountInfo.get("Password"));
+//        new WebportalLoginPage().twoFaEmailLogin(mailname + "@yopmail.com",accountInfo.get("Password"));
+        new WebportalLoginPage().twoFaEmailLogin("apwptest7911846@yopmail.com",accountInfo.get("Password"));
 
         assertTrue(new HamburgerMenuPage().checkLoginSuccessful(), "Login successful");
     }
