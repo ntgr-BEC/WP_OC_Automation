@@ -465,7 +465,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public static SelenideElement yesenbalenew       = $x("(//button[text()='" + WebportalParam.getLocText("Yes enable") + "'])[1]");
     public static SelenideElement yesenbale2FA       = $x(
             "//button[@class='md-raised md-primary submitbtn md-button ng-scope md-ink-ripple'][contains(text(),'Yes, Enable')]");
-    public SelenideElement        inputphone         = $x("//input[@id='phone']");
+    public SelenideElement        inputphone         = $x("//input[@name='sms-noti']");
     public static SelenideElement addphone           = $x("//button/span[text()='" + WebportalParam.getLocText("Add Phone Number") + "']");
     public static SelenideElement Next               = $x("//span[contains(text(),'Next')]");
 
@@ -944,7 +944,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement  firstOrgCreditAllocation     = $x("//span[text()='Netgear']/../../..//img[@id='AccCreditAllocate']");
   public SelenideElement  secOrgCreditAllocation       = $x("//span[text()='organization']/../../..//img[@id='AccCreditAllocate']");
   
-  public SelenideElement  enable2FA                    = $x("(//span[text()='Enable']/..//div)[4]");
+  public SelenideElement  enable2FA                    = $x("//span[text()='Enable']/..//div");
   public SelenideElement  email2FA                     = $x("//*[text()=\"Email (default)\"]"); 
   public SelenideElement  Continue                    = $x("//*[text() ='Continue']");
   //AddedByPratikForCognito

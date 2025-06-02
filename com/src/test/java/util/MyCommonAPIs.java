@@ -222,6 +222,7 @@ public class MyCommonAPIs {
     }
     
     public boolean isInLoginPage() {
+        MyCommonAPIs.sleepi(10);
         String url = WebDriverRunner.getWebDriver().getCurrentUrl();
         logger.info("Checking page: " + url);
         String serverUrl = WebportalParam.serverUrlLogin;

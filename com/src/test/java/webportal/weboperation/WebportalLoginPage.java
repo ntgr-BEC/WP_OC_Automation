@@ -71,6 +71,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
 
     public boolean inputLogin(String user, String passwd) {
         logger.info("login with:" + user);
+        sleepi(20);
         MyCommonAPIs.waitReady();
         try {
             String ps = WebportalParam.curWebDriver.getPageSource();
@@ -388,8 +389,9 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
         String currentUrl1=new MyCommonAPIs().getCurrentUrl();
         System.out.print(currentUrl1);
         MyCommonAPIs.sleepi(10);
-        int i =0;
+        int i =1;
         for (int id = 0; id < 6; id++) {
+            System.out.println();
             $x("(//*[@autocomplete=\"one-time-code\"])["+String.valueOf(i)+"]").sendKeys(OTP.substring(id, id + 1));
             i++;  
         }
