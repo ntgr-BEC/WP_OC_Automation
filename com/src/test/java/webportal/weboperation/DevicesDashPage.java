@@ -1762,7 +1762,7 @@ public class DevicesDashPage extends DevicesDashPageElements {
 //        MyCommonAPIs.waitReady();
         next.click();
         MyCommonAPIs.sleepi(5);
-        if (errorOK.exists()) {
+        if (errorOK.isDisplayed()) {
             errorOK.click();
         }
         if (deviceName.exists()) {
