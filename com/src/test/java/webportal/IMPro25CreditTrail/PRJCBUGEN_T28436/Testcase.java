@@ -55,8 +55,6 @@ public class Testcase extends TestCaseBase {
     // Each step is a single test step from Jira Test Case
     @Step("Test Step 1: Check create pro account success.")
     public void step1() {
-//        WebportalLoginPage webportalLoginPage = new WebportalLoginPage(true);
-//        webportalLoginPage.loginByUserPassword("abcwz672@sharklasers.com", "Netgear1@");
         if (new HamburgerMenuPage(false).checkCreateProAccountPage("checkNext:" + mailname)) {
             Map<String, String> proAccountInfo = new HashMap<String, String>();
             proAccountInfo.put("Confirm Email", mailname);
@@ -86,7 +84,8 @@ public class Testcase extends TestCaseBase {
         String LicenceKey = new HamburgerMenuPage(false).readLicenceKeyByTxt("Write");
         System.out.print(LicenceKey);
         new HamburgerMenuPage(true).AddKeyAndVerify(LicenceKey);
-        assertTrue(new HamburgerMenuPage(true).verify(LicenceKey), "Not received verify email.");
+       
+        assertTrue(new HamburgerMenuPage(true).verifyLMS(LicenceKey), "Not received verify email.");
 //        assertTrue(new HamburgerMenuPage(true).CheckFreeTrailPro(), "Not received verify email.");
     }
 

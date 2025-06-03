@@ -107,11 +107,14 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Country", "China");
         new AccountPage(false).addNetwork(locationInfo);
         MyCommonAPIs.sleepi(30);   
-       
+        
     }
     
     @Step("Test Step 4: Add device ")
     public void step4() {
+        
+        
+      
        new AccountPage().enterLocation(locationName);
        String Mac = new WirelessQuickViewPage().getRandomMacAddress();
         Map<String, String> firststdevInfo = new HashMap<String, String>();

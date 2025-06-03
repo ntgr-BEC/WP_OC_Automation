@@ -5785,8 +5785,14 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         int expOnYear = 0;
         MyCommonAPIs.sleepi(10);
         System.out.println("Print the element");
-        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[3]").getText();
-        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td[4]").getText();
+        List<SelenideElement>  countofthAele = $$x("//span[contains(text(), '"+lic+"')]/ancestor::table//th[contains(., 'Activation')]/preceding-sibling::th");
+        List<SelenideElement>  countofthEele = $$x("//span[contains(text(), '"+lic+"')]/ancestor::table//th[contains(., 'Expiration')]/preceding-sibling::th");
+
+        int countActivation = countofthAele.size() +1 ;
+        int countExpiration = countofthEele.size() +1 ;
+        System.out.println("Activation count is"+countActivation);
+        String actOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td["+countActivation+"]").getText();
+        String expOnDateText = $x("//span[contains(text(), '" + lic + "')]/../../td["+countExpiration+"]").getText();
         actOnYear = extractYear(actOnDateText);
         System.out.println("Year Actual : " + actOnYear);
         expOnYear = extractYear(expOnDateText);

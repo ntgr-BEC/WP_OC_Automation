@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase {
 
     @Step("Test Step 2: Check trail ")
     public void step2() {
-
+       
         new HamburgerMenuPage(true).StartFreeTrail();
         assertTrue(new HamburgerMenuPage(true).CheckFreeTrailPro(), "Not received verify email.");
     }
