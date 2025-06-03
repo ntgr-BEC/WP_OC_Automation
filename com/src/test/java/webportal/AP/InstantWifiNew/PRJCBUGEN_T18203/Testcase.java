@@ -82,7 +82,7 @@ public class Testcase extends TestCaseBase {
         locationInfo.put("Zip Code", "62156");
         locationInfo.put("Country", "Sweden");
         new AccountPage().addNetwork(locationInfo);
-        new AccountPage(false).enterLocation(WebportalParam.location1);
+        new AccountPage(false).enterLocation("OnBoardingTest");
         
     }
     
