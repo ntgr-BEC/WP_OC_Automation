@@ -256,7 +256,8 @@ public class APUtils extends MyCommonAPIs {
         boolean toRet = false;
         for (int i = 0; i < 6; i++) {
             String output = plink.getOutput("grep 'Rf' /tmp/log/messages", default_timeout_ssh);
-            if (output.contains("wlanSettings") && output.contains("cloudAgent")) {
+            System.out.println("Instant wiFi output : "+output);
+            if (output.contains("wlanSettings") && output.contains("cloudAgent") && output.contains("Rf settings")) {
                 toRet = true;
                 break;
             }
