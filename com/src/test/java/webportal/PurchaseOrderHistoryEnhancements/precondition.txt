@@ -1,0 +1,1 @@
+One pro account with all managers(read,write), owner and sec admin,Need to config all these,Then onboard and config below devices in Netgear org and office1 location(all are dummy),AP5, SW1, BR1, Orbi1, PR1

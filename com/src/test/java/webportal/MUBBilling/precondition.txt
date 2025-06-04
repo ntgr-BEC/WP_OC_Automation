@@ -1,0 +1,14 @@
+"create admin account with sharklasers.com and run test cases on below order , make sure you will add all 4 Pro accounts on configuration
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T21904.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22107.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22872.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T21875.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22858.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22859.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T21884.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T21888.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22868.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T21940.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22102.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22864.Testcase""/>
+ <class name=""webportal.MUBBilling.PRJCBUGEN_T22869.Testcase""/>"

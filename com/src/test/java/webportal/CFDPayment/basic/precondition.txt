@@ -1,0 +1,2 @@
+CFD payment
+Ap5 and AP6 dummy configurations (don't run basic cases)
