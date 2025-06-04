@@ -14,7 +14,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public static SelenideElement    changeaddDeviceButton    = $x("//*[@id=\"_divLocOptLocDash\"]/div[1]/span");
     public SelenideElement           addSingleDevice    = $x("//*[@id=\"divLocBardevicesDash\"]/div[4]/ul/li[1]/a/b");
     public SelenideElement           addMultiDevice     = $x("//b[text() = 'Add Multiple Devices']");
-    public SelenideElement           addMultiDevicechange     = $x("//*[@id=\"_divLocOptLocDash\"]/div[1]/ul/li[2]/a/b");
+    public SelenideElement           addMultiDevicechange     = $x("//b[text()='Add Multiple Devices']");
     public SelenideElement           addSinglelocation     = $x("//a[@class=\"colorGray\"]/b[contains( text(),'Add Single Device')]");
     public SelenideElement           browseButton       =$("#uploadFile");
     public SelenideElement           sendserial       =$x("//*[@id=\"serialNo\"]");
@@ -31,7 +31,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           continueButton = $x("//*[@id=\"_divMainLocDash\"]/div[2]/div[2]/div/div/div[3]/button[1]");
     public SelenideElement           errorMassege = $x("//*[@id=\"content\"]/div[4]/div/div[1]/div/div/div[1]/table/tbody/tr[1]/td[4]/div/span");
     public SelenideElement           clickhereButton       =$x("//*[@id=\"_divMainLocDash\"]/div[2]/div[1]/div/div/div[4]/div[1]/div[2]/div[2]/h5/a");
-    public SelenideElement           updatelocationButton = $x("//*[@id=\"content\"]/div[5]/div/div[2]/button[2]");
+    public SelenideElement           updatelocationButton = $x("//button[text()='Update Devices List']");
     public SelenideElement           selectAll  = $x("//*[@id='multipleAll']/..//i");
     public SelenideElement           selectAll1  = $x("//*[@id=\"multipleAll\"]/../i");
     public SelenideElement           checkAll  = $("//*[@id=\"content\"]/div[6]/div/div[1]/div/div/div[1]/div/table/thead/tr/th[1]/div/span/label/i");
@@ -39,7 +39,7 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           errorMassageofworngname = $x("//*[@id=\"content\"]/div[6]/div/div[1]/div/div/div[1]/div/table/tbody/tr[1]/td[4]/div/span");
     public SelenideElement           errorMassage = $x("//*[@id=\"content\"]/div[6]/div/div[1]/div/div/div[1]/div/table/tbody/tr[1]/td[5]/div/span");
     public SelenideElement           warningoferrormessage = $x("//*[@id=\"content\"]/div[3]/div/div[1]/p");
-    public SelenideElement           Viewdevice = $x("//*[@id=\"content\"]/div[7]/div[2]/div/div/div/div[2]/button");
+    public SelenideElement           Viewdevice = $x("//button[text()='View Devices']");
     public SelenideElement           Uploaddevice = $x("//*[@id=\"content\"]/div[6]/div/div[2]/button[2]");
     public SelenideElement           SelectALL = $x("//*[@id=\"content\"]/div[5]/div/div[1]/div/div/div[1]/div/table/thead/tr/th[1]/div/span/label/i");
     public SelenideElement           upload = $x("//*[@id=\"content\"]/div[5]/div/div[2]/button[2]");
@@ -82,15 +82,15 @@ public class DeviceBulkOnboardingElement extends MyCommonAPIs{
     public SelenideElement           Next                         = $x("//*[@id=\"addDeviceModal\"]/div/div/div[3]/button[2]");
     public SelenideElement        AddMultipleDevicebanner      = $x("//*[@id=\"newLocationAlert\"]/div/div[2]/div[1]/button[2]");
     public SelenideElement        BannerSingle                  = $x("//*[@id=\"newLocationAlert\"]/div/div[2]/div[1]/button[1]");
-    public SelenideElement        browseButtonOrg               = $x("(//input[@id='uploadFile'])[1]");
-    public SelenideElement        routerPageTab                 = $x("(//a[@href='#/routers/quickview'])[1]");
+    public SelenideElement        browseButtonOrg               = $x("//div[contains(@class,'addMultipleDevice in')]//input[@id='uploadFile']");
+    public SelenideElement        routerPageTab                 = $x("//a[@href='#/routers/quickview']//span[text()='Router/VPN']");
     public SelenideElement        routersAddDevicesIcon         = $x("//span[@class='icon-add-2 dropdown-toggle']");
     public SelenideElement        addMultipleDevices            = $x("//b[text()='Add Multiple Devices']");
-    public SelenideElement        wirelessPageTab               = $x("(//a[@href='#/wireless/wirelessQuickView'])[1]"); 
+    public SelenideElement        wirelessPageTab               = $x("//a[@href='#/wireless/wirelessQuickView' and text()='Wireless']");
     public SelenideElement        wirelessAdddevicesIcon        = $x("//span[@class='icon-add dropdown-toggle']");
-    public SelenideElement        wiredPageTab                  = $x("(//a[@href='/#/wired/quickView'])[1]"); 
+    public SelenideElement        wiredPageTab                  = $x("//a[@href='/#/wired/quickView' and text()='Wired']"); 
     public SelenideElement        wiredAdddevicesIcon           = $x("//span[contains(@class,'icon-add dropdown-toggle')]");
-    public SelenideElement        devicesPageTab                = $x("(//a[@href='/#/devices/dash'])[1]"); 
+    public SelenideElement        devicesPageTab                = $x("//a[@href='/#/devices/dash']//span[text()='Devices' and @class='hideWhenVertical']"); 
     public SelenideElement        devicesAdddevicesIcon         = $x("//span[contains(@class,'icon-add dropdown-toggle')]");
     public SelenideElement        orgLvlAddDevicesIcon          = $x("//span[@class='icon-bulkonboard-add dropdown-toggle']");
     public SelenideElement        locatioNotmatcherror          = $x("(//span[text()='Location does not match.'])[1]");
