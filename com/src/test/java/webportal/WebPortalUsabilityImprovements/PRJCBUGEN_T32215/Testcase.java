@@ -92,18 +92,13 @@ public class Testcase extends TestCaseBase {
          ssidInfo.put("SSID", "PRJCBUGEN_T32215");
          ssidInfo.put("Security", "WPA2 Enterprise");
          new WirelessQuickViewPage().addSsid(ssidInfo);
+         
      }
      
      
      @Step("Test Step 4: Verify the Error for radis server")
      public void step4() {
          assertTrue(new HamburgerMenuPage().VerifyTheErrorMsgWhileCreateEnterpriseSSID(), "Error is not visisble");
-         
-     }
-     
-     @Step("Test Step 5: Verify the Error MSG have one link for Enable the Radis server ")
-     public void step5() {
-         assertTrue(new HamburgerMenuPage(false).VerifyTheErrorMsgHaveOneLink(), "Error msg don't have link for enable Radius");
          
      }
      

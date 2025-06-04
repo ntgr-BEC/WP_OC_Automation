@@ -1378,12 +1378,20 @@ public class AccountPage extends AccountPageElement {
     }
 
     // added by Vivek
-    public void openEditLocationFormforPro() {
+    public void openEditLocationFormforPro(String locationName) {
+        
+        
+        String rowindex=dropdownLocationElementNew(locationName).getAttribute("aria-rowindex");
         MyCommonAPIs.sleepi(2);
-        editLocationpro.click();
-        MyCommonAPIs.sleepi(1);
-        editLocationbtnpro.click();
+        ariaSetIndex(rowindex).shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(2);
+        ariaSetIndexEdit(rowindex).shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(5);
+//        MyCommonAPIs.sleepi(2);
+//        editLocationpro.click();
+//        MyCommonAPIs.sleepi(1);
+//        editLocationbtnpro.click();
+//        MyCommonAPIs.sleepi(2);
     }
 
     // added by Vivek

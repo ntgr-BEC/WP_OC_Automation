@@ -81,7 +81,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", "test1232132");
         managerInfo.put("Email Address", mailname);
-        managerInfo.put("Organization Name", WebportalParam.Organizations);
+//        managerInfo.put("Organization Name", WebportalParam.Organizations);
+        managerInfo.put("Select All", "Read");
         managerInfo.put("Access Policy", "Read");
 
         new ManagerPage().addManager(managerInfo);
@@ -89,8 +90,9 @@ public class Testcase extends TestCaseBase {
         Map<String, String> managerInfo1 = new HashMap<String, String>();
         managerInfo1.put("Name", "test1232132");
         managerInfo1.put("Email Address", mailname1);
-        managerInfo1.put("Organization Name", WebportalParam.Organizations);
+//        managerInfo1.put("Organization Name", WebportalParam.Organizations);
         managerInfo1.put("Access Policy", "Read/Write");
+        managerInfo.put("Select All", "Read");
         
         new ManagerPage().addManager(managerInfo1);    
 

@@ -93,7 +93,12 @@ public class OrganizationElement extends MyCommonAPIs {
     }
 
     public SelenideElement editOrganizationElement(String name) {
-        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Edit organization") + "']");
+        
+        String row = getDeviceAriaIndexorg(name).getAttribute("aria-rowindex");
+        
+        
+//        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Edit organization") + "']");
+        SelenideElement deleteelement = $x("//div[@aria-rowindex='"+row+"']//li[text() = 'Edit']");
         return deleteelement;
     }
 

@@ -32,6 +32,7 @@ public class Testcase extends TestCaseBase {
     int    num      = r.nextInt(10000000);
     String mailname = "owner" + String.valueOf(num);
     String ownMail  = mailname + "@yopmail.com";
+    String ownMail1  = mailname+"1" + "@yopmail.com";
     String organizationName = "PRJCBUGEN_T40780";
 
     @Feature("PROPreInvitingUser") // It's a folder/component name to make test suite more readable from Jira Test Case.
@@ -81,7 +82,7 @@ public class Testcase extends TestCaseBase {
         organizationInfo.put("Name", organizationName);
         OrganizationPage OrganizationPage = new OrganizationPage();
         OrganizationPage.addOrganization(organizationInfo);
-        organizationInfo.put("Email Address", ownMail);
+        organizationInfo.put("Email Address", ownMail1);
         new OrganizationPage().selectExistingOwner(organizationInfo);
         assertTrue(new HamburgerMenuPage(false).checkEmailMessageForInvitemangaerOwner(ownMail), "Not received Invitation email.");
         
