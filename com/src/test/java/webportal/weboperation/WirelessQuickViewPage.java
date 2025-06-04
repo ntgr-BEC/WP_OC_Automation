@@ -136,6 +136,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
      */
     public boolean optimizeInstantWifi(boolean toWait) {
         boolean result = false;
+        MyCommonAPIs.sleepi(5);
         waitElement(settingsorquickview);
         settingsorquickview.click();
         MyCommonAPIs.sleepi(5);

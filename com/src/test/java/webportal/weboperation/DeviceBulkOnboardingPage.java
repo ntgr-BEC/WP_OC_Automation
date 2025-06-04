@@ -583,20 +583,22 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void ImportmultipledevicesformatFile(String FilePath) {
         Robot robot;
-        changeaddDeviceButton.click();
         MyCommonAPIs.sleepi(2);
-        addMultiDevicechange.click();
+        addDeviceButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        addMultiDevicechange.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         browseButton.sendKeys(FilePath);
         MyCommonAPIs.sleepi(15);
-        click(selectAll, true);
-        MyCommonAPIs.sleepi(20);        
-        if(updatelocationButton.isDisplayed()){
+        selectAll.shouldBe(Condition.visible).click();
+        //click(selectAll, true);
+        MyCommonAPIs.sleepi(5);        
+        if(updatelocationButton.shouldBe(Condition.visible).isDisplayed()){
             updatelocationButton.click();
             System.out.println("Update location details is clicked");
         }
         MyCommonAPIs.sleepi(10);
-        Viewdevice.click();
+        Viewdevice.shouldBe(Condition.visible).click();
 
     }
     public String GetcurrentPath1() {
@@ -611,22 +613,26 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void ImportmultipledevicesformatFile1(String FilePath) {
         Robot robot;
-        browseButtonOrg.sendKeys(FilePath);
-        MyCommonAPIs.sleepi(10);
-        click(selectAll, true);
-        MyCommonAPIs.sleepi(10);        
-        if (updatelocationButton.exists()) {
-            updatelocationButton.click();
-        }
         MyCommonAPIs.sleepi(5);
-        Viewdevice.click();
+        browseButtonOrg.sendKeys(FilePath);
+        MyCommonAPIs.sleepi(15);
+        selectAll.shouldBe(Condition.visible).click();
+        //click(selectAll, true);
+        MyCommonAPIs.sleepi(5);        
+        if(updatelocationButton.shouldBe(Condition.visible).isDisplayed()){
+            updatelocationButton.click();
+            System.out.println("Update location details is clicked");
+        }
+        MyCommonAPIs.sleepi(10);
+        Viewdevice.shouldBe(Condition.visible).click();
     } 
     
     public boolean verifysummaryPagemultipleDevicesoption() {
         boolean result = false;
-        changeaddDeviceButton.click();
-        MyCommonAPIs.sleepi(5);
-        if (addMultiDevicechange.exists()) {
+        MyCommonAPIs.sleepi(2);
+        addDeviceButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        if (addMultiDevicechange.shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             System.out.println("Summary page bulk onboarding verified.");
         }
@@ -635,15 +641,16 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void GoToRouterVPNPage() {
         MyCommonAPIs.sleepi(5);
-        routerPageTab.click();
+        routerPageTab.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
     }
     
     public boolean verifyRoutersPagemultipleDevicesoption() {
         boolean result = false;
-        routersAddDevicesIcon.click();
+        MyCommonAPIs.sleepi(2);
+        routersAddDevicesIcon.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        if (addMultipleDevices.exists()) {
+        if (addMultipleDevices.shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             System.out.println("Routers page bulk onboarding verified.");
         }
@@ -652,15 +659,16 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void GoToWirelessPage() {
         MyCommonAPIs.sleepi(5);
-        wirelessPageTab.click();
+        wirelessPageTab.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
     }
     
     public boolean verifyWirelessPagemultipleDevicesoption() {
         boolean result = false;
-        wirelessAdddevicesIcon.click();
+        MyCommonAPIs.sleepi(2);
+        wirelessAdddevicesIcon.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        if (addMultipleDevices.exists()) {
+        if (addMultipleDevices.shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             System.out.println("Wireless page bulk onboarding verified.");
         }
@@ -669,15 +677,16 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void GoToWiredPage() {
         MyCommonAPIs.sleepi(5);
-        wiredPageTab.click();
+        wiredPageTab.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
     }
     
     public boolean verifyWiredPagemultipleDevicesoption() {
         boolean result = false;
-        wiredAdddevicesIcon.click();
+        MyCommonAPIs.sleepi(2);
+        wiredAdddevicesIcon.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        if (addMultipleDevices.exists()) {
+        if (addMultipleDevices.shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             System.out.println("Wired page bulk onboarding verified.");
         }
@@ -686,15 +695,16 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     
     public void GoToDevicesPage() {
         MyCommonAPIs.sleepi(5);
-        devicesPageTab.click();
+        devicesPageTab.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
     }
     
     public boolean verifyDevicesPagemultipleDevicesoption() {
         boolean result = false;
-        devicesAdddevicesIcon.click();
+        MyCommonAPIs.sleepi(2);
+        devicesAdddevicesIcon.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
-        if (addMultipleDevices.exists()) {
+        if (addMultipleDevices.shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             System.out.println("Devices page bulk onboarding verified.");
         }
@@ -760,9 +770,10 @@ public class DeviceBulkOnboardingPage extends DeviceBulkOnboardingElement {
     public boolean bulkOnboardingErrorMessagesVerify(String FilePath) {
         boolean result = false;
         Robot robot;
-        changeaddDeviceButton.click();
         MyCommonAPIs.sleepi(2);
-        addMultiDevicechange.click();
+        addDeviceButton.shouldBe(Condition.visible).click();
+        MyCommonAPIs.sleepi(2);
+        addMultiDevicechange.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         browseButton.sendKeys(FilePath);
         MyCommonAPIs.sleepi(10);

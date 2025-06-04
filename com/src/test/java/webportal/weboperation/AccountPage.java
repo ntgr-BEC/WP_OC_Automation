@@ -953,7 +953,7 @@ public class AccountPage extends AccountPageElement {
         // locationlist.click();
         // }
         MyCommonAPIs.sleepi(20);
-        if (locationName(locationName).exists()) {
+        if (locationName(locationName).isDisplayed()) {
             click(locationName(locationName), true);
         } else {
             if (firstlocation.exists()) {
@@ -1231,7 +1231,8 @@ public class AccountPage extends AccountPageElement {
     public boolean verifyTextSuccessfullyaddedLocation() {
 
         boolean result = false;
-        if (verifyText1.exists() && verifyText2.exists() && addDeviceBtn.exists() && addMultipleDevices.exists()) {
+        MyCommonAPIs.sleepi(5);
+        if (verifyText1.isDisplayed() && verifyText2.isDisplayed() && addDeviceBtn.isDisplayed() && addMultipleDevices.isDisplayed()) {
             result = true;
         }
         return result;
@@ -1240,7 +1241,7 @@ public class AccountPage extends AccountPageElement {
     public void addMultipleDevices() {
 
         MyCommonAPIs.sleepi(10);
-        addMultipleDevices.click();
+        addMultipleDevices.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
 
     }

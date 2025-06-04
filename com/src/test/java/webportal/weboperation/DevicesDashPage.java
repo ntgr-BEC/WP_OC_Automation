@@ -712,14 +712,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
     }
 
     public String getDeviceStatus(String serialNumber) {
-        String row = getDeviceAriaIndex(serialNumber).getAttribute("aria-rowindex");
-        if ((devicesStatus(serialNumber)).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else if (devicesStatus(row).exists()) {
-            return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
-        } else {
-            return WebportalParam.getNLocText(getText(devicesStatus1(serialNumber)));
-        }
+        String row = getDeviceAriaIndex(serialNumber).shouldBe(Condition.visible).getAttribute("aria-rowindex");
+        devicesStatus(serialNumber).shouldBe(Condition.visible).isDisplayed();
+        return WebportalParam.getNLocText(getText(devicesStatus(serialNumber)));
     }
 
     public String getDeviceStatusunmanged(String serialNumber) {
@@ -1866,9 +1861,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
         int result = 0;
         new MyCommonAPIs().open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(20);
-        String DeviceCount = DeviceCountOrg.getText();
+        String DeviceCount = DeviceCountOrg.shouldBe(Condition.visible).getText();
         System.out.println(DeviceCount);
-        if (DeviceCountOrg.exists()) {
+        if (DeviceCountOrg.shouldBe(Condition.visible).isDisplayed()) {
             if (getText(DeviceCountOrg).equals("1")) {
                 result = 1;
             }
@@ -1914,9 +1909,9 @@ public class DevicesDashPage extends DevicesDashPageElements {
         String result = "No device exits or no device exits";
         new MyCommonAPIs().open(URLParam.hreforganization, true);
         MyCommonAPIs.sleepi(20);
-        String DeviceCount = DeviceCountOrg.getText();
+        String DeviceCount = DeviceCountOrg.shouldBe(Condition.visible).getText();
         System.out.println(DeviceCount);
-        if (DeviceCountOrg.exists()) {
+        if (DeviceCountOrg.shouldBe(Condition.visible).isDisplayed()) {
             if (getText(DeviceCountOrg).equals("1")) {
                 result = "Onedevice";
             }
