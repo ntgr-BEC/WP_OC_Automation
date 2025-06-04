@@ -79,25 +79,43 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement icpCredits            = $x("(//input[contains(@class,'cmnSwitch ')])[3]");
     public SelenideElement allocate              = $x("//*[@id=\"locationDivsContainer\"]/div[5]/div/div/div[3]/button[2]");
     public SelenideElement allocate1              = $x("//button[contains(text(), 'Allocate')]");
+    
+    public SelenideElement getDeviceAriaIndexorg(String name) {  
+        SelenideElement dropdownelementnew = $x("//span[contains(@class, 'breakWord') and text()='"+name+"']/../../../../..");      
+        return dropdownelementnew;
+    }
 
-    public SelenideElement dropdownOrganizationElement(String name) {
-        SelenideElement dropdownelement = $x("//p[text()='" + name + "']/../..//a[contains(@class,'locationDivMoreOption')]");
+    public SelenideElement dropdownOrganizationElement(String name) {       
+        String row = getDeviceAriaIndexorg(name).getAttribute("aria-rowindex");
+        
+        SelenideElement dropdownelement = $x("//div[@aria-rowindex='"+row+"']//div[@col-id=\"actions\"]");
         return dropdownelement;
     }
 
     public SelenideElement editOrganizationElement(String name) {
-        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Edit organization") + "']");
+        
+        String row = getDeviceAriaIndexorg(name).getAttribute("aria-rowindex");
+        
+        
+//        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Edit organization") + "']");
+        SelenideElement deleteelement = $x("//div[@aria-rowindex='"+row+"']//li[text() = 'Edit']");
         return deleteelement;
     }
 
     public SelenideElement deleteOrganizationElement(String name) {
-        SelenideElement deleteelement = $x(
-                "//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Delete organization") + "']");
+        
+        String row = getDeviceAriaIndexorg(name).getAttribute("aria-rowindex");
+//        SelenideElement deleteelement = $x(
+//                "//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Delete organization") + "']");
+        SelenideElement deleteelement = $x("//div[@aria-rowindex='"+row+"']//li[text() = 'Delete']");
         return deleteelement;
     }
 
     public SelenideElement addCreditsOrganizationElement(String name) {
-        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Allocate Credits") + "']");
+        String row = getDeviceAriaIndexorg(name).getAttribute("aria-rowindex");
+//        SelenideElement deleteelement = $x("//p[text()='" + name + "']/../..//b[text()='" + WebportalParam.getLocText("Allocate Credits") + "']");
+        
+        SelenideElement deleteelement = $x("//div[@aria-rowindex='"+row+"']//li[text() = 'Allocate']");
         return deleteelement;
     }
 
@@ -253,7 +271,7 @@ public class OrganizationElement extends MyCommonAPIs {
     public SelenideElement allocateDeviceCreditsKeys  = $x("//*[@id=\"deviceCredits\"]/div/div");
     public SelenideElement checktheKey                = $x("//*[@id=\"deviceCredits\"]/ul/li/div[2]/div[1]/ul[1]/li/div[1]/label/p");
     public SelenideElement SelectKey                  = $x("//*[@id=\"deviceCredits\"]/ul/li/div[2]/div[1]/ul[1]/li/div[1]/label/i");
-    public SelenideElement closebox                   = $x("//*[@id=\"locationDivsContainer\"]/div[5]/div/div/div[1]/button/img");
+    public ElementsCollection closebox                = $$x("//*[@class='close']");
     public SelenideElement allocateCredits            = $x("//b[text()='Allocate Credits']");
     public SelenideElement deviceCredits              = $x("(//span[text()='Device Credits'])[2]");
     public SelenideElement deviceCreditsTextbox       = $x("//span[text()='Device Credits']/../..//input[@type='text']");

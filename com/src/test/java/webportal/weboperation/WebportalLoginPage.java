@@ -71,7 +71,7 @@ public class WebportalLoginPage extends WebportalLoginPageElement {
 
     public boolean inputLogin(String user, String passwd) {
         logger.info("login with:" + user);
-        sleepi(20);
+        sleepi(10);
         MyCommonAPIs.waitReady();
         try {
             String ps = WebportalParam.curWebDriver.getPageSource();

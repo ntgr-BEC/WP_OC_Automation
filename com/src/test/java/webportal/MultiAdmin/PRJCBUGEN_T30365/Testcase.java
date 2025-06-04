@@ -79,8 +79,8 @@ public class Testcase extends TestCaseBase {
         Map<String, String> managerInfo = new HashMap<String, String>();
         managerInfo.put("Name", "test1232132");
         managerInfo.put("Email Address", mailname);
-        managerInfo.put("Organization Name", WebportalParam.Organizations);
         managerInfo.put("Access Policy", "Read");
+        managerInfo.put("Select All", "Read");
 
         new ManagerPage().addManager(managerInfo);
 

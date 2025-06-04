@@ -599,7 +599,7 @@ public class OrganizationPage extends OrganizationElement {
 
        public boolean checkOrganizationIsExist(String name) {
         boolean result = false;
-        System.out.println(organizationElement(name).shouldBe(Condition.visible).isDisplayed());    
+//        System.out.println(organizationElement(name).shouldBe(Condition.visible).isDisplayed());    
         if (organizationElement(name).exists() ||  organizationElement(name).isDisplayed()) {
             result = true;
             logger.info("Organization is existed.");
@@ -1343,7 +1343,7 @@ public class OrganizationPage extends OrganizationElement {
             }
         }
         MyCommonAPIs.sleepi(5);
-        closebox.click();
+        new GenericMethods().clickVisibleElements(closebox);
         return result;
 
     }
@@ -1365,7 +1365,7 @@ public class OrganizationPage extends OrganizationElement {
             }
         }
         MyCommonAPIs.sleepi(5);
-        closebox.click();
+        new GenericMethods().clickVisibleElements(closebox);
         return result;
 
     }
@@ -1406,7 +1406,8 @@ public class OrganizationPage extends OrganizationElement {
         }
 
         MyCommonAPIs.sleepi(5);
-        closebox.click();
+        new GenericMethods().clickVisibleElements(closebox);
+//        closebox.click();
         return result;
 
     }

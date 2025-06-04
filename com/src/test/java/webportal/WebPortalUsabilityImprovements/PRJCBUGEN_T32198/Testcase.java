@@ -93,12 +93,6 @@ public class Testcase extends TestCaseBase {
         
     }
     
-    @Step("Test Step 4: Open Left Customize Menu with left Top Arrow Icon")
-    public void step4() {
-        new SummaryPage().OpenleftCustomizeMenu();
-        MyCommonAPIs.sleepi(2); 
-        
-    }
 
     @Step("Test Step 5: Verify All Menu Items Are Present")
     public void step5() {

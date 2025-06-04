@@ -42,11 +42,12 @@ public class Testcase extends TestCaseBase {
     String organizationName1 = "organization";
     String locationName      = "Office1";
     String NewPwd            = "Netgear123";
+    OrganizationPage OrganizationPage = new OrganizationPage();
 
     @Feature("IM-6.10-Web Portal Usability Improvements") // It's a folder/component name to make test suite more readable from Jira Test Case.
-    @Story("PRJCBUGEN_T32211") // It's a testcase id/link from Jira Test Case but replace - with _.
+    @Story("PRJCBUGEN_T32218") // It's a testcase id/link from Jira Test Case but replace - with _.
     @Description("Test to verify that location password can be set in the location dashboard..") // It's a testcase title from Jira Test Case.
-    @TmsLink("PRJCBUGEN-T32211") // It's a testcase id/link from Jira Test Case.
+    @TmsLink("PRJCBUGEN-T32218") // It's a testcase id/link from Jira Test Case.
 
     @Test(alwaysRun = true, groups = "p1") // Use p1/p2/p3 to high/normal/low on priority
     public void test() throws Exception {
@@ -57,7 +58,7 @@ public class Testcase extends TestCaseBase {
     public void tearDown() {
         System.out.println("start to do tearDown");
         OrganizationPage page = new OrganizationPage();
-        page.deleteOrganizationNew(organizationName1);
+//        page.deleteOrganizationNew(organizationName1);
     }
 
     // Each step is a single test step from Jira Test Case
@@ -90,14 +91,16 @@ public class Testcase extends TestCaseBase {
          Map<String, String> firststdevInfo = new HashMap<String, String>();
          firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);
          firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);
-         new DevicesDashPage(false).openDeviceLoc();
+         OrganizationPage.openOrg(organizationName1);
+         new AccountPage(false).enterLocation(locationName);
          new DevicesDashPage(false).addNewdummyDeviceProAccount(firststdevInfo);
      }
      
      
      @Step("Test Step 4: Open the Edit Location Form and change the pwd")
      public void step4() {
-         new AccountPage().openEditLocationFormforPro();
+         OrganizationPage.openOrg(organizationName1);
+         new AccountPage().openEditLocationFormforPro(locationName);
          new AccountPage(false).ChangeTheLocationPwd(NewPwd);
          
      }
