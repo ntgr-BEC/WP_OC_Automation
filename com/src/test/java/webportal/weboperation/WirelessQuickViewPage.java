@@ -4815,22 +4815,25 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), true);
+            MyCommonAPIs.sleep(5);
+            //setSelected($x("//*[@id=\"fastRoamingSt\"]/../span"), true);
+            $x("//*[@id=\"fastRoamingSt\"]/../span").shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(5);
             if (Warrning.isDisplayed()) {
                 okFast.click();
 //                result = true;
             }
-            save80211.click();
+            save80211.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(10);
-            ok80211.click();
+            ok80211.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleep(5);
         }
 
     }
     
 
     public boolean bandSteering(String Ssid) {
-        boolean result = false;
+        boolean result = true;
         if (settingsorquickview.exists()) {
             settingsorquickview.click();
         }
@@ -4838,20 +4841,22 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"bandSteeringSt\"]"), true);
+            MyCommonAPIs.sleep(5);
+            $x("//*[@id=\"bandSteeringSt\"]/../span").shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(10);
             if (okFast.isDisplayed()) {
                 okFast.click();
-                result = true;
+                //result = true;
             }
             if (okFast.isDisplayed()) {
                 okFast.click();
-                result = true;
+                //result = true;
             }
             MyCommonAPIs.sleep(5);
-            save80211.click();
+            save80211.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(5);
-            ok80211.click();
+            ok80211.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleep(5);
         }
 
         return result;
@@ -11516,11 +11521,14 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         System.out.println(Ssid);
         if (checkSsidIsExist(Ssid)) {
             clickEditSsid(Ssid);
-            setSelected($x("//*[@id=\"kvrStatus\"]"), false);
-            MyCommonAPIs.sleep(5);           
-            save80211.click();
+            //setSelected($x("//*[@id=\"kvrStatus\"]/../span"), false);
+            MyCommonAPIs.sleepi(5);
+            $x("//*[@id=\"kvrStatus\"]/../span").shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);           
+            save80211.shouldBe(Condition.visible).click();
             MyCommonAPIs.sleep(10);
-            ok80211.click();
+            ok80211.shouldBe(Condition.visible).click();
+            MyCommonAPIs.sleepi(5);
         }
 
     }
