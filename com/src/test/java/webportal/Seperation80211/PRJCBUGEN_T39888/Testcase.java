@@ -80,7 +80,7 @@ public class Testcase extends TestCaseBase {
     @Step("Test Step 3: enable fastroaming and check for config push in 802.11kv;")
     public void step3() {
         new WirelessQuickViewPage(false).enable80211(ssidInfo.get("SSID"));
-        new WirelessQuickViewPage(false).disable80211kv(ssidInfo.get("SSID"));
+        //new WirelessQuickViewPage(false).disable80211kv(ssidInfo.get("SSID"));
         assertTrue(new APUtils(WebportalParam.ap1IPaddress).get11REnableStatusnew(WebportalParam.ap1Model),"BandSteering is not enabled");
         assertTrue(new APUtils(WebportalParam.ap1IPaddress).getKVREnableStatus(WebportalParam.ap1Model),"80211kv is not enabled");       
      }
