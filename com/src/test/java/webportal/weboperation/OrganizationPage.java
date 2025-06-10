@@ -7014,18 +7014,20 @@ public class OrganizationPage extends OrganizationElement {
     }
     
 //    Added by Ravi
-    public boolean VerifyDeviceCountOnHomeScreen(String org_name,int count) {
+     public boolean VerifyDeviceCountOnHomeScreen(String org_name,int count,String onlinecolumn,String offlinecolumn) {
         boolean result = false;
         MyCommonAPIs.sleepi(3);
         logger.info("verifying Total Device Counts are Showing Correct on Org Card ");
-        String data1 = OrgCardDeviceDataDisconnected(org_name).text();
-        logger.info(data1);
-        String data2 = deviceCount.text();
-        logger.info(data2);
-        String counter=Integer.toString(count);
-        System.out.print(count+"--------------"+counter);
+        String rowindex=dropdownOrganizationElementNew(org_name).getAttribute("aria-rowindex");
+        int onlinecount=Integer.parseInt(ariaSetIndex(rowindex,onlinecolumn).getText());
+        int offlinecount=Integer.parseInt(ariaSetIndex(rowindex,offlinecolumn).getText());
+
+        System.out.print(onlinecount);
+        System.out.print(offlinecount);
+
+       
         
-        if (data1.contains(counter)&& data2.contains(counter)) {
+        if ((onlinecount+offlinecount)==count) {
             logger.info("Device Count is Correct Under Org Card");
             result = true;
         }

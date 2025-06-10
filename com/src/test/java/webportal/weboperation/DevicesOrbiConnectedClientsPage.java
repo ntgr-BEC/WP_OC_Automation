@@ -4,6 +4,8 @@
 package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$x;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -160,15 +162,20 @@ public class DevicesOrbiConnectedClientsPage extends DevicesOrbiConnectedClients
     }
 
     public void pauseClient(String devicename) {
-        if(pauseresumecheckbox(devicename).isSelected()) {
+        if(MyCommonAPIs.checkSelected(pauseresumecheckbox(devicename)))
+    {
             pauseresumeslide(devicename).click();
+            MyCommonAPIs.sleepi(5);
+            GenericMethods.clickVisibleElements($$x("//button[text()=\"OK\"]"));
             MyCommonAPIs.sleepi(120);
         }
     }
     
     public void resumeClient(String devicename) {
-        if(!pauseresumecheckbox(devicename).isSelected()) {
+        if(!MyCommonAPIs.checkSelected(pauseresumecheckbox(devicename))){
             pauseresumeslide(devicename).click();
+            MyCommonAPIs.sleepi(5);
+            GenericMethods.clickVisibleElements($$x("//button[text()=\"OK\"]"));
             MyCommonAPIs.sleepi(120);
         }
     }

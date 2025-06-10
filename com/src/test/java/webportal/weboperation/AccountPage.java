@@ -952,7 +952,7 @@ public class AccountPage extends AccountPageElement {
         // if (locationlist.getAttribute("aria-expanded").equals("false")) {
         // locationlist.click();
         // }
-        MyCommonAPIs.sleepi(20);
+        MyCommonAPIs.sleepi(10);
         if (locationName(locationName).isDisplayed()) {
             click(locationName(locationName), true);
         } else {
@@ -1480,6 +1480,26 @@ public class AccountPage extends AccountPageElement {
         MyCommonAPIs.sleepi(5);
         radiusText.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(1);
+    }
+	
+	 public boolean VerifyDeviceCountOnHomeScreen(String locatioName,int count,String onlinecolumn,String offlinecolumn) {
+        boolean result = false;
+        MyCommonAPIs.sleepi(3);
+        logger.info("verifying Total Device Counts are Showing Correct on Location Tab ");
+        String rowindex=dropdownLocationElementNew(locatioName).getAttribute("aria-rowindex");
+        int onlinecount=Integer.parseInt(ariaSetIndex(rowindex,onlinecolumn).getText());
+        int offlinecount=Integer.parseInt(ariaSetIndex(rowindex,offlinecolumn).getText());
+        
+
+        System.out.print(onlinecount);
+        System.out.print(offlinecount);
+
+        
+        if ((onlinecount+offlinecount)==count) {
+            logger.info("Device Count is Correct Under Location Tab");
+            result = true;
+        }
+        return result;
     }
     
     
