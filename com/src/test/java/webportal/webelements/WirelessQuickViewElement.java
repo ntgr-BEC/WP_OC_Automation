@@ -1609,6 +1609,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement okbuttonAdvancedWireSett                     = $x("//p[contains(text(),'saved successfully')]/../..//button[contains(text(),'OK')]");
     public SelenideElement optimizeNowRFProfile                         = $x("//button[text()='Optimize Now']");
     public SelenideElement successInstantWiFiRFProfile                  = $x("//*[contains(text(),'Your configuration has been applied')]");
+	public SelenideElement downloadClientList         = $x("//div[@id=\"divDeviceListCSV\" and @data-tooltip=\"Download Clients\"]");
     
 }
 

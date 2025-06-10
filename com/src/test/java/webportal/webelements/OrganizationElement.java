@@ -935,5 +935,11 @@ public class OrganizationElement extends MyCommonAPIs {
     
    public SelenideElement confirmRemoveButton       = $x("//p[text()='Do you want to continue?']/../..//button[text()='Remove']");
    public SelenideElement verifyActiveStatusVC      = $x("//td[text()='Active']");
+   
+   
+      public SelenideElement ariaSetIndex(String index,String column) {
+        SelenideElement dropdownelementnew = $x("//div//ancestor::div[contains(@class, 'ag-row')]//div[@aria-rowindex='"+index+"']//div[@aria-colindex='"+column+"']/div/span");
+        return dropdownelementnew;
+    }
     
 }

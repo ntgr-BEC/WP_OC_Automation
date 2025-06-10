@@ -355,4 +355,9 @@ public class AccountPageElement extends MyCommonAPIs {
     
     public SelenideElement        nasIdentifier            = $x("//input[@id='nasIdentifierValue']");
     public SelenideElement        createNewLocationButton  = $x("//button[contains(text(),'new location')]");
+	
+	public SelenideElement ariaSetIndex(String index,String column) {
+        SelenideElement dropdownelementnew = $x("//div[@aria-rowindex='"+index+"']//div[@aria-colindex='"+column+"']/div/span");
+        return dropdownelementnew;
+    }
 }
