@@ -915,7 +915,10 @@ public class DevicesDashPage extends DevicesDashPageElements {
                       ariaSetIndex(row).click();
                       MyCommonAPIs.sleepi(3);
                       ariaSetIndexReboot(row).click();
-					  rebootconfirm.click();
+					    MyCommonAPIs.sleepi(5);
+                        GenericMethods.clickVisibleElements($$x("//button[text()=\"Reboot\"]"));
+                        MyCommonAPIs.sleepi(3);
+					    
         
     }
 	
@@ -3516,5 +3519,7 @@ public boolean verifySettingPageFilterAirbridge() {
                 MyCommonAPIs.sleepi(10);
                 
             }
+			
+			
 }
     

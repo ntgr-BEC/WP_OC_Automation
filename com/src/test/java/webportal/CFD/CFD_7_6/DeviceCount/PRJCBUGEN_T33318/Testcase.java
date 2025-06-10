@@ -17,7 +17,9 @@ import io.qameta.allure.TmsLink;
 import testbase.TestCaseBase;
 import util.MyCommonAPIs;
 import webportal.param.WebportalParam;
+import webportal.weboperation.AccountPage;
 import webportal.weboperation.DevicesDashPage;
+import webportal.weboperation.HamburgerMenuPage;
 import webportal.weboperation.OrganizationPage;
 import webportal.weboperation.WebportalLoginPage;
 import webportal.weboperation.WirelessQuickViewPage;
@@ -30,7 +32,9 @@ import webportal.weboperation.WirelessQuickViewPage;
 public class Testcase extends TestCaseBase {
     Random random = new Random();
     int n = random.nextInt(7);
-    int temper=n;
+    int count=n;
+    String onlinedevices="3";
+    String offlinedevices="4";
     Map<String, String> firststdevInfo = new HashMap<String, String>();
     StringBuilder temp =new StringBuilder(WebportalParam.ap5serialNo);
 
@@ -48,11 +52,8 @@ public class Testcase extends TestCaseBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
         System.out.println("start to do tearDown");
-        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-        new DevicesDashPage(false).GoToDevicesDashPage();
-        new DevicesDashPage(false).deleteAllDevices();
-        
+        new OrganizationPage(false).deleteOrganization("Netgearnew");
+
     }
               
     // Each step is a single test step from Jira Test Case
@@ -62,11 +63,35 @@ public class Testcase extends TestCaseBase {
         webportalLoginPage.loginByUserPassword(WebportalParam.adminName, WebportalParam.adminPassword);
     }
     
-    @Step("Test Step 2: Onboard Ap's")
-    public void step2() {
-        new OrganizationPage(false).openOrg(WebportalParam.Organizations);
-        new MyCommonAPIs().gotoLoction(WebportalParam.location1);
-               
+    
+    @Step("Test Step2: Create a Organization and Location ")
+    public void step2()
+    {
+        Map<String, String> organizationInfo = new HashMap<String, String>();
+        organizationInfo.put("Name", "Netgearnew");
+
+        OrganizationPage OrganizationPage = new OrganizationPage();
+        OrganizationPage.addOrganization(organizationInfo);
+        OrganizationPage.openOrg("Netgearnew");
+                     
+        HashMap<String, String> locationInfo = new HashMap<String, String>();      
+        locationInfo.put("Location Name", "officenew");
+        locationInfo.put("Device Admin Password", WebportalParam.loginDevicePassword);
+        locationInfo.put("Zip Code", "32003");
+        locationInfo.put("Country", "United States of America");
+        new AccountPage(false).addNetwork(locationInfo);              
+        MyCommonAPIs.sleepi(15);
+        new HamburgerMenuPage().configCreditAllocation("Netgearnew", 10, 0, 0);
+        OrganizationPage.openOrg("Netgearnew");
+        MyCommonAPIs.waitReady();
+        new AccountPage(false).enterLocation(locationInfo.get("Location Name"));
+        
+       
+                        
+    }
+    
+    @Step("Test Step 3: Onboard Ap's")
+    public void step3() {              
         firststdevInfo.put("MAC Address1", WebportalParam.ap5macaddress);  
         firststdevInfo.put("Serial Number1", WebportalParam.ap5serialNo);  
         System.out.println(n);    
@@ -83,9 +108,9 @@ public class Testcase extends TestCaseBase {
                        
     }
     
-    @Step("Test Step3: Assert the count")
-    public void step3() {
-        assertTrue(new OrganizationPage().VerifyDeviceCountOnHomeScreen(WebportalParam.Organizations,temper));
+    @Step("Test Step4: Assert the count")
+    public void step4() {
+        assertTrue(new OrganizationPage().VerifyDeviceCountOnHomeScreen("Netgearnew",count,onlinedevices,offlinedevices));
     }
 
     private String replaceSerial(StringBuilder serialparam , String replacer) {

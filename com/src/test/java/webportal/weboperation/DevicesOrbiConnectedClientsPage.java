@@ -4,6 +4,8 @@
 package webportal.weboperation;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$x;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;

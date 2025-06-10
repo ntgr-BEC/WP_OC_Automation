@@ -306,4 +306,16 @@ public class EventPage extends EventElement {
             showAllEvent();
         }
     }
+
+    public boolean notificationScheduleForSwitch(String Serialno, String Validation) {
+        boolean result = false;
+        if (NotificationText(Serialno).isDisplayed()) {
+            String Notitext = NotificationText(Serialno).getText();
+            System.out.println(Notitext);
+            if (Notitext.contains(Validation)) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }

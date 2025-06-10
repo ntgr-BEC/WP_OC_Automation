@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
+import com.opencsv.CSVReader;
 import static org.testng.Assert.assertTrue;
-
+import java.util.List;
 import java.io.BufferedReader;
 import java.io.File;
 
@@ -332,5 +332,58 @@ public class FileHandling extends HamburgerMenuElement {
         
     }
        
+	   
+	 public  boolean validateCSVForClientListing(String csvFilePath, String expectedClientName, String expectedMacAddress) {
+        // Define the expected headers in order
+        String[] expectedHeaders = {"clientName","deviceName","ssid","os","macAddress","ipAddress","model","port"};
+
+        boolean clientNameFound = false;
+        boolean macAddressFound = false;
+
+        try (CSVReader reader = new CSVReader(new FileReader(csvFilePath))) {
+            List<String[]> records = reader.readAll();
+            System.out.println("Entered try");
+            if (records.isEmpty()) {
+                System.out.println("CSV is empty.");
+                return false;
+            }
+
+            // Validate headers
+            String[] actualHeaders = records.get(0);
+            if (actualHeaders.length != expectedHeaders.length) {
+                System.out.println("Header count mismatch.");
+                return false;
+            }
+
+            for (int i = 0; i < expectedHeaders.length; i++) {
+                if (!actualHeaders[i].trim().equalsIgnoreCase(expectedHeaders[i])) {
+                    System.out.println("Header mismatch at position " + i + ": expected " + expectedHeaders[i] + " but found " + actualHeaders[i]);
+                    return false;
+                }
+            }
+
+            // Check if expected client name and MAC address exist in any row
+            for (int i = 1; i < records.size(); i++) {
+                String[] row = records.get(i);
+                if (row.length >= 5) {
+
+                    if (row[0].trim().equalsIgnoreCase(expectedClientName)) {
+                        clientNameFound = true;
+                    }
+                    System.out.println(row[4].replace("-",":").toLowerCase());
+                    System.out.println(expectedMacAddress);
+                    if (row[4].replace("-",":").toLowerCase().equalsIgnoreCase(expectedMacAddress)) {
+                        macAddressFound = true;
+                    }
+                }
+            }
+
+            return clientNameFound && macAddressFound;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
    
        }

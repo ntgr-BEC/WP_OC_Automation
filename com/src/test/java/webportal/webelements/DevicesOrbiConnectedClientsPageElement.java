@@ -89,11 +89,11 @@ public class DevicesOrbiConnectedClientsPageElement extends MyCommonAPIs {
     }
     
     public SelenideElement pauseresumecheckbox(String devicename) {
-        return $x("//span[text()='" + devicename + "']/../../td[9]//input");
+        return $x("//span[text()='" + devicename + "']/../../../td[11]//input");
     }
     
     public SelenideElement pauseresumeslide(String devicename) {
-        return $x("//span[text()='" + devicename + "']/../../td[9]//input");
+        return $x("(//span[text()='" + devicename + "']/../../../td[11]//span)[2]");
     }
 
 }

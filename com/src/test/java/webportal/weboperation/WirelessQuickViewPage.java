@@ -4602,10 +4602,10 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public boolean checkClientConnectClientPage(String Mac, String Disconnect) {
         boolean result = false;
-        WebCheck.checkHrefIcon(URLParam.hrefWireless);
+       // WebCheck.checkHrefIcon(URLParam.hrefWireless);
         int sum = 0;
-        ClientPage.click();
-        waitReady();
+       // ClientPage.click();
+       // waitReady();
         if (Disconnect.equals("Yes")) {
             DisconnectClientPage.click();
             MyCommonAPIs.sleepi(5);
