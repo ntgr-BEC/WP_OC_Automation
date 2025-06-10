@@ -663,9 +663,9 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        Topology               = $x("//*[@id=\"divMaindevicesDash\"]/div[1]/ul/li[2]/a");
     public SelenideElement        TopologyDevicedash     = $x("//*[@id=\"divSideBarSecEditVlan\"]/div[3]/div[2]/a");
 //    public SelenideElement        checkdevicestatus      = $("#svgContainer > svg > g >g:nth-of-type(2) >circle");
-    public SelenideElement        devicestatus           = $x("//body/div[@id='smartadmin-root']/div[1]/div[2]/div[1]/div[5]/div[1]/div[2]/div[2]/p[2]");
+    public SelenideElement        devicestatus           = $x("//span[contains(text(),'Status')]/..//img[@src='assets/img/icon-device-online.png']/../../..//p[text()='Connected']");
     public SelenideElement        deviceIP               = $x("//*[@id=\"topologyContainer\"]/div[5]/div/div[4]/div/table/tbody/tr[6]/td[1]");
-    public SelenideElement        More                   = $x("//div[@class=\"smallButtonsBlock text-center margin-top-10\"]/button[1]");
+    public SelenideElement        More                   = $x("//button[text()='More Details']");
     public SelenideElement        Devicetype             = $x("//*[@id=\"topologyContainer\"]/div[5]/div/div[4]/div/table/tbody/tr[2]/td[2]/span");
     public SelenideElement        Sidemenu               = $x(" //*[@id=\"topologyContainer\"]/div[3]/div[2]/div[1]/img");
     public SelenideElement        SearchTopology         = $x("//*[@id=\"topologyContainer\"]/div[3]/div[2]/div[2]/ul/li[1]/div[1]/img");
@@ -695,47 +695,47 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
     public SelenideElement        HelpTextcontent                    = $x("//*[@id=\"divMainSumm\"]/div[3]/div/div/div[2]/p[3]/span[2]");
     
     public SelenideElement StatusTool(String text) {
-        SelenideElement status = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[1]");
+        SelenideElement status = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Status']");
         return status;
     }
     public SelenideElement SerialNoTool(String text) {
-        SelenideElement SerialNo = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[3]");
+        SelenideElement SerialNo = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Serial Number']");
         return SerialNo;
     }
     public SelenideElement SerialNocheck(String text) {
-        SelenideElement SerialNo = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[4]");
+        SelenideElement SerialNo = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='"+ text +"']");
         return SerialNo;
     }
     public SelenideElement MACTool(String text) {
-        SelenideElement MAC = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[5]");
+        SelenideElement MAC = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='MAC Address']");
         return MAC;
     }
     public SelenideElement IPAddressTool(String text) {
-        SelenideElement IPAddress = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[7]");
+        SelenideElement IPAddress = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='IP Address']");
         return IPAddress;
     }
     public SelenideElement FirmwareVersionTool(String text) {
-        SelenideElement FirmwareVersion = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[9]");
+        SelenideElement FirmwareVersion = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Firmware Version']");
         return FirmwareVersion;
     }
     public SelenideElement ModelTool(String text) {
-        SelenideElement Model = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[11]");
+        SelenideElement Model = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Model']");
         return Model;
     }
-    public SelenideElement Modelcheck(String text) {
-        SelenideElement Model = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[12]");
+    public SelenideElement Modelcheck(String text, String text1) {
+        SelenideElement Model = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='"+ text1 +"']");
         return Model;
     }
     public SelenideElement CriticalNotificationTool(String text) {
-        SelenideElement CriticalNotification = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[13]");
+        SelenideElement CriticalNotification = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Critical Notifications Count']");
         return CriticalNotification;
     }
     public SelenideElement FirmwareUpdateAvailableTool(String text) {
-        SelenideElement FirmwareUpdateAvailable = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[15]");
+        SelenideElement FirmwareUpdateAvailable = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Firmware Update Available']");
         return FirmwareUpdateAvailable;
     }
     public SelenideElement NumberofClientsTool(String text) {
-        SelenideElement NumberofClients = $x("(//p[contains(text(), '"+ text +"')]/../table/tbody/tr/td)[15]");
+        SelenideElement NumberofClients = $x("//p[contains(text(), '"+ text +"')]/..//td[text()='Number of Clients']");
         return NumberofClients;
     }
     
@@ -1057,7 +1057,7 @@ public class WirelessQuickViewElement extends MyCommonAPIs {
      
      
      public SelenideElement checklinetooltip(String text) {
-         SelenideElement Selectdestination = $x("//*[contains(text(), '" + text + "')]//../*[name()=\"image\" and @style=\"cursor: pointer;\"]/../../*[@id = 'path63']");
+         SelenideElement Selectdestination = $x("//*[contains(text(), '" + text + "')]//../*[name()=\"image\" and @style=\"cursor: pointer;\"]/../../*[@id = 'path115']");
          return Selectdestination;
      }
      
