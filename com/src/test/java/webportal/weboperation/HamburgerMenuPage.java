@@ -5539,11 +5539,17 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         // GoToBillingInfo.click();
         //MyCommonAPIs.sleep(3000);
         billingfirstname.sendKeys(map.get("First Name"));
+        MyCommonAPIs.sleep(10);
         billinglastname.sendKeys(map.get("Last Name"));
+        MyCommonAPIs.sleep(10);
         billingstreetaddress.sendKeys(map.get("Street Address"));
+        MyCommonAPIs.sleep(10);
         billingcity.sendKeys(map.get("City"));
+        MyCommonAPIs.sleep(10);
         billingzip.sendKeys(map.get("Zip"));
+        MyCommonAPIs.sleep(10);
         billingcountry.selectOption(map.get("Country"));
+        MyCommonAPIs.sleep(10);
         if (billingstate1.isDisplayed()) {
             billingstate1.selectOption(map.get("State"));
         } else {
@@ -5552,16 +5558,21 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         GoToPaymentinfo.click();
         MyCommonAPIs.sleepi(3);
         paymentcardnumber.clear();
+        MyCommonAPIs.sleep(10);
         paymentcardnumber.setValue(map.get("Card Number"));
         MyCommonAPIs.sleepi(2);
         paymentcvvnumber.clear();
+        MyCommonAPIs.sleep(10);
         paymentcvvnumber.setValue(map.get("CVV Number"));
         MyCommonAPIs.sleepi(2);
         paymentexpirationmonth.selectOption(map.get("Expiration Month"));
+        MyCommonAPIs.sleep(10);
         paymentexpirationyear.selectOption(map.get("Expiration Year"));
         MyCommonAPIs.sleepi(2);
         billingstreetaddress.click();
-        billingstreetaddress.clear();    
+        MyCommonAPIs.sleep(10);
+        billingstreetaddress.clear(); 
+        MyCommonAPIs.sleep(10);
         billingstreetaddress.sendKeys(map.get("Street Address"));
         MyCommonAPIs.sleepi(2);
         mubPaymentsaveBtn.click();

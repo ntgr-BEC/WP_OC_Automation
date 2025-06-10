@@ -4965,11 +4965,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
 
     public void CheckStatus(String SLNo) {
         MyCommonAPIs.sleepi(10);
-        checkdevicestatus(SLNo).hover().click();
+        checkdevicestatus(SLNo).shouldBe(Condition.visible).hover().click();
         MyCommonAPIs.sleepi(5);
         MyCommonAPIs.waitElement(More);
         System.out.println("visible");
-        More.click();
+        More.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(20);
     }
 
@@ -5145,11 +5145,11 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
         boolean result1 = false;
         boolean result2 = false;
         MyCommonAPIs.sleepi(10);
-        checkdevicestatus(SLNo).hover().click();
+        checkdevicestatus(SLNo).shouldBe(Condition.visible).hover().click();
         MyCommonAPIs.sleepi(5);
         String Status = getText(StatusTool(SLNo));
         String Serial = getText(SerialNocheck(SLNo));
-        String Model = getText(Modelcheck(SLNo));
+        String Model = getText(Modelcheck(SLNo, ModelNo));
         System.out.println(Status + Serial + Model);
         System.out.println("before entering exits");
         if (StatusTool(SLNo).exists() && SerialNoTool(SLNo).exists() && MACTool(SLNo).exists() && IPAddressTool(SLNo).exists()
@@ -5158,15 +5158,7 @@ public class WirelessQuickViewPage extends WirelessQuickViewElement {
             System.out.println("All tool's are present");
             result1 = true;
         }
-
-        // String MAC = getText(MACTool(SLNo));
-
-        // String IPAddress = getText(IPAddressTool(SLNo));
-        // String FirmwareVersion = getText(FirmwareVersionTool(SLNo));
-        // String CriticalNotification = getText(CriticalNotificationTool(SLNo));
-        // String FirmwareUpdateAvailable = getText(FirmwareUpdateAvailableTool(SLNo));
-        // String NumberofClients = getText(NumberofClientsTool(SLNo));
-        System.out.println("before checking Model and serial number exits");
+        System.out.println("before checking Model and serial number exits "+Status+" "+Serial+" "+Model);
         if (Status.contains("Status") && Serial.contains(SLNo) && Model.contains(ModelNo)) {
             System.out.println("seial Number and model are right");
             result2 = true;
