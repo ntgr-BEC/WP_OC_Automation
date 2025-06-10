@@ -162,20 +162,15 @@ public class DevicesOrbiConnectedClientsPage extends DevicesOrbiConnectedClients
     }
 
     public void pauseClient(String devicename) {
-        if(MyCommonAPIs.checkSelected(pauseresumecheckbox(devicename)))
-    {
+        if(pauseresumecheckbox(devicename).isSelected()) {
             pauseresumeslide(devicename).click();
-            MyCommonAPIs.sleepi(5);
-            GenericMethods.clickVisibleElements($$x("//button[text()=\"OK\"]"));
             MyCommonAPIs.sleepi(120);
         }
     }
     
     public void resumeClient(String devicename) {
-        if(!MyCommonAPIs.checkSelected(pauseresumecheckbox(devicename))){
+        if(!pauseresumecheckbox(devicename).isSelected()) {
             pauseresumeslide(devicename).click();
-            MyCommonAPIs.sleepi(5);
-            GenericMethods.clickVisibleElements($$x("//button[text()=\"OK\"]"));
             MyCommonAPIs.sleepi(120);
         }
     }
