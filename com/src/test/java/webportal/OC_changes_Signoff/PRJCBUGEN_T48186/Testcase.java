@@ -61,15 +61,16 @@ public class Testcase extends TestCaseBase {
         profileInfo.put("Street Address", "ham213123(");
         profileInfo.put("Apartment or Suite", "ham2423121)");
         profileInfo.put("Postal/ZIP Code", "ham55213");
-
+        System.out.println("Edit Profile 1st time");
         new HamburgerMenuPage().editProfile(profileInfo);
 
         MyCommonAPIs.sleepi(10);
-
+        
+        System.out.println("Getting Edited Profile Info");
         Map<String, String> newProfileInfo = new HamburgerMenuPage().getProfile();
 
         boolean result = true;
-
+        
         for (Map.Entry<String, String> entry1 : profileInfo.entrySet()) {
             String m1value = entry1.getValue() == null ? "" : entry1.getValue();
             System.out.println(m1value);
@@ -79,6 +80,7 @@ public class Testcase extends TestCaseBase {
                 break;
             }
         }
+        System.out.println(" Edit profile as old");
         new HamburgerMenuPage().editProfile(oldProfileInfo);
         MyCommonAPIs.sleepi(10);
         assertTrue(result, "Edit profile unsuccessful.");

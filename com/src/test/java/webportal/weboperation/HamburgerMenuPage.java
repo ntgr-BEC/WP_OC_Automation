@@ -1374,11 +1374,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public Map<String, String> getProfile() {
         updateprofile.click();
-        MyCommonAPIs.sleepi(10);
-        if (cancelbuttonCognito.exists()) {
-            cancelbuttonCognito.click();
-        } else if (cancelbutton.exists()) {
+        MyCommonAPIs.sleepi(15);
+        if (cancelbutton.exists()) {
             cancelbutton.click();
+        } else if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
         } else {
             MyCommonAPIs.sleepi(10);
             if (cancelbutton.exists()) {
@@ -1420,7 +1420,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         logger.info("Logout account...");
         logout.click();
-        MyCommonAPIs.sleepi(5);
+        MyCommonAPIs.sleepi(10);
         if ($x("//button/*[text()=\"NETGEAR Sign In\"]").exists()) {
             result = true;
             logger.info("Logout successful...");
