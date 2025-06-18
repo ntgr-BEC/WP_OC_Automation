@@ -34,7 +34,7 @@ public class Testcase extends TestCaseBase {
     Random r        = new Random();
     int    num      = r.nextInt(10000000);
     String mailname = "apwptest" + String.valueOf(num);
-    String email = mailname + "@yomail.com";
+    String email = mailname + "@yopmail.com";
     
 
     @Feature("OC_changes_Signoff") 
@@ -55,14 +55,13 @@ public class Testcase extends TestCaseBase {
         Map<String, String> accountInfo = new HashMap<String, String>();
         accountInfo.put("First Name", mailname);
         accountInfo.put("Last Name", "T15514");
-        accountInfo.put("Email Address", mailname + "@yopmail.com");
-        accountInfo.put("Confirm Email", mailname + "@yomail.com");
+        accountInfo.put("Email Address", email);
+        accountInfo.put("Confirm Email", email);
         accountInfo.put("Password", "Netgear#123");
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "Canada");
 
         new HamburgerMenuPage(false).createAccount(accountInfo);
-        handle.gotoLoction();
     }
 
     
