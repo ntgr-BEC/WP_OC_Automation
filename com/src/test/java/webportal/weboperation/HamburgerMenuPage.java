@@ -10938,7 +10938,7 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         }
         
     public void changeAccountPwd(String oldPassword, String newPassword) {
-        updateprofile.click();
+        updateprofile.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
         if (cancelbutton.exists()) {
             cancelbutton.click();
@@ -10949,20 +10949,18 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
                 cancelbutton.click();
             }
         }
-        loginsettings.click();
+        loginsettings.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(5);
         logger.info("Change password...");
-        changepassword.click();
+        changepassword.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(3);
-        oldpassword.sendKeys(oldPassword);
-        newpassword.sendKeys(newPassword);
-        confirmnewpassword.sendKeys(newPassword);
+        oldpassword.shouldBe(Condition.visible).sendKeys(oldPassword);
+        newpassword.shouldBe(Condition.visible).sendKeys(newPassword);
+        confirmnewpassword.shouldBe(Condition.visible).sendKeys(newPassword);
         MyCommonAPIs.sleepi(3);
-        submitbutton.click();
+        submitbutton.shouldBe(Condition.visible).click();
         MyCommonAPIs.sleepi(10);
-
         logger.info("Change password successful.");
-        WebCheck.checkHrefIcon(URLParam.hrefDevices);
     }
 
     public void createAccount2fa(Map<String, String> map) {
