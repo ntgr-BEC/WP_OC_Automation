@@ -52,9 +52,7 @@ import com.codeborne.selenide.ElementsCollection;
 import java.net.URL;
 import java.net.HttpURLConnection;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-
-import com.google.inject.spi.Element;
+import java.io.InputStreamReader;import com.google.inject.spi.Element;
 import com.mysql.cj.fabric.xmlrpc.base.Array;
 import util.MyCommonAPIs;
 import webportal.param.URLParam;
@@ -79,7 +77,6 @@ import java.security.cert.X509Certificate;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
-
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.FileReader;
@@ -95,12 +92,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.Calendar;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import org.json.JSONArray;
-import org.json.JSONObject;
-/**
+import org.json.JSONObject;/**
  * @author Netgear
  */
 
@@ -497,7 +492,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         waitElement(yesenbalenew);
         yesenbalenew.click();
         
-        handleCaptchaPopup();
+          handleCaptchaPopup();
         // code by tejeshwini
         if ($x("//h1[contains(text(),'Select verification method')]").exists()) {
 
@@ -578,9 +573,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (Next.exists()) {
             Next.click();
         }
-        System.out.println("Beofre Captcha");
-        handleCaptchaPopup();
-        System.out.println("After Captcha");
+
         waitElement(verifybutton);
         String code = getAuthCode(phonenum, pairMessage, Country);
         logger.info("Confirmation code is:" + code);
@@ -1257,7 +1250,7 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
             }
         }
     }
-
+    
     public void editProfile(Map<String, String> map) {
         updateprofile.click();
         MyCommonAPIs.sleepi(10);
@@ -1374,11 +1367,11 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
 
     public Map<String, String> getProfile() {
         updateprofile.click();
-        MyCommonAPIs.sleepi(10);
-        if (cancelbuttonCognito.exists()) {
-            cancelbuttonCognito.click();
-        } else if (cancelbutton.exists()) {
+        MyCommonAPIs.sleepi(15);
+        if (cancelbutton.exists()) {
             cancelbutton.click();
+        } else if (cancelbuttonCognito.exists()) {
+            cancelbuttonCognito.click();
         } else {
             MyCommonAPIs.sleepi(10);
             if (cancelbutton.exists()) {
@@ -11012,9 +11005,7 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         closeLockedWindow.waitUntil(Condition.exist, 90000).click();
 
     }
-
-
-
+    
     
 }
 
