@@ -253,10 +253,10 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement submitchangeemail  = $x("//input[@name='password']/ancestor::div[4]//button");
     public SelenideElement currentpassword    = $x("//input[@name='password']");
     public SelenideElement changepassword     = $x("//span[text()='Change Password']");
-    public SelenideElement oldpassword        = $x("//label[text()='Old Password']/../input");
-    public SelenideElement newpassword        = $x("//label[text()='New Password']/../input");
-    public SelenideElement confirmnewpassword = $x("//label[text()='Confirm New Password']/../input");
-    public SelenideElement submitbutton       = $x("//button[@name='changePasswordButton']/span[text()='Submit']");
+    public SelenideElement oldpassword        = $x("//input[@formcontrolname='cPassword' and @type='password']");
+    public SelenideElement newpassword        = $x("//input[@formcontrolname='nPassword' and @type='password']");
+    public SelenideElement confirmnewpassword = $x("//input[@type='password' and @formcontrolname='cnPassword']");
+    public SelenideElement submitbutton       = $x("//button[span[text()='Submit']]");
     public SelenideElement okconformation     = $x(
             "//p[contains(text(), 'Insight unable to find your subscription plan details.')]//following::button[@class = 'btn btn-danger']");
     public SelenideElement Invalidsession     = $x("//p[contains(text(), 'Invalid Session')]//following::button[contains(text(), 'OK')]");
@@ -1059,7 +1059,9 @@ public class HamburgerMenuElement extends MyCommonAPIs {
   public SelenideElement multipackStatus = $x("//tbody/tr/td[5]/span");
   public SelenideElement multipackAutoRenewal = $x("//tbody/tr/td[6]");
   public SelenideElement multipackSubscriptionId = $x("//tr/td[1]/span");
-  
+  public SelenideElement Trust = $x("//*[text() ='Trust']");
+  public SelenideElement NoTrust = $x("//button[span[normalize-space(text())=\"Don't Trust\"]]");
+  public SelenideElement SMS = $x("//*[text()='SMS Text Message']/../../span");
   
 }
 
