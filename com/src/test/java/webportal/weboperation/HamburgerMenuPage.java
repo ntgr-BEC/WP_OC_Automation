@@ -1420,16 +1420,16 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         boolean result = false;
         logger.info("Logout account...");
         logout.click();
-        MyCommonAPIs.sleepi(5);
-        if ($x("//button/*[text()=\"NETGEAR Sign In\"]").exists()) {
+        MyCommonAPIs.sleepi(10);
+        if ($x("//button/*[text()=\"NETGEAR Sign In\"]").shouldBe(Condition.visible).isDisplayed()) {
             result = true;
             logger.info("Logout successful...");
         }
 
-        if ($x("//button/*[text()=\"Login\"]").exists()) {
-            result = true;
-            logger.info("Logout successful...");
-        }
+//        if ($x("//button/*[text()=\"Login\"]").exists()) {
+//            result = true;
+//            logger.info("Logout successful...");
+//        }
         return result;
     }
 

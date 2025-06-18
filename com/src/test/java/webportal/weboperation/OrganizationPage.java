@@ -305,7 +305,7 @@ public class OrganizationPage extends OrganizationElement {
                 logger.info("--------------- Organisation is Created Succesfully ----------");
                 MyCommonAPIs.sleepi(30);
                 if (map.containsKey("Automatically Created")) {
-                    if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='Yes']").exists()) {
+                    if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='Yes']").isDisplayed()) {
                         $x("//h4[text()='Organization Created Successfully']/../..//button[text()='Yes']").click();
                     }
                     waitReady();
@@ -325,8 +325,8 @@ public class OrganizationPage extends OrganizationElement {
                 } else {
                     MyCommonAPIs.sleepi(15);
                     waitElement("//h4[text()='Organization Created Successfully']/../..//button[text()='No']");
-                    MyCommonAPIs.sleepi(1);
-                    if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='No']").exists()) {
+                    MyCommonAPIs.sleepi(5);
+                    if ($x("//h4[text()='Organization Created Successfully']/../..//button[text()='No']").isDisplayed()) {
                         $x("//h4[text()='Organization Created Successfully']/../..//button[text()='No']").click();
                     }
                 }
