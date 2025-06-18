@@ -16,6 +16,8 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
+
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -37,7 +39,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 import com.codeborne.selenide.SelenideElement;
-import javax.print.DocFlavor.URL;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.sis.util.Static;
@@ -48,6 +49,11 @@ import org.jsoup.select.Elements;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import com.codeborne.selenide.ElementsCollection;
+import java.net.URL;
+import java.net.HttpURLConnection;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import com.google.inject.spi.Element;
 import com.mysql.cj.fabric.xmlrpc.base.Array;
 import util.MyCommonAPIs;
@@ -73,6 +79,7 @@ import java.security.cert.X509Certificate;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import java.io.FileReader;
@@ -88,6 +95,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.Calendar;
+
+import java.io.*;
+import java.net.HttpURLConnection;
+import org.json.JSONArray;
+import org.json.JSONObject;
 /**
  * @author Netgear
  */
@@ -484,68 +496,8 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         MyCommonAPIs.sleepi(10);
         waitElement(yesenbalenew);
         yesenbalenew.click();
-        // if (yesenbale.exists()) {
-        // yesenbale.click();
-        // } else if (yesenbalenew.exists()) {
-        // yesenbalenew.click();
-        // }
-        // if ($x("//div[@ng-show='selectTsv']").getAttribute("class").equals("Verfiecol"))
-        // MyCommonAPIs.sleepi(5);
-        // if ($x("//div[@class='Verfiecol']//div[text()='SMS Text Message']").exists()) {
-        // logger.info("In the 2fa page now.");
-        // result = true;
-        // if (verification && result == true) {
-        // if($x("(//button[text()='Yes, Enable'])[2]").exists()) {
-        // $x("(//button[text()='Yes, Enable'])[2]").click();
-        // }
-        // if($x("(//button[text()='Yes enable'])[2]").exists()) {
-        // $x("(//button[text()='Yes enable'])[2]").click();
-        // }
-        //
-        // MyCommonAPIs.sleepi(10);
-        // waitElement(inputphone);
-        // if (inputphone.exists()) {
-        // logger.info("In the \"Add SMS Verification\" page now.");
-        // result = true;
-        // } else {
-        // result = false;
-        // }
-        // if (result && !phonenum.equals("")) {
-        // finishSignup(phonenum);
-        // MyCommonAPIs.sleepi(10);
-        // if ($x("//div[@ng-show='logging' and @class='wrapper']//p[text()='You have successfully created a NETGEAR
-        // account.']")
-        // .exists()) {
-        // result = true;
-        // logger.info("Sign up successful.");
-        // finishbutton.click();
-        // MyCommonAPIs.sleepi(60);
-        // String url = MyCommonAPIs.getCurrentUrl();
-        // if (url.contains("/#/locked")) {
-        // closeLockedDialog();
-        // }
-        // if (closeLockedWindow.exists()) {
-        // closeLockedWindow.click();
-        // }
-        // if (notificationicon.exists()) {
-        // result = true;
-        // logger.info("Login successful.");
-        // } else {
-        // refresh();
-        // MyCommonAPIs.sleepi(60);
-        // if (notificationicon.exists()) {
-        // result = true;
-        // logger.info("Login successful.");
-        // }
-        // }
-        // } else {
-        // logger.info("Sign up unsuccessful.");
-        // result = false;
-        // Selenide.back();
-        // }
-        // }
-        // }
-        // }
+        
+        handleCaptchaPopup();
         // code by tejeshwini
         if ($x("//h1[contains(text(),'Select verification method')]").exists()) {
 
@@ -626,7 +578,9 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
         if (Next.exists()) {
             Next.click();
         }
-
+        System.out.println("Beofre Captcha");
+        handleCaptchaPopup();
+        System.out.println("After Captcha");
         waitElement(verifybutton);
         String code = getAuthCode(phonenum, pairMessage, Country);
         logger.info("Confirmation code is:" + code);
@@ -10894,6 +10848,175 @@ public boolean checkEmailMessageForProAdminAccount(String mailname) {
         return result;
     }
     
+    public void handleCaptchaPopup() {
+        // Wait for the iframe to appear
+        SelenideElement captchaFrame = $(By.xpath("//div[@id='px-captcha']/iframe"));
+        captchaFrame.shouldBe(Condition.visible);
+
+        // Switch to iframe
+        switchTo().frame(captchaFrame);
+
+        // Try to click-and-hold inside iframe (if allowed)
+        SelenideElement challengeElement = $(By.tagName("body"));
+        Actions actions = new Actions(WebDriverRunner.getWebDriver());
+
+        // Simulate press and hold for 5 seconds
+        actions.moveToElement(challengeElement)
+               .clickAndHold()
+               .pause(Duration.ofSeconds(5))
+               .release()
+               .build()
+               .perform();
+
+        // Switch back to main page
+        switchTo().defaultContent();
+    }
+
+        private static final String API_KEY = "your_5sim_api_key"; // <-- Replace this
+        private static final String BASE_URL = "https://5sim.net/v1/user";
+        private static final String COUNTRY = "usa";
+        private static final String OPERATOR = "any";
+        private static final String PRODUCT = "other"; // or "google", "telegram", etc.
+
+        private static String id;
+        private static String number;
+
+        public static String getPhoneNumber() throws Exception {
+            String url = BASE_URL + "/buy/activation/" + COUNTRY + "/" + OPERATOR + "/" + PRODUCT;
+
+            HttpURLConnection conn = openConnection(url, "GET", API_KEY);
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String jsonResp = readAll(in);
+
+            JSONObject obj = new JSONObject(jsonResp);
+            id = obj.get("id").toString();
+            number = obj.get("phone").toString();
+
+            return number;
+        }
+
+        public static String waitForOtp() throws Exception {
+            String otp = null;
+            int retries = 12;
+
+            while (retries-- > 0) {
+                Thread.sleep(5000);
+
+                String url = BASE_URL + "/check/" + id;
+                HttpURLConnection conn = openConnection(url, "GET", API_KEY);
+                BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String jsonResp = readAll(in);
+
+                JSONObject obj = new JSONObject(jsonResp);
+                JSONArray messages = obj.getJSONArray("sms");
+
+                if (messages.length() > 0) {
+                    JSONObject first = messages.getJSONObject(0);
+                    otp = first.getString("code");
+                    break;
+                }
+            }
+            return otp;
+        }
+
+        private static String readAll(BufferedReader in) throws IOException {
+            StringBuilder content = new StringBuilder();
+            String line;
+            while ((line = in.readLine()) != null) {
+                content.append(line);
+            }
+            return content.toString();
+        }
+
+
+        public static HttpURLConnection openConnection(String urlStr, String method, String apiKey) throws Exception {
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod(method);
+            conn.setRequestProperty("Authorization", "Bearer " + apiKey);
+            return conn;
+        }
+        
+    public void changeAccountPwd(String oldPassword, String newPassword) {
+        updateprofile.click();
+        MyCommonAPIs.sleepi(10);
+        if (cancelbutton.exists()) {
+            cancelbutton.click();
+        } else {
+            refresh();
+            MyCommonAPIs.sleepi(10);
+            if (cancelbutton.exists()) {
+                cancelbutton.click();
+            }
+        }
+        loginsettings.click();
+        MyCommonAPIs.sleepi(5);
+        logger.info("Change password...");
+        changepassword.click();
+        MyCommonAPIs.sleepi(3);
+        oldpassword.sendKeys(oldPassword);
+        newpassword.sendKeys(newPassword);
+        confirmnewpassword.sendKeys(newPassword);
+        MyCommonAPIs.sleepi(3);
+        submitbutton.click();
+        MyCommonAPIs.sleepi(10);
+
+        logger.info("Change password successful.");
+        WebCheck.checkHrefIcon(URLParam.hrefDevices);
+    }
+
+    public void createAccount2fa(Map<String, String> map) {
+
+        MyCommonAPIs.sleepi(5);
+        long t = System.currentTimeMillis();
+        long end = t + 10;
+
+        int retryCount = 0;
+        boolean loginSuccess = false;
+
+        while (retryCount < 3 && !loginSuccess) {
+            if (loginNowButton.exists()) {
+                loginNowButton.click();
+                System.out.println("Clicked for attempt #" + (retryCount + 1));
+                MyCommonAPIs.sleepi(10);
+                inputAccountInfo(map);
+                MyCommonAPIs.sleepi(10);
+                if (loginPwdNewcognito.isDisplayed()) {
+                    loginPwdNewcognito.sendKeys(map.get("Password"));
+                    SigninbuttonCognito.click();
+                    loginSuccess = true;
+                    break;
+                } else {
+                    System.out.println("loginPwdNewcognito not displayed, retrying...");
+                    retryCount++;
+                    MyCommonAPIs.sleepi(5); // small wait before retry
+                }
+            } else {
+                break; // button not present, exit loop
+            }
+        }
+
+        if (!loginSuccess) {
+            System.out.println("Failed to reach loginPwdNewcognito after retries.");
+            return;
+        }
+        MyCommonAPIs.sleepi(10);
+        yesenbalenew.waitUntil(Condition.exist, 40000).click();
+        if (map.containsKey("SMS Text Message")) {
+            SMS.click();
+        }
+        Continue.waitUntil(Condition.exist, 40000).click();
+        MyCommonAPIs.sleepi(10);
+        Continue.waitUntil(Condition.exist, 40000).click();
+        MyCommonAPIs.sleepi(10);
+        NoTrust.waitUntil(Condition.exist, 40000).click();
+        MyCommonAPIs.sleepi(30);
+        closeLockedWindow.waitUntil(Condition.exist, 90000).click();
+
+    }
+
+
+
     
 }
 
