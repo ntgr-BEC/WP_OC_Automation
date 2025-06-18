@@ -273,7 +273,7 @@ public class HamburgerMenuElement extends MyCommonAPIs {
     public SelenideElement cloudversion     = $x("//div[@class='InsightVirsion']/p[2]");
     public SelenideElement closebutton      = $x("//div[@id='divModConsuccessModlWiredPoeSch']//button[text()='Close']");
 
-    public SelenideElement logout = $x("//*[@id='notificationDrop']/../../ul//a[text()='Log Out']");
+    public SelenideElement logout = $x("//a[contains(@class,'padding-bottom') and normalize-space(text())='Log Out']");
 
     public SelenideElement closedevicecredits = $x("(//div[contains(@class,'modal fade Devicecredit in')]//button)[1]");
     public SelenideElement upgrade            = $x("//button[text()='Upgrade']");
