@@ -4544,18 +4544,20 @@ public class HamburgerMenuPage extends HamburgerMenuElement {
     }
 
     public void gotoInsightPremiumSubscriptions() {
-        accountmanager.click();
+//        accountmanager.click();
+//        MyCommonAPIs.sleepi(5);
+//        closeLockedDialog();
+//        subscriptions.click();
+//        MyCommonAPIs.sleepi(10);
+//        if (closedevicecredits.exists()) {
+//            closedevicecredits.click();
+//        }
+//        waitReady();
+////        $$(subButton).last().click();
+//        subButton1.click();
+        new MyCommonAPIs().open(URLParam.hrefPaymentSubscription, true);
+        waitReady();
         MyCommonAPIs.sleepi(5);
-        closeLockedDialog();
-        subscriptions.click();
-        MyCommonAPIs.sleepi(10);
-        if (closedevicecredits.exists()) {
-            closedevicecredits.click();
-        }
-        waitReady();
-//        $$(subButton).last().click();
-        subButton1.click();
-        waitReady();
     }
 
     public void cancelDeviceCredits() {
