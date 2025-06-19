@@ -75,7 +75,8 @@ public class Testcase extends TestCaseBase {
         accountInfo.put("Confirm Password", "Netgear#123");
         accountInfo.put("Country", "United States");
 
-        new HamburgerMenuPage(false).createAccount(accountInfo);        
+        new HamburgerMenuPage(false).createAccount(accountInfo);   
+        new HamburgerMenuPage(false).closeLockedDialog();
                
     }
     
@@ -118,15 +119,14 @@ public class Testcase extends TestCaseBase {
         
         Map<String, String> paymentInfo = new HashMap<String, String>();
         paymentInfo = new CommonDataType().CARD_INFO;
-        
-        new HamburgerMenuPage(false).closeLockedDialog();
+       
         new HamburgerMenuPage().gotoInsightPremiumSubscriptions();
         
         paymentInfo.put("First Name", "New");
         paymentInfo.put("Last Name", "New");
         paymentInfo.put("Email", mailname + "@mailinator.com");
         paymentInfo.put("Device Credits Pack", "5");
-        paymentInfo.put("Buy Year", "5");
+        paymentInfo.put("Buy Year", "1");
         paymentInfo.put("Email", mailname + "@mailinator.com");
         paymentInfo.put("Street Address", "Springs Rd");
         paymentInfo.put("City", "Red Bank");
