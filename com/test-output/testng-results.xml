@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="160264" started-at="2025-06-19T11:18:45Z" finished-at="2025-06-19T11:21:25Z">
+    <groups>
+      <group name="p2">
+        <method signature="Testcase.test()[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="test" class="webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase"/>
+      </group> <!-- p2 -->
+    </groups>
+    <test name="Default test" duration-ms="160264" started-at="2025-06-19T11:18:45Z" finished-at="2025-06-19T11:21:25Z">
+      <class name="webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase">
+        <test-method status="PASS" signature="BeforeSuite(org.testng.ITestContext)[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="BeforeSuite" is-config="true" duration-ms="31" started-at="2025-06-19T11:18:45Z" finished-at="2025-06-19T11:18:45Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e2a920f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- BeforeSuite -->
+        <test-method status="PASS" signature="beforeClassWrap()[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="beforeClassWrap" is-config="true" duration-ms="2073" started-at="2025-06-19T11:18:45Z" finished-at="2025-06-19T11:18:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClassWrap -->
+        <test-method status="PASS" signature="test()[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="test" duration-ms="148574" started-at="2025-06-19T11:18:47Z" finished-at="2025-06-19T11:21:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="tearDown" is-config="true" duration-ms="0" started-at="2025-06-19T11:21:16Z" finished-at="2025-06-19T11:21:16Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method status="PASS" signature="afterClassWrap(org.testng.ITestContext)[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="afterClassWrap" is-config="true" duration-ms="9393" started-at="2025-06-19T11:21:16Z" finished-at="2025-06-19T11:21:25Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e2a920f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClassWrap -->
+        <test-method status="PASS" signature="AfterSuite(org.testng.ITestContext)[pri:0, instance:webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase@55ad5546]" name="AfterSuite" is-config="true" duration-ms="4" started-at="2025-06-19T11:21:26Z" finished-at="2025-06-19T11:21:26Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@6e2a920f]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AfterSuite -->
+      </class> <!-- webportal.OC_changes_Signoff.PRJCBUGEN_T48166.Testcase -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

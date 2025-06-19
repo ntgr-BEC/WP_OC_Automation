@@ -1,3 +1,0 @@
-"1: For a premium account buy a Device/ICP/VPN subscription.just config in webportal.xml
-2: For a Pro account add the Device/ICP/VPN license key. 3: Create one Owner account for PRJCBUGEN-T16868 testcase. 4: for PRJCBUGEN-T16856 testcase create a new account and for a premium account buy Insight Device credits and a VPN subscription
-For a Pro account add Pro Device and VPN license key 5: for PRJCBUGEN-T16855 need license key in licence.txt file to upgrade account from premium to pro. Location should of wireless region Australia"

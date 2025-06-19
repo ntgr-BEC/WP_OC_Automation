@@ -1,2 +1,0 @@
-need AP1 and AP2 for T39770 case alone you require BR1 and SW1
-

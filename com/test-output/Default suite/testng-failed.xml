@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
+    <classes>
+      <class name="webportal.OC_changes_Signoff.PRJCBUGEN_T48203.Testcase">
+        <methods>
+          <include name="tearDown"/>
+          <include name="afterClassWrap"/>
+          <include name="beforeClassWrap"/>
+          <include name="BeforeSuite"/>
+          <include name="AfterSuite"/>
+          <include name="test"/>
+          <include name="tearUp"/>
+        </methods>
+      </class> <!-- webportal.OC_changes_Signoff.PRJCBUGEN_T48203.Testcase -->
+    </classes>
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

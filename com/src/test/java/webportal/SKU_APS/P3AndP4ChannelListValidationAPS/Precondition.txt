@@ -1,4 +1,0 @@
-One AP need to configure in config_dut file as AP1>
-AP1 need not to onboard in any account
-Then at a time run only one folder related AP means for example
-run only WBE710 folder then go to next change AP config accordingly

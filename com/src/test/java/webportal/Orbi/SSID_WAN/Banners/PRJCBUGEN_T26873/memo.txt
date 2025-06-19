@@ -1,2 +1,0 @@
-Before running the test case
-On-board some devices that unsupport Business VPN

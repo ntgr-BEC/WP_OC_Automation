@@ -1,3 +1,0 @@
-Onboard and configure AP, ORbi, BR and Switch 
-also configure Premium account 
-22755 test case reqire client 

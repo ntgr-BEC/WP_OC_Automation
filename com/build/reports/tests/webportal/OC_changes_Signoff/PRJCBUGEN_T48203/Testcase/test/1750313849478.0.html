@@ -1,0 +1,726 @@
+<html lang="en"><head><script async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MQMSLZ8S"></script><script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MQMSLZ8S');</script><meta charset="utf-8"><title>Insight Cloud Portal</title><meta name="description" content=""><meta name="author" content=""><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><!-- #FAVICONS --><link rel="shortcut icon" href="assets/img/favicon/faviconNetgear.png" type="image/x-icon"><!-- #GOOGLE FONT --><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#6e2585"><!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]--><link href="/assets/css/style.21e96aaf8ffd2c4368c3.css" rel="stylesheet"><script charset="utf-8" src="/js/95.f147973ec88f46658d10.chunk.js"></script><script charset="utf-8" src="/js/96.716c457404cd8201fad5.chunk.js"></script><script src="https://accounts2-stg.netgear.com/accounts-stg/consumerTokenManagement.js"></script><script charset="utf-8" src="/js/0.c885aea48b121a9048e9.chunk.js"></script><script charset="utf-8" src="/js/153.2d6196ebe257bdc42dc3.chunk.js"></script><script charset="utf-8" src="/js/276.9ec8659b74ee77417669.chunk.js"></script><link rel="stylesheet" type="text/css" href="/assets/css/13.4ab885296d9b3df245f3.css"><script charset="utf-8" src="/js/13.d184da5701986c61e350.chunk.js"></script><script charset="utf-8" src="/js/187.54894b3c5f629715b2ae.chunk.js"></script><script charset="utf-8" src="/js/4.0dfe84d7e71f1837c7d3.chunk.js"></script><script charset="utf-8" src="/js/6.79b20782fdd5c66b232a.chunk.js"></script><script charset="utf-8" src="/js/24.8d77c7ff94b3bc4ae76c.chunk.js"></script><script charset="utf-8" src="/js/82.5d25cb413bf1d30ebb2d.chunk.js"></script><script charset="utf-8" src="/js/98.9b8e00f0062eeaee0c66.chunk.js"></script><style id="apexcharts-css">@keyframes opaque {
+  0% {
+    opacity: 0
+  }
+
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes resizeanim {
+
+  0%,
+  to {
+    opacity: 0
+  }
+}
+
+.apexcharts-canvas {
+  position: relative;
+  direction: ltr !important;
+  user-select: none
+}
+
+.apexcharts-canvas ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 6px
+}
+
+.apexcharts-canvas ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, .5);
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+  -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5)
+}
+
+.apexcharts-inner {
+  position: relative
+}
+
+.apexcharts-text tspan {
+  font-family: inherit
+}
+
+rect.legend-mouseover-inactive,
+.legend-mouseover-inactive rect,
+.legend-mouseover-inactive path,
+.legend-mouseover-inactive circle,
+.legend-mouseover-inactive line,
+.legend-mouseover-inactive text.apexcharts-yaxis-title-text,
+.legend-mouseover-inactive text.apexcharts-yaxis-label {
+  transition: .15s ease all;
+  opacity: .2
+}
+
+.apexcharts-legend-text {
+  padding-left: 15px;
+  margin-left: -15px;
+}
+
+.apexcharts-series-collapsed {
+  opacity: 0
+}
+
+.apexcharts-tooltip {
+  border-radius: 5px;
+  box-shadow: 2px 2px 6px -4px #999;
+  cursor: default;
+  font-size: 14px;
+  left: 62px;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  white-space: nowrap;
+  z-index: 12;
+  transition: .15s ease all
+}
+
+.apexcharts-tooltip.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+  border: 1px solid #e3e3e3;
+  background: rgba(255, 255, 255, .96)
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark {
+  color: #fff;
+  background: rgba(30, 30, 30, .8)
+}
+
+.apexcharts-tooltip * {
+  font-family: inherit
+}
+
+.apexcharts-tooltip-title {
+  padding: 6px;
+  font-size: 15px;
+  margin-bottom: 4px
+}
+
+.apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+  background: #eceff1;
+  border-bottom: 1px solid #ddd
+}
+
+.apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+  background: rgba(0, 0, 0, .7);
+  border-bottom: 1px solid #333
+}
+
+.apexcharts-tooltip-text-goals-value,
+.apexcharts-tooltip-text-y-value,
+.apexcharts-tooltip-text-z-value {
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: 600
+}
+
+.apexcharts-tooltip-text-goals-label:empty,
+.apexcharts-tooltip-text-goals-value:empty,
+.apexcharts-tooltip-text-y-label:empty,
+.apexcharts-tooltip-text-y-value:empty,
+.apexcharts-tooltip-text-z-value:empty,
+.apexcharts-tooltip-title:empty {
+  display: none
+}
+
+.apexcharts-tooltip-text-goals-label,
+.apexcharts-tooltip-text-goals-value {
+  padding: 6px 0 5px
+}
+
+.apexcharts-tooltip-goals-group,
+.apexcharts-tooltip-text-goals-label,
+.apexcharts-tooltip-text-goals-value {
+  display: flex
+}
+
+.apexcharts-tooltip-text-goals-label:not(:empty),
+.apexcharts-tooltip-text-goals-value:not(:empty) {
+  margin-top: -6px
+}
+
+.apexcharts-tooltip-marker {
+  width: 12px;
+  height: 12px;
+  position: relative;
+  top: 0;
+  margin-right: 10px;
+  border-radius: 50%
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 0 10px;
+  display: none;
+  text-align: left;
+  justify-content: left;
+  align-items: center
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+  opacity: 1
+}
+
+.apexcharts-tooltip-series-group.apexcharts-active,
+.apexcharts-tooltip-series-group:last-child {
+  padding-bottom: 4px
+}
+
+.apexcharts-tooltip-y-group {
+  padding: 6px 0 5px
+}
+
+.apexcharts-custom-tooltip,
+.apexcharts-tooltip-box {
+  padding: 4px 8px
+}
+
+.apexcharts-tooltip-boxPlot {
+  display: flex;
+  flex-direction: column-reverse
+}
+
+.apexcharts-tooltip-box>div {
+  margin: 4px 0
+}
+
+.apexcharts-tooltip-box span.value {
+  font-weight: 700
+}
+
+.apexcharts-tooltip-rangebar {
+  padding: 5px 8px
+}
+
+.apexcharts-tooltip-rangebar .category {
+  font-weight: 600;
+  color: #777
+}
+
+.apexcharts-tooltip-rangebar .series-name {
+  font-weight: 700;
+  display: block;
+  margin-bottom: 5px
+}
+
+.apexcharts-xaxistooltip,
+.apexcharts-yaxistooltip {
+  opacity: 0;
+  pointer-events: none;
+  color: #373d3f;
+  font-size: 13px;
+  text-align: center;
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  background: #eceff1;
+  border: 1px solid #90a4ae
+}
+
+.apexcharts-xaxistooltip {
+  padding: 9px 10px;
+  transition: .15s ease all
+}
+
+.apexcharts-xaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, .7);
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: #fff
+}
+
+.apexcharts-xaxistooltip:after,
+.apexcharts-xaxistooltip:before {
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none
+}
+
+.apexcharts-xaxistooltip:after {
+  border-color: transparent;
+  border-width: 6px;
+  margin-left: -6px
+}
+
+.apexcharts-xaxistooltip:before {
+  border-color: transparent;
+  border-width: 7px;
+  margin-left: -7px
+}
+
+.apexcharts-xaxistooltip-bottom:after,
+.apexcharts-xaxistooltip-bottom:before {
+  bottom: 100%
+}
+
+.apexcharts-xaxistooltip-top:after,
+.apexcharts-xaxistooltip-top:before {
+  top: 100%
+}
+
+.apexcharts-xaxistooltip-bottom:after {
+  border-bottom-color: #eceff1
+}
+
+.apexcharts-xaxistooltip-bottom:before {
+  border-bottom-color: #90a4ae
+}
+
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after,
+.apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+  border-bottom-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-xaxistooltip-top:after {
+  border-top-color: #eceff1
+}
+
+.apexcharts-xaxistooltip-top:before {
+  border-top-color: #90a4ae
+}
+
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:after,
+.apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+  border-top-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-xaxistooltip.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-yaxistooltip {
+  padding: 4px 10px
+}
+
+.apexcharts-yaxistooltip.apexcharts-theme-dark {
+  background: rgba(0, 0, 0, .7);
+  border: 1px solid rgba(0, 0, 0, .5);
+  color: #fff
+}
+
+.apexcharts-yaxistooltip:after,
+.apexcharts-yaxistooltip:before {
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none
+}
+
+.apexcharts-yaxistooltip:after {
+  border-color: transparent;
+  border-width: 6px;
+  margin-top: -6px
+}
+
+.apexcharts-yaxistooltip:before {
+  border-color: transparent;
+  border-width: 7px;
+  margin-top: -7px
+}
+
+.apexcharts-yaxistooltip-left:after,
+.apexcharts-yaxistooltip-left:before {
+  left: 100%
+}
+
+.apexcharts-yaxistooltip-right:after,
+.apexcharts-yaxistooltip-right:before {
+  right: 100%
+}
+
+.apexcharts-yaxistooltip-left:after {
+  border-left-color: #eceff1
+}
+
+.apexcharts-yaxistooltip-left:before {
+  border-left-color: #90a4ae
+}
+
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:after,
+.apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+  border-left-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-yaxistooltip-right:after {
+  border-right-color: #eceff1
+}
+
+.apexcharts-yaxistooltip-right:before {
+  border-right-color: #90a4ae
+}
+
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:after,
+.apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+  border-right-color: rgba(0, 0, 0, .5)
+}
+
+.apexcharts-yaxistooltip.apexcharts-active {
+  opacity: 1
+}
+
+.apexcharts-yaxistooltip-hidden {
+  display: none
+}
+
+.apexcharts-xcrosshairs,
+.apexcharts-ycrosshairs {
+  pointer-events: none;
+  opacity: 0;
+  transition: .15s ease all
+}
+
+.apexcharts-xcrosshairs.apexcharts-active,
+.apexcharts-ycrosshairs.apexcharts-active {
+  opacity: 1;
+  transition: .15s ease all
+}
+
+.apexcharts-ycrosshairs-hidden {
+  opacity: 0
+}
+
+.apexcharts-selection-rect {
+  cursor: move
+}
+
+.svg_select_boundingRect,
+.svg_select_points_rot {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden
+}
+
+.apexcharts-selection-rect+g .svg_select_boundingRect,
+.apexcharts-selection-rect+g .svg_select_points_rot {
+  opacity: 0;
+  visibility: hidden
+}
+
+.apexcharts-selection-rect+g .svg_select_points_l,
+.apexcharts-selection-rect+g .svg_select_points_r {
+  cursor: ew-resize;
+  opacity: 1;
+  visibility: visible
+}
+
+.svg_select_points {
+  fill: #efefef;
+  stroke: #333;
+  rx: 2
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+  cursor: crosshair
+}
+
+.apexcharts-svg.apexcharts-zoomable.hovering-pan {
+  cursor: move
+}
+
+.apexcharts-menu-icon,
+.apexcharts-pan-icon,
+.apexcharts-reset-icon,
+.apexcharts-selection-icon,
+.apexcharts-toolbar-custom-icon,
+.apexcharts-zoom-icon,
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  line-height: 24px;
+  color: #6e8192;
+  text-align: center
+}
+
+.apexcharts-menu-icon svg,
+.apexcharts-reset-icon svg,
+.apexcharts-zoom-icon svg,
+.apexcharts-zoomin-icon svg,
+.apexcharts-zoomout-icon svg {
+  fill: #6e8192
+}
+
+.apexcharts-selection-icon svg {
+  fill: #444;
+  transform: scale(.76)
+}
+
+.apexcharts-theme-dark .apexcharts-menu-icon svg,
+.apexcharts-theme-dark .apexcharts-pan-icon svg,
+.apexcharts-theme-dark .apexcharts-reset-icon svg,
+.apexcharts-theme-dark .apexcharts-selection-icon svg,
+.apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoom-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+.apexcharts-theme-dark .apexcharts-zoomout-icon svg {
+  fill: #f3f4f5
+}
+
+.apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+.apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg {
+  fill: #008ffb
+}
+
+.apexcharts-theme-light .apexcharts-menu-icon:hover svg,
+.apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+.apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+.apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+.apexcharts-theme-light .apexcharts-zoomout-icon:hover svg {
+  fill: #333
+}
+
+.apexcharts-menu-icon,
+.apexcharts-selection-icon {
+  position: relative
+}
+
+.apexcharts-reset-icon {
+  margin-left: 5px
+}
+
+.apexcharts-menu-icon,
+.apexcharts-reset-icon,
+.apexcharts-zoom-icon {
+  transform: scale(.85)
+}
+
+.apexcharts-zoomin-icon,
+.apexcharts-zoomout-icon {
+  transform: scale(.7)
+}
+
+.apexcharts-zoomout-icon {
+  margin-right: 3px
+}
+
+.apexcharts-pan-icon {
+  transform: scale(.62);
+  position: relative;
+  left: 1px;
+  top: 0
+}
+
+.apexcharts-pan-icon svg {
+  fill: #fff;
+  stroke: #6e8192;
+  stroke-width: 2
+}
+
+.apexcharts-pan-icon.apexcharts-selected svg {
+  stroke: #008ffb
+}
+
+.apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+  stroke: #333
+}
+
+.apexcharts-toolbar {
+  position: absolute;
+  z-index: 11;
+  max-width: 176px;
+  text-align: right;
+  border-radius: 3px;
+  padding: 0 6px 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+
+.apexcharts-menu {
+  background: #fff;
+  position: absolute;
+  top: 100%;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 3px;
+  right: 10px;
+  opacity: 0;
+  min-width: 110px;
+  transition: .15s ease all;
+  pointer-events: none
+}
+
+.apexcharts-menu.apexcharts-menu-open {
+  opacity: 1;
+  pointer-events: all;
+  transition: .15s ease all
+}
+
+.apexcharts-menu-item {
+  padding: 6px 7px;
+  font-size: 12px;
+  cursor: pointer
+}
+
+.apexcharts-theme-light .apexcharts-menu-item:hover {
+  background: #eee
+}
+
+.apexcharts-theme-dark .apexcharts-menu {
+  background: rgba(0, 0, 0, .7);
+  color: #fff
+}
+
+@media screen and (min-width:768px) {
+  .apexcharts-canvas:hover .apexcharts-toolbar {
+    opacity: 1
+  }
+}
+
+.apexcharts-canvas .apexcharts-element-hidden,
+.apexcharts-datalabel.apexcharts-element-hidden,
+.apexcharts-hide .apexcharts-series-points {
+  opacity: 0;
+}
+
+.apexcharts-hidden-element-shown {
+  opacity: 1;
+  transition: 0.25s ease all;
+}
+
+.apexcharts-datalabel,
+.apexcharts-datalabel-label,
+.apexcharts-datalabel-value,
+.apexcharts-datalabels,
+.apexcharts-pie-label {
+  cursor: default;
+  pointer-events: none
+}
+
+.apexcharts-pie-label-delay {
+  opacity: 0;
+  animation-name: opaque;
+  animation-duration: .3s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease
+}
+
+.apexcharts-radialbar-label {
+  cursor: pointer;
+}
+
+.apexcharts-annotation-rect,
+.apexcharts-area-series .apexcharts-area,
+.apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-gridline,
+.apexcharts-line,
+.apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+.apexcharts-point-annotation-label,
+.apexcharts-radar-series path:not(.apexcharts-marker),
+.apexcharts-radar-series polygon,
+.apexcharts-toolbar svg,
+.apexcharts-tooltip .apexcharts-marker,
+.apexcharts-xaxis-annotation-label,
+.apexcharts-yaxis-annotation-label,
+.apexcharts-zoom-rect {
+  pointer-events: none
+}
+
+.apexcharts-tooltip-active .apexcharts-marker {
+  transition: .15s ease all
+}
+
+.resize-triggers {
+  animation: 1ms resizeanim;
+  visibility: hidden;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden
+}
+
+.contract-trigger:before,
+.resize-triggers,
+.resize-triggers>div {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0
+}
+
+.resize-triggers>div {
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  overflow: auto
+}
+
+.contract-trigger:before {
+  overflow: hidden;
+  width: 200%;
+  height: 200%
+}
+
+.apexcharts-bar-goals-markers {
+  pointer-events: none
+}
+
+.apexcharts-bar-shadows {
+  pointer-events: none
+}
+
+.apexcharts-rangebar-goals-markers {
+  pointer-events: none
+}
+</style><script charset="utf-8" src="/js/25.00258223315547504c9a.chunk.js"></script><script charset="utf-8" src="/js/152.31e81e68d8c2f626eebb.chunk.js"></script></head><body class="desktop-detected smart-style-0 menu-on-top no-padding verticalMenuOpened"><div class="loaderContainer" style="display: none;"><svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div><div id="smartadmin-root"><div><div class="innerheader" id="mainHeader"><header id="header" class="animated"><div id="logo-group"><span id="logoInsightPro"><a href="/#/dashboard/account"><img src="assets/img/netgear-insight-logo.png" alt="Cloud Web Portal"></a></span></div><div class="MobileDevice hidden-xs"><ul class="nav navbar-nav"><li class="dropdown location-dropdown"><span class="location-border backDarkPurpleShadow" title="Location Settings"><img id="headerLocImg" src="https://network-icon-dev.s3.amazonaws.com/network_default.png" alt="Location Image" class="location-logo"></span><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" id="locationDropdown" aria-haspopup="true" aria-expanded="false"><span class="cmn-heading-4 display-inline" id="headerLocName">All Locations</span><span class="caret colorWhite"></span></a><ul class="dropdown-menu"><li><div class="search-all-location SecondDropBlock pd0"><div class="pdtrl20"><input type="text" class="input-search" placeholder="Search Location"></div><div class="search-location-wrapper"><ul class="search-location-list"><li><a><span class="location-img-circle"><img src="https://qa-network-icon.s3.amazonaws.com/network_default.png"></span><span class="location-title">OnBoardingTest</span></a></li></ul></div><div class="bottom-link-wrapper"><a href="#/dashboard/account" class="anchor-1 InsightAllLocation">See All Locations</a><a data-toggle="modal" data-target=".myModalAddNetwork" class="anchor-1">Add Location</a></div></div></li></ul></li></ul><div class="pull-right notificationsParent"><div class="HeaderAdminBlock verticleAlignTop globalSearchDropdown"><div id="showGlobalSearchMsg"></div><div class="headerSearchField d-flex align-items-center dropdown-toggle" data-toggle="dropdown"><img src="assets/img/Header/header-search-white.svg"><span class="fontSize12">Search (e.g. IP, MAC, Serial#, Name, Feature)</span></div><div class="dropdown-menu globleSearchBlock SearchWrapper pull-right no-margin"><div class="globalSearchItemsBlock" data-testid="onChangeEvent"><div class="d-flex align-items-center globalInputBlock inputTextField" data-testid="black"><span class="p-r-12"><img class="imgReverse" width="18" src="assets/img/Header/global-search.png"></span><input autocomplete="off" id="clientSearchInput" data-testid="SearchFilterData" class="inputTextFiel form-control no-border no-padding" type="search" maxlength="128" value="" placeholder="Search (e.g. IP, MAC, Serial#, Name, Feature)"><span class="closeIcon cursor-pointer" id="spnCloseIcondevicesDash"><i id="iconCloseIcondevicesDash" class="icon fontSize12 icon-group-2x colorGray"></i></span></div><div class="plr20 inputTextField"><div class="notificationTabBlock BorderBottomNone"><ul class="d-flex no-padding"><li data-toggle="tab" data-target=".allTabBlock" class="active">All</li><li data-toggle="tab" data-target=".deviceTabBlock" class="">Devices (0)</li><li data-toggle="tab" data-target=".clientTabBlock" class="">Clients (0)</li><li data-toggle="tab" data-target=".featureTabBlock" class="">Features (0)</li></ul></div></div><div class="allTabBlock tabDataBlock active"><div class="m-b-30 padding-top-15 plr20"></div></div><div class="deviceTabBlock tabDataBlock "><div class="m-b-30 padding-top-15 plr20"><div class="searchDataBlock m-b-30"><div class="d-flex padding-bottom-15"><p class="colorGray no-margin"> Devices</p><div class="loadingDeviceSearchResults"><svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><ul class="list-unstyled globleSearchDataList"></ul><p>No device data matches with search text</p></div></div></div><div class="clientTabBlock tabDataBlock "><div class="m-b-30 padding-top-15 plr20"><div class="searchDataBlock m-b-30"><div class="d-flex padding-bottom-15"><p class="colorGray no-margin">Clients </p><div class="loadingClientSearchResults"><svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><ul class="list-unstyled globleSearchDataList"></ul><p>No client data matches with search text</p></div></div></div><div class="featureTabBlock tabDataBlock "><div class="m-b-30 padding-top-15 plr20"><div class="searchDataBlock m-b-30"><div class="d-flex padding-bottom-15"><p class="colorGray no-margin">Features</p><div class="loadingFeatureSearchResults"><svg class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div><ul class="list-unstyled globleSearchDataList"></ul><p>No feature data matches with search text</p></div></div></div></div></div></div><div class="HeaderAdminBlock verticleAlignTop"><div class="settingMenu AdminDropDown dropdown-toggle" data-toggle="dropdown"><img src="assets/img/Header/icon-settings.png">&nbsp;<span class="caret no-margin colorWhite"></span></div><ul class="dropdown-menu locationMoreOption margin-top-5"><li class=""><a href="#/dashboard/myDevices"> My Devices</a></li><li><div class="d-flex align-items-center showHiddenBanner" id="showHiddenBannerWrap"><span class="mr-auto whiteNoWrap">Show Hidden Banner</span><label class="cmnSwitch m-l-12"><input autocomplete="off" type="checkbox" class="showHiddenBannerRadio" id="showHiddenBannerId" name="showHiddenBanner" checked=""><span class="cstmSlider cstmRound" id="showHiddenBanner"></span></label></div></li></ul></div><div class="notifications"><a id="notificationDrop" class="dropdown-toggle userdropdown" data-toggle="dropdown"><div class="notigroup zIndex3" data-tooltip="Notifications"><img src="assets/img/Header/icon-notifications.png"><span class="badge badge-default badge-pill">8</span></div></a><div class="dropdown-menu pull-right" id="notificationPadd"><div class="notification-panel"><div class="title2 row"><div class="col-sm-6 no-padding">Notifications</div></div><ul class="notification-list"><p class="text-center colorGray mb-0 margin-top-10">No New Notification</p></ul><div class="bottom-link-wrapper"><button type="button" class="btn btn-purple-outline">See All</button></div></div></div></div><div class="AdminDropDown viewFullSreenIcon verticleAlignTop zIndex3" data-tooltip="View Full Screen"><i><img src="assets/img/Header/icon-full-screen.png"></i></div><ul class="header-dropdown-list padding-cloak5"><li class=""><div class="dropdown-toggle userdropdown pointerCursor" data-toggle="dropdown"><div class="d-flex align-items-center"><div class="userProfilePicBlock"><img src="assets/img/Header/UserIcon.png" alt="User Image"></div><div class="userNameBlock"><p class="no-margin show OrbiClientElipsis maxWidth125 whiteNoWrap fontSize16 fontSemiBold">Hi apwptest5227576</p><p class="OrbiClientElipsis whiteNoWrap show fontSize12 no-margin">Premium</p></div><span class="caret colorWhite"></span></div></div><ul class="dropdown-menu customDropDown profileDropDown pull-right"><li><a href="#/accountManagement/purchaseHistory" class="padding-10 padding-top-0 padding-bottom-0">Account Management</a></li><li><a class="padding-10 padding-top-0 padding-bottom-0">Update Profile</a></li><li class="divider"></li><li><a data-toggle="modal" class="padding-10 padding-top-0 padding-bottom-0">About</a></li><li><a class="padding-10 padding-top-0 padding-bottom-0" data-action="toggleShortcut" id="regMYNetgearDeviceAnchor" data-toggle="modal" data-target=".myModalProRegistration">Register Any NETGEAR Device</a></li><li><a class="padding-10 padding-top-0 padding-bottom-0 m-b-5" data-action="launchFullscreen" rel="noopener noreferrer" target="_blank" href="https://my-stg.netgear.com/">Technical Support</a><span class=""><a data-toggle="modal" data-target=".techSupportModal" class="padding-10 padding-top-0 padding-bottom-0 fontSize12 colorGray"><i class="icon icon-icon-arrow-next-3x fontSize9 plusIcon"></i>Grant Access to Support</a></span></li><li><a class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen" rel="noopener noreferrer" target="_blank" href="https://www.netgear.com/support/product/Insight.aspx">Insight Knowledge Base</a></li><li class="tutorialBlock"><a data-toggle="collapse" id="guidedTutorial" aria-expanded="false" data-target="#guidedTour">Tutorials <i class="icon icon-icon-arrow-next-3x fontSize10 rotate90"></i></a><div class="tutorialSecondLevel collapse VisibleScrollBar" id="guidedTour" aria-expanded="false"><div style="position: relative; overflow: hidden; width: 100%; height: auto; min-height: 55px; max-height: 120px;"><div style="position: relative; overflow: scroll; margin-right: -15px; margin-bottom: -15px; min-height: 70px; max-height: 135px;"><a data-toggle="modal" data-target=".CreateLocationTutorialPremiumUserModal">Create Location</a><a data-toggle="modal" data-target=".CreateSSIDTutorialPremiumUserModal">Create SSID</a><a data-toggle="modal" data-target=".CreateVLANTutorialPremiumUserModal">Create VLAN</a><a data-toggle="modal" data-target=".CreatemPSKTutorialPremiumUserModal">Create/Configure MPSK</a><a data-toggle="modal" data-target=".InstantCaptivePortalTutorialPremiumUserModal">Instant Captive Portal</a><a data-toggle="modal" data-target=".InstantMeshTutorialPremiumUserModal">Instant Mesh</a><a data-toggle="modal" data-target=".FirmwareUpgradeTutorialPremiumUserModal">Firmware Update</a><a data-toggle="modal" data-target=".ProRouterVlanAndDHCPTutorialPremiumModal">Pro Router VLAN &amp; DHCP</a></div><div class="track-horizontal" style="position: absolute; height: 6px;"><div style="position: relative; display: block; height: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2);"></div></div><div class="track-vertical" style="position: absolute; width: 6px;"><div style="position: relative; display: block; width: 100%; cursor: pointer; border-radius: inherit; background-color: rgba(0, 0, 0, 0.2);"></div></div></div></div></li><li><a class="padding-10 padding-top-0 padding-bottom-0" href="/#/accountManagement/whatsNew" data-action="launchFullscreen">What's New in Insight?</a></li><li><a class="padding-10 padding-top-0 padding-bottom-0" data-action="launchFullscreen">Log Out</a></li></ul></li></ul></div></div><div class="mobileHeader visible-xs"><a class="toggleMenu visible  visible" data-toggle="collapse" data-target="#myNavbar"><img src="assets/img/commonIcons/hamburger-menu.png" alt=""></a><div class="MenuWrapper leftClose"><a id="closeMobileMenu" class="closeMenu hidden" data-toggle="collapse" data-target="#myNavbar"><img src="assets/img/commonIcons/cross-icon.png" alt=""></a><div class="MobLogo text-center"><a href="/#/dashboard/account" class=""><img src="assets/img/netgear-insight-logo.png" alt="Cloud Web Portal"></a><div class="mob_user" data-toggle="dropdown"><img src="assets/img/Header/UserIcon.png" alt="User Image">Hi apwptest5227576</div></div><div id="myNavbar"><div class="list-group"><div class="list-border"><a href="#myLocation" class="list-group-item d-flex align-items-center" data-toggle="collapse" data-parent="#myNavbar"><span>Locations</span><img src="assets/img/commonIcons/icon-plus.png" alt="" class="ml-auto"></a><div class="panel-collapse collapse list-group-submenu" id="myLocation"><div class="ui-collapsible-set"><a href="#myLocationSubMenu_0" class="list-group-item d-flex align-items-center" data-toggle="collapse" data-parent="#myLocationSubMenu_0"><span>OnBoardingTest</span><img src="assets/img/commonIcons/icon-plus.png" alt="" class="ml-auto"></a><div class="collapse list-group-submenu" id="myLocationSubMenu_0" data-key="0"><a class="list-group-item" data-parent="#myLocationSubMenu_0">Summary</a><div> <a href="#myLocationWirelessSubMenu_0" class="list-group-item d-flex align-items-center" data-toggle="collapse" data-parent="#myNavbar"><span>Wireless</span><img src="assets/img/commonIcons/icon-plus.png" alt="" class="ml-auto"></a><div class="collapse list-group-submenu" id="myLocationWirelessSubMenu_0" data-key="2"><a class="list-group-item">Quick View</a><a class="list-group-item">Settings</a></div></div> <div> <a href="#myLocationWiredSubMenu_0" class="list-group-item d-flex align-items-center" data-toggle="collapse" data-parent="#myNavbar"><span>Wired</span><img src="assets/img/commonIcons/icon-plus.png" alt="" class="ml-auto"></a><div class="collapse list-group-submenu" id="myLocationWiredSubMenu_0" data-key="3"><a class="list-group-item">Quick View</a><a class="list-group-item">Settings</a></div></div> <a class="list-group-item" data-parent="#myLocationSubMenu_0">Storage</a><a class="list-group-item" data-parent="#myLocationSubMenu_0">Firmware</a><a class="list-group-item" data-parent="#myLocationSubMenu_0">Devices</a><a class="list-group-item" data-parent="#myLocationSubMenu_0">Clients</a></div></div><a href="/#/dashboard/account" class="list-group-item">See All Location</a></div></div><div class="list-border"><a href="/#/dashboard/myDevices" class="list-group-item">Devices</a></div><div class="list-border"><a class="list-group-item res-notifications">Notifications<span class="badge badge-default badge-pill ">8</span></a></div><div class="b-bottom-0"><a href="#basicMenu" class="list-group-item d-flex align-items-center" data-toggle="collapse" data-parent="#myNavbar"><span>More</span><img src="assets/img/commonIcons/icon-plus.png" alt="" class="ml-auto"></a><div class="panel-collapse collapse list-group-submenu" id="basicMenu"><a href="#/accountManagement/purchaseHistory" class="list-group-item">Account Management</a><a class="list-group-item">Update Profile</a><a class="list-group-item" data-toggle="modal">About</a><a class="list-group-item" data-action="toggleShortcut" id="regMYNetgearDeviceAnchor" data-toggle="modal" data-target=".myModalProRegistration">Register Any NETGEAR Device</a><a class="list-group-item padding-bottom-0" data-action="launchFullscreen" rel="noopener noreferrer" target="_blank" href="https://www.netgear.com/support/">Support</a><span class=""><a data-toggle="modal" data-target=".techSupportModal" class="list-group-item fontSize12"><i class="icon icon-icon-arrow-next-3x fontSize9 plusIcon"></i>Grant Access to Support</a></span><a class="list-group-item" data-action="launchFullscreen" rel="noopener noreferrer" target="_blank" href="https://www.netgear.com/support/product/Insight.aspx">Insight Knowledge Base</a><a class="list-group-item" href="/#/accountManagement/whatsNew">What's New in Insight?</a><a class="list-group-item" data-action="launchFullscreen">Log Out</a></div></div></div></div></div></div><div data-toggle="dropdown" id="darkThemeSideBarButton" aria-expanded="false" data-target="#darkThemeSideBarOpen" class="darkSettingIcon padding-top-10 dropdown-toggle"><img src="assets/img/commonIcons/settings-mode.png"></div><div id="darkThemeSideBarOpen" class="darkThemeSideBar dropdown-menu"><div class="notification-panel"><div class="darkThemeInnerHeader"><div class="d-flex align-items-center justify-content-between"><div class="fontSize18">Customize Settings</div><div class="cursor-pointer sideBarCloseIcon" data-toggle="dropdown"><img src="assets/img/whiteCross.png"></div></div></div><div class="darkThemeInnerBlock padding-top-10 padding-bottom-15 mb-10"><p class="no-margin fontSize14 paraTextColor mb-0">You can customize the layout and navigation style. Switch back to default layout and behavior by clicking on "Switch to Default" button.</p></div><div class="darkThemeInnerBlock padding-top-15 padding-bottom-15 mb-10"><p class="m-b-5 fontSize16 fontSemiBold">Navigation Style</p><p class="mb-10 paraTextColor fontSize14">Select a suitable navigation system for your Insight Cloud Portal.</p><div class="d-flex align-items-center"><h5 class="mr-auto">Vertical Menu</h5><label class="cmnSwitch"><input name="enableVerticalMenu" id="enableVerticalMenu" type="checkbox"><span class="cstmSlider cstmRound"></span></label></div></div><div class="darkThemeInnerBlock padding-top-15 padding-bottom-15 no-border"><p class="m-b-5 fontSize16 fontSemiBold">Theme Style</p><p class="mb-10 paraTextColor fontSize14">Choose the preferred color mode for Insight Cloud Portal.</p><div class="d-flex align-items-center"><h5 class="mr-auto">Dark Mode</h5><label class="cmnSwitch"><input name="enableDarkMode" id="enableDarkMode" type="checkbox"><span class="cstmSlider cstmRound"></span></label></div></div><div class="bottom-link-wrapper"><button type="button" class="btn btn-purple-outline fontRegular">Switch to Default</button></div></div></div></header><div class="responsive-location visible-xs"><span><span class="location-border"><img src="https://network-icon-dev.s3.amazonaws.com/network_default.png" alt="Location Image" class="location-logo"></span><span class="cmn-heading-4">All Locations</span></span></div><div class="modal fade myModalProRegistration" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title" id="myModalLabel">Register any NETGEAR Product</h4></div><div id="serialPopup"><div id="serialMsg" class="margin-top-42"></div><div class="modal-body"><div class="a-network-location-i"><br><div class="row"><div class="col-md-12"><form id="smart-form-Serial" class="smart-form client-form" name="locationImg" enctype="multipart/form-data"><div class="OnOffSetting"><h5>Enter Serial Number</h5><input autocomplete="off" type="text" id="serialNum" data-type="serialNo" class="form-control formValidate inputTextField toUpperCase" maxlength="13"></div></form></div></div><div class="addDeviceLoader"><svg class="spinner" width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg><p class="colorGray">Registering device with NETGEAR</p></div></div></div><div class="modal-footer text-right cstmModFooter"><button type="button" class="btn btn-default" data-dismiss="modal">  Cancel </button><button type="button" disabled="" class="btn btn-primary"> Go </button></div></div><div id="msgPopup" class="displayNone"><div id="serialMsgs" class="margin-top-42"></div><div class="modal-body"><div class="a-network-location-i"><div class="RegistratioCol"><p>The following Device Registered to your NETGEAR account</p><div class="deviceCol"><div class="deviceSerial"><p><strong>Serial:</strong> </p></div></div></div></div></div><div class="modal-footer cstmModFooter text-right"><button type="button" class="btn btn-primary" data-dismiss="modal"> Close </button></div></div></div></div></div><div><div class="modal fade myModalAddNetwork" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog cstm-add-network"><div class="modal-content"><div class="loaderContainer loaderAddNetwork" style="display: none;"><svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div><div class="modal-header backDarkPurple colorWhite text-center"><button type="button" class="close" data-dismiss="modal" aria-hidden="true"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title" id="myModalLabel">Setup a New Network Location</h4></div><div class="modal-body"><div class="row"><div class="a-network-location-i col-md-12"><p class="">A network location in Insight constitutes a grouping of your devices within one single physical location and within one single LAN or VLAN.</p><br><br><div class="row"><div class="col-md-12"><div class=""><div id="addNetwork"></div><form id="smart-form-addNet" class="smart-form client-form form-revise" name="locationImg" enctype="multipart/form-data"><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">Location Name <span class="starInput">*</span></h5><input autocomplete="off" class="formValidate form-control inputTextField" id="addNetLocationName" type="text" name="addNetLocationName" data-type="locationName"></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600 notigroup">Device Admin Password  <span class="starInput">*</span><span class="DisplayTooltip OrbiTextTop"><span class="QuestionCol"> ? </span><span class="AccountTooltip"><p class="fontRegular">The <span class="fontSemiBold DarkColor">Device Admin Password</span> is the new password for the Insight network location. This password replaces the existing admin password on each device that you add to the network location.</p></span></span></h5><label class="input"><i id="iEyeIcon" class="eyeIcon fa fa-eye-slash"></i><input autocomplete="off" class="input-sm formValidate form-control inputTextField" id="locationPass" type="password" data-type="locationPass"></label></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">Street</h5><input autocomplete="off" class="form-control formValidate inputTextField" id="addNetStreet" type="text" name="addNetStreet" data-type="name"></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">City</h5><input autocomplete="off" class="form-control formValidate inputTextField" id="addNetCity" type="text" name="addNetCity" data-type="name"></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">State</h5><input autocomplete="off" class="form-control formValidate inputTextField" id="addNetState" type="text" name="addNetState" data-type="name"></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">Zip Code</h5><input autocomplete="off" class="formValidate form-control inputTextField" id="addNetZipcode" type="text" name="zipCode" data-type="editZip"></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">Country<span class="starInput">*</span></h5><select id="netCountryList" data-type="countryList" class="form-control formValidate inputTextField" name="Country"><option value="0">Select a Country</option></select><i></i></div><div class="OnOffSetting"><h5 class="fontRegular fontWeight600">Time Zone<span class="starInput">*</span></h5><select id="timeZone" class="form-control inputTextField" name="timeZone"></select> <i></i></div><div class="OnOffSetting"><div id="imgDiv" class="leftDiv img-circle"><img id="locationImg" name="" src="assets/img/Location_Dashboard/page-1.png"></div><h5 class="fontRegular fontWeight600">Add Location Image</h5><div class="input input-file rightZero"><span class="button chooseBtn"><img src="assets/img/commonIcons/icon-file-upload.png" alt=""><input class="formValidate" data-type="uploadImg" name="file" type="file" id="file"> Choose a file...</span></div></div></form></div></div></div></div></div></div><div class="modal-footer  text-right cstmModFooter"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary">Save</button></div></div></div></div></div><div><div class="modal fade custom-modal-padding techSupportModal" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog m-t-150 modal-lg-800" id="divsuccessModlWiredPoeSch"><div class="modal-content" id="divModConsuccessModlWiredPoeSch"><div class="modal-header backDarkPurple colorWhite text-center" id="divModlHeadrsuccessModlWiredPoeSch"><button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnCloseModlWiredPoeSch"><img id="imgWhteCrsWiredPoeSch" src="assets/img/commonIcons/whiteCross.png"></button><h4 id="hModlTitWiredPoeSch" class="modal-title">Grant Access to Technical Support</h4></div><div class="modal-body"><div id="techSupportModalErrorDiv"></div><p class="colorGray mb-10">Granting access allows Technical Support to navigate through and view your NETGEAR Insight account, including information related to your Organizations and Locations, and your networks. This information will be used for troubleshooting purposes only.</p><p class="colorGray m-b-20">You may end Support access at any time by clicking the <span class="fontSemiBold">"End Technical Support Access"</span> button at the bottom of screen.</p><p class="fontSemiBold m-b-10">Are you sure you want to grant access to technical support?</p></div><div class="modal-footer m-b-20"><button type="button" class="btn btn-default" data-dismiss="modal">No</button><button type="button" class="btn btn-primary">Yes, Grant Access</button></div></div></div></div><div class="modal fade custom-modal-padding endTechSupportModal" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog m-t-150" id="divsuccessModlWiredPoeSch"><div class="modal-content" id="divModConsuccessModlWiredPoeSch"><div class="modal-header backDarkPurple colorWhite text-center" id="divModlHeadrsuccessModlWiredPoeSch"><button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnCloseModlWiredPoeSch"><img id="imgWhteCrsWiredPoeSch" src="assets/img/commonIcons/whiteCross.png"></button><h4 id="hModlTitWiredPoeSch" class="modal-title">End Technical Support Access</h4></div><div class="modal-body"><div id="endTechSupportModalErrorDiv"></div><p class="fontSemiBold margin-top-5 mb-0">Are you sure you want to end this session and revoke access to Technical Support?</p></div><div class="modal-footer text-center m-b-20 margin-top-10"><button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary">End Access</button></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding CreateLocationTutorialPremiumUserModal" id="CreateLocationTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Create Location</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img class="img-responsive" src="assets/img/guidedTour/create-location-location-level.png" style="width: 560px;"></div><p class="fontSemiBold fontSize18">Add a new location</p><p class="mb-10">Click on <span class="fontSemiBold">Add Location</span> to add a location for the first time. You can also use the + icon if you wish to add more locations in future.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding CreateSSIDTutorialPremiumUserModal" id="CreateSSIDTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Create SSID</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img class="img-responsive" src="assets/img/guidedTour/create-ssid-select-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Select a Location</p><p class="mb-10">Choose the Location you are creating the SSID for.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding CreateVLANTutorialPremiumUserModal" id="CreateVLANTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Create VLAN</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img src="assets/img/guidedTour/create-vlan-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Select a Location</p><p class="mb-10">Click on the ... icon in the Location of your choice to access the manage options.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding InstantCaptivePortalTutorialPremiumUserModal" id="InstantCaptivePortalTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Instant Captive Portal</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img class="img-responsive" src="assets/img/guidedTour/create-ssid-select-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Select a Location</p><p class="mb-10">Select the location to setup Instant Captive Portal.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding InstantMeshTutorialPremiumUserModal" id="InstantMeshTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Instant Mesh</h4></div><div class="selectSSIDBlock"><div class="modal-body"><p>Please select a method to create an Instant Mesh.</p><div class="selectSSIDCotegary"><div class="m-b-30 row m-t-20 d-sm-flex"><div class="col-md-6 col-sm-6 m-b-20 selectSSIDdevider"><div class="CategoryInfo"><div class="ProIconCol text-center"><img src="assets/img/guidedTour/create-mesh-network-from-root-ap.png"></div><div class="InnercontentBlock"><h4 class="CategoryInfoTitle">Create Mesh Network from Root AP</h4><div class="ServiceDescription m-b-13"><p>Add Extender AP to create a mesh network from a Root AP. </p></div></div></div><div class="CatCustomButton text-center"><button type="button" class="btn btn-default"><span class="m-l-12 margin-right-13">View Tour</span></button></div></div><div class="col-md-6 col-sm-6 m-b-20"><div class="CategoryInfo"><div class="ProIconCol text-center"><img src="assets/img/guidedTour/create-mesh-network-from-extender-ap.png"></div><div class="InnercontentBlock"><h4 class="CategoryInfoTitle">Create Mesh Network from Extender AP</h4><div class="ServiceDescription m-b-13"><p>Add Root AP to create a mesh network from an Extender AP. </p></div></div></div><div class="CatCustomButton text-center"><button type="button" class="btn btn-default"><span class="m-l-12 margin-right-13">View Tour</span></button></div></div></div></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding FirmwareUpgradeTutorialPremiumUserModal" id="FirmwareUpgradeTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Firmware Update</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img src="assets/img/guidedTour/create-ssid-select-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Select a Location </p><p class="mb-10">Select the location of your choice and click on the location card to continue.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding CreatemPSKTutorialPremiumUserModal" id="CreatemPSKTutorialPremiumUser" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Create/Configure MPSK</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img src="assets/img/guidedTour/create-ssid-select-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Select a Location </p><p class="mb-10">Choose a <span class="fontSemiBold">Location </span>in the organization you are creating an MPSK for.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div class="modal fade customHeaderPadd30 custom-modal-padding ProRouterVlanAndDHCPTutorialPremiumModal" id="ProRouterVlanAndDHCPTutorialPremium" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog"><div class="modal-dialog modal-lg-800"><div class="modal-content"><div class="modal-header backDarkPurple colorWhite text-center"><button data-dismiss="modal" type="button" class="close"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title">Pro Router VLAN &amp; DHCP</h4></div><div class="modal-body modalOwlCarousal"><div class="formStep"><div class="m-b-20 d-flex justify-content-center"><img src="assets/img/guidedTour/create-vlan-location.png" style="width: 650px;"></div><p class="fontSemiBold fontSize18">Manage Location</p><p class="mb-10">Click on the ... icon in the Location of your choice to access the manage options.</p></div></div><div class="modal-footer m-b-20 buttonWidth105"><div class="align-items-center d-flex justify-content-between"><div class="no-padding" style="width: 136px;"></div><div class="d-flex justify-content-center align-items-center"><div class="tutorialDots active"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div><div class="tutorialDots cursor-pointer"><span></span></div></div><div class="text-right"><button type="button" class="btn btn-primary margin-right-13">Next</button></div></div></div></div></div></div><div id="myModal" class="modal fade SSNExpire" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-header errorModalHeader "><div class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><path fill="#FC3858" fill-rule="evenodd" d="M12.5 18.817c-.769 0-1.392-.643-1.392-1.434 0-.792.623-1.434 1.392-1.434.77 0 1.393.642 1.393 1.434.002.791-.62 1.435-1.39 1.436h-.005l.002-.002zm-1.272-10.04h2.542v6.09h-2.545v-6.09h.003zM24.48 19.04L14.716 1.632C14.106.543 13.303 0 12.498 0c-.805 0-1.608.543-2.218 1.632L.528 19.041C-.705 21.218.296 23 2.746 23H22.25c2.45 0 3.451-1.782 2.23-3.96z"></path></svg><h4 class="modal-title">Error</h4></div></div><div class="modal-body"><p>Invalid Session </p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-danger">OK</button></div></div></div></div><div id="myModal" class="modal fade techSupportSessionOutModal" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup m-t-198"><div class="modal-content"><div class="modal-header"><h4 class="modal-title">Session Revoked</h4></div><div class="modal-body undefined"><p class="">Your Support Session is revoked. Tap OK to log in again.</p></div><div class="modal-footer"><button type="button" data-dismiss="modal" id="" class="btn btn-primary">OK</button></div></div></div></div></div><div id="main" role="main"><div id="_divSubScriptions"><div id="content"><div class="row" id="divRowsubscriptions"><div class="col-md-12" id="divColsubscriptions"><div class="UserAccountStatus" id="divUserStatusSubscriptions"><ul class="list-inline" id="ulListInlinesubscriptions"><li><img src="assets/img/group.png" alt=""></li><li class="notigroup" id="liLocNamesubscriptions"> <p>Name</p> <h3 id="hFirstNamesubscriptions">apwptest5227576 T15598</h3><upgradepro><a class="upgradeToPro colorPurple deviderWithSpace no-border no-padding smart-form whiteNoWrap" data-toggle="modal" data-target=".proUpgradeModal">Upgrade to Pro Subscription</a><div class="modal custom-modal-padding fade inputModal proUpgradeModal" data-backdrop="static" role="dialog"><div class="loaderNASConfirmBox"><svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle loaderStroke" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h4 class="modal-title">Upgrade to Pro Subscription</h4></div><div class="modal-body"><div id="errorNASConfirmBox"></div><p class=""><p>Premium to Pro subscription upgrade enables Insight Pro features for the account. The conversion is not reversible.</p><br><p>Do you want to upgrade to Pro subscription?</p></p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-default">No, don't upgrade</button><button type="button" data-dismiss="modal" class="btn btn-danger">Upgrade to Pro</button></div></div></div></div></upgradepro></li><li id="liEmailsubscriptions"> <p>Email</p> <h3 id="hEmailsubscriptions" title="apwptest5227576@mailinator.com">apwptest5227576@mailinator.com</h3> </li><li id="liAccountStatusSubscriptions"> <p>Account Status</p><h3 id="hAccountStasubscriptions" class="AccountSta"><span class="circle-col colorGreen"><i id="iconCirsubscriptions" class="fa fa-circle" aria-hidden="true"></i></span> Active</h3></li><li><button type="button" class="btn btn-primary" aria-hidden="true" style="display: none;">Upgrade to Pro Subscription</button></li></ul></div></div></div><div class="containerRow" id="_divContainerRowsubscriptions"><div class="row" id="divRowSidesubscriptions"><div><div class="col-md-2 col-sm-3 sideBarSection open" id="openCommonMenuBar"><div class="hidden-xs" id="divSideBarSecEditVlan"><div class="verticalToggleMenu toplogyRectangle d-flex align-items-center justify-content-center"><img src="assets/img/Header/navigator-arrow.png"></div><div class="leftMenuItems"><div class="divundefined undefined divundefined leftMenuHaveSec"><a class="anchorundefined" href="/#/accountManagement/purchaseHistory">Purchase Order History</a></div><div class="divactiveLeftMenu undefined divundefined leftMenuHaveSec"><a class="anchoractiveLeftMenu" href="javaScript:void(0)">Subscriptions</a></div><div class="divundefined undefined divundefined leftMenuHaveSec"><a class="anchorundefined" href="/#/accountManagement/vpnServices">VPN Services</a></div><div class="divundefined undefined divundefined leftMenuHaveSec"><a class="anchorundefined" href="/#/accountManagement/instantCaptivePortal">Captive Portal Services</a></div><div class="divundefined undefined divundefined leftMenuHaveSec"><a class="anchorundefined" href="#/accountManagement/manageNotifications">Manage Notification Preferences</a></div></div></div><div class="dropdown visible-xs link-xs-dropdown"><a class="dropdown-toggle d-flex align-items-center" data-toggle="dropdown" href="#"><span class="selectect-link">Subscriptions</span><span class="caret ml-auto"></span></a><ul class="dropdown-menu"><li class=""><a class="" href="/#/accountManagement/purchaseHistory">Purchase Order History</a></li><li class=""><a class="link-selected" href="javaScript:void(0)">Subscriptions</a></li><li class=""><a class="" href="/#/accountManagement/vpnServices">VPN Services</a></li><li class=""><a class="" href="/#/accountManagement/instantCaptivePortal">Captive Portal Services</a></li><li class=""><a class="" href="#/accountManagement/manageNotifications">Manage Notification Preferences</a></li></ul></div></div><div id="myModal" class="modal fade countryRedirectError1" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup m-t-198"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal">×</button><h4 class="modal-title">Country Not Supported</h4></div><div class="modal-body undefined"><p class="">Please contact your VAR or distributor to purchase Insight Pro. Direct purchase through NETGEAR is not available in your country. You can continue to use the free Insight mobile app to register your NETGEAR devices.
+
+If you have purchased an Insight Pro subscription, you can log out and upgrade your subscription to Insight Pro by visiting insight.netgear.com/#/register.</p></div><div class="modal-footer"><button type="button" data-dismiss="modal" id="countryRedirectError" class="btn btn-primary">OK</button></div></div></div></div></div><div class="col-md-10 col-sm-9 contentSection" id="_divConSecsubscriptions"><div id="showErrorDiv"></div><div id="premiumSubscriptionPackDiv"><div id="showErrorDivModal"></div><div class="swichPortPad25"><div class="d-flex align-items-center justify-content-between"><div class="mlr-20"><div class="no-margin no-padding SubsDeviceslistBlock no-border"><div class="SubsDeviceslist"><div class="SubsDevicesCol no-margin"><h2>4</h2><p>Device Credits</p></div><div class="SubsDevicesCol"><h2>1</h2><p>Insight Devices</p></div><div class="SubsDevicesCol"><h2 class="colorGreen">3</h2><p>Available Credits</p></div></div></div></div><div class="ButtonBlockPop small-buttons m-r-25"><button type="button" class="btn btn-default btnPurple">Download Invoice</button></div></div><div class="premiumSubscriptionBlock"><div class="overflow"><div class="TableHeader d-flex align-items-center justify-content-between"><h3 class="fontSize16"><span class="fontSemiBold">Current Subscription</span></h3><div class="ButtonBlockPop small-buttons"><button type="button" class="btn btn-default btnPurple">Buy Device Credits</button></div></div><div class="swichPortPad25 m-b-30"><div class="mlr-20"><div class="SubsBillingCol primiumSubsBilling m-b-20"><ul class="list-inline d-sm-flex justify-content-between mb-0"><li><h3>Type</h3><p class="margin-top-10 colorGray">Insight Premium</p></li><li><h3>Activation</h3><p class="margin-top-10 colorGray">Jun 19, 2025 05:30 a.m.</p></li><li><h3>Expiration</h3><p class="margin-top-10 colorGray">Jul 19, 2025 05:30 a.m.</p></li><li><h3>Price Per Device</h3><p class="margin-top-10 colorGray">$ 0.99/Mo</p></li><li class="no-margin"><h3>Billing</h3><p class="margin-top-10 colorGray">$ 3.96/Mo</p></li><li class="no-margin"><h3>Auto Renewal</h3><p class="margin-top-10 colorGray">On</p></li></ul></div><p class="fontSize14"><span><span class="underline plusIcon pointerCursor">Cancel Subscription</span><span class="plusIcon colorLightGray">|</span></span><span><span class="colorPurple underline plusIcon pointerCursor">Change Subscription</span><span class="plusIcon colorLightGray">|</span></span><span class="colorPurple underline pointerCursor">Subscription Billing</span></p></div></div></div><div class="overflow DataTableBlock"><div class="TableHeader d-flex align-items-center justify-content-between"><h3 class="fontSize16"><span class="fontSemiBold">Device Credit Pack</span></h3><div class="ButtonBlockPop small-buttons"><button type="button" class="btn btn-default btnPurple">Buy Device Credits Pack</button></div></div><div class="myDevicesTable"><div class="HorrizontalScollHidden"><div id="DataTables_Table_4_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="DataTables_Table_4_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_4"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-hover no-footer dataTable" data="" emptystring="Use this table to view all current device credit packs for your Insight Premium account." id="DataTables_Table_4" role="grid" aria-describedby="DataTables_Table_4_info" style=""><thead><tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="SKU / Key: activate to sort column descending" style="width: 236.734px;" aria-sort="ascending">SKU / Key</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="Activation: activate to sort column ascending" style="width: 187.766px;">Activation</th><th width="150" class="sorting" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="Expiration: activate to sort column ascending" style="width: 156.625px;">Expiration</th><th width="150" class="text-center sorting" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="Device Credits: activate to sort column ascending" style="width: 156.625px;">Device Credits</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 131.719px;">Status</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_4" rowspan="1" colspan="1" aria-label="Auto Renewal: activate to sort column ascending" style="width: 248.031px;">Auto Renewal</th></tr></thead><tbody><tr class="odd"><td valign="top" colspan="6" class="dataTables_empty">Use this table to view all current device credit packs for your Insight Premium account.</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div></div></div></div><div class="overflow DataTableBlock"><div class="TableHeader d-flex align-items-center justify-content-between"><h3 class="fontSize16"><span class="fontSemiBold">Expired Device Credit Pack</span></h3><span class="hideshowaccord pull-right ml-auto"><i class="icon icon-icon-expand" aria-hidden="true"></i></span></div><div class="myDevicesTable"><div class="HorrizontalScollHidden"><div id="DataTables_Table_5_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="DataTables_Table_5_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_5"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-hover no-footer dataTable" data="" emptystring="Use this table to view all expired device credit packs for your Insight Premium account." id="DataTables_Table_5" role="grid" aria-describedby="DataTables_Table_5_info" style=""><thead><tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_5" rowspan="1" colspan="1" aria-label="SKU / Key: activate to sort column descending" style="width: 271.891px;" aria-sort="ascending">SKU / Key</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_5" rowspan="1" colspan="1" aria-label="Activation: activate to sort column ascending" style="width: 215.062px;">Activation</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_5" rowspan="1" colspan="1" aria-label="Expiration: activate to sort column ascending" style="width: 216.094px;">Expiration</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_5" rowspan="1" colspan="1" aria-label="Device Credits: activate to sort column ascending" style="width: 287.188px;">Device Credits</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_5" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 152.266px;">Status</th></tr></thead><tbody><tr class="odd"><td valign="top" colspan="5" class="dataTables_empty">Use this table to view all expired device credit packs for your Insight Premium account.</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div></div></div></div></div></div><div id="downloadInvoice" tabindex="-1" data-backdrop="static" role="dialog" class="modal fade customHeaderPadd30 custom-modal-padding downloadInvoiceModal"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" data-testid="whitecross"><img src="assets/img/commonIcons/whiteCross.png"></button><h4 class="modal-title" data-testid="downloadInvoiceOne">Download Invoice</h4></div><div id="showErrorDivModal"></div><div class="modal-body"><div id="showNotificationInvoice" class="m-t-0"></div><div class="p-l-1"><p class="LevelTitle fontSize20" data-testid="invoicecommon">Invoice <span>()</span></p><div class="OnOffSetting"><h5 class="m-b-5" data-testid="selectYear">Select Year</h5><select id="selectInvoice" class="form-control plr-0 p-r-30 inputTextField"><option value="" data-testid="select-option" hidden="">Please select</option></select></div><div class="OnOffSetting m-b-20"><h5 class="m-b-5" data-testid="selectInvoice">Select Invoice</h5><select id="selectInvoice" class="form-control plr-0 p-r-30 inputTextField disableAccordian"><option value="" data-testid="select-option" hidden="">Please select</option></select></div></div></div><div class="modal-footer m-t-25 m-b-20"><button type="button" class="btn btn-primary disableAccordian" data-testid="buttondownloadInvoice">Download Invoice</button></div></div></div></div></div><div>  <div class="overflow DataTableBlock"><div class="TableHeader d-flex align-items-center justify-content-between"><h3 class="fontSize16"><span class="fontSemiBold">Insight Premium Subscriptions - Direct Purchase</span></h3><span class="hideshowaccord pull-right ml-auto"><i class="icon icon-icon-expand" aria-hidden="true"></i></span></div><div class="myDevicesTable table-responsive"><div id="DataTables_Table_6_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="DataTables_Table_6_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_6"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-hover no-footer dataTable" data="" emptystring="Use this table to view all current subscriptions for your Insight Premium account." id="DataTables_Table_6" role="grid" aria-describedby="DataTables_Table_6_info" style=""><thead><tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="SKU / Key: activate to sort column descending" style="width: 236.734px;" aria-sort="ascending">SKU / Key</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="Activation: activate to sort column ascending" style="width: 187.766px;">Activation</th><th width="150" class="sorting" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="Expiration: activate to sort column ascending" style="width: 156.625px;">Expiration</th><th width="150" class="text-center sorting" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="Device Credits: activate to sort column ascending" style="width: 156.625px;">Device Credits</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 131.719px;">Status</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_6" rowspan="1" colspan="1" aria-label="Auto Renewal: activate to sort column ascending" style="width: 248.031px;">Auto Renewal</th></tr></thead><tbody><tr class="odd"><td valign="top" colspan="6" class="dataTables_empty">Use this table to view all current subscriptions for your Insight Premium account.</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div></div></div><div class="overflow DataTableBlock"><div class="TableHeader d-flex align-items-center justify-content-between"><h3 class="fontSize16"><span class="fontSemiBold">Expired subscription - Direct Purchase</span></h3><span class="hideshowaccord pull-right ml-auto"><i class="icon icon-icon-expand" aria-hidden="true"></i></span></div><div class="myDevicesTable table-responsive"><div id="DataTables_Table_7_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-6"></div><div class="col-sm-6"><div id="DataTables_Table_7_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm" placeholder="" aria-controls="DataTables_Table_7"></label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-hover no-footer dataTable" data="" emptystring="Use this table to view all expired subscription packs for your Insight Premium account." id="DataTables_Table_7" role="grid" aria-describedby="DataTables_Table_7_info" style=""><thead><tr role="row"><th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_7" rowspan="1" colspan="1" aria-label="SKU / Key: activate to sort column descending" style="width: 271.891px;" aria-sort="ascending">SKU / Key</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_7" rowspan="1" colspan="1" aria-label="Activation: activate to sort column ascending" style="width: 215.062px;">Activation</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_7" rowspan="1" colspan="1" aria-label="Expiration: activate to sort column ascending" style="width: 216.094px;">Expiration</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_7" rowspan="1" colspan="1" aria-label="Device Credits: activate to sort column ascending" style="width: 287.188px;">Device Credits</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_7" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 152.266px;">Status</th></tr></thead><tbody><tr class="odd"><td valign="top" colspan="5" class="dataTables_empty">Use this table to view all expired subscription packs for your Insight Premium account.</td></tr></tbody></table></div></div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div></div></div></div></div><div id="myModal" class="modal fade LearnMore subs" role="dialog"><div class="modal-dialog" id="divsuccessModlWiredPoeSch"><div class="modal-content" id="divModConsuccessModlWiredPoeSch"><div class="modal-header backDarkPurple colorWhite text-center" id="divModlHeadrsuccessModlWiredPoeSch"><button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="btnCloseModlWiredPoeSch"><img id="imgWhteCrsWiredPoeSch" src="assets/img/commonIcons/whiteCross.png"></button><h4 id="hModlTitWiredPoeSch" class="modal-title">Buy Premium Subscription</h4></div><div id="planUpgradeNotification"></div><div class="modal-body customize" id="divModlBdyWiredPoeSch"><div class="UpgradePopBlock" id="divNetWorkWiredPoeSch"><div class="row" id="divNetWorkWiredPoeSch"><div id="divBorderRightSubscription" class="col-md-12 borderPremium"><div class="preiumDevider" id="divPreiumDeviderSubscription"><div class="ChoosePremium" id="divChooserPreimumSubscription"><div class="OnOffSetting" id="divOnOfSetSubscription"><h5 id="hInsightPremSubscription">Insight Premium</h5></div><div class="CustomRadio Inline-Radio" id="divInlineRadioSubscription"><span id="sonDeviceSubscription1"><label id="lblPlanIdSubscription1" class="radio-inline"><input type="radio" name="selectedPlan" value="247644"><h2 id="hFrequencySubscription1">$ 9.99/Yr</h2><p id="pPreDeviceSubscription1">Per Device</p></label></span></div></div><div class="DataList" id="divDatalSubscription"><ul id="ulDatalSubscription"><li id="liDatalSubscription">Insight mobile app + cloud web portal</li><li id="divDatalSubscription">Advance Insight Premium features</li><li id="divDatalSubscription">Unlimited number of locations &amp; devices</li></ul></div></div></div></div></div></div><div class="modal-footer  text-right cstmModFooter" id="divModlStartSubscription"><button id="btnModlCheckoutSubscription" type="button" class="btn btn-primary">Check Out</button></div></div></div></div><div id="myModal" class="modal fade cancelUpgradeSubscription" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup" id="divModlDialSubscription"><div class="modal-content" id="divModlContenteSubscription"><div class="modal-header" id="divModlTitlSubscription"><button id="btnModlTitlSubscription" type="button" class="close" data-dismiss="modal">×</button><h4 class="modal-title" id="hModlTitlSubscription">Subscription Cancel</h4></div><div class="modal-body" id="divModlBdySubscription"><p id="pMdolBdySubscription">Your subscription has been canceled. You can continue to use Insight Insight Premiumservices until 19 July, 2025 05:30 a.m.. You can reactivate your subscription any time.</p></div><div class="modal-footer text-right cstmModFooter" id="divModlFootrSuscription"><button type="button" data-dismiss="modal" class="loginBtnSection Defoult-Btn" id="btnModlreactiveSubscription">Reactivate Subscription</button><button id="upgradeBtnSubscription" type="button" data-dismiss="modal" class="loginBtnSection">Upgrade Subscription</button></div></div></div></div><div id="myModal" class="modal fade successModalClass" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup m-t-198"><div class="modal-content"><div class="modal-body undefined"><p class=""></p></div><div class="modal-footer"><button type="button" data-dismiss="modal" id="subsPremiumSuccess" class="btn btn-primary">OK</button></div></div></div></div><div id="myModal" class="modal fade errorModalClass" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-body"><p> </p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-danger">OK</button></div></div></div></div></div></div></div></div></div></div><div class="footer-container"><div class="footerLogin"><div class="row"><div class="col-md-8 col-sm-8"><ul class="list-inline list-unstyled"><li><a href="https://community.netgear.com/t5/English/ct-p/English" rel="noopener noreferrer" target="_blank">Community</a></li><li><a href="https://www.netgear.com/support/product/insight" rel="noopener noreferrer" target="_blank">Support</a></li><li><a href="https://www.netgear.com/about/terms-and-conditions/" target="_blank">Terms of Use</a></li><li><a href="https://kb.netgear.com/000053874/How-do-I-cancel-my-Insight-subscription-plan-and-what-kind-of-refund-do-I-receive" rel="noopener noreferrer" target="_blank">Cancellation Policy</a></li><li><a href="https://www.netgear.com/about/privacy-policy/" target="_blank">Privacy Policy</a></li><li><a href="https://www.netgear.com/about/" rel="noopener noreferrer" target="_blank">About Us</a></li></ul></div><div class="col-md-4 col-sm-4"><div class="text-right copyright">© 1996 - 2025 NETGEAR®</div></div></div></div></div><div id="myModal" class="modal fade internetError" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-header errorModalHeader "><button type="button" class="close" data-dismiss="modal">×</button><div class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><path fill="#FC3858" fill-rule="evenodd" d="M12.5 18.817c-.769 0-1.392-.643-1.392-1.434 0-.792.623-1.434 1.392-1.434.77 0 1.393.642 1.393 1.434.002.791-.62 1.435-1.39 1.436h-.005l.002-.002zm-1.272-10.04h2.542v6.09h-2.545v-6.09h.003zM24.48 19.04L14.716 1.632C14.106.543 13.303 0 12.498 0c-.805 0-1.608.543-2.218 1.632L.528 19.041C-.705 21.218.296 23 2.746 23H22.25c2.45 0 3.451-1.782 2.23-3.96z"></path></svg><h4 class="modal-title">Error</h4></div></div><div class="modal-body"><p>No Internet connection. Check your network settings, and then try again. </p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-danger">OK</button></div></div></div></div><div id="myModal" class="modal fade apiError" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-header errorModalHeader "><button type="button" class="close" data-dismiss="modal">×</button><div class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><path fill="#FC3858" fill-rule="evenodd" d="M12.5 18.817c-.769 0-1.392-.643-1.392-1.434 0-.792.623-1.434 1.392-1.434.77 0 1.393.642 1.393 1.434.002.791-.62 1.435-1.39 1.436h-.005l.002-.002zm-1.272-10.04h2.542v6.09h-2.545v-6.09h.003zM24.48 19.04L14.716 1.632C14.106.543 13.303 0 12.498 0c-.805 0-1.608.543-2.218 1.632L.528 19.041C-.705 21.218.296 23 2.746 23H22.25c2.45 0 3.451-1.782 2.23-3.96z"></path></svg><h4 class="modal-title">Error</h4></div></div><div class="modal-body"><p>An error occurred while retrieving the status. Wait a few moments, and then try again. </p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-danger">OK</button></div></div></div></div><div id="myModal" class="modal fade insightNotReachable" role="dialog" data-backdrop="static" data-keyboard="false"><div class="modal-dialog custompoup"><div class="modal-content"><div class="modal-header errorModalHeader "><button type="button" class="close" data-dismiss="modal">×</button><div class="d-flex align-items-center"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="23" viewBox="0 0 25 23"><path fill="#FC3858" fill-rule="evenodd" d="M12.5 18.817c-.769 0-1.392-.643-1.392-1.434 0-.792.623-1.434 1.392-1.434.77 0 1.393.642 1.393 1.434.002.791-.62 1.435-1.39 1.436h-.005l.002-.002zm-1.272-10.04h2.542v6.09h-2.545v-6.09h.003zM24.48 19.04L14.716 1.632C14.106.543 13.303 0 12.498 0c-.805 0-1.608.543-2.218 1.632L.528 19.041C-.705 21.218.296 23 2.746 23H22.25c2.45 0 3.451-1.782 2.23-3.96z"></path></svg><h4 class="modal-title">Error</h4></div></div><div class="modal-body"><p>Insight is not reachable at the moment. Wait a while and then try again. </p></div><div class="modal-footer"><button type="button" data-dismiss="modal" class="btn btn-danger">OK</button></div></div></div></div></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-9X1WGTZZK2"></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-9X1WGTZZK2');</script><script type="text/javascript">//PRJCBUGEN-49302 : intially take dark mode value from localstorage and then pick from api.
+    const isDarkMode = localStorage.getItem('isDarkModeEnable') === '1';
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode-theme');
+    }
+    navigator.sayswho= (function(){
+        var ua= navigator.userAgent, tem, 
+        M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+        if(/trident/i.test(M[1])){
+            tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+            return 'IE '+(tem[1] || '');
+        }
+        if(M[1]=== 'Chrome'){
+            tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+            if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+        }
+        M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+        if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+        return M.join(' ');
+    })();
+    // if(navigator.sayswho == 'MSIE 9' || navigator.sayswho == 'Chrome 48' || navigator.sayswho == 'Firefox 35'){
+    //     alert('Your Browser is not supported. Please update your browser')   
+    // }</script><!--[if lt IE 9]>
+<script>
+  alert('Your Browser is not supported. Please update your browser to IE 9 or later!')
+  <p>Your Browser is not supported. Please update your browser to IE 9 or later!</p>
+</script>
+<![endif]--><!--[if gte IE 9]>--><script src="/js/runtime.5a44c9a21785944d36c2.bundle.js"></script><script src="/js/92.3dcaa2d92061d3bba881.chunk.js"></script><script src="/js/90.1c540dc2b7fa01b4b5b9.chunk.js"></script><script src="/js/91.78ace261f938a1261fb4.chunk.js"></script></body></html>

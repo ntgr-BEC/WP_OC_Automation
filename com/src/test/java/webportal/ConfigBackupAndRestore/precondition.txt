@@ -1,2 +1,0 @@
-config and backup	
-1AP,run only ap testcases

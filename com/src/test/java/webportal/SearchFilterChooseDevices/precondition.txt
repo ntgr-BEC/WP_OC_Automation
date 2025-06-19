@@ -1,2 +1,0 @@
-"Premium account with AP,BR500,ORBI,Switch(all dummy) onboarded.
-Don't run 37,42, 43 testcases"

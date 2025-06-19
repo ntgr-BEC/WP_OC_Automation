@@ -1,4 +1,0 @@
-DEVICE NAME,DEVICE SERIAL,LOCATION NAME,MAC Address,PROFILE NAME (Mobile Hotspot Devices),IMEI NUMBER (Mobile Hotspot Devices, Ex : 98765432123456)
-AP1,6RX1234500001,BulkOnboarding,aa:bb:cc:dd:ee:ff,Default,339866494547181,
-AP2,6RX1234500002,BulkOnboarding,aa:bb:cc:dd:ee:ff,Default,990538069251685,
-AP3,6RX1234500003,BulkOnboarding,aa:bb:cc:dd:ee:ff,Default,919861713823453,

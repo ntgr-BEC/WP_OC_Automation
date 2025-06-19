@@ -1,4 +1,0 @@
-"WAC540, WAC505, WAC564, GC752X, BR500, GC728X, GC110, GC108PP, GC108P, GC752XP, GC728XP, GC510PP, GC510P  
-need to confirm all the above models are hardbundled in the admin portal"
-
-

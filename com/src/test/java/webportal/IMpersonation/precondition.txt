@@ -1,4 +1,0 @@
-" Premium and Pro account , 3 account  <adminsupportuser>xxxx@mailinator.com</adminSupportUser>
-        <l2supportuser>xxxx@mailinator.com</l2SupportUser>
-        <l3supportuser>xxxx@mailinator.com</l3SupportUser>          
- adminSupportUser, l2SupportUser, l3SupportUser need to configure on config_webportal"
